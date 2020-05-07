@@ -1,0 +1,1 @@
+{"medical cost target": {"user target": null}, "savings/losses sharing arrangement": {"msr": null, "savings sharing": null, "savings share cap": null, "mlr": null, "losses sharing": null, "losses share cap": null}, "quality adjustment": ""}
