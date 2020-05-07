@@ -390,7 +390,69 @@ def card_quality_adjustment(app):
 
 
 def tab_result(app):
-	return html.Div()
+	return html.Div(
+                [
+                    dbc.Row(
+                        [
+                            dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"2rem","font-size":"3"}), width=9),
+                            
+                        ]
+                    ),
+                    dbc.Card(
+                        dbc.CardBody(
+                            [
+                                dbc.Row(
+                                    [
+                                        dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                        dbc.Col(html.H4("Savings/Losses Sharing Arrangement", style={"font-size":"1rem", "margin-left":"10px"}), width=6),
+                                        dbc.Col(html.Div("Metric"), width=2),
+                                        dbc.Col(html.Div("dropdown"))
+                                    ],
+                                    no_gutters=True,
+                                ),
+                                dbc.Row(
+                                    [
+                                        dbc.Col(html.Div("1"), width=2),
+                                        dbc.Col(html.Div("2"), width=4),
+                                        dbc.Col(html.Div("3"), width=6),
+                                    ],
+                                    no_gutters=True,
+                                ),
+                            ],
+                            className="mb-3",
+                            style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem", "padding-top":"1rem"}
+                        )
+                    ),
+                    
+                    dbc.Card(
+                        dbc.CardBody(
+                            [
+                                dbc.Row(
+                                    [
+                                        dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                        dbc.Col(html.H4("Savings/Losses Sharing Arrangement", style={"font-size":"1rem", "margin-left":"10px"}), width=6),
+                                        dbc.Col(html.Div("Metric"), width=2),
+                                        dbc.Col(html.Div("dropdown"))
+                                    ],
+                                    no_gutters=True,
+                                ),
+                                dbc.Row(
+                                    [
+                                        dbc.Col(html.Div("1"), width=2),
+                                        dbc.Col(html.Div("2"), width=4),
+                                        dbc.Col(html.Div("3"), width=6),
+                                    ],
+                                    no_gutters=True,
+                                ),
+                            ],
+                            className="mb-3",
+                            style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem", "padding-top":"1rem"}
+                        )
+                    )
+                ],
+                style={"padding-top":"2rem","padding-bottom":"2rem","padding-left":"1rem","padding-right":"1rem"}
+
+        )
 
 
 app.layout = create_layout(app)
