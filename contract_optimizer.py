@@ -74,17 +74,17 @@ def tab_setup(app):
                         	card_performance_measure_setup(app),
                         ]
                     ),
-                    html.Div(
-                        [
-                            dbc.Row(
-                                [
-                                    dbc.Col(html.H1("Contractual Arrangement Setup", style={"color":"#f0a800", "font-size":"1rem","padding-top":"0.8rem"}), width=9),
-                                    
-                                ]
-                            )
-                        ],
-                        style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#fff","margin-top":"2rem"}
-                    ),
+#                    html.Div(
+#                        [
+#                            dbc.Row(
+#                                [
+#                                    dbc.Col(html.H1("Contractual Arrangement Setup", style={"color":"#f0a800", "font-size":"1rem","padding-top":"0.8rem"}), width=9),
+#                                    
+#                                ]
+#                            )
+#                        ],
+#                        style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#fff","margin-top":"2rem"}
+#                    ),
                     
 				]
 			)
@@ -174,7 +174,11 @@ def card_medical_cost_target(app):
                                                 html.Hr(className="ml-1"),
                                 				dbc.Row(
                                 					[
-                                						dbc.Col(html.H4("Recommended", style={"font-size":"0.8rem"})),
+                                						dbc.Col([
+                                                            dbc.Button("Recommended", id = 'button-recom', color = 'link',style={"font-size":"0.8rem"}),
+                                                            dbc.Popover([dbc.PopoverBody("PLACEHOLDER PLACEHOLDER PLACEHOLDER"),], 
+                                                                id = 'popover-recom', is_open = False, target = 'button-recom', placement = 'top')
+                                                            ]),
                                 						dbc.Col(html.H4("User Defined", style={"font-size":"0.8rem"})),
                                 					]
                                 				),
@@ -203,8 +207,13 @@ def card_medical_cost_target(app):
                         		dbc.Col(
                     				dbc.Row(
                     					[
-                    						dbc.Col(html.H6("$760")),
-                    						dbc.Col(html.H6("$725")),
+                    						dbc.Col(html.H6("$760", id = 'div-recom-tgt')),
+                    						dbc.Col([
+                                                dbc.InputGroup([
+                                                    dbc.InputGroupAddon('$', addon_type = 'prepend'),
+                                                    dbc.Input(id = 'input-usr-tgt', type = "number", debounce = True)
+                                                    ])
+                                                ]),
                     					]
                     				)
                         			, width=3
@@ -212,8 +221,8 @@ def card_medical_cost_target(app):
                         		dbc.Col(
                     				dbc.Row(
                     					[
-                    						dbc.Col(html.H6("High")),
-                    						dbc.Col(html.H6("Low")),
+                    						dbc.Col(html.H6("High", id = 'div-recom-like')),
+                    						dbc.Col(html.Div("Low", id = 'div-usr-like')),
                     					]
                     				)
                         			, width=3
@@ -259,28 +268,48 @@ def card_sl_sharing_arrangement(app):
 	                    					[
 	                    						dbc.Col(html.H6("MSR (Minimum Savings Rate)"),width=3),
 	                    						dbc.Col(html.H6("2%"),style={"text-align":"center"},width=3),
-	                    						dbc.Col(html.H6("2%"),style={"text-align":"center"},width=3),
+	                    						dbc.Col([
+                                                    dbc.InputGroup([
+                                                    dbc.Input(id = 'input-usr-msr', type = "number", debounce = True),
+                                                    dbc.InputGroupAddon('%', addon_type = 'append'),
+                                                    ])
+                                                    ],style={"text-align":"center"},width=3),
 	                    					]
 	                    				),
 				                        dbc.Row(
 	                    					[
 	                    						dbc.Col(html.H6("Plan's Sharing %"),width=3),
 	                    						dbc.Col(html.H6("40%"),style={"text-align":"center"},width=3),
-	                    						dbc.Col(html.H6("50%"),style={"text-align":"center"},width=3),
+	                    						dbc.Col([
+                                                    dbc.InputGroup([
+                                                    dbc.Input(id = 'input-usr-planshare', type = "number", debounce = True),
+                                                    dbc.InputGroupAddon('%', addon_type = 'append'),
+                                                    ])
+                                                    ],style={"text-align":"center"},width=3),
 	                    					]
 	                    				),
 	                    				dbc.Row(
 	                    					[
 	                    						dbc.Col(html.H6("Shared Savings Cap"),width=3),
 	                    						dbc.Col(html.H6("10% of target"),style={"text-align":"center"},width=3),
-	                    						dbc.Col(html.H6("10%"),style={"text-align":"center"},width=3),
+	                    						dbc.Col([
+                                                    dbc.InputGroup([
+                                                    dbc.Input(id = 'input-usr-sharecap', type = "number", debounce = True),
+                                                    dbc.InputGroupAddon('% of target', addon_type = 'append'),
+                                                    ])
+                                                    ],style={"text-align":"center"},width=3),
 	                    					]
 	                    				),
                                 	]
                                 ),
                                 dbc.Col(
                                 	[
-                                		html.Div("Shared Losses"),
+                                		dbc.Checklist(
+                                            options = [{'label': "Shared Losses", 'value': 'Shared Losses'}], 
+                                            value = [], 
+                                            id = 'switch-share-loss',
+                                            switch = True),
+#                                        html.Div("Shared Losses"),
                                 		dbc.Row(
 	                    					[
 	                    						dbc.Col(html.Div(),width=3),
@@ -294,21 +323,36 @@ def card_sl_sharing_arrangement(app):
 	                    					[
 	                    						dbc.Col(html.H6("MSR (Minimum Losses Rate)"),width=3),
 	                    						dbc.Col(html.H6("2%"),style={"text-align":"center"},width=3),
-	                    						dbc.Col(html.H6("2%"),style={"text-align":"center"},width=3),
+	                    						dbc.Col([
+                                                    dbc.InputGroup([
+                                                    dbc.Input(id = 'input-usr-mlr', type = "number", debounce = True),
+                                                    dbc.InputGroupAddon('%', addon_type = 'append'),
+                                                    ])
+                                                    ],style={"text-align":"center"},width=3),
 	                    					]
 	                    				),
 				                        dbc.Row(
 	                    					[
 	                    						dbc.Col(html.H6("Plan's Sharing %"),width=3),
 	                    						dbc.Col(html.H6("40%"),style={"text-align":"center"},width=3),
-	                    						dbc.Col(html.H6("50%"),style={"text-align":"center"},width=3),
+	                    						dbc.Col([
+                                                    dbc.InputGroup([
+                                                    dbc.Input(id = 'input-usr-planshare-l', type = "number", debounce = True),
+                                                    dbc.InputGroupAddon('%', addon_type = 'append'),
+                                                    ])
+                                                    ],style={"text-align":"center"},width=3),
 	                    					]
 	                    				),
 	                    				dbc.Row(
 	                    					[
 	                    						dbc.Col(html.H6("Shared Losses Cap"),width=3),
 	                    						dbc.Col(html.H6("10% of target"),style={"text-align":"center"},width=3),
-	                    						dbc.Col(html.H6("10%"),style={"text-align":"center"},width=3),
+	                    						dbc.Col([
+                                                    dbc.InputGroup([
+                                                    dbc.Input(id = 'input-usr-sharecap-l', type = "number", debounce = True),
+                                                    dbc.InputGroupAddon('% of target', addon_type = 'append'),
+                                                    ])
+                                                    ],style={"text-align":"center"},width=3),
 	                    					]
 	                    				),
                                 	]
@@ -331,8 +375,9 @@ def card_quality_adjustment(app):
                         dbc.Row(
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                dbc.Col(html.H4("Savings/Losses Sharing Arrangement", style={"font-size":"1rem", "margin-left":"10px"}), width="auto"),
-                                dbc.Col(dbc.Button("Edit"))
+                                dbc.Col(html.H4("Quality Adjustment", style={"font-size":"1rem", "margin-left":"10px"}), width="auto"),
+                                dbc.Col(dbc.Button("Edit", id = 'button-show-meas')),
+                                html.Div('measure table placeholder',id = 'div-meas-table-container', hidden = True)
                             ],
                             no_gutters=True,
                         ),
@@ -350,8 +395,58 @@ def tab_result(app):
 
 app.layout = create_layout(app)
 
+@app.callback(
+    Output('popover-recom', 'is_open'),
+    [Input('button-recom', 'n_clicks')],
+    [State('popover-recom', 'is_open')]
+    )
+def toggle_popover(n, is_open):
+    if n:
+        return not is_open
+    return is_open
+
+@app.callback(
+    [Output('input-usr-mlr', 'disabled'),
+    Output('input-usr-planshare-l', 'disabled'),
+    Output('input-usr-sharecap-l', 'disabled'),],
+    [Input('switch-share-loss', 'value')]
+    )
+def toggle_share_loss(v):
+    if 'Shared Losses' in v:
+        return False, False, False
+    return True, True, True
+
+@app.callback(
+    Output('div-meas-table-container', 'hidden'),
+    [Input('button-show-meas', 'n_clicks')],
+    [State('div-meas-table-container', 'hidden')]
+    )
+def show_meas_table(n, hidden):
+    if n:
+        return not hidden 
+    return hidden
+
+@app.callback(
+    [Output('div-usr-like', 'children'),
+    Output('div-usr-like', 'style')],
+    [Input('input-usr-tgt', 'value')],
+    [State('div-recom-like', 'children'),
+    State('div-recom-tgt', 'children')]
+    )
+def cal_usr_like(usr_tgt, recom_like, recom_tgt):
+    if usr_tgt:
+        recom_tgt_int = int(recom_tgt.replace('$','').replace('%','').replace(',',''))
+        if usr_tgt >= recom_tgt_int:
+            return 'High', {}
+        elif usr_tgt < recom_tgt_int*0.95:
+            return 'Low', {'background-color':'red'}
+        else:
+            return 'Mid', {}
+    return '', {}
+
+
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True,port=8050)
+    app.run_server(host="127.0.0.1",debug=True,port=8052)
 
 
