@@ -25,7 +25,7 @@ server = app.server
 
 file = open('configure/default_ds.txt', encoding = 'utf-8')
 default_input = json.load(file)
-
+df_quality = pd.read_csv("data/quality_setup.csv")
 
 
 def create_layout(app):
@@ -384,7 +384,7 @@ def card_quality_adjustment(app):
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                 dbc.Col(html.H4("Quality Adjustment", style={"font-size":"1rem", "margin-left":"10px"}), width="auto"),
                                 dbc.Col(dbc.Button("Edit", id = 'button-show-meas')),
-                                html.Div('measure table placeholder',id = 'div-meas-table-container', hidden = True)
+                                html.Div([qualitytable(df_quality)],id = 'div-meas-table-container', hidden = True)
                             ],
                             no_gutters=True,
                         ),
@@ -575,6 +575,6 @@ def store_data(usr_tgt, usr_msr, usr_planshare, usr_sharecap, usr_mlr, usr_plans
 
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True,port=8052)
+    app.run_server(host="127.0.0.1",debug=True,port=8049)
 
 
