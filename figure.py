@@ -25,7 +25,6 @@ def qualitytable(df):
 		id='table-measure-setup',
 		columns=[
 		{"name": ["","Measure"], "id": "measure"},
-		{"name": ["","Data Source"], "id": "datasource"},
 		{"name": [ "ACO Baseline","Value"], "id": "value"},
 		{"name": [ "ACO Baseline","Percentile"], "id": "percentile",'type': 'numeric',"format":FormatTemplate.percentage(1),},
 		{"name": [ "ACO Baseline","Score"], "id": "score",'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
@@ -189,7 +188,13 @@ def sim_result_box(df_sim_result):
         q3=df['Lower End'].to_list()[1:n]
         upperfence=df['Worst'].to_list()[1:n]
         
-    
+    if df.values[0,7] in ["ACO's PMPM"]:
+    	suf=''
+    elif df.values[0,7] in ["ACO's Margin %"]:
+    	suf='%'
+    else:
+    	suf='Mn'
+
     fig_sim =go.Figure()
 
     fig_sim.add_trace( 
@@ -234,7 +239,7 @@ def sim_result_box(df_sim_result):
         annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
                         x=0+i, y=df['Best'].to_list()[1:n][i],ax=m+i, ay=df['Best'].to_list()[1:n][i],
                         startstandoff=10,
-                        text='Best: '+str(round(df['Best'].to_list()[1:n][i],1))+'Mn',
+                        text='Best: '+str(round(df['Best'].to_list()[1:n][i],1))+suf,
                         font=dict(family='NotoSans-CondensedLight', size=12, color='green'),
                         showarrow=True,
                         arrowhead=2,
@@ -246,7 +251,7 @@ def sim_result_box(df_sim_result):
         annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
                         x=0+i, y=df['Worst'].to_list()[1:n][i],ax=m+i, ay=df['Worst'].to_list()[1:n][i],
                         startstandoff=10,
-                        text='Worst: '+str(round(df['Worst'].to_list()[1:n][i],1))+'Mn',
+                        text='Worst: '+str(round(df['Worst'].to_list()[1:n][i],1))+suf,
                         font=dict(family='NotoSans-CondensedLight', size=12, color='red'),
                         showarrow=True,
                         arrowhead=2,
@@ -277,7 +282,7 @@ def sim_result_box(df_sim_result):
                       )
     annotations.append(dict(xref='paper', yref='y',
                             x=1.12, y=base/2,
-                            text=bartext+str(round(base,1))+'Mn',
+                            text=bartext+str(round(base,1))+suf,
                             font=dict(family='NotoSans-CondensedLight', size=12, color='#38160f'),
                             showarrow=False,
                            )
@@ -314,7 +319,7 @@ def sim_result_box(df_sim_result):
                 gridcolor =colors['grey'],
                 tickcolor =colors['grey'],
                 ticks='inside',
-                ticksuffix='Mn',
+                ticksuffix=suf,
                 nticks=5,
                 showticklabels=True,
                 tickfont=dict(
@@ -361,6 +366,18 @@ def table_sim_result(df):
     column1=column1+['Contract','w/o','VBC Payout','Contract with','VBC Payout','(Recommended)','Contract with','VBC Payout','(User Defined)']
  
     df['scenario']=column1
+
+    if df.values[0,7] in ["ACO's PMPM"]:
+    	header=['Best Estimate','Low','High','Low','High']
+    elif df.values[0,7] in ["ACO's Margin %"]:
+    	header=['Best Estimate(%)','Low(%)','High(%)','Low(%)','High(%)']
+    else:
+    	header=['Best Estimate(Mn)','Low(Mn)','High(Mn)','Low(Mn)','High(Mn)']
+
+    if df.values[0,7] =="ACO's Margin %":
+    	num_format=Format( precision=1, scheme=Scheme.fixed,nully='N/A')
+    else:
+    	num_format=Format( precision=1, scheme=Scheme.fixed,nully='N/A')
     
    
     table=dash_table.DataTable(
@@ -369,11 +386,11 @@ def table_sim_result(df):
         columns=[
         {"name": ["Contract Type","Contract Type"], "id": "scenario"},
         {"name": ["Item","Item"], "id": "Item"},
-        {"name": ["","Best Estimate(Mn)"], "id": "Best Estimate",'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
-        {"name": [ "Full Range","Low(Mn)"], "id": "Worst",'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
-        {"name": [ "Full Range","High(Mn)"], "id": "Best",'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
-        {"name": [ "Most Likely Range","Low(Mn)"], "id": "Lower End",'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
-        {"name": [ "Most Likely Range","High(Mn)"], "id": "Higher End",'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
+        {"name": ["",header[0]], "id": "Best Estimate",'type': 'numeric',"format":num_format,},
+        {"name": [ "Full Range",header[1]], "id": "Worst",'type': 'numeric',"format":num_format,},
+        {"name": [ "Full Range",header[2]], "id": "Best",'type': 'numeric',"format":num_format,},
+        {"name": [ "Most Likely Range",header[3]], "id": "Lower End",'type': 'numeric',"format":num_format,},
+        {"name": [ "Most Likely Range",header[4]], "id": "Higher End",'type': 'numeric',"format":num_format,},
         ],  
         merge_duplicate_headers=True,
         style_data={
