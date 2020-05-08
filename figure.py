@@ -26,20 +26,23 @@ def qualitytable(df):
 		columns=[
 		{"name": ["","Measure"], "id": "measure"},
 		{"name": [ "ACO Baseline","Value"], "id": "value"},
-		{"name": [ "ACO Baseline","Percentile"], "id": "percentile",'type': 'numeric',"format":FormatTemplate.percentage(1),},
+		{"name": [ "ACO Baseline","Percentile"], "id": "percentile",'type': 'numeric',"format":Format(nully='N/A'),},
 		{"name": [ "ACO Baseline","Score"], "id": "score",'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
 		{"name": [ "","Cost Implication to Plan"], "id": "costimplication"},
 		{"name": [ "","Domain"], "id": "domain"},
 		{"name": [ "Weight","Recommended"], "id": "recommended"},
-		{"name": [ "Weight","User Defined"], "id": "userdefined",'editable': True},
+		{"name": [ "Weight","User Defined(Editable)"], "id": "userdefined",'editable': True},
 		],  
 		merge_duplicate_headers=True,
 		row_selectable='multi',
 		selected_rows=list(range(0,23)),
 		style_data={
 				'color': 'black', 
-				'backgroundColor': 'white',
+				'backgroundColor': 'rgba(0,0,0,0)',
 				'font-family': 'NotoSans-CondensedLight',
+				'width':'4rem',
+				'minWidth': '4rem',
+				'maxWidth':'14rem',
 				#'border':'1px solid grey',
 				#'border-bottom': '1px solid grey',
 				#'border-top': '1px solid grey',
@@ -49,6 +52,9 @@ def qualitytable(df):
 				{ 'if': {'column_id':'measure'}, 
 				 'font-weight':'bold', 
 				 'textAlign': 'start',
+				 'width':'14rem',
+				 #'minWidth': '25rem',
+				 #'maxWidth':'25rem',
 				  },
 		]+
 		[
@@ -72,49 +78,45 @@ def qualitytable(df):
 		]+[
 			{ 
 				'if': {'row_index':c,'column_editable':True}, 
-				'backgroundColor': 'white',
+				'backgroundColor': 'rgba(18,85,222,0.1)',
+				'font-weight':'bold',
 				'border':'1px solid blue',
-				'border-bottom':'0px',
+				'border-bottom':'1px solid rgba(18,85,222,0.1)',
 			 
 			} if c in [0,10,13,20] else
 			{
 				'if': {'row_index':c,'column_editable':True}, 
-				'backgroundColor': 'white',
+				'backgroundColor': 'rgba(18,85,222,0.1)',
+				'font-weight':'bold',
 				'border':'1px solid blue',
-				'border-top':'0px',
+				'border-top':'1px solid rgba(18,85,222,0.1)',
 			 
 			} if c in [9,12,19,22] else
 			{
 				'if': {'row_index':c,'column_editable':True},
-				'backgroundColor': 'white', 
+				'backgroundColor': 'rgba(18,85,222,0.1)', 
+				'font-weight':'bold',
 				'border':'1px solid blue',
-				'border-bottom':'0px',
-				'border-top':'0px',
+				'border-bottom':'1px solid rgba(18,85,222,0.1)',
+				'border-top':'1px solid rgba(18,85,222,0.1)',
 			}  for c in range(0,23)
 
 		]+[
 			{
 				'if': { 'column_id': 'costimplication','filter_query': '{costimplication} eq "Low"'},
-				'backgroundColor': 'green',
-				'color': 'white',
+				#'backgroundColor': 'green',
+				'color': 'green',
 			},
 			{
 				'if': { 'column_id': 'costimplication','filter_query': '{costimplication} eq "Mid"' },
-				'backgroundColor': 'rgb(246,177,17)',
-				'color': 'black',
+				#'backgroundColor': 'rgb(246,177,17)',
+				'color': 'rgb(237,125,49)',
 			},
 			{
 				'if': { 'column_id': 'costimplication', 'filter_query': '{costimplication} eq "High"'},
-				'backgroundColor': 'red',
-				'color': "white",
+				#'backgroundColor': 'red',
+				'color': "red",
 			}
-		]+[
-			{ 
-				'if': {'column_id':'recommended'}, 
-				'backgroundColor':'lightgrey', 
-				#'textAlign': 'start',
-				  },
-		
 		],
 		style_cell={
 			'textAlign': 'center',
