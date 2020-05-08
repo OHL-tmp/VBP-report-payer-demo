@@ -15,6 +15,9 @@ import dash_table.FormatTemplate as FormatTemplate
 
 df_quality = pd.read_csv("data/quality_setup.csv")
 
+colors={'blue':'rgba(18,85,222,100)','yellow':'rgba(246,177,17,100)','transparent':'rgba(255,255,255,0)','grey':'rgba(191,191,191,100)',
+       'lightblue':'rgba(143,170,220,100)'}
+
 def qualitytable(df):
 
 	table=dash_table.DataTable(

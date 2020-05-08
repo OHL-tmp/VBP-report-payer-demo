@@ -1,14 +1,15 @@
 import pandas as pd
 
-def simulation_cal()
+def simulation_cal(selected_rows,domian_weight,target_user_pmpm,msr_user,mlr_user,max_user_savepct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided):
 	df_range = pd.read_csv("data/quality_setup.csv")
 	domain1=list(range(0,10))
 	domain2=list(range(10,14))
 	domain3=list(range(14,20))
 	domain4=list(range(20,23))
 
-	selected_rows=[0,1,2,3,4,10,11]
-	domian_weight=[0.5,0.5,0,0]
+
+	#selected_rows=[0,1,2,3,4,10,11]
+	#domian_weight=[0.5,0.5,0,0]
 
 	member_cnt=1000
 	target_recom_pmpm=760
@@ -19,16 +20,16 @@ def simulation_cal()
 	cap_recom_savepct=0.1
 	cap_recom_losspct=0.1
 
-	target_user_pmpm=800
-	msr_user=0.02
-	mlr_user=0.02
-	max_user_savepct=0.4
-	max_user_losspct=0.4
-	cap_user_savepct=0.1
-	cap_user_losspct=0.1
+	#target_user_pmpm=800
+	#msr_user=0.02
+	#mlr_user=0.02
+	#max_user_savepct=0.4
+	#max_user_losspct=0.4
+	#cap_user_savepct=0.1
+	#cap_user_losspct=0.1
 	quality_score_recom=[0.824583333,0.67375,0.908645833,0.762083333,0.869895833]
 
-	twosided=False
+	#twosided=False
 
 	pmpy_mean=850*12
 	pmpy_rangepct=[1,1.2,0.8,1.1,0.9] # be,worst,best,worse,better
@@ -41,49 +42,50 @@ def simulation_cal()
 
 	k=0
 	for i in range(1,5):
-	    selected_indomain=[ j in eval('domain'+str(i)) for j in  selected_rows]    
-	    if True in selected_indomain:
-	        k=k+1
-	        selected_index=[j for j, e in enumerate(selected_indomain) if e == True]
-	        selected_eachdomain=[selected_rows[j] for j in selected_index]
-	        df_filtered=df_range[df_range['id'].isin (selected_eachdomain)][df_range.columns[11:]]
-	        if k==1:
-	            quality_score_user=df_filtered.sum()/(len(df_filtered)*2)*domian_weight[i-1]
-	        else:
-	            quality_score_user=quality_score_user+df_filtered.sum()/(len(df_filtered)*2)*domian_weight[i-1]
+		domain=eval('domain'+str(i))
+		selected_indomain=[ j in domain for j in  selected_rows]
+		if True in selected_indomain:
+			k=k+1
+			selected_index=[j for j, e in enumerate(selected_indomain) if e == True]
+			selected_eachdomain=[selected_rows[j] for j in selected_index]
+			df_filtered=df_range[df_range['id'].isin (selected_eachdomain)][df_range.columns[11:]]
+			if k==1:
+				quality_score_user=df_filtered.sum()/(len(df_filtered)*2)*domian_weight[i-1]
+			else:
+				quality_score_user=quality_score_user+df_filtered.sum()/(len(df_filtered)*2)*domian_weight[i-1]
 
 
 	sharing_recom=[]
 	sharing_user=[]
 	for k in ['recom','user']:
-	    target=eval('target_'+k)
-	    msr=eval('msr_'+k)
-	    mlr=eval('mlr_'+k)
-	    max_savepct=eval('max_'+k+'_savepct')
-	    max_losspct=eval('max_'+k+'_losspct')
-	    cap_savepct=eval('cap_'+k+'_savepct')
-	    cap_losspct=eval('cap_'+k+'_losspct')
-	    quality_score=eval('quality_score_'+k)
-	    for i in range(0,5):
-	        net=target-cost_range[i]
-	        if net>=0:
-	            if net>target*msr:
-	                share_pct=max_savepct*quality_score[i]
-	                sharing=net*share_pct
-	                if sharing>target*cap_savepct:
-	                    sharing=target*cap_savepct
+		target=eval('target_'+k)
+		msr=eval('msr_'+k)
+		mlr=eval('mlr_'+k)
+		max_savepct=eval('max_'+k+'_savepct')
+		max_losspct=eval('max_'+k+'_losspct')
+		cap_savepct=eval('cap_'+k+'_savepct')
+		cap_losspct=eval('cap_'+k+'_losspct')
+		quality_score=eval('quality_score_'+k)
+		for i in range(0,5):
+			net=target-cost_range[i]
+			if net>=0:
+				if net>target*msr:
+					share_pct=max_savepct*quality_score[i]
+					sharing=net*share_pct
+					if sharing>target*cap_savepct:
+						sharing=target*cap_savepct
 
-	            else:
-	                sharing=0
-	        else:
-	            if twosided==True and abs(net)>target*mlr:
-	                sharing=net*max_share_losspct
-	                if abs(sharing)>target*cap_losspct:
-	                    sharing=-(target*cap_losspct)
+				else:
+					sharing=0
+			else:
+				if twosided==True and abs(net)>target*mlr:
+					sharing=net*max_losspct
+					if abs(sharing)>target*cap_losspct:
+						sharing=-(target*cap_losspct)
 
-	            else:
-	                sharing=0
-	        eval('sharing_'+k).append(sharing)
+				else:
+					sharing=0
+			eval('sharing_'+k).append(sharing)
 
 	df_planview_aco_totcost=pd.DataFrame(['Total Cost(before G/L share)','G/L Sharing Adj','Total Cost(after G/L share)']*3,columns=['Item'])
 

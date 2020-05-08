@@ -3,6 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 import dash_table
+import time
 
 import datetime
 import json
@@ -17,6 +18,7 @@ from dash.dependencies import Input, Output, State
 
 from utils import *
 from figure import *
+from simulation_cal import *
 
 
 app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract_optimizer/')
@@ -49,7 +51,9 @@ def create_layout(app):
                     ),
 
                     # hidden div inside the app to store the temp data
-                    html.Div(id = 'temp-data', style = {'display':'none'})
+                    html.Div(id = 'temp-data', style = {'display':'none'}),
+                    html.Div(id = 'temp-result', style = {'display':'none'}),
+
                     
                 ],
                 style={"background-color":"#f5f5f5"},
@@ -104,6 +108,7 @@ def card_performance_measure_setup(app):
                         card_medical_cost_target(app),
                         card_sl_sharing_arrangement(app),
                         card_quality_adjustment(app),
+                        dbc.Button("SUBMIT", id = 'button-submit-simulation'),
                     ]
                 ),
                 className="mb-3",
@@ -440,7 +445,8 @@ def tab_result(app):
                                         	{'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" },
                                         	{'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
                                         	{'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
-                                        	{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }]
+                                        	{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }],
+                                            value = "ACO's Total Cost",
                                         	))
                                     ],
                                     no_gutters=True,
@@ -448,8 +454,8 @@ def tab_result(app):
                                 dbc.Row(
                                     [
                                         dbc.Col(html.Div("1"), width=2),
-                                        dbc.Col(html.Div("2"), width=4),
-                                        dbc.Col(html.Div("3"), width=6),
+                                        dbc.Col(dcc.Graph(id = 'figure-cost'), width=4),
+                                        dbc.Col(html.Div(id = 'table-cost'), width=6),
                                     ],
                                     no_gutters=True,
                                 ),
@@ -472,7 +478,8 @@ def tab_result(app):
                                         	options = [
                                         	{'label' : "ACO's Total Revenue", 'value' : "ACO's Total Revenue" },
                                         	{'label' : "ACO's Margin", 'value' : "ACO's Margin" },
-                                        	{'label' : "ACO's Patient Volume", 'value' : "ACO's Patient Volume" }]
+                                        	{'label' : "ACO's Patient Volume", 'value' : "ACO's Patient Volume" }],
+                                            value = "ACO's Total Revenue",
                                         	))
                                     ],
                                     no_gutters=True,
@@ -480,8 +487,8 @@ def tab_result(app):
                                 dbc.Row(
                                     [
                                         dbc.Col(html.Div("1"), width=2),
-                                        dbc.Col(html.Div("2"), width=4),
-                                        dbc.Col(html.Div("3"), width=6),
+                                        dbc.Col(dcc.Graph(id = 'figure-fin'), width=4),
+                                        dbc.Col(html.Div(id = 'table-fin'), width=6),
                                     ],
                                     no_gutters=True,
                                 ),
@@ -602,24 +609,78 @@ def store_data(usr_tgt, usr_msr, usr_planshare, usr_sharecap, usr_mlr, usr_plans
     usr_dom_3 = int(df.iloc[16,8].replace('%',""))/100
     usr_dom_4 = int(df.iloc[21,8].replace('%',""))/100
 
-	datasets = {
-		'medical cost target' : {'user target' : usr_tgt},
-		'savings/losses sharing arrangement' : {'two side' : two_side, 'msr': usr_msr, 'savings sharing' : usr_planshare, 'savings share cap' : usr_sharecap,
-		'mlr' : usr_mlr, 'losses sharing' : usr_planshare_l, 'losses share cap' : usr_sharecap_l},
-		'quality adjustment' : {'selected measures' : select_row, 'recom_dom_1' : recom_dom_1, 'recom_dom_2' : recom_dom_2, 'recom_dom_3' : recom_dom_3, 'recom_dom_4' : recom_dom_4,
+    datasets = {
+        'medical cost target' : {'user target' : usr_tgt},
+        'savings/losses sharing arrangement' : {'two side' : two_side, 'msr': usr_msr, 'savings sharing' : usr_planshare, 'savings share cap' : usr_sharecap,
+        'mlr' : usr_mlr, 'losses sharing' : usr_planshare_l, 'losses share cap' : usr_sharecap_l},
+        'quality adjustment' : {'selected measures' : select_row, 'recom_dom_1' : recom_dom_1, 'recom_dom_2' : recom_dom_2, 'recom_dom_3' : recom_dom_3, 'recom_dom_4' : recom_dom_4,
         'usr_dom_1' : usr_dom_1, 'usr_dom_2' : usr_dom_2, 'usr_dom_3' : usr_dom_3, 'usr_dom_4' : usr_dom_4}
-	}
+    }
+    
+    with open('configure/input_ds.txt','w') as outfile:
+        json.dump(datasets, outfile)
+    return json.dumps(datasets)
 
-	with open('configure/input_ds.txt','w') as outfile:
-		json.dump(datasets, outfile)
-	return json.dumps(datasets)
+@app.callback(
+    [Output('tab_container', 'active_tab'),
+    Output('temp-result', 'children')],
+    [Input('button-submit-simulation', 'n_clicks')],
+    [State('temp-data', 'children')]
+    )
+def cal_simulation(submit, data):
+    if submit:
+        datasets = json.loads(data)
+        selected_rows = datasets['quality adjustment']['selected measures']
+        domian_weight =list( map(datasets['quality adjustment'].get, ['usr_dom_1','usr_dom_2','usr_dom_3','usr_dom_4']) ) 
+        target_user_pmpm = datasets['medical cost target']['user target']
+        msr_user = datasets['savings/losses sharing arrangement']['msr']/100
+        mlr_user = datasets['savings/losses sharing arrangement']['mlr']
+        max_user_savepct = datasets['savings/losses sharing arrangement']['savings sharing']/100
+        max_user_losspct = datasets['savings/losses sharing arrangement']['losses sharing']
+        cap_user_savepct = datasets['savings/losses sharing arrangement']['savings share cap']/100
+        cap_user_losspct = datasets['savings/losses sharing arrangement']['losses share cap']
+        twosided = datasets['savings/losses sharing arrangement']['two side']
 
+        if twosided == True:
+            mlr_user = mlr_user/100
+            max_user_losspct = max_user_losspct/100
+            cap_user_losspct = cap_user_losspct/100
 
+        print(selected_rows)
+        print(domian_weight)
 
+        df=simulation_cal(selected_rows,domian_weight,target_user_pmpm,msr_user,mlr_user,max_user_savepct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided)
 
+        return 'tab-1', df.to_json(orient = 'split')
+    return 'tab-0', ""
 
+@app.callback(
+    [Output('figure-cost', 'figure'),
+    Output('table-cost', 'children')],
+    [Input('dropdown-cost', 'value'),
+    Input('temp-result', 'children')]
+    )
+def update_grapg_cost(metric, data):
+    if data:
+        dff = pd.read_json(data, orient = 'split')
+        df = dff[dff['Metrics'] == metric]
+        return sim_result_box(df), table_sim_result(df)
+    return {},""
+
+@app.callback(
+    [Output('figure-fin', 'figure'),
+    Output('table-fin', 'children')],
+    [Input('dropdown-fin', 'value'),
+    Input('temp-result', 'children')]
+    )
+def update_grapg_cost(metric, data):
+    if data:
+        dff = pd.read_json(data, orient = 'split')
+        df = dff[dff['Metrics'] == metric]
+        return sim_result_box(df),table_sim_result(df)
+    return {}, ""
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True,port=8052)
+    app.run_server(host="127.0.0.1",debug=True,port=8049)
 
 
