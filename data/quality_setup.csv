@@ -1,0 +1,24 @@
+﻿measure,datasource,value,percentile,score,costimplication,domain,recommended,userdefined,id,measureid,be,worst,best,worse,better
+"CAHPS: Getting Timely Care, Appointments, and Information",Claims Data,30%,30th-40th,1.1,Mid,,,,0,ACO-1,1.1,0,1.4,0,1.25
+CAHPS: How Well Your Providers Communicate,Claims Data,30%,50th-60th,1.4,Mid,,,,1,ACO-2,1.4,1.1,1.7,1.25,1.55
+CAHPS: Patients’ Rating of Provider,Claims Data,30%,50th-60th,1.4,Mid,,,,2,ACO-3,1.4,1.1,1.7,1.25,1.55
+CAHPS: Access to Specialists,Claims Data,30%,60th-70th,1.55,Mid,,,,3,ACO-4,1.55,1.25,1.85,1.4,1.7
+CAHPS: Health Promotion and Education,Claims Data,30%,80th-90th,1.85,Mid,Patient/Caregiver Experience,25%,25%,4,ACO-5,1.85,1.55,2,1.7,2
+CAHPS: Shared Decision Making,Claims Data,30%,>90th,2,Mid,,,,5,ACO-6,2,1.7,2,1.85,2
+CAHPS: Health Status/Functional Status,Claims Data,30%,N/A,2,Mid,,,,6,ACO-7,2,2,2,2,2
+CAHPS: Stewardship of Patient Resources,Claims Data,30%,>90th,2,Mid,,,,7,ACO-34,2,1.7,2,1.85,2
+CAHPS: Courteous and Helpful Office Staff,Claims Data,30%,N/A,2,Mid,,,,8,ACO-45,2,2,2,2,2
+CAHPS: Care Coordination,Claims Data,30%,N/A,2,Mid,,,,9,ACO-46,2,2,2,2,2
+"Risk-Standardized, All Condition Readmission",Claims Data,30%,>90th,2,Mid,,,,10,ACO-8,2,1.7,2,1.85,2
+All-Cause Unplanned Admissions for Patients with Multiple Chronic Conditions,Claims Data,30%,80th-90th,1.85,Mid,Care Coordination/Patient Safety,25%,25%,11,ACO-38,1.85,1.55,2,1.7,2
+Ambulatory Sensitive Condition Acute Composite (AHRQ Prevention Quality Indicator (PQI)#91),Claims Data,30%,50th-60th,1.4,Mid,,,,12,ACO-43,1.4,1.1,1.7,1.25,1.55
+Falls: Screening for Future Fall Risk,Claims Data,30%,60th-70th,1.55,Mid,,,,13,ACO-13,1.55,1.25,1.85,1.4,1.7
+Preventive Care and Screening: Influenza Immunization,Claims Data,30%,<30th ,0,Mid,,,,14,ACO-14,0,0,0.3,0,0.15
+Preventive Care and Screening:Tobacco Use: Screening and Cessation Intervention,Claims Data,30%,N/A,2,Mid,,,,15,ACO-17,2,2,2,2,2
+Preventive Care and Screening:Screening for Depression and Follow-up Plan,Claims Data,30%,N/A,2,Mid,Preventive Health,25%,25%,16,ACO-18,2,2,2,2,2
+Colorectal Cancer Screening,Claims Data,30%,60th-70th,1.55,Mid,,,,17,ACO-19,1.55,1.25,1.85,1.4,1.7
+Breast Cancer Screening,Claims Data,30%,60th-70th,1.55,Mid,,,,18,ACO-20,1.55,1.25,1.85,1.4,1.7
+Statin Therapy for the Prevention and Treatment of Cardiovascular Disease,Claims Data,30%,N/A,2,Mid,,,,19,ACO-42,2,2,2,2,2
+Depression Remission at Twelve Months,Claims Data,30%,N/A,2,Mid,,,,20,ACO-40,2,2,2,2,2
+Diabetes Mellitus: Hemoglobin A1c Poor Control,Claims Data,30%,40th-50th,1.25,Mid,At-Risk Population,25%,25%,21,ACO-27,1.25,0,1.55,1.1,1.4
+Hypertension (HTN): Controlling High Blood Pressure,Claims Data,30%,70th-80th,1.7,Mid,,,,22,ACO-28,1.7,1.4,2,1.55,1.85

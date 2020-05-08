@@ -5,6 +5,7 @@ import dash_bootstrap_components as dbc
 import dash_table
 
 import datetime
+import json
 import pandas as pd
 import numpy as np
 
@@ -22,6 +23,9 @@ app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract_optimizer/
 
 server = app.server
 
+file = open('configure/default_ds.txt', encoding = 'utf-8')
+default_input = json.load(file)
+df_quality = pd.read_csv("data/quality_setup.csv")
 
 
 def create_layout(app):
@@ -43,6 +47,9 @@ def create_layout(app):
                         className="mb-3",
                         style={"padding-left":"3rem", "padding-right":"3rem"},
                     ),
+
+                    # hidden div inside the app to store the temp data
+                    html.Div(id = 'temp-data', style = {'display':'none'})
                     
                 ],
                 style={"background-color":"#f5f5f5"},
@@ -211,7 +218,7 @@ def card_medical_cost_target(app):
                     						dbc.Col([
                                                 dbc.InputGroup([
                                                     dbc.InputGroupAddon('$', addon_type = 'prepend'),
-                                                    dbc.Input(id = 'input-usr-tgt', type = "number", debounce = True)
+                                                    dbc.Input(id = 'input-usr-tgt', type = "number", debounce = True, value = default_input['medical cost target']['user target'])
                                                     ])
                                                 ]),
                     					]
@@ -270,7 +277,7 @@ def card_sl_sharing_arrangement(app):
 	                    						dbc.Col(html.H6("2%"),style={"text-align":"center"},width=3),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-msr', type = "number", debounce = True),
+                                                    dbc.Input(id = 'input-usr-msr', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['msr']),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ])
                                                     ],style={"text-align":"center"},width=3),
@@ -282,7 +289,7 @@ def card_sl_sharing_arrangement(app):
 	                    						dbc.Col(html.H6("40%"),style={"text-align":"center"},width=3),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-planshare', type = "number", debounce = True),
+                                                    dbc.Input(id = 'input-usr-planshare', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['savings sharing']),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ])
                                                     ],style={"text-align":"center"},width=3),
@@ -294,7 +301,7 @@ def card_sl_sharing_arrangement(app):
 	                    						dbc.Col(html.H6("10% of target"),style={"text-align":"center"},width=3),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-sharecap', type = "number", debounce = True),
+                                                    dbc.Input(id = 'input-usr-sharecap', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['savings share cap']),
                                                     dbc.InputGroupAddon('% of target', addon_type = 'append'),
                                                     ])
                                                     ],style={"text-align":"center"},width=3),
@@ -325,7 +332,7 @@ def card_sl_sharing_arrangement(app):
 	                    						dbc.Col(html.H6("2%"),style={"text-align":"center"},width=3),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-mlr', type = "number", debounce = True),
+                                                    dbc.Input(id = 'input-usr-mlr', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['mlr']),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ])
                                                     ],style={"text-align":"center"},width=3),
@@ -337,7 +344,7 @@ def card_sl_sharing_arrangement(app):
 	                    						dbc.Col(html.H6("40%"),style={"text-align":"center"},width=3),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-planshare-l', type = "number", debounce = True),
+                                                    dbc.Input(id = 'input-usr-planshare-l', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['losses sharing']),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ])
                                                     ],style={"text-align":"center"},width=3),
@@ -349,7 +356,7 @@ def card_sl_sharing_arrangement(app):
 	                    						dbc.Col(html.H6("10% of target"),style={"text-align":"center"},width=3),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-sharecap-l', type = "number", debounce = True),
+                                                    dbc.Input(id = 'input-usr-sharecap-l', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['losses share cap']),
                                                     dbc.InputGroupAddon('% of target', addon_type = 'append'),
                                                     ])
                                                     ],style={"text-align":"center"},width=3),
@@ -377,10 +384,22 @@ def card_quality_adjustment(app):
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                 dbc.Col(html.H4("Quality Adjustment", style={"font-size":"1rem", "margin-left":"10px"}), width="auto"),
                                 dbc.Col(dbc.Button("Edit", id = 'button-show-meas')),
-                                html.Div('measure table placeholder',id = 'div-meas-table-container', hidden = True)
+                                
                             ],
                             no_gutters=True,
                         ),
+                        html.Div([
+                            html.Div([qualitytable(df_quality)]),
+                            dbc.Row(
+                                [
+                                    dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                    dbc.Col(html.H4("Overall Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=11),
+                                    dbc.Col(html.Div("100%", id = 'div-recom-overall')),
+                                    dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center"})),
+                                ],
+                                no_gutters=True,
+                                style={"padding-right":"0.75rem"}
+                            ),], id = 'div-meas-table-container', hidden = True, style={"padding-left":"4rem", "padding-right":"1rem"}),
                     ]
                 ),
                 className="mb-3",
@@ -395,6 +414,15 @@ def tab_result(app):
                     dbc.Row(
                         [
                             dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"2rem","font-size":"3"}), width=9),
+                            dbc.Col([
+                            	dbc.Button('Edit Scenario Assumptions', id = 'button-open-assump-modal'),
+                            	dbc.Modal([
+                            		dbc.ModalHeader("Header"),
+                            		dbc.ModalBody("content of the modal"),
+                            		dbc.ModalFooter(
+                            			dbc.Button('close', id = 'button-close-assump-modal'))
+                            		], id = 'modal-assump'),
+                            	]),
                             
                         ]
                     ),
@@ -406,7 +434,14 @@ def tab_result(app):
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                         dbc.Col(html.H4("Savings/Losses Sharing Arrangement", style={"font-size":"1rem", "margin-left":"10px"}), width=6),
                                         dbc.Col(html.Div("Metric"), width=2),
-                                        dbc.Col(html.Div("dropdown"))
+                                        dbc.Col(dcc.Dropdown(
+                                        	id = 'dropdown-cost',
+                                        	options = [
+                                        	{'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" },
+                                        	{'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
+                                        	{'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
+                                        	{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }]
+                                        	))
                                     ],
                                     no_gutters=True,
                                 ),
@@ -432,7 +467,13 @@ def tab_result(app):
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                         dbc.Col(html.H4("Savings/Losses Sharing Arrangement", style={"font-size":"1rem", "margin-left":"10px"}), width=6),
                                         dbc.Col(html.Div("Metric"), width=2),
-                                        dbc.Col(html.Div("dropdown"))
+                                        dbc.Col(dcc.Dropdown(
+                                        	id = 'dropdown-fin',
+                                        	options = [
+                                        	{'label' : "ACO's Total Revenue", 'value' : "ACO's Total Revenue" },
+                                        	{'label' : "ACO's Margin", 'value' : "ACO's Margin" },
+                                        	{'label' : "ACO's Patient Volume", 'value' : "ACO's Patient Volume" }]
+                                        	))
                                     ],
                                     no_gutters=True,
                                 ),
@@ -505,6 +546,76 @@ def cal_usr_like(usr_tgt, recom_like, recom_tgt):
         else:
             return 'Mid', {}
     return '', {}
+
+@app.callback(
+	Output('modal-assump', 'is_open'),
+	[Input('button-open-assump-modal', 'n_clicks'),
+	Input('button-close-assump-modal', 'n_clicks'),],
+	[State('modal-assump', 'is_open')]
+	)
+def toggle_modal(n1, n2, is_open):
+	if n1 or n2:
+		return not is_open
+	return is_open
+
+@app.callback(
+    [Output('div-recom-overall', 'children'),
+    Output('div-usr-overall', 'children')],
+    [Input('table-measure-setup', 'data'),]
+    )
+def cal_overall_weight(data):
+    
+    df = pd.DataFrame(data)
+    recom_overall = np.sum(int(i.replace('%','')) for i in list(df.fillna('0%').iloc[:,7]))
+    usr_overall = np.sum(int(i.replace('%','')) for i in list(df.fillna('0%').iloc[:,8]))
+    return str(recom_overall)+'%', str(usr_overall)+'%'
+
+# store data
+@app.callback(
+	Output('temp-data', 'children'),
+	[Input('input-usr-tgt', 'value'),
+	Input('input-usr-msr', 'value'),
+	Input('input-usr-planshare', 'value'),
+	Input('input-usr-sharecap', 'value'),
+	Input('input-usr-mlr', 'value'),
+	Input('input-usr-planshare-l', 'value'),
+	Input('input-usr-sharecap-l', 'value'),
+    Input('switch-share-loss', 'value'),
+    Input('table-measure-setup', 'selected_rows'),
+    Input('table-measure-setup', 'data')]
+	)
+def store_data(usr_tgt, usr_msr, usr_planshare, usr_sharecap, usr_mlr, usr_planshare_l, usr_sharecap_l, ts, select_row, data):
+    df = pd.DataFrame(data)
+
+    if 'Shared Losses' in ts:
+        two_side = True
+    else:
+        two_side = False
+
+    recom_dom_1 = int(df.iloc[4,7].replace('%',""))/100
+    recom_dom_2 = int(df.iloc[11,7].replace('%',""))/100
+    recom_dom_3 = int(df.iloc[16,7].replace('%',""))/100
+    recom_dom_4 = int(df.iloc[21,7].replace('%',""))/100
+
+    usr_dom_1 = int(df.iloc[4,8].replace('%',""))/100
+    usr_dom_2 = int(df.iloc[11,8].replace('%',""))/100
+    usr_dom_3 = int(df.iloc[16,8].replace('%',""))/100
+    usr_dom_4 = int(df.iloc[21,8].replace('%',""))/100
+
+	datasets = {
+		'medical cost target' : {'user target' : usr_tgt},
+		'savings/losses sharing arrangement' : {'two side' : two_side, 'msr': usr_msr, 'savings sharing' : usr_planshare, 'savings share cap' : usr_sharecap,
+		'mlr' : usr_mlr, 'losses sharing' : usr_planshare_l, 'losses share cap' : usr_sharecap_l},
+		'quality adjustment' : {'selected measures' : select_row, 'recom_dom_1' : recom_dom_1, 'recom_dom_2' : recom_dom_2, 'recom_dom_3' : recom_dom_3, 'recom_dom_4' : recom_dom_4,
+        'usr_dom_1' : usr_dom_1, 'usr_dom_2' : usr_dom_2, 'usr_dom_3' : usr_dom_3, 'usr_dom_4' : usr_dom_4}
+	}
+
+	with open('configure/input_ds.txt','w') as outfile:
+		json.dump(datasets, outfile)
+	return json.dumps(datasets)
+
+
+
 
 
 
