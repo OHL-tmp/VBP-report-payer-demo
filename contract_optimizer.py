@@ -465,8 +465,8 @@ def tab_result(app):
                                         	{'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" },
                                         	{'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
                                         	{'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
-                                        	{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }],
-                                            value = "ACO's Total Cost",
+                                        	],#{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }
+                                            value = "Plan's Total Cost",
                                         	))
                                     ],
                                     no_gutters=True,
@@ -502,7 +502,7 @@ def tab_result(app):
                                         	options = [
                                         	{'label' : "ACO's Total Revenue", 'value' : "ACO's Total Revenue" },
                                         	{'label' : "ACO's Margin", 'value' : "ACO's Margin" },
-                                        	{'label' : "ACO's Patient Volume", 'value' : "ACO's Patient Volume" }],
+                                        	{'label' : "ACO's Margin %", 'value' : "ACO's Margin %" }],
                                             value = "ACO's Total Revenue",
                                         	))
                                     ],
@@ -605,6 +605,21 @@ def cal_overall_weight(data):
     usr_overall = np.sum(int(i.replace('%','')) for i in list(df.fillna('0%').iloc[:,8]))
     return str(recom_overall)+'%', str(usr_overall)+'%'
 
+# set up table selfupdate
+@app.callback(
+    Output('table-measure-setup', 'data'),
+    [Input('table-measure-setup', 'data_timestamp')],
+    [State('table-measure-setup', 'data')])
+def update_columns(timestamp, data):
+    for i in range(0,23):
+        row=data[i]
+        if i in [4,11,16,21]:  
+            row['userdefined']=str(row['userdefined']).replace('$','').replace('%','').replace(',','')+'%'
+        else:
+            row['userdefined']=float('nan')
+
+    return data 
+
 # store data
 @app.callback(
 	Output('temp-data', 'children'),
@@ -673,9 +688,6 @@ def cal_simulation(submit, data):
             mlr_user = mlr_user/100
             max_user_losspct = max_user_losspct/100
             cap_user_losspct = cap_user_losspct/100
-
-        print(selected_rows)
-        print(domian_weight)
 
         df=simulation_cal(selected_rows,domian_weight,target_user_pmpm,msr_user,mlr_user,max_user_savepct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided)
 
