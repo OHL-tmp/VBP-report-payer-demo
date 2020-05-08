@@ -384,10 +384,22 @@ def card_quality_adjustment(app):
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                 dbc.Col(html.H4("Quality Adjustment", style={"font-size":"1rem", "margin-left":"10px"}), width="auto"),
                                 dbc.Col(dbc.Button("Edit", id = 'button-show-meas')),
-                                html.Div([qualitytable(df_quality)],id = 'div-meas-table-container', hidden = True)
+                                
                             ],
                             no_gutters=True,
                         ),
+                        html.Div([
+                            html.Div([qualitytable(df_quality)]),
+                            dbc.Row(
+                                [
+                                    dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                    dbc.Col(html.H4("Overall Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=11),
+                                    dbc.Col(html.Div("100%", id = 'div-recom-overall')),
+                                    dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center"})),
+                                ],
+                                no_gutters=True,
+                                style={"padding-right":"0.75rem"}
+                            ),], id = 'div-meas-table-container', hidden = True, style={"padding-left":"4rem", "padding-right":"1rem"}),
                     ]
                 ),
                 className="mb-3",
@@ -546,6 +558,18 @@ def toggle_modal(n1, n2, is_open):
 		return not is_open
 	return is_open
 
+@app.callback(
+    [Output('div-recom-overall', 'children'),
+    Output('div-usr-overall', 'children')],
+    [Input('table-measure-setup', 'data'),]
+    )
+def cal_overall_weight(data):
+    
+    df = pd.DataFrame(data)
+    recom_overall = np.sum(int(i.replace('%','')) for i in list(df.fillna('0%').iloc[:,7]))
+    usr_overall = np.sum(int(i.replace('%','')) for i in list(df.fillna('0%').iloc[:,8]))
+    return str(recom_overall)+'%', str(usr_overall)+'%'
+
 # store data
 @app.callback(
 	Output('temp-data', 'children'),
@@ -555,14 +579,35 @@ def toggle_modal(n1, n2, is_open):
 	Input('input-usr-sharecap', 'value'),
 	Input('input-usr-mlr', 'value'),
 	Input('input-usr-planshare-l', 'value'),
-	Input('input-usr-sharecap-l', 'value'),]
+	Input('input-usr-sharecap-l', 'value'),
+    Input('switch-share-loss', 'value'),
+    Input('table-measure-setup', 'selected_rows'),
+    Input('table-measure-setup', 'data')]
 	)
-def store_data(usr_tgt, usr_msr, usr_planshare, usr_sharecap, usr_mlr, usr_planshare_l, usr_sharecap_l):
+def store_data(usr_tgt, usr_msr, usr_planshare, usr_sharecap, usr_mlr, usr_planshare_l, usr_sharecap_l, ts, select_row, data):
+    df = pd.DataFrame(data)
+
+    if 'Shared Losses' in ts:
+        two_side = True
+    else:
+        two_side = False
+
+    recom_dom_1 = int(df.iloc[4,7].replace('%',""))/100
+    recom_dom_2 = int(df.iloc[11,7].replace('%',""))/100
+    recom_dom_3 = int(df.iloc[16,7].replace('%',""))/100
+    recom_dom_4 = int(df.iloc[21,7].replace('%',""))/100
+
+    usr_dom_1 = int(df.iloc[4,8].replace('%',""))/100
+    usr_dom_2 = int(df.iloc[11,8].replace('%',""))/100
+    usr_dom_3 = int(df.iloc[16,8].replace('%',""))/100
+    usr_dom_4 = int(df.iloc[21,8].replace('%',""))/100
+
 	datasets = {
 		'medical cost target' : {'user target' : usr_tgt},
-		'savings/losses sharing arrangement' : {'msr': usr_msr, 'savings sharing' : usr_planshare, 'savings share cap' : usr_sharecap,
+		'savings/losses sharing arrangement' : {'two side' : two_side, 'msr': usr_msr, 'savings sharing' : usr_planshare, 'savings share cap' : usr_sharecap,
 		'mlr' : usr_mlr, 'losses sharing' : usr_planshare_l, 'losses share cap' : usr_sharecap_l},
-		'quality adjustment' : ''
+		'quality adjustment' : {'selected measures' : select_row, 'recom_dom_1' : recom_dom_1, 'recom_dom_2' : recom_dom_2, 'recom_dom_3' : recom_dom_3, 'recom_dom_4' : recom_dom_4,
+        'usr_dom_1' : usr_dom_1, 'usr_dom_2' : usr_dom_2, 'usr_dom_3' : usr_dom_3, 'usr_dom_4' : usr_dom_4}
 	}
 
 	with open('configure/input_ds.txt','w') as outfile:
@@ -575,6 +620,6 @@ def store_data(usr_tgt, usr_msr, usr_planshare, usr_sharecap, usr_mlr, usr_plans
 
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True,port=8049)
+    app.run_server(host="127.0.0.1",debug=True,port=8052)
 
 
