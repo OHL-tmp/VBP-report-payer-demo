@@ -25,7 +25,7 @@ app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract_optimizer/
 
 server = app.server
 
-file = open('configure/default_ds.txt', encoding = 'utf-8')
+file = open('configure/default_ds.json', encoding = 'utf-8')
 default_input = json.load(file)
 df_quality = pd.read_csv("data/quality_setup.csv")
 
@@ -84,19 +84,7 @@ def tab_setup(app):
                         [
                         	card_performance_measure_setup(app),
                         ]
-                    ),
-#                    html.Div(
-#                        [
-#                            dbc.Row(
-#                                [
-#                                    dbc.Col(html.H1("Contractual Arrangement Setup", style={"color":"#f0a800", "font-size":"1rem","padding-top":"0.8rem"}), width=9),
-#                                    
-#                                ]
-#                            )
-#                        ],
-#                        style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#fff","margin-top":"2rem"}
-#                    ),
-                    
+                    ),                  
 				]
 			)
 
@@ -108,7 +96,14 @@ def card_performance_measure_setup(app):
                         card_medical_cost_target(app),
                         card_sl_sharing_arrangement(app),
                         card_quality_adjustment(app),
-                        dbc.Button("SUBMIT", id = 'button-submit-simulation'),
+                        html.Div(
+                            dbc.Button("SUBMIT",
+                                className="mb-3",
+                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem"},
+                                id = 'button-submit-simulation'
+                            ),
+                            style={"text-align":"center"}
+                        )
                     ]
                 ),
                 className="mb-3",
@@ -188,9 +183,52 @@ def card_medical_cost_target(app):
                                 					[
                                 						dbc.Col([
                                                             dbc.Button("Recommended", id = 'button-recom', color = 'link',style={"font-size":"0.8rem"}),
-                                                            dbc.Popover([dbc.PopoverBody("PLACEHOLDER PLACEHOLDER PLACEHOLDER"),], 
+                                                            dbc.Popover([
+                                                                dbc.PopoverHeader("Cost Target Setting"),
+                                                                dbc.PopoverBody(dbc.ListGroup([
+                                                                    dbc.Row([
+                                                                        dbc.Col("(1) Medical Cost Trend (without management)"),
+                                                                        dbc.Col("5.6%")]),
+                                                                    html.Hr(),
+
+                                                                    dbc.Row([
+                                                                        dbc.Col("(2) Trend Adjustment"),
+                                                                        dbc.Col("-2.4%")]),
+                                                                    dbc.Row([
+                                                                        dbc.Col("Overuse Reduction"),
+                                                                        dbc.Col("-0.7%")]),
+                                                                    dbc.Row([
+                                                                        dbc.Col("Service Optimization"),
+                                                                        dbc.Col("-0.2%")]),
+                                                                    dbc.Row([
+                                                                        dbc.Col("Transition of Care Management"),
+                                                                        dbc.Col("-0.3%")]),
+                                                                    dbc.Row([
+                                                                        dbc.Col("Chronic Disease Management"),
+                                                                        dbc.Col("-0.5%")]),
+                                                                    dbc.Row([
+                                                                        dbc.Col("High Risk Patient Management"),
+                                                                        dbc.Col("-0.7%")]),
+                                                                    html.Hr(),
+
+                                                                    dbc.Row([
+                                                                        dbc.Col("(3) Coding Improvement Opportunity"),
+                                                                        dbc.Col("0.7%")]),
+                                                                    html.Hr(),
+
+                                                                    dbc.Row([
+                                                                        dbc.Col("(4) Target Trend Increase from Baseline (4)=(1)+(2)+(3)"),
+                                                                        dbc.Col("3.9%")]),
+                                                                    html.Hr(),
+
+                                                                    dbc.Row([
+                                                                        dbc.Col("(5) Performance Year Spending Target (5)=baseline*(4)"),
+                                                                        dbc.Col("$850")]),
+                                                                    ])),
+                                                                ], 
                                                                 id = 'popover-recom', is_open = False, target = 'button-recom', placement = 'top')
-                                                            ]),
+                                                            ],
+                                                            style={"margin-top":"-0.6rem"}),
                                 						dbc.Col(html.H4("User Defined", style={"font-size":"0.8rem"})),
                                 					]
                                 				),
@@ -224,8 +262,10 @@ def card_medical_cost_target(app):
                                                 dbc.InputGroup([
                                                     dbc.InputGroupAddon('$', addon_type = 'prepend'),
                                                     dbc.Input(id = 'input-usr-tgt', type = "number", debounce = True, value = default_input['medical cost target']['user target'])
-                                                    ])
-                                                ]),
+                                                    ],
+                                                    size="sm")
+                                                ],
+                                                style={"margin-top":"-0.5rem"}),
                     					]
                     				)
                         			, width=3
@@ -240,7 +280,7 @@ def card_medical_cost_target(app):
                         			, width=3
                         		),
                         	],
-                            style={"text-align":"center"},
+                            style={"text-align":"center","padding-top":"1rem","padding-bottom":"0.8rem", "background-color":"#fff","border-radius":"0.5rem"},
                         )
                         
                     ]
@@ -266,111 +306,128 @@ def card_sl_sharing_arrangement(app):
                             [
                                 dbc.Col(
                                 	[
-                                		html.Div("Shared Savings"),
+                                		html.H3("Shared Savings", style={"font-size":"1rem"}),
+                                        html.Hr(),
                                 		dbc.Row(
 	                    					[
-	                    						dbc.Col(html.Div(),width=3),
-	                    						dbc.Col(html.H6("Recommended"),width=3),
-	                    						dbc.Col(html.H6("User Defined"),width=3),
+	                    						dbc.Col(html.Div(),width=4),
+	                    						dbc.Col(html.H6("Recommended"),width=4),
+	                    						dbc.Col(html.H6("User Defined"),width=4),
 	                    					],
 	                            			style={"text-align":"center"},
 	                            			
 	                    				),
 	                    				dbc.Row(
 	                    					[
-	                    						dbc.Col(html.H6("MSR (Minimum Savings Rate)"),width=3),
-	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom msr']),style={"text-align":"center"},width=3),
+	                    						dbc.Col(html.H2("MSR (Minimum Savings Rate)", style={"font-size":"0.7rem"}),width=4),
+	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom msr']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-msr', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['msr']),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
-                                                    ])
-                                                    ],style={"text-align":"center"},width=3),
-	                    					]
+                                                    ],
+                                                    size="sm")
+                                                    ],style={"text-align":"center", "margin-top":"-0.5rem"},width=4),
+	                    					],
+                                            style={"padding-top":"1rem"}
 	                    				),
 				                        dbc.Row(
 	                    					[
-	                    						dbc.Col(html.H6("Plan's Sharing %"),width=3),
-	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing']),style={"text-align":"center"},width=3),
+	                    						dbc.Col(html.H2("Plan's Sharing %", style={"font-size":"0.8rem"}),width=4),
+	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-planshare', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['savings sharing']),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
-                                                    ])
-                                                    ],style={"text-align":"center"},width=3),
-	                    					]
+                                                    ],
+                                                    size="sm")
+                                                    ],style={"text-align":"center", "margin-top":"-0.5rem"},width=4),
+	                    					],
+                                            style={"padding-top":"1rem"}
 	                    				),
 	                    				dbc.Row(
 	                    					[
-	                    						dbc.Col(html.H6("Shared Savings Cap"),width=3),
-	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings share cap']),style={"text-align":"center"},width=3),
+	                    						dbc.Col(html.H2("Shared Savings Cap", style={"font-size":"0.8rem"}),width=4),
+	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings share cap']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-sharecap', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['savings share cap']),
                                                     dbc.InputGroupAddon('% of target', addon_type = 'append'),
-                                                    ])
-                                                    ],style={"text-align":"center"},width=3),
-	                    					]
+                                                    ],
+                                                    size="sm")
+                                                    ],style={"text-align":"center", "margin-top":"-0.5rem"},width=4),
+	                    					],
+                                            style={"padding-top":"1rem"}
 	                    				),
-                                	]
+                                	],
+                                    style={"border-radius":"0.5rem", "background-color":"#fff", "padding":"1rem"}
                                 ),
+                                dbc.Col(width=1),
                                 dbc.Col(
                                 	[
                                 		dbc.Checklist(
                                             options = [{'label': "Shared Losses", 'value': 'Shared Losses'}], 
                                             value = [], 
                                             id = 'switch-share-loss',
-                                            switch = True),
-#                                        html.Div("Shared Losses"),
+                                            switch = True,
+                                            style={"font-family":"NotoSans-CondensedLight"}),
+                                        html.Hr(),
                                 		dbc.Row(
 	                    					[
-	                    						dbc.Col(html.Div(),width=3),
-	                    						dbc.Col(html.H6("Recommended"),width=3),
-	                    						dbc.Col(html.H6("User Defined"),width=3),
+	                    						dbc.Col(html.Div(),width=4),
+	                    						dbc.Col(html.H6("Recommended"),width=4),
+	                    						dbc.Col(html.H6("User Defined"),width=4),
 	                    					],
 	                            			style={"text-align":"center"},
 	                            			
 	                    				),
 	                    				dbc.Row(
 	                    					[
-	                    						dbc.Col(html.H6("MSR (Minimum Losses Rate)"),width=3),
-	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom mlr']),style={"text-align":"center"},width=3),
+	                    						dbc.Col(html.H2("MSR (Minimum Savings Rate)", style={"font-size":"0.7rem"}),width=4),
+	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom mlr']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-mlr', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['mlr']),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
-                                                    ])
-                                                    ],style={"text-align":"center"},width=3),
-	                    					]
+                                                    ],
+                                                    size="sm")
+                                                    ],style={"text-align":"center", "margin-top":"-0.5rem"},width=4),
+	                    					],
+                                            style={"padding-top":"1rem"}
 	                    				),
 				                        dbc.Row(
 	                    					[
-	                    						dbc.Col(html.H6("Plan's Sharing %"),width=3),
-	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing']),style={"text-align":"center"},width=3),
+	                    						dbc.Col(html.H2("Plan's Sharing %", style={"font-size":"0.8rem"}),width=4),
+	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-planshare-l', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['losses sharing']),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
-                                                    ])
-                                                    ],style={"text-align":"center"},width=3),
-	                    					]
+                                                    ],
+                                                    size="sm")
+                                                    ],style={"text-align":"center", "margin-top":"-0.5rem"},width=4),
+	                    					],
+                                            style={"padding-top":"1rem"}
 	                    				),
 	                    				dbc.Row(
 	                    					[
-	                    						dbc.Col(html.H6("Shared Losses Cap"),width=3),
-	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses share cap']),style={"text-align":"center"},width=3),
+	                    						dbc.Col(html.H2("Shared Losses Cap", style={"font-size":"0.8rem"}),width=4),
+	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses share cap']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-sharecap-l', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['losses share cap']),
                                                     dbc.InputGroupAddon('% of target', addon_type = 'append'),
-                                                    ])
-                                                    ],style={"text-align":"center"},width=3),
-	                    					]
+                                                    ],
+                                                    size="sm")
+                                                    ],style={"text-align":"center", "margin-top":"-0.5rem"},width=4),
+	                    					],
+                                            style={"padding-top":"1rem"}
 	                    				),
-                                	]
+                                	],
+                                    style={"border-radius":"0.5rem", "background-color":"#fff", "padding":"1rem"}
                                 ),
                             ],
-                            no_gutters=True,
+                            style={"padding-left":"2rem", "padding-right":"2rem", "padding-top":"1rem", "padding-bottom":"1rem"}
                         ),
                         
                     ]
@@ -387,23 +444,24 @@ def card_quality_adjustment(app):
                         dbc.Row(
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                dbc.Col(html.H4("Quality Adjustment", style={"font-size":"1rem", "margin-left":"10px"}), width="auto"),
-                                dbc.Col(dbc.Button("Edit", id = 'button-show-meas')),
+                                dbc.Col(html.H4("Quality Adjustment", style={"font-size":"1rem", "margin-left":"10px"}), width=2),
+                                dbc.Col(dbc.Button("Edit", className="mb-3",
+                                            style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"4rem"},
+                                            id = 'button-show-meas')),
                                 
                             ],
                             no_gutters=True,
                         ),
                         html.Div([
-                            html.Div([qualitytable(df_quality)]),
+                            html.Div([qualitytable(df_quality)], style={"padding-bottom":"1rem"}),
                             dbc.Row(
                                 [
-                                    dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                    dbc.Col(html.H4("Overall Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=11),
-                                    dbc.Col(html.Div("100%", id = 'div-recom-overall')),
-                                    dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center"})),
+                                    dbc.Col(html.H2("Overall Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=11),
+                                    dbc.Col(html.Div("100%", id = 'div-recom-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"}), style={"padding-right":"0.8rem"}),
+                                    dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"})),
                                 ],
                                 no_gutters=True,
-                                style={"padding-right":"0.75rem"}
+                                style={"padding-right":"0.5rem","padding-top":"0.5rem", "padding-bottom":"0.2rem", "background-color":"#bbd4ff", "border-radius":"10rem","width":"101%"}
                             ),], id = 'div-meas-table-container', hidden = True, style={"padding-left":"4rem", "padding-right":"1rem"}),
                     ]
                 ),
@@ -420,13 +478,17 @@ def tab_result(app):
                         [
                             dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"2rem","font-size":"3"}), width=9),
                             dbc.Col([
-                            	dbc.Button('Edit Scenario Assumptions', id = 'button-open-assump-modal'),
+                                dbc.Button("Edit Scenario Assumptions",
+                                    className="mb-3",
+                                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem"},
+                                    id = 'button-open-assump-modal'
+                                ),
                             	dbc.Modal([
-                            		dbc.ModalHeader("Header"),
-                            		dbc.ModalBody("content of the modal"),
+                            		dbc.ModalHeader(html.H1("Key Simulation Assumptions", style={"font-family":"NotoSans-Black","font-size":"1.5rem"})),
+                            		dbc.ModalBody([sim_assump_input_session(),]),
                             		dbc.ModalFooter(
-                            			dbc.Button('close', id = 'button-close-assump-modal'))
-                            		], id = 'modal-assump'),
+                            			dbc.Button('Close', id = 'button-close-assump-modal'))
+                            		], id = 'modal-assump', size = 'xl'),
                             	]),
                             
                         ]
@@ -451,14 +513,18 @@ def tab_result(app):
                                     ],
                                     no_gutters=True,
                                 ),
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.Div("1"), width=2),
-                                        dbc.Col(dcc.Graph(id = 'figure-cost'), width=4),
-                                        dbc.Col(html.Div(id = 'table-cost'), width=6),
-                                    ],
-                                    no_gutters=True,
-                                ),
+                                html.Div(
+                                    dbc.Row(
+                                        [
+                                            dbc.Col(html.Div("1"), width=1),
+                                            dbc.Col(dcc.Graph(id = 'figure-cost',style={"height":"45vh", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(id = 'table-cost'), width=6),
+                                        ],
+                                        no_gutters=True,
+                                    ),
+                                    style={"padding":"1rem"}
+                                )
+                                
                             ],
                             className="mb-3",
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem", "padding-top":"1rem"}
@@ -484,14 +550,18 @@ def tab_result(app):
                                     ],
                                     no_gutters=True,
                                 ),
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.Div("1"), width=2),
-                                        dbc.Col(dcc.Graph(id = 'figure-fin'), width=4),
-                                        dbc.Col(html.Div(id = 'table-fin'), width=6),
-                                    ],
-                                    no_gutters=True,
-                                ),
+                                html.Div(
+                                    dbc.Row(
+                                        [
+                                            dbc.Col(html.Div("1"), width=1),
+                                            dbc.Col(dcc.Graph(id = 'figure-fin',style={"height":"45vh", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(id = 'table-fin'), width=6),
+                                        ],
+                                        no_gutters=True,
+                                    ),
+                                    style={"padding":"1rem"}
+                                )
+                                
                             ],
                             className="mb-3",
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem", "padding-top":"1rem"}
@@ -501,6 +571,124 @@ def tab_result(app):
                 style={"padding-top":"2rem","padding-bottom":"2rem","padding-left":"1rem","padding-right":"1rem"}
 
         )
+
+def sim_assump_input_session():
+    return html.Div([
+        dbc.Row([
+            dbc.Col("Patient Steerage to ACO"),
+            dbc.Col([dbc.Input(value = "0%",)])
+            ]),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col("Medical Cost Trend (without management)"),
+            dbc.Col([dbc.Input(value = "5.6%",)])
+            ]),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col("Cost Trend Reduction"),
+            dbc.Col([dbc.Input(value = "-2.4%",)])
+            ]),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col("Coding Improvement"),
+            dbc.Col([dbc.Input(value = "0.7%",)])
+            ]),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col("Quality Improvement"),
+            dbc.Col([dbc.Input(value = "9.5%",)])
+            ]),
+        dbc.Row([
+            dbc.Col(["Patient/ Caregiver Experience"]),
+            dbc.Col([
+                dbc.Row([
+                    dbc.Col("CAHPS: Getting Timely Care, Appointments, and Information"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: How Well Your Providers Communicate"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Patients’ Rating of Provider"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Access to Specialists"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Health Promotion and Education"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Shared Decision Making"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Health Status/Functional Status"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Stewardship of Patient Resources"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Courteous and Helpful Office Staff"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Care Coordination"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                ]),
+            ]),
+        dbc.Row([
+            dbc.Col(["Care Coordination/ Patient Safety"]),
+            dbc.Col([
+                dbc.Row([
+                    dbc.Col("Risk-Standardized, All Condition Readmission"),
+                    dbc.Col([dbc.Input(value = "20%")])]),
+                dbc.Row([
+                    dbc.Col("All-Cause Unplanned Admissions for Patients with Multiple Chronic Conditions"),
+                    dbc.Col([dbc.Input(value = "20%")])]),
+                dbc.Row([
+                    dbc.Col("Ambulatory Sensitive Condition Acute Composite (AHRQ Prevention Quality Indicator (PQI)#91)"),
+                    dbc.Col([dbc.Input(value = "20%")])]),
+                dbc.Row([
+                    dbc.Col("Falls: Screening for Future Fall Risk"),
+                    dbc.Col([dbc.Input(value = "15%")])]),
+                ]),
+            ]),
+        dbc.Row([
+            dbc.Col(["Preventive Health"]),
+            dbc.Col([
+                dbc.Row([
+                    dbc.Col("Preventive Care and Screening: Influenza Immunization"),
+                    dbc.Col([dbc.Input(value = "25%")])]),
+                dbc.Row([
+                    dbc.Col("Preventive Care and Screening:Tobacco Use: Screening and Cessation Intervention"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("Preventive Care and Screening:Screening for Depression and Follow-up Plan"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("Colorectal Cancer Screening"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("Breast Cancer Screening"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("Statin Therapy for the Prevention and Treatment of Cardiovascular Disease"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                ]),
+            ]),
+        dbc.Row([
+            dbc.Col(["At-Risk Population"]),
+            dbc.Col([
+                dbc.Row([
+                    dbc.Col("Depression Remission at Twelve Months"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("Diabetes Mellitus: Hemoglobin A1c Poor Control"),
+                    dbc.Col([dbc.Input(value = "20%")])]),
+                dbc.Row([
+                    dbc.Col("Hypertension (HTN): Controlling High Blood Pressure"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                ]),
+            ]),
+
+        ])
 
 
 app.layout = create_layout(app)
