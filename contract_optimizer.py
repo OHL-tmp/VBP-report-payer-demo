@@ -183,50 +183,82 @@ def card_medical_cost_target(app):
                                 					[
                                 						dbc.Col([
                                                             dbc.Button("Recommended", id = 'button-recom', color = 'link',style={"font-size":"0.8rem"}),
-                                                            dbc.Popover([
-                                                                dbc.PopoverHeader("Cost Target Setting"),
-                                                                dbc.PopoverBody(dbc.ListGroup([
-                                                                    dbc.Row([
-                                                                        dbc.Col("(1) Medical Cost Trend (without management)"),
-                                                                        dbc.Col("5.6%")]),
-                                                                    html.Hr(),
+                                                            dbc.Modal([
+                                                                dbc.ModalHeader("Cost Target Setting"),
+                                                                dbc.ModalBody(dbc.ListGroup([
+                                                                    html.Div(
+                                                                        html.Div(
+                                                                            dbc.Row([
+                                                                                dbc.Col("(1) Medical Cost Trend (without management)", width=8),
+                                                                                dbc.Col("5.6%", width=4)]),
+                                                                            style={"border-radius":"0.5rem","background-color":"#f3f3f3","padding":"1rem"}
+                                                                        ),
+                                                                        style={"padding-bottom":"1rem"}
+                                                                    ),
+                                                                    
+                                                                    html.Div(
+                                                                        html.Div(
+                                                                            [
+                                                                                dbc.Row([
+                                                                                    dbc.Col("(2) Trend Adjustment"),
+                                                                                    dbc.Col("-2.4%")]),
+                                                                                dbc.Row([
+                                                                                    dbc.Col("Overuse Reduction"),
+                                                                                    dbc.Col("-0.7%")]),
+                                                                                dbc.Row([
+                                                                                    dbc.Col("Service Optimization"),
+                                                                                    dbc.Col("-0.2%")]),
+                                                                                dbc.Row([
+                                                                                    dbc.Col("Transition of Care Management"),
+                                                                                    dbc.Col("-0.3%")]),
+                                                                                dbc.Row([
+                                                                                    dbc.Col("Chronic Disease Management"),
+                                                                                    dbc.Col("-0.5%")]),
+                                                                                dbc.Row([
+                                                                                    dbc.Col("High Risk Patient Management"),
+                                                                                    dbc.Col("-0.7%")]),
+                                                                            ],
+                                                                            style={"border-radius":"0.5rem","background-color":"#f3f3f3","padding":"1rem"}
+                                                                        ),
+                                                                        style={"padding-bottom":"1rem"}
+                                                                    ),
 
-                                                                    dbc.Row([
-                                                                        dbc.Col("(2) Trend Adjustment"),
-                                                                        dbc.Col("-2.4%")]),
-                                                                    dbc.Row([
-                                                                        dbc.Col("Overuse Reduction"),
-                                                                        dbc.Col("-0.7%")]),
-                                                                    dbc.Row([
-                                                                        dbc.Col("Service Optimization"),
-                                                                        dbc.Col("-0.2%")]),
-                                                                    dbc.Row([
-                                                                        dbc.Col("Transition of Care Management"),
-                                                                        dbc.Col("-0.3%")]),
-                                                                    dbc.Row([
-                                                                        dbc.Col("Chronic Disease Management"),
-                                                                        dbc.Col("-0.5%")]),
-                                                                    dbc.Row([
-                                                                        dbc.Col("High Risk Patient Management"),
-                                                                        dbc.Col("-0.7%")]),
-                                                                    html.Hr(),
+                                                                    
+                                                                    html.Div(
+                                                                        html.Div(
+                                                                            dbc.Row([
+                                                                                dbc.Col("(3) Coding Improvement Opportunity"),
+                                                                                dbc.Col("0.7%")]),
+                                                                            style={"border-radius":"0.5rem","background-color":"#f3f3f3","padding":"1rem"}
+                                                                        ),
+                                                                        style={"padding-bottom":"1rem"}
+                                                                    ),
+                                                                    
+                                                                    html.Div(
+                                                                        html.Div(
+                                                                            dbc.Row([
+                                                                                dbc.Col("(4) Target Trend Increase from Baseline (4)=(1)+(2)+(3)"),
+                                                                                dbc.Col("3.9%")]),
+                                                                            style={"border-radius":"0.5rem","background-color":"#f3f3f3","padding":"1rem"}
+                                                                        ),
+                                                                        style={"padding-bottom":"1rem"}
+                                                                    ),
 
-                                                                    dbc.Row([
-                                                                        dbc.Col("(3) Coding Improvement Opportunity"),
-                                                                        dbc.Col("0.7%")]),
-                                                                    html.Hr(),
+                                                                    html.Div(
+                                                                        html.Div(
+                                                                            dbc.Row([
+                                                                                dbc.Col("(5) Performance Year Spending Target (5)=baseline*(4)"),
+                                                                                dbc.Col("$850")]),
+                                                                            style={"border-radius":"0.5rem","background-color":"#f3f3f3","padding":"1rem"}
+                                                                        ),
+                                                                        style={"padding-bottom":"1rem"}
+                                                                    ),
+                                                                    
 
-                                                                    dbc.Row([
-                                                                        dbc.Col("(4) Target Trend Increase from Baseline (4)=(1)+(2)+(3)"),
-                                                                        dbc.Col("3.9%")]),
-                                                                    html.Hr(),
-
-                                                                    dbc.Row([
-                                                                        dbc.Col("(5) Performance Year Spending Target (5)=baseline*(4)"),
-                                                                        dbc.Col("$850")]),
                                                                     ])),
+                                                                dbc.ModalFooter([dbc.Button("Close", id = 'button-close-recom')])
                                                                 ], 
-                                                                id = 'popover-recom', is_open = False, target = 'button-recom', placement = 'top')
+                                                                id = 'modal-recom', )
                                                             ],
                                                             style={"margin-top":"-0.6rem"}),
                                 						dbc.Col(html.H4("User Defined", style={"font-size":"0.8rem"})),
@@ -694,12 +726,12 @@ def sim_assump_input_session():
 app.layout = create_layout(app)
 
 @app.callback(
-    Output('popover-recom', 'is_open'),
-    [Input('button-recom', 'n_clicks')],
-    [State('popover-recom', 'is_open')]
+    Output('modal-recom', 'is_open'),
+    [Input('button-recom', 'n_clicks'), Input('button-close-recom', 'n_clicks')],
+    [State('modal-recom', 'is_open')]
     )
-def toggle_popover(n, is_open):
-    if n:
+def toggle_popover(n1, n2, is_open):
+    if n1 or n2:
         return not is_open
     return is_open
 
