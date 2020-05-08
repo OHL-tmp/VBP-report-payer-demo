@@ -25,7 +25,7 @@ app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract_optimizer/
 
 server = app.server
 
-file = open('configure/default_ds.txt', encoding = 'utf-8')
+file = open('configure/default_ds.json', encoding = 'utf-8')
 default_input = json.load(file)
 df_quality = pd.read_csv("data/quality_setup.csv")
 
@@ -183,7 +183,49 @@ def card_medical_cost_target(app):
                                 					[
                                 						dbc.Col([
                                                             dbc.Button("Recommended", id = 'button-recom', color = 'link',style={"font-size":"0.8rem"}),
-                                                            dbc.Popover([dbc.PopoverBody("PLACEHOLDER PLACEHOLDER PLACEHOLDER"),], 
+                                                            dbc.Popover([
+                                                                dbc.PopoverHeader("Cost Target Setting"),
+                                                                dbc.PopoverBody(dbc.ListGroup([
+                                                                    dbc.Row([
+                                                                        dbc.Col("(1) Medical Cost Trend (without management)"),
+                                                                        dbc.Col("5.6%")]),
+                                                                    html.Hr(),
+
+                                                                    dbc.Row([
+                                                                        dbc.Col("(2) Trend Adjustment"),
+                                                                        dbc.Col("-2.4%")]),
+                                                                    dbc.Row([
+                                                                        dbc.Col("Overuse Reduction"),
+                                                                        dbc.Col("-0.7%")]),
+                                                                    dbc.Row([
+                                                                        dbc.Col("Service Optimization"),
+                                                                        dbc.Col("-0.2%")]),
+                                                                    dbc.Row([
+                                                                        dbc.Col("Transition of Care Management"),
+                                                                        dbc.Col("-0.3%")]),
+                                                                    dbc.Row([
+                                                                        dbc.Col("Chronic Disease Management"),
+                                                                        dbc.Col("-0.5%")]),
+                                                                    dbc.Row([
+                                                                        dbc.Col("High Risk Patient Management"),
+                                                                        dbc.Col("-0.7%")]),
+                                                                    html.Hr(),
+
+                                                                    dbc.Row([
+                                                                        dbc.Col("(3) Coding Improvement Opportunity"),
+                                                                        dbc.Col("0.7%")]),
+                                                                    html.Hr(),
+
+                                                                    dbc.Row([
+                                                                        dbc.Col("(4) Target Trend Increase from Baseline (4)=(1)+(2)+(3)"),
+                                                                        dbc.Col("3.9%")]),
+                                                                    html.Hr(),
+
+                                                                    dbc.Row([
+                                                                        dbc.Col("(5) Performance Year Spending Target (5)=baseline*(4)"),
+                                                                        dbc.Col("$850")]),
+                                                                    ])),
+                                                                ], 
                                                                 id = 'popover-recom', is_open = False, target = 'button-recom', placement = 'top')
                                                             ],
                                                             style={"margin-top":"-0.6rem"}),
@@ -442,11 +484,11 @@ def tab_result(app):
                                     id = 'button-open-assump-modal'
                                 ),
                             	dbc.Modal([
-                            		dbc.ModalHeader("Header"),
-                            		dbc.ModalBody("content of the modal"),
+                            		dbc.ModalHeader(html.H1("Key Simulation Assumptions", style={"font-family":"NotoSans-Black","font-size":"1.5rem"})),
+                            		dbc.ModalBody([sim_assump_input_session(),]),
                             		dbc.ModalFooter(
-                            			dbc.Button('close', id = 'button-close-assump-modal'))
-                            		], id = 'modal-assump'),
+                            			dbc.Button('Close', id = 'button-close-assump-modal'))
+                            		], id = 'modal-assump', size = 'xl'),
                             	]),
                             
                         ]
@@ -529,6 +571,124 @@ def tab_result(app):
                 style={"padding-top":"2rem","padding-bottom":"2rem","padding-left":"1rem","padding-right":"1rem"}
 
         )
+
+def sim_assump_input_session():
+    return html.Div([
+        dbc.Row([
+            dbc.Col("Patient Steerage to ACO"),
+            dbc.Col([dbc.Input(value = "0%",)])
+            ]),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col("Medical Cost Trend (without management)"),
+            dbc.Col([dbc.Input(value = "5.6%",)])
+            ]),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col("Cost Trend Reduction"),
+            dbc.Col([dbc.Input(value = "-2.4%",)])
+            ]),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col("Coding Improvement"),
+            dbc.Col([dbc.Input(value = "0.7%",)])
+            ]),
+        html.Hr(),
+        dbc.Row([
+            dbc.Col("Quality Improvement"),
+            dbc.Col([dbc.Input(value = "9.5%",)])
+            ]),
+        dbc.Row([
+            dbc.Col(["Patient/ Caregiver Experience"]),
+            dbc.Col([
+                dbc.Row([
+                    dbc.Col("CAHPS: Getting Timely Care, Appointments, and Information"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: How Well Your Providers Communicate"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Patients’ Rating of Provider"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Access to Specialists"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Health Promotion and Education"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Shared Decision Making"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Health Status/Functional Status"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Stewardship of Patient Resources"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Courteous and Helpful Office Staff"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("CAHPS: Care Coordination"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                ]),
+            ]),
+        dbc.Row([
+            dbc.Col(["Care Coordination/ Patient Safety"]),
+            dbc.Col([
+                dbc.Row([
+                    dbc.Col("Risk-Standardized, All Condition Readmission"),
+                    dbc.Col([dbc.Input(value = "20%")])]),
+                dbc.Row([
+                    dbc.Col("All-Cause Unplanned Admissions for Patients with Multiple Chronic Conditions"),
+                    dbc.Col([dbc.Input(value = "20%")])]),
+                dbc.Row([
+                    dbc.Col("Ambulatory Sensitive Condition Acute Composite (AHRQ Prevention Quality Indicator (PQI)#91)"),
+                    dbc.Col([dbc.Input(value = "20%")])]),
+                dbc.Row([
+                    dbc.Col("Falls: Screening for Future Fall Risk"),
+                    dbc.Col([dbc.Input(value = "15%")])]),
+                ]),
+            ]),
+        dbc.Row([
+            dbc.Col(["Preventive Health"]),
+            dbc.Col([
+                dbc.Row([
+                    dbc.Col("Preventive Care and Screening: Influenza Immunization"),
+                    dbc.Col([dbc.Input(value = "25%")])]),
+                dbc.Row([
+                    dbc.Col("Preventive Care and Screening:Tobacco Use: Screening and Cessation Intervention"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("Preventive Care and Screening:Screening for Depression and Follow-up Plan"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("Colorectal Cancer Screening"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("Breast Cancer Screening"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                dbc.Row([
+                    dbc.Col("Statin Therapy for the Prevention and Treatment of Cardiovascular Disease"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                ]),
+            ]),
+        dbc.Row([
+            dbc.Col(["At-Risk Population"]),
+            dbc.Col([
+                dbc.Row([
+                    dbc.Col("Depression Remission at Twelve Months"),
+                    dbc.Col([dbc.Input(value = "0%")])]),
+                dbc.Row([
+                    dbc.Col("Diabetes Mellitus: Hemoglobin A1c Poor Control"),
+                    dbc.Col([dbc.Input(value = "20%")])]),
+                dbc.Row([
+                    dbc.Col("Hypertension (HTN): Controlling High Blood Pressure"),
+                    dbc.Col([dbc.Input(value = "10%")])]),
+                ]),
+            ]),
+
+        ])
 
 
 app.layout = create_layout(app)
