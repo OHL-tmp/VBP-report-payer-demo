@@ -210,8 +210,8 @@ def card_medical_cost_target(app):
                         		dbc.Col(
                     				dbc.Row(
                     					[
-                    						dbc.Col(html.H6("1000")),
-                    						dbc.Col(html.H6("$750")),
+                    						dbc.Col(html.H6(default_input['medical cost target']['member count'])),
+                    						dbc.Col(html.H6(default_input['medical cost target']['medical cost pmpm'])),
                     					]
                     				)
                         			, width=3
@@ -219,7 +219,7 @@ def card_medical_cost_target(app):
                         		dbc.Col(
                     				dbc.Row(
                     					[
-                    						dbc.Col(html.H6("$760", id = 'div-recom-tgt')),
+                    						dbc.Col(html.H6(default_input['medical cost target']['recom target'], id = 'div-recom-tgt')),
                     						dbc.Col([
                                                 dbc.InputGroup([
                                                     dbc.InputGroupAddon('$', addon_type = 'prepend'),
@@ -279,7 +279,7 @@ def card_sl_sharing_arrangement(app):
 	                    				dbc.Row(
 	                    					[
 	                    						dbc.Col(html.H6("MSR (Minimum Savings Rate)"),width=3),
-	                    						dbc.Col(html.H6("2%"),style={"text-align":"center"},width=3),
+	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom msr']),style={"text-align":"center"},width=3),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-msr', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['msr']),
@@ -291,7 +291,7 @@ def card_sl_sharing_arrangement(app):
 				                        dbc.Row(
 	                    					[
 	                    						dbc.Col(html.H6("Plan's Sharing %"),width=3),
-	                    						dbc.Col(html.H6("40%"),style={"text-align":"center"},width=3),
+	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing']),style={"text-align":"center"},width=3),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-planshare', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['savings sharing']),
@@ -303,7 +303,7 @@ def card_sl_sharing_arrangement(app):
 	                    				dbc.Row(
 	                    					[
 	                    						dbc.Col(html.H6("Shared Savings Cap"),width=3),
-	                    						dbc.Col(html.H6("10% of target"),style={"text-align":"center"},width=3),
+	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings share cap']),style={"text-align":"center"},width=3),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-sharecap', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['savings share cap']),
@@ -334,7 +334,7 @@ def card_sl_sharing_arrangement(app):
 	                    				dbc.Row(
 	                    					[
 	                    						dbc.Col(html.H6("MSR (Minimum Losses Rate)"),width=3),
-	                    						dbc.Col(html.H6("2%"),style={"text-align":"center"},width=3),
+	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom mlr']),style={"text-align":"center"},width=3),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-mlr', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['mlr']),
@@ -346,7 +346,7 @@ def card_sl_sharing_arrangement(app):
 				                        dbc.Row(
 	                    					[
 	                    						dbc.Col(html.H6("Plan's Sharing %"),width=3),
-	                    						dbc.Col(html.H6("40%"),style={"text-align":"center"},width=3),
+	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing']),style={"text-align":"center"},width=3),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-planshare-l', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['losses sharing']),
@@ -358,7 +358,7 @@ def card_sl_sharing_arrangement(app):
 	                    				dbc.Row(
 	                    					[
 	                    						dbc.Col(html.H6("Shared Losses Cap"),width=3),
-	                    						dbc.Col(html.H6("10% of target"),style={"text-align":"center"},width=3),
+	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses share cap']),style={"text-align":"center"},width=3),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-sharecap-l', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['losses share cap']),
@@ -693,6 +693,6 @@ def update_grapg_cost(metric, data):
     return {}, ""
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True,port=8049)
+    app.run_server(host="127.0.0.1",debug=True,port=8052)
 
 
