@@ -25,7 +25,7 @@ from figure import *
 from modal_dashboard_domain_selection import *
 
 
-app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract_manager/')
+app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract-manager/')
 
 server = app.server
 
@@ -84,16 +84,27 @@ def manager_div_year_to_date_metrics(app):
                     manager_card_year_to_date_metrics("Projected Plan's Shared Savings/Losses", "$7.5M", "#db2200"),
                     manager_card_year_to_date_metrics("Projected ACO's Shared Savings/Losses", "$7.5M", "#db2200"),
                     html.Hr(className="ml-1"),
-                    dbc.Button(
-                        "Result Details",
-                        className="mb-3",
-                        style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
-                    )
+                    manager_modal_metricsdetail(app),
                 ],
                 className="mb-3",
                 style={"text-align":"center"},
             )
 
+def manager_modal_metricsdetail(app):
+    return html.Div([
+            dbc.Button(
+                        "Result Details",
+                        id = 'manager-button-openmodal-metricsdetail',
+                        className="mb-3",
+                        style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
+                    ),
+            dbc.Modal([
+                dbc.ModalHeader("Header"),
+                dbc.ModalBody("Modal body content"),
+                dbc.ModalFooter(dbc.Button('Close', id = 'manager-button-closemodal-metricsdetail')),
+                ], id = 'manager-modal-metricsdetail'),
+
+        ])
 
 def manager_card_year_to_date_metrics(title, value, color):
     return dbc.Card(
@@ -134,37 +145,79 @@ def manager_div_overall_performance(app):
                             dbc.Col(
                                 daq.ToggleSwitch(
                                     value=False,
+                                    id = 'manager-switch-totalcost-pmpm',
                                 ), 
                                 width=2
                             ),
                             dbc.Col("PMPM", width=5),
                         ]
                     ),
-                    dbc.Row(
+                    html.Div([dbc.Row(
                         [
                             dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"}), width=7),
                             dbc.Col(
                                 html.Div(
                                     [
                                         html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"}),
-                                        html.Div(
-                                            dbc.Button(
-                                                "Target Adjustment Details",
-                                                className="mb-3",
-                                                style={"background-color":"#38160f", "border":"none", "border-radius":"0.5rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem","height":"4rem","width":"80%"},
-                                            ),
-                                            style={"text-align":"center"}
-                                        ),
+                                        manager_modal_totalcost(app),
                                     ]
                                 ),
                                 width=5
                             ),
-                        ],
+                        ], 
                     ),
+                    ], id = 'manager-div-totalcost-container', hidden = False),
+                    html.Div([dbc.Row(
+                        [
+                            dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"}), width=7),
+                            dbc.Col(
+                                html.Div(
+                                    [
+                                        html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"}),
+                                        manager_modal_pmpm(app),
+                                    ]
+                                ),
+                                width=5
+                            ),
+                        ], 
+                    ),
+                    ], id = 'manager-div-pmpm-container', hidden = True),
                     manager_card_key_driver(app)
                 ],
                 style={"padding-bottom":"30rem", "padding-right":"2rem", "max-height":"5rem"},
             )
+
+def manager_modal_totalcost(app):
+    return html.Div([
+                dbc.Button(
+                    "Target Adjustment Details",
+                    id = 'manager-button-openmodal-totalcost',
+                    className="mb-3",
+                    style={"background-color":"#38160f", "border":"none", "border-radius":"0.5rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem","height":"4rem","width":"80%"},
+                ),
+                dbc.Modal([
+                    dbc.ModalHeader("Header"),
+                    dbc.ModalBody("Modal body content"),
+                    dbc.ModalFooter(dbc.Button('Close', id = 'manager-button-closemodal-totalcost')),
+                    ], id = 'manager-modal-totalcost',
+                style={"text-align":"center"}),
+            ])
+
+def manager_modal_pmpm(app):
+    return html.Div([
+                dbc.Button(
+                    "Target Adjustment Details",
+                    id = 'manager-button-openmodal-pmpm',
+                    className="mb-3",
+                    style={"background-color":"#38160f", "border":"none", "border-radius":"0.5rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem","height":"4rem","width":"80%"},
+                ),
+                dbc.Modal([
+                    dbc.ModalHeader("Header"),
+                    dbc.ModalBody("Modal body content"),
+                    dbc.ModalFooter(dbc.Button('Close', id = 'manager-button-closemodal-pmpm')),
+                    ], id = 'manager-modal-pmpm',
+                style={"text-align":"center"}),
+            ])
 
 def manager_card_key_driver(app):
     return dbc.Card(
@@ -175,24 +228,7 @@ def manager_card_key_driver(app):
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                 dbc.Col(html.H4("Key Drivers", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                 dbc.Col(
-                                    [
-                                        dbc.Button(
-                                            "See All Drivers", 
-                                            id = 'button-all-driver', 
-                                            style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
-                                        ),
-                                        # dbc.Modal([
-                                        #         dbc.ModalHeader("All Drivers"),
-                                        #         dbc.ModalBody(children = html.Div([table_driver_all(df_driver_all)], style={"padding":"1rem"})),
-                                        #         dbc.ModalFooter(
-                                        #                 dbc.Button("Close", id = 'close-all-driver',
-                                        #                                 style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
-                                        #                             )
-                                        #                 )
-                                        #         ], id = 'modal-all-driver', size="lg")
-                                    ],
-                                    width=3,
-                                ),
+                                    manager_modal_alldrivers(app)),
                             ],
                             no_gutters=True,
                         ),
@@ -231,6 +267,25 @@ def manager_card_key_driver(app):
                 style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
             )
 
+def manager_modal_alldrivers(app):
+    return html.Div([
+                dbc.Button(
+                    "See All Drivers", 
+                    id = 'manager-button-openmodal-alldriver', 
+                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
+                ),
+                 dbc.Modal([
+                         dbc.ModalHeader("All Drivers"),
+                         dbc.ModalBody(children = html.Div(["contents"], style={"padding":"1rem"})),
+                         dbc.ModalFooter(
+                                 dbc.Button("Close", id = 'manager-button-closemodal-alldriver',
+                                                 style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
+                                             )
+                                 )
+                         ], id = 'manager-modal-alldriver', size="lg")
+            ],
+            
+        )
 
 def manager_card_attributed_members(app):
 
@@ -277,14 +332,101 @@ def manager_card_quality_score(app):
                             ],
                             no_gutters=True,
                         ),
+                        manager_modal_qualityscore(app),
                     ]
                 ),
                 style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
             )
 
+def manager_modal_qualityscore(app):
+    return html.Div([
+                dbc.Button(
+                    "Result Details", 
+                    id = 'manager-button-openmodal-qualityscore', 
+                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
+                ),
+                 dbc.Modal([
+                         dbc.ModalHeader("Header"),
+                         dbc.ModalBody(children = html.Div(["contents"], style={"padding":"1rem"})),
+                         dbc.ModalFooter(
+                                 dbc.Button("Close", id = 'manager-button-closemodal-qualityscore',
+                                                 style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
+                                             )
+                                 )
+                         ], id = 'manager-modal-qualityscore', size="lg")
+            ],
+            
+        )
 
 
 app.layout = create_layout(app)
+
+
+@app.callback(
+    [Output('manager-div-totalcost-container', 'hidden'),
+    Output('manager-div-pmpm-container', 'hidden')],
+    [Input('manager-switch-totalcost-pmpm', 'value')]
+    )
+def switch_totalcost_pmpm(v):
+    if v == True:
+        return True, False
+    return False, True
+
+@app.callback(
+    Output('manager-modal-totalcost', 'is_open'),
+    [Input('manager-button-openmodal-totalcost', 'n_clicks'),
+    Input('manager-button-closemodal-totalcost', 'n_clicks')],
+    [State('manager-modal-totalcost', 'is_open')]
+    )
+def open_modal(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+@app.callback(
+    Output('manager-modal-pmpm', 'is_open'),
+    [Input('manager-button-openmodal-pmpm', 'n_clicks'),
+    Input('manager-button-closemodal-pmpm', 'n_clicks')],
+    [State('manager-modal-pmpm', 'is_open')]
+    )
+def open_modal(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+@app.callback(
+    Output('manager-modal-alldriver', 'is_open'),
+    [Input('manager-button-openmodal-alldriver', 'n_clicks'),
+    Input('manager-button-closemodal-alldriver', 'n_clicks')],
+    [State('manager-modal-alldriver', 'is_open')]
+    )
+def open_modal(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+@app.callback(
+    Output('manager-modal-metricsdetail', 'is_open'),
+    [Input('manager-button-openmodal-metricsdetail', 'n_clicks'),
+    Input('manager-button-closemodal-metricsdetail', 'n_clicks')],
+    [State('manager-modal-metricsdetail', 'is_open')]
+    )
+def open_modal(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+@app.callback(
+    Output('manager-modal-qualityscore', 'is_open'),
+    [Input('manager-button-openmodal-qualityscore', 'n_clicks'),
+    Input('manager-button-closemodal-qualityscore', 'n_clicks')],
+    [State('manager-modal-qualityscore', 'is_open')]
+    )
+def open_modal(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
 
 
 if __name__ == "__main__":
