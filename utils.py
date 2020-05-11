@@ -86,7 +86,7 @@ def get_header_contract(app, pbp, bec, acp):
                 className="tab first",
                 ),
             dbc.NavItem(dbc.NavLink(
-                        "Bunddles & Episodes of Care",
+                        "Bundles & Episodes of Care",
                         #href="/vbc-demo/contract-optimizer/measures-library/",
                         className="nav-link",
                         active = bec,
