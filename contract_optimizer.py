@@ -34,7 +34,7 @@ def create_layout(app):
 #    load_data()
     return html.Div(
                 [ 
-                    html.Div([Header_contract(app, True, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
+                    html.Div([Header_contract(app, False, False, True)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
                     
                     html.Div(
                         [
@@ -430,7 +430,7 @@ def card_quality_adjustment(app):
                             html.Div([qualitytable(df_quality)], style={"padding-bottom":"1rem"}),
                             dbc.Row(
                                 [
-                                    dbc.Col(html.H2("Overall Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=10),
+                                    dbc.Col(html.H2("Total Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=10),
                                     dbc.Col(html.Div("100%", id = 'div-recom-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"}), style={"padding-left":"0.5rem","padding-right":"0.3rem"}),
                                     dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"}), style={"padding-left":"0.3rem"}),
                                 ],
@@ -482,7 +482,7 @@ def tab_result(app):
                                         	{'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
                                         	{'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
                                         	],#{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }
-                                            value = "Plan's Total Cost",
+                                            value = "ACO's PMPM",
                                         	))
                                     ],
                                     no_gutters=True,
@@ -550,7 +550,7 @@ def sim_assump_input_session():
     return html.Div([
         html.Div(
             dbc.Row([
-                dbc.Col(html.H1("Patient Steerage to ACO", style={"font-size":"1rem"})),
+                dbc.Col(html.H1("Addition Patients Steered to ACO", style={"font-size":"1rem"})),
                 dbc.Col([dbc.Input(value = "0%",)], width=3)
                 ],
                 style={"padding":"1rem","background-color":"#f3f3f3","border-radius":"0.5rem"}
@@ -570,7 +570,7 @@ def sim_assump_input_session():
         
         html.Div(
             dbc.Row([
-                dbc.Col(html.H1("Cost Trend Reduction", style={"font-size":"1rem"})),
+                dbc.Col(html.H1("Assumed Cost Trend Reduction", style={"font-size":"1rem"})),
                 dbc.Col([dbc.Input(value = "-2.4%",)], width=3)
                 ],
                 style={"padding":"1rem","background-color":"#f3f3f3","border-radius":"0.5rem"}
@@ -593,7 +593,6 @@ def sim_assump_input_session():
                 [
                 dbc.Row([
                     dbc.Col(html.H1("Quality Improvement", style={"font-size":"1rem"})),
-                    dbc.Col([dbc.Input(value = "9.5%",)], width=3)
                     ],
                     style={"padding":"1rem"}
                 ),
