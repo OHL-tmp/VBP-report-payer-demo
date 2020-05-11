@@ -2,6 +2,7 @@
 import pandas as pd
 import plotly
 import plotly.graph_objects as go
+import dash_daq as daq
 
 import dash
 import dash_table
@@ -663,7 +664,7 @@ def waterfall_overall(df):
             #text=y1_waterfall,
             textposition='auto',
             textfont=dict(color=['black','black','black',colors['transparent']]),
-            texttemplate='%{y:.0s}',
+            texttemplate='%{y:s}',
             marker=dict(
                     color=[colors['blue'],colors['blue'],colors['grey'],colors['transparent']],
                     opacity=[1,0.7,0.7,0]
@@ -680,7 +681,7 @@ def waterfall_overall(df):
             #text=y2_waterfall,
             textposition='outside',
             textfont=dict(color=[colors['transparent'],colors['transparent'],colors['transparent'],'black']),
-            texttemplate='%{y:.0s}',
+            texttemplate='%{y:s}',
             marker=dict(
                     color=gaincolor,
                     opacity=0.7
@@ -738,10 +739,10 @@ def sharing_split(df):
             #text=y1_waterfall,
             textposition='auto',
             textfont=dict(color='black'),
-            texttemplate='%{y:.0s}',
+            texttemplate='%{y:s}',
             marker=dict(
                     color=gaincolor,
-                    opacity=0.7
+                    opacity=0.5
                     ),
             marker_line=dict( color = colors['transparent'] ),
             hovertemplate='%{y:,.0f}',
@@ -755,10 +756,10 @@ def sharing_split(df):
             #text=y2_waterfall,
             textposition='auto',
             textfont=dict(color='black'),
-            texttemplate='%{y:.0s}',
+            texttemplate='%{y:s}',
             marker=dict(
                     color=gaincolor,
-                    opacity=0.5
+                    opacity=0.3
                     ),
             hovertemplate='%{y:,.0f}',
             hoverinfo='y',
@@ -770,7 +771,7 @@ def sharing_split(df):
     annotations.append(dict(xref='paper', yref='y',
                             x=1.12, y=df.values[0,4]/2,
                             text="Plan's Share ("+str(plan_share)+' %)',
-                            font=dict(family='NotoSans-CondensedLight', size=12, color='#38160f'),
+                            font=dict(family='NotoSans-SemiBold', size=14, color='#38160f'),
                             showarrow=False,
                            )
                       )
@@ -778,7 +779,7 @@ def sharing_split(df):
     annotations.append(dict(xref='paper', yref='y',
                             x=1.12, y=df.values[0,4]+df.values[0,5]/2,
                             text="ACO's Share ("+str(aco_share)+' %)',
-                            font=dict(family='NotoSans-CondensedLight', size=12, color='#38160f'),
+                            font=dict(family='NotoSans-SemiBold', size=14, color='#38160f'),
                             showarrow=False,
                            )
                       )
@@ -836,29 +837,49 @@ def bargraph_h(df):
     fig = go.Figure(data=[
         go.Bar(
             name='',
-            x=df['type'], 
-            y=df['member'],
+            x=df['member'].tolist(), 
+            y=df['type'].tolist(),
             text="",
-            textposition='outside', 
+            textposition='inside', 
             texttemplate='%{x:,.0f}',
-            width=0.5,
+            width=0.3,
             textangle=0,
             marker=dict(
                     color=['#1357DD','#1357DD'],
                     opacity=[0.7,1]
                     ),
             orientation='h',
-            hoverinfo=False,
+            hoverinfo='skip',
             #hovertemplate='%{x:,.2f}',
         )
     ])
     # Change the bar mode
     fig.update_layout(
+        title=dict(
+            text='YTD Attributed Members VS. Target',
+            font=dict(
+            family="NotoSans-Condensed",
+            size=16,
+            color="#38160f",
+            ),
+            xref='container',
+            yref='container',
+            x=0.5,
+            y=0.94,
+            xanchor='center',
+            yanchor='middle',
+            ),
+        xaxis=dict(
+            ticklen=2,
+            tickwidth=5,
+            position=0.1,
+            ),
+        bargap=0,
         paper_bgcolor=colors['transparent'],
         plot_bgcolor=colors['transparent'],
         showlegend=False,
-        margin=dict(l=0,r=0,b=30,t=30,pad=10),
-       font=dict(
+        margin=dict(l=0,r=0,b=0,t=0,pad=10),
+        font=dict(
             family="NotoSans-Condensed",
             size=14,
             color="#38160f"
@@ -878,15 +899,14 @@ def bar_riskdist(df):
                 x=df.columns[1:3].tolist(),
                 y=df.values[i,1:3].tolist(),
                 textposition='auto', 
-                texttemplate='%{x:,.0f}',
+                texttemplate='%{y:,.0f}',
                 width=0.5,
                 textangle=0,
                 marker=dict(
                         color=color_bar[i],
                         opacity=[0.7,1]
                         ),
-                orientation='h',
-                hoverinfo=False,
+                hoverinfo='skip',
                 #hovertemplate='%{x:,.2f}',
                 )
 
@@ -894,7 +914,21 @@ def bar_riskdist(df):
 
     fig.update_layout(
         barmode='stack',
-        #title='Revenue Projection',
+        title=dict(
+            text='Member Distribution by Risk Level',
+            font=dict(
+            family="NotoSans-Condensed",
+            size=16,
+            color="#38160f",
+            ),
+            xref='paper',
+            yref='paper',
+            x=0.5,
+            y=0.98,
+            xanchor='center',
+            yanchor='middle',
+            #pad=dict(b=5)
+            ),
         plot_bgcolor=colors['transparent'],
         paper_bgcolor=colors['transparent'],
         yaxis = dict(
@@ -907,6 +941,87 @@ def bar_riskdist(df):
             zerolinewidth=1,
         ),
         showlegend=True,
+        legend=dict(
+            orientation='h',
+            x=0.3,y=-0.05
+        ),
+        modebar=dict(
+            bgcolor=colors['transparent']
+        ),
+        margin=dict(l=0,r=0,b=0,t=0,pad=4),
+        font=dict(
+            family="NotoSans-Condensed",
+            size=12,
+            color="#38160f"
+        ),
+    )
+    return fig
+
+
+def waterfall_rs(df):
+    fig_waterfall = go.Figure(data=[
+        go.Bar(
+            name='',
+            x=df['name'].tolist(), 
+            y=df['base'].tolist(),
+            #text=y1_waterfall,
+            textposition='auto',
+            textfont=dict(color=['black',colors['transparent'],'black']),
+            texttemplate='%{y:,.1f}',
+            marker=dict(
+                    color=[colors['blue'],colors['transparent'],colors['grey']],
+                    opacity=[0.7,0.7,0.7]
+                    ),
+            marker_line=dict( color = colors['transparent'] ),
+            #hovertemplate='%{y:,.0f}',
+            hoverinfo='skip',
+            
+        ),
+        go.Bar(  
+            name='',
+            x=df['name'].tolist(), 
+            y=df['adj'].tolist(),
+            #text=y2_waterfall,
+            textposition='inside',
+            textfont=dict(color=[colors['transparent'],'black',colors['transparent']]),
+            texttemplate='%{y:,.1f}',
+            marker=dict(
+                    color=colors['yellow'],
+                    opacity=0.7
+                    ),
+            #hovertemplate='%{y:,.0f}',
+            hoverinfo='skip',
+        )
+    ])
+    # Change the bar mode
+    fig_waterfall.update_layout(
+        barmode='stack',
+        title=dict(
+            text='Risk Score Improvement Opportunity',
+            font=dict(
+            family="NotoSans-Condensed",
+            size=16,
+            color="#38160f",
+            ),
+            xref='container',
+            yref='container',
+            x=0.5,
+            y=0.98,
+            xanchor='center',
+            yanchor='middle',
+            ),
+        plot_bgcolor=colors['transparent'],
+        paper_bgcolor=colors['transparent'],
+        yaxis = dict(
+            showgrid = True, 
+            gridcolor =colors['grey'],
+            nticks=5,
+            showticklabels=True,
+            zeroline=True,
+            zerolinecolor=colors['grey'],
+            zerolinewidth=1,
+        ),
+        showlegend=False,
         modebar=dict(
             bgcolor=colors['transparent']
         ),
@@ -916,9 +1031,5 @@ def bar_riskdist(df):
             size=12,
             color="#38160f"
         ),
-        annotations=annotations,
     )
-    return fig_bar
-
-
-#def waterfall_rs(df):
+    return fig_waterfall

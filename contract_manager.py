@@ -32,7 +32,12 @@ server = app.server
 
 
 ## load data
-
+df_overall=pd.read_csv("data/df_overall.csv")
+df_overall_pmpm=pd.read_csv("data/df_overall_pmpm.csv")
+df_overall_driver=pd.read_csv("data/df_overall_driver.csv")
+df_member=pd.read_csv("data/df_member.csv")
+df_member_split=pd.read_csv("data/df_member_split.csv")
+df_rs_opp=pd.read_csv("data/df_rs_opp.csv")
 
 def create_layout(app):
 
@@ -154,11 +159,11 @@ def manager_div_overall_performance(app):
                     ),
                     html.Div([dbc.Row(
                         [
-                            dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"}), width=7),
+                            dbc.Col(dcc.Graph(figure=waterfall_overall(df_overall), style={"width":"100%","height":"100%"}), width=7),
                             dbc.Col(
                                 html.Div(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"}),
+                                        dcc.Graph(figure=sharing_split(df_overall),style={"width":"100%","height":"100%"}),
                                         manager_modal_totalcost(app),
                                     ]
                                 ),
@@ -169,11 +174,11 @@ def manager_div_overall_performance(app):
                     ], id = 'manager-div-totalcost-container', hidden = False),
                     html.Div([dbc.Row(
                         [
-                            dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"}), width=7),
+                            dbc.Col(dcc.Graph(figure=waterfall_overall(df_overall_pmpm), style={"width":"100%","height":"100%"}), width=7),
                             dbc.Col(
                                 html.Div(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"}),
+                                        dcc.Graph(figure=sharing_split(df_overall_pmpm), style={"width":"100%","height":"100%"}),
                                         manager_modal_pmpm(app),
                                     ]
                                 ),
@@ -237,25 +242,25 @@ def manager_card_key_driver(app):
                             [
                                 dbc.Col(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"}),    
+                                        html.Div(children=gaugegraph(df_overall_driver,0), style={"width":"100%","height":"100%"}),    
                                     ],
                                     width=3
                                 ),
                                 dbc.Col(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"}),    
+                                        html.Div(children=gaugegraph(df_overall_driver,1), style={"width":"100%","height":"100%"}),    
                                     ],
                                     width=3
                                 ),
                                 dbc.Col(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"}),    
+                                        html.Div(children=gaugegraph(df_overall_driver,2), style={"width":"100%","height":"100%"}),    
                                     ],
                                     width=3
                                 ),
                                 dbc.Col(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"}),    
+                                        html.Div(children=gaugegraph(df_overall_driver,3), style={"width":"100%","height":"100%"}),    
                                     ],
                                     width=3
                                 ),
@@ -301,9 +306,9 @@ def manager_card_attributed_members(app):
                         ),
                         dbc.Row(
                             [
-                                dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"})),
-                                dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"})),
-                                dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"})),
+                                dbc.Col(dcc.Graph(figure=bargraph_h(df_member), style={"width":"100%","height":"100%"})),
+                                dbc.Col(dcc.Graph(figure=bar_riskdist(df_member_split), style={"width":"100%","height":"100%"})),
+                                dbc.Col(dcc.Graph(figure=waterfall_rs(df_rs_opp), style={"width":"100%","height":"100%"})),
                             ],
                             no_gutters=True,
                         ),
