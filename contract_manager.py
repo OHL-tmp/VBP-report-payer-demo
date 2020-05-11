@@ -55,7 +55,7 @@ def create_layout(app):
                             ),
                         ],
                         className="mb-3",
-                        style={"padding-left":"3rem", "padding-right":"3rem","padding-top":"1rem"},
+                        style={"padding-left":"3rem", "padding-right":"3rem","padding-top":"1rem","padding-bottom":"3rem"},
                     ),
                     
                     html.Div(
@@ -136,49 +136,60 @@ def manager_div_overall_performance(app):
                             dbc.Card(
                                 dbc.CardBody(
                                     [
-                                        html.H2("As of June 30th.", style={"font-size":"1.5rem", "margin-top":"-5px", "color":"#fff"}),
+                                        html.H3([html.Span("As of ", style={"font-size":"0.8rem", "padding-right":"1rem"}),"June 30th."], style={"color":"#fff"}),
                                     ],
                                     style={"margin-top":"-16px"}
                                 ),
-                                style={"height":"3rem", "background-color":"#1357DD", "text-align":"center"},
+                                style={"height":"2.5rem", "background-color":"#1357DD", "text-align":"center", "margin-top":"0.5rem"},
                             ),
                         ]
                     ),
-                    dbc.Row(
+                    html.Div(
                         [
-                            dbc.Col("Total Cost", style={"text-align":"end"}, width=5),
-                            dbc.Col(
-                                daq.ToggleSwitch(
-                                    value=False,
-                                    id = 'manager-switch-totalcost-pmpm',
-                                ), 
-                                width=2
+                            dbc.Row(
+                                [
+                                    dbc.Col("Total Cost", style={"font-family":"NotoSans-SemiBold","text-align":"end"}, width=5),
+                                    dbc.Col(
+                                        daq.ToggleSwitch(
+                                            value=False,
+                                            id = 'manager-switch-totalcost-pmpm',
+                                        ), 
+                                        width=2
+                                    ),
+                                    dbc.Col("PMPM", style={"font-family":"NotoSans-SemiBold"}, width=5),
+                                ],
+                                style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)","background-color":"#fff","border-radius":"10rem","padding":"0.5rem"}
                             ),
-                            dbc.Col("PMPM", width=5),
-                        ]
+                        ],
+                        style={"padding":"1.5rem"}
                     ),
-                    html.Div([dbc.Row(
-                        [
-                            dbc.Col(dcc.Graph(figure=waterfall_overall(df_overall), style={"width":"100%","height":"100%"}), width=7),
-                            dbc.Col(
-                                html.Div(
-                                    [
-                                        dcc.Graph(figure=sharing_split(df_overall),style={"width":"100%","height":"100%"}),
-                                        manager_modal_totalcost(app),
-                                    ]
+                    
+                    html.Div([
+                        dbc.Row(
+                            [
+                                dbc.Col(dcc.Graph(figure=waterfall_overall(df_overall), style={"width":"100%","height":"100%"}), style={"height":"25rem", "padding":"1rem"}, width=7),
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            html.Div(dcc.Graph(figure=sharing_split(df_overall),style={"width":"100%","height":"100%"}), style={"height":"20rem", "padding":"1rem"}),
+                                            manager_modal_totalcost(app),
+                                        ]
+                                    ),
+                                    width=5,
+                                    style={"padding-left":"1rem","padding-right":"1rem"}
                                 ),
-                                width=5
-                            ),
-                        ], 
-                    ),
-                    ], id = 'manager-div-totalcost-container', hidden = False),
+                            ], 
+                        ),
+                    ],
+                    style={"padding-bottom":"3rem"},
+                    id = 'manager-div-totalcost-container', hidden = False),
                     html.Div([dbc.Row(
                         [
-                            dbc.Col(dcc.Graph(figure=waterfall_overall(df_overall_pmpm), style={"width":"100%","height":"100%"}), width=7),
+                            dbc.Col(dcc.Graph(figure=waterfall_overall(df_overall_pmpm), style={"width":"100%","height":"100%"}), style={"height":"25rem", "padding":"1rem"}, width=7),
                             dbc.Col(
                                 html.Div(
                                     [
-                                        dcc.Graph(figure=sharing_split(df_overall_pmpm), style={"width":"100%","height":"100%"}),
+                                        html.Div(dcc.Graph(figure=sharing_split(df_overall_pmpm), style={"width":"100%","height":"100%"}), style={"height":"20rem", "padding":"1rem"}),
                                         manager_modal_pmpm(app),
                                     ]
                                 ),
@@ -186,10 +197,12 @@ def manager_div_overall_performance(app):
                             ),
                         ], 
                     ),
-                    ], id = 'manager-div-pmpm-container', hidden = True),
+                    ],
+                    style={"padding-bottom":"3rem"},
+                    id = 'manager-div-pmpm-container', hidden = True),
                     manager_card_key_driver(app)
                 ],
-                style={"padding-bottom":"30rem", "padding-right":"2rem", "max-height":"5rem"},
+                style={"padding-bottom":"30rem", "padding-right":"2rem", "max-height":"40rem"},
             )
 
 def manager_modal_totalcost(app):
@@ -306,11 +319,12 @@ def manager_card_attributed_members(app):
                         ),
                         dbc.Row(
                             [
-                                dbc.Col(dcc.Graph(figure=bargraph_h(df_member), style={"width":"100%","height":"100%"})),
-                                dbc.Col(dcc.Graph(figure=bar_riskdist(df_member_split), style={"width":"100%","height":"100%"})),
-                                dbc.Col(dcc.Graph(figure=waterfall_rs(df_rs_opp), style={"width":"100%","height":"100%"})),
+                                dbc.Col(dcc.Graph(figure=bargraph_h(df_member), style={"width":"100%","height":"100%"}), style={"padding":"2rem", "max-height":"20rem"}),
+                                dbc.Col(dcc.Graph(figure=bar_riskdist(df_member_split), style={"width":"100%","height":"100%"}), style={"padding":"2rem", "max-height":"20rem"}),
+                                dbc.Col(dcc.Graph(figure=waterfall_rs(df_rs_opp), style={"width":"100%","height":"100%"}), style={"padding":"2rem", "max-height":"20rem"}),
                             ],
                             no_gutters=True,
+                            style={"padding":"2rem"}
                         ),
                     ]
                 ),
