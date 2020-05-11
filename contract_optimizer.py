@@ -762,7 +762,7 @@ def cal_overall_weight(data):
     
     df = pd.DataFrame(data)
     recom_overall = np.sum(int(i.replace('%','')) for i in list(df.fillna('0%').iloc[:,7]))
-    usr_overall = np.sum(int(i.replace('%','')) for i in list(df.fillna('0%').iloc[:,8]))
+    usr_overall = np.sum(0 if i.replace('%','')=='' else int(i.replace('%','')) for i in list(df.fillna('0%').iloc[:,8]))
     return str(recom_overall)+'%', str(usr_overall)+'%'
 
 # set up table selfupdate
@@ -807,10 +807,10 @@ def store_data(usr_tgt, usr_msr, usr_planshare, usr_sharecap, usr_mlr, usr_plans
     recom_dom_3 = int(df.iloc[16,7].replace('%',""))/100
     recom_dom_4 = int(df.iloc[21,7].replace('%',""))/100
 
-    usr_dom_1 = int(df.iloc[4,8].replace('%',""))/100
-    usr_dom_2 = int(df.iloc[11,8].replace('%',""))/100
-    usr_dom_3 = int(df.iloc[16,8].replace('%',""))/100
-    usr_dom_4 = int(df.iloc[21,8].replace('%',""))/100
+    usr_dom_1 =(0 if df.iloc[4,8].replace('%','')=='' else int(df.iloc[4,8].replace('%',"")))/100
+    usr_dom_2 =(0 if df.iloc[11,8].replace('%','')=='' else  int(df.iloc[11,8].replace('%',"")))/100
+    usr_dom_3 =(0 if df.iloc[16,8].replace('%','')=='' else  int(df.iloc[16,8].replace('%',"")))/100
+    usr_dom_4 =(0 if df.iloc[21,8].replace('%','')=='' else  int(df.iloc[21,8].replace('%',"")))/100
 
     datasets = {
         'medical cost target' : {'user target' : usr_tgt},
@@ -849,7 +849,7 @@ def cal_simulation(submit, data):
             max_user_losspct = max_user_losspct/100
             cap_user_losspct = cap_user_losspct/100
 
-        df=simulation_cal(selected_rows,domian_weight,target_user_pmpm,msr_user,mlr_user,max_user_savepct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided)
+        df=simulation_cal(selected_rows,domian_weight,default_input,target_user_pmpm,msr_user,mlr_user,max_user_savepct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided)
 
         return 'tab-1', df.to_json(orient = 'split')
     return 'tab-0', ""

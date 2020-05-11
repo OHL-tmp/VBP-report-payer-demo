@@ -18,6 +18,12 @@ df_quality = pd.read_csv("data/quality_setup.csv")
 colors={'blue':'rgba(18,85,222,100)','yellow':'rgba(246,177,17,100)','transparent':'rgba(255,255,255,0)','grey':'rgba(191,191,191,100)',
        'lightblue':'rgba(143,170,220,100)'}
 
+
+####################################################################################################################################################################################
+######################################################################       Drilldown         ##################################################################################### 
+#################################################################################################################################################################################### 
+
+
 def qualitytable(df):
 
 	table=dash_table.DataTable(
@@ -31,7 +37,7 @@ def qualitytable(df):
 		{"name": [ "","Cost Implication to Plan"], "id": "costimplication"},
 		{"name": [ "","Domain"], "id": "domain"},
 		{"name": [ "Weight","Recommended"], "id": "recommended"},
-		{"name": [ "Weight","User Defined(Editable)"], "id": "userdefined",'editable': True},
+		{"name": [ "Weight","User Defined"], "id": "userdefined",'editable': True},
 		],  
 		merge_duplicate_headers=True,
 		row_selectable='multi',
@@ -62,12 +68,12 @@ def qualitytable(df):
 					'border':'1px solid grey',
 					'border-bottom':'0px',
 			 
-					  } if c in [0,10,13,20] else
+					  } if c in [0,10,14,20] else
 			{'if': {'row_index':c},
 					'border':'1px solid grey',
 					'border-top':'0px',
 			 
-					  } if c in [9,12,19,22] else
+					  } if c in [9,13,19,22] else
 			{'if': {'row_index':c},
 					'border':'1px solid grey',
 					'border-bottom':'0px',
@@ -83,7 +89,7 @@ def qualitytable(df):
 				'border':'1px solid blue',
 				'border-bottom':'1px solid rgba(18,85,222,0.1)',
 			 
-			} if c in [0,10,13,20] else
+			} if c in [0,10,14,20] else
 			{
 				'if': {'row_index':c,'column_editable':True}, 
 				'backgroundColor': 'rgba(18,85,222,0.1)',
@@ -91,7 +97,7 @@ def qualitytable(df):
 				'border':'1px solid blue',
 				'border-top':'1px solid rgba(18,85,222,0.1)',
 			 
-			} if c in [9,12,19,22] else
+			} if c in [9,13,19,22] else
 			{
 				'if': {'row_index':c,'column_editable':True},
 				'backgroundColor': 'rgba(18,85,222,0.1)', 
@@ -151,7 +157,7 @@ def qualitytable(df):
 	return table
 
 
-def sim_result_box(df_sim_result):
+'''def sim_result_box(df_sim_result):
     ### k used for pick color
     k=1 
     
@@ -351,22 +357,142 @@ def sim_result_box(df_sim_result):
         annotations=annotations,
         shapes=shapes,
         )
+    return fig_sim'''
+
+def sim_result_box(df_sim_result):
+ 
+    df=df_sim_result.iloc[[3,7,11]]
+    x=['Contract w/o<br>VBC Payout','Contract with VBC Payout<br>(Recommended)','Contract with VBC Payout<br>(User Defined)']
+    m=0.3
+    n=len(df)
+    
+    median=df['Best Estimate'].to_list()
+    
+    #color for bar and box
+    fillcolor=['rgba(226,225,253,0)','rgba(18,85,222,0)','rgba(246,177,17,0)']
+    markercolor=['rgba(191,191,191,0.7)','rgba(18,85,222,0.7)','rgba(246,177,17,0.7)']
+        
+    annotations = []
+    
+    if df.values[1,3]<df.values[1,4]:
+        lowerfence=df['Worst'].to_list()
+        q1=df['Lower End'].to_list()
+        q3=df['Higher End'].to_list()
+        upperfence=df['Best'].to_list()
+    else:
+        lowerfence=df['Best'].to_list()
+        q1=df['Higher End'].to_list()
+        q3=df['Lower End'].to_list()
+        upperfence=df['Worst'].to_list()
+        
+    if df.values[0,7] in ["ACO's PMPM"]:
+        suf=''
+    elif df.values[0,7] in ["ACO's Margin %"]:
+        suf='%'
+    else:
+        suf='Mn'
+
+    fig_sim =go.Figure()
+    
+    for i in range(n):
+        fig_sim.add_trace(
+            go.Box(
+                x=[x[i]],       
+                lowerfence=[lowerfence[i]],
+                q1=[q1[i]],
+                median=[median[i]],
+                q3=[q3[i]],
+                upperfence=[upperfence[i]],
+                fillcolor=fillcolor[i],
+                width=0.2,
+                line_width=3,
+                marker=dict(
+                    color=markercolor[i],
+                    #opacity=0.7,
+
+                )
+
+            ),  
+        )
+        annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
+                        x=0+i, y=df['Best'].to_list()[i],ax=m+i, ay=df['Best'].to_list()[i],
+                        startstandoff=10,
+                        text='Best: '+str(round(df['Best'].to_list()[i],1))+suf,
+                        font=dict(family='NotoSans-CondensedLight', size=12, color='green'),
+                        showarrow=True,
+                        arrowhead=2,
+                        arrowsize=2,
+                        arrowside='start',
+                        arrowcolor='green',
+                       )
+                  )
+        annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
+                        x=0+i, y=df['Worst'].to_list()[i],ax=m+i, ay=df['Worst'].to_list()[i],
+                        startstandoff=10,
+                        text='Worst: '+str(round(df['Worst'].to_list()[i],1))+suf,
+                        font=dict(family='NotoSans-CondensedLight', size=12, color='red'),
+                        showarrow=True,
+                        arrowhead=2,
+                        arrowsize=2,
+                        arrowside='start',
+                        arrowcolor='red',
+                       )
+                  )
+    
+    
+    fig_sim.update_layout(
+            plot_bgcolor=colors['transparent'],
+            paper_bgcolor=colors['transparent'],
+            bargap=0, 
+            yaxis = dict(
+                side='left',
+                
+                showgrid = True, 
+                showline=True,
+                linecolor=colors['grey'],
+                gridcolor =colors['grey'],
+                tickcolor =colors['grey'],
+                ticks='inside',
+                ticksuffix=suf,
+                nticks=5,
+                showticklabels=True,
+                tickfont=dict(
+                    color=colors['grey']
+                ),
+                zeroline=True,
+                zerolinecolor=colors['grey'],
+                zerolinewidth=1,
+            ),
+            xaxis = dict(   
+                showgrid = True,
+                zeroline=True,
+                zerolinecolor=colors['grey'],
+                zerolinewidth=1,
+            ),
+            showlegend=False,
+            modebar=dict(
+                bgcolor=colors['transparent']
+            ),
+            margin=dict(l=10,r=100,b=10,t=40,pad=0),
+            font=dict(
+                family="NotoSans-Condensed",
+                size=14,
+                color="#38160f"
+            ),
+        hovermode=False,
+        annotations=annotations,
+        )
     return fig_sim
 
 def table_sim_result(df):
     column1=[]
     n=len(df)
-    style1=[0,3,6]
-    style2=[1,4,7]
-    style3=[2,5,8]
+    style1=[0,4,8]
+    style2=[1,2,5,6,9,10]
+    style3=[3,7,11]
     
-    if len(df)==10:
-        column1.append('Baseline')
-        style1=[0,1,4,7]
-        style2=[2,5,8]
-        style3=[3,6,9]
-    column1=column1+['Contract','w/o','VBC Payout','Contract with','VBC Payout','(Recommended)','Contract with','VBC Payout','(User Defined)']
- 
+    #column1=column1+['Contract','w/o','VBC Payout','Contract with','VBC Payout','(Recommended)','Contract with','VBC Payout','(User Defined)']
+    column1=column1+['Contract','w/o','VBC', 'Payout','Contract', 'with','VBC Payout','(Recommended)','Contract','with','VBC Payout','(User Defined)']
     df['scenario']=column1
 
     if df.values[0,7] in ["ACO's PMPM"]:
@@ -377,7 +503,8 @@ def table_sim_result(df):
     	header=['Best Estimate(Mn)','Low(Mn)','High(Mn)','Low(Mn)','High(Mn)']
 
     if df.values[0,7] =="ACO's Margin %":
-    	num_format=Format( precision=1, scheme=Scheme.fixed,nully='N/A')
+    	df.iloc[:,2:7]=df.iloc[:,2:7]/100
+    	num_format=Format( precision=1, scheme=Scheme.percentage,nully='N/A')    
     else:
     	num_format=Format( precision=1, scheme=Scheme.fixed,nully='N/A')
     
@@ -512,3 +639,286 @@ def table_factor_doc(df,tableid='factor_doc'):
         },
     )
     return table
+
+
+####################################################################################################################################################################################
+######################################################################       Dashboard         ##################################################################################### 
+#################################################################################################################################################################################### 
+def waterfall_overall(df): 
+
+    if df.values[0,1]>df.values[0,2]:
+        gaincolor='red'
+        gain='Losses'
+        base=df.values[0,2]
+    else:
+        gaincolor='green'
+        gain-'Savings'
+        base=df.values[0,1]
+
+    fig_waterfall = go.Figure(data=[
+        go.Bar(
+            name='',
+            x=df.columns[0:3].tolist()+[gain], 
+            y=df.values[0,0:3].tolist()+[base],
+            #text=y1_waterfall,
+            textposition='auto',
+            textfont=dict(color=['black','black','black',colors['transparent']]),
+            texttemplate='%{y:.0s}',
+            marker=dict(
+                    color=[colors['blue'],colors['blue'],colors['grey'],colors['transparent']],
+                    opacity=[1,0.7,0.7,0]
+                    ),
+            marker_line=dict( color = colors['transparent'] ),
+            hovertemplate='%{y:,.0f}',
+            hoverinfo='y',
+            
+        ),
+        go.Bar(  
+            name='',
+            x=df.columns[0:3].tolist()+[gain], 
+            y=[0,0,0,df.values[0,3]],
+            #text=y2_waterfall,
+            textposition='outside',
+            textfont=dict(color=[colors['transparent'],colors['transparent'],colors['transparent'],'black']),
+            texttemplate='%{y:.0s}',
+            marker=dict(
+                    color=gaincolor,
+                    opacity=0.7
+                    ),
+            hovertemplate='%{y:,.0f}',
+            hoverinfo='y',
+        )
+    ])
+    # Change the bar mode
+    fig_waterfall.update_layout(
+        barmode='stack',
+        #title='Revenue Projection',
+        plot_bgcolor=colors['transparent'],
+        paper_bgcolor=colors['transparent'],
+        yaxis = dict(
+            showgrid = True, 
+            gridcolor =colors['grey'],
+            nticks=5,
+            showticklabels=True,
+            zeroline=True,
+            zerolinecolor=colors['grey'],
+            zerolinewidth=1,
+        ),
+        showlegend=False,
+        modebar=dict(
+            bgcolor=colors['transparent']
+        ),
+        margin=dict(l=10,r=10,b=10,t=10,pad=0),
+        font=dict(
+            family="NotoSans-Condensed",
+            size=12,
+            color="#38160f"
+        ),
+    )
+    return fig_waterfall
+
+
+def sharing_split(df): 
+
+    if df.values[0,1]>df.values[0,2]:
+        gaincolor='red'
+        gain='Losses'
+    else:
+        gaincolor='green'
+        gain-'Savings'
+
+    plan_share=round(df.values[0,4]/df.values[0,3]*100,0)
+    aco_share=100-plan_share
+
+    fig_bar = go.Figure(data=[
+        go.Bar(
+            name='',
+            x=[gain], 
+            y=[df.values[0,4]],
+            #text=y1_waterfall,
+            textposition='auto',
+            textfont=dict(color='black'),
+            texttemplate='%{y:.0s}',
+            marker=dict(
+                    color=gaincolor,
+                    opacity=0.7
+                    ),
+            marker_line=dict( color = colors['transparent'] ),
+            hovertemplate='%{y:,.0f}',
+            hoverinfo='y',
+            
+        ),
+        go.Bar(  
+            name='',
+            x=[gain], 
+            y=[df.values[0,5]],
+            #text=y2_waterfall,
+            textposition='auto',
+            textfont=dict(color='black'),
+            texttemplate='%{y:.0s}',
+            marker=dict(
+                    color=gaincolor,
+                    opacity=0.5
+                    ),
+            hovertemplate='%{y:,.0f}',
+            hoverinfo='y',
+        )
+    ])
+
+    annotations=[]
+
+    annotations.append(dict(xref='paper', yref='y',
+                            x=1.12, y=df.values[0,4]/2,
+                            text="Plan's Share ("+str(plan_share)+' %)',
+                            font=dict(family='NotoSans-CondensedLight', size=12, color='#38160f'),
+                            showarrow=False,
+                           )
+                      )
+
+    annotations.append(dict(xref='paper', yref='y',
+                            x=1.12, y=df.values[0,4]+df.values[0,5]/2,
+                            text="ACO's Share ("+str(aco_share)+' %)',
+                            font=dict(family='NotoSans-CondensedLight', size=12, color='#38160f'),
+                            showarrow=False,
+                           )
+                      )
+
+
+    # Change the bar mode
+    fig_bar.update_layout(
+        barmode='stack',
+        #title='Revenue Projection',
+        plot_bgcolor=colors['transparent'],
+        paper_bgcolor=colors['transparent'],
+        yaxis = dict(
+            showgrid = True, 
+            gridcolor =colors['grey'],
+            nticks=5,
+            showticklabels=True,
+            zeroline=True,
+            zerolinecolor=colors['grey'],
+            zerolinewidth=1,
+        ),
+        showlegend=False,
+        modebar=dict(
+            bgcolor=colors['transparent']
+        ),
+        margin=dict(l=10,r=100,b=10,t=10,pad=0),
+        font=dict(
+            family="NotoSans-Condensed",
+            size=12,
+            color="#38160f"
+        ),
+        annotations=annotations,
+    )
+    return fig_bar  
+
+
+def gaugegraph(df,row):
+    fig=daq.Gauge(
+            #showCurrentValue=True,
+            scale={'start': -5, 'interval': 1, 'labelInterval': 2},
+            #units="%",
+            color={"gradient":True,"ranges":{"#18cc75":[-5,-1],"#39db44":[-1,0],"#aeff78":[0,2],"#ffeb78":[2,3.5],"#ff4d17":[3.5,5]}}, #
+            value=df['%'][row]*100,
+            label=df['Name'][row],
+            labelPosition='top',    
+            max=5,
+            min=-5,
+            size=110,
+            style={"font-family":"NotoSans-CondensedLight","font-size":"0.4rem"}
+        )  
+    return fig
+
+
+def bargraph_h(df):
+
+    fig = go.Figure(data=[
+        go.Bar(
+            name='',
+            x=df['type'], 
+            y=df['member'],
+            text="",
+            textposition='outside', 
+            texttemplate='%{x:,.0f}',
+            width=0.5,
+            textangle=0,
+            marker=dict(
+                    color=['#1357DD','#1357DD'],
+                    opacity=[0.7,1]
+                    ),
+            orientation='h',
+            hoverinfo=False,
+            #hovertemplate='%{x:,.2f}',
+        )
+    ])
+    # Change the bar mode
+    fig.update_layout(
+        paper_bgcolor=colors['transparent'],
+        plot_bgcolor=colors['transparent'],
+        showlegend=False,
+        margin=dict(l=0,r=0,b=30,t=30,pad=10),
+       font=dict(
+            family="NotoSans-Condensed",
+            size=14,
+            color="#38160f"
+        ),
+    )
+    return fig
+
+def bar_riskdist(df):
+    fig=go.Figure()
+
+    color_bar=['#47b736','#5b9bd5','#ffc000']
+
+    for i in range(0,3):
+        fig.add_trace(
+            go.Bar(
+                name=df.values[i,0],
+                x=df.columns[1:3].tolist(),
+                y=df.values[i,1:3].tolist(),
+                textposition='auto', 
+                texttemplate='%{x:,.0f}',
+                width=0.5,
+                textangle=0,
+                marker=dict(
+                        color=color_bar[i],
+                        opacity=[0.7,1]
+                        ),
+                orientation='h',
+                hoverinfo=False,
+                #hovertemplate='%{x:,.2f}',
+                )
+
+            )
+
+    fig.update_layout(
+        barmode='stack',
+        #title='Revenue Projection',
+        plot_bgcolor=colors['transparent'],
+        paper_bgcolor=colors['transparent'],
+        yaxis = dict(
+            showgrid = True, 
+            gridcolor =colors['grey'],
+            nticks=5,
+            showticklabels=True,
+            zeroline=True,
+            zerolinecolor=colors['grey'],
+            zerolinewidth=1,
+        ),
+        showlegend=True,
+        modebar=dict(
+            bgcolor=colors['transparent']
+        ),
+        margin=dict(l=10,r=10,b=10,t=10,pad=0),
+        font=dict(
+            family="NotoSans-Condensed",
+            size=12,
+            color="#38160f"
+        ),
+        annotations=annotations,
+    )
+    return fig_bar
+
+
+#def waterfall_rs(df):
