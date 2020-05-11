@@ -93,7 +93,7 @@ def simulation_cal(selected_rows,domian_weight,df_json,target_user_pmpm,msr_user
 				eval('sharing_loss_'+k)[i]=sharing
 			
 
-	df_planview_aco_totcost=pd.DataFrame(['Total Cost(before G/L share)','Gain Sharing','Loss Sharing','Total Cost(after G/L share)']*3,columns=['Item'])
+	df_planview_aco_totcost=pd.DataFrame(['Total Cost(before G/L share)','Gain Shared with ACO','Loss Shared with ACO','Total Cost(after G/L share)']*3,columns=['Item'])
 
 	df_planview_aco_totcost=df_planview_aco_totcost.reindex(columns=['Scenario','Item','Best Estimate','Worst','Best','Lower End','Higher End','Metrics'])
 
@@ -116,7 +116,7 @@ def simulation_cal(selected_rows,domian_weight,df_json,target_user_pmpm,msr_user
 
 	df_planview_aco_pmpm=df_planview_aco_totcost.copy()
 	df_planview_aco_pmpm.iloc[:,2:7]=df_planview_aco_totcost.iloc[:,2:7]*1000*1000/member_cnt/12
-	df_planview_aco_pmpm['Item']=['PMPM(before G/L share)','Gain Sharing','Loss Sharing','PMPM(after G/L share)']*3
+	df_planview_aco_pmpm['Item']=['PMPM(before G/L share)','Gain Shared with ACO','Loss Shared with ACO','PMPM(after G/L share)']*3
 	df_planview_aco_pmpm['Metrics']=["ACO's PMPM"]*12
 
 	df_planview_plan_totcost=df_planview_aco_totcost.copy()
@@ -125,7 +125,7 @@ def simulation_cal(selected_rows,domian_weight,df_json,target_user_pmpm,msr_user
 
 
 	df_acoview_totrev=df_planview_aco_totcost.copy()
-	df_acoview_totrev['Item']=['Total Revenue(before G/L share)','Gain Sharing','Loss Sharing','Total Revenue(after G/L share)']*3
+	df_acoview_totrev['Item']=['Total Revenue(before G/L share)','Gain Shared with ACO','Loss Shared with ACO','Total Revenue(after G/L share)']*3
 	df_acoview_totrev['Metrics']=["ACO's Total Revenue"]*12
 
 	df_acoview_margin=df_acoview_totrev.copy()
@@ -137,7 +137,7 @@ def simulation_cal(selected_rows,domian_weight,df_json,target_user_pmpm,msr_user
 	margin_aft['index']=[3,7,11]
 	margin_aft=margin_aft.set_index(['index'])
 	df_acoview_margin.iloc[[3,7,11],2:7]=margin_aft
-	df_acoview_margin['Item']=['Margin(before G/L share)','Gain Sharing','Loss Sharing','Margin(after G/L share)']*3
+	df_acoview_margin['Item']=['Margin(before G/L share)','Gain Shared with ACO','Loss Shared with ACO','Margin(after G/L share)']*3
 	df_acoview_margin['Metrics']=["ACO's Margin"]*12
 
 	df_acoview_margin_pct=df_acoview_margin.copy()
