@@ -430,7 +430,7 @@ def card_quality_adjustment(app):
                             html.Div([qualitytable(df_quality)], style={"padding-bottom":"1rem"}),
                             dbc.Row(
                                 [
-                                    dbc.Col(html.H2("Overall Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=10),
+                                    dbc.Col(html.H2("Total Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=10),
                                     dbc.Col(html.Div("100%", id = 'div-recom-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"}), style={"padding-left":"0.5rem","padding-right":"0.3rem"}),
                                     dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"}), style={"padding-left":"0.3rem"}),
                                 ],
