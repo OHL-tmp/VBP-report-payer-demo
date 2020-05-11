@@ -488,12 +488,12 @@ def card_quality_adjustment(app):
                             html.Div([qualitytable(df_quality)], style={"padding-bottom":"1rem"}),
                             dbc.Row(
                                 [
-                                    dbc.Col(html.H2("Overall Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=11),
-                                    dbc.Col(html.Div("100%", id = 'div-recom-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"}), style={"padding-right":"0.8rem"}),
-                                    dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"})),
+                                    dbc.Col(html.H2("Overall Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=10),
+                                    dbc.Col(html.Div("100%", id = 'div-recom-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"}), style={"padding-left":"0.5rem","padding-right":"0.3rem"}),
+                                    dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"}), style={"padding-left":"0.3rem"}),
                                 ],
                                 no_gutters=True,
-                                style={"padding-right":"0.5rem","padding-top":"0.5rem", "padding-bottom":"0.2rem", "background-color":"#bbd4ff", "border-radius":"10rem","width":"101%"}
+                                style={"padding-right":"0.5rem","padding-top":"0.5rem", "padding-bottom":"0.2rem", "background-color":"#bbd4ff", "border-radius":"10rem","width":"101.5%"}
                             ),], id = 'div-meas-table-container', hidden = True, style={"padding-left":"4rem", "padding-right":"1rem"}),
                     ]
                 ),
