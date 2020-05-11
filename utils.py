@@ -6,8 +6,8 @@ import dash_bootstrap_components as dbc
 def Header_mgmt(app, dashboard_active, drilldown_active, report_active, Homepage_active):
     return html.Div([get_header_mgmt(app, dashboard_active, drilldown_active, report_active, Homepage_active)])
 
-def Header_contract(app, simulation_active, library_active, contract_active, Homepage_active):
-    return html.Div([get_header_contract(app, simulation_active, library_active, contract_active, Homepage_active)])
+def Header_contract(app, pbp, bec, acp):
+    return html.Div([get_header_contract(app, pbp, bec, acp)])
 
 
 def get_header_mgmt(app, dashboard_active, drilldown_active, report_active, Homepage_active):
@@ -74,38 +74,30 @@ def get_header_mgmt(app, dashboard_active, drilldown_active, report_active, Home
         )
     return header
 
-def get_header_contract(app, simulation_active, library_active, contract_active, Homepage_active):
+def get_header_contract(app, pbp, bec, acp):
 
     menu = dbc.Nav([
             dbc.NavItem(dbc.NavLink(
-                        "Contract Simulation",
+                        "Performance Based Payment",
                         href="/vbc-demo/contract-optimizer/",
                         className="nav-link",
-                        active = simulation_active,
+                        active = pbp,
                         ),
                 className="tab first",
                 ),
             dbc.NavItem(dbc.NavLink(
-                        "Measures Library",
+                        "Bunddles & Episodes of Care",
                         #href="/vbc-demo/contract-optimizer/measures-library/",
                         className="nav-link",
-                        active = library_active,
+                        active = bec,
                         ),
                 className="tab",
                 ),
             dbc.NavItem(dbc.NavLink(
-                        "Contract Generator",
+                        "Accountable Care Programs",
                         #href="/vbc-demo/contract-optimizer/contract-generator/",
                         className="nav-link",
-                        active = contract_active,
-                        ),
-                className="tab",
-                ),
-            dbc.NavItem(dbc.NavLink(
-                        "Back to Homepage", 
-                        href="/vbc-demo/launch/", 
-                        className="nav-link",
-                        active = Homepage_active
+                        active = acp,
                         ),
                 className="tab",
                 ),
