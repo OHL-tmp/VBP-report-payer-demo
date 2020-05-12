@@ -35,9 +35,18 @@ server = app.server
 df_overall=pd.read_csv("data/df_overall.csv")
 df_overall_pmpm=pd.read_csv("data/df_overall_pmpm.csv")
 df_overall_driver=pd.read_csv("data/df_overall_driver.csv")
+df_target_adj=pd.read_csv("data/df_target_adj.csv")
+df_target_adj_pmpm=pd.read_csv("data/df_target_adj_pmpm.csv")
+df_result_details=pd.read_csv("data/df_result_details.csv")
+
 df_member=pd.read_csv("data/df_member.csv")
 df_member_split=pd.read_csv("data/df_member_split.csv")
 df_rs_opp=pd.read_csv("data/df_rs_opp.csv")
+
+df_domain_score=pd.read_csv("data/df_domain_score.csv")
+df_measure_score=pd.read_csv("data/df_measure_score.csv")
+df_quality_overall=pd.read_csv("data/df_quality_overall.csv")
+df_quality_domain=pd.read_csv("data/df_quality_domain.csv")
 
 def create_layout(app):
 
@@ -104,8 +113,8 @@ def manager_modal_metricsdetail(app):
                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
                     ),
             dbc.Modal([
-                dbc.ModalHeader("Header"),
-                dbc.ModalBody("Modal body content"),
+                dbc.ModalHeader("Result Details"),
+                dbc.ModalBody(children=table_result_dtls(df_result_details)),
                 dbc.ModalFooter(dbc.Button('Close', id = 'manager-button-closemodal-metricsdetail')),
                 ], id = 'manager-modal-metricsdetail'),
 
@@ -214,8 +223,8 @@ def manager_modal_totalcost(app):
                     style={"background-color":"#38160f", "border":"none", "border-radius":"0.5rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem","height":"4rem","width":"80%"},
                 ),
                 dbc.Modal([
-                    dbc.ModalHeader("Header"),
-                    dbc.ModalBody("Modal body content"),
+                    dbc.ModalHeader("Target Adjustment Details"),
+                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj))),
                     dbc.ModalFooter(dbc.Button('Close', id = 'manager-button-closemodal-totalcost')),
                     ], id = 'manager-modal-totalcost',
                 style={"text-align":"center"}),
@@ -230,8 +239,8 @@ def manager_modal_pmpm(app):
                     style={"background-color":"#38160f", "border":"none", "border-radius":"0.5rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem","height":"4rem","width":"80%"},
                 ),
                 dbc.Modal([
-                    dbc.ModalHeader("Header"),
-                    dbc.ModalBody("Modal body content"),
+                    dbc.ModalHeader("Target Adjustment Details"),
+                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj_pmpm))),
                     dbc.ModalFooter(dbc.Button('Close', id = 'manager-button-closemodal-pmpm')),
                     ], id = 'manager-modal-pmpm',
                 style={"text-align":"center"}),
@@ -346,8 +355,8 @@ def manager_card_quality_score(app):
                         ),
                         dbc.Row(
                             [
-                                dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"})),
-                                dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png"), style={"width":"100%","height":"100%"})),
+                                dbc.Col(dcc.Graph(figure=domain_quality_bubble(df_domain_score),id='manager-figure-domainscore' ,clickData={'points': [{'customdata': 'Patient/Caregiver Experience'}]},style={"width":"100%","height":"100%"})),
+                                dbc.Col(dcc.Graph(id='manager-figure-measurescore', style={"width":"100%","height":"100%"})),
                             ],
                             no_gutters=True,
                         ),
@@ -365,8 +374,24 @@ def manager_modal_qualityscore(app):
                     style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
                 ),
                  dbc.Modal([
-                         dbc.ModalHeader("Header"),
-                         dbc.ModalBody(children = html.Div(["contents"], style={"padding":"1rem"})),
+                         dbc.ModalHeader("Result Details"),
+                         dbc.ModalBody(
+                            dbc.Col(  
+                                [
+                                    dbc.Row(html.Div(["Result Details by Domain"], style={"padding":"1rem"})),
+                                    dbc.Row(html.Div(children=table_quality_dtls(df_quality_overall), style={"padding":"1rem"})),
+                                    dbc.Row(html.Div(["Patient/Caregiver Experience Domain Details"], style={"padding":"1rem"})),
+                                    dbc.Row(html.Div(children=table_quality_dtls(df_quality_domain,'Patient/Caregiver Experience'), style={"padding":"1rem"})),
+                                    dbc.Row(html.Div(["Care Coordination/Patient Safety Domain Details"], style={"padding":"1rem"})),
+                                    dbc.Row(html.Div(children=table_quality_dtls(df_quality_domain,'Care Coordination/Patient Safety'), style={"padding":"1rem"})),
+                                    dbc.Row(html.Div(["Preventive Health Domain Details"], style={"padding":"1rem"})),
+                                    dbc.Row(html.Div(children=table_quality_dtls(df_quality_domain,'Preventive Health'), style={"padding":"1rem"})),
+                                    dbc.Row(html.Div(["At-Risk Population Domain Details"], style={"padding":"1rem"})),
+                                    dbc.Row(html.Div(children=table_quality_dtls(df_quality_domain,'At-Risk Population'), style={"padding":"1rem"})),
+                                ]
+
+                            ),
+                         ),
                          dbc.ModalFooter(
                                  dbc.Button("Close", id = 'manager-button-closemodal-qualityscore',
                                                  style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
@@ -447,6 +472,13 @@ def open_modal(n1, n2, is_open):
     return is_open
 
 
+@app.callback(
+    Output('manager-figure-measurescore', 'figure'),
+    [Input('manager-figure-domainscore', 'clickData')])
+def update_y_timeseries(clickData):
+    domain = clickData['points'][0]['customdata']
+    df=df_measure_score[df_measure_score['domain']==domain]
+    return measure_quality_bar(df,domain)
 
 if __name__ == "__main__":
     app.run_server(host="127.0.0.1",debug=True, port = 8052)
