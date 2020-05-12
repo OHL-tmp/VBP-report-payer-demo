@@ -972,20 +972,7 @@ def bargraph_h(df):
     ])
     # Change the bar mode
     fig.update_layout(
-        title=dict(
-            text='YTD Attributed Members VS. Target',
-            font=dict(
-            family="NotoSans-Condensed",
-            size=16,
-            color="#38160f",
-            ),
-            xref='container',
-            yref='container',
-            x=0.5,
-            y=0.94,
-            xanchor='center',
-            yanchor='middle',
-            ),
+        
         xaxis=dict(
             ticklen=2,
             tickwidth=5,
@@ -1031,21 +1018,7 @@ def bar_riskdist(df):
 
     fig.update_layout(
         barmode='stack',
-        title=dict(
-            text='Member Distribution by Risk Level',
-            font=dict(
-            family="NotoSans-Condensed",
-            size=16,
-            color="#38160f",
-            ),
-            xref='paper',
-            yref='paper',
-            x=0.5,
-            y=0.98,
-            xanchor='center',
-            yanchor='middle',
-            #pad=dict(b=5)
-            ),
+        
         plot_bgcolor=colors['transparent'],
         paper_bgcolor=colors['transparent'],
         yaxis = dict(
@@ -1056,16 +1029,17 @@ def bar_riskdist(df):
             zeroline=True,
             zerolinecolor=colors['grey'],
             zerolinewidth=1,
+            range=[0,max(df['Baseline'].sum(),df['PY Projected'].sum())*1.2],
         ),
         showlegend=True,
         legend=dict(
             orientation='h',
-            x=0.3,y=-0.05
+            x=0.3,y=-0.08
         ),
         modebar=dict(
             bgcolor=colors['transparent']
         ),
-        margin=dict(l=0,r=0,b=0,t=0,pad=4),
+        margin=dict(l=0,r=0,b=10,t=20,pad=4),
         font=dict(
             family="NotoSans-Condensed",
             size=12,
@@ -1113,20 +1087,7 @@ def waterfall_rs(df):
     # Change the bar mode
     fig_waterfall.update_layout(
         barmode='stack',
-        title=dict(
-            text='Risk Score Improvement Opportunity',
-            font=dict(
-            family="NotoSans-Condensed",
-            size=16,
-            color="#38160f",
-            ),
-            xref='container',
-            yref='container',
-            x=0.5,
-            y=0.98,
-            xanchor='center',
-            yanchor='middle',
-            ),
+        
         plot_bgcolor=colors['transparent'],
         paper_bgcolor=colors['transparent'],
         yaxis = dict(
@@ -1137,12 +1098,13 @@ def waterfall_rs(df):
             zeroline=True,
             zerolinecolor=colors['grey'],
             zerolinewidth=1,
+            range=[0,df['base'].max()*1.2],
         ),
         showlegend=False,
         modebar=dict(
             bgcolor=colors['transparent']
         ),
-        margin=dict(l=10,r=10,b=10,t=10,pad=0),
+        margin=dict(l=10,r=10,b=10,t=20,pad=0),
         font=dict(
             family="NotoSans-Condensed",
             size=12,
