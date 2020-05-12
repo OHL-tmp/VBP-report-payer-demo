@@ -136,9 +136,9 @@ def card_medical_cost_target(app):
                                                 html.Hr(className="ml-1"),
                                 				dbc.Row(
                                 					[
-                                						dbc.Col(html.H4("Member Count", style={"font-size":"0.8rem"})),
+                                						dbc.Col(html.H4("ACO's Member Count", style={"font-size":"0.8rem"})),
+                                						dbc.Col(html.H4("ACO's Medical Cost PMPM", style={"font-size":"0.8rem"})),
                                                         dbc.Col(html.H4("Peer Group Medical Cost PMPM", style={"font-size":"0.8rem"})),
-                                						dbc.Col(html.H4("Medical Cost PMPM", style={"font-size":"0.8rem"})),
                                 					]
                                 				),
                                 			]
@@ -222,8 +222,8 @@ def card_medical_cost_target(app):
                     				dbc.Row(
                     					[
                     						dbc.Col(html.H6(default_input['medical cost target']['member count'])),
-                                            dbc.Col(html.H6(default_input['medical cost target']['member count'])),
                     						dbc.Col(html.H6(default_input['medical cost target']['medical cost pmpm'])),
+                                            dbc.Col(html.H6(default_input['medical cost target']['peer group medical cosp pmpm'])),
                     					]
                     				)
                         			, width=3
@@ -463,7 +463,9 @@ def tab_result(app):
                             		dbc.ModalFooter(
                             			dbc.Button('Close', id = 'button-close-assump-modal'))
                             		], id = 'modal-assump', size = 'xl'),
-                            	]),
+                            	],
+                                style={"padding-top":"1rem"}
+                            ),
                             
                         ]
                     ),
@@ -502,7 +504,8 @@ def tab_result(app):
                             ],
                             className="mb-3",
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem", "padding-top":"1rem"}
-                        )
+                        ),
+                        style={"padding-top":"1rem"}
                     ),
                     
                     dbc.Card(
@@ -550,7 +553,7 @@ def sim_assump_input_session():
     return html.Div([
         html.Div(
             dbc.Row([
-                dbc.Col(html.H1("Addition Patients Steered to ACO", style={"font-size":"1rem"})),
+                dbc.Col(html.H1("Additional Patients Steered to ACO", style={"font-size":"1rem"})),
                 dbc.Col([dbc.Input(value = "0%",)], width=3)
                 ],
                 style={"padding":"1rem","background-color":"#f3f3f3","border-radius":"0.5rem"}
