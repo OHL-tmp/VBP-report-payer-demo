@@ -29,7 +29,7 @@ def simulation_cal(selected_rows,domian_weight,df_json,target_user_pmpm,msr_user
 	cost_wo_contract=864*12
 	cost_wo_contract_range=[cost_wo_contract*i*member_cnt for i in pmpy_rangepct]
 
-	outof_aco_cost=cost_wo_contract*6
+	outof_aco_cost=cost_wo_contract*member_cnt*6
 	aco_margin=0.05
 
 	target_recom=target_recom_pmpm*12*member_cnt
