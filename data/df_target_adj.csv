@@ -1,0 +1,5 @@
+﻿name,base,adj
+Target(Unadj),220000000,0
+Risk Adj,200000000,20000000
+Fee Schedule Adj,200000000,15000000
+Target(Adj),215000000,0

@@ -1,0 +1,5 @@
+﻿domain,score,weight
+Patient/Caregiver Experience,0.8,0.2
+Care Coordination/Patient Safety,0.7,0.3
+Preventive Health,0.9,0.2
+At-Risk Population,0.65,0.3

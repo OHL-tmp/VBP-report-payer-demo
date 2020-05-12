@@ -18,7 +18,8 @@ df_quality = pd.read_csv("data/quality_setup.csv")
 
 colors={'blue':'rgba(18,85,222,100)','yellow':'rgba(246,177,17,100)','transparent':'rgba(255,255,255,0)','grey':'rgba(191,191,191,100)',
        'lightblue':'rgba(143,170,220,100)'}
-
+domain_color={'Patient/Caregiver Experience':'rgb(244,160,159)','Care Coordination/Patient Safety':'rgb(244,160,41)',
+              'Preventive Health':'rgb(244,218,41)','At-Risk Population':'rgb(208,118,203)'}
 
 ####################################################################################################################################################################################
 ######################################################################       Drilldown         ##################################################################################### 
@@ -656,6 +657,12 @@ def waterfall_overall(df):
         gain-'Savings'
         base=df.values[0,1]
 
+    if df.values[0,1]<10000:
+        number_fomart='%{y:,.0f}'
+    else:
+        number_fomart='%{y:s}'
+
+
     fig_waterfall = go.Figure(data=[
         go.Bar(
             name='',
@@ -664,7 +671,7 @@ def waterfall_overall(df):
             #text=y1_waterfall,
             textposition='auto',
             textfont=dict(color=['black','black','black',colors['transparent']]),
-            texttemplate='%{y:s}',
+            texttemplate=number_fomart,
             marker=dict(
                     color=[colors['blue'],colors['blue'],colors['grey'],colors['transparent']],
                     opacity=[1,0.7,0.7,0]
@@ -704,6 +711,7 @@ def waterfall_overall(df):
             zeroline=True,
             zerolinecolor=colors['grey'],
             zerolinewidth=1,
+            range=[0,df.max(axis=1)*1.1]
         ),
         showlegend=False,
         modebar=dict(
@@ -744,6 +752,7 @@ def sharing_split(df):
                     color=gaincolor,
                     opacity=0.5
                     ),
+            width=0.5,
             marker_line=dict( color = colors['transparent'] ),
             hovertemplate='%{y:,.0f}',
             hoverinfo='y',
@@ -761,6 +770,7 @@ def sharing_split(df):
                     color=gaincolor,
                     opacity=0.3
                     ),
+            width=0.5,
             hovertemplate='%{y:,.0f}',
             hoverinfo='y',
         )
@@ -769,7 +779,7 @@ def sharing_split(df):
     annotations=[]
 
     annotations.append(dict(xref='paper', yref='y',
-                            x=1.12, y=df.values[0,4]/2,
+                            x=1.15, y=df.values[0,4]/2,
                             text="Plan's Share ("+str(plan_share)+' %)',
                             font=dict(family='NotoSans-SemiBold', size=14, color='#38160f'),
                             showarrow=False,
@@ -777,7 +787,7 @@ def sharing_split(df):
                       )
 
     annotations.append(dict(xref='paper', yref='y',
-                            x=1.12, y=df.values[0,4]+df.values[0,5]/2,
+                            x=1.15, y=df.values[0,4]+df.values[0,5]/2,
                             text="ACO's Share ("+str(aco_share)+' %)',
                             font=dict(family='NotoSans-SemiBold', size=14, color='#38160f'),
                             showarrow=False,
@@ -813,6 +823,113 @@ def sharing_split(df):
         annotations=annotations,
     )
     return fig_bar  
+
+def waterfall_target_adj(df):
+
+    if df.values[0,1]<100000:
+        number_fomart='%{y:,.0f}'
+    else:
+        number_fomart='%{y:s}'
+
+    fig_waterfall = go.Figure(data=[
+        go.Bar(
+            name='',
+            x=df['name'].tolist(), 
+            y=df['base'].tolist(),
+            #text=y1_waterfall,
+            textposition='auto',
+            textfont=dict(color=['black',colors['transparent'],colors['transparent'],'black']),
+            texttemplate=number_fomart,
+            marker=dict(
+                    color=[colors['grey'],colors['transparent'],colors['transparent'],colors['grey']],
+                    opacity=[0.5,0,0,0.7]
+                    ),
+            marker_line=dict( color = colors['transparent'] ),
+            hovertemplate='%{y:,.0f}',
+            hoverinfo='y',
+            
+        ),
+        go.Bar(  
+            name='',
+            x=df['name'].tolist(), 
+            y=df['adj'].tolist(),
+            #text=y2_waterfall,
+            textposition='inside',
+            textfont=dict(color=[colors['transparent'],'black','black',colors['transparent']]),
+            texttemplate=number_fomart,
+            marker=dict(
+                    color=[colors['transparent'],'red','green',colors['transparent'],],
+                    opacity=0.7
+                    ),
+            hovertemplate='%{y:,.0f}',
+            hoverinfo='y',
+        )
+    ])
+    # Change the bar mode
+    fig_waterfall.update_layout(
+        barmode='stack',
+        plot_bgcolor=colors['transparent'],
+        paper_bgcolor=colors['transparent'],
+        yaxis = dict(
+            showgrid = True, 
+            gridcolor =colors['grey'],
+            nticks=5,
+            showticklabels=True,
+            zeroline=True,
+            zerolinecolor=colors['grey'],
+            zerolinewidth=1,
+        ),
+        showlegend=False,
+        modebar=dict(
+            bgcolor=colors['transparent']
+        ),
+        margin=dict(l=10,r=10,b=10,t=10,pad=0),
+        font=dict(
+            family="NotoSans-Condensed",
+            size=12,
+            color="#38160f"
+        ),
+    )
+    return fig_waterfall
+
+def table_result_dtls(df):
+    table=dash_table.DataTable(
+        data=df.to_dict('records'),
+        columns=[{'id': c, 'name': ''} for c in df.columns[0:2]],
+        style_data={
+            'whiteSpace': 'normal',
+            'height': 'auto'
+        },
+        style_data_conditional=[
+            {'if': {'column_id': df.columns[1],'row_index':c},
+             'color':'red',
+             'font-family':'NotoSans-Condensed',
+            } for c in [4,5,8,9]
+        ],
+        style_cell={
+            'textAlign': 'center',
+            'font-family':'NotoSans-Condensed',
+            'fontSize':14,
+            'backgroundColor':"#f7f7f7"
+        },
+        style_cell_conditional=[
+            {'if': {'column_id': df.columns[0]},
+             'width': '20rem',
+             'textAlign':'start',
+             'backgroundColor':colors['yellow'],
+             'font-family':'NotoSans-Condensed',
+            }, 
+               
+        ],
+        style_header={
+            'height': '0rem',
+            'backgroundColor': colors['transparent'],
+            'color': colors['transparent'],
+            'border':'0px'
+        },
+    )
+
+    return table
 
 
 def gaugegraph(df,row):
@@ -1033,3 +1150,227 @@ def waterfall_rs(df):
         ),
     )
     return fig_waterfall
+
+def domain_quality_bubble(df): # 数据，[0,1] ,'Domain' or 'Measure'
+    
+    fig_domain_perform=go.Figure()
+    
+    
+    for i in range(0,4):
+
+        fig_domain_perform.add_trace(
+                go.Scatter(        
+                x=[i+0.5], 
+                y=[df.values[i,1]],
+                x0=0,y0=0,
+                textposition='middle center',
+                texttemplate='%{y:.0%}',
+                #text=df_domain_perform[df_domain_perform['Domain']==domain_set[k]][obj],
+                mode='markers+text',             
+                name=df.values[i,0],
+                customdata=[df.values[i,0]],
+                #dx=0.1,dy=0.1,
+                marker=dict(
+                    size=[df.values[i,2]*10000],
+                    color=domain_color[df.values[i,0]],
+                    opacity=0.7,
+                    sizemode='area',
+                ),
+                selected=dict(
+                    marker=dict(
+                        opacity=1
+                        )
+
+                    ),
+                unselected=dict(
+                    marker=dict(
+                        opacity=0.5
+                        )
+
+                    ),
+                hoverinfo='name+y',
+                
+
+            )
+        )
+    
+    fig_domain_perform.update_layout(
+        paper_bgcolor=colors['transparent'],
+        plot_bgcolor=colors['transparent'],
+        showlegend=True,
+        xaxis = dict(
+            visible=False,
+            range=[0,4],
+            rangemode="tozero"
+        ),
+        margin=dict(l=0,r=0,b=50,t=10,pad=0),
+        font=dict(
+            family="NotoSans-CondensedLight",
+            size=12,
+            color="#38160f"
+        ),
+        yaxis = dict(
+            showgrid = True, 
+            gridcolor =colors['grey'],
+            showline=True,
+            linecolor='grey',
+            tickmode='linear',
+            dtick=0.2,
+            range=[0,1],
+            tickformat='%',
+            showticklabels=True,
+            zeroline=True,
+            zerolinecolor='grey',
+            ticks='inside'
+        ),
+        legend=dict(
+            orientation='h',
+            x=0,y=-0.05
+        ),
+        #hovermode=True,
+        modebar=dict(
+            bgcolor=colors['transparent']
+        ),
+    )
+    return fig_domain_perform
+
+
+def measure_quality_bar(df,domain):
+
+    
+    fig = go.Figure(data=[
+        
+        go.Bar(
+            name='YTD',
+            x=df['YTD'].tolist(), 
+            y=df['measure'].tolist(),
+            text="",
+            textposition='outside', 
+            texttemplate='%{x:.0%}',
+            #width=0.3,
+            textangle=0,
+            marker=dict(
+                    color=domain_color[domain],
+                    opacity=0.7
+                    ),
+            orientation='h',
+            hoverinfo='skip',
+            #hovertemplate='%{x:,.2f}',
+        ),
+
+        go.Bar(
+            name='Baseline',
+            x=df['baseline'].tolist(), 
+            y=df['measure'].tolist(),
+            text="",
+            textposition='outside', 
+            texttemplate='%{x:.0%}',
+            #width=0.3,
+            textangle=0,
+            marker=dict(
+                    color=colors['grey'],
+                    opacity=0.7
+                    ),
+            orientation='h',
+            hoverinfo='skip',
+            #hovertemplate='%{x:,.2f}',
+        ),
+    ])
+    # Change the bar mode
+    fig.update_layout(
+        title=dict(
+            text=domain,
+            font=dict(
+            family="NotoSans-Condensed",
+            size=16,
+            color="#38160f",
+            ),
+            xref='container',
+            yref='container',
+            x=0.7,
+            y=0.98,
+            xanchor='center',
+            yanchor='middle',
+            ),
+        xaxis=dict(
+            title=dict(
+                text='Quality Measure Performance(Percentile)',
+                font=dict(
+                family="NotoSans-Condensed",
+                size=14,
+                color="#38160f",
+                ),
+                standoff=5,
+                ),
+            position=0,
+            visible=True,
+            range=[0,1.1],
+            tickformat='0%'
+
+            ),
+        barmode='group',
+        bargap=0.2,
+        bargroupgap=0,
+        paper_bgcolor=colors['transparent'],
+        plot_bgcolor=colors['transparent'],
+        showlegend=True,
+        legend=dict(
+            orientation='h',
+            x=0.35,y=-0.1
+        ),
+        margin=dict(l=300,r=60,b=60,t=20,pad=5,autoexpand=False,),
+        font=dict(
+            family="NotoSans-Condensed",
+            size=14,
+            color="#38160f"
+        ),
+    )
+    return fig
+
+def table_quality_dtls(df,domain='all'):
+
+    if domain=='all':
+        col=df.columns
+        firstcol=df.columns[0]
+    else:
+        df=df[df['Domain']==domain]
+        col=df.columns[1:len(df)]
+        firstcol=df.columns[1]
+
+    table=dash_table.DataTable(
+        data=df.to_dict('records'),
+        columns=[{'id': c, 'name': c} for c in col],
+        style_data={
+            'whiteSpace': 'normal',
+            'height': 'auto'
+        },
+        style_data_conditional=[
+            {'if': {'row_index':len(df)-1},
+             'backgroundColor':'lightgrey',
+             'font-family':'NotoSans-Condensed',
+             'fontWeight':'bold'
+            },
+            {'if': {'column_id':firstcol},
+             'textAlign':'start',
+            },
+        ],
+        style_cell={
+            'textAlign': 'center',
+            'font-family':'NotoSans-Condensed',
+            'fontSize':14,
+            'backgroundColor':"#f7f7f7"
+        },
+
+        style_header={
+            'height': '4rem',
+            'backgroundColor': '#f1f6ff',
+            'color': '#1357DD',
+            'whiteSpace': 'normal',
+            'fontWeight': 'bold',
+            'font-family':'NotoSans-CondensedLight',
+            'fontSize':14,
+        
+        },
+    )
+
+    return table
