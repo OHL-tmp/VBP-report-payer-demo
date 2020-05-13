@@ -296,7 +296,7 @@ def card_med_cost_target():
                 dbc.Col(
                     dbc.Row(
                         [
-                            dbc.Col(html.Div(html.H1("High", id = 'div-recom-like',style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem"}), style={"border-radius":"0.5rem", "background-color":"#fff"}), style={"padding-left":"1rem", "padding-right":"0.5rem"}, width=6),
+                            dbc.Col(html.Div(html.H1("High", id = 'div-recom-like',style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem", "color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"}), style={"padding-left":"1rem", "padding-right":"0.5rem"}, width=6),
                             dbc.Col(id = 'div-usr-like', style={"padding-left":"0.5rem", "padding-right":"0.5rem"}, width=6),
                         ]
                     ),
@@ -352,7 +352,7 @@ def card_sl_sharing_arrangement(app):
 				                        dbc.Row(
 	                    					[
 	                    						dbc.Col(html.Div(), width = 1),
-                                                dbc.Col(html.H2("Max Sharing % (When quality targets are met)", style={"font-size":"0.8rem"}),width=3),
+                                                dbc.Col(html.H5("Max Sharing % (When quality targets are met)", style={"font-size":"0.6rem"}),width=3),
 	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
@@ -367,7 +367,7 @@ def card_sl_sharing_arrangement(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.Div(), width = 1),
-                                                dbc.Col(html.H2("Min Sharing %", style={"font-size":"0.8rem"}),width=3),
+                                                dbc.Col(html.H5("Min Sharing %", style={"font-size":"0.6rem"}),width=3),
                                                 dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing min']),style={"text-align":"center"},width=4),
                                                 dbc.Col([
                                                     dbc.InputGroup([
@@ -381,9 +381,9 @@ def card_sl_sharing_arrangement(app):
                                         ),
                                         dbc.Row([
                                             dbc.Col(html.Div(), width = 1),
-                                            dbc.Col(html.H2("First Dollar Sharing", style={"font-size":"0.8rem"}),width=3),
+                                            dbc.Col(html.H5("First Dollar Sharing", style={"font-size":"0.6rem"}),width=3),
                                             dbc.Col(daq.ToggleSwitch(id = 'toggleswitch-firstdollar-saving', value = False, size = 30, color = 'blue'), width = 4),
-                                            dbc.Col(html.H2("Second Dollar Sharing (Above MSR)", style={"font-size":"0.8rem"}),width=4),
+                                            dbc.Col(html.H5("Second Dollar Sharing (Above MSR)", style={"font-size":"0.6rem"}),width=4),
                                             ],
                                              style={"padding-top":"1rem"}
                                         ),
@@ -445,7 +445,7 @@ def card_sl_sharing_arrangement(app):
 				                        dbc.Row(
 	                    					[
                                                 dbc.Col(html.Div(), width = 1),
-	                    						dbc.Col(html.H2("Min Sharing % (When quality targets are met)", style={"font-size":"0.8rem"}),width=3),
+	                    						dbc.Col(html.H5("Min Sharing % (When quality targets are met)", style={"font-size":"0.6rem"}),width=3),
 	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing min']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
@@ -460,7 +460,7 @@ def card_sl_sharing_arrangement(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.Div(), width = 1),
-                                                dbc.Col(html.H2("Max Sharing %", style={"font-size":"0.8rem"}),width=3),
+                                                dbc.Col(html.H5("Max Sharing %", style={"font-size":"0.6rem"}),width=3),
                                                 dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing']),style={"text-align":"center"},width=4),
                                                 dbc.Col([
                                                     dbc.InputGroup([
@@ -474,9 +474,9 @@ def card_sl_sharing_arrangement(app):
                                         ),
                                         dbc.Row([
                                             dbc.Col(html.Div(), width = 1),
-                                            dbc.Col(html.H2("First Dollar Sharing", style={"font-size":"0.8rem"}),width=3),
+                                            dbc.Col(html.H5("First Dollar Sharing", style={"font-size":"0.6rem"}),width=3),
                                             dbc.Col(daq.ToggleSwitch(id = 'toggleswitch-firstdollar-loss', value = False, size = 30, color = 'blue'), width = 4),
-                                            dbc.Col(html.H2("Second Dollar Sharing (Below MLR)", style={"font-size":"0.8rem"}),width=4),
+                                            dbc.Col(html.H5("Second Dollar Sharing (Below MLR)", style={"font-size":"0.6rem"}),width=4),
                                             ],
                                              style={"padding-top":"1rem"}
                                         ),
@@ -857,7 +857,8 @@ def update_usr_target(v):
     if v:
         tgt = int(round(base*v/100+base,0))
         return '$'+str(tgt)
-    return '$800'
+    else:
+        return '$800'
    
 
 @app.callback(
@@ -872,7 +873,7 @@ def cal_usr_like(usr_tgt, recom_like, recom_tgt):
         recom_tgt_int = int(recom_tgt.replace('$','').replace('%','').replace(',',''))
         usr_tgt_int = int(usr_tgt.replace('$','').replace('%','').replace(',',''))
         if usr_tgt_int >= recom_tgt_int:
-            return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem"}), style={"border-radius":"0.5rem", "background-color":"#fff"})
+            return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"})
         elif usr_tgt_int < recom_tgt_int*0.95:
             return html.Div(html.H1("Low",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"red"})
         else:
@@ -935,7 +936,7 @@ def update_columns(timestamp, data):
     Input('table-measure-setup', 'selected_rows'),
     Input('table-measure-setup', 'data')]
 	)
-def store_data(usr_tgt_int, usr_msr, usr_planshare, usr_sharecap, usr_mlr, usr_planshare_l, usr_sharecap_l, ts, select_row, data):
+def store_data(usr_tgt_int, usr_msr, usr_planshare, usr_planshare_min, usr_sharecap, usr_mlr, usr_planshare_l, usr_planshare_l_min, usr_sharecap_l, ts, lm, select_row, data):
     df = pd.DataFrame(data)
 
     if 'Shared Losses' in ts:
