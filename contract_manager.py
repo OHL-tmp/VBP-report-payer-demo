@@ -163,7 +163,7 @@ def manager_div_overall_performance(app):
                         [
                             dbc.Row(
                                 [
-                                    dbc.Col("Total Cost", style={"font-family":"NotoSans-SemiBold","text-align":"center","background-color":"#c6d9ff","border-radius":"10rem","padding":"0.3rem"}, width=5),
+                                    dbc.Col("Total Cost", id = 'manager-col-totalcost',style={"font-family":"NotoSans-SemiBold","text-align":"center","background-color":"#c6d9ff","border-radius":"10rem","padding":"0.3rem"}, width=5),
                                     dbc.Col(
                                         daq.ToggleSwitch(
                                             value=False,
@@ -171,7 +171,7 @@ def manager_div_overall_performance(app):
                                         ), 
                                         width=2
                                     ),
-                                    dbc.Col("PMPM", style={"font-family":"NotoSans-SemiBold","text-align":"center","border-radius":"10rem","padding":"0.3rem"}, width=5),
+                                    dbc.Col("PMPM", id = 'manager-col-pmpm', style={"font-family":"NotoSans-SemiBold","text-align":"center","border-radius":"10rem","padding":"0.3rem"}, width=5),
                                 ],
                                 style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)","background-color":"#fff","border-radius":"10rem","padding":"0.5rem"}
                             ),
@@ -474,6 +474,16 @@ def manager_modal_qualityscore(app):
 
 
 app.layout = create_layout(app)
+
+@app.callback(
+    [Output('manager-col-totalcost', 'style'),
+    Output('manager-col-pmpm', 'style')],
+    [Input('manager-switch-totalcost-pmpm', 'value')]
+    )
+def switch_background(v):
+    if v == True:
+        return {"font-family":"NotoSans-SemiBold","text-align":"center","border-radius":"10rem","padding":"0.3rem"},{"font-family":"NotoSans-SemiBold","text-align":"center","background-color":"#c6d9ff","border-radius":"10rem","padding":"0.3rem"}
+    return {"font-family":"NotoSans-SemiBold","text-align":"center","background-color":"#c6d9ff","border-radius":"10rem","padding":"0.3rem"},{"font-family":"NotoSans-SemiBold","text-align":"center","border-radius":"10rem","padding":"0.3rem"}
 
 
 @app.callback(
