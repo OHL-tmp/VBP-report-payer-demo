@@ -370,7 +370,7 @@ def manager_card_quality_score(app):
                         ),
                         dbc.Row(
                             [
-                                dbc.Col(dcc.Graph(figure=domain_quality_bubble(df_domain_score),id='manager-figure-domainscore' ,clickData={'points': [{'customdata': 'Patient/Caregiver Experience'}]},style={"width":"100%","height":"100%"})),
+                                dbc.Col(dcc.Graph(figure=domain_quality_bubble(df_domain_score),id='manager-figure-domainscore' ,clickData={'points': [{'customdata': 'Patient/Caregiver Experience'}]},selectedData={'points': [{'customdata': 'Patient/Caregiver Experience'}]},style={"width":"100%","height":"100%"})),
                                 dbc.Col(dcc.Graph(id='manager-figure-measurescore', style={"width":"100%","height":"100%"})),
                             ],
                             no_gutters=True,
@@ -502,4 +502,4 @@ def update_y_timeseries(clickData):
     return measure_quality_bar(df,domain)
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True, port = 8052)
+    app.run_server(host="127.0.0.1",debug=True, port = 8049)

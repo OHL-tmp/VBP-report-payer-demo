@@ -26,24 +26,40 @@ domain_color={'Patient/Caregiver Experience':'rgb(244,160,159)','Care Coordinati
 #################################################################################################################################################################################### 
 
 
-def qualitytable(df):
+def qualitytable(df,selected_rows=list(range(0,23))):
+
 
 	table=dash_table.DataTable(
 		data=df.to_dict('records'),
 		id='table-measure-setup',
 		columns=[
 		{"name": ["","Measure"], "id": "measure"},
-		{"name": [ "ACO Baseline","Value"], "id": "value"},
-		{"name": [ "ACO Baseline","Percentile"], "id": "percentile",'type': 'numeric',"format":Format(nully='N/A'),},
-		{"name": [ "ACO Baseline","Score"], "id": "score",'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
-		{"name": [ "","Cost Implication to Plan"], "id": "costimplication"},
-		{"name": [ "","Domain"], "id": "domain"},
+		{"name": [ "ACO Baseline","ACO"], "id": "aco"},
+		{"name": [ "ACO Baseline","Benchmark"], "id": "benchmark"},
+		{"name": [ "ACO Baseline","Best-in-Class"], "id": "bic"},
+		{"name": [ "Target","Recommended"], "id": "tar_recom"},
+		{"name": [ "Target","User Defined Type"], "id": "tar_user_type",'editable':True,'presentation':'dropdown'},
+		{"name": [ "Target","User Defined Value"], "id": "tar_user",'editable': True},
 		{"name": [ "Weight","Recommended"], "id": "recommended"},
 		{"name": [ "Weight","User Defined"], "id": "userdefined",'editable': True},
 		],  
 		merge_duplicate_headers=True,
+		dropdown_conditional=[{
+			'if': {
+				'column_id': 'tar_user_type',
+				'filter_query': '{{id}} = {}'.format(c)
+			} ,
+			'options': [
+							{'label': i, 'value': i}
+							for i in [
+								'Performance',
+								'Report',
+							]
+						]
+		} for c in selected_rows
+		] ,
 		row_selectable='multi',
-		selected_rows=list(range(0,23)),
+		selected_rows=selected_rows,
 		style_data={
 				'color': 'black', 
 				'backgroundColor': 'rgba(0,0,0,0)',
@@ -85,7 +101,7 @@ def qualitytable(df):
 
 		]+[
 			{ 
-				'if': {'row_index':c,'column_editable':True}, 
+				'if': {'row_index':c,'column_id':"userdefined"}, 
 				'backgroundColor': 'rgba(18,85,222,0.1)',
 				'font-weight':'bold',
 				'border':'1px solid blue',
@@ -93,7 +109,7 @@ def qualitytable(df):
 			 
 			} if c in [0,10,14,20] else
 			{
-				'if': {'row_index':c,'column_editable':True}, 
+				'if': {'row_index':c,'column_id':"userdefined"}, 
 				'backgroundColor': 'rgba(18,85,222,0.1)',
 				'font-weight':'bold',
 				'border':'1px solid blue',
@@ -101,7 +117,7 @@ def qualitytable(df):
 			 
 			} if c in [9,13,19,22] else
 			{
-				'if': {'row_index':c,'column_editable':True},
+				'if': {'row_index':c,'column_id':"userdefined"},
 				'backgroundColor': 'rgba(18,85,222,0.1)', 
 				'font-weight':'bold',
 				'border':'1px solid blue',
@@ -111,20 +127,16 @@ def qualitytable(df):
 
 		]+[
 			{
-				'if': { 'column_id': 'costimplication','filter_query': '{costimplication} eq "Low"'},
+				'if': { 'column_id': 'tar_user','row_index': c},
 				#'backgroundColor': 'green',
-				'color': 'green',
-			},
+				'border': '1px solid blue',
+			} for c in selected_rows
+		]+[
 			{
-				'if': { 'column_id': 'costimplication','filter_query': '{costimplication} eq "Mid"' },
-				#'backgroundColor': 'rgb(246,177,17)',
-				'color': 'rgb(237,125,49)',
-			},
-			{
-				'if': { 'column_id': 'costimplication', 'filter_query': '{costimplication} eq "High"'},
-				#'backgroundColor': 'red',
-				'color': "red",
-			}
+				'if': { 'column_id': 'tar_user_type','row_index': c},
+				#'backgroundColor': 'green',
+				'border': '1px solid blue',
+			} for c in selected_rows
 		],
 		style_cell={
 			'textAlign': 'center',
@@ -1074,7 +1086,7 @@ def waterfall_rs(df):
             x=df['name'].tolist(), 
             y=df['adj'].tolist(),
             #text=y2_waterfall,
-            textposition='inside',
+            textposition='outside',
             textfont=dict(color=[colors['transparent'],'black',colors['transparent']]),
             texttemplate='%{y:,.1f}',
             marker=dict(
@@ -1121,6 +1133,11 @@ def domain_quality_bubble(df): # 数据，[0,1] ,'Domain' or 'Measure'
     
     for i in range(0,4):
 
+        if i==0:
+            selected=0
+        else:
+            selected=10
+
         fig_domain_perform.add_trace(
                 go.Scatter(        
                 x=[i+0.5], 
@@ -1128,6 +1145,11 @@ def domain_quality_bubble(df): # 数据，[0,1] ,'Domain' or 'Measure'
                 x0=0,y0=0,
                 textposition='middle center',
                 texttemplate='%{y:.0%}',
+                textfont=dict(
+                    size=15,
+                    color='black',
+
+                    ),
                 #text=df_domain_perform[df_domain_perform['Domain']==domain_set[k]][obj],
                 mode='markers+text',             
                 name=df.values[i,0],
@@ -1139,6 +1161,7 @@ def domain_quality_bubble(df): # 数据，[0,1] ,'Domain' or 'Measure'
                     opacity=0.7,
                     sizemode='area',
                 ),
+                selectedpoints=selected,
                 selected=dict(
                     marker=dict(
                         opacity=1
@@ -1191,6 +1214,7 @@ def domain_quality_bubble(df): # 数据，[0,1] ,'Domain' or 'Measure'
             x=0,y=-0.05
         ),
         #hovermode=True,
+        clickmode='event+select',
         modebar=dict(
             bgcolor=colors['transparent']
         ),
@@ -1297,7 +1321,7 @@ def table_quality_dtls(df,domain='all'):
         firstcol=df.columns[0]
     else:
         df=df[df['Domain']==domain]
-        col=df.columns[1:len(df)]
+        col=df.columns[1:6]
         firstcol=df.columns[1]
 
     table=dash_table.DataTable(

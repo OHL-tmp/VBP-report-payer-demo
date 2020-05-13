@@ -427,7 +427,7 @@ def card_quality_adjustment(app):
                             no_gutters=True,
                         ),
                         html.Div([
-                            html.Div([qualitytable(df_quality)], style={"padding-bottom":"1rem"}),
+                            html.Div([qualitytable(df_quality)],id='container-measure-setup', style={"padding-bottom":"1rem"}),
                             dbc.Row(
                                 [
                                     dbc.Col(html.H2("Total Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=10),
@@ -776,12 +776,35 @@ def cal_overall_weight(data):
     usr_overall = np.sum(0 if i.replace('%','')=='' else int(i.replace('%','')) for i in list(df.fillna('0%').iloc[:,8]))
     return str(recom_overall)+'%', str(usr_overall)+'%'
 
+# table style update on selected_rows
+@app.callback(
+    Output('container-measure-setup', 'children'),
+    [Input('table-measure-setup', 'selected_rows'),],
+    [State('table-measure-setup', 'data'),
+    State('table-measure-setup', 'dropdown'),
+    State('table-measure-setup', 'dropdown_conditional'),
+    State('table-measure-setup', 'dropdown_data'),])
+def update_columns(selected_quality, data,t1,t2,t3):
+    for i in range(0,23):
+        row=data[i]
+
+        if i in selected_quality:
+            row['tar_user']=row['tar_recom']
+        else:
+            row['tar_user']=float('nan')
+    print(t1)
+    print(t2)
+    print(t3)
+
+    return qualitytable(pd.DataFrame.from_dict(data),selected_quality)
+
 # set up table selfupdate
 @app.callback(
     Output('table-measure-setup', 'data'),
-    [Input('table-measure-setup', 'data_timestamp')],
-    [State('table-measure-setup', 'data')])
-def update_columns(timestamp, data):
+    [Input('table-measure-setup', 'data_timestamp'),],
+    [State('table-measure-setup', 'data'),
+     State('table-measure-setup', 'selected_rows'),])
+def update_columns(timestamp, data,selected_quality):
     for i in range(0,23):
         row=data[i]
         if i in [4,11,16,21]:  
@@ -789,7 +812,13 @@ def update_columns(timestamp, data):
         else:
             row['userdefined']=float('nan')
 
-    return data 
+        if i in selected_quality:
+            if i in [10,11,12,13,14,17,18,21,22]:
+                row['tar_user']=str(row['tar_user']).replace('$','').replace('%','').replace(',','')+'%'
+        else:
+            row['tar_user']=float('nan')
+
+    return data  
 
 # store data
 @app.callback(
