@@ -214,48 +214,8 @@ def card_medical_cost_target(app):
                             ],
                             style={"padding-right":"0rem", "padding-left":"0rem"}
                         ),
-
-                        dbc.Row(
-                        	[
-                        		dbc.Col(html.H6("Medical Cost Target"), width=3),
-                        		dbc.Col(
-                    				dbc.Row(
-                    					[
-                    						dbc.Col(html.H6(default_input['medical cost target']['member count'])),
-                    						dbc.Col(html.H6(default_input['medical cost target']['medical cost pmpm'])),
-                                            dbc.Col(html.H6(default_input['medical cost target']['peer group medical cosp pmpm'])),
-                    					]
-                    				)
-                        			, width=3
-                        		),
-                        		dbc.Col(
-                    				dbc.Row(
-                    					[
-                    						dbc.Col(html.H6(default_input['medical cost target']['recom target'], id = 'div-recom-tgt')),
-                    						dbc.Col([
-                                                dbc.InputGroup([
-                                                    dbc.InputGroupAddon('$', addon_type = 'prepend'),
-                                                    dbc.Input(id = 'input-usr-tgt', type = "number", debounce = True, value = default_input['medical cost target']['user target'])
-                                                    ],
-                                                    size="sm")
-                                                ],
-                                                style={"margin-top":"-0.5rem"}),
-                    					]
-                    				)
-                        			, width=3
-                        		),
-                        		dbc.Col(
-                    				dbc.Row(
-                    					[
-                    						dbc.Col(html.H6("High", id = 'div-recom-like')),
-                    						dbc.Col(html.Div("Low", id = 'div-usr-like')),
-                    					]
-                    				)
-                        			, width=3
-                        		),
-                        	],
-                            style={"text-align":"center","padding-top":"1rem","padding-bottom":"0.8rem", "background-color":"#fff","border-radius":"0.5rem"},
-                        )
+                        
+                        card_med_cost_target(),
                         
                     ]
                 ),
@@ -263,7 +223,87 @@ def card_medical_cost_target(app):
                 style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem"}
             )
 
+def card_med_cost_target():
+    return dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.H6("Medical Cost Target"), width=4),
+                                dbc.Col(
+                                    dbc.Row(
+                                        [
+                                            dbc.Col(html.H6("5.7%")),
+                                            dbc.Col(html.H6("3.5%")),
+                                            dbc.Col(html.H6("3.1%")),
+                                        ]
+                                    )
+                                    , width=4
+                                ),
+                                dbc.Col(
+                                    dbc.Row(
+                                        [
+                                            dbc.Col(html.H6("3.9%")),
+                                            dbc.Col([
+                                                dbc.InputGroup([
+                                                    dbc.Input(id = 'input-usr-tgt-trend', type = "number", step = 0.1, debounce = True, value = default_input['medical cost target']['user target']),
+                                                    dbc.InputGroupAddon('%', addon_type = 'append'),
+                                                    ],
+                                                    size="sm")
+                                            ],
+                                            style={"margin-top":"-0.5rem"}),
 
+                                        ]
+                                    )
+                                    , width=4
+                                ),
+                            ],
+                            style={"text-align":"center","padding-top":"1.5rem","padding-bottom":"0.5rem"},
+                        ),
+
+                        dbc.Row(
+                            [
+                                dbc.Col(html.H6("Medical Cost Target PMPM"), width=4),
+                                dbc.Col(
+                                    dbc.Row(
+                                        [
+                                            dbc.Col(html.H6(default_input['medical cost target']['medical cost pmpm'])),
+                                            dbc.Col(html.H6(default_input['medical cost target']['peer group medical cost pmpm'])),
+                                            dbc.Col(html.H6(default_input['medical cost target']['bic medical cost pmpm'])),
+                                        ]
+                                    )
+                                    , width=4
+                                ),
+                                dbc.Col(
+                                    dbc.Row(
+                                        [
+                                            dbc.Col(html.H6(default_input['medical cost target']['recom target'], id = 'div-recom-tgt')),
+                                            dbc.Col(html.H6( id = 'div-usr-tgt')),
+                                        ]
+                                    )
+                                    , width=4
+                                ),
+                                
+                            ],
+                            style={"text-align":"center","padding-top":"1rem",},
+                        )
+                    ],
+                    width=9,
+                    style={"background-color":"#fff","border-radius":"0.5rem","height":"6.8rem"},
+                ),
+
+                dbc.Col(
+                    dbc.Row(
+                        [
+                            dbc.Col(html.Div(html.H1("High", id = 'div-recom-like',style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem"}), style={"border-radius":"0.5rem", "background-color":"#fff"}), style={"padding-left":"1rem", "padding-right":"0.5rem"}, width=6),
+                            dbc.Col(id = 'div-usr-like', style={"padding-left":"0.5rem", "padding-right":"0.5rem"}, width=6),
+                        ]
+                    ),
+                    width=3
+                )
+            ]
+        )
 
 def card_sl_sharing_arrangement(app):
 	return dbc.Card(
@@ -361,7 +401,7 @@ def card_sl_sharing_arrangement(app):
 	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom mlr']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-mlr', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['mlr']),
+                                                    dbc.Input(id = 'input-usr-mlr', type = "number", step = 0.1, debounce = True, value = default_input['savings/losses sharing arrangement']['mlr']),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ],
                                                     size="sm")
@@ -736,22 +776,37 @@ def show_meas_table(n, hidden):
     return hidden
 
 @app.callback(
-    [Output('div-usr-like', 'children'),
-    Output('div-usr-like', 'style')],
-    [Input('input-usr-tgt', 'value')],
+    Output('div-usr-tgt', 'children'),
+    [Input('input-usr-tgt-trend', 'value')]
+    )
+def update_usr_target(v):
+    base = default_input['medical cost target']['medical cost pmpm']
+    base = int(base.replace("$",""))
+    if v:
+        tgt = int(round(base*v/100+base,0))
+        return '$'+str(tgt)
+    return '$800'
+   
+
+@app.callback(
+    Output('div-usr-like', 'children'),
+    [Input('div-usr-tgt', 'children')],
     [State('div-recom-like', 'children'),
     State('div-recom-tgt', 'children')]
     )
 def cal_usr_like(usr_tgt, recom_like, recom_tgt):
+
     if usr_tgt:
         recom_tgt_int = int(recom_tgt.replace('$','').replace('%','').replace(',',''))
-        if usr_tgt >= recom_tgt_int:
-            return 'High', {}
-        elif usr_tgt < recom_tgt_int*0.95:
-            return 'Low', {'background-color':'red'}
+        usr_tgt_int = int(usr_tgt.replace('$','').replace('%','').replace(',',''))
+        if usr_tgt_int >= recom_tgt_int:
+            return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem"}), style={"border-radius":"0.5rem", "background-color":"#fff"})
+        elif usr_tgt_int < recom_tgt_int*0.95:
+            return html.Div(html.H1("Low",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"red"})
         else:
-            return 'Mid', {}
-    return '', {}
+            return html.Div(html.H1("Mid",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem"}), style={"border-radius":"0.5rem", "background-color":"#fff"})
+    else:
+        return html.Div()
 
 @app.callback(
 	Output('modal-assump', 'is_open'),
@@ -794,7 +849,7 @@ def update_columns(timestamp, data):
 # store data
 @app.callback(
 	Output('temp-data', 'children'),
-	[Input('input-usr-tgt', 'value'),
+	[Input('div-usr-tgt', 'children'),
 	Input('input-usr-msr', 'value'),
 	Input('input-usr-planshare', 'value'),
 	Input('input-usr-sharecap', 'value'),
@@ -805,13 +860,16 @@ def update_columns(timestamp, data):
     Input('table-measure-setup', 'selected_rows'),
     Input('table-measure-setup', 'data')]
 	)
-def store_data(usr_tgt, usr_msr, usr_planshare, usr_sharecap, usr_mlr, usr_planshare_l, usr_sharecap_l, ts, select_row, data):
+def store_data(usr_tgt_int, usr_msr, usr_planshare, usr_sharecap, usr_mlr, usr_planshare_l, usr_sharecap_l, ts, select_row, data):
     df = pd.DataFrame(data)
 
     if 'Shared Losses' in ts:
         two_side = True
     else:
         two_side = False
+
+
+    usr_tgt = int(usr_tgt_int.replace('$',""))
 
     recom_dom_1 = int(df.iloc[4,7].replace('%',""))/100
     recom_dom_2 = int(df.iloc[11,7].replace('%',""))/100
