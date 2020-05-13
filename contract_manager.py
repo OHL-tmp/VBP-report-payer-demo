@@ -48,6 +48,11 @@ df_measure_score=pd.read_csv("data/df_measure_score.csv")
 df_quality_overall=pd.read_csv("data/df_quality_overall.csv")
 df_quality_domain=pd.read_csv("data/df_quality_domain.csv")
 
+file = open('configure/input_ds.json', encoding = 'utf-8')
+custom_input = json.load(file)
+twoside = custom_input['savings/losses sharing arrangement']["two side"]
+
+
 def create_layout(app):
 
     return html.Div(
