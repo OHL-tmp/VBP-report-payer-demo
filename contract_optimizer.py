@@ -333,7 +333,7 @@ def card_sl_sharing_arrangement(app):
 	                    				),
 	                    				dbc.Row(
 	                    					[
-	                    						dbc.Col(html.H2("MSR (Minimum Savings Rate)", style={"font-size":"0.7rem"}),width=4),
+	                    						dbc.Col(html.H2("MSR (Minimum Savings Rate)", style={"font-size":"0.8rem"}),width=4),
 	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom msr']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
@@ -345,9 +345,14 @@ def card_sl_sharing_arrangement(app):
 	                    					],
                                             style={"padding-top":"1rem"}
 	                    				),
+                                        dbc.Row([
+                                            dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=4),
+                                            ],
+                                            style={"padding-top":"1rem"}),
 				                        dbc.Row(
 	                    					[
-	                    						dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=4),
+	                    						dbc.Col(html.Div(), width = 1),
+                                                dbc.Col(html.H2("Max Sharing % (When quality targets are met)", style={"font-size":"0.8rem"}),width=3),
 	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
@@ -359,6 +364,29 @@ def card_sl_sharing_arrangement(app):
 	                    					],
                                             style={"padding-top":"1rem"}
 	                    				),
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(html.Div(), width = 1),
+                                                dbc.Col(html.H2("Min Sharing %", style={"font-size":"0.8rem"}),width=3),
+                                                dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing min']),style={"text-align":"center"},width=4),
+                                                dbc.Col([
+                                                    dbc.InputGroup([
+                                                    dbc.Input(id = 'input-usr-planshare-min', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['savings sharing min']),
+                                                    dbc.InputGroupAddon('%', addon_type = 'append'),
+                                                    ],
+                                                    size="sm")
+                                                    ],style={"text-align":"center", "margin-top":"-0.5rem"},width=4),
+                                            ],
+                                            style={"padding-top":"1rem"}
+                                        ),
+                                        dbc.Row([
+                                            dbc.Col(html.Div(), width = 1),
+                                            dbc.Col(html.H2("First Dollar Sharing", style={"font-size":"0.8rem"}),width=3),
+                                            dbc.Col(daq.ToggleSwitch(id = 'toggleswitch-firstdollar-saving', value = False, size = 30, color = 'blue'), width = 4),
+                                            dbc.Col(html.H2("Second Dollar Sharing (Above MSR)", style={"font-size":"0.8rem"}),width=4),
+                                            ],
+                                             style={"padding-top":"1rem"}
+                                        ),
 	                    				dbc.Row(
 	                    					[
 	                    						dbc.Col(html.H2("Shared Savings Cap", style={"font-size":"0.8rem"}),width=4),
@@ -397,7 +425,7 @@ def card_sl_sharing_arrangement(app):
 	                    				),
 	                    				dbc.Row(
 	                    					[
-	                    						dbc.Col(html.H2("MLR (Minimum Losses Rate)", style={"font-size":"0.7rem"}),width=4),
+	                    						dbc.Col(html.H2("MLR (Minimum Losses Rate)", style={"font-size":"0.8rem"}),width=4),
 	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom mlr']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
@@ -409,13 +437,19 @@ def card_sl_sharing_arrangement(app):
 	                    					],
                                             style={"padding-top":"1rem"}
 	                    				),
+                                        dbc.Row([
+                                            dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=4),
+                                            dbc.Col(dbc.Checklist(options = [{'label':'1 - Shared Saving Rate', 'value' : 'selected'}], value = [], id = 'switch-loss-method'))
+                                            ],
+                                            style={"padding-top":"1rem"}),
 				                        dbc.Row(
 	                    					[
-	                    						dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=4),
-	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing']),style={"text-align":"center"},width=4),
+                                                dbc.Col(html.Div(), width = 1),
+	                    						dbc.Col(html.H2("Min Sharing % (When quality targets are met)", style={"font-size":"0.8rem"}),width=3),
+	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing min']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-planshare-l', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['losses sharing']),
+                                                    dbc.Input(id = 'input-usr-planshare-l-min', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['losses sharing min']),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ],
                                                     size="sm")
@@ -423,6 +457,29 @@ def card_sl_sharing_arrangement(app):
 	                    					],
                                             style={"padding-top":"1rem"}
 	                    				),
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(html.Div(), width = 1),
+                                                dbc.Col(html.H2("Max Sharing %", style={"font-size":"0.8rem"}),width=3),
+                                                dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing']),style={"text-align":"center"},width=4),
+                                                dbc.Col([
+                                                    dbc.InputGroup([
+                                                    dbc.Input(id = 'input-usr-planshare-l', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['losses sharing']),
+                                                    dbc.InputGroupAddon('%', addon_type = 'append'),
+                                                    ],
+                                                    size="sm")
+                                                    ],style={"text-align":"center", "margin-top":"-0.5rem"},width=4),
+                                            ],
+                                            style={"padding-top":"1rem"}
+                                        ),
+                                        dbc.Row([
+                                            dbc.Col(html.Div(), width = 1),
+                                            dbc.Col(html.H2("First Dollar Sharing", style={"font-size":"0.8rem"}),width=3),
+                                            dbc.Col(daq.ToggleSwitch(id = 'toggleswitch-firstdollar-loss', value = False, size = 30, color = 'blue'), width = 4),
+                                            dbc.Col(html.H2("Second Dollar Sharing (Below MLR)", style={"font-size":"0.8rem"}),width=4),
+                                            ],
+                                             style={"padding-top":"1rem"}
+                                        ),
 	                    				dbc.Row(
 	                    					[
 	                    						dbc.Col(html.H2("Shared Losses Cap", style={"font-size":"0.8rem"}),width=4),
@@ -741,8 +798,19 @@ def sim_assump_input_session():
                     style={"padding":"1rem"}
                 ),
                 ],
-                style={"padding-left":"1rem","padding-right":"1rem", "padding-bottom":"1rem", "background-color":"#f3f3f3","border-radius":"0.5rem"}
-            )
+                style={"background-color":"#f3f3f3","border-radius":"0.5rem"}
+            ),
+            style={"padding-bottom":"1rem"}
+        ),
+
+        html.Div(
+            dbc.Row([
+                dbc.Col(html.H1("ACO's Margin under FFS", style={"font-size":"1rem"})),
+                dbc.Col([dbc.Input(value = "5%",)], width=3)
+                ],
+                style={"padding":"1rem","background-color":"#f3f3f3","border-radius":"0.5rem"}
+            ),
+            style={"padding-left":"1rem","padding-right":"1rem", "padding-bottom":"1rem"}
         ),
         
 
@@ -757,13 +825,17 @@ app.layout = create_layout(app)
 @app.callback(
     [Output('input-usr-mlr', 'disabled'),
     Output('input-usr-planshare-l', 'disabled'),
-    Output('input-usr-sharecap-l', 'disabled'),],
+    Output('input-usr-sharecap-l', 'disabled'),
+    Output('input-usr-planshare-l-min', 'disabled'),
+    Output('toggleswitch-firstdollar-loss', 'disabled'),
+    Output('switch-loss-method', 'options')],
     [Input('switch-share-loss', 'value')]
     )
 def toggle_share_loss(v):
     if 'Shared Losses' in v:
-        return False, False, False
-    return True, True, True
+        return False, False, False, False, False, [{'label':'1 - Shared Saving Rate', 'value' : 'selected'}]
+    return True, True, True, True, True, [{'label':'1 - Shared Saving Rate', 'value' : 'selected', 'disabled' : True}]
+
 
 @app.callback(
     Output('div-meas-table-container', 'hidden'),
@@ -852,11 +924,14 @@ def update_columns(timestamp, data):
 	[Input('div-usr-tgt', 'children'),
 	Input('input-usr-msr', 'value'),
 	Input('input-usr-planshare', 'value'),
+    Input('input-usr-planshare-min', 'value'),
 	Input('input-usr-sharecap', 'value'),
 	Input('input-usr-mlr', 'value'),
 	Input('input-usr-planshare-l', 'value'),
+    Input('input-usr-planshare-l-min', 'value'),
 	Input('input-usr-sharecap-l', 'value'),
     Input('switch-share-loss', 'value'),
+    Input('switch-loss-method', 'value'),
     Input('table-measure-setup', 'selected_rows'),
     Input('table-measure-setup', 'data')]
 	)
@@ -867,6 +942,11 @@ def store_data(usr_tgt_int, usr_msr, usr_planshare, usr_sharecap, usr_mlr, usr_p
         two_side = True
     else:
         two_side = False
+
+    if 'selected' in lm:
+        loss_method = True
+    else:
+        loss_method = False
 
 
     usr_tgt = int(usr_tgt_int.replace('$',""))
@@ -883,13 +963,13 @@ def store_data(usr_tgt_int, usr_msr, usr_planshare, usr_sharecap, usr_mlr, usr_p
 
     datasets = {
         'medical cost target' : {'user target' : usr_tgt},
-        'savings/losses sharing arrangement' : {'two side' : two_side, 'msr': usr_msr, 'savings sharing' : usr_planshare, 'savings share cap' : usr_sharecap,
-        'mlr' : usr_mlr, 'losses sharing' : usr_planshare_l, 'losses share cap' : usr_sharecap_l},
+        'savings/losses sharing arrangement' : {'two side' : two_side, 'msr': usr_msr, 'savings sharing' : usr_planshare, 'savings sharing min' : usr_planshare_min, 'savings share cap' : usr_sharecap,
+        'mlr' : usr_mlr, 'losses sharing' : usr_planshare_l, 'losses sharing min' : usr_planshare_l_min, 'losses share cap' : usr_sharecap_l, 'loss method' : loss_method},
         'quality adjustment' : {'selected measures' : select_row, 'recom_dom_1' : recom_dom_1, 'recom_dom_2' : recom_dom_2, 'recom_dom_3' : recom_dom_3, 'recom_dom_4' : recom_dom_4,
         'usr_dom_1' : usr_dom_1, 'usr_dom_2' : usr_dom_2, 'usr_dom_3' : usr_dom_3, 'usr_dom_4' : usr_dom_4}
     }
     
-    with open('configure/input_ds.txt','w') as outfile:
+    with open('configure/input_ds.json','w') as outfile:
         json.dump(datasets, outfile)
     return json.dumps(datasets)
 
@@ -908,14 +988,18 @@ def cal_simulation(submit, data):
         msr_user = datasets['savings/losses sharing arrangement']['msr']/100
         mlr_user = datasets['savings/losses sharing arrangement']['mlr']
         max_user_savepct = datasets['savings/losses sharing arrangement']['savings sharing']/100
+        min_user_savepct = datasets['savings/losses sharing arrangement']['savings sharing min']/100
         max_user_losspct = datasets['savings/losses sharing arrangement']['losses sharing']
+        min_user_losspct = datasets['savings/losses sharing arrangement']['losses sharing min']
         cap_user_savepct = datasets['savings/losses sharing arrangement']['savings share cap']/100
         cap_user_losspct = datasets['savings/losses sharing arrangement']['losses share cap']
         twosided = datasets['savings/losses sharing arrangement']['two side']
+        lossmethod = datasets['savings/losses sharing arrangement']['loss method']
 
         if twosided == True:
             mlr_user = mlr_user/100
             max_user_losspct = max_user_losspct/100
+            min_user_losspct = min_user_losspct/100
             cap_user_losspct = cap_user_losspct/100
 
         df=simulation_cal(selected_rows,domian_weight,default_input,target_user_pmpm,msr_user,mlr_user,max_user_savepct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided)
