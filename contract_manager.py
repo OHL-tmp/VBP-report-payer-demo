@@ -67,6 +67,15 @@ def create_layout(app):
                         style={"padding-left":"3rem", "padding-right":"3rem","padding-top":"1rem","padding-bottom":"0rem"},
                     ),
                     
+                    
+                    html.Div(
+                        [
+                            manager_card_quality_score(app),
+                        ],
+                        className="mb-3",
+                        style={"padding-top":"1rem", "padding-left":"3rem", "padding-right":"3rem"},
+                    ),
+
                     html.Div(
                         [
                             manager_card_attributed_members(app),
@@ -75,13 +84,6 @@ def create_layout(app):
                         style={"padding-top":"0rem", "padding-left":"3rem", "padding-right":"3rem"},
                     ),
 
-                    html.Div(
-                        [
-                            manager_card_quality_score(app),
-                        ],
-                        className="mb-3",
-                        style={"padding-top":"1rem", "padding-left":"3rem", "padding-right":"3rem"},
-                    )
                 ],
                 style={"background-color":"#f5f5f5"},
             )
@@ -94,9 +96,9 @@ def manager_div_year_to_date_metrics(app):
                     manager_card_year_to_date_metrics("YTD Total Cost", "$100M", "#381610f"),
                     manager_card_year_to_date_metrics("Projected Total Cost", "$230M", "#381610f"),
                     html.Hr(className="ml-1"),
-                    manager_card_year_to_date_metrics("Projected Total Savings/Losses", "$15M", "#db2200"),
-                    manager_card_year_to_date_metrics("Projected Plan's Shared Savings/Losses", "$7.5M", "#db2200"),
-                    manager_card_year_to_date_metrics("Projected ACO's Shared Savings/Losses", "$7.5M", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected Total Losses", "\u25bc $15M", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected Plan's Shared Losses", "\u25bc $7.5M", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected ACO's Shared Losses", "\u25bc $7.5M", "#db2200"),
                     html.Hr(className="ml-1"),
                     manager_modal_metricsdetail(app),
                 ],
@@ -113,9 +115,15 @@ def manager_modal_metricsdetail(app):
                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
                     ),
             dbc.Modal([
-                dbc.ModalHeader("Result Details"),
-                dbc.ModalBody(children=table_result_dtls(df_result_details)),
-                dbc.ModalFooter(dbc.Button('Close', id = 'manager-button-closemodal-metricsdetail')),
+                dbc.ModalHeader(
+                    [
+                        html.H1("Result Details", style={"font-size":"0.8rem"}),
+                        html.H2("TOTAL COST", style={"font-size":"1.6rem","color":"#1357DD","background-color":"#c6d9ff","padding":"0.5rem","border-radius":"0.5rem"})
+                    ],
+                    
+                ),
+                dbc.ModalBody(children=table_result_dtls(df_result_details), style={"padding":"2rem"}),
+                dbc.ModalFooter(dbc.Button('Close', style={"border-radius":"10rem"}, id = 'manager-button-closemodal-metricsdetail')),
                 ], id = 'manager-modal-metricsdetail'),
 
         ])
@@ -125,8 +133,8 @@ def manager_card_year_to_date_metrics(title, value, color):
                 [
                     dbc.CardBody(
                         [
-                            html.H3(title, style={"height":"1rem", "font-size":"1rem"}),
-                            html.H2(value, style={"height":"2rem", "color":color}),
+                            html.H3(title, style={"height":"0.8rem", "font-size":"0.8rem"}),
+                            html.H2(value, style={"height":"1.6rem", "color":color}),
                         ],
                         style={"padding-top":"0.8rem", "padding-bottom":"0.8rem"},
                     )
@@ -142,14 +150,12 @@ def manager_div_overall_performance(app):
                     dbc.Row(
                         [
                             dbc.Col(html.H1("OVERALL PERFORMANCE"), width="auto"),
-                            dbc.Card(
-                                dbc.CardBody(
-                                    [
-                                        html.H3([html.Span("As of ", style={"font-size":"0.8rem", "padding-right":"1rem"}),"June 30th."], style={"color":"#fff"}),
-                                    ],
-                                    style={"margin-top":"-16px"}
+                            dbc.Col(
+                                html.Div(
+                                    html.H5("- 30/06/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
                                 ),
-                                style={"height":"2.5rem", "background-color":"#1357DD", "text-align":"center", "margin-top":"0.5rem"},
+                                width=2,
+                                style={"padding-top":"2rem"}
                             ),
                         ]
                     ),
@@ -157,7 +163,7 @@ def manager_div_overall_performance(app):
                         [
                             dbc.Row(
                                 [
-                                    dbc.Col("Total Cost", style={"font-family":"NotoSans-SemiBold","text-align":"end"}, width=5),
+                                    dbc.Col("Total Cost", id = 'manager-col-totalcost',style={"font-family":"NotoSans-SemiBold","text-align":"center","background-color":"#c6d9ff","border-radius":"10rem","padding":"0.3rem"}, width=5),
                                     dbc.Col(
                                         daq.ToggleSwitch(
                                             value=False,
@@ -165,92 +171,131 @@ def manager_div_overall_performance(app):
                                         ), 
                                         width=2
                                     ),
-                                    dbc.Col("PMPM", style={"font-family":"NotoSans-SemiBold"}, width=5),
+                                    dbc.Col("PMPM", id = 'manager-col-pmpm', style={"font-family":"NotoSans-SemiBold","text-align":"center","border-radius":"10rem","padding":"0.3rem"}, width=5),
                                 ],
                                 style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)","background-color":"#fff","border-radius":"10rem","padding":"0.5rem"}
                             ),
                         ],
-                        style={"padding":"2rem","padding-bottom":"2rem"}
+                        style={"padding":"2rem","padding-bottom":"4rem"}
                     ),
                     
                     html.Div([
                         dbc.Row(
                             [
-                                dbc.Col(dcc.Graph(figure=waterfall_overall(df_overall), style={"width":"100%","height":"100%"}), style={"height":"30rem", "padding":"1rem"}, width=7),
                                 dbc.Col(
                                     html.Div(
                                         [
-                                            html.Div(dcc.Graph(figure=sharing_split(df_overall),style={"width":"100%","height":"100%"}), style={"height":"25rem", "padding":"1rem"}),
+                                            html.Div(dcc.Graph(figure=waterfall_overall(df_overall), style={"width":"100%","height":"100%"}), style={"height":"28rem"}),
                                             manager_modal_totalcost(app),
+                                        ]
+                                    ), 
+                                    width=7
+                                ),
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(html.H3("\u27a6", style={"font-size":"3em","margin-top":"-1.2rem","color":"#ff5757"}), width="auto"),
+                                                    dbc.Col(html.H3("Losses Details", style={"font-size":"1em","color":"#ff5757","margin-left":"-2rem"})),
+                                                ],
+                                                style={"margin-top":"-1.6rem","margin-left":"-3rem","background-color":"#f5f5f5","width":"12rem","height":"3rem","padding-left":"0.5rem","padding-right":"0.5rem","text-align":"center"}
+                                            ),
+                                            html.Div(dcc.Graph(figure=sharing_split(df_overall),style={"width":"100%","height":"100%"}), style={"height":"22rem", "padding":"1rem", "text-align":"center","margin-right":"-3rem"}),
                                         ],
-                                        style={"text-align":"center"}
+                                        style={"border-radius":"0.5rem","border":"2px solid #ffc9c9","padding":"1rem","height":"25rem","margin-top":"2rem"}
                                     ),
                                     width=5,
-                                    style={"padding-left":"1rem","padding-right":"1rem"}
+                                    style={"padding-left":"2rem","padding-right":"1rem"}
                                 ),
                             ], 
                         ),
                     ],
-                    style={"padding-bottom":"3rem"},
                     id = 'manager-div-totalcost-container', hidden = False),
-                    html.Div(
-                        [
-                            dbc.Row(
-                                [
-                                    dbc.Col(dcc.Graph(figure=waterfall_overall(df_overall_pmpm), style={"width":"100%","height":"100%"}), style={"height":"30rem", "padding":"1rem"}, width=7),
-                                    dbc.Col(
-                                        html.Div(
-                                            [
-                                                html.Div(dcc.Graph(figure=sharing_split(df_overall_pmpm), style={"width":"100%","height":"100%"}), style={"height":"25rem", "padding":"1rem"}),
-                                                manager_modal_pmpm(app),
-                                            ],
-                                            style={"text-align":"center"}
-                                        ),
-                                        width=5
+                    
+                    html.Div([
+                        dbc.Row(
+                            [
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            html.Div(dcc.Graph(figure=waterfall_overall(df_overall_pmpm), style={"width":"100%","height":"100%"}),style={"height":"28rem"}),
+                                            manager_modal_pmpm(app),
+                                        ]
+                                    ), 
+                                    width=7
+                                ),
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(html.H3("\u27a6", style={"font-size":"3em","margin-top":"-1.2rem","color":"#ff5757"}), width="auto"),
+                                                    dbc.Col(html.H3("Losses Details", style={"font-size":"1em","color":"#ff5757","margin-left":"-2rem"})),
+                                                ],
+                                                style={"margin-top":"-1.6rem","margin-left":"-3rem","background-color":"#f5f5f5","width":"12rem","height":"3rem","padding-left":"0.5rem","padding-right":"0.5rem","text-align":"center"}
+                                            ),
+                                            html.Div(dcc.Graph(figure=sharing_split(df_overall_pmpm),style={"width":"100%","height":"100%"}), style={"height":"22rem", "padding":"1rem", "text-align":"center","margin-right":"-3rem"}),
+                                        ],
+                                        style={"border-radius":"0.5rem","border":"2px solid #ffc9c9","padding":"1rem","height":"25rem","margin-top":"2rem"}
                                     ),
-                                ], 
-                            ),
-                        ],
-                        style={"padding-bottom":"3rem"},
-                        id = 'manager-div-pmpm-container', hidden = True
-                    ),
+                                    width=5,
+                                    style={"padding-left":"2rem","padding-right":"1rem"}
+                                ),
+                            ], 
+                        ),
+                    ],
+                    id = 'manager-div-pmpm-container', hidden = False),
                     # manager_card_key_driver(app),
                 ],
-                style={"padding-top":"5rem","padding-bottom":"0rem", "padding-right":"2rem", "max-height":"50rem"},
+                style={"padding-top":"1rem","padding-bottom":"0rem", "padding-right":"2rem", "max-height":"50rem"},
             )
 
 def manager_modal_totalcost(app):
     return html.Div([
                 dbc.Button(
-                    "Target Adjustment Details",
+                    "Details",
                     id = 'manager-button-openmodal-totalcost',
                     className="mb-3",
-                    style={"background-color":"#38160f", "border":"none", "border-radius":"0.5rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem","height":"4rem","width":"50%"},
+                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
                 ),
                 dbc.Modal([
-                    dbc.ModalHeader("Target Adjustment Details"),
-                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj))),
-                    dbc.ModalFooter(dbc.Button('Close', id = 'manager-button-closemodal-totalcost')),
+                    dbc.ModalHeader(
+                        [
+                            html.H1("Target Adjustment Details", style={"font-size":"0.8rem"}),
+                            html.H2("TOTAL COST", style={"font-size":"1.6rem","color":"#1357DD","background-color":"#c6d9ff","padding":"0.5rem","border-radius":"0.5rem"})
+                        ],
+                        
+                    ),
+                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj)), style={"padding":"2rem"}),
+                    dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-totalcost')),
                     ], id = 'manager-modal-totalcost',
                 style={"text-align":"center"}),
             ],
-            style={"text-align":"center"})
+            style={"text-align":"end","padding-right":"9rem"})
 
 def manager_modal_pmpm(app):
     return html.Div([
                 dbc.Button(
-                    "Target Adjustment Details",
+                    "Details",
                     id = 'manager-button-openmodal-pmpm',
                     className="mb-3",
-                    style={"background-color":"#38160f", "border":"none", "border-radius":"0.5rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem","height":"4rem","width":"80%"},
+                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
                 ),
                 dbc.Modal([
-                    dbc.ModalHeader("Target Adjustment Details"),
-                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj_pmpm))),
-                    dbc.ModalFooter(dbc.Button('Close', id = 'manager-button-closemodal-pmpm')),
+                    dbc.ModalHeader(
+                        [
+                            html.H1("Target Adjustment Details", style={"font-size":"0.8rem"}),
+                            html.H2("PMPM", style={"font-size":"1.6rem","color":"#1357DD","background-color":"#c6d9ff","padding":"0.5rem","border-radius":"0.5rem"})
+                        ],
+                        
+                    ),
+                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj_pmpm)), style={"padding":"2rem"}),
+                    dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-pmpm')),
                     ], id = 'manager-modal-pmpm',
                 style={"text-align":"center"}),
-            ])
+            ],
+            style={"text-align":"end","padding-right":"9rem"})
 
 def manager_card_key_driver(app):
     return dbc.Card(
@@ -371,12 +416,16 @@ def manager_card_quality_score(app):
                         dbc.Row(
                             [
                                 dbc.Col(dcc.Graph(figure=domain_quality_bubble(df_domain_score),id='manager-figure-domainscore' ,clickData={'points': [{'customdata': 'Patient/Caregiver Experience'}]},selectedData={'points': [{'customdata': 'Patient/Caregiver Experience'}]},style={"width":"100%","height":"100%"})),
-                                dbc.Col(dcc.Graph(id='manager-figure-measurescore', style={"width":"100%","height":"100%"})),
+                                dbc.Col(dcc.Graph(id='manager-figure-measurescore', style={"width":"100%","height":"100%"}), style={"padding":"1rem"}),
                             ],
                             no_gutters=True,
                             style={"padding":"2rem"}
                         ),
-                        manager_modal_qualityscore(app),
+                        html.Div(
+                            manager_modal_qualityscore(app),
+                            style={"padding-left":"4rem"}
+                        )
+                        
                     ]
                 ),
                 style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
@@ -385,7 +434,7 @@ def manager_card_quality_score(app):
 def manager_modal_qualityscore(app):
     return html.Div([
                 dbc.Button(
-                    "Result Details", 
+                    "Quality Score Result Details", 
                     id = 'manager-button-openmodal-qualityscore', 
                     style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
                 ),
@@ -425,6 +474,16 @@ def manager_modal_qualityscore(app):
 
 
 app.layout = create_layout(app)
+
+@app.callback(
+    [Output('manager-col-totalcost', 'style'),
+    Output('manager-col-pmpm', 'style')],
+    [Input('manager-switch-totalcost-pmpm', 'value')]
+    )
+def switch_background(v):
+    if v == True:
+        return {"font-family":"NotoSans-SemiBold","text-align":"center","border-radius":"10rem","padding":"0.3rem"},{"font-family":"NotoSans-SemiBold","text-align":"center","background-color":"#c6d9ff","border-radius":"10rem","padding":"0.3rem"}
+    return {"font-family":"NotoSans-SemiBold","text-align":"center","background-color":"#c6d9ff","border-radius":"10rem","padding":"0.3rem"},{"font-family":"NotoSans-SemiBold","text-align":"center","border-radius":"10rem","padding":"0.3rem"}
 
 
 @app.callback(
