@@ -1,5 +1,5 @@
-﻿Patient Risk Status,Cost %,Trend,% Diff from Target,Contribution to Overall Diff
-Low, 0.50 ,0.04,0.06,0.03
-Mid, 0.30 ,0.01,0.04,0.12
-High, 0.20 ,-0.03,-0.02,-0.04
-All, 1.00 ,0.01,0.03,0.03
+﻿Patient Risk Status,Patient %,Cost %,YTD Avg Cost/Patient,% Diff from Target,Contribution to Overall Diff
+Low,0.5,0.5,700,0.06,0.03
+Mid,0.3,0.3,800,0.04,0.12
+High,0.2,0.2,1000,-0.02,-0.04
+All,1,1,800,0.03,0.03

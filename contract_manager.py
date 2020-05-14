@@ -14,6 +14,7 @@ import dash_table
 
 import pandas as pd
 import numpy as np
+import json
 
 import pathlib
 import plotly.graph_objects as go
@@ -38,6 +39,7 @@ df_overall_driver=pd.read_csv("data/df_overall_driver.csv")
 df_target_adj=pd.read_csv("data/df_target_adj.csv")
 df_target_adj_pmpm=pd.read_csv("data/df_target_adj_pmpm.csv")
 df_result_details=pd.read_csv("data/df_result_details.csv")
+df_result_details_pmpm=pd.read_csv("data/df_result_details_pmpm.csv")
 
 df_member=pd.read_csv("data/df_member.csv")
 df_member_split=pd.read_csv("data/df_member_split.csv")

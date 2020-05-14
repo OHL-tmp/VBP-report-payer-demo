@@ -1,0 +1,6 @@
+﻿Service Category,YTD Cost PMPM,% Cost Diff from Target,Contribution to Overall Performance Difference,YTD Avg Utilization Rate,% Util Diff from Target,YTD Avg Cost per Unit,% Unit Cost Diff from Target
+Inpatient,1000,0.3,0.06,0.1,0.2,10000,0.1
+Outpatient,50,0.2,0.05,0.05,0.1,1000,0.1
+Professional,50,-0.05,-0.01,0.1,0.2,10000,0.1
+Rx,100,-0.15,-0.02,0.05,0.1,1000,0.1
+All,1475,0.08,0.08,0.1,0.2,10000,0.1

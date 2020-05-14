@@ -1,6 +1,6 @@
 import pandas as pd
 
-def simulation_cal(selected_rows,domian_weight,df_json,target_user_pmpm,msr_user,mlr_user,max_user_savepct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided):
+def simulation_cal(selected_rows,domian_weight,user_tar_type,user_tar_value,df_json,target_user_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,max_user_losspct,min_user_losspct,cap_user_savepct,cap_user_losspct,twosided,losspct_calfrom_save):
 	#unchangable predefined setup
 	df_range = pd.read_csv("data/quality_setup.csv")
 	domain1=list(range(0,10))
@@ -10,16 +10,19 @@ def simulation_cal(selected_rows,domian_weight,df_json,target_user_pmpm,msr_user
 
 	pmpy_mean=850*12
 	pmpy_rangepct=[1,1.2,0.8,1.1,0.9] # be,worst,best,worse,better
-	cost_range=[pmpy_mean*i*member_cnt for i in pmpy_rangepct]
-
-	outof_aco_cost=cost_wo_contract*member_cnt*6
+	
 	aco_margin=0.05
 
 	#baseline
 
 	member_cnt=int(df_json['medical cost target']['member count']) #10000
+
+	cost_range=[pmpy_mean*i*member_cnt for i in pmpy_rangepct]
+	
 	cost_wo_contract=864*12
 	cost_wo_contract_range=[cost_wo_contract*i*member_cnt for i in pmpy_rangepct]
+
+	outof_aco_cost=cost_wo_contract*member_cnt*6
 
 	#target 
 
@@ -41,9 +44,9 @@ def simulation_cal(selected_rows,domian_weight,df_json,target_user_pmpm,msr_user
 
 	min_recom_savepct=0.2
 	min_recom_losspct=0.2
-	min_user_savepct=0.2
-	min_user_losspct=0.2
-	losspct_calfrom_save=True
+	#min_user_savepct=0.2
+	#min_user_losspct=0.2
+	#losspct_calfrom_save=True
 	#quality score
 	quality_score_recom=[0.824583333,0.67375,0.908645833,0.762083333,0.869895833]
 
@@ -56,11 +59,35 @@ def simulation_cal(selected_rows,domian_weight,df_json,target_user_pmpm,msr_user
 			k=k+1
 			selected_index=[j for j, e in enumerate(selected_indomain) if e == True]
 			selected_eachdomain=[selected_rows[j] for j in selected_index]
-			df_filtered=df_range[df_range['id'].isin (selected_eachdomain)][df_range.columns[11:]]
+			be=0
+			better=0
+			worse=0
+			for t in selected_eachdomain:
+				if  user_tar_type[t]=='Report':
+					be+=2
+					better+=2
+					worse+=2
+				else:
+					if t in [10,11,12,21]:
+						value=float(str(df_range['aco'][t]).replace('%',''))*0.95
+						upper=float(str(user_tar_value[t]).replace('%',''))
+						be+=(1-min(value,upper)/upper)*2
+						better+=(1-min(value*0.9,upper)/upper)*2
+						worse+=(1-min(value*1.1,upper)/upper)*2
+
+					else:
+						value=float(str(df_range['aco'][t]).replace('%',''))*1.05
+						upper=float(str(user_tar_value[t]).replace('%',''))
+						be+=min(value/upper*2,2)
+						better+=min(value*1.1/upper*2,2)
+						worse+=min(value*0.9/upper*2,2)
+				
+			quality=[be,worse,better,worse,better]
+			weight=domian_weight[i-1]
 			if k==1:
-				quality_score_user=df_filtered.sum()/(len(df_filtered)*2)*domian_weight[i-1]
+				quality_score_user=[t1*weight/len(selected_eachdomain)/2 for t1 in quality]
 			else:
-				quality_score_user=quality_score_user+df_filtered.sum()/(len(df_filtered)*2)*domian_weight[i-1]
+				quality_score_user=[quality_score_user[t1]+(quality[t1]*weight/len(selected_eachdomain)) for t1 in range(0,5)]
 
 	sharing_gain_recom=[]
 	sharing_loss_recom=[]

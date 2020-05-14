@@ -24,7 +24,19 @@ from modal_drilldown_tableview import *
 app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract-manager-drilldown/')
 
 server = app.server
+## load data
+df_overall=pd.read_csv("data/df_overall.csv")
+df_overall_pmpm=pd.read_csv("data/df_overall_pmpm.csv")
+df_overall_driver=pd.read_csv("data/df_overall_driver.csv")
 
+df_network_cost_split=pd.read_csv('data/df_network_cost_split.csv')
+df_network_facility_split=pd.read_csv('data/df_network_facility_split.csv')
+df_network_prof_split=pd.read_csv('data/df_network_prof_split.csv')
+
+df_drill_lv1=pd.read_csv('data/df_drill_lv1.csv')
+df_drill_lv2=pd.read_csv('data/df_drill_lv2.csv')
+df_drill_lv3=pd.read_csv('data/df_drill_lv3.csv')
+df_drill_lv4=pd.read_csv('data/df_drill_lv4.csv')
 
 def create_layout(app):
 #    load_data()
@@ -165,8 +177,8 @@ def card_overview_drilldown(percentage):
                     [
                         dbc.Tabs(
                             [
-                                dbc.Tab(html.Img(src=app.get_asset_url("logo-demo.png"), width="100%"), label="Total Cost", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
-                                dbc.Tab(html.Img(src=app.get_asset_url("logo-demo.png"), width="100%"), label="PMPM", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
+                                dbc.Tab(dcc.Graph(figure=waterfall_overall(df_overall)), label="Total Cost", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
+                                dbc.Tab(dcc.Graph(figure=waterfall_overall(df_overall_pmpm)), label="PMPM", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
                                 
                             ], 
                             # id = 'tab_container'
@@ -193,16 +205,16 @@ def card_key_driver_drilldown(app):
                                                         # id = 'button-all-driver',
                                                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
                                                     ),
-                                        # dbc.Modal([
-                                        #         dbc.ModalHeader("All Drivers"),
-                                        #         dbc.ModalBody(children = html.Div([table_driver_all(df_driver_all)], style={"padding":"1rem"})),
-                                        #         dbc.ModalFooter(
-                                        #                 dbc.Button("Close", 
-                                        #                         # id = 'close-all-driver',
-                                        #                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
-                                        #                     )
-                                        #                 )
-                                        #         ], id = 'modal-all-driver', size="lg")
+                                         dbc.Modal([
+                                                 dbc.ModalHeader("All Drivers"),
+                                                 dbc.ModalBody(children = html.Div([table_driver_all(df_overall_driver)], style={"padding":"1rem"})),
+                                                 dbc.ModalFooter(
+                                                         dbc.Button("Close", 
+                                                                 # id = 'close-all-driver',
+                                                                 style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
+                                                             )
+                                                         )
+                                                 ], id = 'modal-all-driver', size="lg")
                                     ],
                                     width=3,
                                 ),
@@ -214,17 +226,17 @@ def card_key_driver_drilldown(app):
                             [
                                 dbc.Col(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
+                                        html.Div(children=gaugegraph(df_overall_driver,0))
                                     ],
                                     width=6),
                                 dbc.Col(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
+                                        html.Div(children=gaugegraph(df_overall_driver,1))
                                     ],
                                     width=6),
                                 dbc.Col(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
+                                        html.Div(children=gaugegraph(df_overall_driver,2))
                                     ],
                                     width=6),
                                 
@@ -282,6 +294,7 @@ def element_confounding_factors(percentage, factor):
         )
 
 ##### tab content #####
+
 def tab_patient_cohort_analysis():
     return html.Div(
                 [
@@ -292,21 +305,14 @@ def tab_patient_cohort_analysis():
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                         dbc.Col(html.H4("Patient Cohort Analysis: By Patient Risk Status", style={"font-size":"1rem", "margin-left":"10px"})),
-                                        dbc.Col(
-                                            dbc.Button("Modify Criteria",
-                                                className="mb-3",
-                                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem", "width":"8rem"},
-                                                # id = 'button-submit-simulation'
-                                            ),
-                                            width=2
-                                        )
+                                        dbc.Col(mod_criteria_button(['Risk Status','Gender','Age Band'],'1'),width=2)
                                     ],
                                     no_gutters=True,
                                 ),
                                 
                                 html.Div(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
+                                        html.Div(children=drilltable_lv1(df_drill_lv1,'table-patient-drill-lv1'))
                                     ], 
                                     style={"max-height":"80rem"}
                                 ),
@@ -324,6 +330,25 @@ def tab_patient_cohort_analysis():
 
                                 dbc.Row(
                                     [
+                                        dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                        dbc.Col(html.H4("Clinical Condition Analysis: Top 10 Chronic Conditions", style={"font-size":"1rem", "margin-left":"10px"})),
+                                        dbc.Col(mod_criteria_button(['Top 10 chronic','Top 10 acute'],'2'),width=2)
+                                    ],
+                                    no_gutters=True,
+                                ),
+                                
+                                html.Div(
+                                    [
+                                        html.Div(children=drilltable_lv1(df_drill_lv2,'table-patient-drill-lv2'))
+                                    ], 
+                                    style={"max-height":"80rem"}
+                                ),
+                                
+
+                                html.Hr(),
+
+                                dbc.Row(
+                                    [
                                         dbc.Col(html.H4("Cost and Utilization by Service Categories", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                     ],
                                     no_gutters=True,
@@ -331,7 +356,7 @@ def tab_patient_cohort_analysis():
                                 
                                 html.Div(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
+                                        html.Div(children=drilltable_lv3(df_drill_lv3,'Service Category','table-patient-drill-lv3',1))
                                     ], 
                                     style={"max-height":"80rem"}
                                 ),
@@ -345,24 +370,11 @@ def tab_patient_cohort_analysis():
                                 
                                 html.Div(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
+                                        html.Div(children=drilltable_lv3(df_drill_lv4,'Sub Category','table-patient-drill-lv4',0))
                                     ], 
                                     style={"max-height":"80rem"}
                                 ),
 
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.H4("Other Key Utilization Measures", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                    ],
-                                    no_gutters=True,
-                                ),
-                                
-                                html.Div(
-                                    [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
-                                    ], 
-                                    style={"max-height":"80rem"}
-                                ),
                             ]
                         ),
                         className="mb-3",
@@ -383,12 +395,12 @@ def tab_patient_cohort_analysis():
                                 
                                 dbc.Row(
                                     [
-                                        dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png")), width=3),
+                                        dbc.Col(dcc.Graph(figure=pie_cost_split(df_network_cost_split)), width=3),
                                         dbc.Col(
                                             html.Div(
                                                 [
-                                                    html.Img(src=app.get_asset_url("logo-demo.png")),
-                                                    html.Img(src=app.get_asset_url("logo-demo.png")),
+                                                    dcc.Graph(figure=network_cost_stack_h(df_network_facility_split)),
+                                                    dcc.Graph(figure=network_cost_stack_h(df_network_prof_split)),
                                                 ], 
                                                 style={"max-height":"80rem"}
                                             ), 
@@ -397,8 +409,8 @@ def tab_patient_cohort_analysis():
                                         dbc.Col(
                                             html.Div(
                                                 [
-                                                    html.Img(src=app.get_asset_url("logo-demo.png")),
-                                                    html.Img(src=app.get_asset_url("logo-demo.png")),
+                                                    html.Div(children=table_quality_dtls(df_network_facility_split)),
+                                                    html.Div(children=table_quality_dtls(df_network_prof_split)),
                                                 ], 
                                                 style={"max-height":"80rem"}
                                             ), 
@@ -414,7 +426,8 @@ def tab_patient_cohort_analysis():
                     ),
                 ]
             )
-            
+
+
 def tab_clinical_condition_analysis():
     return html.Div(
                 [
@@ -478,7 +491,7 @@ def tab_clinical_condition_analysis():
                                 
                                 html.Div(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
+                                       html.Img(src=app.get_asset_url("logo-demo.png"))
                                     ], 
                                     style={"max-height":"80rem"}
                                 ),
@@ -698,7 +711,7 @@ def card_graph1_performance_drilldown(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.H1("By Comorbidity Type",id='dimname_on_lv1', style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"0.8rem"}), width=9),
-                                                dbc.Col(mod_criteria_button(), style={"padding-top":"0.8rem"}),
+                                                dbc.Col(mod_criteria_button(['1'],'3'), style={"padding-top":"0.8rem"}),
                                             ]
                                         )
                                     ],
@@ -714,11 +727,11 @@ def card_graph1_performance_drilldown(app):
                 style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
             )
 
-def mod_criteria_button():
+def mod_criteria_button(choice_list,lv='1'):
     return [
                                 dbc.Button(
-                                    "Click to modify criteria",
-                                    id="button-mod-dim-lv1",
+                                    "modify criteria",
+                                    id="button-mod-dim-lv"+lv,
                                     className="mb-3",
                                     style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
                                 ),
@@ -728,11 +741,11 @@ def mod_criteria_button():
                                         html.Div(
                                             [
                                                 dbc.RadioItems(
-                                                    options = [{'label':c , 'value':c,'disabled' : False} if c not in disable_list else {'label':c , 'value':c,'disabled' : True} for c in dimensions
+                                                    options = [{'label':c , 'value':c}  for c in choice_list #['Risk Status','Gender','Age Band']
                                                               ],
-                                                    value = "Patient Health Risk Level",
+                                                    value = choice_list[0],
                                                     labelCheckedStyle={"color": "#057aff"},
-                                                    id = "list-dim-lv1",
+                                                    id = "list-dim-lv"+lv,
                                                     style={"font-family":"NotoSans-Condensed", "font-size":"0.8rem", "padding":"1rem"},
                                                 ),
                                             ],
@@ -744,9 +757,9 @@ def mod_criteria_button():
                                     ]
                                     ),
                                 ],
-                                id = "popover-mod-dim-lv1",
+                                id = "popover-mod-dim-lv"+lv,
                                 is_open = False,
-                                target = "button-mod-dim-lv1",
+                                target = "button-mod-dim-lv"+lv,
                                 placement = "top",
                                 ),
                                 
@@ -758,7 +771,7 @@ app.layout = create_layout(app)
 
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True)
+    app.run_server(host="127.0.0.1",port=8049,debug=True)
 
 
 
