@@ -21,7 +21,7 @@ from modal_bundle import *
 app = dash.Dash(__name__)
 
 df_bundles = pd.read_csv("data/df_bundles_30.csv")
-modal_columns = df_bundles.columns[3:8]
+#modal_columns = df_bundles.columns[3:8]
 
 def create_layout():
 	return html.Div([
@@ -34,7 +34,7 @@ def bundle_card_bundleselection():
 	return html.Div([
 		dash_table.DataTable(
 			id = 'bundle-table-selectedbundles',
-			columns = [{"name":i,"id":i} for i in df_bundles.columns[:8]] + [{"name":i,"id":i} for i in df_bundles.columns[9:10]],
+			columns = [{"name":i,"id":i} for i in df_bundles.columns[:8]] + [{"name":i,"id":i} for i in df_bundles.columns[9:13]],
 			
 			data = df_bundles.iloc[[0,1,2]].to_dict('records'),
 			style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
@@ -59,7 +59,7 @@ def bundle_card_bundleselection():
 			        {
 			        	'if':{'column_id':i},
 			        	'width':'5%'
-			        } for i in df_bundles.columns[9:10]
+			        } for i in df_bundles.columns[9:13]
 			        ],
 			style_header_conditional = [
 				        {'if': {'column_id': 'Bundle'},
