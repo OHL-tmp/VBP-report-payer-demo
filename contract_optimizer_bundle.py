@@ -234,7 +234,6 @@ def card_bundle_table():
                         'textAlign': 'center',
                         'font-family':'NotoSans-Regular',
                         'fontSize':10,
-                        'border':'0px', 
                         'height' : 'auto', 
                         'whiteSpace':'normal',
                         'max-width':'3rem',

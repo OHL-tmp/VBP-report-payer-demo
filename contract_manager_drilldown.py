@@ -103,12 +103,13 @@ def dropdownmenu_select_measures():
 def col_content_drilldown(app):
 	return html.Div(
 			[
-                html.Div([html.Div([col_menu_drilldown()], style={"border-radius":"5rem","background-color":"none"})], style={"padding-bottom":"3rem"}),
+                html.Div([html.Div([col_menu_drilldown()], style={"border-radius":"5rem","background-color":"none"})], style={"padding-bottom":"2rem"}),
 				dbc.Row(
 					[
 						dbc.Col(card_overview_drilldown(0.069),width=8),
 						dbc.Col(card_key_driver_drilldown(app),width=4),
-					]
+					],
+                    style={"padding-bottom":"2rem"}
 				),
 				card_confounding_factors(app),
                 html.Div(
@@ -132,7 +133,6 @@ def col_content_drilldown(app):
                     dbc.Tabs(
                         [
                             dbc.Tab(tab_patient_cohort_analysis(), label="Patient Cohort Analysis", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
-                            dbc.Tab(tab_clinical_condition_analysis(), label="Clinical Condition Analysis", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
                             dbc.Tab(tab_physician_analysis(), label="Physician Analysis", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
                         ], 
                         # id = 'tab_container'
@@ -177,15 +177,25 @@ def card_overview_drilldown(percentage):
                     [
                         dbc.Tabs(
                             [
-                                dbc.Tab(dcc.Graph(figure=waterfall_overall(df_overall)), label="Total Cost", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
-                                dbc.Tab(dcc.Graph(figure=waterfall_overall(df_overall_pmpm)), label="PMPM", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
+                                dbc.Tab(
+                                    html.Div(
+                                        dcc.Graph(figure=waterfall_overall(df_overall),style={"height":"18rem"})
+                                    ), 
+                                    label="Total Cost", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                ),
+                                dbc.Tab(
+                                    html.Div(
+                                        dcc.Graph(figure=waterfall_overall(df_overall_pmpm),style={"height":"18rem"})
+                                    ), 
+                                    label="PMPM", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                ),
                                 
                             ], 
                             # id = 'tab_container'
                         )
                     ],
                     className="mb-3",
-                    style={"padding-left":"3rem", "padding-right":"3rem"},
+                    style={"padding-left":"1rem", "padding-right":"1rem"},
                 ),
             ],
 		)
@@ -312,9 +322,9 @@ def tab_patient_cohort_analysis():
                                 
                                 html.Div(
                                     [
-                                        html.Div(children=drilltable_lv1(df_drill_lv1,'table-patient-drill-lv1'))
+                                        drilltable_lv1(df_drill_lv1,'table-patient-drill-lv1')
                                     ], 
-                                    style={"max-height":"80rem"}
+                                    style={"max-height":"80rem","padding-left":"2rem","padding-right":"2rem"}
                                 ),
                                 html.Div(
                                     dbc.Button("Result Details",
@@ -322,11 +332,11 @@ def tab_patient_cohort_analysis():
                                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem", "width":"8rem"},
                                         # id = 'button-submit-simulation'
                                     ),
-                                    style={"text-align":"end", "padding-right":"5rem"}
+                                    style={"text-align":"start", "padding-left":"2rem", "padding-top":"1rem"}
                                 ),
                                 
 
-                                html.Hr(),
+                                html.Hr(style={"padding":"1rem"}),
 
                                 dbc.Row(
                                     [
@@ -339,47 +349,51 @@ def tab_patient_cohort_analysis():
                                 
                                 html.Div(
                                     [
-                                        html.Div(children=drilltable_lv1(df_drill_lv2,'table-patient-drill-lv2'))
+                                        drilltable_lv1(df_drill_lv2,'table-patient-drill-lv2')
                                     ], 
-                                    style={"max-height":"80rem"}
+                                    style={"max-height":"80rem","padding":"1rem"}
                                 ),
                                 
 
-                                html.Hr(),
+                                html.Hr(style={"padding":"1rem"}),
 
                                 dbc.Row(
                                     [
-                                        dbc.Col(html.H4("Cost and Utilization by Service Categories", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                        dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                        dbc.Col(html.H4("Cost and Utilization by Service Categories", style={"font-size":"1rem", "margin-left":"10px"})),
                                     ],
                                     no_gutters=True,
                                 ),
-                                
                                 html.Div(
                                     [
                                         html.Div(children=drilltable_lv3(df_drill_lv3,'Service Category','table-patient-drill-lv3',1))
                                     ], 
-                                    style={"max-height":"80rem"}
+                                    style={"max-height":"80rem","padding":"1rem"}
                                 ),
+
+                                html.Hr(style={"padding":"1rem"}),
 
                                 dbc.Row(
                                     [
-                                        dbc.Col(html.H4("Drilldown by Subcategories", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                        dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                        dbc.Col(html.H4("Drilldown by Subcategories", style={"font-size":"1rem", "margin-left":"10px"})),
                                     ],
                                     no_gutters=True,
                                 ),
-                                
                                 html.Div(
                                     [
                                         html.Div(children=drilltable_lv3(df_drill_lv4,'Sub Category','table-patient-drill-lv4',0))
                                     ], 
-                                    style={"max-height":"80rem"}
+                                    style={"max-height":"80rem","padding":"1rem"}
                                 ),
 
                             ]
                         ),
                         className="mb-3",
-                        style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
+                        style={"border":"none", "border-radius":"0.5rem","padding-top":"1rem"}
                     ),
+
+                    html.Hr(),
 
                     dbc.Card(
                         dbc.CardBody(
@@ -391,16 +405,17 @@ def tab_patient_cohort_analysis():
                                         
                                     ],
                                     no_gutters=True,
+                                    style={"padding-bottom":"2rem"}
                                 ),
                                 
                                 dbc.Row(
                                     [
-                                        dbc.Col(dcc.Graph(figure=pie_cost_split(df_network_cost_split)), width=3),
+                                        dbc.Col(dcc.Graph(figure=pie_cost_split(df_network_cost_split), style={"width":"15rem","height":"26rem","padding-left":"1rem"}), width=3, style={"background-color":"#f5f5f5","border-radius":"0.5rem", "height":"28rem"}),
                                         dbc.Col(
                                             html.Div(
                                                 [
-                                                    dcc.Graph(figure=network_cost_stack_h(df_network_facility_split)),
-                                                    dcc.Graph(figure=network_cost_stack_h(df_network_prof_split)),
+                                                    html.Div(dcc.Graph(figure=network_cost_stack_h(df_network_facility_split), style={"height":"13rem", "padding":"3rem","background-color":"#f5f5f5","border-radius":"0.5rem"})),
+                                                    html.Div(dcc.Graph(figure=network_cost_stack_h(df_network_prof_split), style={"height":"13rem", "padding":"3rem","background-color":"#f5f5f5","border-radius":"0.5rem"}), style={"padding-top":"2rem"}),
                                                 ], 
                                                 style={"max-height":"80rem"}
                                             ), 
@@ -409,8 +424,8 @@ def tab_patient_cohort_analysis():
                                         dbc.Col(
                                             html.Div(
                                                 [
-                                                    html.Div(children=table_quality_dtls(df_network_facility_split)),
-                                                    html.Div(children=table_quality_dtls(df_network_prof_split)),
+                                                    html.Div(children=table_quality_dtls(df_network_facility_split), style={"height":"13rem", "padding-left":"2rem","padding-right":"2rem","padding-top":"1rem"}),
+                                                    html.Div(children=table_quality_dtls(df_network_prof_split), style={"height":"13rem", "padding-left":"2rem","padding-right":"2rem","padding-top":"3rem"}),
                                                 ], 
                                                 style={"max-height":"80rem"}
                                             ), 
@@ -422,142 +437,12 @@ def tab_patient_cohort_analysis():
                             ]
                         ),
                         className="mb-3",
-                        style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
+                        style={"padding":"1rem"}
                     ),
                 ]
             )
 
 
-def tab_clinical_condition_analysis():
-    return html.Div(
-                [
-                    dbc.Card(
-                        dbc.CardBody(
-                            [
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Patient Cohort Analysis: By Patient Risk Status", style={"font-size":"1rem", "margin-left":"10px"})),
-                                        dbc.Col(
-                                            dbc.Button("Modify Criteria",
-                                                className="mb-3",
-                                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem", "width":"8rem"},
-                                                # id = 'button-submit-simulation'
-                                            ),
-                                            width=2
-                                        )
-                                    ],
-                                    no_gutters=True,
-                                ),
-                                
-                                html.Div(
-                                    [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
-                                    ], 
-                                    style={"max-height":"80rem"}
-                                ),
-                                html.Div(
-                                    dbc.Button("Result Details",
-                                        className="mb-3",
-                                        style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem", "width":"8rem"},
-                                        # id = 'button-submit-simulation'
-                                    ),
-                                    style={"text-align":"end", "padding-right":"5rem"}
-                                ),
-                                
-
-                                html.Hr(),
-
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.H4("Cost and Utilization by Service Categories", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                    ],
-                                    no_gutters=True,
-                                ),
-                                
-                                html.Div(
-                                    [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
-                                    ], 
-                                    style={"max-height":"80rem"}
-                                ),
-
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.H4("Drilldown by Subcategories", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                    ],
-                                    no_gutters=True,
-                                ),
-                                
-                                html.Div(
-                                    [
-                                       html.Img(src=app.get_asset_url("logo-demo.png"))
-                                    ], 
-                                    style={"max-height":"80rem"}
-                                ),
-
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.H4("Other Key Utilization Measures", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                    ],
-                                    no_gutters=True,
-                                ),
-                                
-                                html.Div(
-                                    [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
-                                    ], 
-                                    style={"max-height":"80rem"}
-                                ),
-                            ]
-                        ),
-                        className="mb-3",
-                        style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
-                    ),
-
-                    dbc.Card(
-                        dbc.CardBody(
-                            [
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Total Cost Incurred In VS.Out of ACO", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                        
-                                    ],
-                                    no_gutters=True,
-                                ),
-                                
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png")), width=3),
-                                        dbc.Col(
-                                            html.Div(
-                                                [
-                                                    html.Img(src=app.get_asset_url("logo-demo.png")),
-                                                    html.Img(src=app.get_asset_url("logo-demo.png")),
-                                                ], 
-                                                style={"max-height":"80rem"}
-                                            ), width=5
-                                        ),
-                                        dbc.Col(
-                                            html.Div(
-                                                [
-                                                    html.Img(src=app.get_asset_url("logo-demo.png")),
-                                                    html.Img(src=app.get_asset_url("logo-demo.png")),
-                                                ], 
-                                                style={"max-height":"80rem"}
-                                            ), width=4
-                                        ),   
-                                    ]
-                                    
-                                ),
-                            ]
-                        ),
-                        className="mb-3",
-                        style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
-                    ),
-                ]
-            )
 
 
 def tab_physician_analysis():
