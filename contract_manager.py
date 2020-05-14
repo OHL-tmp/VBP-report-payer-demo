@@ -472,7 +472,8 @@ def manager_modal_qualityscore(app):
                                                  style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
                                              )
                                  )
-                         ], id = 'manager-modal-qualityscore', size="lg")
+                         ], 
+                         id = 'manager-modal-qualityscore', size="xl")
             ],
             
         )
