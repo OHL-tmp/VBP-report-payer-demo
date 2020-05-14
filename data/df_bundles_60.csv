@@ -1,0 +1,36 @@
+﻿IP/OP,Category,Bundle,Bundle Count,Total Bundle Cost,Average Bundle Cost,Benchmark Average,Best-in-Class Average,Estimated Opportunity Size,Recommended,User Defined,Recommended,User Defined
+Inpatient,"Spine, Bone, and Joint",Back and neck except spinal fusion,100,100,100,100,100,100,100,100,High,High
+Inpatient,"Spine, Bone, and Joint",Double joint replacement of the lower extremity,100,100,100,100,100,100,100,100,High,High
+Inpatient,"Spine, Bone, and Joint",Fractures of the femur and hip or pelvis,100,100,100,100,100,100,100,100,High,High
+Inpatient,"Spine, Bone, and Joint",Hip and femur procedures except major joint,100,100,100,100,100,100,100,100,High,High
+Inpatient,"Spine, Bone, and Joint","Lower extremity/humerus procedure except hip, foot, femur",100,100,100,100,100,100,100,100,High,High
+Inpatient,"Spine, Bone, and Joint",Major joint replacement of the lower extremity (MJRLE),100,100,100,100,100,100,100,100,High,High
+Inpatient,"Spine, Bone, and Joint",Major joint replacement of the upper extremity,100,100,100,100,100,100,100,100,High,High
+Inpatient,"Spine, Bone, and Joint",Spinal fusion,100,100,100,100,100,100,100,100,High,High
+Inpatient,Kidney,Renal failure,100,100,100,100,100,100,100,100,High,High
+Inpatient,Infectious Disease,Cellulitis,100,100,100,100,100,100,100,100,High,High
+Inpatient,Infectious Disease,Sepsis,100,100,100,100,100,100,100,100,High,High
+Inpatient,Infectious Disease,Urinary tract infection,100,100,100,100,100,100,100,100,High,High
+Inpatient,Neurological,Seizures,100,100,100,100,100,100,100,100,High,High
+Inpatient,Neurological,Stroke,100,100,100,100,100,100,100,100,High,High
+Inpatient,Cardiac,Acute myocardial infarction,100,100,100,100,100,100,100,100,High,High
+Inpatient,Cardiac,Cardiac arrhythmia,100,100,100,100,100,100,100,100,High,High
+Inpatient,Cardiac,Cardiac defibrillator,100,100,100,100,100,100,100,100,High,High
+Inpatient,Cardiac,Cardiac valve,100,100,100,100,100,100,100,100,High,High
+Inpatient,Cardiac,Congestive heart failure,100,100,100,100,100,100,100,100,High,High
+Inpatient,Cardiac,Coronary artery bypass graft,100,100,100,100,100,100,100,100,High,High
+Inpatient,Cardiac,Pacemaker,100,100,100,100,100,100,100,100,High,High
+Inpatient,Cardiac,Percutaneous coronary intervention,100,100,100,100,100,100,100,100,High,High
+Inpatient,Cardiac,Transcatheter Aortic Valve Replacement,100,100,100,100,100,100,100,100,High,High
+Inpatient,Pulmonary,"COPD, bronchitis, asthma",100,100,100,100,100,100,100,100,High,High
+Inpatient,Pulmonary,Simple pneumonia and respiratory infections,100,100,100,100,100,100,100,100,High,High
+Inpatient,Gastrointestinal,Bariatric Surgery,100,100,100,100,100,100,100,100,High,High
+Inpatient,Gastrointestinal,"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",100,100,100,100,100,100,100,100,High,High
+Inpatient,Gastrointestinal,Gastrointestinal hemorrhage,100,100,100,100,100,100,100,100,High,High
+Inpatient,Gastrointestinal,Gastrointestinal obstruction,100,100,100,100,100,100,100,100,High,High
+Inpatient,Gastrointestinal,Inflammatory Bowel Disease,100,100,100,100,100,100,100,100,High,High
+Inpatient,Gastrointestinal,Major bowel procedure,100,100,100,100,100,100,100,100,High,High
+Outpatient,Outpatient,Back & neck except spinal fusion,100,100,100,100,100,100,100,100,High,High
+Outpatient,Outpatient,Cardiac Defibrillator,100,100,100,100,100,100,100,100,High,High
+Outpatient,Outpatient,Major joint replacement of the lower extremity (MJRLE),100,100,100,100,100,100,100,100,High,High
+Outpatient,Outpatient,Percutaneous Coronary Intervention,100,100,100,100,100,100,100,100,High,High
