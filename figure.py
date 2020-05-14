@@ -1245,26 +1245,8 @@ def measure_quality_bar(df,domain):
 	fig = go.Figure(data=[
 		
 		go.Bar(
-			name='YTD',
-			x=df['YTD'].tolist(), 
-			y=df['measure'].tolist(),
-			text="",
-			textposition='outside', 
-			texttemplate='%{x:.0%}',
-			#width=0.3,
-			textangle=0,
-			marker=dict(
-					color=domain_color[domain],
-					opacity=0.7
-					),
-			orientation='h',
-			hoverinfo='skip',
-			#hovertemplate='%{x:,.2f}',
-		),
-
-		go.Bar(
-			name='Baseline',
-			x=df['baseline'].tolist(), 
+			name='Target',
+			x=df['Target'].tolist(), 
 			y=df['measure'].tolist(),
 			text="",
 			textposition='outside', 
@@ -1274,6 +1256,59 @@ def measure_quality_bar(df,domain):
 			marker=dict(
 					color=colors['grey'],
 					opacity=0.7
+					),
+			orientation='h',
+			hoverinfo='skip',
+			#hovertemplate='%{x:,.2f}',
+		),
+
+		go.Bar(
+			name='Annualized',
+			x=df['Annualized'].tolist(), 
+			y=df['measure'].tolist(),
+			text="",
+			textposition='outside', 
+			texttemplate='%{x:.0%}',
+			#width=0.3,
+			textangle=0,
+			marker=dict(
+					color=domain_color[domain].replace('rgb','rgba').replace(')',',0.5)'),
+					#opacity=0.5
+					),
+			orientation='h',
+			hoverinfo='skip',
+			#hovertemplate='%{x:,.2f}',
+		),
+
+		go.Bar(
+			name='YTD',
+			x=df['YTD'].tolist(), 
+			y=df['measure'].tolist(),
+			text="",
+			textposition='outside', 
+			texttemplate='%{x:.0%}',
+			#width=0.3,
+			textangle=0,
+			marker=dict(
+					color=domain_color[domain].replace('rgb','rgba').replace(')',',0.8)'),
+					#opacity=0.8
+					),
+			orientation='h',
+			hoverinfo='skip',
+			#hovertemplate='%{x:,.2f}',
+		),
+		go.Bar(
+			name='Baseline',
+			x=df['Baseline'].tolist(), 
+			y=df['measure'].tolist(),
+			text="",
+			textposition='outside', 
+			texttemplate='%{x:.0%}',
+			#width=0.3,
+			textangle=0,
+			marker=dict(
+					color=colors['grey'],
+					opacity=0.5
 					),
 			orientation='h',
 			hoverinfo='skip',
@@ -1443,20 +1478,264 @@ def data_bars_diverging(df, column, color_above='#3D9970', color_below='#FF4136'
 
 	return styles
 
-def drilltable_lv1(df):
-	df['Growth Trend']=df['Trend'].apply(lambda x: '↗️' if x > 0.02 else '↘️' if x<-0.02 else '→' )
-	col=df.columns.tolist()
-	table=dash_table.DataTable(
-		data=df.to_dict('records'),
-		columns=[
-			{"name": i, "id": i} if i==df.columns[0] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.percentage(0)} for i in col[0:2]+['Growth Trend']+col[3:5]
-		],
-		style_data_conditional=(
+def drilltable_lv1(df,tableid):
+	#df['Growth Trend']=df['Trend'].apply(lambda x: '↗️' if x > 0.02 else '↘️' if x<-0.02 else '→' )
+	#col=df.columns.tolist()
+    tbl=dash_table.DataTable(
+        id=tableid,
+        data=df.to_dict('records'),
+        columns=[{"name": i, "id": i} if i==df.columns[0] else {"name": i, "id": i} if i==df.columns[3] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.percentage(0)} for i in df.columns],
+        row_selectable="single",
+        selected_rows=[],
+        style_data={
+            'whiteSpace': 'normal',
+            'height': 'auto'
+        },
+        style_data_conditional=(
 		data_bars_diverging(df, '% Diff from Target') +
 		data_bars_diverging(df, 'Contribution to Overall Diff')
 		),
+       
+        style_cell={
+            'textAlign': 'center',
+            'font-family':'NotoSans-Condensed',
+            'fontSize':14
+        },
+        style_header={
+            'height': '4rem',
+            'minWidth': '3rem',
+            'maxWidth':'3rem',
+            'whiteSpace': 'normal',
+            'backgroundColor': "#f1f6ff",
+            'fontWeight': 'bold',
+            'font-family':'NotoSans-CondensedLight',
+            'fontSize':16,
+            'color': '#1357DD',
+            'text-align':'center',
+        },
+    )
+    return tbl
+
+
+def drilltable_lv3(df,dimension,tableid,row_select):#row_select: numeric 0 or 1
+    
+    #df1=df[0:len(df)-1].sort_values(by='Contribution to Overall Performance Difference',ascending=False)
+    #df1.append(df[len(df)-1:len(df)])
+    #df1['id']=df1[df1.columns[0]]
+    #df1.set_index('id', inplace=True, drop=False)
+    df['id']=df[df.columns[0]]
+    df.set_index('id', inplace=True, drop=False)
+
+    if row_select==0:
+        row_sel=False
+    else:
+        row_sel='single'
+        
+    table_lv3=dash_table.DataTable(
+        data=df.to_dict('records'),
+        id=tableid,
+        columns=[
+        {"name": ["Total Cost", dimension], "id": dimension},
+        {"name": ["Total Cost", "YTD Cost PMPM"], "id": "YTD Cost PMPM",'type': 'numeric',"format":FormatTemplate.money(0)},
+        {"name": ["Total Cost", "% Diff from Benchmark"], "id": "% Cost Diff from Target",'type': 'numeric',"format":FormatTemplate.percentage(1)},
+        {"name": ["Total Cost", "Contribution to Overall Performance Difference"], "id": "Contribution to Overall Performance Difference",'type': 'numeric',"format":FormatTemplate.percentage(1)},
+        {"name": ["Utilization Rate", "YTD Avg Utilization Rate"], "id": "YTD Avg Utilization Rate",'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
+        {"name": ["Utilization Rate", "% Diff from Benchmark"], "id": "% Util Diff from Target",'type': 'numeric',"format":FormatTemplate.percentage(1)},
+        {"name": ["Unit Cost", "YTD Avg Cost per Unit"], "id": "YTD Avg Cost per Unit",'type': 'numeric',"format":FormatTemplate.money(0)},
+        {"name": ["Unit Cost", "% Diff from Benchmark"], "id": "% Unit Cost Diff from Target",'type': 'numeric',"format":FormatTemplate.percentage(1)},
+    ],
+        merge_duplicate_headers=True,
+        sort_action="custom",
+        sort_mode='single',
+        sort_by=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"},],
+        row_selectable=row_sel,
+        selected_rows=[],
+        style_data={
+            'whiteSpace': 'normal',
+            'height': 'auto'
+        },
+       
+        style_cell={
+            'textAlign': 'center',
+            'font-family':'NotoSans-Regular',
+            'fontSize':12
+        },
+        style_cell_conditional=[
+            {'if': {'column_id': df.columns[0]},
+             
+             'fontWeight': 'bold',
+            }, 
+            
+        ],
+        style_header={
+            'height': '4rem',
+            'minWidth': '3rem',
+            'maxWidth':'3rem',
+            'whiteSpace': 'normal',
+            'backgroundColor': '#f1f6ff',
+            'fontWeight': 'bold',
+            'font-family':'NotoSans-CondensedLight',
+            'fontSize':14,
+            'color': '#1357DD',
+            'text-align':'center',
+        },
+    )
+    return table_lv3
+
+def pie_cost_split(df):
+	labels = df['type']
+	values = df['value']
+
+	fig = go.Figure(data=[
+		go.Pie(
+			labels=labels, 
+			values=values, 
+			hole=.6,
+			textinfo='label+percent',
+			textposition='auto',
+			insidetextorientation='horizontal',
+			opacity=0.7,
+			marker=dict(
+					colors=[colors['yellow'],colors['blue']],#.replace('rgb','rgba').replace(')',',0.7)')
+					#
+				)
+
+			)
+		])
+
+	fig.update_layout(
+		paper_bgcolor=colors['transparent'],
+		plot_bgcolor=colors['transparent'],
+		legend=dict(
+			orientation='h',
+			x=0.2,y=-0.2
+			),
+		margin=dict(l=0,r=0,b=30,pad=0),
+		font=dict(
+			family='NotoSans-Condensed',
+			size=14,
+			color='#38160f',
+
+			)
+		)
+
+	return fig
+
+def network_cost_stack_h(df):
+
+	n=len(df)
+
+	df=df[(n-4):n]
+
+	fig = go.Figure(data=[
+		
+		go.Bar(
+			name='In ACO',
+			x=df['In ACO'], 
+			y=df[df.columns[0]],
+			text="",
+			textposition='auto', 
+			texttemplate='%{x:,.0f}',
+			#width=0.3,
+			textangle=0,
+			marker=dict(
+					color=colors['blue'],
+					opacity=0.7
+					),
+			orientation='h',
+			hoverinfo='name+y',
+			#hovertemplate='%{x:,.2f}',
+		),
+
+		go.Bar(
+			name='Out of ACO',
+			x=df['Out of ACO'], 
+			y=df[df.columns[0]],
+			text="",
+			textposition='outside', 
+			texttemplate='%{x:,.0f}',
+			#width=0.3,
+			textangle=0,
+			marker=dict(
+					color=colors['yellow'],
+					#opacity=0.5
+					),
+			orientation='h',
+			hoverinfo='name+y',
+			#hovertemplate='%{x:,.2f}',
+		),
+	])
+		
+	# Change the bar mode
+	fig.update_layout(
+		
+		xaxis=dict(
+			#position=0,
+			visible=True,
+			range=[0,(df['Out of ACO'].max()+df['In ACO'].max())*1.1],
+			#tickformat='0%'
+
+			),
+		barmode='stack',
+		#bargap=0.2,
+		#bargroupgap=0,
+		paper_bgcolor=colors['transparent'],
+		plot_bgcolor=colors['transparent'],
+		showlegend=False,
+
+		margin=dict(l=0,r=0,b=0,t=0,pad=0,),
+		font=dict(
+			family="NotoSans-Condensed",
+			size=14,
+			color="#38160f"
+		),
 	)
-	return table
+
+	return fig
+
+def table_driver_all(df):        
+    table=dash_table.DataTable(
+        data=df.to_dict('records'),
+        #id=tableid,
+        columns=[{"name": c, "id": c,} for c in df.columns ],  
+        sort_action="native",
+        sort_mode='single',
+        sort_by=[{"column_id":"Impact to Overall Difference","direction":"desc"},],
+        style_data={
+            'whiteSpace': 'normal',
+            'height': 'auto'
+        },
+       
+        style_cell={
+            'textAlign': 'center',
+            'font-family':'NotoSans-Regular',
+            'fontSize':12
+        },
+        style_cell_conditional=[
+            {'if': {'column_id': df.columns[0]},
+             
+             'fontWeight': 'bold',
+            }, 
+            
+        ],
+        style_table={
+            'back':  colors['blue'],
+        },
+        style_header={
+            'height': '4rem',
+            'minWidth': '3rem',
+            'maxWidth':'3rem',
+            'whiteSpace': 'normal',
+            'backgroundColor': '#f1f6ff',
+            'fontWeight': 'bold',
+            'font-family':'NotoSans-CondensedLight',
+            'fontSize':14,
+            'color': '#1357DD',
+            'text-align':'center',
+        },
+    )
+    return table
+#def table_network_cost(df):
 
 #df_quality = pd.read_csv("data/quality_setup.csv")
 #app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract-manager-drilldown/')
