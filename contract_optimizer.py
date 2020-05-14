@@ -908,21 +908,20 @@ def cal_overall_weight(data):
 @app.callback(
     Output('container-measure-setup', 'children'),
     [Input('table-measure-setup', 'selected_rows'),],
-    [State('table-measure-setup', 'data'),
-    State('table-measure-setup', 'dropdown'),
-    State('table-measure-setup', 'dropdown_conditional'),
-    State('table-measure-setup', 'dropdown_data'),])
-def update_columns(selected_quality, data,t1,t2,t3):
+    [State('table-measure-setup', 'data'),])
+def update_columns(selected_quality, data):
     for i in range(0,23):
         row=data[i]
 
         if i in selected_quality:
             row['tar_user']=row['tar_recom']
+            if i in [6,8,9,15,16,19,20]:
+                row['tar_user_type']='Report'
+            else:
+                row['tar_user_type']='Performance'
         else:
             row['tar_user']=float('nan')
-    print(t1)
-    print(t2)
-    print(t3)
+            row['tar_user_type']=float('nan')
 
     return qualitytable(pd.DataFrame.from_dict(data),selected_quality)
 
@@ -941,8 +940,11 @@ def update_columns(timestamp, data,selected_quality):
             row['userdefined']=float('nan')
 
         if i in selected_quality:
-            if i in [10,11,12,13,14,17,18,21,22]:
-                row['tar_user']=str(row['tar_user']).replace('$','').replace('%','').replace(',','')+'%'
+            if row['tar_user_type']=='Report':
+                row['tar_user']='R'
+            else:
+                if i in [10,11,12,13,14,17,18,21,22]:
+                    row['tar_user']=str(row['tar_user']).replace('$','').replace('%','').replace(',','')+'%'
         else:
             row['tar_user']=float('nan')
 
@@ -991,12 +993,16 @@ def store_data(usr_tgt_int, usr_msr, usr_planshare, usr_planshare_min, usr_share
     usr_dom_3 =(0 if df.iloc[16,8].replace('%','')=='' else  int(df.iloc[16,8].replace('%',"")))/100
     usr_dom_4 =(0 if df.iloc[21,8].replace('%','')=='' else  int(df.iloc[21,8].replace('%',"")))/100
 
+    user_tar_type=df['tar_user_type'].tolist()
+    user_tar_value=df['tar_user'].tolist()
+
     datasets = {
         'medical cost target' : {'user target' : usr_tgt},
         'savings/losses sharing arrangement' : {'two side' : two_side, 'msr': usr_msr, 'savings sharing' : usr_planshare, 'savings sharing min' : usr_planshare_min, 'savings share cap' : usr_sharecap,
         'mlr' : usr_mlr, 'losses sharing' : usr_planshare_l, 'losses sharing min' : usr_planshare_l_min, 'losses share cap' : usr_sharecap_l, 'loss method' : loss_method},
         'quality adjustment' : {'selected measures' : select_row, 'recom_dom_1' : recom_dom_1, 'recom_dom_2' : recom_dom_2, 'recom_dom_3' : recom_dom_3, 'recom_dom_4' : recom_dom_4,
-        'usr_dom_1' : usr_dom_1, 'usr_dom_2' : usr_dom_2, 'usr_dom_3' : usr_dom_3, 'usr_dom_4' : usr_dom_4}
+        'usr_dom_1' : usr_dom_1, 'usr_dom_2' : usr_dom_2, 'usr_dom_3' : usr_dom_3, 'usr_dom_4' : usr_dom_4,
+        'user_tar_type':user_tar_type,'user_tar_value':user_tar_value}
     }
     
     with open('configure/input_ds.json','w') as outfile:
@@ -1025,6 +1031,8 @@ def cal_simulation(submit, data):
         cap_user_losspct = datasets['savings/losses sharing arrangement']['losses share cap']
         twosided = datasets['savings/losses sharing arrangement']['two side']
         lossmethod = datasets['savings/losses sharing arrangement']['loss method']
+        user_tar_type=datasets['quality adjustment']['user_tar_type']
+        user_tar_value=datasets['quality adjustment']['user_tar_value']
 
         if twosided == True:
             mlr_user = mlr_user/100
@@ -1032,7 +1040,7 @@ def cal_simulation(submit, data):
             min_user_losspct = min_user_losspct/100
             cap_user_losspct = cap_user_losspct/100
 
-        df=simulation_cal(selected_rows,domian_weight,default_input,target_user_pmpm,msr_user,mlr_user,max_user_savepct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided)
+        df=simulation_cal(selected_rows,domian_weight,user_tar_type,user_tar_value,default_input,target_user_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,min_user_losspct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided,lossmethod)
 
         return 'tab-1', df.to_json(orient = 'split')
     return 'tab-0', ""
