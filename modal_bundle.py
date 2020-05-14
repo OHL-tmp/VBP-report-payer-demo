@@ -19,7 +19,7 @@ from figure import *
 #app = dash.Dash(__name__)
 
 df_bundles = pd.read_csv("data/df_bundles_30.csv")
-modal_columns = df_bundles.columns[3:8]
+modal_columns = df_bundles.columns[3:9]
 
 conditional_data_style = [
 			        {
@@ -28,23 +28,27 @@ conditional_data_style = [
 			        },
 			        {
 			        	'if':{'column_id':'Bundle Count'},
-			        	'width':'12%'
+			        	'width':'10%'
 			        },
 			        {
-			        	'if':{'column_id':"Provider's Medical Cost"},
-			        	'width':'14%'
+			        	'if':{'column_id':"Total Bundle Cost"},
+			        	'width':'10%'
 			        },
 			        {
-			        	'if':{'column_id':'Benchmark Medical Cost'},
-			        	'width':'14%'
+			        	'if':{'column_id':'Average Bundle Cost'},
+			        	'width':'10%'
 			        },
 			        {
-			        	'if':{'column_id':'BIC Medical Cost'},
-			        	'width':'12%'
+			        	'if':{'column_id':'Benchmark Average'},
+			        	'width':'10%'
 			        },
 			        {
-			        	'if':{'column_id':"Provider's Total Cost"},
-			        	'width':'12%'
+			        	'if':{'column_id':"Best-in-Class Average"},
+			        	'width':'10%'
+			        },
+			        {
+			        	'if':{'column_id':"Estimated Opportunity Size"},
+			        	'width':'10%'
 			        },
 			        ]
 
@@ -70,7 +74,7 @@ def bundle_modal_bundles_body():
 					id = 'bundle-table-modal-spine',
 					columns = [{"name":'Spine, Bone, and Joint', "id":'Bundle'}] + [{"name":i, "id":i} for i in modal_columns],
 					data = df_bundles[df_bundles['Category'] == "Spine, Bone, and Joint"].to_dict('records'),
-					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem"},
+					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
 					style_data_conditional=conditional_data_style,
 			        style_header_conditional = [
 			        {'if': {'column_id': 'Bundle'},
@@ -83,7 +87,7 @@ def bundle_modal_bundles_body():
 
 			        style_as_list_view = True,
 			        row_selectable = 'multi',
-			        selected_rows = [],
+			        selected_rows = [0,1],
 				), style = {'padding-bottom' :'1rem'}
 			),]),
 #		dbc.Row(html.H6("Kidney")),
@@ -94,7 +98,7 @@ def bundle_modal_bundles_body():
 					id = 'bundle-table-modal-kidney',
 					columns = [{"name":'Kidney', "id":'Bundle'}] + [{"name":'', "id":i} for i in modal_columns],
 					data = df_bundles[df_bundles['Category'] == "Kidney"].to_dict('records'),
-					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem"},
+					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
 					style_data_conditional=conditional_data_style,
 			        style_header_conditional = [
 			        {'if': {'column_id': 'Bundle'},
@@ -118,7 +122,7 @@ def bundle_modal_bundles_body():
 					id = 'bundle-table-modal-infect',
 					columns = [{"name":'Infectious Disease', "id":'Bundle'}] + [{"name":'', "id":i} for i in modal_columns],
 					data = df_bundles[df_bundles['Category'] == "Infectious Disease"].to_dict('records'),
-					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem"},
+					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
 					style_cell_conditional=conditional_data_style,
 			        style_header_conditional = [
 			        {'if': {'column_id': 'Bundle'},
@@ -142,7 +146,7 @@ def bundle_modal_bundles_body():
 					id = 'bundle-table-modal-neuro',
 					columns = [{"name":'Neurological', "id":'Bundle'}] + [{"name":'', "id":i} for i in modal_columns],
 					data = df_bundles[df_bundles['Category'] == "Neurological"].to_dict('records'),
-					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem"},
+					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
 					style_cell_conditional=conditional_data_style,
 			        style_header_conditional = [
 			        {'if': {'column_id': 'Bundle'},
@@ -166,7 +170,7 @@ def bundle_modal_bundles_body():
 					id = 'bundle-table-modal-cardi',
 					columns = [{"name":'Cardiac', "id":'Bundle'}] + [{"name":'', "id":i} for i in modal_columns],
 					data = df_bundles[df_bundles['Category'] == "Cardiac"].to_dict('records'),
-					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem"},
+					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
 					style_cell_conditional=conditional_data_style,
 			        style_header_conditional = [
 			        {'if': {'column_id': 'Bundle'},
@@ -190,7 +194,7 @@ def bundle_modal_bundles_body():
 					id = 'bundle-table-modal-pul',
 					columns = [{"name":'Pulmonary', "id":'Bundle'}] + [{"name":'', "id":i} for i in modal_columns],
 					data = df_bundles[df_bundles['Category'] == "Pulmonary"].to_dict('records'),
-					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem"},
+					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
 					style_cell_conditional=conditional_data_style,
 			        style_header_conditional = [
 			        {'if': {'column_id': 'Bundle'},
@@ -236,7 +240,7 @@ def bundle_modal_bundles_body():
 					id = 'bundle-table-modal-op',
 					columns = [{"name":'Outpatient', "id":'Bundle'}] + [{"name":'', "id":i} for i in modal_columns],
 					data = df_bundles[df_bundles['Category'] == "Outpatient"].to_dict('records'),
-					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem"},
+					style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
 					style_cell_conditional=conditional_data_style,
 			        style_header_conditional = [
 			        {'if': {'column_id': 'Bundle'},
