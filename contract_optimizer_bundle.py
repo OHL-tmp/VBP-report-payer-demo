@@ -31,6 +31,7 @@ file = open('configure/default_ds.json', encoding = 'utf-8')
 default_input = json.load(file)
 df_quality = pd.read_csv("data/quality_setup.csv")
 df_bundle_measure=pd.read_csv("data/bundle_measure_setup.csv")
+df_bundles_default=pd.read_csv("data/df_bundles_30.csv")
 
 # measure_list for episode
 measure_epo_list2=df_bundles[df_bundles['IP/OP'] == "Inpatient"]

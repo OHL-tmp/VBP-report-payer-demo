@@ -315,15 +315,15 @@ def tab_patient_cohort_analysis():
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                         dbc.Col(html.H4("Patient Cohort Analysis: By Patient Risk Status", style={"font-size":"1rem", "margin-left":"10px"})),
-                                        dbc.Col(mod_criteria_button(['Risk Status','Gender','Age Band'],'1'),width=2)
+                                        dbc.Col(mod_criteria_button(['Patient Health Risk Level','Gender','Age Band'],'1'),width=2)
                                     ],
                                     no_gutters=True,
                                 ),
                                 
                                 html.Div(
                                     [
-                                        drilltable_lv1(df_drill_lv1,'table-patient-drill-lv1')
-                                    ], 
+                                        drilltable_lv1(drilldata_process('Patient Health Risk Level'),'table-patient-drill-lv1')
+                                    ], id="table-patient-drill-lv1-container",
                                     style={"max-height":"80rem","padding-left":"2rem","padding-right":"2rem"}
                                 ),
                                 html.Div(
@@ -350,7 +350,7 @@ def tab_patient_cohort_analysis():
                                 html.Div(
                                     [
                                         drilltable_lv1(df_drill_lv2,'table-patient-drill-lv2')
-                                    ], 
+                                    ], id="table-patient-drill-lv2-container",
                                     style={"max-height":"80rem","padding":"1rem"}
                                 ),
                                 
@@ -367,7 +367,7 @@ def tab_patient_cohort_analysis():
                                 html.Div(
                                     [
                                         html.Div(children=drilltable_lv3(df_drill_lv3,'Service Category','table-patient-drill-lv3',1))
-                                    ], 
+                                    ], id="table-patient-drill-lv3-container",
                                     style={"max-height":"80rem","padding":"1rem"}
                                 ),
 
@@ -383,7 +383,7 @@ def tab_patient_cohort_analysis():
                                 html.Div(
                                     [
                                         html.Div(children=drilltable_lv3(df_drill_lv4,'Sub Category','table-patient-drill-lv4',0))
-                                    ], 
+                                    ], id="table-patient-drill-lv4-container",
                                     style={"max-height":"80rem","padding":"1rem"}
                                 ),
 
@@ -653,6 +653,42 @@ def mod_criteria_button(choice_list,lv='1'):
 
 
 app.layout = create_layout(app)
+
+
+# modify lv1 criteria
+@app.callback(
+    Output("popover-mod-dim-lv1","is_open"),
+    [Input("button-mod-dim-lv1","n_clicks"),],
+   # Input("mod-button-mod-measure","n_clicks"),
+    [State("popover-mod-dim-lv1", "is_open")],
+)
+def toggle_popover_mod_criteria1(n1, is_open):
+    if n1 :
+        return not is_open
+    return is_open
+
+# modify lv2 criteria
+@app.callback(
+    Output("popover-mod-dim-lv2","is_open"),
+    [Input("button-mod-dim-lv2","n_clicks"),],
+   # Input("mod-button-mod-measure","n_clicks"),
+    [State("popover-mod-dim-lv2", "is_open")],
+)
+def toggle_popover_mod_criteria2(n1, is_open):
+    if n1 :
+        return not is_open
+    return is_open
+
+
+#update lv1 table based on criteria button1
+@app.callback(
+    Output("table-patient-drill-lv1-container","children"),
+   [Input("list-dim-lv1","value")] 
+)
+def update_table_dimension(dim):
+    
+    return drillgraph_lv1(drilldata_process(dim),'dashtable_lv1',dim),f1_name,filter1_value_list,f1_name,filter1_value_list,f1_name,filter1_value_list,'By '+f1_name
+
 
 
 if __name__ == "__main__":
