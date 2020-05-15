@@ -428,13 +428,13 @@ def card_sl_sharing_arrangement(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=4),
-                                                dbc.Col(dbc.Checklist(options = [{'label':'1 - Quality Adjustment', 'value' : 'selected'}], value = []))
+                                                dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected'}], value = [], id = 'checkbox-saving-qa'))
                                             ],
                                             style={"padding-top":"1rem"}),
 				                        dbc.Row(
 	                    					[
 	                    						dbc.Col(html.Div(), width = 1),
-                                                dbc.Col(html.H5("Sharing %", style={"font-size":"0.6rem"}),width=3),
+                                                dbc.Col(html.Div([html.H5("Sharing %")], id = 'text-saving-share',style={"font-size":"0.6rem"}),width=3),
 	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
@@ -526,7 +526,7 @@ def card_sl_sharing_arrangement(app):
 	                    				),
                                         dbc.Row([
                                             dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=4),
-                                            dbc.Col(dbc.Checklist(options = [{'label':'1 - Quality Adjustment', 'value' : 'selected'}], value = [], id = 'switch-loss-method'))
+                                            dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected'}], value = [], id = 'switch-loss-method'))
                                             ],
                                             style={"padding-top":"1rem"}),
 				                        dbc.Row(
@@ -914,8 +914,18 @@ def sim_assump_input_session():
 
 layout = create_layout(app)
 
-
 @app.callback(
+    [Output('text-saving-share', 'children'),
+    Output('input-usr-planshare-min', 'disabled')],
+    [Input('checkbox-saving-qa', 'value')]
+    )
+def toggle_saving_qa(v):
+    if v and len(v)>0:
+        return html.H5("Max Sharing % (when quality targets are met)"), False
+    return html.H5("Sharing %"), True
+
+  
+app.callback(
     [Output('input-usr-mlr', 'disabled'),
     Output('input-usr-planshare-l', 'disabled'),
     Output('input-usr-sharecap-l', 'disabled'),

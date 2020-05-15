@@ -30,7 +30,7 @@ df_quality = pd.read_csv("data/quality_setup.csv")
 df_bundle_measure=pd.read_csv("data/bundle_measure_setup.csv")
 
 # measure_list for episode
-measure_epo_list2=df_bundles[df_bundles['IP/OP'] == "Inpatient"]
+measure_epo_list2=df_bundles_default[df_bundles_default['IP/OP'] == "Inpatient"]
 measure_epo_list3=['Double joint replacement of the lower extremity','Major joint replacement of the lower extremity (MJRLE)']
 measure_epo_list4=['Coronary artery bypass graft']
 measure_epo_list5=['Acute myocardial infarction']
