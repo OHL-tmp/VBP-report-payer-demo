@@ -1,0 +1,73 @@
+,Category,Bundle,Contract_type,Item,Best Estimate,Worst Case,Best Case,Best Estimate Total,Worst Case Total,Best Case Total
+0,Plan,Back and neck except spinal fusion,FFS Contract,FFS Cost,2100.0,2310.0,1890.0,210000.0,231000.0,189000.0
+1,Plan,Back and neck except spinal fusion,FFS Contract,Savings Paid to Provider,0.0,0.0,0.0,0.0,0.0,0.0
+2,Plan,Back and neck except spinal fusion,FFS Contract,Losses Owed by Provider,0.0,0.0,0.0,0.0,0.0,0.0
+3,Plan,Back and neck except spinal fusion,FFS Contract,Net Cost,2100.0,2310.0,1890.0,210000.0,231000.0,189000.0
+4,Plan,Back and neck except spinal fusion,Bundled Payment (Recommended),FFS Cost,1974.0,2171.4,1776.6000000000001,197400.0,217140.0,177660.0
+5,Plan,Back and neck except spinal fusion,Bundled Payment (Recommended),Savings Paid to Provider,0.0,0.0,23.318099999999863,0.0,0.0,2331.8099999999863
+6,Plan,Back and neck except spinal fusion,Bundled Payment (Recommended),Losses Owed by Provider,-158.079,-328.14,0.0,-15807.900000000001,-32814.0,0.0
+7,Plan,Back and neck except spinal fusion,Bundled Payment (Recommended),Net Cost,1815.921,1843.2600000000002,1799.9181,181592.1,184326.00000000003,179991.81
+8,Plan,Back and neck except spinal fusion,Bundled Payment (User Defined),FFS Cost,1974.0,2171.4,1776.6000000000001,197400.0,217140.0,177660.0
+9,Plan,Back and neck except spinal fusion,Bundled Payment (User Defined),Savings Paid to Provider,0.0,0.0,0.0,0.0,0.0,0.0
+10,Plan,Back and neck except spinal fusion,Bundled Payment (User Defined),Losses Owed by Provider,-248.929,-309.90999999999997,-69.20810000000012,-24892.9,-30990.999999999996,-6920.810000000011
+11,Plan,Back and neck except spinal fusion,Bundled Payment (User Defined),Net Cost,1725.071,1861.4900000000002,1707.3919,172507.09999999998,186149.00000000003,170739.19
+12,Plan,Double joint replacement of the lower extremity,FFS Contract,FFS Cost,3150.0,3465.0000000000005,2835.0,630000.0,693000.0000000001,567000.0
+13,Plan,Double joint replacement of the lower extremity,FFS Contract,Savings Paid to Provider,0.0,0.0,0.0,0.0,0.0,0.0
+14,Plan,Double joint replacement of the lower extremity,FFS Contract,Losses Owed by Provider,0.0,0.0,0.0,0.0,0.0,0.0
+15,Plan,Double joint replacement of the lower extremity,FFS Contract,Net Cost,3150.0,3465.0000000000005,2835.0,630000.0,693000.0000000001,567000.0
+16,Plan,Double joint replacement of the lower extremity,Bundled Payment (Recommended),FFS Cost,2973.6,3270.96,2676.24,594720.0,654192.0,535248.0
+17,Plan,Double joint replacement of the lower extremity,Bundled Payment (Recommended),Savings Paid to Provider,0.0,0.0,123.76000000000022,0.0,0.0,24752.000000000044
+18,Plan,Double joint replacement of the lower extremity,Bundled Payment (Recommended),Losses Owed by Provider,-156.23999999999992,-425.27688000000006,0.0,-31247.999999999985,-85055.37600000002,0.0
+19,Plan,Double joint replacement of the lower extremity,Bundled Payment (Recommended),Net Cost,2817.36,2845.68312,2800.0,563472.0,569136.6240000001,560000.0
+20,Plan,Double joint replacement of the lower extremity,Bundled Payment (User Defined),FFS Cost,2973.6,3270.96,2676.24,594720.0,654192.0,535248.0
+21,Plan,Double joint replacement of the lower extremity,Bundled Payment (User Defined),Savings Paid to Provider,0.0,0.0,223.76000000000022,0.0,0.0,44752.000000000044
+22,Plan,Double joint replacement of the lower extremity,Bundled Payment (User Defined),Losses Owed by Provider,-66.23999999999992,-334.97688000000005,0.0,-13247.999999999985,-66995.376,0.0
+23,Plan,Double joint replacement of the lower extremity,Bundled Payment (User Defined),Net Cost,2907.36,2935.98312,2900.0,581472.0,587196.624,580000.0
+24,Plan,Fractures of the femur and hip or pelvis,FFS Contract,FFS Cost,4200.0,4620.0,3780.0,1260000.0,1386000.0,1134000.0
+25,Plan,Fractures of the femur and hip or pelvis,FFS Contract,Savings Paid to Provider,0.0,0.0,0.0,0.0,0.0,0.0
+26,Plan,Fractures of the femur and hip or pelvis,FFS Contract,Losses Owed by Provider,0.0,0.0,0.0,0.0,0.0,0.0
+27,Plan,Fractures of the femur and hip or pelvis,FFS Contract,Net Cost,4200.0,4620.0,3780.0,1260000.0,1386000.0,1134000.0
+28,Plan,Fractures of the femur and hip or pelvis,Bundled Payment (Recommended),FFS Cost,3960.6,4356.66,3564.54,1188180.0,1306998.0,1069362.0
+29,Plan,Fractures of the femur and hip or pelvis,Bundled Payment (Recommended),Savings Paid to Provider,0.0,0.0,324.02081400000003,0.0,0.0,97206.24420000002
+30,Plan,Fractures of the femur and hip or pelvis,Bundled Payment (Recommended),Losses Owed by Provider,-56.90945999999992,-430.2193859999999,0.0,-17072.837999999974,-129065.81579999997,0.0
+31,Plan,Fractures of the femur and hip or pelvis,Bundled Payment (Recommended),Net Cost,3903.69054,3926.440614,3888.560814,1171107.162,1177932.1842,1166568.2442
+32,Plan,Fractures of the femur and hip or pelvis,Bundled Payment (User Defined),FFS Cost,3960.6,4356.66,3564.54,1188180.0,1306998.0,1069362.0
+33,Plan,Fractures of the femur and hip or pelvis,Bundled Payment (User Defined),Savings Paid to Provider,0.0,0.0,227.43081400000003,0.0,0.0,68229.2442
+34,Plan,Fractures of the femur and hip or pelvis,Bundled Payment (User Defined),Losses Owed by Provider,-150.81945999999994,-524.4293859999999,0.0,-45245.83799999998,-157328.81579999998,0.0
+35,Plan,Fractures of the femur and hip or pelvis,Bundled Payment (User Defined),Net Cost,3809.7805399999997,3832.230614,3791.970814,1142934.162,1149669.1842,1137591.2441999998
+0,Provider,Back and neck except spinal fusion,FFS Contract,FFS Margin,58.8,64.67999999999999,52.919999999999995,5880.0,6467.999999999999,5291.999999999999
+1,Provider,Back and neck except spinal fusion,FFS Contract,Margin (Savings),0.0,0.0,0.0,0.0,0.0,0.0
+2,Provider,Back and neck except spinal fusion,FFS Contract,Margin (Losses),0.0,0.0,0.0,0.0,0.0,0.0
+3,Provider,Back and neck except spinal fusion,FFS Contract,Net Margin,58.8,64.67999999999999,52.919999999999995,5880.0,6467.999999999999,5291.999999999999
+4,Provider,Back and neck except spinal fusion,Bundled Payment (Recommended),FFS Margin,55.27199999999999,60.7992,49.7448,5527.199999999999,6079.92,4974.48
+5,Provider,Back and neck except spinal fusion,Bundled Payment (Recommended),Margin (Savings),0.0,0.0,23.318099999999863,0.0,0.0,2331.8099999999863
+6,Provider,Back and neck except spinal fusion,Bundled Payment (Recommended),Margin (Losses),-158.079,-328.14,0.0,-15807.900000000001,-32814.0,0.0
+7,Provider,Back and neck except spinal fusion,Bundled Payment (Recommended),Net Margin,-102.80700000000002,-267.3408,73.06289999999986,-10280.7,-26734.08,7306.289999999985
+8,Provider,Back and neck except spinal fusion,Bundled Payment (User Defined),FFS Margin,55.27199999999999,60.7992,49.7448,5527.199999999999,6079.92,4974.48
+9,Provider,Back and neck except spinal fusion,Bundled Payment (User Defined),Margin (Savings),0.0,0.0,0.0,0.0,0.0,0.0
+10,Provider,Back and neck except spinal fusion,Bundled Payment (User Defined),Margin (Losses),-248.929,-309.90999999999997,-69.20810000000012,-24892.9,-30990.999999999996,-6920.810000000011
+11,Provider,Back and neck except spinal fusion,Bundled Payment (User Defined),Net Margin,-193.657,-249.11079999999998,-19.463300000000118,-19365.7,-24911.079999999998,-1946.3300000000118
+12,Provider,Double joint replacement of the lower extremity,FFS Contract,FFS Margin,132.3,145.53000000000003,119.07000000000001,26460.000000000004,29106.000000000007,23814.0
+13,Provider,Double joint replacement of the lower extremity,FFS Contract,Margin (Savings),0.0,0.0,0.0,0.0,0.0,0.0
+14,Provider,Double joint replacement of the lower extremity,FFS Contract,Margin (Losses),0.0,0.0,0.0,0.0,0.0,0.0
+15,Provider,Double joint replacement of the lower extremity,FFS Contract,Net Margin,132.3,145.53000000000003,119.07000000000001,26460.000000000004,29106.000000000007,23814.0
+16,Provider,Double joint replacement of the lower extremity,Bundled Payment (Recommended),FFS Margin,124.8912,137.38032,112.40208,24978.239999999998,27476.064000000002,22480.416
+17,Provider,Double joint replacement of the lower extremity,Bundled Payment (Recommended),Margin (Savings),0.0,0.0,123.76000000000022,0.0,0.0,24752.000000000044
+18,Provider,Double joint replacement of the lower extremity,Bundled Payment (Recommended),Margin (Losses),-156.23999999999992,-425.27688000000006,0.0,-31247.999999999985,-85055.37600000002,0.0
+19,Provider,Double joint replacement of the lower extremity,Bundled Payment (Recommended),Net Margin,-31.348799999999926,-287.89656,236.16208000000023,-6269.759999999986,-57579.312000000005,47232.41600000005
+20,Provider,Double joint replacement of the lower extremity,Bundled Payment (User Defined),FFS Margin,124.8912,137.38032,112.40208,24978.239999999998,27476.064000000002,22480.416
+21,Provider,Double joint replacement of the lower extremity,Bundled Payment (User Defined),Margin (Savings),0.0,0.0,223.76000000000022,0.0,0.0,44752.000000000044
+22,Provider,Double joint replacement of the lower extremity,Bundled Payment (User Defined),Margin (Losses),-66.23999999999992,-334.97688000000005,0.0,-13247.999999999985,-66995.376,0.0
+23,Provider,Double joint replacement of the lower extremity,Bundled Payment (User Defined),Net Margin,58.651200000000074,-197.59656000000004,336.16208000000023,11730.240000000014,-39519.312000000005,67232.41600000004
+24,Provider,Fractures of the femur and hip or pelvis,FFS Contract,FFS Margin,4.2,4.62,3.7800000000000002,1260.0,1386.0,1134.0
+25,Provider,Fractures of the femur and hip or pelvis,FFS Contract,Margin (Savings),0.0,0.0,0.0,0.0,0.0,0.0
+26,Provider,Fractures of the femur and hip or pelvis,FFS Contract,Margin (Losses),0.0,0.0,0.0,0.0,0.0,0.0
+27,Provider,Fractures of the femur and hip or pelvis,FFS Contract,Net Margin,4.2,4.62,3.7800000000000002,1260.0,1386.0,1134.0
+28,Provider,Fractures of the femur and hip or pelvis,Bundled Payment (Recommended),FFS Margin,3.9606,4.35666,3.56454,1188.18,1306.9979999999998,1069.362
+29,Provider,Fractures of the femur and hip or pelvis,Bundled Payment (Recommended),Margin (Savings),0.0,0.0,324.02081400000003,0.0,0.0,97206.24420000002
+30,Provider,Fractures of the femur and hip or pelvis,Bundled Payment (Recommended),Margin (Losses),-56.90945999999992,-430.2193859999999,0.0,-17072.837999999974,-129065.81579999997,0.0
+31,Provider,Fractures of the femur and hip or pelvis,Bundled Payment (Recommended),Net Margin,-52.94885999999992,-425.8627259999999,327.58535400000005,-15884.657999999976,-127758.81779999998,98275.60620000001
+32,Provider,Fractures of the femur and hip or pelvis,Bundled Payment (User Defined),FFS Margin,3.9606,4.35666,3.56454,1188.18,1306.9979999999998,1069.362
+33,Provider,Fractures of the femur and hip or pelvis,Bundled Payment (User Defined),Margin (Savings),0.0,0.0,227.43081400000003,0.0,0.0,68229.2442
+34,Provider,Fractures of the femur and hip or pelvis,Bundled Payment (User Defined),Margin (Losses),-150.81945999999994,-524.4293859999999,0.0,-45245.83799999998,-157328.81579999998,0.0
+35,Provider,Fractures of the femur and hip or pelvis,Bundled Payment (User Defined),Net Margin,-146.85885999999994,-520.0727259999999,230.99535400000002,-44057.65799999998,-156021.81779999996,69298.60620000001
