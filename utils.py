@@ -7,7 +7,7 @@ def Header_mgmt(app, dashboard_active, drilldown_active, report_active, Homepage
     return html.Div([get_header_mgmt(app, dashboard_active, drilldown_active, report_active, Homepage_active)])
 
 def Header_contract(app, pbp, bec, acp):
-    return html.Div([get_header_contract(app, pbp, bec, acp)])
+    return html.Div([get_header_contract(app, acp, bec, pbp)])
 
 
 def get_header_mgmt(app, dashboard_active, drilldown_active, report_active, Homepage_active):
@@ -77,11 +77,13 @@ def get_header_mgmt(app, dashboard_active, drilldown_active, report_active, Home
 def get_header_contract(app, pbp, bec, acp):
 
     menu = dbc.Nav([
+            
+            
             dbc.NavItem(dbc.NavLink(
-                        "Performance Based Payment",
-                        href="/vbc-demo/contract-optimizer/",
+                        "Accountable Care Programs",
+                        #href="/vbc-demo/contract-optimizer/contract-generator/",
                         className="nav-link",
-                        active = pbp,
+                        active = acp,
                         ),
                 className="tab first",
                 ),
@@ -94,10 +96,10 @@ def get_header_contract(app, pbp, bec, acp):
                 className="tab",
                 ),
             dbc.NavItem(dbc.NavLink(
-                        "Accountable Care Programs",
-                        #href="/vbc-demo/contract-optimizer/contract-generator/",
+                        "Performance Based Payment",
+                        href="/vbc-demo/contract-optimizer/",
                         className="nav-link",
-                        active = acp,
+                        active = pbp,
                         ),
                 className="tab",
                 ),

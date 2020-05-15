@@ -34,7 +34,7 @@ def create_layout(app):
 #    load_data()
     return html.Div(
                 [ 
-                    html.Div([Header_contract(app, False, False, True)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
+                    html.Div([Header_contract(app, True, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
                     
                     html.Div(
                         [
@@ -129,7 +129,7 @@ def card_summary_improvement(app):
                                     html.Div(
                                         [
                                             html.H6("Overuser Reduction", style={"height":"1.8rem"}),
-                                            html.H1("0.7%", style={"color":"#919191"})
+                                            html.H1("0.7%", style={"font-size":"1.5rem","color":"#F5B111"})
                                         ],
                                         style={"padding":"1rem","text-align":"center"}
                                     ),
@@ -139,7 +139,7 @@ def card_summary_improvement(app):
                                     html.Div(
                                         [
                                             html.H6("Service Optimization", style={"height":"1.8rem"}),
-                                            html.H1("0.2%", style={"color":"#919191"})
+                                            html.H1("0.2%", style={"font-size":"1.5rem","color":"#F5B111"})
                                         ],
                                         style={"padding":"1rem","text-align":"center"}
                                     ),
@@ -149,7 +149,7 @@ def card_summary_improvement(app):
                                     html.Div(
                                         [
                                             html.H6("Transition of Care Management", style={"height":"1.8rem"}),
-                                            html.H1("0.3%", style={"color":"#919191"})
+                                            html.H1("0.3%", style={"font-size":"1.5rem","color":"#F5B111"})
                                         ],
                                         style={"padding":"1rem","text-align":"center"}
                                     ),
@@ -159,7 +159,7 @@ def card_summary_improvement(app):
                                     html.Div(
                                         [
                                             html.H6("Chronic Disease Management", style={"height":"1.8rem"}),
-                                            html.H1("0.5%", style={"color":"#919191"})
+                                            html.H1("0.5%", style={"font-size":"1.5rem","color":"#F5B111"})
                                         ],
                                         style={"padding":"1rem","text-align":"center"}
                                     ),
@@ -169,7 +169,7 @@ def card_summary_improvement(app):
                                     html.Div(
                                         [
                                             html.H6("High Risk Patient Management", style={"height":"1.8rem"}),
-                                            html.H1("0.7%", style={"color":"#919191"})
+                                            html.H1("0.7%", style={"font-size":"1.5rem","color":"#F5B111"})
                                         ],
                                         style={"padding":"1rem","text-align":"center"}
                                     ),
@@ -179,7 +179,7 @@ def card_summary_improvement(app):
                                     html.Div(
                                         [
                                             html.H6("Coding Improvement Opportunity", style={"height":"1.8rem"}),
-                                            html.H1("0.7%", style={"color":"#919191"})
+                                            html.H1("0.7%", style={"font-size":"1.5rem","color":"#F5B111"})
                                         ],
                                         style={"padding":"1rem","text-align":"center"}
                                     ),
