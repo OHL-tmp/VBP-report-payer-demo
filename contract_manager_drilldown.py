@@ -33,6 +33,9 @@ df_network_cost_split=pd.read_csv('data/df_network_cost_split.csv')
 df_network_facility_split=pd.read_csv('data/df_network_facility_split.csv')
 df_network_prof_split=pd.read_csv('data/df_network_prof_split.csv')
 
+#modebar display
+button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
+
 def create_layout(app):
 #    load_data()
     return html.Div(
@@ -174,13 +177,13 @@ def card_overview_drilldown(percentage):
                             [
                                 dbc.Tab(
                                     html.Div(
-                                        dcc.Graph(figure=waterfall_overall(df_overall),style={"height":"18rem"})
+                                        dcc.Graph(figure=waterfall_overall(df_overall),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"18rem"})
                                     ), 
                                     label="Total Cost", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
                                 ),
                                 dbc.Tab(
                                     html.Div(
-                                        dcc.Graph(figure=waterfall_overall(df_overall_pmpm),style={"height":"18rem"})
+                                        dcc.Graph(figure=waterfall_overall(df_overall_pmpm),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"18rem"})
                                     ), 
                                     label="PMPM", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
                                 ),
@@ -309,7 +312,8 @@ def tab_patient_cohort_analysis():
                                 dbc.Row(
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Patient Cohort Analysis: By Patient Risk Status", style={"font-size":"1rem", "margin-left":"10px"})),
+                                        dbc.Col(html.H4("Patient Cohort Analysis: By ", style={"font-size":"1rem", "margin-left":"10px"})),
+                                        dbc.Col(html.H4("Patient Health Risk Status",id='name-patient-drill-lv1', style={"font-size":"1rem", "margin-left":"10px"})),
                                         dbc.Col(mod_criteria_button(['Patient Health Risk Level','Gender','Age Band'],'1'),width=2)
                                     ],
                                     no_gutters=True,
@@ -336,7 +340,8 @@ def tab_patient_cohort_analysis():
                                 dbc.Row(
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Clinical Condition Analysis: Top 10 Chronic Conditions", style={"font-size":"1rem", "margin-left":"10px"})),
+                                        dbc.Col(html.H4("Clinical Condition Analysis: ", style={"font-size":"1rem", "margin-left":"10px"})),
+                                        dbc.Col(html.H4("Top 10 Chronic",id='name-patient-drill-lv2',  style={"font-size":"1rem", "margin-left":"10px"})),
                                         dbc.Col(mod_criteria_button(['Top 10 Chronic','Top 10 Acute'],'2'),width=2)
                                     ],
                                     no_gutters=True,
@@ -403,7 +408,7 @@ def tab_physician_analysis():
                                 dbc.Row(
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Patient Cohort Analysis: By Patient Risk Status", style={"font-size":"1rem", "margin-left":"10px"})),
+                                        dbc.Col(html.H4("Physician Summary: By Specialty", style={"font-size":"1rem", "margin-left":"10px"})),
                                         dbc.Col(
                                             dbc.Button("Modify Criteria",
                                                 className="mb-3",
@@ -418,8 +423,8 @@ def tab_physician_analysis():
                                 
                                 html.Div(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
-                                    ], 
+                                        drilltable_physician(drilldata_process('Managing Physician Specialty'),'table-physician-drill-lv1',1)
+                                    ], id='table-physician-drill-lv1-container',
                                     style={"max-height":"80rem"}
                                 ),
                                 html.Div(
@@ -436,15 +441,16 @@ def tab_physician_analysis():
 
                                 dbc.Row(
                                     [
-                                        dbc.Col(html.H4("Cost and Utilization by Service Categories", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                        dbc.Col(html.H4("Physician Performance: ", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                        dbc.Col(html.H4("Cardiology",id='name-physician-drill-lv2', style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                     ],
                                     no_gutters=True,
                                 ),
                                 
                                 html.Div(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
-                                    ], 
+                                        drilltable_physician(drilldata_process('Managing Physician'),'table-physician-drill-lv2',0)
+                                    ], id='table-physician-drill-lv2-container',
                                     style={"max-height":"80rem"}
                                 ),
 
@@ -591,17 +597,19 @@ def toggle_popover_mod_criteria2(n1, is_open):
 
 #update lv1 table based on criteria button1
 @app.callback(
-    Output("table-patient-drill-lv1-container","children"),
+    [Output("table-patient-drill-lv1-container","children"),
+    Output("name-patient-drill-lv1","children"),],
    [Input("list-dim-lv1","value"),] 
 )
 def update_table_lv1(dim):     
 
-    return drilltable_lv1(drilldata_process(dim),'table-patient-drill-lv1')
+    return drilltable_lv1(drilldata_process(dim),'table-patient-drill-lv1'),dim
 
 
 #update lv2 table based on criteria button2 and lv1 selected rows
 @app.callback(
-    Output("table-patient-drill-lv2-container","children"),
+    [Output("table-patient-drill-lv2-container","children"),
+    Output("name-patient-drill-lv2","children"),],
    [Input("list-dim-lv2","value"),
     Input("list-dim-lv1","value"),
     Input("table-patient-drill-lv1","selected_row_ids")] 
@@ -613,7 +621,7 @@ def update_table_lv2(dim,d1,selected_lv1):
     else:
         d1v=selected_lv1[0]
 
-    return drilltable_lv1(drilldata_process(dim,d1,d1v),'table-patient-drill-lv2')
+    return drilltable_lv1(drilldata_process(dim,d1,d1v),'table-patient-drill-lv2'),dim
 
 #update lv3 table based on criteria button1,criteria button2, and lv1 selected rows,lv2 selected rows
 @app.callback(
@@ -666,6 +674,21 @@ def update_table_lv3(d1,selected_lv1,d2,selected_lv2,selected_lv3):
         d3v=selected_lv3[0]
 
     return drilltable_lv3(drilldata_process('Sub Category',d1,d1v,d2,d2v,'Service Category',d3v),'Sub Category','table-patient-drill-lv4',0)
+
+#update physician lv2 table based on lv1 selected rows
+@app.callback(
+    [Output("table-physician-drill-lv2-container","children"),
+    Output("name-physician-drill-lv2","children"),],
+   [Input("table-physician-drill-lv1","selected_row_ids")] 
+)
+def update_table_lv2(selected_lv1):
+
+    if selected_lv1 is None or  selected_lv1==[]:
+        d1v='All'
+    else:
+        d1v=selected_lv1[0]
+
+    return drilltable_physician(drilldata_process('Managing Physician','Managing Physician Specialty',d1v),'table-physician-drill-lv2',0),d1v
 
 #update lv1 table based on sort_by
 @app.callback(
@@ -747,6 +770,46 @@ def sort_table_lv4(sort_dim,data):
         df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
         df1=pd.concat([df1,df.tail(1)]).reset_index(drop=True)
 
+    df1['id']=df1[df1.columns[0]]
+    df1.set_index('id', inplace=True, drop=False)
+    
+    return df1.to_dict('records')
+
+#update physician lv1 table based on sort_by
+@app.callback(
+    Output("table-physician-drill-lv1","data"),
+   [Input('table-physician-drill-lv1', 'sort_by'),],
+   [State("table-physician-drill-lv1","data")] 
+)
+def sort_table_pyhsician_lv1(sort_dim,data):
+    df=pd.DataFrame(data)
+
+    if sort_dim==[]:
+        sort_dim=[{"column_id":"Avg Cost/Episode Diff % from Best-in-Class","direction":"desc"}]
+
+
+    df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+    df1=pd.concat([df1,df.tail(1)]).reset_index(drop=True)
+    df1['id']=df1[df1.columns[0]]
+    df1.set_index('id', inplace=True, drop=False)
+    
+    return df1.to_dict('records')
+
+#update physician lv2 table based on sort_by
+@app.callback(
+    Output("table-physician-drill-lv2","data"),
+   [Input('table-physician-drill-lv2', 'sort_by'),],
+   [State("table-physician-drill-lv2","data")] 
+)
+def sort_table_pyhsician_lv2(sort_dim,data):
+    df=pd.DataFrame(data)
+
+    if sort_dim==[]:
+        sort_dim=[{"column_id":"Avg Cost/Episode Diff % from Best-in-Class","direction":"desc"}]
+
+
+    df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+    df1=pd.concat([df1,df.tail(1)]).reset_index(drop=True)
     df1['id']=df1[df1.columns[0]]
     df1.set_index('id', inplace=True, drop=False)
     
