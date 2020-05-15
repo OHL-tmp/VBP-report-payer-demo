@@ -78,7 +78,7 @@ def bundle_modal_bundles_body():
 				dash_table.DataTable(
 					id = 'bundle-table-modal-spine',
 					columns = [{"name":'Spine, Bone, and Joint', "id":'Bundle'}] + [{"name":i, "id":i} for i in modal_columns],
-					data = df_bundles[df_bundles['Category'] == "Spine, Bone, and Joint"].to_dict('records'),
+#					data = df_bundles[df_bundles['Category'] == "Spine, Bone, and Joint"].to_dict('records'),
 					style_data_conditional=conditional_data_style,
 			        style_header_conditional = [
 			        {'if': {'column_id': 'Bundle'},
@@ -113,7 +113,7 @@ def bundle_modal_bundles_body():
 				dash_table.DataTable(
 					id = 'bundle-table-modal-kidney',
 					columns = [{"name":'Kidney', "id":'Bundle'}] + [{"name":'', "id":i} for i in modal_columns],
-					data = df_bundles[df_bundles['Category'] == "Kidney"].to_dict('records'),
+#					data = df_bundles[df_bundles['Category'] == "Kidney"].to_dict('records'),
 					style_data_conditional=conditional_data_style,
 			        style_header_conditional = [
 			        {'if': {'column_id': 'Bundle'},
@@ -148,7 +148,7 @@ def bundle_modal_bundles_body():
 				dash_table.DataTable(
 					id = 'bundle-table-modal-infect',
 					columns = [{"name":'Infectious Disease', "id":'Bundle'}] + [{"name":'', "id":i} for i in modal_columns],
-					data = df_bundles[df_bundles['Category'] == "Infectious Disease"].to_dict('records'),
+#					data = df_bundles[df_bundles['Category'] == "Infectious Disease"].to_dict('records'),
 					style_cell={
                         'textAlign': 'center',
                         'font-family':'NotoSans-Regular',
@@ -183,7 +183,7 @@ def bundle_modal_bundles_body():
 				dash_table.DataTable(
 					id = 'bundle-table-modal-neuro',
 					columns = [{"name":'Neurological', "id":'Bundle'}] + [{"name":'', "id":i} for i in modal_columns],
-					data = df_bundles[df_bundles['Category'] == "Neurological"].to_dict('records'),
+#					data = df_bundles[df_bundles['Category'] == "Neurological"].to_dict('records'),
 					style_cell={
                         'textAlign': 'center',
                         'font-family':'NotoSans-Regular',
@@ -218,7 +218,7 @@ def bundle_modal_bundles_body():
 				dash_table.DataTable(
 					id = 'bundle-table-modal-cardi',
 					columns = [{"name":'Cardiac', "id":'Bundle'}] + [{"name":'', "id":i} for i in modal_columns],
-					data = df_bundles[df_bundles['Category'] == "Cardiac"].to_dict('records'),
+#					data = df_bundles[df_bundles['Category'] == "Cardiac"].to_dict('records'),
 					style_cell={
                         'textAlign': 'center',
                         'font-family':'NotoSans-Regular',
@@ -253,7 +253,7 @@ def bundle_modal_bundles_body():
 				dash_table.DataTable(
 					id = 'bundle-table-modal-pul',
 					columns = [{"name":'Pulmonary', "id":'Bundle'}] + [{"name":'', "id":i} for i in modal_columns],
-					data = df_bundles[df_bundles['Category'] == "Pulmonary"].to_dict('records'),
+#					data = df_bundles[df_bundles['Category'] == "Pulmonary"].to_dict('records'),
 					style_cell={
                         'textAlign': 'center',
                         'font-family':'NotoSans-Regular',
@@ -287,7 +287,7 @@ def bundle_modal_bundles_body():
 				dash_table.DataTable(
 					id = 'bundle-table-modal-gastro',
 					columns = [{"name":'Gastrointestinal', "id":'Bundle'}] + [{"name":'', "id":i} for i in modal_columns],
-					data = df_bundles[df_bundles['Category'] == "Gastrointestinal"].to_dict('records'),
+#					data = df_bundles[df_bundles['Category'] == "Gastrointestinal"].to_dict('records'),
 					style_cell={
                         'textAlign': 'center',
                         'font-family':'NotoSans-Regular',
@@ -322,7 +322,7 @@ def bundle_modal_bundles_body():
 				dash_table.DataTable(
 					id = 'bundle-table-modal-op',
 					columns = [{"name":'Outpatient', "id":'Bundle'}] + [{"name":'', "id":i} for i in modal_columns],
-					data = df_bundles[df_bundles['Category'] == "Outpatient"].to_dict('records'),
+#					data = df_bundles[df_bundles['Category'] == "Outpatient"].to_dict('records'),
 					style_cell={
                         'textAlign': 'center',
                         'font-family':'NotoSans-Regular',
