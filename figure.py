@@ -1737,6 +1737,68 @@ def table_driver_all(df):
         },
     )
     return table
+
+def bundle_measure_setup(df):
+    table=dash_table.DataTable(
+    	data = df.to_dict('records'),
+        id = 'bundle-table-selectedmeas',
+        columns = [
+        {"name":['','Measure'],"id":'Measure'}, 
+        {"name": ["Baseline", "Provider"], "id": "provider"},
+        {"name": ["Baseline", "Benchmark"], "id": "benchmark"},
+        {"name": ["Baseline", "Best-in-Class"], "id": "bic"},
+        {"name": ["Target", "Recommended"], "id": "recommended"},
+        {"name": ["Target", "User Defined"], "id": "user defined",'editable':True},
+
+        ],
+        merge_duplicate_headers=True,
+        row_selectable='multi',
+        selected_rows=list(range(0,len(df))),       
+        # style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
+        style_data_conditional=[
+                {
+                    'if': {'column_id': 'Measure'},
+                    'textAlign': 'left',
+                    'width':'30%',
+                },
+               
+                {
+                    'if': {'column_id': 'user defined'},
+                    'border':'1px solid blue',
+                    'backgroundColor':'white',
+
+                },
+                
+
+                ],
+
+        style_header={
+            'backgroundColor': '#bfd4ff',
+            'fontWeight': 'bold',
+            'font-family':'NotoSans-Condensed',
+            'border':'1px solid white',
+        },
+        style_data={
+            'whiteSpace': 'normal',
+            'height': 'auto',
+            'backgroundColor':'rgba(0,0,0,0)',
+            'border-left':'0px',
+            'border-right':'0px',
+        },
+       
+        style_cell={
+            'textAlign': 'center',
+            'font-family':'NotoSans-Regular',
+            'fontSize':10,
+            'height' : 'auto', 
+            'whiteSpace':'normal',
+            'max-width':'3rem',
+            'padding':'10px',
+        },
+        #style_as_list_view = True,
+        )
+    return table
+
 #def table_network_cost(df):
 
 #df_quality = pd.read_csv("data/quality_setup.csv")

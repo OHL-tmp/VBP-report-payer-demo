@@ -29,6 +29,14 @@ server = app.server
 file = open('configure/default_ds.json', encoding = 'utf-8')
 default_input = json.load(file)
 df_quality = pd.read_csv("data/quality_setup.csv")
+df_bundle_measure=pd.read_csv("data/bundle_measure_setup.csv")
+
+# measure_list for episode
+measure_epo_list2=df_bundles[df_bundles['IP/OP'] == "Inpatient"]
+measure_epo_list3=['Double joint replacement of the lower extremity','Major joint replacement of the lower extremity (MJRLE)']
+measure_epo_list4=['Coronary artery bypass graft']
+measure_epo_list5=['Acute myocardial infarction']
+measure_epo_list6=['Back and neck except spinal fusion','Back & neck except spinal fusion','Bariatric Surgery','Coronary artery bypass graft','Cardiac valve','Double joint replacement of the lower extremity','Hip and femur procedures except major joint','Lower extremity/humerus procedure except hip, foot, femur','Major bowel procedure','Major joint replacement of the lower extremity (MJRLE)','Major joint replacement of the upper extremity','Spinal fusion']
 
 
 def create_layout(app):
@@ -317,8 +325,8 @@ def card_quality_adjustment(app):
                         ),
                         html.Div(
                             [
-                                html.Div("1", style={"padding-bottom":"1rem"}),
-                            ], id = 'div-meas-table-container', hidden = True, style={"padding-left":"4rem", "padding-right":"1rem"}
+                                html.Div(id='bundle-table-setup-container', style={"padding-bottom":"1rem"}),
+                            ],style={"padding-left":"4rem", "padding-right":"1rem"}
                         ),
                     ]
                 ),
@@ -652,7 +660,8 @@ def open_modal(n1, n2, is_open):
     return is_open
 
 @app.callback(
-    Output('bundle-card-bundleselection', 'children'),
+    [Output('bundle-card-bundleselection', 'children'),
+     Output('bundle-table-setup-container','children')],
     [Input('bundle-button-closemodal', 'n_clicks')],
     [State('bundle-table-selectedbundles', 'data'),
     State('bundle-table-modal-spine', 'selected_rows'),
@@ -676,19 +685,31 @@ def update_selected_bundles(n,data,r1,r2,r3,r4,r5,r6,r7,r8):
         df7 = df_bundles[df_bundles['Category'] == "Gastrointestinal"]
         df8 = df_bundles[df_bundles['Category'] == "Outpatient"]
 
-        dff = pd.concat([df1.iloc[r1],df2.iloc[r2],df3.iloc[r3],df4.iloc[r4],
+        update_data = pd.concat([df1.iloc[r1],df2.iloc[r2],df3.iloc[r3],df4.iloc[r4],
             df5.iloc[r5],df6.iloc[r6],df7.iloc[r7],df8.iloc[r8]])
 
-        update_data = dff
-        return table_setup(update_data)
-    return table_setup(df_bundles.iloc[[0,1,2]])
+
+        measure_list=[0,1]
+
+        episode_list=update_data['Bundle']
+
+        for i in range(2,7):
+            if len(set(episode_list).intersection( set(eval('measure_epo_list'+str(i)) )))>0:
+                measure_list.append(i)
+
+        update_measure=df_bundle_measure.iloc[measure_list] 
+
+
+
+        return table_setup(update_data),bundle_measure_setup(update_measure)
+    return table_setup(df_bundles.iloc[[0,1,2]]),bundle_measure_setup(df_bundle_measure.iloc[[0,1,2,3,6]] )
 
 # set up table selfupdate
 @app.callback(
     Output('bundle-table-selectedbundles', 'data'),
     [Input('bundle-table-selectedbundles', 'data_timestamp'),],
     [State('bundle-table-selectedbundles', 'data'),])
-def update_columns(timestamp, data):
+def update_bundlerows(timestamp, data):
 
     for i in range(0,len(data)):
         row=data[i]
@@ -704,6 +725,7 @@ def update_columns(timestamp, data):
         row['User Defined Target']='${:,.0f}'.format(defined_val)
 
     return data
+
 
 
 if __name__ == "__main__":
