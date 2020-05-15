@@ -93,6 +93,7 @@ def card_performance_measure_setup(app):
 	return dbc.Card(
                 dbc.CardBody(
                     [
+                        card_summary_improvement(app),
                         card_medical_cost_target(app),
                         card_sl_sharing_arrangement(app),
                         card_quality_adjustment(app),
@@ -108,6 +109,88 @@ def card_performance_measure_setup(app):
                 ),
                 className="mb-3",
                 style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem"}
+            )
+
+
+def card_summary_improvement(app):
+    return dbc.Card(
+                dbc.CardBody(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                dbc.Col(html.H4("Summary of Improvement Opportunities", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                            ],
+                            no_gutters=True,
+                        ),
+                        dbc.Row(
+                            [
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            html.H6("Overuser Reduction", style={"height":"1.8rem"}),
+                                            html.H1("0.7%", style={"color":"#919191"})
+                                        ],
+                                        style={"padding":"1rem","text-align":"center"}
+                                    ),
+                                    width=2,
+                                ),
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            html.H6("Service Optimization", style={"height":"1.8rem"}),
+                                            html.H1("0.2%", style={"color":"#919191"})
+                                        ],
+                                        style={"padding":"1rem","text-align":"center"}
+                                    ),
+                                    width=2,
+                                ),
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            html.H6("Transition of Care Management", style={"height":"1.8rem"}),
+                                            html.H1("0.3%", style={"color":"#919191"})
+                                        ],
+                                        style={"padding":"1rem","text-align":"center"}
+                                    ),
+                                    width=2,
+                                ),
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            html.H6("Chronic Disease Management", style={"height":"1.8rem"}),
+                                            html.H1("0.5%", style={"color":"#919191"})
+                                        ],
+                                        style={"padding":"1rem","text-align":"center"}
+                                    ),
+                                    width=2,
+                                ),
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            html.H6("High Risk Patient Management", style={"height":"1.8rem"}),
+                                            html.H1("0.7%", style={"color":"#919191"})
+                                        ],
+                                        style={"padding":"1rem","text-align":"center"}
+                                    ),
+                                    width=2,
+                                ),
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            html.H6("Coding Improvement Opportunity", style={"height":"1.8rem"}),
+                                            html.H1("0.7%", style={"color":"#919191"})
+                                        ],
+                                        style={"padding":"1rem","text-align":"center"}
+                                    ),
+                                    width=2,
+                                ),
+                            ]
+                        )
+                    ]
+                ),
+                className="mb-3",
+                style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem"}
             )
 
 
@@ -345,14 +428,16 @@ def card_sl_sharing_arrangement(app):
 	                    					],
                                             style={"padding-top":"1rem"}
 	                    				),
-                                        dbc.Row([
-                                            dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=4),
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=4),
+                                                dbc.Col(dbc.Checklist(options = [{'label':'1 - Quality Adjustment', 'value' : 'selected'}], value = []))
                                             ],
                                             style={"padding-top":"1rem"}),
 				                        dbc.Row(
 	                    					[
 	                    						dbc.Col(html.Div(), width = 1),
-                                                dbc.Col(html.H5("Max Sharing % (When quality targets are met)", style={"font-size":"0.6rem"}),width=3),
+                                                dbc.Col(html.H5("Sharing %", style={"font-size":"0.6rem"}),width=3),
 	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
@@ -386,6 +471,11 @@ def card_sl_sharing_arrangement(app):
                                             dbc.Col(html.H5("Second Dollar Sharing (Above MSR)", style={"font-size":"0.6rem"}),width=4),
                                             ],
                                              style={"padding-top":"1rem"}
+                                        ),
+                                        dbc.Row([
+                                            dbc.Col(html.Div(), width = 1),
+                                            ],
+                                             style={"padding-top":"3.2rem"}
                                         ),
 	                    				dbc.Row(
 	                    					[
@@ -439,13 +529,13 @@ def card_sl_sharing_arrangement(app):
 	                    				),
                                         dbc.Row([
                                             dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=4),
-                                            dbc.Col(dbc.Checklist(options = [{'label':'1 - Shared Saving Rate', 'value' : 'selected'}], value = [], id = 'switch-loss-method'))
+                                            dbc.Col(dbc.Checklist(options = [{'label':'1 - Quality Adjustment', 'value' : 'selected'}], value = [], id = 'switch-loss-method'))
                                             ],
                                             style={"padding-top":"1rem"}),
 				                        dbc.Row(
 	                    					[
                                                 dbc.Col(html.Div(), width = 1),
-	                    						dbc.Col(html.H5("Min Sharing % (When quality targets are met)", style={"font-size":"0.6rem"}),width=3),
+	                    						dbc.Col(html.H5("Sharing % ", style={"font-size":"0.6rem"}),width=3),
 	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing min']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
@@ -477,6 +567,12 @@ def card_sl_sharing_arrangement(app):
                                             dbc.Col(html.H5("First Dollar Sharing", style={"font-size":"0.6rem"}),width=3),
                                             dbc.Col(daq.ToggleSwitch(id = 'toggleswitch-firstdollar-loss', value = False, size = 30, color = 'blue'), width = 4),
                                             dbc.Col(html.H5("Second Dollar Sharing (Below MLR)", style={"font-size":"0.6rem"}),width=4),
+                                            ],
+                                             style={"padding-top":"1rem"}
+                                        ),
+                                        dbc.Row([
+                                            dbc.Col(html.Div(), width = 1),
+                                            dbc.Col(html.H5("Quality Adjusted Sharing Rate", style={"font-size":"0.6rem"}),width=3),
                                             ],
                                              style={"padding-top":"1rem"}
                                         ),
@@ -833,8 +929,8 @@ app.layout = create_layout(app)
     )
 def toggle_share_loss(v):
     if 'Shared Losses' in v:
-        return False, False, False, False, False, [{'label':'1 - Shared Saving Rate', 'value' : 'selected'}]
-    return True, True, True, True, True, [{'label':'1 - Shared Saving Rate', 'value' : 'selected', 'disabled' : True}]
+        return False, False, False, False, False, [{'label':'1 - Quality Adjustment', 'value' : 'selected'}]
+    return True, True, True, True, True, [{'label':'1 - Quality Adjustment', 'value' : 'selected', 'disabled' : True}]
 
 
 @app.callback(

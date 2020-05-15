@@ -115,7 +115,17 @@ def card_bundle_selection(app):
                         dbc.Row(
                             [
                                 dbc.Col(
-                                	html.Div(),
+                                	html.Div(
+                                		dcc.Dropdown(
+                                        	options = [
+	                                        	{'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" },
+	                                        	{'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
+	                                        	{'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
+                                        	],#{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }
+                                            value = "ACO's PMPM"
+                                        ),
+                                        style={"padding-left":"0rem","padding-right":"1rem", "height":"0.6rem","font-size":"0.8rem"}
+                                    ),
                                     width=4,
                                 ),
                                 dbc.Col(
