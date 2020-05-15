@@ -1757,17 +1757,10 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 		df_agg_pre = pd.merge(df_agg_pt, df_agg_clinical, how = 'left', on = [d] )
 		df_agg = pd.merge(df_agg_cost, df_agg_pre, how = 'left', on = [d] ) 
 		
-	else:
-#           df_agg_pt = df_pt_lv1_f.groupby(by = d_set).agg({'Pt Ct':'nunique', 'Episode Ct':'count'}).reset_index()
-#           df_agg_clinical = df_pt_epi_phy_lv1_f.groupby(by = d_set).sum().reset_index()
+	else:           
 		df_agg = df_pt_epi_phy_srv_lv1_f.groupby(by = [d]).sum().reset_index()
-		df_agg['Pt Ct'] = 4250
-		df_agg['Episode Ct'] = 9867
-
-	#print(d)
-	#print(d1)
-	#print(d1v)
-	df_agg.to_csv(d+'.csv')
+		df_agg['Pt Ct'] = df_pt_lv1_f['Pt Ct'].agg('nunique')
+		df_agg['Episode Ct'] = df_pt_lv1_f['Episode Ct'].agg('count')
 
 
 
@@ -1777,9 +1770,11 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 
 	
 	selected_index=[j for j, e in enumerate(df_agg.columns) if e == 'Pt Ct'][0]
+	selected_index_ep=[j for j, e in enumerate(df_agg.columns) if e == 'Episode Ct'][0]
 
 	if d in ['Service Category', 'Sub Category']:
 		allvalue[selected_index]=df_agg['Pt Ct'].mean()
+		allvalue[selected_index_ep]=df_agg['Episode Ct'].mean()
 	elif d in ['Clinical Condition']:
 		allvalue[selected_index]=df_pt_lv1_f.agg({'Pt Ct':'nunique'})[0]
 
@@ -1792,8 +1787,8 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 	df_agg.loc[len(df_agg)] = allvalue
 
 
-	df_agg['Patient %'] = df_agg['Pt Ct']/4250
-	df_agg['Episode %'] = df_agg['Episode Ct']/9867
+	df_agg['Patient %'] = df_agg['Pt Ct']/df_pt_lv1_f['Pt Ct'].agg('nunique')
+	df_agg['Episode %'] = df_agg['Episode Ct']/ df_pt_lv1_f['Episode Ct'].agg('count')
 	df_agg['Cost %'] = df_agg['YTD Total Cost']/(df_agg[df_agg[d]=='All']['YTD Total Cost'].values[0])
 
 
@@ -1827,8 +1822,6 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 	df_agg['Annualized Avg Cost per Unit'] = df_agg['Annualized Total Cost']/df_agg['Annualized Utilization']
 	df_agg['Benchmark Avg Cost per Unit'] = df_agg['Benchmark Total Cost']/df_agg['Benchmark Utilization']
 	df_agg['Diff % from Benchmark Unit Cost'] = (df_agg['Annualized Avg Cost per Unit'] - df_agg['Benchmark Avg Cost per Unit'])/df_agg['Benchmark Avg Cost per Unit']
-	print(d)
-	print(df_agg)
 
 	if d in ['Clinical Condition']:
 		df_agg =  pd.concat([df_agg[0:len(df_agg)-1].nlargest(10,'Contribution to Overall Performance Difference'),df_agg.tail(1)]).reset_index(drop=True)
@@ -1925,6 +1918,11 @@ def data_bars_diverging(df, column, color_above='#FF4136', color_below='#3D9970'
 def drilltable_lv1(df,tableid):
 	#df['Growth Trend']=df['Trend'].apply(lambda x: '↗️' if x > 0.02 else '↘️' if x<-0.02 else '→' )
 	#col=df.columns.tolist()
+	if tableid=='table-patient-drill-lv1':
+		sort_col=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
+	else:
+		sort_col=[{"column_id":"Cost %","direction":"desc"}]
+
 	if 'Episode Ct' in df.columns:
 		col1_format=Format( precision=0, scheme=Scheme.fixed,)
 
@@ -1940,7 +1938,7 @@ def drilltable_lv1(df,tableid):
 		selected_rows=[len(df)-1],
 		sort_action="custom",
 		sort_mode='single',
-		sort_by=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"},],
+		sort_by=sort_col,
 		style_data={
 			'whiteSpace': 'normal',
 			'height': 'auto'
