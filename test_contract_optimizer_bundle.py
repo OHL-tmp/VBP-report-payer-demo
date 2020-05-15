@@ -99,7 +99,7 @@ def card_performance_measure_setup(app):
                                 style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem"},
                                 id = 'bundle-button-submit-simulation'
                             ),
-                            style={"text-align":"center"}
+                            style={"text-align":"center","padding-top":"1rem"}
                         )
                     ]
                 ),
@@ -116,31 +116,19 @@ def card_bundle_selection(app):
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                 dbc.Col(html.H4("Bundle Selection & Target Price", style={"font-size":"1rem", "margin-left":"10px"}), width=4),
-                                dbc.Col(html.H6("PLACEHOLDER"), width = 1),
-                                dbc.Col(dcc.Dropdown(
-                                options = [{'label':'30D', 'value':'30D'},{'label':'60D', 'value':'60D'},{'label':'90D', 'value':'90D'}],
-                                value = '90D',
-                                id = 'bundle-dropdown-duration',
-                                clearable = False,
-                                ),width = 1)
                             ],
                             no_gutters=True,
                         ),
                         dbc.Row(
                             [
                                 dbc.Col(
-                                    html.Div(
-                                        dcc.Dropdown(
-                                            options = [
-                                                {'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" },
-                                                {'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
-                                                {'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
-                                            ],#{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }
-                                            value = "ACO's PMPM"
-                                        ),
-                                        style={"padding-left":"0rem","padding-right":"1rem", "height":"0.6rem","font-size":"0.8rem"}
+                                    dcc.Dropdown(
+                                        options = [{'label':'30D', 'value':'30D'},{'label':'60D', 'value':'60D'},{'label':'90D', 'value':'90D'}],
+                                        value = '90D',
+                                        id = 'bundle-dropdown-duration',
+                                        clearable = False,
                                     ),
-                                    width=4,
+                                    width = 4
                                 ),
                                 dbc.Col(
                                     [
@@ -303,7 +291,11 @@ def table_setup(df):
     return table
 
 def card_bundle_table():
-    return html.Div(children=table_setup(df_bundles_default.iloc[[0,1,2]]), id = 'bundle-card-bundleselection',style={"width":"100%","padding-left":"1rem","padding-right":"1rem"})
+    return html.Div(
+                table_setup(df_bundles_default.iloc[[0,1,2]]), 
+                id = 'bundle-card-bundleselection',
+                style={"width":"100%","padding-left":"1rem","padding-right":"1rem"}
+            )
 
 
 
@@ -322,24 +314,20 @@ def card_quality_adjustment(app):
                         ),
                         dbc.Row(
                             [
-                                dbc.Col(html.H6("Maximum Adjustment on Positive Reconciliation Amount"), width="auto"),
+                                dbc.Col(html.H6("Maximum Adjustment on Positive Reconciliation Amount"), width=3),
                                 dbc.Col(dbc.InputGroup([
                                     dbc.Input(id = 'bundle-input-adj-pos', type = 'number', debounce = True, value = 10),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
-                                    ]), width=1),
+                                    ], size="sm"), width=2),
                                 dbc.Col(html.Div(), width=1),
-                                dbc.Col(html.H6("Maximum Adjustment on Negative Reconciliation Amount"), width="auto"),
+                                dbc.Col(html.H6("Maximum Adjustment on Negative Reconciliation Amount"), width=3),
                                 dbc.Col(dbc.InputGroup([
                                     dbc.Input(id = 'bundle-input-adj-neg', type = 'number', debounce = True, value = 10),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
-                                    ]), width=1),
-                            ]
+                                    ], size="sm"), width=2),
+                            ], style={"padding":"1rem"}
                         ),
-                        html.Div(
-                            [
-                                html.Div("1", style={"padding-bottom":"1rem"}),
-                            ], id = 'div-meas-table-container', hidden = True, style={"padding-left":"4rem", "padding-right":"1rem"}
-                        ),
+                        html.Div(id='bundle-card-measselection', style={"padding-left":"1rem", "padding-right":"1rem"})
                     ]
                 ),
                 className="mb-3",
@@ -362,18 +350,18 @@ def card_stop_loss_gain(app):
                         ),
                         dbc.Row(
                             [
-                                dbc.Col(html.H6("Stop Loss"), width=2),
+                                dbc.Col(html.H6("Stop Loss", style={"padding-top":"0.5rem"}), width="auto"),
                                 dbc.Col(dbc.InputGroup([
                                     dbc.Input(id = 'bundle-input-stop-loss', type = 'number', debounce = True, value = 20),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
-                                    ]), width=1),
+                                    ],size="sm"), width=2),
                                 dbc.Col(html.Div(), width=2),
-                                dbc.Col(html.H6("Stop Gain"), width=2),
+                                dbc.Col(html.H6("Stop Gain", style={"padding-top":"0.5rem"}), width="auto"),
                                 dbc.Col(dbc.InputGroup([
                                     dbc.Input(id = 'bundle-input-stop-gain', type = 'number', debounce = True, value = 20),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
-                                    ]), width=1),
-                            ]
+                                    ],size="sm"), width=2),
+                            ], style={"padding":"1rem"}
                         ),
                         
                     ]
@@ -718,7 +706,8 @@ def read_basetable(data):
 
 
 @app.callback(
-    Output('bundle-card-bundleselection', 'children'),
+    [Output('bundle-card-bundleselection', 'children'),
+    Output('bundle-card-measselection','children')],
     [Input('bundle-button-closemodal', 'n_clicks'),
     Input('bundle-temp-data', 'children')],
     [State('bundle-table-modal-spine', 'selected_rows'),
