@@ -31,10 +31,10 @@ file = open('configure/default_ds.json', encoding = 'utf-8')
 default_input = json.load(file)
 df_quality = pd.read_csv("data/quality_setup.csv")
 df_bundle_measure=pd.read_csv("data/bundle_measure_setup.csv")
-df_bundles_default=pd.read_csv("data/df_bundles_30.csv")
+#df_bundles_default=pd.read_csv("data/df_bundles_30.csv")
 
 # measure_list for episode
-measure_epo_list2=df_bundles[df_bundles['IP/OP'] == "Inpatient"]
+measure_epo_list2=df_bundles_default[df_bundles_default['IP/OP'] == "Inpatient"]
 measure_epo_list3=['Double joint replacement of the lower extremity','Major joint replacement of the lower extremity (MJRLE)']
 measure_epo_list4=['Coronary artery bypass graft']
 measure_epo_list5=['Acute myocardial infarction']
@@ -329,10 +329,7 @@ def card_quality_adjustment(app):
                                     ]), width=1),
                             ]
                         ),
-                        html.Div(
-                            [
-                                html.Div("1", style={"padding-bottom":"1rem"}),
-                            ], id = 'div-meas-table-container', hidden = True, style={"padding-left":"4rem", "padding-right":"1rem"}
+                        html.Div(id='bundle-card-measselection', style={"padding-left":"4rem", "padding-right":"1rem"}
                         ),
                     ]
                 ),
@@ -712,7 +709,8 @@ def read_basetable(data):
 
 
 @app.callback(
-    Output('bundle-card-bundleselection', 'children'),
+    [Output('bundle-card-bundleselection', 'children'),
+     Output('bundle-card-measselection', 'children'),],
     [Input('bundle-button-closemodal', 'n_clicks'),
     Input('bundle-temp-data', 'children')],
     [State('bundle-table-modal-spine', 'selected_rows'),
