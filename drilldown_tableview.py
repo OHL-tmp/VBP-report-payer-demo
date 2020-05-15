@@ -449,12 +449,12 @@ def datatable_data_selection(d1, d2, d3, d1v, d2v, d3v, f, fv, m):
 #			df_agg_pt = df_pt_lv1_f.groupby(by = d_set).agg({'Pt Ct':'nunique', 'Episode Ct':'count'}).reset_index()
 #			df_agg_clinical = df_pt_epi_phy_lv1_f.groupby(by = d_set).sum().reset_index()
 		df_agg = df_pt_epi_phy_srv_lv1_f.groupby(by = d).sum().reset_index()
-		df_agg['Pt Ct'] = 5000
-		df_agg['Episode Ct'] = 91277
+		df_agg['Pt Ct'] = 4250
+		df_agg['Episode Ct'] = 9867
 
 
-	df_agg['Patient %'] = df_agg['Pt Ct']/5000
-	df_agg['Episode %'] = df_agg['Episode Ct']/91277
+	df_agg['Patient %'] = df_agg['Pt Ct']/4250
+	df_agg['Episode %'] = df_agg['Episode Ct']/9867
 
 	df_agg['YTD Utilization'] = df_agg['YTD Utilization']/df_agg['Pt Ct']
 	df_agg['Annualized Utilization'] = df_agg['Annualized Utilization']/df_agg['Pt Ct']

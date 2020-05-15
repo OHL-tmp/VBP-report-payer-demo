@@ -434,49 +434,71 @@ def sim_result_box(df_sim_result):
 	fig_sim =go.Figure()
 	
 	for i in range(n):
-		fig_sim.add_trace(
-			go.Box(
-				x=[x[i]],      
-				lowerfence=[lowerfence[i]],
-				q1=[q1[i]],
-				median=[median[i]],
-				q3=[q3[i]],
-				upperfence=[upperfence[i]],
-				fillcolor=fillcolor[i],
-				width=0.2,
-				line_width=3,
-				marker=dict(
-					color=markercolor[i],
-					#opacity=0.7,
+		if upperfence[i]>lowerfence[i]:
+			fig_sim.add_trace(
+				go.Box(
+					x=[x[i]],      
+					lowerfence=[lowerfence[i]],
+					q1=[q1[i]],
+					median=[median[i]],
+					q3=[q3[i]],
+					upperfence=[upperfence[i]],
+					fillcolor=fillcolor[i],
+					width=0.2,
+					line_width=3,
+					marker=dict(
+						color=markercolor[i],
+						#opacity=0.7,
 
-				)
+					)
 
-			),  
-		)
-		annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
-						x=0+i, y=df['Higher End'].to_list()[i],ax=m+i, ay=df['Higher End'].to_list()[i],
-						startstandoff=10,
-						text='Best: '+str(round(df['Higher End'].to_list()[i],1))+suf,
-						font=dict(family='NotoSans-CondensedLight', size=12, color='green'),
-						showarrow=True,
-						arrowhead=2,
-						arrowsize=2,
-						arrowside='start',
-						arrowcolor='green',
-					   )
-				  )
-		annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
-						x=0+i, y=df['Lower End'].to_list()[i],ax=m+i, ay=df['Lower End'].to_list()[i],
-						startstandoff=10,
-						text='Worst: '+str(round(df['Lower End'].to_list()[i],1))+suf,
-						font=dict(family='NotoSans-CondensedLight', size=12, color='red'),
-						showarrow=True,
-						arrowhead=2,
-						arrowsize=2,
-						arrowside='start',
-						arrowcolor='red',
-					   )
-				  )
+				),  
+			)
+		else:
+			fig_sim.add_trace(
+				go.Box(
+					x=[x[i]],      
+					lowerfence=[upperfence[i]],
+					q1=[q3[i]],
+					median=[median[i]],
+					q3=[q1[i]],
+					upperfence=[lowerfence[i]],
+					fillcolor=fillcolor[i],
+					width=0.2,
+					line_width=3,
+					marker=dict(
+						color=markercolor[i],
+						#opacity=0.7,
+
+					)
+
+				),  
+			)
+
+#		annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
+#						x=0+i, y=df['Higher End'].to_list()[i],ax=m+i, ay=df['Higher End'].to_list()[i],
+#						startstandoff=10,
+#						text='Best: '+str(round(df['Higher End'].to_list()[i],1))+suf,
+#						font=dict(family='NotoSans-CondensedLight', size=12, color='green'),
+#						showarrow=True,
+#						arrowhead=2,
+#						arrowsize=2,
+#						arrowside='start',
+#						arrowcolor='green',
+#					   )
+#				  )
+#		annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
+#						x=0+i, y=df['Lower End'].to_list()[i],ax=m+i, ay=df['Lower End'].to_list()[i],
+#						startstandoff=10,
+#						text='Worst: '+str(round(df['Lower End'].to_list()[i],1))+suf,
+#						font=dict(family='NotoSans-CondensedLight', size=12, color='red'),
+#						showarrow=True,
+#						arrowhead=2,
+#						arrowsize=2,
+#						arrowside='start',
+#						arrowcolor='red',
+#					   )
+#				  )
 	
 	
 	fig_sim.update_layout(
@@ -720,49 +742,70 @@ def sim_bundle_result_box(df_sim_result):
 	fig_sim =go.Figure()
 	
 	for i in range(n):
-		fig_sim.add_trace(
-			go.Box(
-				x=[x[i]],      
-				lowerfence=[lowerfence[i]],
-				q1=[q1[i]],
-				median=[median[i]],
-				q3=[q3[i]],
-				upperfence=[upperfence[i]],
-				fillcolor=fillcolor[i],
-				width=0.2,
-				line_width=3,
-				marker=dict(
-					color=markercolor[i],
-					#opacity=0.7,
+		if upperfence[i]>lowerfence[i]:
+			fig_sim.add_trace(
+				go.Box(
+					x=[x[i]],      
+					lowerfence=[lowerfence[i]],
+					q1=[q1[i]],
+					median=[median[i]],
+					q3=[q3[i]],
+					upperfence=[upperfence[i]],
+					fillcolor=fillcolor[i],
+					width=0.2,
+					line_width=3,
+					marker=dict(
+						color=markercolor[i],
+						#opacity=0.7,
 
-				)
+					)
 
-			),  
-		)
-		annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
-						x=0+i, y=df[df.columns[4]].to_list()[i],ax=m+i, ay=df[df.columns[4]].to_list()[i],
-						startstandoff=10,
-						text='Best: '+str(round(df[df.columns[4]].to_list()[i],1))+suf,
-						font=dict(family='NotoSans-CondensedLight', size=12, color='green'),
-						showarrow=True,
-						arrowhead=2,
-						arrowsize=2,
-						arrowside='start',
-						arrowcolor='green',
-					   )
-				  )
-		annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
-						x=0+i, y=df[df.columns[3]].to_list()[i],ax=m+i, ay=df[df.columns[3]].to_list()[i],
-						startstandoff=10,
-						text='Worst: '+str(round(df[df.columns[3]].to_list()[i],1))+suf,
-						font=dict(family='NotoSans-CondensedLight', size=12, color='red'),
-						showarrow=True,
-						arrowhead=2,
-						arrowsize=2,
-						arrowside='start',
-						arrowcolor='red',
-					   )
-				  )
+				),  
+			)
+		else:
+			fig_sim.add_trace(
+				go.Box(
+					x=[x[i]],      
+					lowerfence=[upperfence[i]],
+					q1=[q3[i]],
+					median=[median[i]],
+					q3=[q1[i]],
+					upperfence=[lowerfence[i]],
+					fillcolor=fillcolor[i],
+					width=0.2,
+					line_width=3,
+					marker=dict(
+						color=markercolor[i],
+						#opacity=0.7,
+
+					)
+
+				),  
+			)
+#		annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
+#						x=0+i, y=df[df.columns[4]].to_list()[i],ax=m+i, ay=df[df.columns[4]].to_list()[i],
+#						startstandoff=10,
+#						text='Best: '+str(round(df[df.columns[4]].to_list()[i],1))+suf,
+#						font=dict(family='NotoSans-CondensedLight', size=12, color='green'),
+#						showarrow=True,
+#						arrowhead=2,
+#						arrowsize=2,
+#						arrowside='start',
+#						arrowcolor='green',
+#					   )
+#				  )
+#		annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
+#						x=0+i, y=df[df.columns[3]].to_list()[i],ax=m+i, ay=df[df.columns[3]].to_list()[i],
+#						startstandoff=10,
+#						text='Worst: '+str(round(df[df.columns[3]].to_list()[i],1))+suf,
+#						font=dict(family='NotoSans-CondensedLight', size=12, color='red'),
+#						showarrow=True,
+#						arrowhead=2,
+#						arrowsize=2,
+#						arrowside='start',
+#						arrowcolor='red',
+#					   )
+#				  )
 	
 	
 	fig_sim.update_layout(
@@ -1718,13 +1761,13 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 #           df_agg_pt = df_pt_lv1_f.groupby(by = d_set).agg({'Pt Ct':'nunique', 'Episode Ct':'count'}).reset_index()
 #           df_agg_clinical = df_pt_epi_phy_lv1_f.groupby(by = d_set).sum().reset_index()
 		df_agg = df_pt_epi_phy_srv_lv1_f.groupby(by = [d]).sum().reset_index()
-		df_agg['Pt Ct'] = 5000
-		df_agg['Episode Ct'] = 91277
+		df_agg['Pt Ct'] = 4250
+		df_agg['Episode Ct'] = 9867
 
 	#print(d)
 	#print(d1)
 	#print(d1v)
-	#print(df_agg)
+	df_agg.to_csv(d+'.csv')
 
 
 
@@ -1749,8 +1792,8 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 	df_agg.loc[len(df_agg)] = allvalue
 
 
-	df_agg['Patient %'] = df_agg['Pt Ct']/5000
-	df_agg['Episode %'] = df_agg['Episode Ct']/91277
+	df_agg['Patient %'] = df_agg['Pt Ct']/4250
+	df_agg['Episode %'] = df_agg['Episode Ct']/9867
 	df_agg['Cost %'] = df_agg['YTD Total Cost']/(df_agg[df_agg[d]=='All']['YTD Total Cost'].values[0])
 
 
@@ -1784,6 +1827,8 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 	df_agg['Annualized Avg Cost per Unit'] = df_agg['Annualized Total Cost']/df_agg['Annualized Utilization']
 	df_agg['Benchmark Avg Cost per Unit'] = df_agg['Benchmark Total Cost']/df_agg['Benchmark Utilization']
 	df_agg['Diff % from Benchmark Unit Cost'] = (df_agg['Annualized Avg Cost per Unit'] - df_agg['Benchmark Avg Cost per Unit'])/df_agg['Benchmark Avg Cost per Unit']
+	print(d)
+	print(df_agg)
 
 	if d in ['Clinical Condition']:
 		df_agg =  pd.concat([df_agg[0:len(df_agg)-1].nlargest(10,'Contribution to Overall Performance Difference'),df_agg.tail(1)]).reset_index(drop=True)

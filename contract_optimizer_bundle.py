@@ -40,6 +40,9 @@ measure_epo_list4=['Coronary artery bypass graft']
 measure_epo_list5=['Acute myocardial infarction']
 measure_epo_list6=['Back and neck except spinal fusion','Back & neck except spinal fusion','Bariatric Surgery','Coronary artery bypass graft','Cardiac valve','Double joint replacement of the lower extremity','Hip and femur procedures except major joint','Lower extremity/humerus procedure except hip, foot, femur','Major bowel procedure','Major joint replacement of the lower extremity (MJRLE)','Major joint replacement of the upper extremity','Spinal fusion']
 
+#modebar display
+button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
+
 
 def create_layout(app):
 #    load_data()
@@ -437,7 +440,7 @@ def tab_result(app):
                                     dbc.Row(
                                         [
                                             dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'bundle-figure-plan',style={"height":"45vh", "width":"60vh"}), width=5),
+                                            dbc.Col(dcc.Graph(id = 'bundle-figure-plan',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"45vh", "width":"60vh"}), width=5),
                                             dbc.Col(html.Div(id = 'bundle-table-plan'), width=6),
                                         ],
                                         no_gutters=True,
@@ -468,7 +471,7 @@ def tab_result(app):
                                     dbc.Row(
                                         [
                                             dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'bundle-figure-provider',style={"height":"45vh", "width":"60vh"}), width=5),
+                                            dbc.Col(dcc.Graph(id = 'bundle-figure-provider',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"45vh", "width":"60vh"}), width=5),
                                             dbc.Col(html.Div(id = 'bundle-table-provider'), width=6),
                                         ],
                                         no_gutters=True,
@@ -808,7 +811,7 @@ def store_inter_results(n, data, adj_pos, adj_neg, stop_loss, stop_gain):
         stop_loss = stop_loss/100
         stop_gain = stop_gain/100
         result = BP_Contract_Calculation(dff,stop_gain,stop_loss,adj_pos,adj_neg)
-        print(result['Bundle'][0])
+ 
         drop_opt=[{'label':c,'value':c} for c in result['Bundle'].unique().tolist()]
         drop_default=result['Bundle'].unique().tolist()[0]
         return 'tab-1', result.to_json(orient = 'split'),drop_opt,drop_default

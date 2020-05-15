@@ -29,6 +29,8 @@ file = open('configure/default_ds.json', encoding = 'utf-8')
 default_input = json.load(file)
 df_quality = pd.read_csv("data/quality_setup.csv")
 
+#modebar display
+button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
 
 def create_layout(app):
 #    load_data()
@@ -686,7 +688,7 @@ def tab_result(app):
                                     dbc.Row(
                                         [
                                             dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'figure-cost',style={"height":"45vh", "width":"60vh"}), width=5),
+                                            dbc.Col(dcc.Graph(id = 'figure-cost',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"45vh", "width":"60vh"}), width=5),
                                             dbc.Col(html.Div(id = 'table-cost'), width=6),
                                         ],
                                         no_gutters=True,
@@ -724,7 +726,7 @@ def tab_result(app):
                                     dbc.Row(
                                         [
                                             dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'figure-fin',style={"height":"45vh", "width":"60vh"}), width=5),
+                                            dbc.Col(dcc.Graph(id = 'figure-fin',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"45vh", "width":"60vh"}), width=5),
                                             dbc.Col(html.Div(id = 'table-fin'), width=6),
                                         ],
                                         no_gutters=True,
