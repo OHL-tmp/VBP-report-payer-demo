@@ -106,8 +106,8 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 				 'font-weight':'bold', 
 				 'textAlign': 'start',
 				 'width':'14rem',
-                 'height':'3rem',
-                 'whiteSpace':'normal'
+				 'height':'3rem',
+				 'whiteSpace':'normal'
 				 #'minWidth': '25rem',
 				 #'maxWidth':'25rem',
 				  },
@@ -1463,23 +1463,23 @@ def drilldata_process(df_drilldown,d,d1='All',d1v='All',d2='All',d2v='All',d3='A
 
 
 	allvalue=df_agg.sum().values 
-    allvalue[0]='All'
+	allvalue[0]='All'
 
-    
-    selected_index=[j for j, e in enumerate(df_agg.columns) if e == 'Pt Ct'][0]
+	
+	selected_index=[j for j, e in enumerate(df_agg.columns) if e == 'Pt Ct'][0]
 
-    if d in ['Service Category', 'Sub Category']:
-        allvalue[selected_index]=df_agg['Pt Ct'].mean()
-    elif: d in ['Chronic','Acute']:
-    	allvalue[selected_index]=df_pt_lv1_f.agg({'Pt Ct':'nunique'})[0]
+	if d in ['Service Category', 'Sub Category']:
+		allvalue[selected_index]=df_agg['Pt Ct'].mean()
+	elif d in ['Chronic','Acute']:
+		allvalue[selected_index]=df_pt_lv1_f.agg({'Pt Ct':'nunique'})[0]
 
-    if len(df_agg[df_agg[d]=='Others'])>0:
-        otherpos=df_agg[df_agg[d]=='Others'].index[0]
-        otherlist=df_agg.loc[otherpos]
-        df_agg.loc[otherpos]=df_agg.loc[len(df_agg)-1]
-        df_agg.loc[len(df_agg)-1]=otherlist
+	if len(df_agg[df_agg[d]=='Others'])>0:
+		otherpos=df_agg[df_agg[d]=='Others'].index[0]
+		otherlist=df_agg.loc[otherpos]
+		df_agg.loc[otherpos]=df_agg.loc[len(df_agg)-1]
+		df_agg.loc[len(df_agg)-1]=otherlist
   
-    df_agg.loc[len(df_agg)] = allvalue
+	df_agg.loc[len(df_agg)] = allvalue
 
 
 	df_agg['Patient %'] = df_agg['Pt Ct']/5000
@@ -1517,8 +1517,8 @@ def drilldata_process(df_drilldown,d,d1='All',d1v='All',d2='All',d2v='All',d3='A
 	df_agg['Benchmark Avg Cost per Unit'] = df_agg['Benchmark Total Cost']/df_agg['Benchmark Utilization']
 	df_agg['Diff % from Benchmark Unit Cost'] = (df_agg['Annualized Avg Cost per Unit'] - df_agg['Benchmark Avg Cost per Unit'])/df_agg['Benchmark Avg Cost per Unit']
 
-	if d in ['Chronic','Acute']::
-		df_agg =  pd.concat([df_agg[0:len(df_agg)-1].nlargest(10,'Contribution to Overall Performance Difference').,df_agg.tail(1)]).reset_index(drop=True)
+	if d in ['Chronic','Acute']:
+		df_agg =  pd.concat([df_agg[0:len(df_agg)-1].nlargest(10,'Contribution to Overall Performance Difference'),df_agg.tail(1)]).reset_index(drop=True)
 
 	if d1=='All':
 		showcolumn=[d,'Patient %','Cost %','YTD Avg Cost/Patient','Diff % from Benchmark Avg Cost/Patient','Contribution to Overall Performance Difference']
@@ -1601,106 +1601,106 @@ def data_bars_diverging(df, column, color_above='#3D9970', color_below='#FF4136'
 def drilltable_lv1(df,tableid):
 	#df['Growth Trend']=df['Trend'].apply(lambda x: '↗️' if x > 0.02 else '↘️' if x<-0.02 else '→' )
 	#col=df.columns.tolist()
-    tbl=dash_table.DataTable(
-        id=tableid,
-        data=df.to_dict('records'),
-        columns=[{"name": i, "id": i} if i==df.columns[0] else {"name": i, "id": i} if i==df.columns[3] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.percentage(0)} for i in df.columns],
-        row_selectable="single",
-        selected_rows=[],
-        style_data={
-            'whiteSpace': 'normal',
-            'height': 'auto'
-        },
-        style_data_conditional=(
+	tbl=dash_table.DataTable(
+		id=tableid,
+		data=df.to_dict('records'),
+		columns=[{"name": i, "id": i} if i==df.columns[0] else {"name": i, "id": i} if i==df.columns[3] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.percentage(0)} for i in df.columns],
+		row_selectable="single",
+		selected_rows=[],
+		style_data={
+			'whiteSpace': 'normal',
+			'height': 'auto'
+		},
+		style_data_conditional=(
 		data_bars_diverging(df, '% Diff from Target') +
 		data_bars_diverging(df, 'Contribution to Overall Diff')
 		),
-       
-        style_cell={
-            'textAlign': 'center',
-            'font-family':'NotoSans-Condensed',
-            'fontSize':14
-        },
-        style_header={
-            'height': '4rem',
-            'minWidth': '3rem',
-            'maxWidth':'3rem',
-            'whiteSpace': 'normal',
-            'backgroundColor': "#f1f6ff",
-            'fontWeight': 'bold',
-            'font-family':'NotoSans-CondensedLight',
-            'fontSize':16,
-            'color': '#1357DD',
-            'text-align':'center',
-        },
-    )
-    return tbl
+	   
+		style_cell={
+			'textAlign': 'center',
+			'font-family':'NotoSans-Condensed',
+			'fontSize':14
+		},
+		style_header={
+			'height': '4rem',
+			'minWidth': '3rem',
+			'maxWidth':'3rem',
+			'whiteSpace': 'normal',
+			'backgroundColor': "#f1f6ff",
+			'fontWeight': 'bold',
+			'font-family':'NotoSans-CondensedLight',
+			'fontSize':16,
+			'color': '#1357DD',
+			'text-align':'center',
+		},
+	)
+	return tbl
 
 
 def drilltable_lv3(df,dimension,tableid,row_select):#row_select: numeric 0 or 1
-    
-    #df1=df[0:len(df)-1].sort_values(by='Contribution to Overall Performance Difference',ascending=False)
-    #df1.append(df[len(df)-1:len(df)])
-    #df1['id']=df1[df1.columns[0]]
-    #df1.set_index('id', inplace=True, drop=False)
-    df['id']=df[df.columns[0]]
-    df.set_index('id', inplace=True, drop=False)
+	
+	#df1=df[0:len(df)-1].sort_values(by='Contribution to Overall Performance Difference',ascending=False)
+	#df1.append(df[len(df)-1:len(df)])
+	#df1['id']=df1[df1.columns[0]]
+	#df1.set_index('id', inplace=True, drop=False)
+	df['id']=df[df.columns[0]]
+	df.set_index('id', inplace=True, drop=False)
 
-    if row_select==0:
-        row_sel=False
-    else:
-        row_sel='single'
-        
-    table_lv3=dash_table.DataTable(
-        data=df.to_dict('records'),
-        id=tableid,
-        columns=[
-        {"name": ["Total Cost", dimension], "id": dimension},
-        {"name": ["Total Cost", "YTD Cost PMPM"], "id": "YTD Cost PMPM",'type': 'numeric',"format":FormatTemplate.money(0)},
-        {"name": ["Total Cost", "% Diff from Benchmark"], "id": "% Cost Diff from Target",'type': 'numeric',"format":FormatTemplate.percentage(1)},
-        {"name": ["Total Cost", "Contribution to Overall Performance Difference"], "id": "Contribution to Overall Performance Difference",'type': 'numeric',"format":FormatTemplate.percentage(1)},
-        {"name": ["Utilization Rate", "YTD Avg Utilization Rate"], "id": "YTD Avg Utilization Rate",'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
-        {"name": ["Utilization Rate", "% Diff from Benchmark"], "id": "% Util Diff from Target",'type': 'numeric',"format":FormatTemplate.percentage(1)},
-        {"name": ["Unit Cost", "YTD Avg Cost per Unit"], "id": "YTD Avg Cost per Unit",'type': 'numeric',"format":FormatTemplate.money(0)},
-        {"name": ["Unit Cost", "% Diff from Benchmark"], "id": "% Unit Cost Diff from Target",'type': 'numeric',"format":FormatTemplate.percentage(1)},
-    ],
-        merge_duplicate_headers=True,
-        sort_action="custom",
-        sort_mode='single',
-        sort_by=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"},],
-        row_selectable=row_sel,
-        selected_rows=[],
-        style_data={
-            'whiteSpace': 'normal',
-            'height': 'auto'
-        },
-       
-        style_cell={
-            'textAlign': 'center',
-            'font-family':'NotoSans-Regular',
-            'fontSize':12
-        },
-        style_cell_conditional=[
-            {'if': {'column_id': df.columns[0]},
-             
-             'fontWeight': 'bold',
-            }, 
-            
-        ],
-        style_header={
-            'height': '4rem',
-            'minWidth': '3rem',
-            'maxWidth':'3rem',
-            'whiteSpace': 'normal',
-            'backgroundColor': '#f1f6ff',
-            'fontWeight': 'bold',
-            'font-family':'NotoSans-CondensedLight',
-            'fontSize':14,
-            'color': '#1357DD',
-            'text-align':'center',
-        },
-    )
-    return table_lv3
+	if row_select==0:
+		row_sel=False
+	else:
+		row_sel='single'
+		
+	table_lv3=dash_table.DataTable(
+		data=df.to_dict('records'),
+		id=tableid,
+		columns=[
+		{"name": ["Total Cost", dimension], "id": dimension},
+		{"name": ["Total Cost", "YTD Cost PMPM"], "id": "YTD Cost PMPM",'type': 'numeric',"format":FormatTemplate.money(0)},
+		{"name": ["Total Cost", "% Diff from Benchmark"], "id": "% Cost Diff from Target",'type': 'numeric',"format":FormatTemplate.percentage(1)},
+		{"name": ["Total Cost", "Contribution to Overall Performance Difference"], "id": "Contribution to Overall Performance Difference",'type': 'numeric',"format":FormatTemplate.percentage(1)},
+		{"name": ["Utilization Rate", "YTD Avg Utilization Rate"], "id": "YTD Avg Utilization Rate",'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
+		{"name": ["Utilization Rate", "% Diff from Benchmark"], "id": "% Util Diff from Target",'type': 'numeric',"format":FormatTemplate.percentage(1)},
+		{"name": ["Unit Cost", "YTD Avg Cost per Unit"], "id": "YTD Avg Cost per Unit",'type': 'numeric',"format":FormatTemplate.money(0)},
+		{"name": ["Unit Cost", "% Diff from Benchmark"], "id": "% Unit Cost Diff from Target",'type': 'numeric',"format":FormatTemplate.percentage(1)},
+	],
+		merge_duplicate_headers=True,
+		sort_action="custom",
+		sort_mode='single',
+		sort_by=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"},],
+		row_selectable=row_sel,
+		selected_rows=[],
+		style_data={
+			'whiteSpace': 'normal',
+			'height': 'auto'
+		},
+	   
+		style_cell={
+			'textAlign': 'center',
+			'font-family':'NotoSans-Regular',
+			'fontSize':12
+		},
+		style_cell_conditional=[
+			{'if': {'column_id': df.columns[0]},
+			 
+			 'fontWeight': 'bold',
+			}, 
+			
+		],
+		style_header={
+			'height': '4rem',
+			'minWidth': '3rem',
+			'maxWidth':'3rem',
+			'whiteSpace': 'normal',
+			'backgroundColor': '#f1f6ff',
+			'fontWeight': 'bold',
+			'font-family':'NotoSans-CondensedLight',
+			'fontSize':14,
+			'color': '#1357DD',
+			'text-align':'center',
+		},
+	)
+	return table_lv3
 
 def pie_cost_split(df):
 	labels = df['type']
@@ -1814,108 +1814,108 @@ def network_cost_stack_h(df):
 	return fig
 
 def table_driver_all(df):        
-    table=dash_table.DataTable(
-        data=df.to_dict('records'),
-        #id=tableid,
-        columns=[{"name": c, "id": c,} for c in df.columns ],  
-        sort_action="native",
-        sort_mode='single',
-        sort_by=[{"column_id":"Impact to Overall Difference","direction":"desc"},],
-        style_data={
-            'whiteSpace': 'normal',
-            'height': 'auto'
-        },
-       
-        style_cell={
-            'textAlign': 'center',
-            'font-family':'NotoSans-Regular',
-            'fontSize':12
-        },
-        style_cell_conditional=[
-            {'if': {'column_id': df.columns[0]},
-             
-             'fontWeight': 'bold',
-            }, 
-            
-        ],
-        style_table={
-            'back':  colors['blue'],
-        },
-        style_header={
-            'height': '4rem',
-            'minWidth': '3rem',
-            'maxWidth':'3rem',
-            'whiteSpace': 'normal',
-            'backgroundColor': '#f1f6ff',
-            'fontWeight': 'bold',
-            'font-family':'NotoSans-CondensedLight',
-            'fontSize':14,
-            'color': '#1357DD',
-            'text-align':'center',
-        },
-    )
-    return table
+	table=dash_table.DataTable(
+		data=df.to_dict('records'),
+		#id=tableid,
+		columns=[{"name": c, "id": c,} for c in df.columns ],  
+		sort_action="native",
+		sort_mode='single',
+		sort_by=[{"column_id":"Impact to Overall Difference","direction":"desc"},],
+		style_data={
+			'whiteSpace': 'normal',
+			'height': 'auto'
+		},
+	   
+		style_cell={
+			'textAlign': 'center',
+			'font-family':'NotoSans-Regular',
+			'fontSize':12
+		},
+		style_cell_conditional=[
+			{'if': {'column_id': df.columns[0]},
+			 
+			 'fontWeight': 'bold',
+			}, 
+			
+		],
+		style_table={
+			'back':  colors['blue'],
+		},
+		style_header={
+			'height': '4rem',
+			'minWidth': '3rem',
+			'maxWidth':'3rem',
+			'whiteSpace': 'normal',
+			'backgroundColor': '#f1f6ff',
+			'fontWeight': 'bold',
+			'font-family':'NotoSans-CondensedLight',
+			'fontSize':14,
+			'color': '#1357DD',
+			'text-align':'center',
+		},
+	)
+	return table
 
 def bundle_measure_setup(df):
-    table=dash_table.DataTable(
-    	data = df.to_dict('records'),
-        id = 'bundle-table-selectedmeas',
-        columns = [
-        {"name":['','Measure'],"id":'Measure'}, 
-        {"name": ["Baseline", "Provider"], "id": "provider"},
-        {"name": ["Baseline", "Benchmark"], "id": "benchmark"},
-        {"name": ["Baseline", "Best-in-Class"], "id": "bic"},
-        {"name": ["Target", "Recommended"], "id": "recommended"},
-        {"name": ["Target", "User Defined"], "id": "user defined",'editable':True},
+	table=dash_table.DataTable(
+		data = df.to_dict('records'),
+		id = 'bundle-table-selectedmeas',
+		columns = [
+		{"name":['','Measure'],"id":'Measure'}, 
+		{"name": ["Baseline", "Provider"], "id": "provider"},
+		{"name": ["Baseline", "Benchmark"], "id": "benchmark"},
+		{"name": ["Baseline", "Best-in-Class"], "id": "bic"},
+		{"name": ["Target", "Recommended"], "id": "recommended"},
+		{"name": ["Target", "User Defined"], "id": "user defined",'editable':True},
 
-        ],
-        merge_duplicate_headers=True,
-        row_selectable='multi',
-        selected_rows=list(range(0,len(df))),       
-        # style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
-        style_data_conditional=[
-                {
-                    'if': {'column_id': 'Measure'},
-                    'textAlign': 'left',
-                    'width':'30%',
-                },
-               
-                {
-                    'if': {'column_id': 'user defined'},
-                    'border':'1px solid blue',
-                    'backgroundColor':'white',
+		],
+		merge_duplicate_headers=True,
+		row_selectable='multi',
+		selected_rows=list(range(0,len(df))),       
+		# style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
+		style_data_conditional=[
+				{
+					'if': {'column_id': 'Measure'},
+					'textAlign': 'left',
+					'width':'30%',
+				},
+			   
+				{
+					'if': {'column_id': 'user defined'},
+					'border':'1px solid blue',
+					'backgroundColor':'white',
 
-                },
-                
+				},
+				
 
-                ],
+				],
 
-        style_header={
-            'backgroundColor': '#bfd4ff',
-            'fontWeight': 'bold',
-            'font-family':'NotoSans-Condensed',
-            'border':'1px solid white',
-        },
-        style_data={
-            'whiteSpace': 'normal',
-            'height': 'auto',
-            'backgroundColor':'rgba(0,0,0,0)',
-            'border-left':'0px',
-            'border-right':'0px',
-        },
-       
-        style_cell={
-            'textAlign': 'center',
-            'font-family':'NotoSans-Regular',
-            'fontSize':10,
-            'height' : 'auto', 
-            'whiteSpace':'normal',
-            'max-width':'3rem',
-            'padding':'10px',
-        },
-        #style_as_list_view = True,
-        )
-    return table
+		style_header={
+			'backgroundColor': '#bfd4ff',
+			'fontWeight': 'bold',
+			'font-family':'NotoSans-Condensed',
+			'border':'1px solid white',
+		},
+		style_data={
+			'whiteSpace': 'normal',
+			'height': 'auto',
+			'backgroundColor':'rgba(0,0,0,0)',
+			'border-left':'0px',
+			'border-right':'0px',
+		},
+	   
+		style_cell={
+			'textAlign': 'center',
+			'font-family':'NotoSans-Regular',
+			'fontSize':10,
+			'height' : 'auto', 
+			'whiteSpace':'normal',
+			'max-width':'3rem',
+			'padding':'10px',
+		},
+		#style_as_list_view = True,
+		)
+	return table
 
 #def table_network_cost(df):
 

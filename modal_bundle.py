@@ -18,8 +18,8 @@ from figure import *
 
 #app = dash.Dash(__name__)
 
-df_bundles = pd.read_csv("data/df_bundles_30.csv")
-modal_columns = df_bundles.columns[3:9]
+df_bundles_default = pd.read_csv("data/df_bundles_90.csv")
+modal_columns = df_bundles_default.columns[3:9]
 
 conditional_data_style = [
 			        {

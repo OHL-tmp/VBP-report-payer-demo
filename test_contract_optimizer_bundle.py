@@ -20,7 +20,7 @@ from utils import *
 from figure import *
 from simulation_cal import *
 from modal_bundle import *
-
+from bp_contract_calculation import *
 
 from app import app
 
@@ -41,25 +41,25 @@ def create_layout(app):
 #    load_data()
     return html.Div(
                 [ 
-                    html.Div([Header_contract(app, False, False, True)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
+                    html.Div([Header_contract(app, False,True, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
                     
                     html.Div(
                         [
                             dbc.Tabs(
-							    [
-							        dbc.Tab(tab_setup(app), label="Contract Simulation Setup", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
-							        dbc.Tab(tab_result(app), label="Result", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
-							        
-							    ], id = 'tab_container'
-							)
+                                [
+                                    dbc.Tab(tab_setup(app), label="Contract Simulation Setup", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
+                                    dbc.Tab(tab_result(app), label="Result", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
+                                    
+                                ], id = 'bundle-tab-container'
+                            )
                         ],
                         className="mb-3",
                         style={"padding-left":"3rem", "padding-right":"3rem"},
                     ),
 
                     # hidden div inside the app to store the temp data
-                    html.Div(id = 'temp-data', style = {'display':'none'}),
-                    html.Div(id = 'temp-result', style = {'display':'none'}),
+                    html.Div(id = 'bundle-temp-data', style = {'display':'none'}),
+                    html.Div(id = 'bundle-temp-result', style = {'display':'none'}),
 
                     
                 ],
@@ -68,25 +68,26 @@ def create_layout(app):
 
 
 def tab_setup(app):
-	return html.Div(
-				[
-					dbc.Row(
-						[
-							dbc.Col(html.H1("Contract Simulation Setup", style={"padding-left":"2rem","font-size":"3"}), width=9),
-						],
+    return html.Div(
+                [
+                    dbc.Row(
+                        [
+                            dbc.Col(html.H1("Contract Simulation Setup", style={"padding-left":"2rem","font-size":"3"}), width=9),
+                            
+                        ],
                         style={"padding-top":"2rem"}
-					),
+                    ),
                     html.Div(
                         [
-                        	card_performance_measure_setup(app),
+                            card_performance_measure_setup(app),
                         ]
                     ),                  
-				]
-			)
+                ]
+            )
 
 
 def card_performance_measure_setup(app):
-	return dbc.Card(
+    return dbc.Card(
                 dbc.CardBody(
                     [
                         card_bundle_selection(app),
@@ -96,7 +97,7 @@ def card_performance_measure_setup(app):
                             dbc.Button("SUBMIT",
                                 className="mb-3",
                                 style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem"},
-                                id = 'button-submit-simulation'
+                                id = 'bundle-button-submit-simulation'
                             ),
                             style={"text-align":"center"}
                         )
@@ -108,26 +109,33 @@ def card_performance_measure_setup(app):
 
 
 def card_bundle_selection(app):
-	return dbc.Card(
+    return dbc.Card(
                 dbc.CardBody(
                     [
-                    	dbc.Row(
+                        dbc.Row(
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                dbc.Col(html.H4("Bundle Selection & Target Price", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                dbc.Col(html.H4("Bundle Selection & Target Price", style={"font-size":"1rem", "margin-left":"10px"}), width=4),
+                                dbc.Col(html.H6("PLACEHOLDER"), width = 1),
+                                dbc.Col(dcc.Dropdown(
+                                options = [{'label':'30D', 'value':'30D'},{'label':'60D', 'value':'60D'},{'label':'90D', 'value':'90D'}],
+                                value = '90D',
+                                id = 'bundle-dropdown-duration',
+                                clearable = False,
+                                ),width = 1)
                             ],
                             no_gutters=True,
                         ),
                         dbc.Row(
                             [
                                 dbc.Col(
-                                	html.Div(
-                                		dcc.Dropdown(
-                                        	options = [
-	                                        	{'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" },
-	                                        	{'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
-	                                        	{'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
-                                        	],#{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }
+                                    html.Div(
+                                        dcc.Dropdown(
+                                            options = [
+                                                {'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" },
+                                                {'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
+                                                {'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
+                                            ],#{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }
                                             value = "ACO's PMPM"
                                         ),
                                         style={"padding-left":"0rem","padding-right":"1rem", "height":"0.6rem","font-size":"0.8rem"}
@@ -135,23 +143,23 @@ def card_bundle_selection(app):
                                     width=4,
                                 ),
                                 dbc.Col(
-                                	[
-                                		html.Div(
-                                			[
-                                				html.H4("Baseline", style={"font-size":"0.6rem"}),
+                                    [
+                                        html.Div(
+                                            [
+                                                html.H4("Baseline", style={"font-size":"0.6rem"}),
                                                 html.Hr(className="ml-1"),
-                                				
-                                			]
-                                		)
-                                	],
+                                                
+                                            ]
+                                        )
+                                    ],
                                     style={"text-align":"center"},
                                     width=4,
                                 ),
                                 dbc.Col(
-                                	[
-                                		html.Div(
-                                			[
-                                				html.Div(
+                                    [
+                                        html.Div(
+                                            [
+                                                html.Div(
                                                     [
                                                         html.H4(
                                                             [
@@ -162,23 +170,23 @@ def card_bundle_selection(app):
                                                     ],
                                                 ),
                                                 html.Hr(className="ml-1"),
-                                				
-                                			]
-                                		)
-                                	],
+                                                
+                                            ]
+                                        )
+                                    ],
                                     style={"text-align":"center","padding-left":"4rem"},
                                     width=2,
                                 ),
                                 dbc.Col(
-                                	[
-                                		html.Div(
-                                			[
-                                				html.H4("Likelihood to achieve", style={"font-size":"0.6rem"}),
+                                    [
+                                        html.Div(
+                                            [
+                                                html.H4("Likelihood to achieve", style={"font-size":"0.6rem"}),
                                                 html.Hr(className="ml-1"),
-                                				
-                                			]
-                                		)
-                                	],
+                                                
+                                            ]
+                                        )
+                                    ],
                                     style={"text-align":"center","padding-left":"2rem"},
                                     width=2,
                                 ),
@@ -198,7 +206,7 @@ def card_bundle_selection(app):
 def table_setup(df):
     table=dash_table.DataTable(
                     id = 'bundle-table-selectedbundles',
-                    columns = [{"name":i,"id":i} for i in df_bundles.columns[:8]] +[{"name":'Recommended',"id":'Recommended Target'}]+[{"name":'User Defined',"id":'User Defined Target','editable':True}]+ [{"name":i,"id":i} for i in df_bundles.columns[11:13]],
+                    columns = [{"name":i,"id":i} for i in df_bundles_default.columns[:8]] +[{"name":'Recommended',"id":'Recommended Target'}]+[{"name":'User Defined',"id":'User Defined Target','editable':True}]+ [{"name":i,"id":i} for i in df_bundles_default.columns[11:13]],
                     
                     data = df.to_dict('records'),
                     # style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
@@ -253,12 +261,12 @@ def table_setup(df):
                                 'if':{'column_id':i},
                                 'width':'7.5%',
                                 
-                            } for i in df_bundles.columns[3:8]
+                            } for i in df_bundles_default.columns[3:8]
                             ] + [
                             {
                                 'if':{'column_id':i},
                                 'width':'7.5%'
-                            } for i in df_bundles.columns[9:13]
+                            } for i in df_bundles_default.columns[9:13]
                             ],
                     style_header_conditional = [
                                 {'if': {'column_id': 'Bundle'},
@@ -295,12 +303,12 @@ def table_setup(df):
     return table
 
 def card_bundle_table():
-    return html.Div(children=table_setup(df_bundles.iloc[[0,1,2]]), id = 'bundle-card-bundleselection',style={"width":"100%","padding-left":"1rem","padding-right":"1rem"})
+    return html.Div(children=table_setup(df_bundles_default.iloc[[0,1,2]]), id = 'bundle-card-bundleselection',style={"width":"100%","padding-left":"1rem","padding-right":"1rem"})
 
 
 
 def card_quality_adjustment(app):
-	return dbc.Card(
+    return dbc.Card(
                 dbc.CardBody(
                     [
                         dbc.Row(
@@ -315,16 +323,22 @@ def card_quality_adjustment(app):
                         dbc.Row(
                             [
                                 dbc.Col(html.H6("Maximum Adjustment on Positive Reconciliation Amount"), width="auto"),
-                                dbc.Col(html.H6("1"), width=1),
+                                dbc.Col(dbc.InputGroup([
+                                    dbc.Input(id = 'bundle-input-adj-pos', type = 'number', debounce = True, value = 10),
+                                    dbc.InputGroupAddon('%', addon_type = 'append'),
+                                    ]), width=1),
                                 dbc.Col(html.Div(), width=1),
                                 dbc.Col(html.H6("Maximum Adjustment on Negative Reconciliation Amount"), width="auto"),
-                                dbc.Col(html.H6("2"), width=1),
+                                dbc.Col(dbc.InputGroup([
+                                    dbc.Input(id = 'bundle-input-adj-neg', type = 'number', debounce = True, value = 10),
+                                    dbc.InputGroupAddon('%', addon_type = 'append'),
+                                    ]), width=1),
                             ]
                         ),
                         html.Div(
                             [
-                                html.Div(id='bundle-table-setup-container', style={"padding-bottom":"1rem"}),
-                            ],style={"padding-left":"4rem", "padding-right":"1rem"}
+                                html.Div("1", style={"padding-bottom":"1rem"}),
+                            ], id = 'div-meas-table-container', hidden = True, style={"padding-left":"4rem", "padding-right":"1rem"}
                         ),
                     ]
                 ),
@@ -349,10 +363,16 @@ def card_stop_loss_gain(app):
                         dbc.Row(
                             [
                                 dbc.Col(html.H6("Stop Loss"), width=2),
-                                dbc.Col(html.H6("1"), width=1),
+                                dbc.Col(dbc.InputGroup([
+                                    dbc.Input(id = 'bundle-input-stop-loss', type = 'number', debounce = True, value = 20),
+                                    dbc.InputGroupAddon('%', addon_type = 'append'),
+                                    ]), width=1),
                                 dbc.Col(html.Div(), width=2),
                                 dbc.Col(html.H6("Stop Gain"), width=2),
-                                dbc.Col(html.H6("2"), width=1),
+                                dbc.Col(dbc.InputGroup([
+                                    dbc.Input(id = 'bundle-input-stop-gain', type = 'number', debounce = True, value = 20),
+                                    dbc.InputGroupAddon('%', addon_type = 'append'),
+                                    ]), width=1),
                             ]
                         ),
                         
@@ -365,7 +385,7 @@ def card_stop_loss_gain(app):
 
 
 def tab_result(app):
-	return html.Div(
+    return html.Div(
                 [
                     dbc.Row(
                         [
@@ -376,13 +396,13 @@ def tab_result(app):
                                     style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem"},
                                     id = 'button-open-assump-modal'
                                 ),
-                            	dbc.Modal([
-                            		dbc.ModalHeader(html.H1("Key Simulation Assumptions", style={"font-family":"NotoSans-Black","font-size":"1.5rem"})),
-                            		dbc.ModalBody([sim_assump_input_session(),]),
-                            		dbc.ModalFooter(
-                            			dbc.Button('Close', id = 'button-close-assump-modal'))
-                            		], id = 'modal-assump', size = 'xl'),
-                            	],
+                                dbc.Modal([
+                                    dbc.ModalHeader(html.H1("Key Simulation Assumptions", style={"font-family":"NotoSans-Black","font-size":"1.5rem"})),
+                                    dbc.ModalBody([sim_assump_input_session(),]),
+                                    dbc.ModalFooter(
+                                        dbc.Button('Close', id = 'button-close-assump-modal'))
+                                    ], id = 'modal-assump', size = 'xl'),
+                                ],
                                 style={"padding-top":"1rem"}
                             ),
                             
@@ -397,14 +417,14 @@ def tab_result(app):
                                         dbc.Col(html.H4("Plan's Financial Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                         dbc.Col(html.Div(html.H2("Metric", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"1rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
                                         dbc.Col(dcc.Dropdown(
-                                        	id = 'dropdown-cost',
-                                        	options = [
-                                        	{'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" },
-                                        	{'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
-                                        	{'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
-                                        	],#{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }
+                                            id = 'dropdown-cost',
+                                            options = [
+                                            {'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" },
+                                            {'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
+                                            {'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
+                                            ],#{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }
                                             value = "ACO's PMPM",
-                                        	))
+                                            ))
                                     ],
                                     no_gutters=True,
                                 ),
@@ -412,8 +432,8 @@ def tab_result(app):
                                     dbc.Row(
                                         [
                                             dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'figure-cost',style={"height":"45vh", "width":"60vh"}), width=5),
-                                            dbc.Col(html.Div(id = 'table-cost'), width=6),
+                                            dbc.Col(dcc.Graph(id = 'bundle-figure-cost',style={"height":"45vh", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(id = 'bundle-table-cost'), width=6),
                                         ],
                                         no_gutters=True,
                                     ),
@@ -436,13 +456,13 @@ def tab_result(app):
                                         dbc.Col(html.H4("ACO's Financial Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                         dbc.Col(html.Div(html.H2("Metric", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"1rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
                                         dbc.Col(dcc.Dropdown(
-                                        	id = 'dropdown-fin',
-                                        	options = [
-                                        	{'label' : "ACO's Total Revenue", 'value' : "ACO's Total Revenue" },
-                                        	{'label' : "ACO's Margin", 'value' : "ACO's Margin" },
-                                        	{'label' : "ACO's Margin %", 'value' : "ACO's Margin %" }],
+                                            id = 'dropdown-fin',
+                                            options = [
+                                            {'label' : "ACO's Total Revenue", 'value' : "ACO's Total Revenue" },
+                                            {'label' : "ACO's Margin", 'value' : "ACO's Margin" },
+                                            {'label' : "ACO's Margin %", 'value' : "ACO's Margin %" }],
                                             value = "ACO's Total Revenue",
-                                        	))
+                                            ))
                                     ],
                                     no_gutters=True,
                                 ),
@@ -450,8 +470,8 @@ def tab_result(app):
                                     dbc.Row(
                                         [
                                             dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'figure-fin',style={"height":"45vh", "width":"60vh"}), width=5),
-                                            dbc.Col(html.Div(id = 'table-fin'), width=6),
+                                            dbc.Col(dcc.Graph(id = 'bundle-figure-fin',style={"height":"45vh", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(id = 'bundle-table-fin'), width=6),
                                         ],
                                         no_gutters=True,
                                     ),
@@ -647,6 +667,22 @@ layout = create_layout(app)
 
 ### bundle selection ###
 @app.callback(
+    Output('bundle-temp-data', 'children'),
+    [Input('bundle-dropdown-duration', 'value')]
+    )
+def update_basetable(v):
+    if v == '30D':
+        df_bundles = pd.read_csv("data/df_bundles_30.csv")
+    elif v == '60D':
+        df_bundles = pd.read_csv("data/df_bundles_60.csv")
+    else:
+        df_bundles = pd.read_csv("data/df_bundles_90.csv")
+
+    return df_bundles.to_json(orient = 'split')
+
+
+
+@app.callback(
     Output('bundle-modal-bundles', 'is_open'),
     [Input('bundle-button-openmodal', 'n_clicks'),
     Input('bundle-button-closemodal', 'n_clicks')],
@@ -658,11 +694,34 @@ def open_modal(n1, n2, is_open):
     return is_open
 
 @app.callback(
-    [Output('bundle-card-bundleselection', 'children'),
-     Output('bundle-table-setup-container','children')],
-    [Input('bundle-button-closemodal', 'n_clicks')],
-    [State('bundle-table-selectedbundles', 'data'),
-    State('bundle-table-modal-spine', 'selected_rows'),
+    [Output('bundle-table-modal-spine', 'data'),
+    Output('bundle-table-modal-kidney', 'data'),
+    Output('bundle-table-modal-infect', 'data'),
+    Output('bundle-table-modal-neuro', 'data'),
+    Output('bundle-table-modal-cardi', 'data'),
+    Output('bundle-table-modal-pul', 'data'),
+    Output('bundle-table-modal-gastro', 'data'),
+    Output('bundle-table-modal-op', 'data')],
+    [Input('bundle-temp-data', 'children')]
+    )
+def read_basetable(data):
+    df_bundles = pd.read_json(data, orient = 'split')
+    data_spine = df_bundles[df_bundles['Category'] == "Spine, Bone, and Joint"].to_dict('records')
+    data_kindey = df_bundles[df_bundles['Category'] == "Kidney"].to_dict('records')
+    data_infect = df_bundles[df_bundles['Category'] == "Infectious Disease"].to_dict('records')
+    data_neuro = df_bundles[df_bundles['Category'] == "Neurological"].to_dict('records')
+    data_cardi = df_bundles[df_bundles['Category'] == "Cardiac"].to_dict('records')
+    data_pul = df_bundles[df_bundles['Category'] == "Pulmonary"].to_dict('records')
+    data_gastro = df_bundles[df_bundles['Category'] == "Gastrointestinal"].to_dict('records')
+    data_op = df_bundles[df_bundles['Category'] == "Outpatient"].to_dict('records')
+    return data_spine,data_kindey,data_infect,data_neuro,data_cardi,data_pul,data_gastro,data_op
+
+
+@app.callback(
+    Output('bundle-card-bundleselection', 'children'),
+    [Input('bundle-button-closemodal', 'n_clicks'),
+    Input('bundle-temp-data', 'children')],
+    [State('bundle-table-modal-spine', 'selected_rows'),
     State('bundle-table-modal-kidney', 'selected_rows'),
     State('bundle-table-modal-infect', 'selected_rows'),
     State('bundle-table-modal-neuro', 'selected_rows'),
@@ -672,6 +731,8 @@ def open_modal(n1, n2, is_open):
     State('bundle-table-modal-op', 'selected_rows'),]
     )
 def update_selected_bundles(n,data,r1,r2,r3,r4,r5,r6,r7,r8):
+    df_bundles = pd.read_json(data, orient = 'split')
+
     if n:
 
         df1 = df_bundles[df_bundles['Category'] == "Spine, Bone, and Joint"]
@@ -724,7 +785,31 @@ def update_bundlerows(timestamp, data):
 
     return data
 
-
+@app.callback(
+    [Output('bundle-tab-container', 'active_tab'),
+    Output('bundle-temp-result', 'children')],
+    [Input('bundle-button-submit-simulation','n_clicks')],
+    [State('bundle-table-selectedbundles', 'data'),
+#    State('bundle-table-selectedbundles', 'columns'),
+    State('bundle-input-adj-pos', 'value'),
+    State('bundle-input-adj-neg', 'value'),
+    State('bundle-input-stop-loss', 'value'),
+    State('bundle-input-stop-gain', 'value')]
+    )
+def store_inter_results(n, data, adj_pos, adj_neg, stop_loss, stop_gain):
+    if n:
+        df = pd.DataFrame(data)
+        dff = df[['Bundle', 'Bundle Count', 'Average Bundle Cost', 'Recommended Target', 'User Defined Target']]
+        dff.columns = ['Bundle', 'Bundle Count', 'Average Bundle Cost', 'Recommended', 'User Defined']
+        dff['User Defined'] = dff['User Defined'].apply(lambda x: int(x.replace('$','')))
+        adj_pos = adj_pos/100
+        adj_neg = adj_neg/100
+        stop_loss = stop_loss/100
+        stop_gain = stop_gain/100
+        result = BP_Contract_Calculation(dff,stop_gain,stop_loss,adj_pos,adj_neg)
+        print(result)
+        return 'tab-1', result.to_json(orient = 'split')
+    return 'tab-0',""
 
 if __name__ == "__main__":
     app.run_server(host="127.0.0.1",debug=True,port=8049)
