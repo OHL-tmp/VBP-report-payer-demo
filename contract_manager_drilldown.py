@@ -33,11 +33,6 @@ df_network_cost_split=pd.read_csv('data/df_network_cost_split.csv')
 df_network_facility_split=pd.read_csv('data/df_network_facility_split.csv')
 df_network_prof_split=pd.read_csv('data/df_network_prof_split.csv')
 
-df_drill_lv1=pd.read_csv('data/df_drill_lv1.csv')
-df_drill_lv2=pd.read_csv('data/df_drill_lv2.csv')
-df_drill_lv3=pd.read_csv('data/df_drill_lv3.csv')
-df_drill_lv4=pd.read_csv('data/df_drill_lv4.csv')
-
 def create_layout(app):
 #    load_data()
     return html.Div(
@@ -342,14 +337,14 @@ def tab_patient_cohort_analysis():
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                         dbc.Col(html.H4("Clinical Condition Analysis: Top 10 Chronic Conditions", style={"font-size":"1rem", "margin-left":"10px"})),
-                                        dbc.Col(mod_criteria_button(['Top 10 chronic','Top 10 acute'],'2'),width=2)
+                                        dbc.Col(mod_criteria_button(['Top 10 Chronic','Top 10 Acute'],'2'),width=2)
                                     ],
                                     no_gutters=True,
                                 ),
                                 
                                 html.Div(
                                     [
-                                        drilltable_lv1(df_drill_lv2,'table-patient-drill-lv2')
+                                        drilltable_lv1(drilldata_process('Top 10 Chronic'),'table-patient-drill-lv2')
                                     ], id="table-patient-drill-lv2-container",
                                     style={"max-height":"80rem","padding":"1rem"}
                                 ),
@@ -366,7 +361,7 @@ def tab_patient_cohort_analysis():
                                 ),
                                 html.Div(
                                     [
-                                        html.Div(children=drilltable_lv3(df_drill_lv3,'Service Category','table-patient-drill-lv3',1))
+                                        drilltable_lv3(drilldata_process('Service Category'),'Service Category','table-patient-drill-lv3',1)
                                     ], id="table-patient-drill-lv3-container",
                                     style={"max-height":"80rem","padding":"1rem"}
                                 ),
@@ -382,7 +377,7 @@ def tab_patient_cohort_analysis():
                                 ),
                                 html.Div(
                                     [
-                                        html.Div(children=drilltable_lv3(df_drill_lv4,'Sub Category','table-patient-drill-lv4',0))
+                                         drilltable_lv3(drilldata_process('Sub Category'),'Sub Category','table-patient-drill-lv4',0)
                                     ], id="table-patient-drill-lv4-container",
                                     style={"max-height":"80rem","padding":"1rem"}
                                 ),
@@ -516,7 +511,7 @@ def card_graph1_performance_drilldown(app):
                                     ],
                                     style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
                                 ), 
-                                html.Div(drillgraph_lv1(drilldata_process(df_drilldown,'Patient Health Risk Level'),'dashtable_lv1','Patient Health Risk Level'),id="drill_lv1",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
+                                html.Div(drilltable_lv1(drilldata_process('Patient Health Risk Level'),'dashtable_lv1'),id="drill_lv1",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
                             ], 
                             style={"max-height":"80rem"}
                         ),
@@ -597,13 +592,165 @@ def toggle_popover_mod_criteria2(n1, is_open):
 #update lv1 table based on criteria button1
 @app.callback(
     Output("table-patient-drill-lv1-container","children"),
-   [Input("list-dim-lv1","value")] 
+   [Input("list-dim-lv1","value"),] 
 )
-def update_table_dimension(dim):
+def update_table_lv1(dim):     
+
+    return drilltable_lv1(drilldata_process(dim),'table-patient-drill-lv1')
+
+
+#update lv2 table based on criteria button2 and lv1 selected rows
+@app.callback(
+    Output("table-patient-drill-lv2-container","children"),
+   [Input("list-dim-lv2","value"),
+    Input("list-dim-lv1","value"),
+    Input("table-patient-drill-lv1","selected_row_ids")] 
+)
+def update_table_lv2(dim,d1,selected_lv1):
+
+    if selected_lv1 is None or  selected_lv1==[]:
+        d1v='All'
+    else:
+        d1v=selected_lv1[0]
+
+    return drilltable_lv1(drilldata_process(dim,d1,d1v),'table-patient-drill-lv2')
+
+#update lv3 table based on criteria button1,criteria button2, and lv1 selected rows,lv2 selected rows
+@app.callback(
+    Output("table-patient-drill-lv3-container","children"),
+   [Input("list-dim-lv1","value"),
+    Input("table-patient-drill-lv1","selected_row_ids"),
+    Input("list-dim-lv2","value"),
+    Input("table-patient-drill-lv2","selected_row_ids")] 
+)
+def update_table_lv3(d1,selected_lv1,d2,selected_lv2):
+
+    if selected_lv1 is None or  selected_lv1==[]:
+        d1v='All'
+    else:
+        d1v=selected_lv1[0]
+
+    if selected_lv2 is None or  selected_lv2==[]:
+        d2v='All'
+    else:
+        d2v=selected_lv2[0]
+
+
+    return drilltable_lv3(drilldata_process('Service Category',d1,d1v,d2,d2v),'Service Category','table-patient-drill-lv3',1)
+
+
+#update lv4 table based on criteria button1,criteria button2, and lv1 selected rows,lv2 selected rows,lv3 selected rows
+@app.callback(
+    Output("table-patient-drill-lv4-container","children"),
+   [Input("list-dim-lv1","value"),
+    Input("table-patient-drill-lv1","selected_row_ids"),
+    Input("list-dim-lv2","value"),
+    Input("table-patient-drill-lv2","selected_row_ids"),
+    Input("table-patient-drill-lv3","selected_row_ids")] 
+)
+def update_table_lv3(d1,selected_lv1,d2,selected_lv2,selected_lv3):
+
+    if selected_lv1 is None or  selected_lv1==[]:
+        d1v='All'
+    else:
+        d1v=selected_lv1[0]
+
+    if selected_lv2 is None or  selected_lv2==[]:
+        d2v='All'
+    else:
+        d2v=selected_lv2[0]
+
+    if selected_lv3 is None or  selected_lv3==[]:
+        d3v='All'
+    else:
+        d3v=selected_lv3[0]
+
+    return drilltable_lv3(drilldata_process('Sub Category',d1,d1v,d2,d2v,'Service Category',d3v),'Sub Category','table-patient-drill-lv4',0)
+
+#update lv1 table based on sort_by
+@app.callback(
+    Output("table-patient-drill-lv1","data"),
+   [Input('table-patient-drill-lv1', 'sort_by'),],
+   [State("table-patient-drill-lv1","data")] 
+)
+def sort_table_lv1(sort_dim,data):
+    df=pd.DataFrame(data)
+
+    if sort_dim==[]:
+        sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
+
+
+    df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+    df1=pd.concat([df1,df.tail(1)]).reset_index(drop=True)
+    df1['id']=df1[df1.columns[0]]
+    df1.set_index('id', inplace=True, drop=False)
     
-    return drillgraph_lv1(drilldata_process(dim),'dashtable_lv1',dim),f1_name,filter1_value_list,f1_name,filter1_value_list,f1_name,filter1_value_list,'By '+f1_name
+    return df1.to_dict('records')
+
+#update lv2 table based on sort_by
+@app.callback(
+    Output("table-patient-drill-lv2","data"),
+   [Input('table-patient-drill-lv2', 'sort_by'),],
+   [State("table-patient-drill-lv2","data")] 
+)
+def sort_table_lv2(sort_dim,data):
+    df=pd.DataFrame(data)
+
+    if sort_dim==[]:
+        sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
 
 
+    df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+    df1=pd.concat([df1,df.tail(1)]).reset_index(drop=True)
+    df1['id']=df1[df1.columns[0]]
+    df1.set_index('id', inplace=True, drop=False)
+    
+    return df1.to_dict('records')
+
+#update lv3 table based on sort_by
+@app.callback(
+    Output("table-patient-drill-lv3","data"),
+   [Input('table-patient-drill-lv3', 'sort_by'),],
+   [State("table-patient-drill-lv3","data")] 
+)
+def sort_table_lv3(sort_dim,data):
+    df=pd.DataFrame(data)
+
+    if sort_dim==[]:
+        sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
+
+
+    df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+    df1=pd.concat([df1,df.tail(1)]).reset_index(drop=True)
+    df1['id']=df1[df1.columns[0]]
+    df1.set_index('id', inplace=True, drop=False)
+    
+    return df1.to_dict('records')
+
+#update lv4 table based on sort_by
+@app.callback(
+    Output("table-patient-drill-lv4","data"),
+   [Input('table-patient-drill-lv4', 'sort_by'),],
+   [State("table-patient-drill-lv4","data")] 
+)
+def sort_table_lv4(sort_dim,data):
+    df=pd.DataFrame(data)
+
+    if sort_dim==[]:
+        sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
+
+    if 'Others' in df[df.columns[0]]:
+        df1=df[0:len(df)-2].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+        df1=pd.concat([df1,df.tail(2)]).reset_index(drop=True)
+
+    else:
+        df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+        df1=pd.concat([df1,df.tail(1)]).reset_index(drop=True)
+
+    df1['id']=df1[df1.columns[0]]
+    df1.set_index('id', inplace=True, drop=False)
+    
+    return df1.to_dict('records')
 
 if __name__ == "__main__":
     app.run_server(host="127.0.0.1",port=8049,debug=True)
