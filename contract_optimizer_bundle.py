@@ -179,13 +179,12 @@ def card_bundle_selection(app):
                 style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem"}
             )
 
-def card_bundle_table():
-    return html.Div([
-                dash_table.DataTable(
+def table_setup(df):
+    table=dash_table.DataTable(
                     id = 'bundle-table-selectedbundles',
-                    columns = [{"name":i,"id":i} for i in df_bundles.columns[:8]] + [{"name":i,"id":i} for i in df_bundles.columns[9:13]],
+                    columns = [{"name":i,"id":i} for i in df_bundles.columns[:8]] +[{"name":'Recommended',"id":'Recommended Target'}]+[{"name":'User Defined',"id":'User Defined Target','editable':True}]+ [{"name":i,"id":i} for i in df_bundles.columns[11:13]],
                     
-                    data = df_bundles.iloc[[0,1,2]].to_dict('records'),
+                    data = df.to_dict('records'),
                     # style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
                     style_data_conditional=[
                             {
@@ -201,10 +200,43 @@ def card_bundle_table():
                                 'if': {'column_id': 'IP/OP'},
                                 'textAlign': 'left',
                                 'width':'7%'
-                            }] + [
+                            },
+                            {
+                                'if': {'column_id': 'User Defined Target'},
+                                'border':'1px solid blue',
+                                'backgroundColor':'white',
+
+                            },
+                            {
+                                'if': {
+                                'column_id': 'User Defined',
+                                'filter_query': '{User Defined} eq "High"'
+                                },
+                                'backgroundColor':'green',
+                                'color':'white'
+                            },
+                            {
+                                'if': {
+                                'column_id': 'User Defined',
+                                'filter_query': '{User Defined} eq "Mid"'
+                                },
+                                'backgroundColor':'#f5b111',
+                                'color':'black'
+                            },
+                            {
+                                'if': {
+                                'column_id': 'User Defined',
+                                'filter_query': '{User Defined} eq "Low"'
+                                },
+                                'backgroundColor':'red',
+                                'color':'white'
+                            },
+
+                            ] + [
                             {
                                 'if':{'column_id':i},
-                                'width':'7.5%'
+                                'width':'7.5%',
+                                
                             } for i in df_bundles.columns[3:8]
                             ] + [
                             {
@@ -228,6 +260,9 @@ def card_bundle_table():
                     style_data={
                         'whiteSpace': 'normal',
                         'height': 'auto',
+                        'backgroundColor':'rgba(0,0,0,0)',
+                        'border-left':'0px',
+                        'border-right':'0px',
                     },
                    
                     style_cell={
@@ -239,10 +274,12 @@ def card_bundle_table():
                         'max-width':'3rem',
                         'padding':'10px',
                     },
-                    style_as_list_view = True,
+                    #style_as_list_view = True,
                     )
+    return table
 
-                ], id = 'bundle-card-bundleselection',style={"width":"100%","padding-left":"1rem","padding-right":"1rem"})
+def card_bundle_table():
+    return html.Div(children=table_setup(df_bundles.iloc[[0,1,2]]), id = 'bundle-card-bundleselection',style={"width":"100%","padding-left":"1rem","padding-right":"1rem"})
 
 
 
@@ -591,247 +628,6 @@ def sim_assump_input_session():
 app.layout = create_layout(app)
 
 
-@app.callback(
-    [Output('input-usr-mlr', 'disabled'),
-    Output('input-usr-planshare-l', 'disabled'),
-    Output('input-usr-sharecap-l', 'disabled'),
-    Output('input-usr-planshare-l-min', 'disabled'),
-    Output('toggleswitch-firstdollar-loss', 'disabled'),
-    Output('switch-loss-method', 'options')],
-    [Input('switch-share-loss', 'value')]
-    )
-def toggle_share_loss(v):
-    if 'Shared Losses' in v:
-        return False, False, False, False, False, [{'label':'1 - Shared Saving Rate', 'value' : 'selected'}]
-    return True, True, True, True, True, [{'label':'1 - Shared Saving Rate', 'value' : 'selected', 'disabled' : True}]
-
-
-@app.callback(
-    Output('div-meas-table-container', 'hidden'),
-    [Input('button-show-meas', 'n_clicks')],
-    [State('div-meas-table-container', 'hidden')]
-    )
-def show_meas_table(n, hidden):
-    if n:
-        return not hidden 
-    return hidden
-
-@app.callback(
-    Output('div-usr-tgt', 'children'),
-    [Input('input-usr-tgt-trend', 'value')]
-    )
-def update_usr_target(v):
-    base = default_input['medical cost target']['medical cost pmpm']
-    base = int(base.replace("$",""))
-    if v:
-        tgt = int(round(base*v/100+base,0))
-        return '$'+str(tgt)
-    else:
-        return '$800'
-   
-
-@app.callback(
-    Output('div-usr-like', 'children'),
-    [Input('div-usr-tgt', 'children')],
-    [State('div-recom-like', 'children'),
-    State('div-recom-tgt', 'children')]
-    )
-def cal_usr_like(usr_tgt, recom_like, recom_tgt):
-
-    if usr_tgt:
-        recom_tgt_int = int(recom_tgt.replace('$','').replace('%','').replace(',',''))
-        usr_tgt_int = int(usr_tgt.replace('$','').replace('%','').replace(',',''))
-        if usr_tgt_int >= recom_tgt_int:
-            return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"})
-        elif usr_tgt_int < recom_tgt_int*0.95:
-            return html.Div(html.H1("Low",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"red"})
-        else:
-            return html.Div(html.H1("Mid",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem"}), style={"border-radius":"0.5rem", "background-color":"#fff"})
-    else:
-        return html.Div()
-
-@app.callback(
-	Output('modal-assump', 'is_open'),
-	[Input('button-open-assump-modal', 'n_clicks'),
-	Input('button-close-assump-modal', 'n_clicks'),],
-	[State('modal-assump', 'is_open')]
-	)
-def toggle_modal(n1, n2, is_open):
-	if n1 or n2:
-		return not is_open
-	return is_open
-
-@app.callback(
-    [Output('div-recom-overall', 'children'),
-    Output('div-usr-overall', 'children')],
-    [Input('table-measure-setup', 'data'),]
-    )
-def cal_overall_weight(data):
-    
-    df = pd.DataFrame(data)
-    recom_overall = np.sum(int(i.replace('%','')) for i in list(df.fillna('0%').iloc[:,7]))
-    usr_overall = np.sum(0 if i.replace('%','')=='' else int(i.replace('%','')) for i in list(df.fillna('0%').iloc[:,8]))
-    return str(recom_overall)+'%', str(usr_overall)+'%'
-
-# table style update on selected_rows
-@app.callback(
-    Output('container-measure-setup', 'children'),
-    [Input('table-measure-setup', 'selected_rows'),],
-    [State('table-measure-setup', 'data'),
-    State('table-measure-setup', 'dropdown'),
-    State('table-measure-setup', 'dropdown_conditional'),
-    State('table-measure-setup', 'dropdown_data'),])
-def update_columns(selected_quality, data,t1,t2,t3):
-    for i in range(0,23):
-        row=data[i]
-
-        if i in selected_quality:
-            row['tar_user']=row['tar_recom']
-        else:
-            row['tar_user']=float('nan')
-    print(t1)
-    print(t2)
-    print(t3)
-
-    return qualitytable(pd.DataFrame.from_dict(data),selected_quality)
-
-# set up table selfupdate
-@app.callback(
-    Output('table-measure-setup', 'data'),
-    [Input('table-measure-setup', 'data_timestamp'),],
-    [State('table-measure-setup', 'data'),
-     State('table-measure-setup', 'selected_rows'),])
-def update_columns(timestamp, data,selected_quality):
-    for i in range(0,23):
-        row=data[i]
-        if i in [4,11,16,21]:  
-            row['userdefined']=str(row['userdefined']).replace('$','').replace('%','').replace(',','')+'%'
-        else:
-            row['userdefined']=float('nan')
-
-        if i in selected_quality:
-            if i in [10,11,12,13,14,17,18,21,22]:
-                row['tar_user']=str(row['tar_user']).replace('$','').replace('%','').replace(',','')+'%'
-        else:
-            row['tar_user']=float('nan')
-
-    return data  
-
-# store data
-@app.callback(
-	Output('temp-data', 'children'),
-	[Input('div-usr-tgt', 'children'),
-	Input('input-usr-msr', 'value'),
-	Input('input-usr-planshare', 'value'),
-    Input('input-usr-planshare-min', 'value'),
-	Input('input-usr-sharecap', 'value'),
-	Input('input-usr-mlr', 'value'),
-	Input('input-usr-planshare-l', 'value'),
-    Input('input-usr-planshare-l-min', 'value'),
-	Input('input-usr-sharecap-l', 'value'),
-    Input('switch-share-loss', 'value'),
-    Input('switch-loss-method', 'value'),
-    Input('table-measure-setup', 'selected_rows'),
-    Input('table-measure-setup', 'data')]
-	)
-def store_data(usr_tgt_int, usr_msr, usr_planshare, usr_planshare_min, usr_sharecap, usr_mlr, usr_planshare_l, usr_planshare_l_min, usr_sharecap_l, ts, lm, select_row, data):
-    df = pd.DataFrame(data)
-
-    if 'Shared Losses' in ts:
-        two_side = True
-    else:
-        two_side = False
-
-    if 'selected' in lm:
-        loss_method = True
-    else:
-        loss_method = False
-
-
-    usr_tgt = int(usr_tgt_int.replace('$',""))
-
-    recom_dom_1 = int(df.iloc[4,7].replace('%',""))/100
-    recom_dom_2 = int(df.iloc[11,7].replace('%',""))/100
-    recom_dom_3 = int(df.iloc[16,7].replace('%',""))/100
-    recom_dom_4 = int(df.iloc[21,7].replace('%',""))/100
-
-    usr_dom_1 =(0 if df.iloc[4,8].replace('%','')=='' else int(df.iloc[4,8].replace('%',"")))/100
-    usr_dom_2 =(0 if df.iloc[11,8].replace('%','')=='' else  int(df.iloc[11,8].replace('%',"")))/100
-    usr_dom_3 =(0 if df.iloc[16,8].replace('%','')=='' else  int(df.iloc[16,8].replace('%',"")))/100
-    usr_dom_4 =(0 if df.iloc[21,8].replace('%','')=='' else  int(df.iloc[21,8].replace('%',"")))/100
-
-    datasets = {
-        'medical cost target' : {'user target' : usr_tgt},
-        'savings/losses sharing arrangement' : {'two side' : two_side, 'msr': usr_msr, 'savings sharing' : usr_planshare, 'savings sharing min' : usr_planshare_min, 'savings share cap' : usr_sharecap,
-        'mlr' : usr_mlr, 'losses sharing' : usr_planshare_l, 'losses sharing min' : usr_planshare_l_min, 'losses share cap' : usr_sharecap_l, 'loss method' : loss_method},
-        'quality adjustment' : {'selected measures' : select_row, 'recom_dom_1' : recom_dom_1, 'recom_dom_2' : recom_dom_2, 'recom_dom_3' : recom_dom_3, 'recom_dom_4' : recom_dom_4,
-        'usr_dom_1' : usr_dom_1, 'usr_dom_2' : usr_dom_2, 'usr_dom_3' : usr_dom_3, 'usr_dom_4' : usr_dom_4}
-    }
-    
-    with open('configure/input_ds.json','w') as outfile:
-        json.dump(datasets, outfile)
-    return json.dumps(datasets)
-
-@app.callback(
-    [Output('tab_container', 'active_tab'),
-    Output('temp-result', 'children')],
-    [Input('button-submit-simulation', 'n_clicks')],
-    [State('temp-data', 'children')]
-    )
-def cal_simulation(submit, data):
-    if submit:
-        datasets = json.loads(data)
-        selected_rows = datasets['quality adjustment']['selected measures']
-        domian_weight =list( map(datasets['quality adjustment'].get, ['usr_dom_1','usr_dom_2','usr_dom_3','usr_dom_4']) ) 
-        target_user_pmpm = datasets['medical cost target']['user target']
-        msr_user = datasets['savings/losses sharing arrangement']['msr']/100
-        mlr_user = datasets['savings/losses sharing arrangement']['mlr']
-        max_user_savepct = datasets['savings/losses sharing arrangement']['savings sharing']/100
-        min_user_savepct = datasets['savings/losses sharing arrangement']['savings sharing min']/100
-        max_user_losspct = datasets['savings/losses sharing arrangement']['losses sharing']
-        min_user_losspct = datasets['savings/losses sharing arrangement']['losses sharing min']
-        cap_user_savepct = datasets['savings/losses sharing arrangement']['savings share cap']/100
-        cap_user_losspct = datasets['savings/losses sharing arrangement']['losses share cap']
-        twosided = datasets['savings/losses sharing arrangement']['two side']
-        lossmethod = datasets['savings/losses sharing arrangement']['loss method']
-
-        if twosided == True:
-            mlr_user = mlr_user/100
-            max_user_losspct = max_user_losspct/100
-            min_user_losspct = min_user_losspct/100
-            cap_user_losspct = cap_user_losspct/100
-
-        df=simulation_cal(selected_rows,domian_weight,default_input,target_user_pmpm,msr_user,mlr_user,max_user_savepct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided)
-
-        return 'tab-1', df.to_json(orient = 'split')
-    return 'tab-0', ""
-
-@app.callback(
-    [Output('figure-cost', 'figure'),
-    Output('table-cost', 'children')],
-    [Input('dropdown-cost', 'value'),
-    Input('temp-result', 'children')]
-    )
-def update_grapg_cost(metric, data):
-    if data:
-        dff = pd.read_json(data, orient = 'split')
-        df = dff[dff['Metrics'] == metric]
-        return sim_result_box(df), table_sim_result(df)
-    return {},""
-
-@app.callback(
-    [Output('figure-fin', 'figure'),
-    Output('table-fin', 'children')],
-    [Input('dropdown-fin', 'value'),
-    Input('temp-result', 'children')]
-    )
-def update_grapg_cost(metric, data):
-    if data:
-        dff = pd.read_json(data, orient = 'split')
-        df = dff[dff['Metrics'] == metric]
-        return sim_result_box(df),table_sim_result(df)
-    return {}, ""
-
 
 ### bundle selection ###
 @app.callback(
@@ -846,7 +642,7 @@ def open_modal(n1, n2, is_open):
     return is_open
 
 @app.callback(
-    Output('bundle-table-selectedbundles', 'data'),
+    Output('bundle-card-bundleselection', 'children'),
     [Input('bundle-button-closemodal', 'n_clicks')],
     [State('bundle-table-selectedbundles', 'data'),
     State('bundle-table-modal-spine', 'selected_rows'),
@@ -873,9 +669,32 @@ def update_selected_bundles(n,data,r1,r2,r3,r4,r5,r6,r7,r8):
         dff = pd.concat([df1.iloc[r1],df2.iloc[r2],df3.iloc[r3],df4.iloc[r4],
             df5.iloc[r5],df6.iloc[r6],df7.iloc[r7],df8.iloc[r8]])
 
-        update_data = dff.to_dict('records')
-        return update_data
+        update_data = dff
+        return table_setup(update_data)
+    return table_setup(df_bundles.iloc[[0,1,2]])
+
+# set up table selfupdate
+@app.callback(
+    Output('bundle-table-selectedbundles', 'data'),
+    [Input('bundle-table-selectedbundles', 'data_timestamp'),],
+    [State('bundle-table-selectedbundles', 'data'),])
+def update_columns(timestamp, data):
+
+    for i in range(0,len(data)):
+        row=data[i]
+        defined_val=int(str(row['User Defined Target']).replace('$','').replace('%','').replace(',',''))
+        recom_val=int(str(row['Recommended Target']).replace('$','').replace('%','').replace(',',''))
+        if defined_val/recom_val>=1 :
+            row['User Defined']='High'
+        elif defined_val/recom_val<=0.9 :
+            row['User Defined']='Low'
+        else:
+            row['User Defined']='Mid'
+
+        row['User Defined Target']='${:,.0f}'.format(defined_val)
+
     return data
+
 
 if __name__ == "__main__":
     app.run_server(host="127.0.0.1",debug=True,port=8049)
