@@ -431,13 +431,13 @@ def card_sl_sharing_arrangement(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=4),
-                                                dbc.Col(dbc.Checklist(options = [{'label':'1 - Quality Adjustment', 'value' : 'selected'}], value = []))
+                                                dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected'}], value = [], id = 'switch-saving-method'))
                                             ],
                                             style={"padding-top":"1rem"}),
 				                        dbc.Row(
 	                    					[
 	                    						dbc.Col(html.Div(), width = 1),
-                                                dbc.Col(html.H5("Sharing %", style={"font-size":"0.6rem"}),width=3),
+                                                dbc.Col(html.Div(id = 'text-saving'),width=3),
 	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
@@ -452,11 +452,11 @@ def card_sl_sharing_arrangement(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.Div(), width = 1),
-                                                dbc.Col(html.H5("Min Sharing %", style={"font-size":"0.6rem"}),width=3),
-                                                dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing min']),style={"text-align":"center"},width=4),
+                                                dbc.Col(html.H5("Min Sharing %", id = 'text-saving-min', style={"font-size":"0.6rem"}),width=3),
+                                                dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing min'],id = 'text-saving-min-recom'),style={"text-align":"center"},width=4),
                                                 dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-planshare-min', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['savings sharing min']),
+                                                    dbc.Input(id = 'input-usr-planshare-min', type = "number", disabled = True, debounce = True, value = default_input['savings/losses sharing arrangement']['savings sharing min']),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ],
                                                     size="sm")
@@ -466,9 +466,9 @@ def card_sl_sharing_arrangement(app):
                                         ),
                                         dbc.Row([
                                             dbc.Col(html.Div(), width = 1),
-                                            dbc.Col(html.H5("First Dollar Sharing", style={"font-size":"0.6rem"}),width=3),
+                                            dbc.Col(html.H5("First Dollar Sharing", id = 'text-saving-left',style={"font-size":"0.6rem"}),width=3),
                                             dbc.Col(daq.ToggleSwitch(id = 'toggleswitch-firstdollar-saving', value = False, size = 30, color = 'blue'), width = 4),
-                                            dbc.Col(html.H5("Second Dollar Sharing (Above MSR)", style={"font-size":"0.6rem"}),width=4),
+                                            dbc.Col(html.H5("Second Dollar Sharing (Above MSR)", id = 'text-saving-right',style={"font-size":"0.6rem"}),width=4),
                                             ],
                                              style={"padding-top":"1rem"}
                                         ),
@@ -529,13 +529,13 @@ def card_sl_sharing_arrangement(app):
 	                    				),
                                         dbc.Row([
                                             dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=4),
-                                            dbc.Col(dbc.Checklist(options = [{'label':'1 - Quality Adjustment', 'value' : 'selected'}], value = [], id = 'switch-loss-method'))
+                                            dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected'}], value = [], id = 'switch-loss-method'))
                                             ],
                                             style={"padding-top":"1rem"}),
 				                        dbc.Row(
 	                    					[
                                                 dbc.Col(html.Div(), width = 1),
-	                    						dbc.Col(html.H5("Sharing % ", style={"font-size":"0.6rem"}),width=3),
+	                    						dbc.Col(html.Div(id = 'text-loss'),width=3),
 	                    						dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing min']),style={"text-align":"center"},width=4),
 	                    						dbc.Col([
                                                     dbc.InputGroup([
@@ -550,8 +550,8 @@ def card_sl_sharing_arrangement(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.Div(), width = 1),
-                                                dbc.Col(html.H5("Max Sharing %", style={"font-size":"0.6rem"}),width=3),
-                                                dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing']),style={"text-align":"center"},width=4),
+                                                dbc.Col(html.H5("Max Sharing %", style={"font-size":"0.6rem"}, id = 'text-loss-max'),width=3),
+                                                dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing'], id = 'text-loss-max-recom'),style={"text-align":"center"},width=4),
                                                 dbc.Col([
                                                     dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-planshare-l', type = "number", debounce = True, value = default_input['savings/losses sharing arrangement']['losses sharing']),
@@ -564,15 +564,15 @@ def card_sl_sharing_arrangement(app):
                                         ),
                                         dbc.Row([
                                             dbc.Col(html.Div(), width = 1),
-                                            dbc.Col(html.H5("First Dollar Sharing", style={"font-size":"0.6rem"}),width=3),
+                                            dbc.Col(html.H5("First Dollar Sharing", id = 'text-loss-left',style={"font-size":"0.6rem"}),width=3),
                                             dbc.Col(daq.ToggleSwitch(id = 'toggleswitch-firstdollar-loss', value = False, size = 30, color = 'blue'), width = 4),
-                                            dbc.Col(html.H5("Second Dollar Sharing (Below MLR)", style={"font-size":"0.6rem"}),width=4),
+                                            dbc.Col(html.H5("Second Dollar Sharing (Below MLR)", id = 'text-loss-right',style={"font-size":"0.6rem"}),width=4),
                                             ],
                                              style={"padding-top":"1rem"}
                                         ),
                                         dbc.Row([
                                             dbc.Col(html.Div(), width = 1),
-                                            dbc.Col(html.H5("Quality Adjusted Sharing Rate", style={"font-size":"0.6rem"}),width=3),
+                                            dbc.Col(dbc.Checklist(options = [{'label':"Quality Adjusted Sharing Rate", 'value':"Quality Adjusted Sharing Rate"}], id = 'switch-quality-adj-rate',style={"font-size":"0.6rem"}),width=3),
                                             ],
                                              style={"padding-top":"1rem"}
                                         ),
@@ -917,10 +917,56 @@ def sim_assump_input_session():
 
 app.layout = create_layout(app)
 
+@app.callback(
+    [Output('text-saving-left', 'style'),
+    Output("text-saving-right", 'style')],
+    [Input('toggleswitch-firstdollar-saving', 'value')]
+    )
+def toogle_saving(v):
+    if v == False:
+        return {"font-size":"0.6rem", "color":'blue'},{"font-size":"0.6rem"}
+    return {"font-size":"0.6rem"},{"font-size":"0.6rem", 'color':'blue'}
+
+@app.callback(
+    [Output('text-loss-left', 'style'),
+    Output("text-loss-right", 'style')],
+    [Input('toggleswitch-firstdollar-loss', 'value')]
+    )
+def toogle_saving(v):
+    if v == False:
+        return {"font-size":"0.6rem", "color":'blue'},{"font-size":"0.6rem"}
+    return {"font-size":"0.6rem"},{"font-size":"0.6rem", 'color':'blue'}
+
+@app.callback(
+    [Output('text-saving', 'children'),
+    Output('input-usr-planshare-min', 'disabled'),
+    Output('text-saving-min', 'style'),
+    Output('text-saving-min-recom', 'style')],
+    [Input('switch-saving-method', 'value')]
+    )
+def toggle_saving_method(v):
+    if v and len(v)>0:
+        return [html.H5("Max Sharing % (When quality targets are met)", style={"font-size":"0.6rem"})], False,{"font-size":"0.6rem"},{}
+    return [html.H5("Sharing %", style={"font-size":"0.6rem"})],True,{"font-size":"0.6rem", "color":'#919191'},{"color":'#919191'}
+
+@app.callback(
+    [Output('text-loss', 'children'),
+    Output('input-usr-planshare-l', 'disabled'),
+    Output('text-loss-max', 'style'),
+    Output('text-loss-max-recom', 'style'),
+    Output('switch-quality-adj-rate', 'options')],
+    [Input('switch-loss-method', 'value')]
+    )
+def toggle_loss_method(v):
+    if v and len(v)>0:
+        return [html.H5("Min Sharing % (When quality targets are met)", style={"font-size":"0.6rem"})], False,{"font-size":"0.6rem"},{}, [{'label':"Quality Adjusted Sharing Rate", 'value':"Quality Adjusted Sharing Rate", 'disabled':False}]
+    return [html.H5("Sharing %", style={"font-size":"0.6rem"})],True,{"font-size":"0.6rem", "color":'#919191'},{"color":'#919191'}, [{'label':"Quality Adjusted Sharing Rate", 'value':"Quality Adjusted Sharing Rate", 'disabled':True}]
+
+
 
 @app.callback(
     [Output('input-usr-mlr', 'disabled'),
-    Output('input-usr-planshare-l', 'disabled'),
+#    Output('input-usr-planshare-l', 'disabled'),
     Output('input-usr-sharecap-l', 'disabled'),
     Output('input-usr-planshare-l-min', 'disabled'),
     Output('toggleswitch-firstdollar-loss', 'disabled'),
@@ -929,8 +975,8 @@ app.layout = create_layout(app)
     )
 def toggle_share_loss(v):
     if 'Shared Losses' in v:
-        return False, False, False, False, False, [{'label':'1 - Quality Adjustment', 'value' : 'selected'}]
-    return True, True, True, True, True, [{'label':'1 - Quality Adjustment', 'value' : 'selected', 'disabled' : True}]
+        return False, False, False, False, [{'label':'1 - Quality Adjustment', 'value' : 'selected'}]
+    return True, True, True, True, [{'label':'1 - Quality Adjustment', 'value' : 'selected', 'disabled' : True}]
 
 
 @app.callback(
