@@ -477,7 +477,14 @@ def datatable_data_selection(d1, d2, d3, d1v, d2v, d3v, f, fv, m):
 	else:
 		df_agg = df_agg[show_column]
 
-	return [{'name':i,'id':i} for i in show_column], df_agg.to_dict('records')
+	pct_list = ['Diff % from Benchmark Utilization', 'Diff % from Benchmark Total Cost', 'Diff % from Benchmark Unit Cost', 'Diff % from Benchmark Inpatient Short Stay Utilization',
+	'Episode %', 'Patient %', 'Diff % from Benchmark Inpatient Short Stay Utilization per Episode', 
+	'YTD 30D Readmission Rate per Episode', 'Annualized 30D Readmission Rate per Episode','Benchmark 30D Readmission Rate per Episode','Diff % from Benchmark 30D Readmission Rate per Episode',
+	'YTD 30D Post Discharge ER Rate per Episode','Annualized 30D Post Discharge ER Rate per Episode','Benchmark 30D Post Discharge ER Rate per Episode', 'Diff % from Benchmark 30D Post Discharge ER Rate per Episode']
+	dollar_list = ['YTD Total Cost', 'Annualized Total Cost', 'Benchmark Total Cost',
+	'YTD Unit Cost', 'Annualized Unit Cost', 'Benchmark Unit Cost']
+
+	return [{"name": i, "id": i, "selectable":True,"type":"numeric", "format": FormatTemplate.percentage(1)} if i in pct_list else {"name": i, "id": i, "selectable":True, "type":"numeric","format": FormatTemplate.money(0)} if i in dollar_list else {"name": i, "id": i, "selectable":True, "type":"numeric","format": Format(precision=1, scheme = Scheme.fixed)} for i in show_column], df_agg.to_dict('records')
 
 
 
