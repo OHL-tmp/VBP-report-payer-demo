@@ -1430,19 +1430,27 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
     df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1
 
     if d1v!='All':
-        df_pt_lv1_f = df_pt_lv1_f[df_pt_lv1_f[d1].isin(d1v)]
-        df_pt_epi_phy_lv1_f = df_pt_epi_phy_lv1_f[(df_pt_epi_phy_lv1_f[d1].isin(d1v))]
-        df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_f[(df_pt_epi_phy_srv_lv1_f[d1].isin(d1v))]
+        df_pt_lv1_f = df_pt_lv1_f[df_pt_lv1_f[d1]==d1v]
+        df_pt_epi_phy_lv1_f = df_pt_epi_phy_lv1_f[(df_pt_epi_phy_lv1_f[d1]==d1v)]
+        df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_f[(df_pt_epi_phy_srv_lv1_f[d1]==d1v)]
 
     if d2v!='All':
-        df_pt_lv1_f = df_pt_lv1_f[df_pt_lv1_f[d2].isin(d2v)]
-        df_pt_epi_phy_lv1_f = df_pt_epi_phy_lv1_f[(df_pt_epi_phy_lv1_f[d2].isin(d2v))]
-        df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_f[(df_pt_epi_phy_srv_lv1_f[d2].isin(d2v))]
+        d2='Clinical Condition'
+        df_pt_lv1_f = df_pt_lv1_f[df_pt_lv1_f[d2]==d2v]
+        df_pt_epi_phy_lv1_f = df_pt_epi_phy_lv1_f[(df_pt_epi_phy_lv1_f[d2]==d2v)]
+        df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_f[(df_pt_epi_phy_srv_lv1_f[d2]==d2v)]
 
     if d3v!='All':
-        df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_f[(df_pt_epi_phy_srv_lv1_f[d3].isin(d3v))]
+        df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_f[(df_pt_epi_phy_srv_lv1_f[d3]==d3v)]
 
-    d=d.replace('Top 10 ','')
+    d_ori=d
+
+    if d in ['Top 10 Chronic','Top 10 Acute']:
+
+        df_pt_lv1_f = df_pt_lv1_f[df_pt_lv1_f['Clinical Condition Type']==d.replace('Top 10 ','')]
+        df_pt_epi_phy_lv1_f = df_pt_epi_phy_lv1_f[(df_pt_epi_phy_lv1_f['Clinical Condition Type']==d.replace('Top 10 ',''))]
+        df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_f[(df_pt_epi_phy_srv_lv1_f['Clinical Condition Type']==d.replace('Top 10 ',''))]
+        d='Clinical Condition'
 
     if d not in ['Service Category', 'Sub Category']:
         df_agg_pt = df_pt_lv1_f.groupby(by = [d]).agg({'Pt Ct':'nunique', 'Episode Ct':'count'}).reset_index()
@@ -1459,8 +1467,15 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
         df_agg['Pt Ct'] = 5000
         df_agg['Episode Ct'] = 91277
 
+    #print(d)
+    #print(d1)
+    #print(d1v)
+    #print(df_agg)
 
-    allvalue=df_agg.sum().values 
+
+
+    allvalue=df_agg.sum().values
+
     allvalue[0]='All'
 
     
@@ -1468,7 +1483,7 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 
     if d in ['Service Category', 'Sub Category']:
         allvalue[selected_index]=df_agg['Pt Ct'].mean()
-    elif d in ['Chronic','Acute']:
+    elif d in ['Clinical Condition']:
         allvalue[selected_index]=df_pt_lv1_f.agg({'Pt Ct':'nunique'})[0]
 
     if len(df_agg[df_agg[d]=='Others'])>0:
@@ -1515,24 +1530,31 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
     df_agg['Benchmark Avg Cost per Unit'] = df_agg['Benchmark Total Cost']/df_agg['Benchmark Utilization']
     df_agg['Diff % from Benchmark Unit Cost'] = (df_agg['Annualized Avg Cost per Unit'] - df_agg['Benchmark Avg Cost per Unit'])/df_agg['Benchmark Avg Cost per Unit']
 
-    if d in ['Chronic','Acute']:
+    if d in ['Clinical Condition']:
         df_agg =  pd.concat([df_agg[0:len(df_agg)-1].nlargest(10,'Contribution to Overall Performance Difference'),df_agg.tail(1)]).reset_index(drop=True)
+        df_agg=df_agg.rename(columns={d:d_ori})
 
-    if d1=='All':
-        showcolumn=[d,'Patient %','Cost %','YTD Avg Cost/Patient','Diff % from Benchmark Avg Cost/Patient','Contribution to Overall Performance Difference']
-    elif d2=='All':
-        showcolumn=[d,'Episode Ct','Cost %','YTD Avg Cost/Episode','Diff % from Benchmark Avg Cost/Episode','Contribution to Overall Performance Difference']
-    elif d2v=='All':
-        showcolumn=[d,'YTD Avg Cost/Patient','Diff % from Benchmark Avg Cost/Patient','Contribution to Overall Performance Difference','YTD Avg Utilization Rate/Patient','Diff % from Benchmark Avg Utilization Rate/Patient','YTD Avg Cost per Unit','Diff % from Benchmark Unit Cost']
+    if d in ['Service Category','Sub Category']:
+        if d2v=='All':
+            showcolumn=[d_ori,'YTD Avg Cost/Patient','Diff % from Benchmark Avg Cost/Patient','Contribution to Overall Performance Difference','YTD Avg Utilization Rate/Patient','Diff % from Benchmark Avg Utilization Rate/Patient','YTD Avg Cost per Unit','Diff % from Benchmark Unit Cost']
+        else:
+            showcolumn=[d_ori,'YTD Avg Cost/Episode','Diff % from Benchmark Avg Cost/Episode','Contribution to Overall Performance Difference','YTD Avg Utilization Rate/Episode','Diff % from Benchmark Avg Utilization Rate/Episode','YTD Avg Cost per Unit','Diff % from Benchmark Unit Cost']
     else:
-        showcolumn=[d,'YTD Avg Cost/Episode','Diff % from Benchmark Avg Cost/Episode','Contribution to Overall Performance Difference','YTD Avg Utilization Rate/Episode','Diff % from Benchmark Avg Utilization Rate/Episode','YTD Avg Cost per Unit','Diff % from Benchmark Unit Cost']
-
+        if d in ['Clinical Condition']:
+            df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Episode':'Diff % from Benchmark'})
+            showcolumn=[d_ori,'Episode Ct','Cost %','YTD Avg Cost/Episode','Diff % from Benchmark','Contribution to Overall Performance Difference']
+        
+        else:
+        
+            df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Patient':'Diff % from Benchmark'})
+            showcolumn=[d_ori,'Patient %','Cost %','YTD Avg Cost/Patient','Diff % from Benchmark','Contribution to Overall Performance Difference']
+        
 
     return df_agg[showcolumn]
 
 
 
-def data_bars_diverging(df, column, color_above='#3D9970', color_below='#FF4136'):
+def data_bars_diverging(df, column, color_above='#FF4136', color_below='#3D9970'):
     n_bins = 100
     bounds = [i * (1.0 / n_bins) for i in range(n_bins + 1)]
     col_max = df[column].max()
@@ -1599,19 +1621,29 @@ def data_bars_diverging(df, column, color_above='#3D9970', color_below='#FF4136'
 def drilltable_lv1(df,tableid):
     #df['Growth Trend']=df['Trend'].apply(lambda x: '↗️' if x > 0.02 else '↘️' if x<-0.02 else '→' )
     #col=df.columns.tolist()
+    if 'Episode Ct' in df.columns:
+        col1_format=Format( precision=0, scheme=Scheme.fixed,)
+
+    else:
+        col1_format=FormatTemplate.percentage(1)
+
+    df['id']=df[df.columns[0]]
     tbl=dash_table.DataTable(
         id=tableid,
         data=df.to_dict('records'),
-        columns=[{"name": i, "id": i} if i==df.columns[0] else {"name": i, "id": i} if i==df.columns[3] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.percentage(0)} for i in df.columns],
+        columns=[{"name": i, "id": i} if i==df.columns[0] else {"name": i, "id": i,'type':'numeric','format':col1_format} if i==df.columns[1] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.money(0)} if i==df.columns[3] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.percentage(1)} for i in df.columns[0:6]],
         row_selectable="single",
-        selected_rows=[],
+        selected_rows=[len(df)-1],
+        sort_action="custom",
+        sort_mode='single',
+        sort_by=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"},],
         style_data={
             'whiteSpace': 'normal',
             'height': 'auto'
         },
         style_data_conditional=(
-        data_bars_diverging(df, '% Diff from Target') +
-        data_bars_diverging(df, 'Contribution to Overall Diff')
+        data_bars_diverging(df, 'Diff % from Benchmark') +
+        data_bars_diverging(df, 'Contribution to Overall Performance Difference')
         ),
        
         style_cell={
@@ -1648,26 +1680,26 @@ def drilltable_lv3(df,dimension,tableid,row_select):#row_select: numeric 0 or 1
         row_sel=False
     else:
         row_sel='single'
-        
+
+    sel_default=len(df)-1
+
     table_lv3=dash_table.DataTable(
         data=df.to_dict('records'),
         id=tableid,
-        columns=[
-        {"name": ["Total Cost", dimension], "id": dimension},
-        {"name": ["Total Cost", "YTD Cost PMPM"], "id": "YTD Cost PMPM",'type': 'numeric',"format":FormatTemplate.money(0)},
-        {"name": ["Total Cost", "% Diff from Benchmark"], "id": "% Cost Diff from Target",'type': 'numeric',"format":FormatTemplate.percentage(1)},
-        {"name": ["Total Cost", "Contribution to Overall Performance Difference"], "id": "Contribution to Overall Performance Difference",'type': 'numeric',"format":FormatTemplate.percentage(1)},
-        {"name": ["Utilization Rate", "YTD Avg Utilization Rate"], "id": "YTD Avg Utilization Rate",'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
-        {"name": ["Utilization Rate", "% Diff from Benchmark"], "id": "% Util Diff from Target",'type': 'numeric',"format":FormatTemplate.percentage(1)},
-        {"name": ["Unit Cost", "YTD Avg Cost per Unit"], "id": "YTD Avg Cost per Unit",'type': 'numeric',"format":FormatTemplate.money(0)},
-        {"name": ["Unit Cost", "% Diff from Benchmark"], "id": "% Unit Cost Diff from Target",'type': 'numeric',"format":FormatTemplate.percentage(1)},
-    ],
+        columns=[{"name": ["Total Cost", dimension], "id": dimension},]+
+        [{"name": ["Total Cost", df.columns[1]], "id": df.columns[1],'type': 'numeric',"format":FormatTemplate.money(0)},]+
+        [{"name": ["Total Cost", c], "id": c,'type': 'numeric',"format":FormatTemplate.percentage(1)} for c in df.columns[2:4]]+ 
+        [{"name": ["Utilization Rate",  df.columns[4]], "id": df.columns[4],'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
+        {"name": ["Utilization Rate", df.columns[5]], "id": df.columns[5],'type': 'numeric',"format":FormatTemplate.percentage(1)},
+        {"name": ["Unit Cost",  df.columns[6]], "id":  df.columns[6],'type': 'numeric',"format":FormatTemplate.money(0)},
+        {"name": ["Unit Cost",  df.columns[7]], "id":  df.columns[7],'type': 'numeric',"format":FormatTemplate.percentage(1)},
+        ],
         merge_duplicate_headers=True,
         sort_action="custom",
         sort_mode='single',
         sort_by=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"},],
         row_selectable=row_sel,
-        selected_rows=[],
+        selected_rows=[sel_default],
         style_data={
             'whiteSpace': 'normal',
             'height': 'auto'
