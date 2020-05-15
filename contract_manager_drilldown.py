@@ -403,7 +403,7 @@ def tab_physician_analysis():
                                 dbc.Row(
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Patient Cohort Analysis: By Patient Risk Status", style={"font-size":"1rem", "margin-left":"10px"})),
+                                        dbc.Col(html.H4("Physician Summary: By Specialty", style={"font-size":"1rem", "margin-left":"10px"})),
                                         dbc.Col(
                                             dbc.Button("Modify Criteria",
                                                 className="mb-3",
@@ -418,8 +418,8 @@ def tab_physician_analysis():
                                 
                                 html.Div(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
-                                    ], 
+                                        drilltable_physician(drilldata_process('Managing Physician Specialty'),'table-physician-drill-lv1',1)
+                                    ], id='table-physician-drill-lv1-container',
                                     style={"max-height":"80rem"}
                                 ),
                                 html.Div(
@@ -436,15 +436,15 @@ def tab_physician_analysis():
 
                                 dbc.Row(
                                     [
-                                        dbc.Col(html.H4("Cost and Utilization by Service Categories", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                        dbc.Col(html.H4("Physician Performance: Cardiology", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                     ],
                                     no_gutters=True,
                                 ),
                                 
                                 html.Div(
                                     [
-                                        html.Img(src=app.get_asset_url("logo-demo.png"))
-                                    ], 
+                                        drilltable_physician(drilldata_process('Managing Physician'),'table-physician-drill-lv2',0)
+                                    ], id='table-physician-drill-lv2-container',
                                     style={"max-height":"80rem"}
                                 ),
 
@@ -667,6 +667,20 @@ def update_table_lv3(d1,selected_lv1,d2,selected_lv2,selected_lv3):
 
     return drilltable_lv3(drilldata_process('Sub Category',d1,d1v,d2,d2v,'Service Category',d3v),'Sub Category','table-patient-drill-lv4',0)
 
+#update physician lv2 table based on lv1 selected rows
+@app.callback(
+    Output("table-physician-drill-lv2-container","children"),
+   [Input("table-physician-drill-lv1","selected_row_ids")] 
+)
+def update_table_lv2(selected_lv1):
+
+    if selected_lv1 is None or  selected_lv1==[]:
+        d1v='All'
+    else:
+        d1v=selected_lv1[0]
+
+    return drilltable_physician(drilldata_process('Managing Physician','Managing Physician Specialty',d1v),'table-physician-drill-lv2',0)
+
 #update lv1 table based on sort_by
 @app.callback(
     Output("table-patient-drill-lv1","data"),
@@ -747,6 +761,46 @@ def sort_table_lv4(sort_dim,data):
         df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
         df1=pd.concat([df1,df.tail(1)]).reset_index(drop=True)
 
+    df1['id']=df1[df1.columns[0]]
+    df1.set_index('id', inplace=True, drop=False)
+    
+    return df1.to_dict('records')
+
+#update physician lv1 table based on sort_by
+@app.callback(
+    Output("table-physician-drill-lv1","data"),
+   [Input('table-physician-drill-lv1', 'sort_by'),],
+   [State("table-physician-drill-lv1","data")] 
+)
+def sort_table_pyhsician_lv1(sort_dim,data):
+    df=pd.DataFrame(data)
+
+    if sort_dim==[]:
+        sort_dim=[{"column_id":"Avg Cost/Episode Diff % from Best-in-Class","direction":"desc"}]
+
+
+    df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+    df1=pd.concat([df1,df.tail(1)]).reset_index(drop=True)
+    df1['id']=df1[df1.columns[0]]
+    df1.set_index('id', inplace=True, drop=False)
+    
+    return df1.to_dict('records')
+
+#update physician lv2 table based on sort_by
+@app.callback(
+    Output("table-physician-drill-lv2","data"),
+   [Input('table-physician-drill-lv2', 'sort_by'),],
+   [State("table-physician-drill-lv2","data")] 
+)
+def sort_table_pyhsician_lv2(sort_dim,data):
+    df=pd.DataFrame(data)
+
+    if sort_dim==[]:
+        sort_dim=[{"column_id":"Avg Cost/Episode Diff % from Best-in-Class","direction":"desc"}]
+
+
+    df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+    df1=pd.concat([df1,df.tail(1)]).reset_index(drop=True)
     df1['id']=df1[df1.columns[0]]
     df1.set_index('id', inplace=True, drop=False)
     

@@ -679,6 +679,258 @@ def table_factor_doc(df,tableid='factor_doc'):
 	)
 	return table
 
+def sim_bundle_result_box(df_sim_result):
+ 
+	df=df_sim_result.iloc[[3,7,11]]
+	x=['FFS Contract','Bundled Payment<br>(Recommended)','Bundled Payment<br>(User Defined)']
+	m=0.3
+	n=len(df)
+
+	df.rename(columns={})
+	
+	median=df[df.columns[2]].to_list()
+
+#	header=['Best Estimate','Worst Case','Best Case']
+
+	#color for bar and box
+	fillcolor=['rgba(226,225,253,0)','rgba(18,85,222,0)','rgba(246,177,17,0)']
+	markercolor=['rgba(191,191,191,0.7)','rgba(18,85,222,0.7)','rgba(246,177,17,0.7)']
+		
+	annotations = []
+	
+	if df.values[1,3]<df.values[1,4]:
+		lowerfence=df[df.columns[3]].to_list()
+		q1=df[df.columns[2]].to_list()#Lower End Best Estimate
+		q3=df[df.columns[2]].to_list()#Higher End Best Estimate
+		upperfence=df[df.columns[4]].to_list()
+	else:
+		lowerfence=df[df.columns[4]].to_list()
+		q1=df[df.columns[2]].to_list()#Higher End Best Estimate
+		q3=df[df.columns[2]].to_list()#Lower End Best Estimate
+		upperfence=df[df.columns[3]].to_list()
+		
+#	if df.values[0,7] in ["ACO's PMPM"]:
+#		suf=''
+#	elif df.values[0,7] in ["ACO's Margin %"]:
+#		suf='%'
+#	else:
+#		suf='Mn'
+	suf=''
+
+	fig_sim =go.Figure()
+	
+	for i in range(n):
+		fig_sim.add_trace(
+			go.Box(
+				x=[x[i]],      
+				lowerfence=[lowerfence[i]],
+				q1=[q1[i]],
+				median=[median[i]],
+				q3=[q3[i]],
+				upperfence=[upperfence[i]],
+				fillcolor=fillcolor[i],
+				width=0.2,
+				line_width=3,
+				marker=dict(
+					color=markercolor[i],
+					#opacity=0.7,
+
+				)
+
+			),  
+		)
+		annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
+						x=0+i, y=df[df.columns[4]].to_list()[i],ax=m+i, ay=df[df.columns[4]].to_list()[i],
+						startstandoff=10,
+						text='Best: '+str(round(df[df.columns[4]].to_list()[i],1))+suf,
+						font=dict(family='NotoSans-CondensedLight', size=12, color='green'),
+						showarrow=True,
+						arrowhead=2,
+						arrowsize=2,
+						arrowside='start',
+						arrowcolor='green',
+					   )
+				  )
+		annotations.append(dict(xref='x', yref='y',axref='x', ayref='y',
+						x=0+i, y=df[df.columns[3]].to_list()[i],ax=m+i, ay=df[df.columns[3]].to_list()[i],
+						startstandoff=10,
+						text='Worst: '+str(round(df[df.columns[3]].to_list()[i],1))+suf,
+						font=dict(family='NotoSans-CondensedLight', size=12, color='red'),
+						showarrow=True,
+						arrowhead=2,
+						arrowsize=2,
+						arrowside='start',
+						arrowcolor='red',
+					   )
+				  )
+	
+	
+	fig_sim.update_layout(
+			plot_bgcolor=colors['transparent'],
+			paper_bgcolor=colors['transparent'],
+			bargap=0, 
+			yaxis = dict(
+				side='left',
+				
+				showgrid = True, 
+				showline=True,
+				linecolor=colors['grey'],
+				gridcolor =colors['grey'],
+				tickcolor =colors['grey'],
+				ticks='inside',
+				ticksuffix=suf,
+				nticks=5,
+				showticklabels=True,
+				tickfont=dict(
+					color=colors['grey']
+				),
+				zeroline=True,
+				zerolinecolor=colors['grey'],
+				zerolinewidth=1,
+			),
+			xaxis = dict(   
+				showgrid = True,
+				zeroline=True,
+				zerolinecolor=colors['grey'],
+				zerolinewidth=1,
+			),
+			showlegend=False,
+			modebar=dict(
+				bgcolor=colors['transparent']
+			),
+			margin=dict(l=10,r=100,b=10,t=40,pad=0),
+			font=dict(
+				family="NotoSans-Condensed",
+				size=14,
+				color="#38160f"
+			),
+		hovermode=False,
+		annotations=annotations,
+		)
+	return fig_sim
+
+
+def table_bundle_sim_result(df):
+	column1=[]
+	n=len(df)
+	style1=[0,4,8]
+	style2=[1,2,5,6,9,10]
+	style3=[3,7,11]
+
+	
+	
+	#column1=column1+['Contract','w/o','VBC Payout','Contract with','VBC Payout','(Recommended)','Contract with','VBC Payout','(User Defined)']
+	column1=column1+['','FFS','Contract', '','', 'Bundle Payment','(Recommended)','','','Bundle Payment','(User Defined)','']
+	df['scenario']=column1
+
+#	if df.values[0,7] in ["ACO's PMPM"]:
+#		header=['Best Estimate','Low','High','Low','High']
+#	elif df.values[0,7] in ["ACO's Margin %"]:
+#		header=['Best Estimate(%)','Low(%)','High(%)','Low(%)','High(%)']
+#	else:
+#		header=['Best Estimate(Mn)','Low(Mn)','High(Mn)','Low(Mn)','High(Mn)']
+	header=['Best Estimate','Worst Case','Best Case']
+
+#	if df.values[0,7] =="ACO's Margin %":
+#		df.iloc[:,2:7]=df.iloc[:,2:7]/100
+#		num_format=Format( precision=1, scheme=Scheme.percentage,nully='N/A')   
+#	else:
+#		num_format=Format( precision=1, scheme=Scheme.fixed,nully='N/A')
+	
+	num_format=Format( precision=1, scheme=Scheme.fixed,nully='N/A')
+   
+	table=dash_table.DataTable(
+		data=df.to_dict('records'),
+		#id=tableid,
+		columns=[
+		{"name": ["Contract Type","Contract Type"], "id": "scenario"},
+		{"name": ["Item","Item"], "id": "Item"},
+		{"name": ["",header[0]], "id": df.columns[2],'type': 'numeric',"format":num_format,},
+		#{"name": [ "Full Range",header[1]], "id": "Worst",'type': 'numeric',"format":num_format,},
+		#{"name": [ "Full Range",header[2]], "id": "Best",'type': 'numeric',"format":num_format,},
+		{"name": [ "Most Likely Range",header[1]], "id": df.columns[3],'type': 'numeric',"format":num_format,},
+		{"name": [ "Most Likely Range",header[2]], "id": df.columns[4],'type': 'numeric',"format":num_format,},
+		],  
+		merge_duplicate_headers=True,
+		style_data={
+			'whiteSpace': 'normal',
+			'height': 'auto'
+		},
+	   
+		style_cell={
+			'textAlign': 'center',
+			'font-family':'NotoSans-Regular',
+			'fontSize':12,
+			'border':'0px',
+			'height': '1.5rem',
+		},
+		style_data_conditional=[
+			{ 'if': {'row_index':c }, 
+			 'color': 'black', 
+			 'font-family': 'NotoSans-CondensedLight',
+			 'border-top': '1px solid grey',
+			 'border-left': '1px solid grey',
+			 'border-right': '1px solid grey',
+			  } if c in style1 else 
+			
+			{ 'if': {'row_index':c }, 
+			 'color': 'black', 
+			 'font-family': 'NotoSans-CondensedBlackItalic',
+			 'border-left': '1px solid grey',
+			 'border-right': '1px solid grey',
+			 'text-decoration':'underline'
+			  } if c in style2 else 
+			{ "if": {"row_index":c },
+			 'font-family': 'NotoSans-CondensedLight',
+			 'backgroundColor':'rgba(191,191,191,0.7)',
+			 'color': '#1357DD',
+			 'fontWeight': 'bold',
+			 'border-bottom': '1px solid grey',
+			 'border-left': '1px solid grey',
+			 'border-right': '1px solid grey',
+			  } if c in style3  else 
+			{ "if": {"column_id":"scenario" }, 
+			 'font-family': 'NotoSans-CondensedLight',
+			 'backgroundColor':'white',
+			 'color': 'black',
+			 'fontWeight': 'bold', 
+			 'text-decoration':'none'
+			  } for c in range(0,n+1)
+		],
+		style_table={
+			'back':  colors['blue'],
+		},
+		style_header={
+			'height': '2.5rem',
+			'minWidth': '3rem',
+			'maxWidth':'3rem',
+			'whiteSpace': 'normal',
+			'backgroundColor': '#f1f6ff',
+			'fontWeight': 'bold',
+			'font-family':'NotoSans-CondensedLight',
+			'fontSize':14,
+			'color': '#1357DD',
+			'text-align':'center',
+			'border':'1px solid grey',
+			'text-decoration':'none'
+		},
+		style_header_conditional=[
+			{ 'if': {'column_id':'scenario'},
+			'backgroundColor': colors['transparent'],
+			'color': colors['transparent'],
+			'border':'0px'        
+			},
+			{ 'if': {'column_id':'Item'},
+			'backgroundColor': colors['transparent'],
+			'color': colors['transparent'],
+			'border':'0px' , 
+			'border-right':'1px solid grey' ,
+			},
+		],
+		
+		
+	)
+	return table
 
 ####################################################################################################################################################################################
 ######################################################################     Dashboard         ##################################################################################### 
@@ -1512,6 +1764,7 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 	df_agg['Annualized Avg Cost/Episode'] = df_agg['Annualized Total Cost']/df_agg['Episode Ct']
 	df_agg['Benchmark Avg Cost/Episode'] = df_agg['Benchmark Total Cost']/df_agg['Episode Ct']
 	df_agg['Diff % from Benchmark Avg Cost/Episode'] = (df_agg['Annualized Avg Cost/Episode'] - df_agg['Benchmark Avg Cost/Episode'])/df_agg['Benchmark Avg Cost/Episode']
+	df_agg['Avg Cost/Episode Diff % from Best-in-Class'] = (df_agg['Annualized Avg Cost/Episode'] - df_agg['Benchmark Avg Cost/Episode']*0.9)/(df_agg['Benchmark Avg Cost/Episode']*0.9)
 
 
 	df_agg['Contribution to Overall Performance Difference']=(df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/df_agg['Benchmark Total Cost']
@@ -1545,6 +1798,10 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 		if d in ['Clinical Condition']:
 			df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Episode':'Diff % from Benchmark'})
 			showcolumn=[d_ori,'Episode Ct','Cost %','YTD Avg Cost/Episode','Diff % from Benchmark','Contribution to Overall Performance Difference']
+		
+		elif d in ['Managing Physician Specialty',	'Managing Physician']:
+			df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Episode':'Avg Cost/Episode Diff % from Benchmark'})
+			showcolumn=[d_ori,'Episode Ct','YTD Total Cost','Cost %','Avg Cost/Episode Diff % from Benchmark','Avg Cost/Episode Diff % from Best-in-Class']
 		
 		else:
 		
@@ -1733,6 +1990,55 @@ def drilltable_lv3(df,dimension,tableid,row_select):#row_select: numeric 0 or 1
 		},
 	)
 	return table_lv3
+
+def drilltable_physician(df,tableid,row_select):
+	#df['Growth Trend']=df['Trend'].apply(lambda x: '↗️' if x > 0.02 else '↘️' if x<-0.02 else '→' )
+	#col=df.columns.tolist()
+
+	df['id']=df[df.columns[0]]
+
+	if row_select==0:
+		row_sel=False
+	else:
+		row_sel='single'
+
+	tbl=dash_table.DataTable(
+		id=tableid,
+		data=df.to_dict('records'),
+		columns=[{"name": i, "id": i} if i==df.columns[0] else {"name": i, "id": i,'type':'numeric','format':Format( precision=0, scheme=Scheme.fixed,)} if i==df.columns[1] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.money(0)} if i==df.columns[2] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.percentage(1)} for i in df.columns[0:6]],
+		row_selectable=row_sel,
+		selected_rows=[len(df)-1],
+		sort_action="custom",
+		sort_mode='single',
+		sort_by=[{"column_id":"Avg Cost/Episode Diff % from Best-in-Class","direction":"desc"},],
+		style_data={
+			'whiteSpace': 'normal',
+			'height': 'auto'
+		},
+		style_data_conditional=(
+		data_bars_diverging(df, 'Avg Cost/Episode Diff % from Benchmark') +
+		data_bars_diverging(df, 'Avg Cost/Episode Diff % from Best-in-Class')
+		),
+	   
+		style_cell={
+			'textAlign': 'center',
+			'font-family':'NotoSans-Condensed',
+			'fontSize':14
+		},
+		style_header={
+			'height': '4rem',
+			'minWidth': '3rem',
+			'maxWidth':'3rem',
+			'whiteSpace': 'normal',
+			'backgroundColor': "#f1f6ff",
+			'fontWeight': 'bold',
+			'font-family':'NotoSans-CondensedLight',
+			'fontSize':16,
+			'color': '#1357DD',
+			'text-align':'center',
+		},
+	)
+	return tbl
 
 def pie_cost_split(df):
 	labels = df['type']
