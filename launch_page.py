@@ -11,9 +11,10 @@ import pandas as pd
 import numpy as np
 
 from app import app
-import contract_manager
-import contract_manager_drilldown
-import contract_optimizer
+import test_contract_manager
+import test_contract_manager_drilldown
+import test_contract_optimizer
+import test_contract_optimizer_bundle
 
 
 
@@ -30,7 +31,7 @@ def launch_layout():
                     ),
                     html.Div(
                         [
-                            html.P("version: beta 0.1.131             © 2020 OneHealthLink. ")
+                            html.P("© 2020 Sinolation. ")
                         ],
                         style={"text-align":"center", "font-size":"0.6rem"}
                     ),
@@ -62,7 +63,6 @@ def launch_layout():
                 style={"background-color":"#fff","height":"100vh"})
 
 
-
 # Describe the layout/ UI of the app
 app.layout = html.Div(
     [dcc.Location(id="url", refresh=False), html.Div(id="page-content")]
@@ -73,11 +73,13 @@ app.layout = html.Div(
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def display_page(pathname):
     if pathname == "/vbc-demo/contract-manager/":
-        return contract_manager.layout
+        return test_contract_manager.layout
     elif pathname == "/vbc-demo/contract-manager-drilldown/":
-        return contract_manager_drilldown.layout
+        return test_contract_manager_drilldown.layout
     elif pathname == "/vbc-demo/contract-optimizer/":
-        return contract_optimizer.layout
+        return test_contract_optimizer.layout
+    elif pathname == "/vbc-demo/contract-optimizer-bundle/":
+        return test_contract_optimizer_bundle.layout
     else:
         return launch_layout()
 
