@@ -25,12 +25,7 @@ from utils import *
 from figure import *
 from modal_dashboard_domain_selection import *
 
-
-app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract-manager/')
-
-server = app.server
-
-
+from app import app
 
 ## load data
 df_overall=pd.read_csv("data/df_overall.csv")
@@ -538,7 +533,7 @@ def manager_card_total_cost_incurred(app):
             )
 
 
-app.layout = create_layout(app)
+layout = create_layout(app)
 
 @app.callback(
     [Output('manager-col-totalcost', 'style'),

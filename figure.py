@@ -36,161 +36,163 @@ domain_color={'Patient/Caregiver Experience':'rgb(244,160,159)','Care Coordinati
 def qualitytable(df,selected_rows=list(range(0,23))):
 
 
-    table=dash_table.DataTable(
-        data=df.to_dict('records'),
-        id='table-measure-setup',
-        columns=[
-        {"name": ["","Measure"], "id": "measure"},
-        {"name": [ "ACO Baseline","ACO"], "id": "aco"},
-        {"name": [ "ACO Baseline","Benchmark"], "id": "benchmark"},
-        {"name": [ "ACO Baseline","Best-in-Class"], "id": "bic"},
-        {"name": [ "Target","Recommended"], "id": "tar_recom"},
-        {"name": [ "Target","User Defined Type"], "id": "tar_user_type",'editable':True,'presentation':'dropdown'},
-        {"name": [ "Target","User Defined Value"], "id": "tar_user",'editable': True},
-        {"name": [ "Weight","Recommended"], "id": "recommended"},
-        {"name": [ "Weight","User Defined"], "id": "userdefined",'editable': True},
-        #{"name": [ "","id"], "id": "rowid"},
-        ],
-        merge_duplicate_headers=True,
-        editable=True,
-        dropdown_conditional=[{
-            'if': {
-                'column_id': 'tar_user_type',
-                'filter_query': '{{rowid}} = {}'.format(c)
-            } ,
-            'clearable':False,
-            'options': [
-                            {'label': i, 'value': i}
-                            for i in [
-                                'Performance',
-                                'Report',
-                            ]
-                        ]
-        } if c in selected_rows else 
-        {
-            'if': {
-                'column_id': 'tar_user_type',
-                'filter_query': '{{rowid}} = c'.format(c)
-            } ,
-            'clearable':False,
-            'options': [
-                            {'label': '', 'value': ''}
-                        ]
-        } 
-        for c in range(0,23)
-        ] ,
-#       dropdown={
-#           'tar_user_type': {
-#               'options': [
-#                   {'label': k, 'value': k}
-#                   for k in ['Performance','Report']
-#               ]
-#           },
-#       },
-        row_selectable='multi',
-        selected_rows=selected_rows,
-        style_data={
-                'color': 'black', 
-                'backgroundColor': 'rgba(0,0,0,0)',
-                'font-family': 'NotoSans-CondensedLight',
-                'width':'4rem',
-                'minWidth': '4rem',
-                'maxWidth':'14rem',
-                #'border':'1px solid grey',
-                #'border-bottom': '1px solid grey',
-                #'border-top': '1px solid grey',
+	table=dash_table.DataTable(
+		data=df.to_dict('records'),
+		id='table-measure-setup',
+		columns=[
+		{"name": ["","Measure"], "id": "measure"},
+		{"name": [ "ACO Baseline","ACO"], "id": "aco"},
+		{"name": [ "ACO Baseline","Benchmark"], "id": "benchmark"},
+		{"name": [ "ACO Baseline","Best-in-Class"], "id": "bic"},
+		{"name": [ "Target","Recommended"], "id": "tar_recom"},
+		{"name": [ "Target","User Defined Type"], "id": "tar_user_type",'editable':True,'presentation':'dropdown'},
+		{"name": [ "Target","User Defined Value"], "id": "tar_user",'editable': True},
+		{"name": [ "Weight","Recommended"], "id": "recommended"},
+		{"name": [ "Weight","User Defined"], "id": "userdefined",'editable': True},
+		#{"name": [ "","id"], "id": "rowid"},
+		],
+		merge_duplicate_headers=True,
+		editable=True,
+		dropdown_conditional=[{
+			'if': {
+				'column_id': 'tar_user_type',
+				'filter_query': '{{rowid}} = {}'.format(c)
+			} ,
+			'clearable':False,
+			'options': [
+							{'label': i, 'value': i}
+							for i in [
+								'Performance',
+								'Report',
+							]
+						]
+		} if c in selected_rows else 
+		{
+			'if': {
+				'column_id': 'tar_user_type',
+				'filter_query': '{{rowid}} = c'.format(c)
+			} ,
+			'clearable':False,
+			'options': [
+							{'label': '', 'value': ''}
+						]
+		} 
+		for c in range(0,23)
+		] ,
+#		dropdown={
+#			'tar_user_type': {
+#				'options': [
+#					{'label': k, 'value': k}
+#					for k in ['Performance','Report']
+#				]
+#			},
+#		},
+		row_selectable='multi',
+		selected_rows=selected_rows,
+		style_data={
+				'color': 'black', 
+				'backgroundColor': 'rgba(0,0,0,0)',
+				'font-family': 'NotoSans-CondensedLight',
+				'width':'4rem',
+				'minWidth': '4rem',
+				'maxWidth':'14rem',
+				#'border':'1px solid grey',
+				#'border-bottom': '1px solid grey',
+				#'border-top': '1px solid grey',
 
-        },
-        style_data_conditional=[
-                { 'if': {'column_id':'measure'}, 
-                 'font-weight':'bold', 
-                 'textAlign': 'start',
-                 'width':'14rem',
-                 #'minWidth': '25rem',
-                 #'maxWidth':'25rem',
-                  },
-        ]+
-        [
-            { 'if': {'row_index':c}, 
-                    'border':'1px solid grey',
-                    'border-bottom':'0px',
-             
-                      } if c in [0,10,14,20] else
-            {'if': {'row_index':c},
-                    'border':'1px solid grey',
-                    'border-top':'0px',
-             
-                      } if c in [9,13,19,22] else
-            {'if': {'row_index':c},
-                    'border':'1px solid grey',
-                    'border-bottom':'0px',
-                    'border-top':'0px',   
-                    }  for c in range(0,23)
+		},
+		style_data_conditional=[
+				{ 'if': {'column_id':'measure'}, 
+				 'font-weight':'bold', 
+				 'textAlign': 'start',
+				 'width':'14rem',
+				 'height':'3rem',
+				 'whiteSpace':'normal'
+				 #'minWidth': '25rem',
+				 #'maxWidth':'25rem',
+				  },
+		]+
+		[
+			{ 'if': {'row_index':c}, 
+					'border':'1px solid grey',
+					'border-bottom':'0px',
+			 
+					  } if c in [0,10,14,20] else
+			{'if': {'row_index':c},
+					'border':'1px solid grey',
+					'border-top':'0px',
+			 
+					  } if c in [9,13,19,22] else
+			{'if': {'row_index':c},
+					'border':'1px solid grey',
+					'border-bottom':'0px',
+					'border-top':'0px',   
+					}  for c in range(0,23)
 
 
-        ]+[
-            { 
-                'if': {'row_index':c,'column_id':"userdefined"}, 
-                'backgroundColor': 'rgba(18,85,222,0.1)',
-                'font-weight':'bold',
-                'border':'1px solid blue',
-                'border-bottom':'1px solid rgba(18,85,222,0.1)',
-             
-            } if c in [0,10,14,20] else
-            {
-                'if': {'row_index':c,'column_id':"userdefined"}, 
-                'backgroundColor': 'rgba(18,85,222,0.1)',
-                'font-weight':'bold',
-                'border':'1px solid blue',
-                'border-top':'1px solid rgba(18,85,222,0.1)',
-             
-            } if c in [9,13,19,22] else
-            {
-                'if': {'row_index':c,'column_id':"userdefined"},
-                'backgroundColor': 'rgba(18,85,222,0.1)', 
-                'font-weight':'bold',
-                'border':'1px solid blue',
-                'border-bottom':'1px solid rgba(18,85,222,0.1)',
-                'border-top':'1px solid rgba(18,85,222,0.1)',
-            }  for c in range(0,23)
+		]+[
+			{ 
+				'if': {'row_index':c,'column_id':"userdefined"}, 
+				'backgroundColor': 'rgba(18,85,222,0.1)',
+				'font-weight':'bold',
+				'border':'1px solid blue',
+				'border-bottom':'1px solid rgba(18,85,222,0.1)',
+			 
+			} if c in [0,10,14,20] else
+			{
+				'if': {'row_index':c,'column_id':"userdefined"}, 
+				'backgroundColor': 'rgba(18,85,222,0.1)',
+				'font-weight':'bold',
+				'border':'1px solid blue',
+				'border-top':'1px solid rgba(18,85,222,0.1)',
+			 
+			} if c in [9,13,19,22] else
+			{
+				'if': {'row_index':c,'column_id':"userdefined"},
+				'backgroundColor': 'rgba(18,85,222,0.1)', 
+				'font-weight':'bold',
+				'border':'1px solid blue',
+				'border-bottom':'1px solid rgba(18,85,222,0.1)',
+				'border-top':'1px solid rgba(18,85,222,0.1)',
+			}  for c in range(0,23)
 
-        ]+[
-            {
-                'if': { 'column_id': 'tar_user','row_index': c},
-                #'backgroundColor': 'green',
-                'border': '1px solid blue',
-            } for c in selected_rows
-        ]+[
-            {
-                'if': { 'column_id': 'tar_user_type','row_index': c},
-                #'backgroundColor': 'green',
-                'border': '1px solid blue',
-            } for c in selected_rows
-        ],
-        style_cell={
-            'textAlign': 'center',
-            'font-family':'NotoSans-Regular',
-            'fontSize':12,
-            'border':'0px',
-            'height': '1.5rem',
-        },
+		]+[
+			{
+				'if': { 'column_id': 'tar_user','row_index': c},
+				#'backgroundColor': 'green',
+				'border': '1px solid blue',
+			} for c in selected_rows
+		]+[
+			{
+				'if': { 'column_id': 'tar_user_type','row_index': c},
+				#'backgroundColor': 'green',
+				'border': '1px solid blue',
+			} for c in selected_rows
+		],
+		style_cell={
+			'textAlign': 'center',
+			'font-family':'NotoSans-Regular',
+			'fontSize':12,
+			'border':'0px',
+			'height': '1.5rem',
+		},
 
-        style_header={
-            'height': '2.5rem',
-            'minWidth': '3rem',
-            'maxWidth':'3rem',
-            'whiteSpace': 'normal',
-            'backgroundColor': '#f1f6ff',
-            'fontWeight': 'bold',
-            'font-family':'NotoSans-CondensedLight',
-            'fontSize':14,
-            'color': '#1357DD',
-            'text-align':'center',
-            'border':'0px solid grey',
-        },
-    )
+		style_header={
+			'height': '2.5rem',
+			'minWidth': '3rem',
+			'maxWidth':'3rem',
+			'whiteSpace': 'normal',
+			'backgroundColor': '#f1f6ff',
+			'fontWeight': 'bold',
+			'font-family':'NotoSans-CondensedLight',
+			'fontSize':14,
+			'color': '#1357DD',
+			'text-align':'center',
+			'border':'0px solid grey',
+		},
+	)
 
-    return table
+	return table
 
 
 '''def sim_result_box(df_sim_result):
@@ -1246,130 +1248,130 @@ def domain_quality_bubble(df): # 数据，[0,1] ,'Domain' or 'Measure'
 
 def measure_quality_bar(df,domain):
 
-    
-    fig = go.Figure(data=[
-        
-        go.Bar(
-            name='Target',
-            x=df['Target'].tolist(), 
-            y=df['measure'].tolist(),
-            text="",
-            textposition='outside', 
-            texttemplate='%{x:.0%}',
-            #width=0.3,
-            textangle=0,
-            marker=dict(
-                    color=colors['grey'],
-                    opacity=0.7
-                    ),
-            orientation='h',
-            hoverinfo='skip',
-            #hovertemplate='%{x:,.2f}',
-        ),
+	
+	fig = go.Figure(data=[
+		
+		go.Bar(
+			name='Target',
+			x=df['Target'].tolist(), 
+			y=df['measure'].tolist(),
+			text="",
+			textposition='none', 
+			texttemplate='%{x:.0%}',
+			#width=0.3,
+			textangle=0,
+			marker=dict(
+					color=colors['grey'],
+					opacity=0.7
+					),
+			orientation='h',
+			hoverinfo='y+x',
+			hovertemplate='%{x:.0%}',
+		),
 
-        go.Bar(
-            name='Annualized',
-            x=df['Annualized'].tolist(), 
-            y=df['measure'].tolist(),
-            text="",
-            textposition='outside', 
-            texttemplate='%{x:.0%}',
-            #width=0.3,
-            textangle=0,
-            marker=dict(
-                    color=domain_color[domain].replace('rgb','rgba').replace(')',',0.5)'),
-                    #opacity=0.5
-                    ),
-            orientation='h',
-            hoverinfo='skip',
-            #hovertemplate='%{x:,.2f}',
-        ),
+		go.Bar(
+			name='Annualized',
+			x=df['Annualized'].tolist(), 
+			y=df['measure'].tolist(),
+			text="",
+			textposition='none', 
+			texttemplate='%{x:.0%}',
+			#width=0.3,
+			textangle=0,
+			marker=dict(
+					color=domain_color[domain].replace('rgb','rgba').replace(')',',0.5)'),
+					#opacity=0.5
+					),
+			orientation='h',
+			hoverinfo='y+x',
+			hovertemplate='%{x:.0%}',
+		),
 
-        go.Bar(
-            name='YTD',
-            x=df['YTD'].tolist(), 
-            y=df['measure'].tolist(),
-            text="",
-            textposition='outside', 
-            texttemplate='%{x:.0%}',
-            #width=0.3,
-            textangle=0,
-            marker=dict(
-                    color=domain_color[domain].replace('rgb','rgba').replace(')',',0.8)'),
-                    #opacity=0.8
-                    ),
-            orientation='h',
-            hoverinfo='skip',
-            #hovertemplate='%{x:,.2f}',
-        ),
-        go.Bar(
-            name='Baseline',
-            x=df['Baseline'].tolist(), 
-            y=df['measure'].tolist(),
-            text="",
-            textposition='outside', 
-            texttemplate='%{x:.0%}',
-            #width=0.3,
-            textangle=0,
-            marker=dict(
-                    color=colors['grey'],
-                    opacity=0.5
-                    ),
-            orientation='h',
-            hoverinfo='skip',
-            #hovertemplate='%{x:,.2f}',
-        ),
-    ])
-    # Change the bar mode
-    fig.update_layout(
-        title=dict(
-            text=domain,
-            font=dict(
-            family="NotoSans-Condensed",
-            size=16,
-            color="#38160f",
-            ),
-            xref='container',
-            yref='container',
-            x=0.7,
-            y=0.98,
-            xanchor='center',
-            yanchor='middle',
-            ),
-        xaxis=dict(
-            title=dict(
-                text='Quality Measure Performance(Percentile)',
-                font=dict(
-                family="NotoSans-Condensed",
-                size=14,
-                color="#38160f",
-                ),
-                standoff=5,
-                ),
-            position=0,
-            visible=True,
-            range=[0,1.1],
-            tickformat='0%'
+		go.Bar(
+			name='YTD',
+			x=df['YTD'].tolist(), 
+			y=df['measure'].tolist(),
+			text="",
+			textposition='none', 
+			texttemplate='%{x:.0%}',
+			#width=0.3,
+			textangle=0,
+			marker=dict(
+					color=domain_color[domain].replace('rgb','rgba').replace(')',',0.8)'),
+					#opacity=0.8
+					),
+			orientation='h',
+			hoverinfo='y+x',
+			hovertemplate='%{x:.0%}',
+		),
+		go.Bar(
+			name='Baseline',
+			x=df['Baseline'].tolist(), 
+			y=df['measure'].tolist(),
+			text="",
+			textposition='none', 
+			texttemplate='%{x:.0%}',
+			#width=0.3,
+			textangle=0,
+			marker=dict(
+					color=colors['grey'],
+					opacity=0.5
+					),
+			orientation='h',
+			hoverinfo='y+x',
+			hovertemplate='%{x:.0%}',
+		),
+	])
+	# Change the bar mode
+	fig.update_layout(
+		title=dict(
+			text=domain,
+			font=dict(
+			family="NotoSans-Condensed",
+			size=16,
+			color="#38160f",
+			),
+			xref='container',
+			yref='container',
+			x=0.7,
+			y=0.98,
+			xanchor='center',
+			yanchor='middle',
+			),
+		xaxis=dict(
+			title=dict(
+				text='Quality Measure Performance(Percentile)',
+				font=dict(
+				family="NotoSans-Condensed",
+				size=14,
+				color="#38160f",
+				),
+				standoff=5,
+				),
+			position=0,
+			visible=True,
+			range=[0,1.1],
+			tickformat='0%'
 
-            ),
-        barmode='group',
-        bargap=0.2,
-        bargroupgap=0,
-        paper_bgcolor=colors['transparent'],
-        plot_bgcolor=colors['transparent'],
-        showlegend=True,
-        legend=dict(
-            orientation='h',
-            x=0.35,y=-0.1
-        ),
-        margin=dict(l=300,r=60,b=60,t=20,pad=5,autoexpand=False,),
-        font=dict(
-            family="NotoSans-Condensed",
-            size=14,
-            color="#38160f"
-        ),
-    )
-    return fig
+			),
+		barmode='group',
+		bargap=0.2,
+		bargroupgap=0,
+		paper_bgcolor=colors['transparent'],
+		plot_bgcolor=colors['transparent'],
+		showlegend=True,
+		legend=dict(
+			orientation='h',
+			x=-0.5,y=-0.1
+		),
+		margin=dict(l=300,r=60,b=80,t=20,pad=5,autoexpand=False,),
+		font=dict(
+			family="NotoSans-Condensed",
+			size=14,
+			color="#38160f"
+		),
+	)
+	return fig
 
 def table_quality_dtls(df,domain='all'):
 
@@ -1492,7 +1494,7 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
         df_agg.loc[otherpos]=df_agg.loc[len(df_agg)-1]
         df_agg.loc[len(df_agg)-1]=otherlist
   
-    df_agg.loc[len(df_agg)] = allvalue
+	df_agg.loc[len(df_agg)] = allvalue
 
 
     df_agg['Patient %'] = df_agg['Pt Ct']/5000
@@ -1844,108 +1846,108 @@ def network_cost_stack_h(df):
     return fig
 
 def table_driver_all(df):        
-    table=dash_table.DataTable(
-        data=df.to_dict('records'),
-        #id=tableid,
-        columns=[{"name": c, "id": c,} for c in df.columns ],  
-        sort_action="native",
-        sort_mode='single',
-        sort_by=[{"column_id":"Impact to Overall Difference","direction":"desc"},],
-        style_data={
-            'whiteSpace': 'normal',
-            'height': 'auto'
-        },
-       
-        style_cell={
-            'textAlign': 'center',
-            'font-family':'NotoSans-Regular',
-            'fontSize':12
-        },
-        style_cell_conditional=[
-            {'if': {'column_id': df.columns[0]},
-             
-             'fontWeight': 'bold',
-            }, 
-            
-        ],
-        style_table={
-            'back':  colors['blue'],
-        },
-        style_header={
-            'height': '4rem',
-            'minWidth': '3rem',
-            'maxWidth':'3rem',
-            'whiteSpace': 'normal',
-            'backgroundColor': '#f1f6ff',
-            'fontWeight': 'bold',
-            'font-family':'NotoSans-CondensedLight',
-            'fontSize':14,
-            'color': '#1357DD',
-            'text-align':'center',
-        },
-    )
-    return table
+	table=dash_table.DataTable(
+		data=df.to_dict('records'),
+		#id=tableid,
+		columns=[{"name": c, "id": c,} for c in df.columns ],  
+		sort_action="native",
+		sort_mode='single',
+		sort_by=[{"column_id":"Impact to Overall Difference","direction":"desc"},],
+		style_data={
+			'whiteSpace': 'normal',
+			'height': 'auto'
+		},
+	   
+		style_cell={
+			'textAlign': 'center',
+			'font-family':'NotoSans-Regular',
+			'fontSize':12
+		},
+		style_cell_conditional=[
+			{'if': {'column_id': df.columns[0]},
+			 
+			 'fontWeight': 'bold',
+			}, 
+			
+		],
+		style_table={
+			'back':  colors['blue'],
+		},
+		style_header={
+			'height': '4rem',
+			'minWidth': '3rem',
+			'maxWidth':'3rem',
+			'whiteSpace': 'normal',
+			'backgroundColor': '#f1f6ff',
+			'fontWeight': 'bold',
+			'font-family':'NotoSans-CondensedLight',
+			'fontSize':14,
+			'color': '#1357DD',
+			'text-align':'center',
+		},
+	)
+	return table
 
 def bundle_measure_setup(df):
-    table=dash_table.DataTable(
-        data = df.to_dict('records'),
-        id = 'bundle-table-selectedmeas',
-        columns = [
-        {"name":['','Measure'],"id":'Measure'}, 
-        {"name": ["Baseline", "Provider"], "id": "provider"},
-        {"name": ["Baseline", "Benchmark"], "id": "benchmark"},
-        {"name": ["Baseline", "Best-in-Class"], "id": "bic"},
-        {"name": ["Target", "Recommended"], "id": "recommended"},
-        {"name": ["Target", "User Defined"], "id": "user defined",'editable':True},
+	table=dash_table.DataTable(
+		data = df.to_dict('records'),
+		id = 'bundle-table-selectedmeas',
+		columns = [
+		{"name":['','Measure'],"id":'Measure'}, 
+		{"name": ["Baseline", "Provider"], "id": "provider"},
+		{"name": ["Baseline", "Benchmark"], "id": "benchmark"},
+		{"name": ["Baseline", "Best-in-Class"], "id": "bic"},
+		{"name": ["Target", "Recommended"], "id": "recommended"},
+		{"name": ["Target", "User Defined"], "id": "user defined",'editable':True},
 
-        ],
-        merge_duplicate_headers=True,
-        row_selectable='multi',
-        selected_rows=list(range(0,len(df))),       
-        # style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
-        style_data_conditional=[
-                {
-                    'if': {'column_id': 'Measure'},
-                    'textAlign': 'left',
-                    'width':'30%',
-                },
-               
-                {
-                    'if': {'column_id': 'user defined'},
-                    'border':'1px solid blue',
-                    'backgroundColor':'white',
+		],
+		merge_duplicate_headers=True,
+		row_selectable='multi',
+		selected_rows=list(range(0,len(df))),       
+		# style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
+		style_data_conditional=[
+				{
+					'if': {'column_id': 'Measure'},
+					'textAlign': 'left',
+					'width':'30%',
+				},
+			   
+				{
+					'if': {'column_id': 'user defined'},
+					'border':'1px solid blue',
+					'backgroundColor':'white',
 
-                },
-                
+				},
+				
 
-                ],
+				],
 
-        style_header={
-            'backgroundColor': '#bfd4ff',
-            'fontWeight': 'bold',
-            'font-family':'NotoSans-Condensed',
-            'border':'1px solid white',
-        },
-        style_data={
-            'whiteSpace': 'normal',
-            'height': 'auto',
-            'backgroundColor':'rgba(0,0,0,0)',
-            'border-left':'0px',
-            'border-right':'0px',
-        },
-       
-        style_cell={
-            'textAlign': 'center',
-            'font-family':'NotoSans-Regular',
-            'fontSize':10,
-            'height' : 'auto', 
-            'whiteSpace':'normal',
-            'max-width':'3rem',
-            'padding':'10px',
-        },
-        #style_as_list_view = True,
-        )
-    return table
+		style_header={
+			'backgroundColor': '#bfd4ff',
+			'fontWeight': 'bold',
+			'font-family':'NotoSans-Condensed',
+			'border':'1px solid white',
+		},
+		style_data={
+			'whiteSpace': 'normal',
+			'height': 'auto',
+			'backgroundColor':'rgba(0,0,0,0)',
+			'border-left':'0px',
+			'border-right':'0px',
+		},
+	   
+		style_cell={
+			'textAlign': 'center',
+			'font-family':'NotoSans-Regular',
+			'fontSize':10,
+			'height' : 'auto', 
+			'whiteSpace':'normal',
+			'max-width':'3rem',
+			'padding':'10px',
+		},
+		#style_as_list_view = True,
+		)
+	return table
 
 #def table_network_cost(df):
 
