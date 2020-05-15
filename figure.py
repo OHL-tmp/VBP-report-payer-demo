@@ -18,6 +18,11 @@ import dash_table.FormatTemplate as FormatTemplate
 
 df_quality = pd.read_csv("data/quality_setup.csv")
 
+df_pt_lv1=pd.read_csv("data/Pt Level V1.csv")
+df_pt_epi_phy_lv1=pd.read_csv("data/Pt Episode Phy Level V1.csv")
+df_pt_epi_phy_srv_lv1=pd.read_csv("data/Pt Episode Phy Srv Level V1.csv")
+
+
 colors={'blue':'rgba(18,85,222,100)','yellow':'rgba(246,177,17,100)','transparent':'rgba(255,255,255,0)','grey':'rgba(191,191,191,100)',
 	   'lightblue':'rgba(143,170,220,100)'}
 domain_color={'Patient/Caregiver Experience':'rgb(244,160,159)','Care Coordination/Patient Safety':'rgb(244,160,41)',
@@ -1413,6 +1418,119 @@ def table_quality_dtls(df,domain='all'):
 	)
 
 	return table
+
+####################################################################################################################################################################################
+######################################################################       DrillDown         ####################################################################################
+####################################################################################################################################################################################
+
+def drilldata_process(df_drilldown,d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'):
+	# d1 is patient cohort dimension, d2 is condition dimension, d3 is service category
+	df_pt_lv1_f = df_pt_lv1
+	df_pt_epi_phy_lv1_f = df_pt_epi_phy_lv1
+	df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1
+
+	if d1v!='All':
+		df_pt_lv1_f = df_pt_lv1_f[df_pt_lv1_f[d1].isin(d1v)]
+		df_pt_epi_phy_lv1_f = df_pt_epi_phy_lv1_f[(df_pt_epi_phy_lv1_f[d1].isin(d1v))]
+		df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_f[(df_pt_epi_phy_srv_lv1_f[d1].isin(d1v))]
+
+	if d2v!='All':
+		df_pt_lv1_f = df_pt_lv1_f[df_pt_lv1_f[d2].isin(d2v)]
+		df_pt_epi_phy_lv1_f = df_pt_epi_phy_lv1_f[(df_pt_epi_phy_lv1_f[d2].isin(d2v))]
+		df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_f[(df_pt_epi_phy_srv_lv1_f[d2].isin(d2v))]
+
+	if d3v!='All':
+		df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_f[(df_pt_epi_phy_srv_lv1_f[d3].isin(d3v))]
+
+	d=d.replace('Top 10 ','')
+
+	if d not in ['Service Category', 'Sub Category']:
+		df_agg_pt = df_pt_lv1_f.groupby(by = [d]).agg({'Pt Ct':'nunique', 'Episode Ct':'count'}).reset_index()
+		df_agg_clinical = df_pt_epi_phy_lv1_f.groupby(by = [d]).sum().reset_index()
+		df_agg_cost = df_pt_epi_phy_srv_lv1_f.groupby(by = [d]).sum().reset_index()
+
+		df_agg_pre = pd.merge(df_agg_pt, df_agg_clinical, how = 'left', on = [d] )
+		df_agg = pd.merge(df_agg_cost, df_agg_pre, how = 'left', on = [d] )	
+		
+	else:
+#			df_agg_pt = df_pt_lv1_f.groupby(by = d_set).agg({'Pt Ct':'nunique', 'Episode Ct':'count'}).reset_index()
+#			df_agg_clinical = df_pt_epi_phy_lv1_f.groupby(by = d_set).sum().reset_index()
+		df_agg = df_pt_epi_phy_srv_lv1_f.groupby(by = [d]).sum().reset_index()
+		df_agg['Pt Ct'] = 5000
+		df_agg['Episode Ct'] = 91277
+
+
+	allvalue=df_agg.sum().values 
+    allvalue[0]='All'
+
+    
+    selected_index=[j for j, e in enumerate(df_agg.columns) if e == 'Pt Ct'][0]
+
+    if d in ['Service Category', 'Sub Category']:
+        allvalue[selected_index]=df_agg['Pt Ct'].mean()
+    elif: d in ['Chronic','Acute']:
+    	allvalue[selected_index]=df_pt_lv1_f.agg({'Pt Ct':'nunique'})[0]
+
+    if len(df_agg[df_agg[d]=='Others'])>0:
+        otherpos=df_agg[df_agg[d]=='Others'].index[0]
+        otherlist=df_agg.loc[otherpos]
+        df_agg.loc[otherpos]=df_agg.loc[len(df_agg)-1]
+        df_agg.loc[len(df_agg)-1]=otherlist
+  
+    df_agg.loc[len(df_agg)] = allvalue
+
+
+	df_agg['Patient %'] = df_agg['Pt Ct']/5000
+	df_agg['Episode %'] = df_agg['Episode Ct']/91277
+	df_agg['Cost %'] = df_agg['YTD Total Cost']/(df_agg[df_agg[d]=='All']['YTD Total Cost'].values[0])
+
+
+	df_agg['YTD Avg Cost/Patient'] = df_agg['YTD Total Cost']/df_agg['Pt Ct']
+	df_agg['Annualized Avg Cost/Patient'] = df_agg['Annualized Total Cost']/df_agg['Pt Ct']
+	df_agg['Benchmark Avg Cost/Patient'] = df_agg['Benchmark Total Cost']/df_agg['Pt Ct']
+	df_agg['Diff % from Benchmark Avg Cost/Patient'] = (df_agg['Annualized Avg Cost/Patient'] - df_agg['Benchmark Avg Cost/Patient'])/df_agg['Benchmark Avg Cost/Patient']
+
+
+	df_agg['YTD Avg Cost/Episode'] = df_agg['YTD Total Cost']/df_agg['Episode Ct']
+	df_agg['Annualized Avg Cost/Episode'] = df_agg['Annualized Total Cost']/df_agg['Episode Ct']
+	df_agg['Benchmark Avg Cost/Episode'] = df_agg['Benchmark Total Cost']/df_agg['Episode Ct']
+	df_agg['Diff % from Benchmark Avg Cost/Episode'] = (df_agg['Annualized Avg Cost/Episode'] - df_agg['Benchmark Avg Cost/Episode'])/df_agg['Benchmark Avg Cost/Episode']
+
+
+	df_agg['Contribution to Overall Performance Difference']=(df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/df_agg['Benchmark Total Cost']
+
+
+	df_agg['YTD Avg Utilization Rate/Patient'] = df_agg['YTD Utilization']/df_agg['Pt Ct']
+	df_agg['Annualized Avg Utilization Rate/Patient'] = df_agg['Annualized Utilization']/df_agg['Pt Ct']
+	df_agg['Benchmark Avg Utilization Rate/Patient'] = df_agg['Benchmark Utilization']/df_agg['Pt Ct']
+	df_agg['Diff % from Benchmark Avg Utilization Rate/Patient'] = (df_agg['Annualized Avg Utilization Rate/Patient'] - df_agg['Benchmark Avg Utilization Rate/Patient'])/df_agg['Benchmark Avg Utilization Rate/Patient']
+
+	df_agg['YTD Avg Utilization Rate/Episode'] = df_agg['YTD Utilization']/df_agg['Episode Ct']
+	df_agg['Annualized Avg Utilization Rate/Episode'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']
+	df_agg['Benchmark Avg Utilization Rate/Episode'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']
+	df_agg['Diff % from Benchmark Avg Utilization Rate/Episode'] = (df_agg['Annualized Avg Utilization Rate/Episode'] - df_agg['Benchmark Avg Utilization Rate/Episode'])/df_agg['Benchmark Avg Utilization Rate/Episode']
+
+	df_agg['YTD Avg Cost per Unit'] = df_agg['YTD Total Cost']/df_agg['YTD Utilization']
+	df_agg['Annualized Avg Cost per Unit'] = df_agg['Annualized Total Cost']/df_agg['Annualized Utilization']
+	df_agg['Benchmark Avg Cost per Unit'] = df_agg['Benchmark Total Cost']/df_agg['Benchmark Utilization']
+	df_agg['Diff % from Benchmark Unit Cost'] = (df_agg['Annualized Avg Cost per Unit'] - df_agg['Benchmark Avg Cost per Unit'])/df_agg['Benchmark Avg Cost per Unit']
+
+	if d in ['Chronic','Acute']::
+		df_agg =  pd.concat([df_agg[0:len(df_agg)-1].nlargest(10,'Contribution to Overall Performance Difference').,df_agg.tail(1)]).reset_index(drop=True)
+
+	if d1=='All':
+		showcolumn=[d,'Patient %','Cost %','YTD Avg Cost/Patient','Diff % from Benchmark Avg Cost/Patient','Contribution to Overall Performance Difference']
+	elif d2=='All':
+		showcolumn=[d,'Episode Ct','Cost %','YTD Avg Cost/Episode','Diff % from Benchmark Avg Cost/Episode','Contribution to Overall Performance Difference']
+	elif d2v=='All':
+		showcolumn=[d,'YTD Avg Cost/Patient','Diff % from Benchmark Avg Cost/Patient','Contribution to Overall Performance Difference','YTD Avg Utilization Rate/Patient','Diff % from Benchmark Avg Utilization Rate/Patient','YTD Avg Cost per Unit','Diff % from Benchmark Unit Cost']
+	else:
+		showcolumn=[d,'YTD Avg Cost/Episode','Diff % from Benchmark Avg Cost/Episode','Contribution to Overall Performance Difference','YTD Avg Utilization Rate/Episode','Diff % from Benchmark Avg Utilization Rate/Episode','YTD Avg Cost per Unit','Diff % from Benchmark Unit Cost']
+
+
+	return df_agg[showcolumn]
+
+
 
 def data_bars_diverging(df, column, color_above='#3D9970', color_below='#FF4136'):
 	n_bins = 100
