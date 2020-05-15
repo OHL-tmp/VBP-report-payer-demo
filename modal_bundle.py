@@ -103,7 +103,7 @@ def bundle_modal_bundles_body():
 
 			        style_as_list_view = True,
 			        row_selectable = 'multi',
-			        selected_rows = [0,1],
+			        selected_rows = [0,1,2],
 				), style = {'padding-bottom' :'1rem'}
 			),
 		], style={"padding-left":"1rem","padding-right":"1rem"}),
