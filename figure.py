@@ -101,6 +101,8 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 				 'font-weight':'bold', 
 				 'textAlign': 'start',
 				 'width':'14rem',
+                 'height':'3rem',
+                 'whiteSpace':'normal'
 				 #'minWidth': '25rem',
 				 #'maxWidth':'25rem',
 				  },
@@ -1249,7 +1251,7 @@ def measure_quality_bar(df,domain):
 			x=df['Target'].tolist(), 
 			y=df['measure'].tolist(),
 			text="",
-			textposition='outside', 
+			textposition='none', 
 			texttemplate='%{x:.0%}',
 			#width=0.3,
 			textangle=0,
@@ -1258,8 +1260,8 @@ def measure_quality_bar(df,domain):
 					opacity=0.7
 					),
 			orientation='h',
-			hoverinfo='skip',
-			#hovertemplate='%{x:,.2f}',
+			hoverinfo='y+x',
+			hovertemplate='%{x:.0%}',
 		),
 
 		go.Bar(
@@ -1267,7 +1269,7 @@ def measure_quality_bar(df,domain):
 			x=df['Annualized'].tolist(), 
 			y=df['measure'].tolist(),
 			text="",
-			textposition='outside', 
+			textposition='none', 
 			texttemplate='%{x:.0%}',
 			#width=0.3,
 			textangle=0,
@@ -1276,8 +1278,8 @@ def measure_quality_bar(df,domain):
 					#opacity=0.5
 					),
 			orientation='h',
-			hoverinfo='skip',
-			#hovertemplate='%{x:,.2f}',
+			hoverinfo='y+x',
+			hovertemplate='%{x:.0%}',
 		),
 
 		go.Bar(
@@ -1285,7 +1287,7 @@ def measure_quality_bar(df,domain):
 			x=df['YTD'].tolist(), 
 			y=df['measure'].tolist(),
 			text="",
-			textposition='outside', 
+			textposition='none', 
 			texttemplate='%{x:.0%}',
 			#width=0.3,
 			textangle=0,
@@ -1294,15 +1296,15 @@ def measure_quality_bar(df,domain):
 					#opacity=0.8
 					),
 			orientation='h',
-			hoverinfo='skip',
-			#hovertemplate='%{x:,.2f}',
+			hoverinfo='y+x',
+			hovertemplate='%{x:.0%}',
 		),
 		go.Bar(
 			name='Baseline',
 			x=df['Baseline'].tolist(), 
 			y=df['measure'].tolist(),
 			text="",
-			textposition='outside', 
+			textposition='none', 
 			texttemplate='%{x:.0%}',
 			#width=0.3,
 			textangle=0,
@@ -1311,8 +1313,8 @@ def measure_quality_bar(df,domain):
 					opacity=0.5
 					),
 			orientation='h',
-			hoverinfo='skip',
-			#hovertemplate='%{x:,.2f}',
+			hoverinfo='y+x',
+			hovertemplate='%{x:.0%}',
 		),
 	])
 	# Change the bar mode
@@ -1355,9 +1357,9 @@ def measure_quality_bar(df,domain):
 		showlegend=True,
 		legend=dict(
 			orientation='h',
-			x=0.35,y=-0.1
+			x=-0.5,y=-0.1
 		),
-		margin=dict(l=300,r=60,b=60,t=20,pad=5,autoexpand=False,),
+		margin=dict(l=300,r=60,b=80,t=20,pad=5,autoexpand=False,),
 		font=dict(
 			family="NotoSans-Condensed",
 			size=14,

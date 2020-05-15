@@ -50,6 +50,10 @@ df_measure_score=pd.read_csv("data/df_measure_score.csv")
 df_quality_overall=pd.read_csv("data/df_quality_overall.csv")
 df_quality_domain=pd.read_csv("data/df_quality_domain.csv")
 
+df_network_cost_split=pd.read_csv('data/df_network_cost_split.csv')
+df_network_facility_split=pd.read_csv('data/df_network_facility_split.csv')
+df_network_prof_split=pd.read_csv('data/df_network_prof_split.csv')
+
 file = open('configure/input_ds.json', encoding = 'utf-8')
 custom_input = json.load(file)
 twoside = custom_input['savings/losses sharing arrangement']["two side"]
@@ -78,6 +82,14 @@ def create_layout(app):
                     html.Div(
                         [
                             manager_card_quality_score(app),
+                        ],
+                        className="mb-3",
+                        style={"padding-top":"1rem", "padding-left":"3rem", "padding-right":"3rem"},
+                    ),
+
+                    html.Div(
+                        [
+                            manager_card_total_cost_incurred(app),
                         ],
                         className="mb-3",
                         style={"padding-top":"1rem", "padding-left":"3rem", "padding-right":"3rem"},
@@ -422,8 +434,14 @@ def manager_card_quality_score(app):
                         ),
                         dbc.Row(
                             [
-                                dbc.Col(dcc.Graph(figure=domain_quality_bubble(df_domain_score),id='manager-figure-domainscore' ,clickData={'points': [{'customdata': 'Patient/Caregiver Experience'}]},selectedData={'points': [{'customdata': 'Patient/Caregiver Experience'}]},style={"width":"100%","height":"100%"})),
-                                dbc.Col(dcc.Graph(id='manager-figure-measurescore', style={"width":"100%","height":"100%"}), style={"padding":"1rem"}),
+                                dbc.Col(
+                                    dcc.Graph(figure=domain_quality_bubble(df_domain_score),id='manager-figure-domainscore' ,clickData={'points': [{'customdata': 'Patient/Caregiver Experience'}]},selectedData={'points': [{'customdata': 'Patient/Caregiver Experience'}]},style={"width":"100%","height":"100%"}),
+                                    width=5
+                                ),
+                                dbc.Col(
+                                    dcc.Graph(id='manager-figure-measurescore', style={"width":"100%","height":"100%"}), style={"padding":"1rem"},
+                                    width=7
+                                ),
                             ],
                             no_gutters=True,
                             style={"padding":"2rem"}
@@ -479,6 +497,45 @@ def manager_modal_qualityscore(app):
             ],
             
         )
+
+
+def manager_card_total_cost_incurred(app):
+    return dbc.Card(
+                dbc.CardBody(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                dbc.Col(html.H4("Total Cost Incurred In VS.Out of ACO", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                
+                            ],
+                            no_gutters=True,
+                            style={"padding-bottom":"2rem"}
+                        ),
+                        
+                        dbc.Row(
+                            [
+                                dbc.Col(dcc.Graph(figure=pie_cost_split(df_network_cost_split), style={"width":"24rem","height":"26rem","padding-left":"2rem"}), width=5, style={"background-color":"#f5f5f5","border-radius":"0.5rem", "height":"28rem"}),
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            html.Div(dcc.Graph(figure=network_cost_stack_h(df_network_facility_split), style={"height":"13rem", "padding":"3rem","background-color":"#f5f5f5","border-radius":"0.5rem"})),
+                                            html.Div(dcc.Graph(figure=network_cost_stack_h(df_network_prof_split), style={"height":"13rem", "padding":"3rem","background-color":"#f5f5f5","border-radius":"0.5rem"}), style={"padding-top":"2rem"}),
+                                        ], 
+                                        style={"max-height":"80rem","padding-left":"1rem"}
+                                    ), 
+                                    width=7
+                                ),
+                                
+                            ],
+                            style={"padding-left":"2rem", "padding-right":"2rem"}
+                            
+                        ),
+                    ]
+                ),
+                className="mb-3",
+                style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
+            )
 
 
 app.layout = create_layout(app)

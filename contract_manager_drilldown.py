@@ -392,53 +392,7 @@ def tab_patient_cohort_analysis():
                         className="mb-3",
                         style={"border":"none", "border-radius":"0.5rem","padding-top":"1rem"}
                     ),
-
-                    html.Hr(),
-
-                    dbc.Card(
-                        dbc.CardBody(
-                            [
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Total Cost Incurred In VS.Out of ACO", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                        
-                                    ],
-                                    no_gutters=True,
-                                    style={"padding-bottom":"2rem"}
-                                ),
-                                
-                                dbc.Row(
-                                    [
-                                        dbc.Col(dcc.Graph(figure=pie_cost_split(df_network_cost_split), style={"width":"15rem","height":"26rem","padding-left":"1rem"}), width=3, style={"background-color":"#f5f5f5","border-radius":"0.5rem", "height":"28rem"}),
-                                        dbc.Col(
-                                            html.Div(
-                                                [
-                                                    html.Div(dcc.Graph(figure=network_cost_stack_h(df_network_facility_split), style={"height":"13rem", "padding":"3rem","background-color":"#f5f5f5","border-radius":"0.5rem"})),
-                                                    html.Div(dcc.Graph(figure=network_cost_stack_h(df_network_prof_split), style={"height":"13rem", "padding":"3rem","background-color":"#f5f5f5","border-radius":"0.5rem"}), style={"padding-top":"2rem"}),
-                                                ], 
-                                                style={"max-height":"80rem"}
-                                            ), 
-                                            width=5
-                                        ),
-                                        dbc.Col(
-                                            html.Div(
-                                                [
-                                                    html.Div(children=table_quality_dtls(df_network_facility_split), style={"height":"13rem", "padding-left":"2rem","padding-right":"2rem","padding-top":"1rem"}),
-                                                    html.Div(children=table_quality_dtls(df_network_prof_split), style={"height":"13rem", "padding-left":"2rem","padding-right":"2rem","padding-top":"3rem"}),
-                                                ], 
-                                                style={"max-height":"80rem"}
-                                            ), 
-                                            width=4
-                                        ),
-                                    ]
-                                    
-                                ),
-                            ]
-                        ),
-                        className="mb-3",
-                        style={"padding":"1rem"}
-                    ),
+                    
                 ]
             )
 
@@ -532,47 +486,7 @@ def tab_physician_analysis():
                         style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
                     ),
 
-                    dbc.Card(
-                        dbc.CardBody(
-                            [
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Total Cost Incurred In VS.Out of ACO", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                        
-                                    ],
-                                    no_gutters=True,
-                                ),
-                                
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png")), width=3),
-                                        dbc.Col(
-                                            html.Div(
-                                                [
-                                                    html.Img(src=app.get_asset_url("logo-demo.png")),
-                                                    html.Img(src=app.get_asset_url("logo-demo.png")),
-                                                ], 
-                                                style={"max-height":"80rem"}
-                                            ), width=5
-                                        ),
-                                        dbc.Col(
-                                            html.Div(
-                                                [
-                                                    html.Img(src=app.get_asset_url("logo-demo.png")),
-                                                    html.Img(src=app.get_asset_url("logo-demo.png")),
-                                                ], 
-                                                style={"max-height":"80rem"}
-                                            ), width=4
-                                        ),
-                                    ]
-                                    
-                                ),
-                            ]
-                        ),
-                        className="mb-3",
-                        style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
-                    ),
+                    
                 ]
             )
 
