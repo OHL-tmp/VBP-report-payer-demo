@@ -684,7 +684,7 @@ def tab_result(app):
                                     dbc.Row(
                                         [
                                             dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'figure-cost',style={"height":"45vh", "width":"60vh"}), width=5),
+                                            dbc.Col(dcc.Graph(id = 'figure-cost',style={"height":"60vh", "width":"60vh"}), width=5),
                                             dbc.Col(html.Div(id = 'table-cost'), width=6),
                                         ],
                                         no_gutters=True,
@@ -722,7 +722,7 @@ def tab_result(app):
                                     dbc.Row(
                                         [
                                             dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'figure-fin',style={"height":"45vh", "width":"60vh"}), width=5),
+                                            dbc.Col(dcc.Graph(id = 'figure-fin',style={"height":"60vh", "width":"60vh"}), width=5),
                                             dbc.Col(html.Div(id = 'table-fin'), width=6),
                                         ],
                                         no_gutters=True,

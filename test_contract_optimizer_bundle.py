@@ -36,6 +36,9 @@ measure_epo_list4=['Coronary artery bypass graft']
 measure_epo_list5=['Acute myocardial infarction']
 measure_epo_list6=['Back and neck except spinal fusion','Back & neck except spinal fusion','Bariatric Surgery','Coronary artery bypass graft','Cardiac valve','Double joint replacement of the lower extremity','Hip and femur procedures except major joint','Lower extremity/humerus procedure except hip, foot, femur','Major bowel procedure','Major joint replacement of the lower extremity (MJRLE)','Major joint replacement of the upper extremity','Spinal fusion']
 
+#modebar display
+button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
+
 
 def create_layout(app):
 #    load_data()
@@ -65,7 +68,7 @@ def create_layout(app):
                 ],
                 style={"background-color":"#f5f5f5"},
             )
-
+    
 
 def tab_setup(app):
     return html.Div(
@@ -128,13 +131,17 @@ def card_bundle_selection(app):
                                         id = 'bundle-dropdown-duration',
                                         clearable = False,
                                     ),
-                                    width = 4
+                                    width = 2
+                                ),
+                                dbc.Col(
+                                    
+                                    width = 2
                                 ),
                                 dbc.Col(
                                     [
                                         html.Div(
                                             [
-                                                html.H4("Baseline", style={"font-size":"0.6rem"}),
+                                                html.H4("Baseline", style={"font-size":"1rem"}),
                                                 html.Hr(className="ml-1"),
                                                 
                                             ]
@@ -151,9 +158,9 @@ def card_bundle_selection(app):
                                                     [
                                                         html.H4(
                                                             [
-                                                                "Target ",
+                                                                "Target",
                                                             ],
-                                                            style={"font-size":"0.6rem"}
+                                                            style={"font-size":"1rem"}
                                                         ),
                                                     ],
                                                 ),
@@ -169,7 +176,7 @@ def card_bundle_selection(app):
                                     [
                                         html.Div(
                                             [
-                                                html.H4("Likelihood to achieve", style={"font-size":"0.6rem"}),
+                                                html.H4("Likelihood to achieve", style={"font-size":"0.8rem"}),
                                                 html.Hr(className="ml-1"),
                                                 
                                             ]
@@ -402,17 +409,28 @@ def tab_result(app):
                                 dbc.Row(
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Plan's Financial Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                        dbc.Col(html.Div(html.H2("Metric", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"1rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
+                                        dbc.Col(html.H4("Plan's Financial Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=3),
+                                        dbc.Col(html.Div(html.H2("Bundle", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"0.8rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
                                         dbc.Col(dcc.Dropdown(
-                                            id = 'dropdown-cost',
+                                            id = 'dropdown-bundle',
+                                            clearable=False,
+                                            style={"font-size":"0.8rem"},                                      
+                                            ),
+                                            width=3
+                                        ),
+                                        dbc.Col(width=1),
+                                        dbc.Col(html.Div(html.H2("Metric", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"0.8rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
+                                        dbc.Col(dcc.Dropdown(
+                                            id = 'dropdown-metric',
                                             options = [
-                                            {'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" },
-                                            {'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
-                                            {'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
-                                            ],#{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }
-                                            value = "ACO's PMPM",
-                                            ))
+                                            {'label' : "Cost per Episode", 'value' : "Cost per Episode" },
+                                            {'label' : "Total cost", 'value' : "Total cost" },],
+                                            value = "Cost per Episode",
+                                            clearable=False,
+                                            style={"font-size":"0.8rem"}
+                                            ),
+                                            width=3
+                                        )
                                     ],
                                     no_gutters=True,
                                 ),
@@ -420,8 +438,8 @@ def tab_result(app):
                                     dbc.Row(
                                         [
                                             dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'bundle-figure-cost',style={"height":"45vh", "width":"60vh"}), width=5),
-                                            dbc.Col(html.Div(id = 'bundle-table-cost'), width=6),
+                                            dbc.Col(dcc.Graph(id = 'bundle-figure-plan',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"60vh", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(id = 'bundle-table-plan'), width=6),
                                         ],
                                         no_gutters=True,
                                     ),
@@ -442,15 +460,8 @@ def tab_result(app):
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                         dbc.Col(html.H4("ACO's Financial Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                        dbc.Col(html.Div(html.H2("Metric", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"1rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
-                                        dbc.Col(dcc.Dropdown(
-                                            id = 'dropdown-fin',
-                                            options = [
-                                            {'label' : "ACO's Total Revenue", 'value' : "ACO's Total Revenue" },
-                                            {'label' : "ACO's Margin", 'value' : "ACO's Margin" },
-                                            {'label' : "ACO's Margin %", 'value' : "ACO's Margin %" }],
-                                            value = "ACO's Total Revenue",
-                                            ))
+                                       
+                                        
                                     ],
                                     no_gutters=True,
                                 ),
@@ -458,8 +469,8 @@ def tab_result(app):
                                     dbc.Row(
                                         [
                                             dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'bundle-figure-fin',style={"height":"45vh", "width":"60vh"}), width=5),
-                                            dbc.Col(html.Div(id = 'bundle-table-fin'), width=6),
+                                            dbc.Col(dcc.Graph(id = 'bundle-figure-provider',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"60vh", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(id = 'bundle-table-provider'), width=6),
                                         ],
                                         no_gutters=True,
                                     ),
@@ -707,7 +718,7 @@ def read_basetable(data):
 
 @app.callback(
     [Output('bundle-card-bundleselection', 'children'),
-    Output('bundle-card-measselection','children')],
+     Output('bundle-card-measselection', 'children'),],
     [Input('bundle-button-closemodal', 'n_clicks'),
     Input('bundle-temp-data', 'children')],
     [State('bundle-table-modal-spine', 'selected_rows'),
@@ -776,10 +787,11 @@ def update_bundlerows(timestamp, data):
 
 @app.callback(
     [Output('bundle-tab-container', 'active_tab'),
-    Output('bundle-temp-result', 'children')],
+    Output('bundle-temp-result', 'children'),
+    Output('dropdown-bundle', 'options'),
+    Output('dropdown-bundle', 'value'),],
     [Input('bundle-button-submit-simulation','n_clicks')],
     [State('bundle-table-selectedbundles', 'data'),
-#    State('bundle-table-selectedbundles', 'columns'),
     State('bundle-input-adj-pos', 'value'),
     State('bundle-input-adj-neg', 'value'),
     State('bundle-input-stop-loss', 'value'),
@@ -796,9 +808,36 @@ def store_inter_results(n, data, adj_pos, adj_neg, stop_loss, stop_gain):
         stop_loss = stop_loss/100
         stop_gain = stop_gain/100
         result = BP_Contract_Calculation(dff,stop_gain,stop_loss,adj_pos,adj_neg)
-        print(result)
-        return 'tab-1', result.to_json(orient = 'split')
-    return 'tab-0',""
+ 
+        drop_opt=[{'label':c,'value':c} for c in result['Bundle'].unique().tolist()]
+        drop_default=result['Bundle'].unique().tolist()[0]
+        return 'tab-1', result.to_json(orient = 'split'),drop_opt,drop_default
+    return 'tab-0',"",[],''
+
+@app.callback(
+    [Output('bundle-figure-plan', 'figure'),
+    Output('bundle-table-plan', 'children'),
+    Output('bundle-figure-provider', 'figure'),
+    Output('bundle-table-provider', 'children'),],
+    [Input('dropdown-bundle', 'value'),
+    Input('dropdown-metric', 'value'),
+    Input('bundle-temp-result', 'children')]
+    )
+def update_grapg_cost(bundle,metric, data):
+    ['Category', 'Bundle', 'Contract_type', 'Item', 'Best Estimate',
+       'Worst Case', 'Best Case', 'Best Estimate Total', 'Worst Case Total',
+       'Best Case Total']
+    if data:
+        dff = pd.read_json(data, orient = 'split')
+        if metric=='Cost per Episode':
+            df_plan = dff[(dff['Bundle'] == bundle) & (dff['Category'] == 'Plan')].iloc[:,[2,3,4,5,6]]
+            df_provider = dff[(dff['Bundle'] == bundle) & (dff['Category'] == 'Provider')].iloc[:,[2,3,4,5,6]]
+        else:
+            df_plan = dff[(dff['Bundle'] == bundle) & (dff['Category'] == 'Plan')].iloc[:,[2,3,7,8,9]]
+            df_provider = dff[(dff['Bundle'] == bundle) & (dff['Category'] == 'Provider')].iloc[:,[2,3,7,8,9]]
+
+        return sim_bundle_result_box(df_plan), table_bundle_sim_result(df_plan),sim_bundle_result_box(df_provider), table_bundle_sim_result(df_provider)
+    return {},"",{},""
 
 if __name__ == "__main__":
     app.run_server(host="127.0.0.1",debug=True,port=8049)
