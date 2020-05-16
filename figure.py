@@ -1043,7 +1043,7 @@ def waterfall_overall(df):
 			zeroline=True,
 			zerolinecolor=colors['grey'],
 			zerolinewidth=1,
-			range=[0,df.max(axis=1)*1.1]
+			range=[0,df.max(axis=1)*1.4]
 		),
 		showlegend=False,
 		modebar=dict(
@@ -1556,8 +1556,8 @@ def measure_quality_bar(df,domain):
 			#width=0.3,
 			textangle=0,
 			marker=dict(
-					color=colors['grey'],
-					opacity=0.7
+					color='rgba(191,191,191,0.9)',
+					#opacity=0.7
 					),
 			orientation='h',
 			hoverinfo='y+x',
@@ -1574,7 +1574,7 @@ def measure_quality_bar(df,domain):
 			#width=0.3,
 			textangle=0,
 			marker=dict(
-					color=domain_color[domain].replace('rgb','rgba').replace(')',',0.5)'),
+					color=domain_color[domain].replace('rgb','rgba').replace(')',',0.8)'),
 					#opacity=0.5
 					),
 			orientation='h',
@@ -1592,7 +1592,7 @@ def measure_quality_bar(df,domain):
 			#width=0.3,
 			textangle=0,
 			marker=dict(
-					color=domain_color[domain].replace('rgb','rgba').replace(')',',0.8)'),
+					color=domain_color[domain].replace('rgb','rgba').replace(')',',0.5)'),
 					#opacity=0.8
 					),
 			orientation='h',
@@ -1609,8 +1609,8 @@ def measure_quality_bar(df,domain):
 			#width=0.3,
 			textangle=0,
 			marker=dict(
-					color=colors['grey'],
-					opacity=0.5
+					color='rgba(191,191,191,0.5)',
+					#opacity=0.5
 					),
 			orientation='h',
 			hoverinfo='y+x',
@@ -1657,6 +1657,7 @@ def measure_quality_bar(df,domain):
 		showlegend=True,
 		legend=dict(
 			orientation='h',
+			traceorder='reversed',
 			x=-0.5,y=-0.1
 		),
 		margin=dict(l=300,r=60,b=80,t=20,pad=5,autoexpand=False,),
@@ -1766,7 +1767,9 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 
 	allvalue=df_agg.sum().values
 
-	allvalue[0]='All'
+	selected_index_d=[j for j, e in enumerate(df_agg.columns) if e == d][0]
+
+	allvalue[selected_index_d]='All'
 
 	
 	selected_index=[j for j, e in enumerate(df_agg.columns) if e == 'Pt Ct'][0]
@@ -1824,7 +1827,7 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 	df_agg['Diff % from Benchmark Unit Cost'] = (df_agg['Annualized Avg Cost per Unit'] - df_agg['Benchmark Avg Cost per Unit'])/df_agg['Benchmark Avg Cost per Unit']
 
 	if d in ['Clinical Condition']:
-		df_agg =  pd.concat([df_agg[0:len(df_agg)-1].nlargest(10,'Contribution to Overall Performance Difference'),df_agg.tail(1)]).reset_index(drop=True)
+		df_agg =  pd.concat([df_agg[0:len(df_agg)-1].nlargest(10,'Cost %'),df_agg.tail(1)]).reset_index(drop=True)
 		df_agg=df_agg.rename(columns={d:d_ori})
 
 	if d in ['Service Category','Sub Category']:
@@ -1936,6 +1939,7 @@ def drilltable_lv1(df,tableid):
 		columns=[{"name": i, "id": i} if i==df.columns[0] else {"name": i, "id": i,'type':'numeric','format':col1_format} if i==df.columns[1] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.money(0)} if i==df.columns[3] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.percentage(1)} for i in df.columns[0:6]],
 		row_selectable="single",
 		selected_rows=[len(df)-1],
+		#selected_row_ids=['All'],
 		sort_action="custom",
 		sort_mode='single',
 		sort_by=sort_col,
@@ -2002,6 +2006,7 @@ def drilltable_lv3(df,dimension,tableid,row_select):#row_select: numeric 0 or 1
 		sort_by=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"},],
 		row_selectable=row_sel,
 		selected_rows=[sel_default],
+		#selected_row_ids=['All'],
 		style_data={
 			'whiteSpace': 'normal',
 			'height': 'auto'
@@ -2054,6 +2059,9 @@ def drilltable_physician(df,tableid,row_select):
 		sort_action="custom",
 		sort_mode='single',
 		sort_by=[{"column_id":"Avg Cost/Episode Diff % from Best-in-Class","direction":"desc"},],
+		page_action="native",
+        page_current= 0,
+        page_size= 10,
 		style_data={
 			'whiteSpace': 'normal',
 			'height': 'auto'
