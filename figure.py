@@ -992,7 +992,7 @@ def waterfall_overall(df):
 	if df.values[0,1]<10000:
 		number_fomart='%{y:,.0f}'
 	else:
-		number_fomart='%{y:s}'
+		number_fomart='%{y:.2s}'
 
 
 	fig_waterfall = go.Figure(data=[
@@ -1020,7 +1020,7 @@ def waterfall_overall(df):
 			#text=y2_waterfall,
 			textposition='outside',
 			textfont=dict(color=[colors['transparent'],colors['transparent'],colors['transparent'],'black']),
-			texttemplate='%{y:s}',
+			texttemplate=number_fomart,
 			marker=dict(
 					color=gaincolor,
 					opacity=0.7
@@ -1079,7 +1079,7 @@ def sharing_split(df):
 			#text=y1_waterfall,
 			textposition='auto',
 			textfont=dict(color='black'),
-			texttemplate='%{y:s}',
+			texttemplate='%{y:,.0f}',
 			marker=dict(
 					color=gaincolor,
 					opacity=0.5
@@ -1097,7 +1097,7 @@ def sharing_split(df):
 			#text=y2_waterfall,
 			textposition='auto',
 			textfont=dict(color='black'),
-			texttemplate='%{y:s}',
+			texttemplate='%{y:,.0f}',
 			marker=dict(
 					color=gaincolor,
 					opacity=0.3
@@ -1161,7 +1161,7 @@ def waterfall_target_adj(df):
 	if df.values[0,1]<100000:
 		number_fomart='%{y:,.0f}'
 	else:
-		number_fomart='%{y:s}'
+		number_fomart='%{y:.2s}'
 
 	fig_waterfall = go.Figure(data=[
 		go.Bar(
@@ -1186,7 +1186,7 @@ def waterfall_target_adj(df):
 			x=df['name'].tolist(), 
 			y=df['adj'].tolist(),
 			#text=y2_waterfall,
-			textposition='inside',
+			textposition='outside',
 			textfont=dict(color=[colors['transparent'],'black','black',colors['transparent']]),
 			texttemplate=number_fomart,
 			marker=dict(
@@ -1210,6 +1210,7 @@ def waterfall_target_adj(df):
 			zeroline=True,
 			zerolinecolor=colors['grey'],
 			zerolinewidth=1,
+			range=[0,df['base'].max()*1.2],
 		),
 		showlegend=False,
 		modebar=dict(
@@ -1521,7 +1522,7 @@ def domain_quality_bubble(df): # 数据，[0,1] ,'Domain' or 'Measure'
 			linecolor='grey',
 			tickmode='linear',
 			dtick=0.2,
-			range=[0,1],
+			range=[0,1.1],
 			tickformat='%',
 			showticklabels=True,
 			zeroline=True,
@@ -1883,7 +1884,7 @@ def data_bars_diverging(df, column, color_above='#FF4136', color_below='#3D9970'
 			'paddingBottom': 2,
 			'paddingTop': 2
 		}
-		if max_bound > midpoint:
+		if max_bound > midpoint:#
 			background = (
 				"""
 					linear-gradient(90deg,
@@ -2144,7 +2145,7 @@ def network_cost_stack_h(df):
 			y=df[df.columns[0]],
 			text="",
 			textposition='auto', 
-			texttemplate='%{x:,.0f}',
+			texttemplate='%{x:,.1f}',
 			#width=0.3,
 			textangle=0,
 			marker=dict(
@@ -2162,7 +2163,7 @@ def network_cost_stack_h(df):
 			y=df[df.columns[0]],
 			text="",
 			textposition='outside', 
-			texttemplate='%{x:,.0f}',
+			texttemplate='%{x:,.1f}',
 			#width=0.3,
 			textangle=0,
 			marker=dict(

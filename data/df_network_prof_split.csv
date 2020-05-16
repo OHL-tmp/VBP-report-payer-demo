@@ -1,5 +1,10 @@
 ﻿type,In ACO,Out of ACO
-Neurology,4.3,2.4
-Oncology,2.5,4.4
-Cardiology,3.5,1.8
-Total Professional,4.5,2.8
+Primary Care,5.5,0.0
+Cardiology,1.4,1.4
+Oncology,0.0,1.0
+Neurology,0.2,0.4
+Nephrology,0.6,0.1
+Orthopedics,0.3,0.1
+Gastroenterologist,0.2,0.1
+Intensive Care,0.1,0.0
+Dermatologist,0.0,0.0

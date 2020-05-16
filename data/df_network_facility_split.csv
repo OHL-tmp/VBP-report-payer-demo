@@ -1,5 +1,6 @@
 ﻿Facility,In ACO,Out of ACO
-OP ASC Surgery,4.3,2.4
-OP ER,2.5,4.4
-Inpatient,3.5,1.8
-Total Facility,4.5,2.8
+Inpatient Hospital,6.3,2.1
+Outpatient ER,0.3,0.4
+Other Outpatient Hospital,2.2,0.6
+SNF,0.3,0.7
+Home Health,0.1,0.4
