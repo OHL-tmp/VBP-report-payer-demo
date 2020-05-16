@@ -22,16 +22,12 @@ from simulation_cal import *
 from modal_bundle import *
 from bp_contract_calculation import *
 
-
-app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract-optimizer/')
-
-server = app.server
+from app import app
 
 file = open('configure/default_ds.json', encoding = 'utf-8')
 default_input = json.load(file)
 df_quality = pd.read_csv("data/quality_setup.csv")
 df_bundle_measure=pd.read_csv("data/bundle_measure_setup.csv")
-#df_bundles_default=pd.read_csv("data/df_bundles_30.csv")
 
 # measure_list for episode
 measure_epo_list2=df_bundles_default[df_bundles_default['IP/OP'] == "Inpatient"]
@@ -43,7 +39,6 @@ measure_epo_list6=['Back and neck except spinal fusion','Back & neck except spin
 #modebar display
 button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
 
-
 def create_layout(app):
 #    load_data()
     return html.Div(
@@ -53,12 +48,12 @@ def create_layout(app):
                     html.Div(
                         [
                             dbc.Tabs(
-							    [
-							        dbc.Tab(tab_setup(app), label="Contract Simulation Setup", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
-							        dbc.Tab(tab_result(app), label="Result", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
-							        
-							    ], id = 'bundle-tab-container'
-							)
+                                [
+                                    dbc.Tab(tab_setup(app), label="Contract Simulation Setup", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
+                                    dbc.Tab(tab_result(app), label="Result", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
+                                    
+                                ], id = 'bundle-tab-container'
+                            )
                         ],
                         className="mb-3",
                         style={"padding-left":"3rem", "padding-right":"3rem"},
@@ -75,26 +70,26 @@ def create_layout(app):
 
 
 def tab_setup(app):
-	return html.Div(
-				[
-					dbc.Row(
-						[
-							dbc.Col(html.H1("Contract Simulation Setup", style={"padding-left":"2rem","font-size":"3"}), width=9),
+    return html.Div(
+                [
+                    dbc.Row(
+                        [
+                            dbc.Col(html.H1("Contract Simulation Setup", style={"padding-left":"2rem","font-size":"3"}), width=9),
                             
-						],
+                        ],
                         style={"padding-top":"2rem"}
-					),
+                    ),
                     html.Div(
                         [
-                        	card_performance_measure_setup(app),
+                            card_performance_measure_setup(app),
                         ]
                     ),                  
-				]
-			)
+                ]
+            )
 
 
 def card_performance_measure_setup(app):
-	return dbc.Card(
+    return dbc.Card(
                 dbc.CardBody(
                     [
                         card_bundle_selection(app),
@@ -116,10 +111,10 @@ def card_performance_measure_setup(app):
 
 
 def card_bundle_selection(app):
-	return dbc.Card(
+    return dbc.Card(
                 dbc.CardBody(
                     [
-                    	dbc.Row(
+                        dbc.Row(
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                 dbc.Col(html.H4("Bundle Selection & Target Price", style={"font-size":"1rem", "margin-left":"10px"}), width=4),
@@ -136,13 +131,13 @@ def card_bundle_selection(app):
                         dbc.Row(
                             [
                                 dbc.Col(
-                                	html.Div(
-                                		dcc.Dropdown(
-                                        	options = [
-	                                        	{'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" },
-	                                        	{'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
-	                                        	{'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
-                                        	],#{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }
+                                    html.Div(
+                                        dcc.Dropdown(
+                                            options = [
+                                                {'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" },
+                                                {'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
+                                                {'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
+                                            ],#{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }
                                             value = "ACO's PMPM"
                                         ),
                                         style={"padding-left":"0rem","padding-right":"1rem", "height":"0.6rem","font-size":"0.8rem"}
@@ -150,23 +145,23 @@ def card_bundle_selection(app):
                                     width=4,
                                 ),
                                 dbc.Col(
-                                	[
-                                		html.Div(
-                                			[
-                                				html.H4("Baseline", style={"font-size":"0.6rem"}),
+                                    [
+                                        html.Div(
+                                            [
+                                                html.H4("Baseline", style={"font-size":"0.6rem"}),
                                                 html.Hr(className="ml-1"),
-                                				
-                                			]
-                                		)
-                                	],
+                                                
+                                            ]
+                                        )
+                                    ],
                                     style={"text-align":"center"},
                                     width=4,
                                 ),
                                 dbc.Col(
-                                	[
-                                		html.Div(
-                                			[
-                                				html.Div(
+                                    [
+                                        html.Div(
+                                            [
+                                                html.Div(
                                                     [
                                                         html.H4(
                                                             [
@@ -177,23 +172,23 @@ def card_bundle_selection(app):
                                                     ],
                                                 ),
                                                 html.Hr(className="ml-1"),
-                                				
-                                			]
-                                		)
-                                	],
+                                                
+                                            ]
+                                        )
+                                    ],
                                     style={"text-align":"center","padding-left":"4rem"},
                                     width=2,
                                 ),
                                 dbc.Col(
-                                	[
-                                		html.Div(
-                                			[
-                                				html.H4("Likelihood to achieve", style={"font-size":"0.6rem"}),
+                                    [
+                                        html.Div(
+                                            [
+                                                html.H4("Likelihood to achieve", style={"font-size":"0.6rem"}),
                                                 html.Hr(className="ml-1"),
-                                				
-                                			]
-                                		)
-                                	],
+                                                
+                                            ]
+                                        )
+                                    ],
                                     style={"text-align":"center","padding-left":"2rem"},
                                     width=2,
                                 ),
@@ -315,7 +310,7 @@ def card_bundle_table():
 
 
 def card_quality_adjustment(app):
-	return dbc.Card(
+    return dbc.Card(
                 dbc.CardBody(
                     [
                         dbc.Row(
@@ -389,7 +384,7 @@ def card_stop_loss_gain(app):
 
 
 def tab_result(app):
-	return html.Div(
+    return html.Div(
                 [
                     dbc.Row(
                         [
@@ -400,13 +395,13 @@ def tab_result(app):
                                     style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem"},
                                     id = 'button-open-assump-modal'
                                 ),
-                            	dbc.Modal([
-                            		dbc.ModalHeader(html.H1("Key Simulation Assumptions", style={"font-family":"NotoSans-Black","font-size":"1.5rem"})),
-                            		dbc.ModalBody([sim_assump_input_session(),]),
-                            		dbc.ModalFooter(
-                            			dbc.Button('Close', id = 'button-close-assump-modal'))
-                            		], id = 'modal-assump', size = 'xl'),
-                            	],
+                                dbc.Modal([
+                                    dbc.ModalHeader(html.H1("Key Simulation Assumptions", style={"font-family":"NotoSans-Black","font-size":"1.5rem"})),
+                                    dbc.ModalBody([sim_assump_input_session(),]),
+                                    dbc.ModalFooter(
+                                        dbc.Button('Close', id = 'button-close-assump-modal'))
+                                    ], id = 'modal-assump', size = 'xl'),
+                                ],
                                 style={"padding-top":"1rem"}
                             ),
                             
@@ -421,9 +416,9 @@ def tab_result(app):
                                         dbc.Col(html.H4("Plan's Financial Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                         dbc.Col(html.Div(html.H2("Bundle", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"1rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
                                         dbc.Col(dcc.Dropdown(
-                                        	id = 'dropdown-bundle',
-                                            clearable=False,                                       	
-                                        	)),
+                                            id = 'dropdown-bundle',
+                                            clearable=False,                                        
+                                            )),
                                         dbc.Col(html.Div(html.H2("Metric", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"1rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
                                         dbc.Col(dcc.Dropdown(
                                             id = 'dropdown-metric',
@@ -661,8 +656,7 @@ def sim_assump_input_session():
         ]
     )
 
-
-app.layout = create_layout(app)
+layout = create_layout(app)
 
 
 
