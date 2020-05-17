@@ -321,13 +321,53 @@ def card_quality_adjustment(app):
                         ),
                         dbc.Row(
                             [
-                                dbc.Col(html.H6("Maximum Adjustment on Positive Reconciliation Amount"), width=3),
+                                dbc.Col(
+                                    [
+                                        html.H6(
+                                            [
+                                                "Maximum Quality Adjustment on Savings",
+                                                html.Span(
+                                                    "\u24D8",
+                                                    style={"font-size":"0.8rem"}
+                                                )
+                                            ],
+                                            id="tooltip-vbc-measure",
+                                            style={"font-size":"0.8rem"}
+                                        ),
+                                        dbc.Tooltip(
+                                            "Cost target recommended for ACO to achieve reasonable margin improvement with high likelihood compared to FFS contract",
+                                            target="tooltip-vbc-measure",
+                                            style={"text-align":"start"}
+                                        ),
+                                    ],
+                                    width="auto"
+                                ),
                                 dbc.Col(dbc.InputGroup([
                                     dbc.Input(id = 'bundle-input-adj-pos', type = 'number', debounce = True, value = 10),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                     ], size="sm"), width=2),
-                                dbc.Col(html.Div(), width=1),
-                                dbc.Col(html.H6("Maximum Adjustment on Negative Reconciliation Amount"), width=3),
+                                dbc.Col(html.Div(), width=3),
+                                dbc.Col(
+                                    [
+                                        html.H6(
+                                            [
+                                                "Maximum Quality Adjustment on Losses",
+                                                html.Span(
+                                                    "\u24D8",
+                                                    style={"font-size":"0.8rem"}
+                                                )
+                                            ],
+                                            id="tooltip-vbc-measure",
+                                            style={"font-size":"0.8rem"}
+                                        ),
+                                        dbc.Tooltip(
+                                            "Cost target recommended for ACO to achieve reasonable margin improvement with high likelihood compared to FFS contract",
+                                            target="tooltip-vbc-measure",
+                                            style={"text-align":"start"}
+                                        ),
+                                    ],
+                                    width="auto"
+                                ),
                                 dbc.Col(dbc.InputGroup([
                                     dbc.Input(id = 'bundle-input-adj-neg', type = 'number', debounce = True, value = 10),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
@@ -362,12 +402,15 @@ def card_stop_loss_gain(app):
                                     dbc.Input(id = 'bundle-input-stop-loss', type = 'number', debounce = True, value = 20),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                     ],size="sm"), width=2),
-                                dbc.Col(html.Div(), width=2),
+                                dbc.Col(html.H6("of total target payment", style={"padding-top":"0.5rem"}), width="auto"),
+                                dbc.Col(html.Div(), width=3),
                                 dbc.Col(html.H6("Stop Gain", style={"padding-top":"0.5rem"}), width="auto"),
                                 dbc.Col(dbc.InputGroup([
                                     dbc.Input(id = 'bundle-input-stop-gain', type = 'number', debounce = True, value = 20),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                     ],size="sm"), width=2),
+                                dbc.Col(html.H6("of total target payment", style={"padding-top":"0.5rem"}), width="auto"),
+
                             ], style={"padding":"1rem"}
                         ),
                         
@@ -423,9 +466,9 @@ def tab_result(app):
                                         dbc.Col(dcc.Dropdown(
                                             id = 'dropdown-metric',
                                             options = [
-                                            {'label' : "Cost per Episode", 'value' : "Cost per Episode" },
-                                            {'label' : "Total cost", 'value' : "Total cost" },],
-                                            value = "Cost per Episode",
+                                            {'label' : "Episode Total", 'value' : "Episode Total" },
+                                            {'label' : "Episode Average", 'value' : "Episode Average" },],
+                                            value = "Episode Average",
                                             clearable=False,
                                             style={"font-size":"0.8rem"}
                                             ),
@@ -749,19 +792,30 @@ def update_selected_bundles(n,data,r1,r2,r3,r4,r5,r6,r7,r8):
 
 
         measure_list=[0,1]
-
         episode_list=update_data['Bundle']
+        episode=['All Episodes','All Episodes']
 
         for i in range(2,7):
-            if len(set(episode_list).intersection( set(eval('measure_epo_list'+str(i)) )))>0:
+            epi_list_intersection=set(episode_list).intersection( set(eval('measure_epo_list'+str(i)) ))
+            if len(epi_list_intersection)>0:
+
+                if i==6:
+                    episode.append('All Inpatient Episodes')
+                else:
+                    epi_for_each_meas=','.join(epi_list_intersection)
+                    episode.append(epi_for_each_meas)
+                
                 measure_list.append(i)
 
-        update_measure=df_bundle_measure.iloc[measure_list] 
+        update_measure=df_bundle_measure.iloc[measure_list].reset_index() 
+        update_measure['Applicable Episodes']=episode
 
+    else:
+        update_data=df_bundles.iloc[[0,1,2]]
+        update_measure=df_bundle_measure.iloc[[0,1,3]].reset_index()
+        update_measure['Applicable Episodes']=['All Episodes','All Episodes','Major joint replacement of the lower extremity (MJRLE)']
 
-
-        return table_setup(update_data),bundle_measure_setup(update_measure)
-    return table_setup(df_bundles.iloc[[5,13,18]]),bundle_measure_setup(df_bundle_measure.iloc[[0,1,3]] )
+    return table_setup(update_data),bundle_measure_setup(update_measure)
 
 # set up table selfupdate
 @app.callback(
@@ -832,7 +886,7 @@ def update_grapg_cost(bundle,metric, data):
        'Best Case Total']
     if data:
         dff = pd.read_json(data, orient = 'split')
-        if metric=='Cost per Episode':
+        if metric=='Episode Average':
             df_plan = dff[(dff['Bundle'] == bundle) & (dff['Category'] == 'Plan')].iloc[:,[2,3,4,5,6]]
             df_provider = dff[(dff['Bundle'] == bundle) & (dff['Category'] == 'Provider')].iloc[:,[2,3,4,5,6]]
         else:

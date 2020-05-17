@@ -259,7 +259,7 @@ def manager_div_overall_performance(app):
                             ], 
                         ),
                     ],
-                    id = 'manager-div-pmpm-container', hidden = False),
+                    id = 'manager-div-pmpm-container', hidden = True),
                     # manager_card_key_driver(app),
                 ],
                 style={"padding-top":"1rem","padding-bottom":"0rem", "padding-right":"2rem", "max-height":"50rem"},
@@ -268,10 +268,10 @@ def manager_div_overall_performance(app):
 def manager_modal_totalcost(app):
     return html.Div([
                 dbc.Button(
-                    "Details",
+                    "Target Adjustment Details",
                     id = 'manager-button-openmodal-totalcost',
                     className="mb-3",
-                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
+                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem","width":"10rem"},
                 ),
                 dbc.Modal([
                     dbc.ModalHeader(
@@ -286,15 +286,15 @@ def manager_modal_totalcost(app):
                     ], id = 'manager-modal-totalcost',
                 style={"text-align":"center"}),
             ],
-            style={"text-align":"end","padding-right":"9rem"})
+            style={"text-align":"end","padding-right":"12rem"})
 
 def manager_modal_pmpm(app):
     return html.Div([
                 dbc.Button(
-                    "Details",
+                    "Target Adjustment Details",
                     id = 'manager-button-openmodal-pmpm',
                     className="mb-3",
-                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
+                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem","width":"10rem"},
                 ),
                 dbc.Modal([
                     dbc.ModalHeader(
@@ -309,7 +309,7 @@ def manager_modal_pmpm(app):
                     ], id = 'manager-modal-pmpm',
                 style={"text-align":"center"}),
             ],
-            style={"text-align":"end","padding-right":"9rem"})
+            style={"text-align":"end","padding-right":"12rem"})
 
 def manager_card_key_driver(app):
     return dbc.Card(
@@ -510,12 +510,24 @@ def manager_card_total_cost_incurred(app):
                         
                         dbc.Row(
                             [
-                                dbc.Col(dcc.Graph(figure=pie_cost_split(df_network_cost_split), style={"width":"24rem","height":"26rem","padding-left":"2rem"}), width=5, style={"background-color":"#f5f5f5","border-radius":"0.5rem", "height":"28rem"}),
+                                dbc.Col(dcc.Graph(figure=pie_cost_split(df_network_cost_split), style={"height":"35rem","padding-left":"2rem"}), width=5, style={"background-color":"#f5f5f5","border-radius":"0.5rem", "height":"45rem","text-align":"center"}),
                                 dbc.Col(
                                     html.Div(
                                         [
-                                            html.Div(dcc.Graph(figure=network_cost_stack_h(df_network_facility_split), style={"height":"13rem", "padding":"3rem","background-color":"#f5f5f5","border-radius":"0.5rem"})),
-                                            html.Div(dcc.Graph(figure=network_cost_stack_h(df_network_prof_split), style={"height":"13rem", "padding":"3rem","background-color":"#f5f5f5","border-radius":"0.5rem"}), style={"padding-top":"2rem"}),
+                                            html.Div(
+                                                [
+                                                    html.H1("Facility Cost Incurred In VS Out of ACO", style={"font-size":"1rem","text-align":"center"}),
+                                                    dcc.Graph(figure=network_cost_stack_h(df_network_facility_split),style={"height":"16rem", "padding":"1rem"})
+                                                ], 
+                                                style={"background-color":"#f5f5f5","border-radius":"0.5rem", "padding":"2rem"}
+                                            ),
+                                            html.Div(
+                                                [
+                                                    html.H1("Professional Cost Incurred VS Out of ACO", style={"font-size":"1rem","text-align":"center"}),
+                                                    dcc.Graph(figure=network_cost_stack_h(df_network_prof_split),style={"height":"16rem", "padding":"1rem"})
+                                                ], 
+                                                style={"background-color":"#f5f5f5","border-radius":"0.5rem", "padding":"2rem", "margin-top":"1rem"}
+                                            ),
                                         ], 
                                         style={"max-height":"80rem","padding-left":"1rem"}
                                     ), 

@@ -65,14 +65,6 @@ def col_menu_drilldown():
                             #dbc.Col(card_selected_measures(),)
                         ]
                     ),
-                    dbc.Row(
-                        [
-                            dbc.Col(html.Div()),
-                            dbc.Col(html.H6("click to change measure", style={"font-size":"0.6rem"}), width="auto"),
-                            dbc.Col(html.Div()),
-                            #dbc.Col(card_selected_measures(),)
-                        ]
-                    )
                 ],
                 style={"padding":"0.5rem"}
             )
@@ -85,7 +77,6 @@ def dropdownmenu_select_measures():
                     dbc.DropdownMenuItem("Total Cost"),
                     dbc.DropdownMenuItem("Quality Measures"),
                     dbc.DropdownMenuItem("Physician Profiling"),
-                    dbc.DropdownMenuItem("Intervention Opportunities"),
                     dbc.DropdownMenuItem(divider=True),
                     html.P(
                         "Select one to drill.",
@@ -102,7 +93,7 @@ def col_content_drilldown(app):
                 html.Div([html.Div([col_menu_drilldown()], style={"border-radius":"5rem","background-color":"none"})], style={"padding-bottom":"2rem"}),
                 dbc.Row(
                     [
-                        dbc.Col(card_overview_drilldown(0.03),width=8),
+                        dbc.Col(card_overview_drilldown(0.031),width=8),
                         dbc.Col(card_key_driver_drilldown(app),width=4),
                     ],
                     style={"padding-bottom":"2rem"}
@@ -114,7 +105,7 @@ def col_content_drilldown(app):
                             [
                                 dbc.Col(html.Div(
                                         [
-                                            html.H2("Drilldown Analysis Drilldown", style={"font-size":"3rem"}),
+                                            html.H2("Drilldown Analysis", style={"font-size":"3rem"}),
                                             html.H3("check table view for more details...", style={"font-size":"1rem"}),
                                         ],
                                         style={"padding-left":"2rem"}
@@ -168,7 +159,7 @@ def card_overview_drilldown(percentage):
                         ],
                         style={"padding-left":"1rem"}
                     ),
-                html.P("As of June 30th.", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
+                html.P("As of 06/30/2020", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
                 html.Div(
                     [
                         dbc.Tabs(
@@ -208,7 +199,7 @@ def card_key_driver_drilldown(app):
                                 dbc.Col(
                                     [
                                         dbc.Button("See All Drivers",
-                                                        # id = 'button-all-driver',
+                                                         id = 'button-all-driver',
                                                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
                                                     ),
                                          dbc.Modal([
@@ -216,7 +207,7 @@ def card_key_driver_drilldown(app):
                                                  dbc.ModalBody(children = html.Div([table_driver_all(df_overall_driver)], style={"padding":"1rem"})),
                                                  dbc.ModalFooter(
                                                          dbc.Button("Close", 
-                                                                 # id = 'close-all-driver',
+                                                                  id = 'close-all-driver',
                                                                  style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
                                                              )
                                                          )
@@ -245,8 +236,14 @@ def card_key_driver_drilldown(app):
                                         html.Div(children=gaugegraph(df_overall_driver,2))
                                     ],
                                     width=6),
+                                dbc.Col(
+                                    [
+                                        html.Div(children=gaugegraph(df_overall_driver,3))
+                                    ],
+                                    width=6),
                                 
                             ],
+                            style={"padding-top":"2rem"}
                         ),
                     ]
                 ),
@@ -270,10 +267,9 @@ def card_confounding_factors(app):
                         
                         dbc.Row(
                             [
-                                dbc.Col(element_confounding_factors(-0.002, "Change in Covered Services"), width=3),
-                                dbc.Col(element_confounding_factors(0.003, "Benefit Change"), width=3),
-                                dbc.Col(element_confounding_factors(-0.002, "Provider Contracting Change"), width=3),
-                                dbc.Col(element_confounding_factors(-0.002, "Outlier Impact"), width=3),
+                                dbc.Col(element_confounding_factors(-0.002, "Change in Covered Services"), width=4),
+                                dbc.Col(element_confounding_factors(0.003, "Benefit Change"), width=4),
+                                dbc.Col(element_confounding_factors(-0.002, "Outlier Impact"), width=4),
                             ],
                         ),
                     ]
@@ -541,6 +537,16 @@ def mod_criteria_button(choice_list,lv='1'):
 
 layout = create_layout(app)
 
+@app.callback(
+    Output("modal-all-driver","is_open"),
+    [Input("button-all-driver","n_clicks"),
+     Input("close-all-driver","n_clicks")],
+    [State("modal-all-driver","is_open")]        
+)
+def open_all_driver(n1,n2,is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
 
 # modify lv1 criteria
 @app.callback(
@@ -734,7 +740,7 @@ def sort_table_lv4(sort_dim,data):
     if sort_dim==[]:
         sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
 
-    if 'Others' in df[df.columns[0]]:
+    if 'Others' in df[df.columns[0]].tolist():
         df1=df[0:len(df)-2].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
         df1=pd.concat([df1,df.tail(2)]).reset_index(drop=True)
 
