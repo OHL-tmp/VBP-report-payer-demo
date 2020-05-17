@@ -658,10 +658,12 @@ def update_table_lv3(d1,selected_lv1,d2,selected_lv2):
 )
 def update_table_lv3(d1,selected_lv1,d2,selected_lv2,selected_lv3):
 
-    if selected_lv1 is None or  selected_lv1==[]:
+    if (selected_lv1 is None) or  (len(selected_lv1)==0):
         d1v='All'
     else:
         d1v=selected_lv1[0]
+
+    print(d1v)
 
     if selected_lv2 is None or  selected_lv2==[]:
         d2v='All'
@@ -705,8 +707,8 @@ def sort_table_lv1(sort_dim,data):
 
     df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
     df1=pd.concat([df1,df.tail(1)]).reset_index(drop=True)
-    df1['id']=df1[df1.columns[0]]
-    df1.set_index('id', inplace=True, drop=False)
+    #df1['id']=df1[df1.columns[0]]
+    #df1.set_index('id', inplace=True, drop=False)
     
     return df1.to_dict('records')
 
@@ -720,7 +722,7 @@ def sort_table_lv2(sort_dim,data):
     df=pd.DataFrame(data)
 
     if sort_dim==[]:
-        sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
+        sort_dim=[{"column_id":"Cost %","direction":"desc"}]
 
 
     df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
