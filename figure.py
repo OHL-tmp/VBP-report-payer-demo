@@ -1251,8 +1251,9 @@ def table_result_dtls(df):
 			{'if': {'column_id': df.columns[0]},
 			 'width': '20rem',
 			 'textAlign':'start',
-			 'backgroundColor':colors['yellow'],
 			 'font-family':'NotoSans-Condensed',
+			 'backgroundColor': "#f1f6ff",
+			 'color': '#1357DD',
 			}, 
 			   
 		],
@@ -2239,6 +2240,7 @@ def table_driver_all(df):
 			{'if': {'column_id': df.columns[0]},
 			 
 			 'fontWeight': 'bold',
+
 			}, 
 			
 		],
