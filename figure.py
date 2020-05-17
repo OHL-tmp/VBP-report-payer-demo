@@ -26,7 +26,7 @@ df_pt_epi_phy_srv_lv1=pd.read_csv("data/Pt Episode Phy Srv Level V1.csv")
 colors={'blue':'rgba(18,85,222,100)','yellow':'rgba(246,177,17,100)','transparent':'rgba(255,255,255,0)','grey':'rgba(191,191,191,100)',
 	   'lightblue':'rgba(143,170,220,100)'}
 domain_color={'Patient/Caregiver Experience':'rgb(244,160,159)','Care Coordination/Patient Safety':'rgb(244,160,41)',
-			  'Preventive Health':'rgb(244,218,41)','At-Risk Population':'rgb(208,118,203)'}
+			  'Preventive Health':'rgb(18,85,222)','At-Risk Population':'rgb(208,118,203)'}
 
 
 ####################################################################################################################################################################################
@@ -45,8 +45,9 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 		{"name": [ "ACO Baseline","Benchmark"], "id": "benchmark"},
 		{"name": [ "ACO Baseline","Best-in-Class"], "id": "bic"},
 		{"name": [ "Target","Recommended"], "id": "tar_recom"},
-		{"name": [ "Target","User Defined Type"], "id": "tar_user_type",'editable':True,'presentation':'dropdown'},
+		{"name": [ "Target","P4P/P4R"], "id": "tar_user_type",'editable':True,'presentation':'dropdown'},
 		{"name": [ "Target","User Defined Value"], "id": "tar_user",'editable': True},
+		{"name": [ "Weight","Domain"], "id": "domain"},
 		{"name": [ "Weight","Recommended"], "id": "recommended"},
 		{"name": [ "Weight","User Defined"], "id": "userdefined",'editable': True},
 		#{"name": [ "","id"], "id": "rowid"},
@@ -188,7 +189,7 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 			'fontSize':14,
 			'color': '#1357DD',
 			'text-align':'center',
-			'border':'0px solid grey',
+			'border':'1px solid grey',
 		},
 	)
 
@@ -551,17 +552,18 @@ def table_sim_result(df):
 	style1=[0,4,8]
 	style2=[1,2,5,6,9,10]
 	style3=[3,7,11]
+
 	
 	#column1=column1+['Contract','w/o','VBC Payout','Contract with','VBC Payout','(Recommended)','Contract with','VBC Payout','(User Defined)']
-	column1=column1+['Contract','w/o','VBC', 'Payout','Contract', 'with','VBC Payout','(Recommended)','Contract','with','VBC Payout','(User Defined)']
+	column1=column1+['','FFS','Contract', '','Contract', 'with','VBC Payout','(Recommended)','Contract','with','VBC Payout','(User Defined)']
 	df['scenario']=column1
 
 	if df.values[0,7] in ["ACO's PMPM"]:
-		header=['Best Estimate','Low','High','Low','High']
+		header=['Best Estimate','Worst Case','Best Case','Worst Case','Best Case']
 	elif df.values[0,7] in ["ACO's Margin %"]:
-		header=['Best Estimate(%)','Low(%)','High(%)','Low(%)','High(%)']
+		header=['Best Estimate(%)','Worst Case(%)','Best Case(%)','Worst Case(%)','Best Case(%)']
 	else:
-		header=['Best Estimate(Mn)','Low(Mn)','High(Mn)','Low(Mn)','High(Mn)']
+		header=['Best Estimate(Mn)','Worst Case(Mn)','Best Case(Mn)','Worst Case(Mn)','Best Case(Mn)']
 
 	if df.values[0,7] =="ACO's Margin %":
 		df.iloc[:,2:7]=df.iloc[:,2:7]/100
@@ -579,8 +581,8 @@ def table_sim_result(df):
 		{"name": ["",header[0]], "id": "Best Estimate",'type': 'numeric',"format":num_format,},
 		#{"name": [ "Full Range",header[1]], "id": "Worst",'type': 'numeric',"format":num_format,},
 		#{"name": [ "Full Range",header[2]], "id": "Best",'type': 'numeric',"format":num_format,},
-		{"name": [ "Most Likely Range",header[3]], "id": "Lower End",'type': 'numeric',"format":num_format,},
-		{"name": [ "Most Likely Range",header[4]], "id": "Higher End",'type': 'numeric',"format":num_format,},
+		{"name": [ "Scenario Analysis",header[3]], "id": "Lower End",'type': 'numeric',"format":num_format,},
+		{"name": [ "Scenario Analysis",header[4]], "id": "Higher End",'type': 'numeric',"format":num_format,},
 		],  
 		merge_duplicate_headers=True,
 		style_data={
@@ -891,8 +893,8 @@ def table_bundle_sim_result(df):
 		{"name": ["",header[0]], "id": df.columns[2],'type': 'numeric',"format":num_format,},
 		#{"name": [ "Full Range",header[1]], "id": "Worst",'type': 'numeric',"format":num_format,},
 		#{"name": [ "Full Range",header[2]], "id": "Best",'type': 'numeric',"format":num_format,},
-		{"name": [ "Most Likely Range",header[1]], "id": df.columns[3],'type': 'numeric',"format":num_format,},
-		{"name": [ "Most Likely Range",header[2]], "id": df.columns[4],'type': 'numeric',"format":num_format,},
+		{"name": [ "Scenario Analysis",header[1]], "id": df.columns[3],'type': 'numeric',"format":num_format,},
+		{"name": [ "Scenario Analysis",header[2]], "id": df.columns[4],'type': 'numeric',"format":num_format,},
 		],  
 		merge_duplicate_headers=True,
 		style_data={
@@ -1547,18 +1549,19 @@ def measure_quality_bar(df,domain):
 	
 	fig = go.Figure(data=[
 		
-		go.Bar(
+		go.Scatter(
 			name='Target',
-			x=df['Target'].tolist(), 
+			x=[1]*len(df), 
 			y=df['measure'].tolist(),
 			text="",
-			textposition='none', 
+			#textposition='none', 
 			texttemplate='%{x:.0%}',
 			#width=0.3,
-			textangle=0,
+			#textangle=0,
+			mode='lines',
 			marker=dict(
 					color='rgba(191,191,191,0.9)',
-					#opacity=0.7
+					opacity=0
 					),
 			orientation='h',
 			hoverinfo='y+x',
@@ -1618,6 +1621,15 @@ def measure_quality_bar(df,domain):
 			hovertemplate='%{x:.0%}',
 		),
 	])
+
+	shapes=[]
+	shapes.append( dict(type='line',
+						xref='x',yref='paper',x0=1,x1=1,y0=0,y1=1,
+						line=dict(color=colors['grey'],width=2),
+					   )
+	
+	)
+
 	# Change the bar mode
 	fig.update_layout(
 		title=dict(
@@ -1636,7 +1648,7 @@ def measure_quality_bar(df,domain):
 			),
 		xaxis=dict(
 			title=dict(
-				text='Quality Measure Performance(Percentile)',
+				text='Quality Measure Performance(Comparing to target)',
 				font=dict(
 				family="NotoSans-Condensed",
 				size=14,
@@ -1667,6 +1679,7 @@ def measure_quality_bar(df,domain):
 			size=14,
 			color="#38160f"
 		),
+		shapes=shapes,
 	)
 	return fig
 
@@ -1756,8 +1769,8 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 		df_agg_clinical = df_pt_epi_phy_lv1_f.groupby(by = [d]).sum().reset_index()
 		df_agg_cost = df_pt_epi_phy_srv_lv1_f.groupby(by = [d]).sum().reset_index()
 
-		df_agg_pre = pd.merge(df_agg_pt, df_agg_clinical, how = 'left', on = [d] )
-		df_agg = pd.merge(df_agg_cost, df_agg_pre, how = 'left', on = [d] ) 
+		df_agg_pre = pd.merge(df_agg_pt, df_agg_clinical, how = 'left', on = [d] ).reset_index()
+		df_agg = pd.merge(df_agg_cost, df_agg_pre, how = 'left', on = [d] ).reset_index() 
 		
 	else:           
 		df_agg = df_pt_epi_phy_srv_lv1_f.groupby(by = [d]).sum().reset_index()
@@ -1809,7 +1822,7 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 	df_agg['Avg Cost/Episode Diff % from Best-in-Class'] = (df_agg['Annualized Avg Cost/Episode'] - df_agg['Benchmark Avg Cost/Episode']*0.9)/(df_agg['Benchmark Avg Cost/Episode']*0.9)
 
 
-	df_agg['Contribution to Overall Performance Difference']=(df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/df_agg['Benchmark Total Cost']
+	df_agg['Contribution to Overall Performance Difference']=(df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/(df_agg.tail(1)['Benchmark Total Cost'].values[0])
 
 
 	df_agg['YTD Avg Utilization Rate/Patient'] = df_agg['YTD Utilization']/df_agg['Pt Ct']
@@ -1855,67 +1868,63 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 
 
 
-def data_bars_diverging(df, column, color_above='#FF4136', color_below='#3D9970'):
-	n_bins = 100
-	bounds = [i * (1.0 / n_bins) for i in range(n_bins + 1)]
-	col_max = df[column].max()
-	col_min = df[column].min()
-	ranges = [
-		((col_max - col_min) * i) + col_min
-		for i in bounds
-	]
-	midpoint = (col_max + col_min) / 2.
+def data_bars_diverging(df, column,col_max, color_above='#FF4136', color_below='#3D9970'):
 
+#	col_max=df[column].max()
 	styles = []
-	for i in range(1, len(bounds)):
-		min_bound = ranges[i - 1]
-		max_bound = ranges[i]
-		min_bound_percentage = bounds[i - 1] * 100
-		max_bound_percentage = bounds[i] * 100
+	for i in df[column].to_list():
 
-		style = {
-			'if': {
-				'filter_query': (
-					'{{{column}}} >= {min_bound}' +
-					(' && {{{column}}} < {max_bound}' if (i < len(bounds) - 1) else '')
-				).format(column=column, min_bound=min_bound, max_bound=max_bound),
-				'column_id': column
-			},
-			'paddingBottom': 2,
-			'paddingTop': 2
-		}
-		if max_bound > midpoint:#
-			background = (
-				"""
-					linear-gradient(90deg,
-					white 0%,
-					white 50%,
-					{color_above} 50%,
-					{color_above} {max_bound_percentage}%,
-					white {max_bound_percentage}%,
-					white 100%)
-				""".format(
-					max_bound_percentage=max_bound_percentage,
-					color_above=color_above
-				)
-			)
-		else:
-			background = (
-				"""
-					linear-gradient(90deg,
-					white 0%,
-					white {min_bound_percentage}%,
-					{color_below} {min_bound_percentage}%,
-					{color_below} 50%,
-					white 50%,
-					white 100%)
-				""".format(
-					min_bound_percentage=min_bound_percentage,
-					color_below=color_below
-				)
-			)
-		style['background'] = background
-		styles.append(style)
+		bound_percentage = round(i/col_max/2,2) * 100
+
+		if i>0:
+			bound_percentage=bound_percentage+50
+			styles.append({
+				'if': {
+					'filter_query': (
+						'{{{column}}} = {value}'
+					).format(column=column, value=i),
+					'column_id': column
+				},
+				'background': (
+					"""
+						linear-gradient(90deg,
+						white 0%,
+						white 50%,
+						{color_above} 50%,
+						{color_above} {bound_percentage}%,
+						white {bound_percentage}%,
+						white 100%)
+					""".format(bound_percentage=bound_percentage,color_above=color_above)
+				),
+				'paddingBottom': 2,
+				'paddingTop': 2
+			})
+
+		else :
+			bound_percentage=50+bound_percentage
+			styles.append({
+				'if': {
+					'filter_query': (
+						'{{{column}}} = {value}' 
+					).format(column=column, value=i),
+					'column_id': column
+				},
+				'background': (
+					"""
+						linear-gradient(90deg,
+						white 0%,
+						white  {bound_percentage}%,
+						{color_below} {bound_percentage}%,
+						{color_below} 50%,
+						white 50%,
+						white 100%)
+					""".format(bound_percentage=bound_percentage,color_below=color_below)
+				),
+				'paddingBottom': 2,
+				'paddingTop': 2
+			})
+			
+
 
 	return styles
 
@@ -1949,8 +1958,8 @@ def drilltable_lv1(df,tableid):
 			'height': 'auto'
 		},
 		style_data_conditional=(
-		data_bars_diverging(df, 'Diff % from Benchmark') +
-		data_bars_diverging(df, 'Contribution to Overall Performance Difference')
+		data_bars_diverging(df, 'Diff % from Benchmark',0.1) +
+		data_bars_diverging(df, 'Contribution to Overall Performance Difference',0.1)
 		),
 	   
 		style_cell={
@@ -1993,7 +2002,7 @@ def drilltable_lv3(df,dimension,tableid,row_select):#row_select: numeric 0 or 1
 	table_lv3=dash_table.DataTable(
 		data=df.to_dict('records'),
 		id=tableid,
-		columns=[{"name": ["Total Cost", dimension], "id": dimension},]+
+		columns=[{"name": ["", dimension], "id": dimension},]+
 		[{"name": ["Total Cost", df.columns[1]], "id": df.columns[1],'type': 'numeric',"format":FormatTemplate.money(0)},]+
 		[{"name": ["Total Cost", c], "id": c,'type': 'numeric',"format":FormatTemplate.percentage(1)} for c in df.columns[2:4]]+ 
 		[{"name": ["Utilization Rate",  df.columns[4]], "id": df.columns[4],'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
@@ -2061,15 +2070,15 @@ def drilltable_physician(df,tableid,row_select):
 		sort_mode='single',
 		sort_by=[{"column_id":"Avg Cost/Episode Diff % from Best-in-Class","direction":"desc"},],
 		page_action="native",
-        page_current= 0,
-        page_size= 10,
+		page_current= 0,
+		page_size= 10,
 		style_data={
 			'whiteSpace': 'normal',
 			'height': 'auto'
 		},
 		style_data_conditional=(
-		data_bars_diverging(df, 'Avg Cost/Episode Diff % from Benchmark') +
-		data_bars_diverging(df, 'Avg Cost/Episode Diff % from Best-in-Class')
+		data_bars_diverging(df, 'Avg Cost/Episode Diff % from Benchmark',0.3) +
+		data_bars_diverging(df, 'Avg Cost/Episode Diff % from Best-in-Class',0.3)
 		),
 	   
 		style_cell={
@@ -2135,7 +2144,7 @@ def network_cost_stack_h(df):
 
 	n=len(df)
 
-	df=df[(n-4):n]
+	#df=df[(n-4):n]
 
 	fig = go.Figure(data=[
 		
@@ -2144,7 +2153,7 @@ def network_cost_stack_h(df):
 			x=df['In ACO'], 
 			y=df[df.columns[0]],
 			text="",
-			textposition='auto', 
+			textposition='none', 
 			texttemplate='%{x:,.1f}',
 			#width=0.3,
 			textangle=0,
@@ -2153,7 +2162,7 @@ def network_cost_stack_h(df):
 					opacity=0.7
 					),
 			orientation='h',
-			hoverinfo='name+y',
+			hoverinfo='name+x',
 			#hovertemplate='%{x:,.2f}',
 		),
 
@@ -2162,7 +2171,7 @@ def network_cost_stack_h(df):
 			x=df['Out of ACO'], 
 			y=df[df.columns[0]],
 			text="",
-			textposition='outside', 
+			textposition='none', 
 			texttemplate='%{x:,.1f}',
 			#width=0.3,
 			textangle=0,
@@ -2171,7 +2180,7 @@ def network_cost_stack_h(df):
 					#opacity=0.5
 					),
 			orientation='h',
-			hoverinfo='name+y',
+			hoverinfo='name+x',
 			#hovertemplate='%{x:,.2f}',
 		),
 	])
@@ -2193,7 +2202,7 @@ def network_cost_stack_h(df):
 		plot_bgcolor=colors['transparent'],
 		showlegend=False,
 
-		margin=dict(l=0,r=0,b=0,t=0,pad=0,),
+		margin=dict(l=0,r=0,b=0,t=0,pad=10,),
 		font=dict(
 			family="NotoSans-Condensed",
 			size=14,
@@ -2252,6 +2261,7 @@ def bundle_measure_setup(df):
 		id = 'bundle-table-selectedmeas',
 		columns = [
 		{"name":['','Measure'],"id":'Measure'}, 
+		{"name": ["", "Applicable Episodes"], "id": "Applicable Episodes"},
 		{"name": ["Baseline", "Provider"], "id": "provider"},
 		{"name": ["Baseline", "Benchmark"], "id": "benchmark"},
 		{"name": ["Baseline", "Best-in-Class"], "id": "bic"},

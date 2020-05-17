@@ -764,7 +764,7 @@ def sort_table_lv4(sort_dim,data):
     if sort_dim==[]:
         sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
 
-    if 'Others' in df[df.columns[0]]:
+    if 'Others' in df[df.columns[0]].tolist():
         df1=df[0:len(df)-2].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
         df1=pd.concat([df1,df.tail(2)]).reset_index(drop=True)
 
