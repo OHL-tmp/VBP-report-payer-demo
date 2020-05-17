@@ -102,7 +102,7 @@ def col_content_drilldown(app):
                 html.Div([html.Div([col_menu_drilldown()], style={"border-radius":"5rem","background-color":"none"})], style={"padding-bottom":"2rem"}),
                 dbc.Row(
                     [
-                        dbc.Col(card_overview_drilldown(0.069),width=8),
+                        dbc.Col(card_overview_drilldown(0.03),width=8),
                         dbc.Col(card_key_driver_drilldown(app),width=4),
                     ],
                     style={"padding-bottom":"2rem"}
@@ -177,13 +177,13 @@ def card_overview_drilldown(percentage):
                                     html.Div(
                                         dcc.Graph(figure=waterfall_overall(df_overall),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"18rem"})
                                     ), 
-                                    label="Total Cost", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                    label="Total Cost", style={"background-color":"#fff","height":"22rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
                                 ),
                                 dbc.Tab(
                                     html.Div(
                                         dcc.Graph(figure=waterfall_overall(df_overall_pmpm),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"18rem"})
                                     ), 
-                                    label="PMPM", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                    label="PMPM", style={"background-color":"#fff","height":"22rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
                                 ),
                                 
                             ], 

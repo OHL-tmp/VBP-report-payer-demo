@@ -299,7 +299,7 @@ def table_setup(df):
 
 def card_bundle_table():
     return html.Div(
-                table_setup(df_bundles_default.iloc[[0,1,2]]), 
+                table_setup(df_bundles_default.iloc[[5,13,18]]), 
                 id = 'bundle-card-bundleselection',
                 style={"width":"100%","padding-left":"1rem","padding-right":"1rem"}
             )
@@ -459,7 +459,7 @@ def tab_result(app):
                                 dbc.Row(
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("ACO's Financial Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                        dbc.Col(html.H4("Provider’s Margin Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                        
                                         
                                     ],
@@ -761,7 +761,7 @@ def update_selected_bundles(n,data,r1,r2,r3,r4,r5,r6,r7,r8):
 
 
         return table_setup(update_data),bundle_measure_setup(update_measure)
-    return table_setup(df_bundles.iloc[[0,1,2]]),bundle_measure_setup(df_bundle_measure.iloc[[0,1,2,3,6]] )
+    return table_setup(df_bundles.iloc[[5,13,18]]),bundle_measure_setup(df_bundle_measure.iloc[[0,1,3]] )
 
 # set up table selfupdate
 @app.callback(
