@@ -112,7 +112,7 @@ def manager_div_year_to_date_metrics(app):
                     html.Hr(className="ml-1"),
                     manager_card_year_to_date_metrics("Projected Total Losses", "\u25bc $1.6M", "#db2200"),
                     manager_card_year_to_date_metrics("Projected Plan's Shared Losses", "\u25bc $1.1M", "#db2200"),
-                    manager_card_year_to_date_metrics("Projected ACO's Shared Losses", "\u25bc $0.1M", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected ACO's Shared Losses", "\u25bc $0.5M", "#db2200"),
                     html.Hr(className="ml-1"),
                     manager_modal_metricsdetail(app),
                 ],
@@ -166,7 +166,7 @@ def manager_div_overall_performance(app):
                             dbc.Col(html.H1("OVERALL PERFORMANCE"), width="auto"),
                             dbc.Col(
                                 html.Div(
-                                    html.H5("- 30/06/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
+                                    html.H5("- 06/30/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
                                 ),
                                 width=2,
                                 style={"padding-top":"2rem"}

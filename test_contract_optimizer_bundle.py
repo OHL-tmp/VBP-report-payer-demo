@@ -802,7 +802,10 @@ def store_inter_results(n, data, adj_pos, adj_neg, stop_loss, stop_gain):
         df = pd.DataFrame(data)
         dff = df[['Bundle', 'Bundle Count', 'Average Bundle Cost', 'Recommended Target', 'User Defined Target']]
         dff.columns = ['Bundle', 'Bundle Count', 'Average Bundle Cost', 'Recommended', 'User Defined']
-        dff['User Defined'] = dff['User Defined'].apply(lambda x: int(x.replace('$','')))
+        dff['Average Bundle Cost'] = dff['User Defined'].apply(lambda x: int(x.replace('$','').replace(',','')))
+        dff['Recommended'] = dff['User Defined'].apply(lambda x: int(x.replace('$','').replace(',','')))
+        dff['User Defined'] = dff['User Defined'].apply(lambda x: int(x.replace('$','').replace(',','')))
+        print(dff)
         adj_pos = adj_pos/100
         adj_neg = adj_neg/100
         stop_loss = stop_loss/100

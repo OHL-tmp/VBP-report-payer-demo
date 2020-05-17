@@ -177,13 +177,13 @@ def card_overview_drilldown(percentage):
                                     html.Div(
                                         dcc.Graph(figure=waterfall_overall(df_overall),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"18rem"})
                                     ), 
-                                    label="Total Cost", style={"background-color":"#fff","height":"22rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                    label="Total Cost", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
                                 ),
                                 dbc.Tab(
                                     html.Div(
                                         dcc.Graph(figure=waterfall_overall(df_overall_pmpm),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"18rem"})
                                     ), 
-                                    label="PMPM", style={"background-color":"#fff","height":"22rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                    label="PMPM", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
                                 ),
                                 
                             ], 
