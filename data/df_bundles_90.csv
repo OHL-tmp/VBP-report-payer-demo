@@ -1,36 +1,36 @@
 ﻿IP/OP,Category,Bundle,Bundle Count,Total Bundle Cost,Average Bundle Cost,Benchmark Average,Best-in-Class Average,Estimated Opportunity Size,Recommended Target,User Defined Target,Recommended,User Defined
-Inpatient,"Spine, Bone, and Joint",Back and neck except spinal fusion,7,"$136,784","$19,541","$17,586","$16,707","$16,252","$19,120","$19,120",High,High
-Inpatient,"Spine, Bone, and Joint",Double joint replacement of the lower extremity,4,"$182,378","$45,595","$41,035","$38,983","$40,153","$44,614","$44,614",High,High
-Inpatient,"Spine, Bone, and Joint",Fractures of the femur and hip or pelvis,13,"$392,730","$30,210","$27,189","$25,830","$26,604","$29,560","$29,560",High,High
-Inpatient,"Spine, Bone, and Joint",Hip and femur procedures except major joint,47,"$2,045,863","$43,529","$39,176","$37,217","$38,334","$42,593","$42,593",High,High
-Inpatient,"Spine, Bone, and Joint","Lower extremity/humerus procedure except hip, foot, femur",14,"$522,046","$37,289","$33,868","$32,175","$32,981","$36,646","$36,646",High,High
-Inpatient,"Spine, Bone, and Joint",Major joint replacement of the lower extremity (MJRLE),192,"$5,002,368","$26,054","$23,449","$22,276","$23,150","$25,494","$25,494",High,High
-Inpatient,"Spine, Bone, and Joint",Major joint replacement of the upper extremity,21,"$487,305","$23,205","$20,885","$19,840","$19,300","$22,706","$22,706",High,High
-Inpatient,"Spine, Bone, and Joint",Spinal fusion,30,"$1,216,530","$40,551","$39,823","$37,832","$37,253","$41,393","$41,393",High,High
-Inpatient,Kidney,Renal failure,96,"$2,284,992","$23,802","$21,422","$20,351","$19,797","$23,290","$23,290",High,High
-Inpatient,Infectious Disease,Cellulitis,50,"$980,600","$19,612","$17,651","$16,768","$16,312","$19,190","$19,190",High,High
-Inpatient,Infectious Disease,Sepsis,283,"$8,673,101","$30,647","$30,400","$28,880","$25,745","$31,439","$31,439",High,High
-Inpatient,Infectious Disease,Urinary tract infection,81,"$1,774,872","$21,912","$20,265","$19,252","$18,463","$21,721","$21,721",High,High
-Inpatient,Neurological,Seizures,24,"$406,442","$16,935","$15,242","$14,480","$14,085","$16,571","$16,571",High,High
-Inpatient,Neurological,Stroke,88,"$2,746,040","$31,205","$28,085","$26,680","$27,481","$30,534","$30,534",High,High
-Inpatient,Cardiac,Acute myocardial infarction,54,"$1,412,532","$26,158","$23,542","$22,365","$21,756","$25,596","$25,596",High,High
-Inpatient,Cardiac,Cardiac arrhythmia,82,"$1,445,332","$17,626","$18,380","$17,461","$15,432","$18,155","$18,155",High,High
-Inpatient,Cardiac,Cardiac defibrillator,5,"$390,810","$78,162","$70,346","$66,829","$68,833","$76,482","$76,482",High,High
-Inpatient,Cardiac,Cardiac valve,29,"$1,747,743","$60,267","$58,777","$55,838","$57,101","$61,308","$61,308",High,High
-Inpatient,Cardiac,Congestive heart failure,183,"$4,481,304","$24,488","$22,039","$20,937","$19,284","$23,962","$23,962",High,High
-Inpatient,Cardiac,Coronary artery bypass graft,22,"$1,037,850","$47,175","$44,619","$42,388","$45,352","$47,274","$47,274",High,High
-Inpatient,Cardiac,Pacemaker,23,"$749,053","$32,568","$35,230","$33,469","$30,190","$33,545","$33,545",High,High
-Inpatient,Cardiac,Percutaneous coronary intervention,56,"$1,509,928","$26,963","$28,933","$27,486","$23,606","$27,772","$27,772",High,High
-Inpatient,Cardiac,Transcatheter Aortic Valve Replacement,13,"$880,625","$67,740","$72,741","$69,104","$62,795","$69,773","$69,773",High,High
-Inpatient,Pulmonary,"COPD, bronchitis, asthma",141,"$2,632,470","$18,670","$16,803","$15,963","$14,805","$18,269","$18,269",High,High
-Inpatient,Pulmonary,Simple pneumonia and respiratory infections,126,"$2,900,394","$23,019","$22,317","$21,201","$19,067","$23,348","$23,348",High,High
-Inpatient,Gastrointestinal,Bariatric Surgery,6,"$164,140","$27,357","$25,513","$24,238","$23,144","$27,228","$27,228",High,High
-Inpatient,Gastrointestinal,"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",14,"$200,616","$14,330","$14,245","$13,533","$12,509","$14,716","$14,716",High,High
-Inpatient,Gastrointestinal,Gastrointestinal hemorrhage,77,"$1,503,579","$19,527","$18,202","$17,292","$16,516","$19,430","$19,430",High,High
-Inpatient,Gastrointestinal,Gastrointestinal obstruction,37,"$638,435","$17,255","$15,806","$15,016","$14,472","$17,026","$17,026",High,High
-Inpatient,Gastrointestinal,Inflammatory Bowel Disease,5,"$58,622","$11,724","$10,628","$10,097","$9,785","$11,511","$11,511",High,High
-Inpatient,Gastrointestinal,Major bowel procedure,43,"$1,571,822","$36,554","$34,950","$33,203","$33,142","$36,825","$36,825",High,High
-Outpatient,Outpatient,Back & neck except spinal fusion,3,"$35,173","$11,724","$12,499","$11,874","$10,265","$12,076","$12,076",High,High
-Outpatient,Outpatient,Cardiac Defibrillator,2,"$78,162","$39,081","$35,173","$33,414","$34,417","$38,241","$38,241",High,High
-Outpatient,Outpatient,Major joint replacement of the lower extremity (MJRLE),39,"$508,053","$13,027","$12,316","$11,700","$11,094","$13,052","$13,052",High,High
-Outpatient,Outpatient,Percutaneous Coronary Intervention,12,"$161,778","$13,482","$12,265","$11,652","$11,271","$13,260","$13,260",High,High
+Inpatient,"Spine, Bone, and Joint",Back and neck except spinal fusion,7,"$136,784","$19,541","$17,586","$16,707",Low,"$19,120","$19,120",High,High
+Inpatient,"Spine, Bone, and Joint",Double joint replacement of the lower extremity,4,"$182,378","$45,595","$41,035","$38,983",Low,"$44,614","$44,614",High,High
+Inpatient,"Spine, Bone, and Joint",Fractures of the femur and hip or pelvis,13,"$392,730","$30,210","$27,189","$25,830",Low,"$29,560","$29,560",High,High
+Inpatient,"Spine, Bone, and Joint",Hip and femur procedures except major joint,47,"$2,045,863","$43,529","$39,176","$37,217",Mid,"$42,593","$42,593",High,High
+Inpatient,"Spine, Bone, and Joint","Lower extremity/humerus procedure except hip, foot, femur",14,"$522,046","$37,289","$33,868","$32,175",Low,"$36,646","$36,646",High,High
+Inpatient,"Spine, Bone, and Joint",Major joint replacement of the lower extremity (MJRLE),192,"$5,002,368","$26,054","$23,449","$22,276",High,"$25,494","$25,494",High,High
+Inpatient,"Spine, Bone, and Joint",Major joint replacement of the upper extremity,21,"$487,305","$23,205","$20,885","$19,840",Low,"$22,706","$22,706",High,High
+Inpatient,"Spine, Bone, and Joint",Spinal fusion,30,"$1,216,530","$40,551","$39,823","$37,832",Low,"$41,393","$41,393",High,High
+Inpatient,Kidney,Renal failure,96,"$2,284,992","$23,802","$21,422","$20,351",Mid,"$23,290","$23,290",High,High
+Inpatient,Infectious Disease,Cellulitis,50,"$980,600","$19,612","$17,651","$16,768",Low,"$19,190","$19,190",High,High
+Inpatient,Infectious Disease,Sepsis,283,"$8,673,101","$30,647","$30,400","$28,880",Low,"$31,439","$31,439",High,High
+Inpatient,Infectious Disease,Urinary tract infection,81,"$1,774,872","$21,912","$20,265","$19,252",Mid,"$21,721","$21,721",High,High
+Inpatient,Neurological,Seizures,24,"$406,442","$16,935","$15,242","$14,480",Low,"$16,571","$16,571",High,High
+Inpatient,Neurological,Stroke,88,"$2,746,040","$31,205","$28,085","$26,680",High,"$30,534","$30,534",High,High
+Inpatient,Cardiac,Acute myocardial infarction,54,"$1,412,532","$26,158","$23,542","$22,365",Mid,"$25,596","$25,596",High,High
+Inpatient,Cardiac,Cardiac arrhythmia,82,"$1,445,332","$17,626","$18,380","$17,461",Low,"$18,155","$18,155",High,High
+Inpatient,Cardiac,Cardiac defibrillator,5,"$390,810","$78,162","$70,346","$66,829",Low,"$76,482","$76,482",High,High
+Inpatient,Cardiac,Cardiac valve,29,"$1,747,743","$60,267","$58,777","$55,838",Low,"$61,308","$61,308",High,High
+Inpatient,Cardiac,Congestive heart failure,183,"$4,481,304","$24,488","$22,039","$20,937",High,"$23,962","$23,962",High,High
+Inpatient,Cardiac,Coronary artery bypass graft,22,"$1,037,850","$47,175","$44,619","$42,388",Low,"$47,274","$47,274",High,High
+Inpatient,Cardiac,Pacemaker,23,"$749,053","$32,568","$35,230","$33,469",Low,"$33,545","$33,545",High,High
+Inpatient,Cardiac,Percutaneous coronary intervention,56,"$1,509,928","$26,963","$28,933","$27,486",Low,"$27,772","$27,772",High,High
+Inpatient,Cardiac,Transcatheter Aortic Valve Replacement,13,"$880,625","$67,740","$72,741","$69,104",Low,"$69,773","$69,773",High,High
+Inpatient,Pulmonary,"COPD, bronchitis, asthma",141,"$2,632,470","$18,670","$16,803","$15,963",Mid,"$18,269","$18,269",High,High
+Inpatient,Pulmonary,Simple pneumonia and respiratory infections,126,"$2,900,394","$23,019","$22,317","$21,201",Low,"$23,348","$23,348",High,High
+Inpatient,Gastrointestinal,Bariatric Surgery,6,"$164,140","$27,357","$25,513","$24,238",Low,"$27,228","$27,228",High,High
+Inpatient,Gastrointestinal,"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",14,"$200,616","$14,330","$14,245","$13,533",Low,"$14,716","$14,716",High,High
+Inpatient,Gastrointestinal,Gastrointestinal hemorrhage,77,"$1,503,579","$19,527","$18,202","$17,292",Low,"$19,430","$19,430",High,High
+Inpatient,Gastrointestinal,Gastrointestinal obstruction,37,"$638,435","$17,255","$15,806","$15,016",Low,"$17,026","$17,026",High,High
+Inpatient,Gastrointestinal,Inflammatory Bowel Disease,5,"$58,622","$11,724","$10,628","$10,097",Low,"$11,511","$11,511",High,High
+Inpatient,Gastrointestinal,Major bowel procedure,43,"$1,571,822","$36,554","$34,950","$33,203",Low,"$36,825","$36,825",High,High
+Outpatient,Outpatient,Back & neck except spinal fusion,3,"$35,173","$11,724","$12,499","$11,874",Low,"$12,076","$12,076",High,High
+Outpatient,Outpatient,Cardiac Defibrillator,2,"$78,162","$39,081","$35,173","$33,414",Low,"$38,241","$38,241",High,High
+Outpatient,Outpatient,Major joint replacement of the lower extremity (MJRLE),39,"$508,053","$13,027","$12,316","$11,700",Low,"$13,052","$13,052",High,High
+Outpatient,Outpatient,Percutaneous Coronary Intervention,12,"$161,778","$13,482","$12,265","$11,652",Low,"$13,260","$13,260",High,High

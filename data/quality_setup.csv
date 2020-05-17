@@ -7,8 +7,8 @@ CAHPS: Health Promotion and Education,49.62,59,64.7,63.44,63.44,Patient/Caregive
 CAHPS: Shared Decision Making,61.66,61.9,66.8,62.76,62.76,,,,5,ACO-6,Performance,Performance,2,1.85,2
 CAHPS: Health Status/Functional Status,67.42,73,75.5,R,R,,,,6,ACO-7,Report,Report,2,2,2
 CAHPS: Stewardship of Patient Resources,30.4,27,32.5,33.43,33.43,,,,7,ACO-34,Performance,Performance,2,1.85,2
-CAHPS: Courteous and Helpful Office Staff,,,,R,R,,,,8,ACO-45,Report,Report,2,2,2
-CAHPS: Care Coordination,,,,R,R,,,,9,ACO-46,Report,Report,2,2,2
+CAHPS: Courteous and Helpful Office Staff,89.95,86.2,89.8,R,R,,,,8,ACO-45,Report,Report,2,2,2
+CAHPS: Care Coordination,67.42,73,75.5,R,R,,,,9,ACO-46,Report,Report,2,2,2
 "Risk-Standardized, All Condition Readmission",16.48%,15.00%,14.40%,14.27%,14.27%,,,,10,ACO-8,Performance,Performance,2,1.85,2
 All-Cause Unplanned Admissions for Patients with Multiple Chronic Conditions,86.80%,59.00%,50.80%,41.39%,41.39%,Care Coordination/Patient Safety,25%,25%,11,ACO-38,Performance,Performance,2,1.7,2
 Ambulatory Sensitive Condition Acute Composite (AHRQ Prevention Quality Indicator (PQI)#91),2.79%,2.00%,1.60%,1.51%,1.51%,,,,12,ACO-43,Performance,Performance,1.7,1.25,1.55
