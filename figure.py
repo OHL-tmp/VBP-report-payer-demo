@@ -1252,8 +1252,9 @@ def table_result_dtls(df):
 			{'if': {'column_id': df.columns[0]},
 			 'width': '20rem',
 			 'textAlign':'start',
-			 'backgroundColor':colors['yellow'],
 			 'font-family':'NotoSans-Condensed',
+			 'backgroundColor': "#f1f6ff",
+			 'color': '#1357DD',
 			}, 
 			   
 		],
@@ -2163,7 +2164,7 @@ def network_cost_stack_h(df):
 					opacity=0.7
 					),
 			orientation='h',
-			hoverinfo='name+x',
+			hoverinfo='name+y+x',
 			#hovertemplate='%{x:,.2f}',
 		),
 
@@ -2181,7 +2182,7 @@ def network_cost_stack_h(df):
 					#opacity=0.5
 					),
 			orientation='h',
-			hoverinfo='name+x',
+			hoverinfo='name+y+x',
 			#hovertemplate='%{x:,.2f}',
 		),
 	])
@@ -2192,12 +2193,17 @@ def network_cost_stack_h(df):
 		xaxis=dict(
 			#position=0,
 			visible=True,
-			range=[0,(df['Out of ACO'].max()+df['In ACO'].max())*1.1],
+			range=[0,(df['Out of ACO']+df['In ACO']).max()*1.02],
 			#tickformat='0%'
+			tickfont=dict(
+			family="NotoSans-Condensed",
+			size=10,
+			color="#38160f"
+		),
 
 			),
 		barmode='stack',
-		#bargap=0.2,
+		bargap=0.2,
 		#bargroupgap=0,
 		paper_bgcolor=colors['transparent'],
 		plot_bgcolor=colors['transparent'],
@@ -2206,7 +2212,7 @@ def network_cost_stack_h(df):
 		margin=dict(l=0,r=0,b=0,t=0,pad=10,),
 		font=dict(
 			family="NotoSans-Condensed",
-			size=14,
+			size=10,
 			color="#38160f"
 		),
 	)
@@ -2235,6 +2241,7 @@ def table_driver_all(df):
 			{'if': {'column_id': df.columns[0]},
 			 
 			 'fontWeight': 'bold',
+
 			}, 
 			
 		],
