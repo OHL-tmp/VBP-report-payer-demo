@@ -290,7 +290,7 @@ def manager_modal_totalcost(app):
                         ],
                         
                     ),
-                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj)),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"padding":"2rem"}),
+                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"padding":"2rem"})),
                     dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-totalcost')),
                     ], id = 'manager-modal-totalcost',
                 style={"text-align":"center"}),
@@ -313,7 +313,7 @@ def manager_modal_pmpm(app):
                         ],
                         
                     ),
-                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj_pmpm)),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"padding":"2rem"}),
+                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj_pmpm),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"padding":"2rem"})),
                     dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-pmpm')),
                     ], id = 'manager-modal-pmpm',
                 style={"text-align":"center"}),
