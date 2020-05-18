@@ -134,7 +134,7 @@ def manager_modal_metricsdetail(app):
                 dbc.ModalHeader(
                     [
                         html.H1("Result Details", style={"font-size":"0.8rem"}),
-                        html.H2("TOTAL COST", style={"font-size":"1.6rem","color":"#1357DD","background-color":"#c6d9ff","padding":"0.5rem","border-radius":"0.5rem"})
+                        html.H2("TOTAL COST", style={"font-size":"0.8rem","color":"#1357DD"})
                     ],
                     
                 ),
@@ -444,7 +444,7 @@ def manager_card_quality_score(app):
                             style={"padding":"2rem"}
                         ),
                         html.Div(
-                            manager_modal_qualityscore(app),
+                            # manager_modal_qualityscore(app),
                             style={"padding-left":"4rem"}
                         )
                         
@@ -525,7 +525,7 @@ def manager_card_total_cost_incurred(app):
                                             ),
                                             html.Div(
                                                 [
-                                                    html.H1("Professional Cost Incurred VS Out of ACO", style={"font-size":"1rem","text-align":"center"}),
+                                                    html.H1("Professional Cost Incurred In VS Out of ACO", style={"font-size":"1rem","text-align":"center"}),
                                                     dcc.Graph(figure=network_cost_stack_h(df_network_prof_split), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"16rem", "padding":"1rem"})
                                                 ], 
                                                 style={"background-color":"#f5f5f5","border-radius":"0.5rem", "padding":"2rem", "margin-top":"1rem"}

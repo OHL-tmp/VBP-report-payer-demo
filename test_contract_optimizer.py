@@ -365,7 +365,7 @@ def card_med_cost_target():
                                         [
                                             dbc.Col(html.H6("5.6%")),
                                             dbc.Col(html.H6("3.5%")),
-                                            dbc.Col(html.H6("3.1%")),
+                                            dbc.Col(html.H6("2.0%")),
                                         ]
                                     )
                                     , width=4
@@ -408,7 +408,7 @@ def card_med_cost_target():
                                     dbc.Row(
                                         [
                                             dbc.Col(html.H6(default_input['medical cost target']['recom target'], id = 'div-recom-tgt')),
-                                            dbc.Col(html.H6(children = ["$951"], id = 'div-usr-tgt')),
+                                            dbc.Col(html.H6(children = "$951", id = 'div-usr-tgt')),
                                         ]
                                     )
                                     , width=4
@@ -624,7 +624,7 @@ def card_sl_sharing_arrangement(app):
                                         ),
                                         dbc.Row([
                                             dbc.Col(html.Div(), width = 1),
-                                            dbc.Col(dbc.Checklist(options = [{'label':"1 - Quality Adjusted Sharing Rate", 'value':"Quality Adjusted Sharing Rate"}], id = 'switch-quality-adj-rate',style={"font-family":"NotoSans-Regular","font-size":"0.8rem"})),
+                                            dbc.Col(dbc.Checklist(options = [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate"}], id = 'switch-quality-adj-rate',style={"font-family":"NotoSans-Regular","font-size":"0.8rem"})),
                                             ],
                                              style={"padding-top":"1rem"}
                                         ),
@@ -676,8 +676,8 @@ def card_quality_adjustment(app):
                             dbc.Row(
                                 [
                                     dbc.Col(html.H2("Total Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=10),
-                                    dbc.Col(html.Div("100%", id = 'div-recom-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"}), style={"padding-left":"0.5rem","padding-right":"0.3rem"}),
-                                    dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"}), style={"padding-left":"0.3rem"}),
+                                    dbc.Col(html.Div("100%", id = 'div-recom-overall', style={"text-align":"center","background-color":"#fff","border-radius":"8rem","font-size":"0.8rem"}), style={"padding-left":"0.5rem","padding-right":"0.3rem"}),
+                                    dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center","background-color":"#fff","border-radius":"8rem","font-size":"0.8rem"}), style={"padding-left":"0.3rem"}),
                                 ],
                                 no_gutters=True,
                                 style={"padding-right":"0.5rem","padding-top":"0.5rem", "padding-bottom":"0.2rem", "background-color":"#bbd4ff", "border-radius":"10rem","width":"101.5%"}
@@ -737,7 +737,7 @@ def tab_result(app):
                                 html.Div(
                                     dbc.Row(
                                         [
-                                            dbc.Col(dcc.Graph(id = 'figure-cost', config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"60vh", "width":"60vh"}), width=5),
+                                            dbc.Col(dcc.Graph(id = 'figure-cost', config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"24rem", "width":"60vh"}), width=5),
                                             dbc.Col(html.Div(id = 'table-cost'), width=7),
                                         ],
                                         no_gutters=True,
@@ -774,7 +774,7 @@ def tab_result(app):
                                 html.Div(
                                     dbc.Row(
                                         [
-                                            dbc.Col(dcc.Graph(id = 'figure-fin', config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"60vh", "width":"60vh"}), width=5),
+                                            dbc.Col(dcc.Graph(id = 'figure-fin', config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"24rem", "width":"60vh"}), width=5),
                                             dbc.Col(html.Div(id = 'table-fin'), width=7),
                                         ],
                                         no_gutters=True,
@@ -789,7 +789,11 @@ def tab_result(app):
                     ),
                     html.Hr(),
                     html.H6(
-                        "Best case scenario means more cost reduction is achieved in performance year than expected Worst case scenario means less cost reduction is achieved in performance year than expected",
+                        "Best case scenario means more cost reduction is achieved in performance year than expected",
+                        style={"font-size":"1rem"}
+                    ),
+                    html.H6(
+                        "Worst case scenario means less cost reduction is achieved in performance year than expected",
                         style={"font-size":"1rem"}
                     )
                 ],
@@ -996,8 +1000,8 @@ def toggle_saving_method(v):
     )
 def toggle_loss_method(v):
     if v and len(v)>0:
-        return [html.H5("Min Sharing % (When quality targets are met)", style={"font-size":"0.8rem"})], False,{"font-size":"0.8rem"},{}, [{'label':"1 - Quality Adjusted Sharing Rate", 'value':"Quality Adjusted Sharing Rate", 'disabled':False}]
-    return [html.H5("Sharing %", style={"font-size":"0.8rem"})],True,{"font-size":"0.8rem", "color":'#919191'},{"color":'#919191'}, [{'label':"1 - Quality Adjusted Sharing Rate", 'value':"Quality Adjusted Sharing Rate", 'disabled':True}]
+        return [html.H5("Min Sharing % (When quality targets are met)", style={"font-size":"0.8rem"})], False,{"font-size":"0.8rem"},{}, [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate", 'disabled':False}]
+    return [html.H5("Sharing %", style={"font-size":"0.8rem"})],True,{"font-size":"0.8rem", "color":'#919191'},{"color":'#919191'}, [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate", 'disabled':True}]
 
 
 
@@ -1120,13 +1124,21 @@ def update_columns(timestamp, data,selected_quality):
         if i in selected_quality:
             if row['tar_user_type']=='Report':
                 row['tar_user']='R'
+            elif row['tar_user_type']=='Performance' and  row['tar_user']=='R':
+                if row['tar_recom']=='R':
+                    row['tar_user']=row['bic']
+
+                else:
+                    row['tar_user']=row['tar_recom']
             else:
-                if i in [10,11,12,13,14,17,18,21,22]:
+                if i in range(10,23):
                     row['tar_user']=str(row['tar_user']).replace('$','').replace('%','').replace(',','')+'%'
+
+
         else:
             row['tar_user']=float('nan')
 
-    return data  
+    return data 
 
 # store data
 @app.callback(

@@ -41,9 +41,9 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 		id='table-measure-setup',
 		columns=[
 		{"name": ["","Measure"], "id": "measure"},
-		{"name": [ "ACO Baseline","ACO"], "id": "aco"},
-		{"name": [ "ACO Baseline","Benchmark"], "id": "benchmark"},
-		{"name": [ "ACO Baseline","Best-in-Class"], "id": "bic"},
+		{"name": [ "Baseline","ACO"], "id": "aco"},
+		{"name": [ "Baseline","Benchmark"], "id": "benchmark"},
+		{"name": [ "Baseline","Best-in-Class"], "id": "bic"},
 		{"name": [ "Target","Recommended"], "id": "tar_recom"},
 		{"name": [ "Target","P4P/P4R"], "id": "tar_user_type",'editable':True,'presentation':'dropdown'},
 		{"name": [ "Target","User Defined Value"], "id": "tar_user",'editable': True},
@@ -882,7 +882,7 @@ def table_bundle_sim_result(df):
 #	else:
 #		num_format=Format( precision=1, scheme=Scheme.fixed,nully='N/A')
 	
-	num_format=Format( precision=0, group='yes',scheme=Scheme.fixed,nully='N/A')
+	num_format=Format( precision=0, group=',',scheme=Scheme.fixed,nully='N/A')
    
 	table=dash_table.DataTable(
 		data=df.to_dict('records'),
@@ -1458,7 +1458,7 @@ def domain_quality_bubble(df): # 数据，[0,1] ,'Domain' or 'Measure'
 	
 	for i in range(0,4):
 
-		if i==0:
+		if i==1:
 			selected=0
 		else:
 			selected=10
@@ -1674,7 +1674,7 @@ def measure_quality_bar(df,domain):
 		legend=dict(
 			orientation='h',
 			traceorder='reversed',
-			x=-0.5,y=-0.1
+			x=-0.06,y=-0.1
 		),
 		margin=dict(l=300,r=60,b=80,t=20,pad=5,autoexpand=False,),
 		font=dict(
@@ -1786,8 +1786,13 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 
 	selected_index_d=[j for j, e in enumerate(df_agg.columns) if e == d][0]
 
-	allvalue[selected_index_d]='All'
-
+	
+	if d_ori=='Top 10 Chronic':
+		allvalue[selected_index_d]='All Chronic'
+	elif d_ori=='Top 10 Acute':
+		allvalue[selected_index_d]='All Acute'
+	else:
+		allvalue[selected_index_d]='All'
 	
 	selected_index=[j for j, e in enumerate(df_agg.columns) if e == 'Pt Ct'][0]
 	selected_index_ep=[j for j, e in enumerate(df_agg.columns) if e == 'Episode Ct'][0]
@@ -1809,7 +1814,7 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 
 	df_agg['Patient %'] = df_agg['Pt Ct']/df_pt_lv1_f['Pt Ct'].agg('nunique')
 	df_agg['Episode %'] = df_agg['Episode Ct']/ df_pt_lv1_f['Episode Ct'].agg('count')
-	df_agg['Cost %'] = df_agg['YTD Total Cost']/(df_agg[df_agg[d]=='All']['YTD Total Cost'].values[0])
+	df_agg['Cost %'] = df_agg['YTD Total Cost']/(df_agg.tail(1)['YTD Total Cost'].values[0]) #[df_agg[d]=='All']
 
 
 	df_agg['YTD Avg Cost/Patient'] = df_agg['YTD Total Cost']/df_agg['Pt Ct']
@@ -1866,7 +1871,7 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 			df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Patient':'Diff % from Benchmark'})
 			showcolumn=[d_ori,'Patient %','Cost %','YTD Avg Cost/Patient','Diff % from Benchmark','Contribution to Overall Performance Difference']
 		
-	df_agg.to_csv(d+'.csv')
+	
 	return df_agg[showcolumn]
 
 

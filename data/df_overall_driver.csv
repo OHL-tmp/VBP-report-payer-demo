@@ -1,7 +1,6 @@
 ﻿Name,%
 High Risk Patient,0.020096809
 Mid Risk Patient,0.014606316
-Primary Care Physician,0.013074977
-Cardiology Physician,0.009907283
-Heart Failure,0.006467289
-Orthopedics Physician,0.005227574
+Primary Care Physician,0.012
+Cardiology Physician,0.009
+Orthopedics Physician,0.005

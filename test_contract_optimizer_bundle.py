@@ -20,6 +20,7 @@ from utils import *
 from figure import *
 from simulation_cal import *
 from modal_bundle import *
+from modal_test import *
 from bp_contract_calculation import *
 
 from app import app
@@ -331,12 +332,12 @@ def card_quality_adjustment(app):
                                                     style={"font-size":"0.8rem"}
                                                 )
                                             ],
-                                            id="tooltip-vbc-measure",
+                                            id="tooltip-mqa-saving",
                                             style={"font-size":"0.8rem"}
                                         ),
                                         dbc.Tooltip(
                                             "Maximum reduction in savings as a result of quality adjustment (i.e., when quality score = 0)",
-                                            target="tooltip-vbc-measure",
+                                            target="tooltip-mqa-saving",
                                             style={"text-align":"start"}
                                         ),
                                     ],
@@ -357,12 +358,12 @@ def card_quality_adjustment(app):
                                                     style={"font-size":"0.8rem"}
                                                 )
                                             ],
-                                            id="tooltip-vbc-measure",
+                                            id="tooltip-mqa-loss",
                                             style={"font-size":"0.8rem"}
                                         ),
                                         dbc.Tooltip(
                                             "Maximum reduction in losses/repayment as a result of quality adjustment (i.e., when quality score = 100)",
-                                            target="tooltip-vbc-measure",
+                                            target="tooltip-mqa-loss",
                                             style={"text-align":"start"}
                                         ),
                                     ],
@@ -437,7 +438,7 @@ def tab_result(app):
                                 ),
                                 dbc.Modal([
                                     dbc.ModalHeader(html.H1("Key Simulation Assumptions", style={"font-family":"NotoSans-Black","font-size":"1.5rem"})),
-                                    dbc.ModalBody([sim_assump_input_session(),]),
+                                    dbc.ModalBody([bundle_assumption(),]),
                                     dbc.ModalFooter(
                                         dbc.Button('Close', id = 'button-close-assump-modal'))
                                     ], id = 'modal-assump', size = 'xl'),
@@ -531,7 +532,11 @@ def tab_result(app):
                     ),
                     html.Hr(),
                     html.H6(
-                        "Best case scenario means more cost reduction is achieved in performance year than expected Worst case scenario means less cost reduction is achieved in performance year than expected",
+                        "Best case scenario means more cost reduction is achieved in performance year than expected",
+                        style={"font-size":"1rem"}
+                    ),
+                    html.H6(
+                        "Worst case scenario means less cost reduction is achieved in performance year than expected",
                         style={"font-size":"1rem"}
                     )
                 ],

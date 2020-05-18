@@ -283,7 +283,7 @@ def card_confounding_factors(app):
 
 
 def element_confounding_factors(percentage, factor):
-    if percentage > 0:
+    if percentage < 0:
         color = "danger"
     elif percentage == 0:
         color = "secondary"
@@ -808,8 +808,8 @@ def update_filter(v):
     Output("drilldown-dropdown-dimension-filter-1", 'disabled')],
     [Input('drilldown-dropdown-dimension-1', 'value'),
     Input('drilldown-dropdown-dimension-filter-selection', 'value'),
-    Input('drilldown-dropdown-dimension-filter', 'value')],
-    [State('drilldown-dropdown-dimension-filter', 'options')]
+    Input('drilldown-dropdown-dimension-filter', 'value'),
+    Input('drilldown-dropdown-dimension-filter', 'options')]
     )
 def update_dimension_filter_1(v1, v2, v3, op):
     if v1:
@@ -851,8 +851,8 @@ def update_dimension_option_2(v):
     Input('drilldown-dropdown-dimension-filter-selection', 'value'),
     Input('drilldown-dropdown-dimension-filter', 'value'),
     Input('drilldown-dropdown-dimension-1', 'value'),
-    Input('drilldown-dropdown-dimension-filter-1', 'value')],
-    [State('drilldown-dropdown-dimension-filter', 'options')]
+    Input('drilldown-dropdown-dimension-filter-1', 'value'),
+    Input('drilldown-dropdown-dimension-filter', 'options')]
     )
 def update_dimension_filter_2(v1, v2, v3, d1, d1v, op):
     if v1:
@@ -903,8 +903,8 @@ def update_dimension_option_3(v1,v2):
     Input('drilldown-dropdown-dimension-1', 'value'),
     Input('drilldown-dropdown-dimension-filter-1', 'value'),
     Input('drilldown-dropdown-dimension-2', 'value'),
-    Input('drilldown-dropdown-dimension-filter-2', 'value')],
-    [State('drilldown-dropdown-dimension-filter', 'options')]
+    Input('drilldown-dropdown-dimension-filter-2', 'value'),
+    Input('drilldown-dropdown-dimension-filter', 'options')]
     )
 def update_dimension_filter_3(v1, v2, v3, d1, d1v, d2, d2v, op):
     if v3 is None:
