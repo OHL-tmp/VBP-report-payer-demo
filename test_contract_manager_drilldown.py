@@ -322,14 +322,7 @@ def tab_patient_cohort_analysis():
                                     ], id="table-patient-drill-lv1-container",
                                     style={"max-height":"80rem","padding-left":"2rem","padding-right":"2rem"}
                                 ),
-                                html.Div(
-                                    dbc.Button("Result Details",
-                                        className="mb-3",
-                                        style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem", "width":"8rem"},
-                                        # id = 'button-submit-simulation'
-                                    ),
-                                    style={"text-align":"start", "padding-left":"2rem", "padding-top":"1rem"}
-                                ),
+                                
                                 
 
                                 html.Hr(style={"padding":"1rem"}),
@@ -406,14 +399,7 @@ def tab_physician_analysis():
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                         dbc.Col(html.H4("Physician Summary: By Specialty", style={"font-size":"1rem", "margin-left":"10px"})),
-                                        dbc.Col(
-                                            dbc.Button("Modify Criteria",
-                                                className="mb-3",
-                                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem", "width":"8rem"},
-                                                # id = 'button-submit-simulation'
-                                            ),
-                                            width=2
-                                        )
+                                        
                                     ],
                                     no_gutters=True,
                                 ),
@@ -424,14 +410,7 @@ def tab_physician_analysis():
                                     ], id='table-physician-drill-lv1-container',
                                     style={"max-height":"80rem", "padding":"1rem"}
                                 ),
-                                html.Div(
-                                    dbc.Button("Result Details",
-                                        className="mb-3",
-                                        style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem", "width":"8rem"},
-                                        # id = 'button-submit-simulation'
-                                    ),
-                                    style={"text-align":"start", "padding":"1rem"}
-                                ),
+                                
                                 
 
                                 html.Hr(),

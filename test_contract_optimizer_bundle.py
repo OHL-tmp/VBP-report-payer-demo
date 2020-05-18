@@ -427,7 +427,8 @@ def tab_result(app):
                 [
                     dbc.Row(
                         [
-                            dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"2rem","font-size":"3"}), width=9),
+                            dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"2rem","padding-bottom":"3rem","font-size":"3"}), width=9),
+                            html.Hr(),
                             dbc.Col([
                                 dbc.Button("Edit Scenario Assumptions",
                                     className="mb-3",
@@ -470,7 +471,7 @@ def tab_result(app):
                                 width=3
                             )
                         ]
-                    )
+                    ),
                     dbc.Card(
                         dbc.CardBody(
                             [
@@ -527,6 +528,11 @@ def tab_result(app):
                             className="mb-3",
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem", "padding-top":"1rem"}
                         )
+                    ),
+                    html.Hr(),
+                    html.H6(
+                        "Best case scenario means more cost reduction is achieved in performance year than expected Worst case scenario means less cost reduction is achieved in performance year than expected",
+                        style={"font-size":"1rem"}
                     )
                 ],
                 style={"padding-top":"2rem","padding-bottom":"2rem","padding-left":"1rem","padding-right":"1rem"}
@@ -833,7 +839,7 @@ def update_bundlerows(timestamp, data):
         recom_val=int(str(row['Recommended Target']).replace('$','').replace('%','').replace(',',''))
         if defined_val/recom_val>=1 :
             row['User Defined']='High'
-        elif defined_val/recom_val<=0.9 :
+        elif defined_val/recom_val<=0.98 :
             row['User Defined']='Low'
         else:
             row['User Defined']='Mid'

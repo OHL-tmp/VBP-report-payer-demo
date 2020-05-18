@@ -786,6 +786,11 @@ def tab_result(app):
                             className="mb-3",
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem", "padding-top":"1rem"}
                         )
+                    ),
+                    html.Hr(),
+                    html.H6(
+                        "Best case scenario means more cost reduction is achieved in performance year than expected Worst case scenario means less cost reduction is achieved in performance year than expected",
+                        style={"font-size":"1rem"}
                     )
                 ],
                 style={"padding-top":"2rem","padding-bottom":"2rem","padding-left":"1rem","padding-right":"1rem"}
