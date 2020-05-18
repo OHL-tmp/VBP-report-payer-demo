@@ -27,6 +27,9 @@ file = open('configure/default_ds.json', encoding = 'utf-8')
 default_input = json.load(file)
 df_quality = pd.read_csv("data/quality_setup.csv")
 
+#modebar display
+button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
+
 
 def create_layout(app):
 #    load_data()
@@ -69,7 +72,7 @@ def tab_setup(app):
                                 dcc.Dropdown(
                                     #id = 'dropdown-firstdollar-loss', 
                                     options = [{'label': 'Medicare FFS', 'value': 1}, {'label':'MA/MAPD','value' : 2}, {'label':'Commercial','value' : 3}],
-                                    value = 1
+                                    value = 2
                                 ), 
                                 width = 3
                             ),
@@ -262,9 +265,9 @@ def card_medical_cost_target(app):
                                                 html.Hr(className="ml-1"),
                                                 dbc.Row(
                                                     [
-                                                        dbc.Col(html.H4("ACO's Medical Cost", style={"font-size":"0.8rem"})),
-                                                        dbc.Col(html.H4("Benckmark Medical Cost", style={"font-size":"0.8rem"})),
-                                                        dbc.Col(html.H4("Best in-Class Medical Cost", style={"font-size":"0.7rem"})),
+                                                        dbc.Col(html.H4("ACO's Cost", style={"font-size":"0.8rem"})),
+                                                        dbc.Col(html.H4("Benckmark Cost", style={"font-size":"0.8rem"})),
+                                                        dbc.Col(html.H4("Best in-Class Cost", style={"font-size":"0.8rem"})),
                                                     ]
                                                 ),
                                             ]
@@ -360,7 +363,7 @@ def card_med_cost_target():
                                 dbc.Col(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.H6("5.7%")),
+                                            dbc.Col(html.H6("5.6%")),
                                             dbc.Col(html.H6("3.5%")),
                                             dbc.Col(html.H6("3.1%")),
                                         ]
@@ -509,10 +512,11 @@ def card_sl_sharing_arrangement(app):
                                         ),
                                         dbc.Row([
                                             dbc.Col(html.Div(), width = 1),
-                                            dbc.Col(html.H5("Dollar Sharing Method", style={"font-size":"0.8rem"}),width=4),
+                                            dbc.Col(html.H5("Sharing Method", style={"font-size":"0.8rem"}),width=4),
                                             dbc.Col(dcc.Dropdown(id = 'dropdown-firstdollar-saving', 
                                                 options = [{'label': 'First Dollar Sharing', 'value': 1}, {'label':'Second Dollar Sharing (Above MSR)','value' : 2}],
-                                                value = 1), width = 7),
+                                                value = 1,
+                                                style={"font-size":"0.8rem"}), width = 7),
 #                                            dbc.Col(html.H5("Second Dollar Sharing (Above MSR)", id = 'text-saving-right',style={"font-size":"0.6rem"}),width=4),
                                             ],
                                              style={"padding-top":"1rem"}
@@ -609,10 +613,11 @@ def card_sl_sharing_arrangement(app):
                                         ),
                                          dbc.Row([
                                             dbc.Col(html.Div(), width = 1),
-                                            dbc.Col(html.H5("Dollar Sharing Method", style={"font-size":"0.8rem"}),width=4),
+                                            dbc.Col(html.H5("Sharing Method", style={"font-size":"0.8rem"}),width=4),
                                             dbc.Col(dcc.Dropdown(id = 'dropdown-firstdollar-loss', 
                                                 options = [{'label': 'First Dollar Sharing', 'value': 1}, {'label':'Second Dollar Sharing (Below MLR)','value' : 2}],
-                                                value = 1), width = 7),
+                                                value = 1,
+                                                style={"font-size":"0.8rem"}), width = 7),
 #                                            dbc.Col(html.H5("Second Dollar Sharing (Below MLR)", id = 'text-loss-right',style={"font-size":"0.6rem"}),width=4),
                                             ],
                                              style={"padding-top":"1rem"}
@@ -732,9 +737,8 @@ def tab_result(app):
                                 html.Div(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'figure-cost',style={"height":"60vh", "width":"60vh"}), width=5),
-                                            dbc.Col(html.Div(id = 'table-cost'), width=6),
+                                            dbc.Col(dcc.Graph(id = 'figure-cost', config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"60vh", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(id = 'table-cost'), width=7),
                                         ],
                                         no_gutters=True,
                                     ),
@@ -770,9 +774,8 @@ def tab_result(app):
                                 html.Div(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'figure-fin',style={"height":"60vh", "width":"60vh"}), width=5),
-                                            dbc.Col(html.Div(id = 'table-fin'), width=6),
+                                            dbc.Col(dcc.Graph(id = 'figure-fin', config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"60vh", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(id = 'table-fin'), width=7),
                                         ],
                                         no_gutters=True,
                                     ),

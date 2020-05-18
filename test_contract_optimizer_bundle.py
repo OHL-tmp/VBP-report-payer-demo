@@ -335,7 +335,7 @@ def card_quality_adjustment(app):
                                             style={"font-size":"0.8rem"}
                                         ),
                                         dbc.Tooltip(
-                                            "Cost target recommended for ACO to achieve reasonable margin improvement with high likelihood compared to FFS contract",
+                                            "Maximum reduction in savings as a result of quality adjustment (i.e., when quality score = 0)",
                                             target="tooltip-vbc-measure",
                                             style={"text-align":"start"}
                                         ),
@@ -361,7 +361,7 @@ def card_quality_adjustment(app):
                                             style={"font-size":"0.8rem"}
                                         ),
                                         dbc.Tooltip(
-                                            "Cost target recommended for ACO to achieve reasonable margin improvement with high likelihood compared to FFS contract",
+                                            "Maximum reduction in losses/repayment as a result of quality adjustment (i.e., when quality score = 100)",
                                             target="tooltip-vbc-measure",
                                             style={"text-align":"start"}
                                         ),
@@ -446,6 +446,31 @@ def tab_result(app):
                             
                         ]
                     ),
+                    dbc.Row(
+                        [
+                            dbc.Col(html.Div(html.H2("Bundle", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"0.8rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
+                            dbc.Col(dcc.Dropdown(
+                                id = 'dropdown-bundle',
+                                clearable=False,
+                                style={"font-size":"0.8rem"},                                      
+                                ),
+                                width=3
+                            ),
+                            dbc.Col(width=1),
+                            dbc.Col(html.Div(html.H2("Metric", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"0.8rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
+                            dbc.Col(dcc.Dropdown(
+                                id = 'dropdown-metric',
+                                options = [
+                                {'label' : "Episode Total", 'value' : "Episode Total" },
+                                {'label' : "Episode Average", 'value' : "Episode Average" },],
+                                value = "Episode Average",
+                                clearable=False,
+                                style={"font-size":"0.8rem"}
+                                ),
+                                width=3
+                            )
+                        ]
+                    )
                     dbc.Card(
                         dbc.CardBody(
                             [
@@ -453,36 +478,15 @@ def tab_result(app):
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                         dbc.Col(html.H4("Plan's Financial Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=3),
-                                        dbc.Col(html.Div(html.H2("Bundle", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"0.8rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
-                                        dbc.Col(dcc.Dropdown(
-                                            id = 'dropdown-bundle',
-                                            clearable=False,
-                                            style={"font-size":"0.8rem"},                                      
-                                            ),
-                                            width=3
-                                        ),
-                                        dbc.Col(width=1),
-                                        dbc.Col(html.Div(html.H2("Metric", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"0.8rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
-                                        dbc.Col(dcc.Dropdown(
-                                            id = 'dropdown-metric',
-                                            options = [
-                                            {'label' : "Episode Total", 'value' : "Episode Total" },
-                                            {'label' : "Episode Average", 'value' : "Episode Average" },],
-                                            value = "Episode Average",
-                                            clearable=False,
-                                            style={"font-size":"0.8rem"}
-                                            ),
-                                            width=3
-                                        )
+                                        
                                     ],
                                     no_gutters=True,
                                 ),
                                 html.Div(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.Div(""), width=1),
                                             dbc.Col(dcc.Graph(id = 'bundle-figure-plan',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"24rem", "width":"60vh"}), width=5),
-                                            dbc.Col(html.Div(id = 'bundle-table-plan'), width=6),
+                                            dbc.Col(html.Div(id = 'bundle-table-plan'), width=7),
                                         ],
                                         no_gutters=True,
                                     ),
@@ -511,9 +515,8 @@ def tab_result(app):
                                 html.Div(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.Div(""), width=1),
                                             dbc.Col(dcc.Graph(id = 'bundle-figure-provider',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"24rem", "width":"60vh"}), width=5),
-                                            dbc.Col(html.Div(id = 'bundle-table-provider'), width=6),
+                                            dbc.Col(html.Div(id = 'bundle-table-provider'), width=7),
                                         ],
                                         no_gutters=True,
                                     ),
@@ -799,7 +802,7 @@ def update_selected_bundles(n,data,r1,r2,r3,r4,r5,r6,r7,r8):
             epi_list_intersection=set(episode_list).intersection( set(eval('measure_epo_list'+str(i)) ))
             if len(epi_list_intersection)>0:
 
-                if i==6:
+                if i==2:
                     episode.append('All Inpatient Episodes')
                 else:
                     epi_for_each_meas=','.join(epi_list_intersection)
@@ -812,8 +815,8 @@ def update_selected_bundles(n,data,r1,r2,r3,r4,r5,r6,r7,r8):
 
     else:
         update_data=df_bundles.iloc[[5,13,18]]
-        update_measure=df_bundle_measure.iloc[[0,1,3]].reset_index()
-        update_measure['Applicable Episodes']=['All Episodes','All Episodes','Major joint replacement of the lower extremity (MJRLE)']
+        update_measure=df_bundle_measure.iloc[[0,1,3,6]].reset_index()
+        update_measure['Applicable Episodes']=['All Episodes','All Episodes','All Inpatient Episodes','Major joint replacement of the lower extremity (MJRLE)']
 
     return table_setup(update_data),bundle_measure_setup(update_measure)
 
