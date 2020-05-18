@@ -771,8 +771,8 @@ def update_selected_bundles(n,data,r1,r2,r3,r4,r5,r6,r7,r8):
 
     else:
         update_data=df_bundles.iloc[[0,1,2]]
-        update_measure=df_bundle_measure.iloc[[0,1,3]].reset_index()
-        update_measure['Applicable Episodes']=['All Episodes','All Episodes','Major joint replacement of the lower extremity (MJRLE)']
+        update_measure=df_bundle_measure.iloc[[0,1,3,6]].reset_index()
+        update_measure['Applicable Episodes']=['All Episodes','All Episodes','Major joint replacement of the lower extremity (MJRLE)','All Inpatient Episodes']
 
     return table_setup(update_data),bundle_measure_setup(update_measure)
 
