@@ -1,6 +1,6 @@
 ﻿Facility,In ACO,Out of ACO
-Home Health,0.1,0.4
-Outpatient ER,0.3,0.4
-SNF,0.3,0.7
-Other Outpatient Hospital,2.2,0.6
 Inpatient Hospital,6.3,2.1
+Outpatient Non-ER,2.2,0.6
+SNF,0.3,0.7
+Outpatient ER,0.3,0.4
+Home Health,0.1,0.4

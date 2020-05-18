@@ -1,10 +1,9 @@
 ﻿type,In ACO,Out of ACO
-Dermatologist,0,0
-Intensive Care,0.1,0
-Gastroenterologist,0.2,0.1
-Orthopedics,0.3,0.1
+Primary Care,5.5,0.0
+Cardiology,1.4,1.4
+Oncology,0.0,1.0
 Neurology,0.2,0.4
 Nephrology,0.6,0.1
-Oncology,0,1
-Cardiology,1.4,1.4
-Primary Care,5.5,0
+Orthopedics,0.3,0.1
+Gastroenterologist,0.2,0.1
+Intensive Care,0.1,0.0

@@ -1824,7 +1824,7 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 	df_agg['Avg Cost/Episode Diff % from Best-in-Class'] = (df_agg['Annualized Avg Cost/Episode'] - df_agg['Benchmark Avg Cost/Episode']*0.9)/(df_agg['Benchmark Avg Cost/Episode']*0.9)
 
 
-	df_agg['Contribution to Overall Performance Difference']=(df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/(df_agg.tail(1)['Benchmark Total Cost'].values[0])
+	df_agg['Contribution to Overall Performance Difference']=(df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/(52495307.84)
 
 
 	df_agg['YTD Avg Utilization Rate/Patient'] = df_agg['YTD Utilization']/df_agg['Pt Ct']
@@ -1865,7 +1865,7 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 			df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Patient':'Diff % from Benchmark'})
 			showcolumn=[d_ori,'Patient %','Cost %','YTD Avg Cost/Patient','Diff % from Benchmark','Contribution to Overall Performance Difference']
 		
-
+	df_agg.to_csv(d+'.csv')
 	return df_agg[showcolumn]
 
 
@@ -2022,11 +2022,12 @@ def drilltable_lv3(df,dimension,tableid,row_select):#row_select: numeric 0 or 1
 		id=tableid,
 		columns=[{"name": ["", dimension], "id": dimension},]+
 		[{"name": ["Total Cost", df.columns[1]], "id": df.columns[1],'type': 'numeric',"format":FormatTemplate.money(0)},]+
-		[{"name": ["Total Cost", c], "id": c,'type': 'numeric',"format":FormatTemplate.percentage(1)} for c in df.columns[2:4]]+ 
+		[{"name": ["Total Cost", 'Diff % from Benchmark'], "id": c,'type': 'numeric',"format":FormatTemplate.percentage(1)} for c in df.columns[2:3]]+
+		[{"name": ["Total Cost", c], "id": c,'type': 'numeric',"format":FormatTemplate.percentage(1)} for c in df.columns[3:4]]+  
 		[{"name": ["Utilization Rate",  df.columns[4]], "id": df.columns[4],'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
-		{"name": ["Utilization Rate", df.columns[5]], "id": df.columns[5],'type': 'numeric',"format":FormatTemplate.percentage(1)},
+		{"name": ["Utilization Rate",'Diff % from Benchmark'], "id": df.columns[5],'type': 'numeric',"format":FormatTemplate.percentage(1)},
 		{"name": ["Unit Cost",  df.columns[6]], "id":  df.columns[6],'type': 'numeric',"format":FormatTemplate.money(0)},
-		{"name": ["Unit Cost",  df.columns[7]], "id":  df.columns[7],'type': 'numeric',"format":FormatTemplate.percentage(1)},
+		{"name": ["Unit Cost",  'Diff % from Benchmark'], "id":  df.columns[7],'type': 'numeric',"format":FormatTemplate.percentage(1)},
 		],
 		merge_duplicate_headers=True,
 		sort_action="custom",
@@ -2075,7 +2076,7 @@ def drilltable_physician(df,tableid,row_select):
 
 	if row_select==0:
 		row_sel=False
-		export_format='xlsx'
+		export_format='none'
 
 	else:
 		row_sel='single'
@@ -2258,7 +2259,7 @@ def table_driver_all(df):
 		data=df.to_dict('records'),
 		#id=tableid,
 		columns=[
-		{"name": 'Key Driver', "id":'name' ,'type':'numeric','format':FormatTemplate.percentage(1)},
+		{"name": 'Key Driver', "id":'Name' ,'type':'numeric','format':FormatTemplate.percentage(1)},
 		{"name": 'Contribution to Overall Performance', "id":'%' ,'type':'numeric','format':FormatTemplate.percentage(1)},
 		],  
 		sort_action="native",
