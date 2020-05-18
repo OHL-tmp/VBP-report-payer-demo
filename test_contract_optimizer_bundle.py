@@ -346,7 +346,7 @@ def card_quality_adjustment(app):
                                     dbc.Input(id = 'bundle-input-adj-pos', type = 'number', debounce = True, value = 10),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                     ], size="sm"), width=2),
-                                dbc.Col(html.Div(), width=3),
+                                dbc.Col(html.Div(), width=2),
                                 dbc.Col(
                                     [
                                         html.H6(
@@ -480,8 +480,8 @@ def tab_result(app):
                                 html.Div(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'bundle-figure-plan',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"60vh", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(""), width=1),
+                                            dbc.Col(dcc.Graph(id = 'bundle-figure-plan',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"24rem", "width":"60vh"}), width=5),
                                             dbc.Col(html.Div(id = 'bundle-table-plan'), width=6),
                                         ],
                                         no_gutters=True,
@@ -511,8 +511,8 @@ def tab_result(app):
                                 html.Div(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'bundle-figure-provider',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"60vh", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(""), width=1),
+                                            dbc.Col(dcc.Graph(id = 'bundle-figure-provider',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"24rem", "width":"60vh"}), width=5),
                                             dbc.Col(html.Div(id = 'bundle-table-provider'), width=6),
                                         ],
                                         no_gutters=True,
@@ -811,7 +811,7 @@ def update_selected_bundles(n,data,r1,r2,r3,r4,r5,r6,r7,r8):
         update_measure['Applicable Episodes']=episode
 
     else:
-        update_data=df_bundles.iloc[[0,1,2]]
+        update_data=df_bundles.iloc[[5,13,18]]
         update_measure=df_bundle_measure.iloc[[0,1,3]].reset_index()
         update_measure['Applicable Episodes']=['All Episodes','All Episodes','Major joint replacement of the lower extremity (MJRLE)']
 
@@ -856,10 +856,10 @@ def store_inter_results(n, data, adj_pos, adj_neg, stop_loss, stop_gain):
         df = pd.DataFrame(data)
         dff = df[['Bundle', 'Bundle Count', 'Average Bundle Cost', 'Recommended Target', 'User Defined Target']]
         dff.columns = ['Bundle', 'Bundle Count', 'Average Bundle Cost', 'Recommended', 'User Defined']
-        dff['Average Bundle Cost'] = dff['User Defined'].apply(lambda x: int(x.replace('$','').replace(',','')))
-        dff['Recommended'] = dff['User Defined'].apply(lambda x: int(x.replace('$','').replace(',','')))
+        dff['Average Bundle Cost'] = dff['Average Bundle Cost'].apply(lambda x: int(x.replace('$','').replace(',','')))
+        dff['Recommended'] = dff['Recommended'].apply(lambda x: int(x.replace('$','').replace(',','')))
         dff['User Defined'] = dff['User Defined'].apply(lambda x: int(x.replace('$','').replace(',','')))
-        print(dff)
+        
         adj_pos = adj_pos/100
         adj_neg = adj_neg/100
         stop_loss = stop_loss/100

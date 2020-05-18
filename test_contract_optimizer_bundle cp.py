@@ -305,7 +305,7 @@ def table_setup(df):
     return table
 
 def card_bundle_table():
-    return html.Div(children=table_setup(df_bundles_default.iloc[[0,1,2]]), id = 'bundle-card-bundleselection',style={"width":"100%","padding-left":"1rem","padding-right":"1rem"})
+    return html.Div(children=table_setup(df_bundles_default.iloc[[5, 13, 18]]), id = 'bundle-card-bundleselection',style={"width":"100%","padding-left":"1rem","padding-right":"1rem"})
 
 
 
@@ -745,19 +745,30 @@ def update_selected_bundles(n,data,r1,r2,r3,r4,r5,r6,r7,r8):
 
 
         measure_list=[0,1]
-
         episode_list=update_data['Bundle']
+        episode=['All Episodes','All Episodes']
 
         for i in range(2,7):
-            if len(set(episode_list).intersection( set(eval('measure_epo_list'+str(i)) )))>0:
+            epi_list_intersection=set(episode_list).intersection( set(eval('measure_epo_list'+str(i)) ))
+            if len(epi_list_intersection)>0:
+
+                if i==6:
+                    episode.append('All Inpatient Episodes')
+                else:
+                    epi_for_each_meas=','.join(epi_list_intersection)
+                    episode.append(epi_for_each_meas)
+                
                 measure_list.append(i)
 
-        update_measure=df_bundle_measure.iloc[measure_list] 
+        update_measure=df_bundle_measure.iloc[measure_list].reset_index() 
+        update_measure['Applicable Episodes']=episode
 
+    else:
+        update_data=df_bundles.iloc[[5,13,18]]
+        update_measure=df_bundle_measure.iloc[[0,1,3]].reset_index()
+        update_measure['Applicable Episodes']=['All Episodes','All Episodes','Major joint replacement of the lower extremity (MJRLE)']
 
-
-        return table_setup(update_data),bundle_measure_setup(update_measure)
-    return table_setup(df_bundles.iloc[[0,1,2]]),bundle_measure_setup(df_bundle_measure.iloc[[0,1,2,3,6]] )
+    return table_setup(update_data),bundle_measure_setup(update_measure)
 
 # set up table selfupdate
 @app.callback(

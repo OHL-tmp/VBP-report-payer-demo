@@ -405,7 +405,7 @@ def card_med_cost_target():
                                     dbc.Row(
                                         [
                                             dbc.Col(html.H6(default_input['medical cost target']['recom target'], id = 'div-recom-tgt')),
-                                            dbc.Col(html.H6( id = 'div-usr-tgt')),
+                                            dbc.Col(html.H6(children = ["$951"], id = 'div-usr-tgt')),
                                         ]
                                     )
                                     , width=4
@@ -474,7 +474,7 @@ def card_sl_sharing_arrangement(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=3),
-                                                dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected'}], value = [], id = 'switch-saving-method', style={"font-family":"NotoSans-Regular","font-size":"0.8rem"}))
+                                                dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected'}], value = ['selected'], id = 'switch-saving-method', style={"font-family":"NotoSans-Regular","font-size":"0.8rem"}))
                                             ],
                                             style={"padding-top":"1rem"}),
                                         dbc.Row(
@@ -1034,11 +1034,9 @@ def update_usr_target(v):
 
 @app.callback(
     Output('div-usr-like', 'children'),
-    [Input('input-usr-tgt-trend', 'children')],
-    [State('div-recom-like', 'children'),
-    State('div-recom-tgt', 'children')]
+    [Input('input-usr-tgt-trend', 'value')]
     )
-def cal_usr_like(usr_tgt, recom_like, recom_tgt):
+def cal_usr_like(usr_tgt):
 
     if usr_tgt:
 #        recom_tgt_int = int(recom_tgt.replace('$','').replace('%','').replace(',',''))
@@ -1050,7 +1048,7 @@ def cal_usr_like(usr_tgt, recom_like, recom_tgt):
         else:
             return html.Div(html.H1("Mid",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem"}), style={"border-radius":"0.5rem", "background-color":"#fff"})
     else:
-        return html.Div()
+        return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"})
 
 
 @app.callback(

@@ -38,8 +38,8 @@ def launch_layout():
                     html.Div(
                         [
                             html.H1(u"ValueGen Solution",style={"background-color":"transparent","font-size":"5rem"}),
-                            dbc.Card([
-                                dbc.CardBody(
+                            html.Div([
+                                html.Div(
                                     [
                                         dbc.Row(
                                             [
