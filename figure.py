@@ -865,7 +865,7 @@ def table_bundle_sim_result(df):
 	
 	
 	#column1=column1+['Contract','w/o','VBC Payout','Contract with','VBC Payout','(Recommended)','Contract with','VBC Payout','(User Defined)']
-	column1=column1+['','FFS','Contract', '','', 'Bundle Payment','(Recommended)','','','Bundle Payment','(User Defined)','']
+	column1=column1+['','FFS','Contract', '','', 'Bundled Payment','(Recommended)','','','Bundled Payment','(User Defined)','']
 	df['scenario']=column1
 
 #	if df.values[0,7] in ["ACO's PMPM"]:
@@ -882,7 +882,7 @@ def table_bundle_sim_result(df):
 #	else:
 #		num_format=Format( precision=1, scheme=Scheme.fixed,nully='N/A')
 	
-	num_format=Format( precision=1, scheme=Scheme.fixed,nully='N/A')
+	num_format=Format( precision=0, group='yes',scheme=Scheme.fixed,nully='N/A')
    
 	table=dash_table.DataTable(
 		data=df.to_dict('records'),
@@ -1192,7 +1192,7 @@ def waterfall_target_adj(df):
 			textfont=dict(color=[colors['transparent'],'black','black',colors['transparent']]),
 			texttemplate=number_fomart,
 			marker=dict(
-					color=[colors['transparent'],'red','green',colors['transparent'],],
+					color=[colors['transparent'],colors['blue'],colors['blue'],colors['transparent'],],
 					opacity=0.7
 					),
 			hovertemplate='%{y:,.0f}',
@@ -1876,7 +1876,7 @@ def data_bars_diverging(df, column,col_max, color_above='#FF4136', color_below='
 	styles = []
 	for i in df[column].to_list():
 
-		bound_percentage = round(i/col_max/2,2) * 100
+		bound_percentage = round(i/col_max/2,4) * 100
 
 		if i>0:
 			bound_percentage=bound_percentage+50
@@ -2152,7 +2152,8 @@ def pie_cost_split(df):
 			marker=dict(
 					colors=[colors['yellow'],colors['blue']],#.replace('rgb','rgba').replace(')',',0.7)')
 					#
-				)
+				),
+			hovertemplate='%{value}Mn <extra>%{label}</extra>',
 
 			)
 		])
@@ -2256,10 +2257,13 @@ def table_driver_all(df):
 	table=dash_table.DataTable(
 		data=df.to_dict('records'),
 		#id=tableid,
-		columns=[{"name": c, "id": c,'type':'numeric','format':FormatTemplate.percentage(1)} for c in df.columns ],  
+		columns=[
+		{"name": 'Key Driver', "id":'name' ,'type':'numeric','format':FormatTemplate.percentage(1)},
+		{"name": 'Contribution to Overall Performance', "id":'%' ,'type':'numeric','format':FormatTemplate.percentage(1)},
+		],  
 		sort_action="native",
 		sort_mode='single',
-		sort_by=[{"column_id":"Impact to Overall Difference","direction":"desc"},],
+		sort_by=[{"column_id":"Contribution to Overall Performance","direction":"desc"},],
 		style_data={
 			'whiteSpace': 'normal',
 			'height': 'auto'
