@@ -401,7 +401,7 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 def sim_result_box(df_sim_result):
  
 	df=df_sim_result.iloc[[3,7,11]]
-	x=['Contract w/o<br>VBC Payout','Contract with<br>VBC Payout<br>(Recommended)','Contract with<br>VBC Payout<br>(User Defined)']
+	x=['FFS Contract','ACO Contract<br>(Recommended)','ACO Contract<br>(User Defined)']
 	m=0.3
 	n=len(df)
 	
@@ -410,7 +410,7 @@ def sim_result_box(df_sim_result):
 
 	#color for bar and box
 	fillcolor=['rgba(226,225,253,0)','rgba(18,85,222,0)','rgba(246,177,17,0)']
-	markercolor=['rgba(191,191,191,0.7)','rgba(18,85,222,0.7)','rgba(246,177,17,0.7)']
+	markercolor=['rgba(127,127,127,0.7)','rgba(18,85,222,0.7)','rgba(246,177,17,0.7)']
 		
 	annotations = []
 	
@@ -555,7 +555,7 @@ def table_sim_result(df):
 
 	
 	#column1=column1+['Contract','w/o','VBC Payout','Contract with','VBC Payout','(Recommended)','Contract with','VBC Payout','(User Defined)']
-	column1=column1+['','FFS','Contract', '','Contract', 'with','VBC Payout','(Recommended)','Contract','with','VBC Payout','(User Defined)']
+	column1=column1+['','FFS','Contract', '','', 'ACO Contract','(Recommended)','','','ACO Contract','(User Defined)','']
 	df['scenario']=column1
 
 	if df.values[0,7] in ["ACO's PMPM"]:
@@ -718,7 +718,7 @@ def sim_bundle_result_box(df_sim_result):
 
 	#color for bar and box
 	fillcolor=['rgba(226,225,253,0)','rgba(18,85,222,0)','rgba(246,177,17,0)']
-	markercolor=['rgba(191,191,191,0.7)','rgba(18,85,222,0.7)','rgba(246,177,17,0.7)']
+	markercolor=['rgba(127,127,127,0.7)','rgba(18,85,222,0.7)','rgba(246,177,17,0.7)']
 		
 	annotations = []
 	
@@ -1313,6 +1313,7 @@ def bargraph_h(df):
 			ticklen=2,
 			tickwidth=5,
 			position=0.1,
+			#ticksuffix='Mn',
 			),
 		bargap=0,
 		paper_bgcolor=colors['transparent'],
@@ -1857,7 +1858,7 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 		
 		elif d in ['Managing Physician Specialty',	'Managing Physician']:
 			df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Episode':'Avg Cost/Episode Diff % from Benchmark'})
-			showcolumn=[d_ori,'Episode Ct','YTD Total Cost','Cost %','Avg Cost/Episode Diff % from Benchmark','Avg Cost/Episode Diff % from Best-in-Class']
+			showcolumn=[d_ori,'Episode Ct','YTD Total Cost','Cost %','Avg Cost/Episode Diff % from Benchmark','Contribution to Overall Performance Difference']
 		
 		else:
 		
@@ -1898,7 +1899,10 @@ def data_bars_diverging(df, column,col_max, color_above='#FF4136', color_below='
 					""".format(bound_percentage=bound_percentage,color_above=color_above)
 				),
 				'paddingBottom': 2,
-				'paddingTop': 2
+				'paddingTop': 2,
+				'textAlign':'start',
+				'paddingLeft':'7.5rem',
+				'color':color_above,
 			})
 
 		else :
@@ -1922,7 +1926,10 @@ def data_bars_diverging(df, column,col_max, color_above='#FF4136', color_below='
 					""".format(bound_percentage=bound_percentage,color_below=color_below)
 				),
 				'paddingBottom': 2,
-				'paddingTop': 2
+				'paddingTop': 2,
+				'textAlign':'start',
+				'paddingLeft':'10.5rem',
+				'color':color_below,
 			})
 			
 
@@ -1960,7 +1967,17 @@ def drilltable_lv1(df,tableid):
 		},
 		style_data_conditional=(
 		data_bars_diverging(df, 'Diff % from Benchmark',0.1) +
-		data_bars_diverging(df, 'Contribution to Overall Performance Difference',0.1)
+		data_bars_diverging(df, 'Contribution to Overall Performance Difference',0.1)+
+		[{'if': {'column_id':'Diff % from Benchmark'},
+			 
+			 'width': '20rem',
+			}, 
+		{'if': {'column_id': 'Contribution to Overall Performance Difference'},
+			 
+			 'width': '20rem',
+			},
+
+		]
 		),
 	   
 		style_cell={
@@ -2058,8 +2075,12 @@ def drilltable_physician(df,tableid,row_select):
 
 	if row_select==0:
 		row_sel=False
+		export_format='xlsx'
+
 	else:
 		row_sel='single'
+		export_format='none'
+		
 
 	tbl=dash_table.DataTable(
 		id=tableid,
@@ -2069,17 +2090,30 @@ def drilltable_physician(df,tableid,row_select):
 		selected_rows=[len(df)-1],
 		sort_action="custom",
 		sort_mode='single',
-		sort_by=[{"column_id":"Avg Cost/Episode Diff % from Best-in-Class","direction":"desc"},],
+		sort_by=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"},],
 		page_action="native",
 		page_current= 0,
 		page_size= 10,
+		export_columns='all',
+		export_format=export_format,
+		export_headers='display',
 		style_data={
 			'whiteSpace': 'normal',
 			'height': 'auto'
 		},
 		style_data_conditional=(
-		data_bars_diverging(df, 'Avg Cost/Episode Diff % from Benchmark',0.3) +
-		data_bars_diverging(df, 'Avg Cost/Episode Diff % from Best-in-Class',0.3)
+		data_bars_diverging(df, 'Avg Cost/Episode Diff % from Benchmark',0.12) +
+		data_bars_diverging(df, 'Contribution to Overall Performance Difference',0.17)+
+		[{'if': {'column_id':'Avg Cost/Episode Diff % from Benchmark'},
+			 
+			 'width': '20rem',
+			}, 
+		{'if': {'column_id': 'Contribution to Overall Performance Difference'},
+			 
+			 'width': '20rem',
+			},
+
+		]
 		),
 	   
 		style_cell={
@@ -2193,7 +2227,7 @@ def network_cost_stack_h(df):
 			#position=0,
 			visible=True,
 			range=[0,(df['Out of ACO']+df['In ACO']).max()*1.02],
-			#tickformat='0%'
+			ticksuffix='Mn',
 			tickfont=dict(
 			family="NotoSans-Condensed",
 			size=10,
@@ -2222,7 +2256,7 @@ def table_driver_all(df):
 	table=dash_table.DataTable(
 		data=df.to_dict('records'),
 		#id=tableid,
-		columns=[{"name": c, "id": c,} for c in df.columns ],  
+		columns=[{"name": c, "id": c,'type':'numeric','format':FormatTemplate.percentage(1)} for c in df.columns ],  
 		sort_action="native",
 		sort_mode='single',
 		sort_by=[{"column_id":"Impact to Overall Difference","direction":"desc"},],
