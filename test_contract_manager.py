@@ -53,6 +53,8 @@ file = open('configure/input_ds.json', encoding = 'utf-8')
 custom_input = json.load(file)
 twoside = custom_input['savings/losses sharing arrangement']["two side"]
 
+#modebar display
+button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
 
 def create_layout(app):
 
@@ -106,13 +108,13 @@ def manager_div_year_to_date_metrics(app):
     return html.Div(
                 [
                     html.H2("Key Performance Metrics", style={"padding-top":"2rem", "font-weight":"lighter", "font-size":"1rem"}),
-                    manager_card_year_to_date_metrics("Attributed Members", "1,000", "#381610f"),
-                    manager_card_year_to_date_metrics("YTD Total Cost", "$100M", "#381610f"),
-                    manager_card_year_to_date_metrics("Projected Total Cost", "$230M", "#381610f"),
+                    manager_card_year_to_date_metrics("Attributed Members", "4,250", "#381610f"),
+                    manager_card_year_to_date_metrics("YTD Total Cost", "$24.6M", "#381610f"),
+                    manager_card_year_to_date_metrics("Projected Total Cost", "$54.1M", "#381610f"),
                     html.Hr(className="ml-1"),
-                    manager_card_year_to_date_metrics("Projected Total Losses", "\u25bc $15M", "#db2200"),
-                    manager_card_year_to_date_metrics("Projected Plan's Shared Losses", "\u25bc $7.5M", "#db2200"),
-                    manager_card_year_to_date_metrics("Projected ACO's Shared Losses", "\u25bc $7.5M", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected Total Losses", "\u25bc $1.6M", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected Plan's Shared Losses", "\u25bc $1.1M", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected ACO's Shared Losses", "\u25bc $0.5M", "#db2200"),
                     html.Hr(className="ml-1"),
                     manager_modal_metricsdetail(app),
                 ],
@@ -166,7 +168,7 @@ def manager_div_overall_performance(app):
                             dbc.Col(html.H1("OVERALL PERFORMANCE"), width="auto"),
                             dbc.Col(
                                 html.Div(
-                                    html.H5("- 30/06/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
+                                    html.H5("- 05/18/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
                                 ),
                                 width=2,
                                 style={"padding-top":"2rem"}
@@ -199,7 +201,7 @@ def manager_div_overall_performance(app):
                                 dbc.Col(
                                     html.Div(
                                         [
-                                            html.Div(dcc.Graph(figure=waterfall_overall(df_overall), style={"width":"100%","height":"100%"}), style={"height":"28rem"}),
+                                            html.Div(dcc.Graph(figure=waterfall_overall(df_overall), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"width":"100%","height":"100%"}), style={"height":"28rem"}),
                                             manager_modal_totalcost(app),
                                         ]
                                     ), 
@@ -215,7 +217,7 @@ def manager_div_overall_performance(app):
                                                 ],
                                                 style={"margin-top":"-1.6rem","margin-left":"-3rem","background-color":"#f5f5f5","width":"12rem","height":"3rem","padding-left":"0.5rem","padding-right":"0.5rem","text-align":"center"}
                                             ),
-                                            html.Div(dcc.Graph(figure=sharing_split(df_overall),style={"width":"100%","height":"100%"}), style={"height":"22rem", "padding":"1rem", "text-align":"center","margin-right":"-3rem"}),
+                                            html.Div(dcc.Graph(figure=sharing_split(df_overall), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"width":"100%","height":"100%"}), style={"height":"22rem", "padding":"1rem", "text-align":"center","margin-right":"-3rem"}),
                                         ],
                                         style={"border-radius":"0.5rem","border":"2px solid #ffc9c9","padding":"1rem","height":"25rem","margin-top":"2rem"}
                                     ),
@@ -233,7 +235,7 @@ def manager_div_overall_performance(app):
                                 dbc.Col(
                                     html.Div(
                                         [
-                                            html.Div(dcc.Graph(figure=waterfall_overall(df_overall_pmpm), style={"width":"100%","height":"100%"}),style={"height":"28rem"}),
+                                            html.Div(dcc.Graph(figure=waterfall_overall(df_overall_pmpm), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"width":"100%","height":"100%"}),style={"height":"28rem"}),
                                             manager_modal_pmpm(app),
                                         ]
                                     ), 
@@ -249,7 +251,7 @@ def manager_div_overall_performance(app):
                                                 ],
                                                 style={"margin-top":"-1.6rem","margin-left":"-3rem","background-color":"#f5f5f5","width":"12rem","height":"3rem","padding-left":"0.5rem","padding-right":"0.5rem","text-align":"center"}
                                             ),
-                                            html.Div(dcc.Graph(figure=sharing_split(df_overall_pmpm),style={"width":"100%","height":"100%"}), style={"height":"22rem", "padding":"1rem", "text-align":"center","margin-right":"-3rem"}),
+                                            html.Div(dcc.Graph(figure=sharing_split(df_overall_pmpm), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"width":"100%","height":"100%"}), style={"height":"22rem", "padding":"1rem", "text-align":"center","margin-right":"-3rem"}),
                                         ],
                                         style={"border-radius":"0.5rem","border":"2px solid #ffc9c9","padding":"1rem","height":"25rem","margin-top":"2rem"}
                                     ),
@@ -259,7 +261,7 @@ def manager_div_overall_performance(app):
                             ], 
                         ),
                     ],
-                    id = 'manager-div-pmpm-container', hidden = False),
+                    id = 'manager-div-pmpm-container', hidden = True),
                     # manager_card_key_driver(app),
                 ],
                 style={"padding-top":"1rem","padding-bottom":"0rem", "padding-right":"2rem", "max-height":"50rem"},
@@ -268,10 +270,10 @@ def manager_div_overall_performance(app):
 def manager_modal_totalcost(app):
     return html.Div([
                 dbc.Button(
-                    "Details",
+                    "Target Adjustment Details",
                     id = 'manager-button-openmodal-totalcost',
                     className="mb-3",
-                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
+                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem","width":"10rem"},
                 ),
                 dbc.Modal([
                     dbc.ModalHeader(
@@ -281,20 +283,20 @@ def manager_modal_totalcost(app):
                         ],
                         
                     ),
-                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj)), style={"padding":"2rem"}),
+                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}), style={"padding":"2rem"}),
                     dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-totalcost')),
                     ], id = 'manager-modal-totalcost',
                 style={"text-align":"center"}),
             ],
-            style={"text-align":"end","padding-right":"9rem"})
+            style={"text-align":"end","padding-right":"12rem"})
 
 def manager_modal_pmpm(app):
     return html.Div([
                 dbc.Button(
-                    "Details",
+                    "Target Adjustment Details",
                     id = 'manager-button-openmodal-pmpm',
                     className="mb-3",
-                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
+                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem","width":"10rem"},
                 ),
                 dbc.Modal([
                     dbc.ModalHeader(
@@ -304,12 +306,12 @@ def manager_modal_pmpm(app):
                         ],
                         
                     ),
-                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj_pmpm)), style={"padding":"2rem"}),
+                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj_pmpm), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}), style={"padding":"2rem"}),
                     dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-pmpm')),
                     ], id = 'manager-modal-pmpm',
                 style={"text-align":"center"}),
             ],
-            style={"text-align":"end","padding-right":"9rem"})
+            style={"text-align":"end","padding-right":"12rem"})
 
 def manager_card_key_driver(app):
     return dbc.Card(
@@ -402,9 +404,9 @@ def manager_card_attributed_members(app):
                         ),
                         dbc.Row(
                             [
-                                dbc.Col(dcc.Graph(figure=bargraph_h(df_member), style={"width":"100%","height":"100%"}), style={"padding":"2rem", "max-height":"20rem"}),
-                                dbc.Col(dcc.Graph(figure=bar_riskdist(df_member_split), style={"width":"100%","height":"100%"}), style={"padding":"2rem", "max-height":"20rem"}),
-                                dbc.Col(dcc.Graph(figure=waterfall_rs(df_rs_opp), style={"width":"100%","height":"100%"}), style={"padding":"2rem", "max-height":"20rem"}),
+                                dbc.Col(dcc.Graph(figure=bargraph_h(df_member), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"width":"100%","height":"100%"}), style={"padding":"2rem", "max-height":"20rem"}),
+                                dbc.Col(dcc.Graph(figure=bar_riskdist(df_member_split), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"width":"100%","height":"100%"}), style={"padding":"2rem", "max-height":"20rem"}),
+                                dbc.Col(dcc.Graph(figure=waterfall_rs(df_rs_opp), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"width":"100%","height":"100%"}), style={"padding":"2rem", "max-height":"20rem"}),
                             ],
                             no_gutters=True,
                             style={"padding":"2rem", "margin-top":"-5rem"}
@@ -430,11 +432,11 @@ def manager_card_quality_score(app):
                         dbc.Row(
                             [
                                 dbc.Col(
-                                    dcc.Graph(figure=domain_quality_bubble(df_domain_score),id='manager-figure-domainscore' ,clickData={'points': [{'customdata': 'Patient/Caregiver Experience'}]},selectedData={'points': [{'customdata': 'Patient/Caregiver Experience'}]},style={"width":"100%","height":"100%"}),
+                                    dcc.Graph(figure=domain_quality_bubble(df_domain_score), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},id='manager-figure-domainscore' ,clickData={'points': [{'customdata': 'Care Coordination/Patient Safety'}]},selectedData={'points': [{'customdata': 'Care Coordination/Patient Safety'}]},style={"width":"100%","height":"100%"}),
                                     width=5
                                 ),
                                 dbc.Col(
-                                    dcc.Graph(id='manager-figure-measurescore', style={"width":"100%","height":"100%"}), style={"padding":"1rem"},
+                                    dcc.Graph(id='manager-figure-measurescore', config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"width":"100%","height":"100%"}), style={"padding":"1rem"},
                                     width=7
                                 ),
                             ],
@@ -510,12 +512,24 @@ def manager_card_total_cost_incurred(app):
                         
                         dbc.Row(
                             [
-                                dbc.Col(dcc.Graph(figure=pie_cost_split(df_network_cost_split), style={"width":"24rem","height":"26rem","padding-left":"2rem"}), width=5, style={"background-color":"#f5f5f5","border-radius":"0.5rem", "height":"28rem"}),
+                                dbc.Col(dcc.Graph(figure=pie_cost_split(df_network_cost_split), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"height":"35rem","padding-left":"2rem"}), width=5, style={"background-color":"#f5f5f5","border-radius":"0.5rem", "height":"45rem","text-align":"center"}),
                                 dbc.Col(
                                     html.Div(
                                         [
-                                            html.Div(dcc.Graph(figure=network_cost_stack_h(df_network_facility_split), style={"height":"13rem", "padding":"3rem","background-color":"#f5f5f5","border-radius":"0.5rem"})),
-                                            html.Div(dcc.Graph(figure=network_cost_stack_h(df_network_prof_split), style={"height":"13rem", "padding":"3rem","background-color":"#f5f5f5","border-radius":"0.5rem"}), style={"padding-top":"2rem"}),
+                                            html.Div(
+                                                [
+                                                    html.H1("Facility Cost Incurred In VS Out of ACO", style={"font-size":"1rem","text-align":"center"}),
+                                                    dcc.Graph(figure=network_cost_stack_h(df_network_facility_split), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"16rem", "padding":"1rem"})
+                                                ], 
+                                                style={"background-color":"#f5f5f5","border-radius":"0.5rem", "padding":"2rem"}
+                                            ),
+                                            html.Div(
+                                                [
+                                                    html.H1("Professional Cost Incurred VS Out of ACO", style={"font-size":"1rem","text-align":"center"}),
+                                                    dcc.Graph(figure=network_cost_stack_h(df_network_prof_split), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"16rem", "padding":"1rem"})
+                                                ], 
+                                                style={"background-color":"#f5f5f5","border-radius":"0.5rem", "padding":"2rem", "margin-top":"1rem"}
+                                            ),
                                         ], 
                                         style={"max-height":"80rem","padding-left":"1rem"}
                                     ), 

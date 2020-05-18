@@ -1020,6 +1020,7 @@ def waterfall_overall(df):
 			x=df.columns[0:3].tolist()+[gain], 
 			y=[0,0,0,df.values[0,3]],
 			#text=y2_waterfall,
+			cliponaxis=False,
 			textposition='outside',
 			textfont=dict(color=[colors['transparent'],colors['transparent'],colors['transparent'],'black']),
 			texttemplate=number_fomart,
@@ -1049,9 +1050,9 @@ def waterfall_overall(df):
 		),
 		showlegend=False,
 		modebar=dict(
-			bgcolor=colors['transparent']
+			bgcolor=colors['transparent'],
 		),
-		margin=dict(l=10,r=10,b=10,t=10,pad=0),
+		margin=dict(l=10,r=10,b=10,t=50,pad=0),
 		font=dict(
 			family="NotoSans-Condensed",
 			size=12,

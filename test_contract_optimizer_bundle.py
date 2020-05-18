@@ -299,7 +299,7 @@ def table_setup(df):
 
 def card_bundle_table():
     return html.Div(
-                table_setup(df_bundles_default.iloc[[0,1,2]]), 
+                table_setup(df_bundles_default.iloc[[5,13,18]]), 
                 id = 'bundle-card-bundleselection',
                 style={"width":"100%","padding-left":"1rem","padding-right":"1rem"}
             )
@@ -321,13 +321,53 @@ def card_quality_adjustment(app):
                         ),
                         dbc.Row(
                             [
-                                dbc.Col(html.H6("Maximum Adjustment on Positive Reconciliation Amount"), width=3),
+                                dbc.Col(
+                                    [
+                                        html.H6(
+                                            [
+                                                "Maximum Quality Adjustment on Savings",
+                                                html.Span(
+                                                    "\u24D8",
+                                                    style={"font-size":"0.8rem"}
+                                                )
+                                            ],
+                                            id="tooltip-vbc-measure",
+                                            style={"font-size":"0.8rem"}
+                                        ),
+                                        dbc.Tooltip(
+                                            "Maximum reduction in savings as a result of quality adjustment (i.e., when quality score = 0)",
+                                            target="tooltip-vbc-measure",
+                                            style={"text-align":"start"}
+                                        ),
+                                    ],
+                                    width="auto"
+                                ),
                                 dbc.Col(dbc.InputGroup([
                                     dbc.Input(id = 'bundle-input-adj-pos', type = 'number', debounce = True, value = 10),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                     ], size="sm"), width=2),
-                                dbc.Col(html.Div(), width=1),
-                                dbc.Col(html.H6("Maximum Adjustment on Negative Reconciliation Amount"), width=3),
+                                dbc.Col(html.Div(), width=2),
+                                dbc.Col(
+                                    [
+                                        html.H6(
+                                            [
+                                                "Maximum Quality Adjustment on Losses",
+                                                html.Span(
+                                                    "\u24D8",
+                                                    style={"font-size":"0.8rem"}
+                                                )
+                                            ],
+                                            id="tooltip-vbc-measure",
+                                            style={"font-size":"0.8rem"}
+                                        ),
+                                        dbc.Tooltip(
+                                            "Maximum reduction in losses/repayment as a result of quality adjustment (i.e., when quality score = 100)",
+                                            target="tooltip-vbc-measure",
+                                            style={"text-align":"start"}
+                                        ),
+                                    ],
+                                    width="auto"
+                                ),
                                 dbc.Col(dbc.InputGroup([
                                     dbc.Input(id = 'bundle-input-adj-neg', type = 'number', debounce = True, value = 10),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
@@ -362,12 +402,15 @@ def card_stop_loss_gain(app):
                                     dbc.Input(id = 'bundle-input-stop-loss', type = 'number', debounce = True, value = 20),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                     ],size="sm"), width=2),
-                                dbc.Col(html.Div(), width=2),
+                                dbc.Col(html.H6("of total target payment", style={"padding-top":"0.5rem"}), width="auto"),
+                                dbc.Col(html.Div(), width=3),
                                 dbc.Col(html.H6("Stop Gain", style={"padding-top":"0.5rem"}), width="auto"),
                                 dbc.Col(dbc.InputGroup([
                                     dbc.Input(id = 'bundle-input-stop-gain', type = 'number', debounce = True, value = 20),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                     ],size="sm"), width=2),
+                                dbc.Col(html.H6("of total target payment", style={"padding-top":"0.5rem"}), width="auto"),
+
                             ], style={"padding":"1rem"}
                         ),
                         
@@ -403,6 +446,31 @@ def tab_result(app):
                             
                         ]
                     ),
+                    dbc.Row(
+                        [
+                            dbc.Col(html.Div(html.H2("Bundle", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"0.8rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
+                            dbc.Col(dcc.Dropdown(
+                                id = 'dropdown-bundle',
+                                clearable=False,
+                                style={"font-size":"0.8rem"},                                      
+                                ),
+                                width=3
+                            ),
+                            dbc.Col(width=1),
+                            dbc.Col(html.Div(html.H2("Metric", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"0.8rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
+                            dbc.Col(dcc.Dropdown(
+                                id = 'dropdown-metric',
+                                options = [
+                                {'label' : "Episode Total", 'value' : "Episode Total" },
+                                {'label' : "Episode Average", 'value' : "Episode Average" },],
+                                value = "Episode Average",
+                                clearable=False,
+                                style={"font-size":"0.8rem"}
+                                ),
+                                width=3
+                            )
+                        ]
+                    )
                     dbc.Card(
                         dbc.CardBody(
                             [
@@ -410,36 +478,15 @@ def tab_result(app):
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                         dbc.Col(html.H4("Plan's Financial Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=3),
-                                        dbc.Col(html.Div(html.H2("Bundle", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"0.8rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
-                                        dbc.Col(dcc.Dropdown(
-                                            id = 'dropdown-bundle',
-                                            clearable=False,
-                                            style={"font-size":"0.8rem"},                                      
-                                            ),
-                                            width=3
-                                        ),
-                                        dbc.Col(width=1),
-                                        dbc.Col(html.Div(html.H2("Metric", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"0.8rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
-                                        dbc.Col(dcc.Dropdown(
-                                            id = 'dropdown-metric',
-                                            options = [
-                                            {'label' : "Cost per Episode", 'value' : "Cost per Episode" },
-                                            {'label' : "Total cost", 'value' : "Total cost" },],
-                                            value = "Cost per Episode",
-                                            clearable=False,
-                                            style={"font-size":"0.8rem"}
-                                            ),
-                                            width=3
-                                        )
+                                        
                                     ],
                                     no_gutters=True,
                                 ),
                                 html.Div(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'bundle-figure-plan',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"60vh", "width":"60vh"}), width=5),
-                                            dbc.Col(html.Div(id = 'bundle-table-plan'), width=6),
+                                            dbc.Col(dcc.Graph(id = 'bundle-figure-plan',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"24rem", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(id = 'bundle-table-plan'), width=7),
                                         ],
                                         no_gutters=True,
                                     ),
@@ -459,7 +506,7 @@ def tab_result(app):
                                 dbc.Row(
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("ACO's Financial Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                        dbc.Col(html.H4("Provider’s Margin Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                        
                                         
                                     ],
@@ -468,9 +515,8 @@ def tab_result(app):
                                 html.Div(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'bundle-figure-provider',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"60vh", "width":"60vh"}), width=5),
-                                            dbc.Col(html.Div(id = 'bundle-table-provider'), width=6),
+                                            dbc.Col(dcc.Graph(id = 'bundle-figure-provider',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"24rem", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(id = 'bundle-table-provider'), width=7),
                                         ],
                                         no_gutters=True,
                                     ),
@@ -749,19 +795,30 @@ def update_selected_bundles(n,data,r1,r2,r3,r4,r5,r6,r7,r8):
 
 
         measure_list=[0,1]
-
         episode_list=update_data['Bundle']
+        episode=['All Episodes','All Episodes']
 
         for i in range(2,7):
-            if len(set(episode_list).intersection( set(eval('measure_epo_list'+str(i)) )))>0:
+            epi_list_intersection=set(episode_list).intersection( set(eval('measure_epo_list'+str(i)) ))
+            if len(epi_list_intersection)>0:
+
+                if i==2:
+                    episode.append('All Inpatient Episodes')
+                else:
+                    epi_for_each_meas=','.join(epi_list_intersection)
+                    episode.append(epi_for_each_meas)
+                
                 measure_list.append(i)
 
-        update_measure=df_bundle_measure.iloc[measure_list] 
+        update_measure=df_bundle_measure.iloc[measure_list].reset_index() 
+        update_measure['Applicable Episodes']=episode
 
+    else:
+        update_data=df_bundles.iloc[[5,13,18]]
+        update_measure=df_bundle_measure.iloc[[0,1,3,6]].reset_index()
+        update_measure['Applicable Episodes']=['All Episodes','All Episodes','All Inpatient Episodes','Major joint replacement of the lower extremity (MJRLE)']
 
-
-        return table_setup(update_data),bundle_measure_setup(update_measure)
-    return table_setup(df_bundles.iloc[[0,1,2]]),bundle_measure_setup(df_bundle_measure.iloc[[0,1,2,3,6]] )
+    return table_setup(update_data),bundle_measure_setup(update_measure)
 
 # set up table selfupdate
 @app.callback(
@@ -802,7 +859,10 @@ def store_inter_results(n, data, adj_pos, adj_neg, stop_loss, stop_gain):
         df = pd.DataFrame(data)
         dff = df[['Bundle', 'Bundle Count', 'Average Bundle Cost', 'Recommended Target', 'User Defined Target']]
         dff.columns = ['Bundle', 'Bundle Count', 'Average Bundle Cost', 'Recommended', 'User Defined']
-        dff['User Defined'] = dff['User Defined'].apply(lambda x: int(x.replace('$','')))
+        dff['Average Bundle Cost'] = dff['Average Bundle Cost'].apply(lambda x: int(x.replace('$','').replace(',','')))
+        dff['Recommended'] = dff['Recommended'].apply(lambda x: int(x.replace('$','').replace(',','')))
+        dff['User Defined'] = dff['User Defined'].apply(lambda x: int(x.replace('$','').replace(',','')))
+        
         adj_pos = adj_pos/100
         adj_neg = adj_neg/100
         stop_loss = stop_loss/100
@@ -829,7 +889,7 @@ def update_grapg_cost(bundle,metric, data):
        'Best Case Total']
     if data:
         dff = pd.read_json(data, orient = 'split')
-        if metric=='Cost per Episode':
+        if metric=='Episode Average':
             df_plan = dff[(dff['Bundle'] == bundle) & (dff['Category'] == 'Plan')].iloc[:,[2,3,4,5,6]]
             df_provider = dff[(dff['Bundle'] == bundle) & (dff['Category'] == 'Provider')].iloc[:,[2,3,4,5,6]]
         else:

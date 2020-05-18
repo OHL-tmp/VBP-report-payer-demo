@@ -65,14 +65,6 @@ def col_menu_drilldown():
                             #dbc.Col(card_selected_measures(),)
                         ]
                     ),
-                    dbc.Row(
-                        [
-                            dbc.Col(html.Div()),
-                            dbc.Col(html.H6("click to change measure", style={"font-size":"0.6rem"}), width="auto"),
-                            dbc.Col(html.Div()),
-                            #dbc.Col(card_selected_measures(),)
-                        ]
-                    )
                 ],
                 style={"padding":"0.5rem"}
             )
@@ -85,7 +77,6 @@ def dropdownmenu_select_measures():
                     dbc.DropdownMenuItem("Total Cost"),
                     dbc.DropdownMenuItem("Quality Measures"),
                     dbc.DropdownMenuItem("Physician Profiling"),
-                    dbc.DropdownMenuItem("Intervention Opportunities"),
                     dbc.DropdownMenuItem(divider=True),
                     html.P(
                         "Select one to drill.",
@@ -102,7 +93,7 @@ def col_content_drilldown(app):
                 html.Div([html.Div([col_menu_drilldown()], style={"border-radius":"5rem","background-color":"none"})], style={"padding-bottom":"2rem"}),
                 dbc.Row(
                     [
-                        dbc.Col(card_overview_drilldown(0.069),width=8),
+                        dbc.Col(card_overview_drilldown(0.031),width=8),
                         dbc.Col(card_key_driver_drilldown(app),width=4),
                     ],
                     style={"padding-bottom":"2rem"}
@@ -114,7 +105,7 @@ def col_content_drilldown(app):
                             [
                                 dbc.Col(html.Div(
                                         [
-                                            html.H2("Drilldown Analysis Drilldown", style={"font-size":"3rem"}),
+                                            html.H2("Drilldown Analysis", style={"font-size":"3rem"}),
                                             html.H3("check table view for more details...", style={"font-size":"1rem"}),
                                         ],
                                         style={"padding-left":"2rem"}
@@ -128,7 +119,7 @@ def col_content_drilldown(app):
                 html.Div(
                     dbc.Tabs(
                         [
-                            dbc.Tab(tab_patient_cohort_analysis(), label="Patient Cohort Analysis", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
+                            dbc.Tab(tab_patient_cohort_analysis(), label="Patient Analysis", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
                             dbc.Tab(tab_physician_analysis(), label="Physician Analysis", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
                         ], 
                         # id = 'tab_container'
@@ -168,22 +159,22 @@ def card_overview_drilldown(percentage):
                         ],
                         style={"padding-left":"1rem"}
                     ),
-                html.P("As of June 30th.", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
+                html.P("As of 05/18/2020", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
                 html.Div(
                     [
                         dbc.Tabs(
                             [
                                 dbc.Tab(
                                     html.Div(
-                                        dcc.Graph(figure=waterfall_overall(df_overall),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"18rem"})
+                                        dcc.Graph(figure=waterfall_overall(df_overall),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"22rem"})
                                     ), 
-                                    label="Total Cost", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                    label="Total Cost", style={"background-color":"#fff","height":"24rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
                                 ),
                                 dbc.Tab(
                                     html.Div(
-                                        dcc.Graph(figure=waterfall_overall(df_overall_pmpm),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"18rem"})
+                                        dcc.Graph(figure=waterfall_overall(df_overall_pmpm),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"22rem"})
                                     ), 
-                                    label="PMPM", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                    label="PMPM", style={"background-color":"#fff","height":"24rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
                                 ),
                                 
                             ], 
@@ -204,25 +195,25 @@ def card_key_driver_drilldown(app):
                         dbc.Row(
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                dbc.Col(html.H4("Key Drivers", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                dbc.Col(html.H4("Key Drivers", style={"font-size":"1rem", "margin-left":"10px"}), width=7),
                                 dbc.Col(
                                     [
                                         dbc.Button("See All Drivers",
-                                                        # id = 'button-all-driver',
+                                                         id = 'button-all-driver',
                                                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
                                                     ),
                                          dbc.Modal([
-                                                 dbc.ModalHeader("All Drivers"),
+                                                 dbc.ModalHeader(html.H2("All Drivers", style={"font-size":"1.2rem"})),
                                                  dbc.ModalBody(children = html.Div([table_driver_all(df_overall_driver)], style={"padding":"1rem"})),
                                                  dbc.ModalFooter(
                                                          dbc.Button("Close", 
-                                                                 # id = 'close-all-driver',
+                                                                  id = 'close-all-driver',
                                                                  style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
                                                              )
                                                          )
                                                  ], id = 'modal-all-driver', size="lg")
                                     ],
-                                    width=3,
+                                    width=4,
                                 ),
                             ],
                             no_gutters=True,
@@ -232,21 +223,30 @@ def card_key_driver_drilldown(app):
                             [
                                 dbc.Col(
                                     [
-                                        html.Div(children=gaugegraph(df_overall_driver,0))
+                                        html.Div([gaugegraph(df_overall_driver,0)], style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver['%'][0]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#ffeb78"}),
                                     ],
                                     width=6),
                                 dbc.Col(
                                     [
-                                        html.Div(children=gaugegraph(df_overall_driver,1))
+                                        html.Div([gaugegraph(df_overall_driver,1)], style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver['%'][1]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#ffeb78"}),
                                     ],
                                     width=6),
                                 dbc.Col(
                                     [
-                                        html.Div(children=gaugegraph(df_overall_driver,2))
+                                        html.Div([gaugegraph(df_overall_driver,2)], style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver['%'][2]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#ffeb78"}),
                                     ],
                                     width=6),
-                                
+                                dbc.Col(
+                                    [
+                                        html.Div([gaugegraph(df_overall_driver,3)], style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver['%'][3]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#ffeb78"}),
+                                    ],
+                                    width=6),
                             ],
+                            style={"padding-top":"2rem"}
                         ),
                     ]
                 ),
@@ -270,10 +270,9 @@ def card_confounding_factors(app):
                         
                         dbc.Row(
                             [
-                                dbc.Col(element_confounding_factors(-0.002, "Change in Covered Services"), width=3),
-                                dbc.Col(element_confounding_factors(0.003, "Benefit Change"), width=3),
-                                dbc.Col(element_confounding_factors(-0.002, "Provider Contracting Change"), width=3),
-                                dbc.Col(element_confounding_factors(-0.002, "Outlier Impact"), width=3),
+                                dbc.Col(element_confounding_factors(-0.002, "Change in Covered Services"), width=4),
+                                dbc.Col(element_confounding_factors(0.003, "Benefit Change"), width=4),
+                                dbc.Col(element_confounding_factors(-0.002, "Outlier Impact"), width=4),
                             ],
                         ),
                     ]
@@ -293,8 +292,8 @@ def element_confounding_factors(percentage, factor):
 
     return dbc.Row(
             [
-                dbc.Col(dbc.Badge(str(percentage*100)+"%", color=color, className="mr-1"), width=3, style={"font-family":"NotoSans-SemiBold"}),
-                dbc.Col(html.H6(factor, style = {"font-size":"1rem", "padding-top":"0.1rem"}), width=9),
+                dbc.Col(dbc.Badge(str(percentage*100)+"%", color=color, className="mr-1"), width="auto", style={"font-family":"NotoSans-SemiBold"}),
+                dbc.Col(html.H6(factor, style = {"font-size":"1rem", "padding-top":"0.1rem"})),
             ],
             style={"padding":"1rem"}
         )
@@ -541,6 +540,16 @@ def mod_criteria_button(choice_list,lv='1'):
 
 layout = create_layout(app)
 
+@app.callback(
+    Output("modal-all-driver","is_open"),
+    [Input("button-all-driver","n_clicks"),
+     Input("close-all-driver","n_clicks")],
+    [State("modal-all-driver","is_open")]        
+)
+def open_all_driver(n1,n2,is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
 
 # modify lv1 criteria
 @app.callback(
@@ -734,7 +743,7 @@ def sort_table_lv4(sort_dim,data):
     if sort_dim==[]:
         sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
 
-    if 'Others' in df[df.columns[0]]:
+    if 'Others' in df[df.columns[0]].tolist():
         df1=df[0:len(df)-2].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
         df1=pd.concat([df1,df.tail(2)]).reset_index(drop=True)
 
@@ -831,7 +840,7 @@ def update_dimension_filter_1(v1, v2, v3, op):
             if v1 == 'Service Category':
                 return [{'label': k, 'value': k} for k in list(filter_list.keys())], list(filter_list.keys()), False 
             else:
-                if v2:
+                if v2 and v3:
                     df = df_pt_epi_phy_srv_lv1[df_pt_epi_phy_srv_lv1[v2].isin(v3)]
                 else:
                     df = df_pt_epi_phy_srv_lv1
@@ -876,7 +885,7 @@ def update_dimension_filter_2(v1, v2, v3, d1, d1v, op):
             elif v1 == 'Sub Category':
                 return [{'label':'All','value':'All'}],["All"],True
             else:
-                if v2:
+                if v2 and v3:
                     df = df_pt_epi_phy_srv_lv1[(df_pt_epi_phy_srv_lv1[v2].isin(v3)) & (df_pt_epi_phy_srv_lv1[d1].isin(d1v))]
                 else:
                     df = df_pt_epi_phy_srv_lv1[df_pt_epi_phy_srv_lv1[d1].isin(d1v)]
@@ -919,6 +928,13 @@ def update_dimension_option_3(v1,v2):
     [State('drilldown-dropdown-dimension-filter', 'options')]
     )
 def update_dimension_filter_3(v1, v2, v3, d1, d1v, d2, d2v, op):
+    if v3 is None:
+        v3 = []
+    if d1v is None:
+        d1v = []
+    if d2v is None:
+        d2v = []
+
     if v1:
         if v2 and v1 == v2:
             return op, v3, False
@@ -928,7 +944,7 @@ def update_dimension_filter_3(v1, v2, v3, d1, d1v, d2, d2v, op):
             elif v1 == 'Sub Category':
                 return [{'label':'All','value':'All'}],["All"],True
             else:
-                if v2:
+                if v2 and v3:
                     df = df_pt_epi_phy_srv_lv1[(df_pt_epi_phy_srv_lv1[v2].isin(v3)) & (df_pt_epi_phy_srv_lv1[d1].isin(d1v)) & (df_pt_epi_phy_srv_lv1[d2].isin(d2v))]
                 elif d2 == 'Sub Category':
                     df = df_pt_epi_phy_srv_lv1[df_pt_epi_phy_srv_lv1[d1].isin(d1v)]
@@ -970,7 +986,16 @@ def update_measure_option(d1, d2, d3):
     Input('drilldown-dropdown-measure-1', 'value')]
     )
 def datatable_data_selection(d1, d2, d3, d1v, d2v, d3v, f, fv, m):
-    if f:
+    if d1v is None:
+        d1v = []
+    if d2v is None:
+        d2v = []
+    if d3v is None:
+        d3v = []
+    if fv is None:
+        fv = []
+
+    if f and fv:
         df_pt_lv1_f = df_pt_lv1[df_pt_lv1[f].isin(fv)]
         df_pt_epi_phy_lv1_f = df_pt_epi_phy_lv1[df_pt_epi_phy_lv1[f].isin(fv)]
         df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1[df_pt_epi_phy_srv_lv1[f].isin(fv)]
@@ -988,6 +1013,8 @@ def datatable_data_selection(d1, d2, d3, d1v, d2v, d3v, f, fv, m):
     if d3 is not None:
         d.append(d3)
     show_column = d + ['Patient %'] + m
+
+    
 
 
     for i in range(3):
