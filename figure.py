@@ -53,7 +53,6 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 		#{"name": [ "","id"], "id": "rowid"},
 		],
 		merge_duplicate_headers=True,
-		editable=True,
 		dropdown_conditional=[{
 			'if': {
 				'column_id': 'tar_user_type',
@@ -136,7 +135,9 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 				'if': {'row_index':c,'column_id':"userdefined"}, 
 				'backgroundColor': 'rgba(18,85,222,0.1)',
 				'font-weight':'bold',
-				'border':'1px solid blue',
+				'border-top':'1px solid blue',
+				'border-left':'1px solid blue',
+				'border-right':'1px solid blue',
 				'border-bottom':'1px solid rgba(18,85,222,0.1)',
 			 
 			} if c in [0,10,14,20] else
@@ -144,7 +145,9 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 				'if': {'row_index':c,'column_id':"userdefined"}, 
 				'backgroundColor': 'rgba(18,85,222,0.1)',
 				'font-weight':'bold',
-				'border':'1px solid blue',
+				'border-bottom':'1px solid blue',
+				'border-left':'1px solid blue',
+				'border-right':'1px solid blue',
 				'border-top':'1px solid rgba(18,85,222,0.1)',
 			 
 			} if c in [9,13,19,22] else
@@ -152,7 +155,8 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 				'if': {'row_index':c,'column_id':"userdefined"},
 				'backgroundColor': 'rgba(18,85,222,0.1)', 
 				'font-weight':'bold',
-				'border':'1px solid blue',
+				'border-left':'1px solid blue',
+				'border-right':'1px solid blue',
 				'border-bottom':'1px solid rgba(18,85,222,0.1)',
 				'border-top':'1px solid rgba(18,85,222,0.1)',
 			}  for c in range(0,23)
