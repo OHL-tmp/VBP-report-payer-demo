@@ -116,7 +116,6 @@ def manager_modal_metricsdetail(app):
                 dbc.ModalHeader(
                     [
                         html.H1("Result Details", style={"font-size":"0.8rem"}),
-                        html.H2("TOTAL COST", style={"font-size":"1.6rem","color":"#1357DD","background-color":"#c6d9ff","padding":"0.5rem","border-radius":"0.5rem"})
                     ],
                     
                 ),
@@ -150,7 +149,7 @@ def manager_div_overall_performance(app):
                             dbc.Col(html.H1("OVERALL PERFORMANCE"), width="auto"),
                             dbc.Col(
                                 html.Div(
-                                    html.H5("- 30/06/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
+                                    html.H5("05/18/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
                                 ),
                                 width=2,
                                 style={"padding-top":"2rem"}
@@ -176,49 +175,82 @@ def manager_div_overall_performance(app):
 
 def manager_card_quality_score(app):
 
-    return dbc.Row(
+    return html.Div(
             [
-                dbc.Col(
-                    dbc.Card(
-                        dbc.CardBody(
+                dbc.Row(
+                    [
+                        dbc.Col(
                             [
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Performance of Each Bundle", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                        ],
-                                    no_gutters=True,
-                                ),
-                                
-                                html.Div(
-                                    dbc.Tabs(
+                                dbc.Card(
+                                    dbc.CardBody(
                                         [
-                                            dbc.Tab(
-                                                html.Div( children=table_perform_bundle(df_bundle_performance)
-
-                                                ), 
-                                                label="Total Cost", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
-                                            ),
-                                            dbc.Tab(
-                                                html.Div( children=table_perform_bundle(df_bundle_performance_pmpm)
-
-                                                ), 
-                                                label="PMPM", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                                    dbc.Col(html.H4("Performance of Each Bundle", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                                    ],
+                                                no_gutters=True,
                                             ),
                                             
-                                        ], 
-                                    )
+                                            html.Div(
+                                                dbc.Tabs(
+                                                    [
+                                                        dbc.Tab(
+                                                            html.Div( children=table_perform_bundle(df_bundle_performance)
+
+                                                            ), 
+                                                            label="Total Cost", style={"background-color":"#fff","height":"16rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                                        ),
+                                                        dbc.Tab(
+                                                            html.Div( children=table_perform_bundle(df_bundle_performance_pmpm)
+
+                                                            ), 
+                                                            label="PMPM", style={"background-color":"#fff","height":"16rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                                        ),
+                                                        
+                                                    ], 
+                                                )
+                                            ),
+
+                                            manager_modal_bundle_performance_details(app),
+                                            
+                                        ]
+                                    ),
+                                    style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem","height":"24rem"}
                                 ),
 
-                                manager_modal_bundle_performance_details(app),
                                 
-                            ]
+                            ],
+                            width=8,
                         ),
-                        style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
-                    )
-                ),
 
-                dbc.Col(
+                        
+
+                        dbc.Col(
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                                dbc.Col(html.H4("Bundle Cost In VS. Out of PGP", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                                ],
+                                            no_gutters=True,
+                                        ),
+                                        
+                                        html.Div(children=dcc.Graph(figure=pie_cost_split(df_network_cost_split_bundle),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"height":"19.8rem"})
+                                            
+                                        )
+                                        
+                                    ]
+                                ),
+                                style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
+                            ),
+                            width=4,
+                        )
+                    ]
+                ),
+                html.Div(
                     dbc.Card(
                         dbc.CardBody(
                             [
@@ -230,39 +262,20 @@ def manager_card_quality_score(app):
                                     no_gutters=True,
                                 ),
                                 
-                                html.Div(children=dcc.Graph(figure=measure_quality_bar_bundle(df_measure_score_bundle),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,})
+                                html.Div(children=dcc.Graph(figure=measure_quality_bar_bundle(df_measure_score_bundle),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"padding":"1rem"})
                                     
                                 )
                                 
                             ]
                         ),
-                        style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
-                    )
+                        style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem","padding":"1rem"}
+                    ),
+                    style={"padding-top":"1rem"}
                 ),
-
-                dbc.Col(
-                    dbc.Card(
-                        dbc.CardBody(
-                            [
-                                dbc.Row(
-                                    [
-                                        dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Bundle Cost In VS. Out of PGP", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                        ],
-                                    no_gutters=True,
-                                ),
-                                
-                                html.Div(children=dcc.Graph(figure=pie_cost_split(df_network_cost_split_bundle),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,})
-                                    
-                                )
-                                
-                            ]
-                        ),
-                        style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
-                    )
-                )
+                
             ]
         )
+        
 
             
 def manager_modal_totalcost(app):
