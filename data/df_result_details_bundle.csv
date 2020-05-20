@@ -1,12 +1,10 @@
 ﻿name,value,id
-Attributed Members,"4,250",1
-Projected Risk Score,1.250,2
-YTD Total Cost (M),$24.6 ,3
-Projected PY Cost (M),$54.1 ,4
-Target Cost (Adj) (M),$52.5 ,5
-Total Savings/Losses (M),$1.6 ,6
-Savings/Losses % (of Target) ,3.1%,7
-Projected ACO’s Quality Score,82%,8
-Projected ACO’s Sharing Rate,32%,9
-Projected Plan’s Shared Savings/Losses (M),$1.1 ,10
-Projected ACO’s Shared Savings/Losses (M),$0.5 ,11
+YTD Attributed Episodes,383,1
+YTD Bundle Cost (FFS Payment)(M),$10.9 ,2
+Projected PY Bundle Cost (FFS Payment)(M),$23.6 ,3
+Adjusted Bundle Target Payment(M),$22.8 ,4
+Expected Gains/Losses,$0.72 ,5
+Projected Quality Score,80%,6
+Projected Quality Adjustment on Expected Gains/Losses,92%,7
+Expected Gains/Losses (Quality Adjusted),$0.66 ,8
+Expected Bundle Payout to Provider,$22.9 ,9

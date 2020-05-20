@@ -281,6 +281,12 @@ def waterfall_target_adj(df):
 	return fig_waterfall
 
 def table_result_dtls(df):
+
+	if len(df)>10:
+		select=[5,6,9,10]
+	else:
+		select=[4,7]
+
 	table=dash_table.DataTable(
 		data=df.to_dict('records'),
 		columns=[{'id': c, 'name': ''} for c in df.columns[0:2]],
@@ -292,7 +298,7 @@ def table_result_dtls(df):
 			{'if': {'column_id': df.columns[1],'row_index':c},
 			 'color':'red',
 			 'font-family':'NotoSans-Condensed',
-			} for c in [5,6,9,10]
+			} for c in select
 		],
 		style_cell={
 			'textAlign': 'center',
