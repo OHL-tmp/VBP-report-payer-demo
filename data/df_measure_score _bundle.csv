@@ -1,0 +1,24 @@
+﻿domain,measure,Baseline,YTD,Annualized,Target
+Patient/Caregiver Experience,"CAHPS: Getting Timely Care, <br>Appointments, and Information",0.999444444,,,1
+Patient/Caregiver Experience,CAHPS: How Well  <br>Your Providers Communicate,1,,,1
+Patient/Caregiver Experience,CAHPS: Patients’ Rating  of Provider,1,,,1
+Patient/Caregiver Experience,CAHPS: Access to Specialists,0.958444444,,,1
+Patient/Caregiver Experience,CAHPS: Health Promotion and Education,0.782156368,,,1
+Patient/Caregiver Experience,CAHPS: Shared Decision Making,0.982472913,,,1
+Patient/Caregiver Experience,CAHPS: Health Status/Functional Status,1,,,1
+Patient/Caregiver Experience,CAHPS: Stewardship of Patient Resources,0.909362848,,,1
+Patient/Caregiver Experience,CAHPS: Courteous and Helpful Office Staff,1,,,1
+Patient/Caregiver Experience,CAHPS: Care Coordination,1,,,1
+Care Coordination/Patient Safety,"Risk-Standardized, All Condition Readmission",0.865898058,0.901977144,0.931073181,1
+Care Coordination/Patient Safety,All-Cause Unplanned Admissions for  <br>Patients with Multiple Chronic Conditions,0.476843318,0.486574814,0.501940335,1
+Care Coordination/Patient Safety,Ambulatory Sensitive Condition Acute Composite<br> (AHRQ Prevention Quality Indicator (PQI)#91),0.541218638,0.541218638,0.557957359,1
+Care Coordination/Patient Safety,Falls: Screening for Future Fall Risk,0.868070098,0.513566038,0.920154304,1
+Preventive Health,Preventive Care and Screening: <br> Influenza Immunization,0.888888889,0.588785047,0.951111111,1
+Preventive Health,Preventive Care and Screening:Tobacco Use: <br>Screening and Cessation Intervention,1,1,1,1
+Preventive Health,Preventive Care and Screening: <br>Screening for Depression and Follow-up Plan,1,1,1,1
+Preventive Health,Colorectal Cancer Screening,0.644444444,0.471428571,0.676666667,1
+Preventive Health,Breast Cancer Screening,0.644444444,0.335106383,0.605777778,1
+Preventive Health,Statin Therapy for the Prevention  <br>and Treatment of Cardiovascular Disease,1,1,1,1
+At-Risk Population,Depression Remission at Twelve Months,1,1,1,1
+At-Risk Population,Diabetes Mellitus:  <br>Hemoglobin A1c Poor Control,0.384615385,0.396510706,0.418060201,1
+At-Risk Population,Hypertension (HTN):  <br>Controlling High Blood Pressure,0.866666667,0.918947368,0.823333333,1
