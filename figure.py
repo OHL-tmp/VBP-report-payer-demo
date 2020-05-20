@@ -215,15 +215,21 @@ def waterfall_target_adj(df):
 
 	if df.values[0,1]<100000:
 		number_fomart='%{y:,.0f}'
+		base=df['base']
+		adj=df['adj']
+		suf=''
 	else:
-		number_fomart='%{y:.2s}'
+		number_fomart='%{y:.1f}M'
+		base=df['base']/1000/1000
+		adj=df['adj']/1000/1000
+		suf='M'
 
 	fig_waterfall = go.Figure(data=[
 		go.Bar(
 			name='',
-			x=df['name'].tolist(), 
-			y=df['base'].tolist(),
-			#text=y1_waterfall,
+			x=df['name'], 
+			y=base,
+			text=df['base'],
 			textposition='auto',
 			textfont=dict(color=['black',colors['transparent'],colors['transparent'],'black']),
 			texttemplate=number_fomart,
@@ -232,15 +238,15 @@ def waterfall_target_adj(df):
 					opacity=[0.5,0,0,0.7]
 					),
 			marker_line=dict( color = colors['transparent'] ),
-			hovertemplate='%{y:,.0f}',
+			hovertemplate='%{text:,.0f}',
 			hoverinfo='y',
 			
 		),
 		go.Bar(  
 			name='',
 			x=df['name'].tolist(), 
-			y=df['adj'].tolist(),
-			#text=y2_waterfall,
+			y=adj,
+			text=df['adj'],
 			textposition='outside',
 			textfont=dict(color=[colors['transparent'],'black','black',colors['transparent']]),
 			texttemplate=number_fomart,
@@ -248,7 +254,7 @@ def waterfall_target_adj(df):
 					color=[colors['transparent'],colors['blue'],colors['blue'],colors['transparent'],],
 					opacity=0.7
 					),
-			hovertemplate='%{y:,.0f}',
+			hovertemplate='%{text:,.0f}',
 			hoverinfo='y',
 		)
 	])
@@ -262,10 +268,11 @@ def waterfall_target_adj(df):
 			gridcolor =colors['grey'],
 			nticks=5,
 			showticklabels=True,
+			ticksuffix=suf,
 			zeroline=True,
 			zerolinecolor=colors['grey'],
 			zerolinewidth=1,
-			range=[0,df['base'].max()*1.2],
+			range=[0,base.max()*1.2],
 		),
 		showlegend=False,
 		modebar=dict(
@@ -916,34 +923,34 @@ def waterfall_overall_bundle(df):
 		go.Bar(
 			name='',
 			x=df['name'], 
-			y=df['base'],
-			#text=y1_waterfall,
-			textposition='auto',
+			y=df['base']/1000/1000,
+			text=df['base'],
+			textposition='outside',
 			textfont=dict(color=['black','black','black',colors['transparent'],colors['transparent'],'black']),
-			texttemplate='%{y:.2s}',
+			texttemplate='%{y:.1f}M',
 			marker=dict(
 					color=[colors['blue'],colors['blue'],colors['grey'],colors['transparent'],colors['transparent'],colors['blue']],
 					opacity=[1,0.7,0.7,0,0,1]
 					),
 			marker_line=dict( color = colors['transparent'] ),
-			hovertemplate='%{y:,.0f}',
+			hovertemplate='%{text:,.0f}',
 			hoverinfo='y',
 			
 		),
 		go.Bar(  
 			name='',
 			x=df['name'], 
-			y=df['adj'],
-			#text=y2_waterfall,
+			y=df['adj']/1000/1000,
+			text=df['adj'],
 			cliponaxis=False,
 			textposition='outside',
 			textfont=dict(color=[colors['transparent'],colors['transparent'],colors['transparent'],'black','black',colors['transparent']]),
-			texttemplate='%{y:.2s}',
+			texttemplate='%{y:.1f}M',
 			marker=dict(
 					color=colors['yellow'],
 					opacity=0.7
 					),
-			hovertemplate='%{y:,.0f}',
+			hovertemplate='%{text:,.0f}',
 			hoverinfo='y',
 		)
 	])
@@ -958,10 +965,11 @@ def waterfall_overall_bundle(df):
 			gridcolor =colors['grey'],
 			nticks=5,
 			showticklabels=True,
+			ticksuffix='M',
 			zeroline=True,
 			zerolinecolor=colors['grey'],
 			zerolinewidth=1,
-			range=[0,df['base'].max()*1.2]
+			range=[0,df['base'].max()/1000/1000*1.2]
 		),
 		showlegend=False,
 		modebar=dict(
@@ -1104,9 +1112,9 @@ def measure_quality_bar_bundle(df):
 		legend=dict(
 			orientation='h',
 			traceorder='reversed',
-			x=-0.5,y=-0.1
+			x=0,y=-0.1
 		),
-		margin=dict(l=300,r=60,b=80,t=20,pad=5,autoexpand=False,),
+		margin=dict(l=350,r=60,b=80,t=20,pad=5,autoexpand=False,),
 		font=dict(
 			family="NotoSans-Condensed",
 			size=14,
@@ -1147,7 +1155,7 @@ def data_bars_diverging_bundle(df, column, color_above='#3D9970', color_below='#
 				'paddingBottom': 2,
 				'paddingTop': 2,
 				'textAlign':'start',
-				'paddingLeft':'4rem',
+				'paddingLeft':'7.5rem',
 				'color':color_above,
 			})
 
@@ -1174,7 +1182,7 @@ def data_bars_diverging_bundle(df, column, color_above='#3D9970', color_below='#
 				'paddingBottom': 2,
 				'paddingTop': 2,
 				'textAlign':'start',
-				'paddingLeft':'6rem',
+				'paddingLeft':'11.5rem',
 				'color':color_below,
 			})
 			
@@ -1206,12 +1214,18 @@ def table_perform_bundle(df):
 		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %')+
 		[{'if': {'column_id':'Diff % from Benchmark'},
 			 
-			 'width': '10rem',
+			 'width': '20rem',
 			}, 
 		{'if': {'column_id': 'Contribution to Overall Performance Difference'},
 			 
-			 'width': '10rem',
+			 'width': '20rem',
 			},
+		{'if': {'column_id': 'Bundle Name'},
+			 
+			 'textAlign': 'start',
+			 'width': '25rem',
+			},
+
 
 		]
 		),
