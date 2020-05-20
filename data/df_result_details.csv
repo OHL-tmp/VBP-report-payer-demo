@@ -1,11 +1,12 @@
 ﻿name,value,id
 Attributed Members,"4,250",1
-YTD Total Cost (M),$24.6 ,2
-Projected PY Cost (M),$54.1 ,3
-Target Cost (Adj) (M),$52.5 ,4
-Total Savings/Losses (M),$1.6 ,5
-Savings/Losses % (of Target) ,3.1%,6
-Projected ACO’s Quality Score,82%,7
-Projected ACO’s Sharing Rate,32%,8
-Projected Plan’s Shared Savings/Losses (M),$1.1 ,9
-Projected ACO’s Shared Savings/Losses (M),$0.5 ,10
+Projected Risk Score,1.250,2
+YTD Total Cost (M),$24.6 ,3
+Projected PY Cost (M),$54.1 ,4
+Target Cost (Adj) (M),$52.5 ,5
+Total Savings/Losses (M),$1.6 ,6
+Savings/Losses % (of Target) ,3.1%,7
+Projected ACO’s Quality Score,82%,8
+Projected ACO’s Sharing Rate,32%,9
+Projected Plan’s Shared Savings/Losses (M),$1.1 ,10
+Projected ACO’s Shared Savings/Losses (M),$0.5 ,11
