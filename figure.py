@@ -1005,7 +1005,7 @@ def measure_quality_bar_bundle(df):
 			#width=0.3,
 			textangle=0,
 			marker=dict(
-					color=colors['blue'].replace('100)',',1)'),
+					color=colors['blue'].replace('100)','1)'),
 					#opacity=0.5
 					),
 			orientation='h',
@@ -1023,7 +1023,7 @@ def measure_quality_bar_bundle(df):
 			#width=0.3,
 			textangle=0,
 			marker=dict(
-					color=colors['blue'].replace('100)',',0.5)'),
+					color=colors['blue'].replace('100)','0.5)'),
 					#opacity=0.8
 					),
 			orientation='h',
@@ -1060,7 +1060,7 @@ def measure_quality_bar_bundle(df):
 	# Change the bar mode
 	fig.update_layout(
 		title=dict(
-			text=domain,
+			text='Quality Score',
 			font=dict(
 			family="NotoSans-Condensed",
 			size=16,
@@ -1068,7 +1068,7 @@ def measure_quality_bar_bundle(df):
 			),
 			xref='container',
 			yref='container',
-			x=0.7,
+			x=0.5,
 			y=0.98,
 			xanchor='center',
 			yanchor='middle',
@@ -1110,9 +1110,9 @@ def measure_quality_bar_bundle(df):
 	)
 	return fig
 
-def data_bars_diverging(df, column,col_max, color_above='#3D9970', color_below='#FF4136'):
+def data_bars_diverging_bundle(df, column, color_above='#3D9970', color_below='#FF4136'):
 
-#	col_max=df[column].max()
+	col_max=df[column].abs().max()
 	styles = []
 	for i in df[column].to_list():
 
@@ -1141,7 +1141,7 @@ def data_bars_diverging(df, column,col_max, color_above='#3D9970', color_below='
 				'paddingBottom': 2,
 				'paddingTop': 2,
 				'textAlign':'start',
-				'paddingLeft':'5.5rem',
+				'paddingLeft':'4rem',
 				'color':color_above,
 			})
 
@@ -1168,7 +1168,7 @@ def data_bars_diverging(df, column,col_max, color_above='#3D9970', color_below='
 				'paddingBottom': 2,
 				'paddingTop': 2,
 				'textAlign':'start',
-				'paddingLeft':'2.5rem',
+				'paddingLeft':'6rem',
 				'color':color_below,
 			})
 			
@@ -1179,7 +1179,7 @@ def data_bars_diverging(df, column,col_max, color_above='#3D9970', color_below='
 def table_perform_bundle(df):
 
 	tbl=dash_table.DataTable(
-		id=tableid,
+#		id=tableid,
 		data=df.to_dict('records'),
 		columns=[
 		{"name": 'Bundle Name', "id": 'Bundle Name'},
@@ -1196,8 +1196,8 @@ def table_perform_bundle(df):
 			'height': 'auto'
 		},
 		style_data_conditional=(
-		data_bars_diverging(df, 'Projected PY Gain/Loss',10) +
-		data_bars_diverging(df, 'Projected PY Gain/Loss %',0.1)+
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss') +
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %')+
 		[{'if': {'column_id':'Diff % from Benchmark'},
 			 
 			 'width': '10rem',
@@ -1229,6 +1229,41 @@ def table_perform_bundle(df):
 		},
 	)
 	return tbl
+
+def table_bundle_dtls(df):
+
+	table=dash_table.DataTable(
+		data=df.to_dict('records'),
+		columns=[{'id': c, 'name': c} for c in df.columns],
+		style_data={
+			'whiteSpace': 'normal',
+			'height': 'auto'
+		},
+		style_data_conditional=[
+			{'if': {'column_id':df.columns[0]},
+			 'textAlign':'start',
+			},
+		],
+		style_cell={
+			'textAlign': 'center',
+			'font-family':'NotoSans-Condensed',
+			'fontSize':14,
+#			'backgroundColor':"#f7f7f7"
+		},
+
+		style_header={
+			'height': '4rem',
+			'backgroundColor': '#f1f6ff',
+			'color': '#1357DD',
+			'whiteSpace': 'normal',
+			'fontWeight': 'bold',
+			'font-family':'NotoSans-CondensedLight',
+			'fontSize':14,
+		
+		},
+	)
+
+	return table
 ####################################################################################################################################################################################
 ######################################################################       DrillDown         ####################################################################################
 ####################################################################################################################################################################################

@@ -33,34 +33,25 @@ server = app.server
 
 
 ## load data
-df_overall=pd.read_csv("data/df_overall.csv")
-df_overall_pmpm=pd.read_csv("data/df_overall_pmpm.csv")
-df_overall_driver=pd.read_csv("data/df_overall_driver.csv")
-df_target_adj=pd.read_csv("data/df_target_adj.csv")
-df_target_adj_pmpm=pd.read_csv("data/df_target_adj_pmpm.csv")
-df_result_details=pd.read_csv("data/df_result_details.csv")
-df_result_details_pmpm=pd.read_csv("data/df_result_details_pmpm.csv")
+df_overall_bundle=pd.read_csv("data/df_overall_bundle.csv")
+df_target_adj_bundle=pd.read_csv("data/df_target_adj_bundle.csv")
+df_result_details_bundle=pd.read_csv("data/df_result_details_bundle.csv")
 
-df_member=pd.read_csv("data/df_member.csv")
-df_member_split=pd.read_csv("data/df_member_split.csv")
-df_rs_opp=pd.read_csv("data/df_rs_opp.csv")
+df_bundle_performance=pd.read_csv("data/df_bundle_performance.csv")
+df_bundle_performance_pmpm=pd.read_csv("data/df_bundle_performance_pmpm.csv")
+df_bundle_performance_details=pd.read_csv("data/df_bundle_performance_details.csv")
+df_bundle_performance_details_pmpm=pd.read_csv("data/df_bundle_performance_details_pmpm.csv")
+df_measure_score_bundle=pd.read_csv("data/df_measure_score_bundle.csv")
 
-df_domain_score=pd.read_csv("data/df_domain_score.csv")
-df_measure_score=pd.read_csv("data/df_measure_score.csv")
-df_quality_overall=pd.read_csv("data/df_quality_overall.csv")
-df_quality_domain=pd.read_csv("data/df_quality_domain.csv")
-
-df_network_cost_split=pd.read_csv('data/df_network_cost_split.csv')
-df_network_facility_split=pd.read_csv('data/df_network_facility_split.csv')
-df_network_prof_split=pd.read_csv('data/df_network_prof_split.csv')
+df_network_cost_split_bundle=pd.read_csv('data/df_network_cost_split_bundle.csv')
 
 #modebar display
 button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
 
 
-file = open('configure/input_ds.json', encoding = 'utf-8')
-custom_input = json.load(file)
-twoside = custom_input['savings/losses sharing arrangement']["two side"]
+#file = open('configure/input_ds.json', encoding = 'utf-8')
+#custom_input = json.load(file)
+#twoside = custom_input['savings/losses sharing arrangement']["two side"]
 
 
 def create_layout(app):
@@ -129,7 +120,7 @@ def manager_modal_metricsdetail(app):
                     ],
                     
                 ),
-                dbc.ModalBody(children=table_result_dtls(df_result_details), style={"padding":"2rem"}),
+                dbc.ModalBody(children=table_result_dtls(df_result_details_bundle), style={"padding":"2rem"}),
                 dbc.ModalFooter(dbc.Button('Close', style={"border-radius":"10rem"}, id = 'manager-button-closemodal-metricsdetail')),
                 ], id = 'manager-modal-metricsdetail'),
 
@@ -171,7 +162,7 @@ def manager_div_overall_performance(app):
                         [
                             html.Div(
                                 [
-                                    html.Div(dcc.Graph(figure=waterfall_overall(df_overall), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"width":"100%","height":"100%"}), style={"height":"28rem"}),
+                                    html.Div(dcc.Graph(figure=waterfall_overall_bundle(df_overall_bundle), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"width":"100%","height":"100%"}), style={"height":"28rem"}),
                                     manager_modal_totalcost(app),
                                 ]
                             )
@@ -194,7 +185,7 @@ def manager_card_quality_score(app):
                                 dbc.Row(
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Quality Score", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                        dbc.Col(html.H4("Performance of Each Bundle", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                         ],
                                     no_gutters=True,
                                 ),
@@ -203,13 +194,13 @@ def manager_card_quality_score(app):
                                     dbc.Tabs(
                                         [
                                             dbc.Tab(
-                                                html.Div(
+                                                html.Div( children=table_perform_bundle(df_bundle_performance)
 
                                                 ), 
                                                 label="Total Cost", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
                                             ),
                                             dbc.Tab(
-                                                html.Div(
+                                                html.Div( children=table_perform_bundle(df_bundle_performance_pmpm)
 
                                                 ), 
                                                 label="PMPM", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
@@ -234,12 +225,12 @@ def manager_card_quality_score(app):
                                 dbc.Row(
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Quality Score", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                        dbc.Col(html.H4("Quality Measures", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                         ],
                                     no_gutters=True,
                                 ),
                                 
-                                html.Div(
+                                html.Div(children=dcc.Graph(figure=measure_quality_bar_bundle(df_measure_score_bundle),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,})
                                     
                                 )
                                 
@@ -256,12 +247,12 @@ def manager_card_quality_score(app):
                                 dbc.Row(
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Quality Score", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                        dbc.Col(html.H4("Bundle Cost In VS. Out of PGP", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                         ],
                                     no_gutters=True,
                                 ),
                                 
-                                html.Div(
+                                html.Div(children=dcc.Graph(figure=pie_cost_split(df_network_cost_split_bundle),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,})
                                     
                                 )
                                 
@@ -290,7 +281,7 @@ def manager_modal_totalcost(app):
                         ],
                         
                     ),
-                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"padding":"2rem"})),
+                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj_bundle),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"padding":"2rem"})),
                     dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-totalcost')),
                     ], id = 'manager-modal-totalcost',
                 style={"text-align":"center"}),
@@ -314,7 +305,12 @@ def manager_modal_bundle_performance_details(app):
                     ],
                     
                 ),
-                dbc.ModalBody(children=table_result_dtls(df_result_details), style={"padding":"2rem"}),
+                dbc.ModalBody([
+                    html.Div('Bundle Total'),
+                    table_bundle_dtls(df_bundle_performance_details),
+                    html.Div('Bundle Average'),
+                    table_bundle_dtls(df_bundle_performance_details_pmpm),
+                    ], style={"padding":"2rem"}),
                 dbc.ModalFooter(dbc.Button('Close', style={"border-radius":"10rem"}, id = 'manager-button-closemodal-bundle-performance-details')),
                 ], id = 'manager-modal-bundle-performance-details'),
 
