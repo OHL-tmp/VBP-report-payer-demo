@@ -172,6 +172,7 @@ def manager_div_overall_performance(app):
                             html.Div(
                                 [
                                     html.Div(dcc.Graph(figure=waterfall_overall(df_overall), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"width":"100%","height":"100%"}), style={"height":"28rem"}),
+                                    manager_modal_totalcost(app),
                                 ]
                             )
                         ],
@@ -199,8 +200,26 @@ def manager_card_quality_score(app):
                                 ),
                                 
                                 html.Div(
-                                    
-                                )
+                                    dbc.Tabs(
+                                        [
+                                            dbc.Tab(
+                                                html.Div(
+
+                                                ), 
+                                                label="Total Cost", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                            ),
+                                            dbc.Tab(
+                                                html.Div(
+
+                                                ), 
+                                                label="PMPM", style={"background-color":"#fff","height":"20rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                            ),
+                                            
+                                        ], 
+                                    )
+                                ),
+
+                                manager_modal_bundle_performance_details(app),
                                 
                             ]
                         ),
@@ -255,7 +274,51 @@ def manager_card_quality_score(app):
         )
 
             
+def manager_modal_totalcost(app):
+    return html.Div([
+                dbc.Button(
+                    "Details",
+                    id = 'manager-button-openmodal-totalcost',
+                    className="mb-3",
+                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
+                ),
+                dbc.Modal([
+                    dbc.ModalHeader(
+                        [
+                            html.H1("Target Adjustment Details", style={"font-size":"0.8rem"}),
+                            html.H2("TOTAL COST", style={"font-size":"1.6rem","color":"#1357DD","background-color":"#c6d9ff","padding":"0.5rem","border-radius":"0.5rem"})
+                        ],
+                        
+                    ),
+                    dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"padding":"2rem"})),
+                    dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-totalcost')),
+                    ], id = 'manager-modal-totalcost',
+                style={"text-align":"center"}),
+            ],
+            style={"text-align":"end","padding-right":"9rem"})
 
+
+def manager_modal_bundle_performance_details(app):
+    return html.Div([
+            dbc.Button(
+                        "Result Details",
+                        id = 'manager-button-openmodal-bundle-performance-details',
+                        className="mb-3",
+                        style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
+                    ),
+            dbc.Modal([
+                dbc.ModalHeader(
+                    [
+                        html.H1("Result Details", style={"font-size":"0.8rem"}),
+                        html.H2("TOTAL COST", style={"font-size":"1.6rem","color":"#1357DD","background-color":"#c6d9ff","padding":"0.5rem","border-radius":"0.5rem"})
+                    ],
+                    
+                ),
+                dbc.ModalBody(children=table_result_dtls(df_result_details), style={"padding":"2rem"}),
+                dbc.ModalFooter(dbc.Button('Close', style={"border-radius":"10rem"}, id = 'manager-button-closemodal-bundle-performance-details')),
+                ], id = 'manager-modal-bundle-performance-details'),
+
+        ])
 
 
 app.layout = create_layout(app)
@@ -271,6 +334,32 @@ def open_modal(n1, n2, is_open):
     if n1 or n2:
         return not is_open
     return is_open
+
+
+@app.callback(
+    Output('manager-modal-totalcost', 'is_open'),
+    [Input('manager-button-openmodal-totalcost', 'n_clicks'),
+    Input('manager-button-closemodal-totalcost', 'n_clicks')],
+    [State('manager-modal-totalcost', 'is_open')]
+    )
+def open_modal(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('manager-modal-bundle-performance-details', 'is_open'),
+    [Input('manager-button-openmodal-bundle-performance-details', 'n_clicks'),
+    Input('manager-button-closemodal-bundle-performance-details', 'n_clicks')],
+    [State('manager-modal-bundle-performance-details', 'is_open')]
+    )
+def open_modal(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
 
 if __name__ == "__main__":
     app.run_server(host="127.0.0.1",debug=True, port = 8049)
