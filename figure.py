@@ -971,8 +971,264 @@ def waterfall_overall_bundle(df):
 	return fig_waterfall
 
 
+def measure_quality_bar_bundle(df):
+
+	
+	fig = go.Figure(data=[
+		
+		go.Scatter(
+			name='Target',
+			x=[1]*len(df), 
+			y=df['measure'].tolist(),
+			text="",
+			#textposition='none', 
+			texttemplate='%{x:.0%}',
+			#width=0.3,
+			#textangle=0,
+			mode='lines',
+			marker=dict(
+					color='rgba(191,191,191,0.9)',
+					opacity=0
+					),
+			orientation='h',
+			hoverinfo='y+x',
+			hovertemplate='%{x:.0%}',
+		),
+
+		go.Bar(
+			name='Annualized',
+			x=df['Annualized'].tolist(), 
+			y=df['measure'].tolist(),
+			text="",
+			textposition='none', 
+			texttemplate='%{x:.0%}',
+			#width=0.3,
+			textangle=0,
+			marker=dict(
+					color=colors['blue'].replace('100)',',1)'),
+					#opacity=0.5
+					),
+			orientation='h',
+			hoverinfo='y+x',
+			hovertemplate='%{x:.0%}',
+		),
+
+		go.Bar(
+			name='YTD',
+			x=df['YTD'].tolist(), 
+			y=df['measure'].tolist(),
+			text="",
+			textposition='none', 
+			texttemplate='%{x:.0%}',
+			#width=0.3,
+			textangle=0,
+			marker=dict(
+					color=colors['blue'].replace('100)',',0.5)'),
+					#opacity=0.8
+					),
+			orientation='h',
+			hoverinfo='y+x',
+			hovertemplate='%{x:.0%}',
+		),
+		go.Bar(
+			name='Baseline',
+			x=df['Baseline'].tolist(), 
+			y=df['measure'].tolist(),
+			text="",
+			textposition='none', 
+			texttemplate='%{x:.0%}',
+			#width=0.3,
+			textangle=0,
+			marker=dict(
+					color='rgba(191,191,191,0.5)',
+					#opacity=0.5
+					),
+			orientation='h',
+			hoverinfo='y+x',
+			hovertemplate='%{x:.0%}',
+		),
+	])
+
+	shapes=[]
+	shapes.append( dict(type='line',
+						xref='x',yref='paper',x0=1,x1=1,y0=0,y1=1,
+						line=dict(color=colors['grey'],width=2),
+					   )
+	
+	)
+
+	# Change the bar mode
+	fig.update_layout(
+		title=dict(
+			text=domain,
+			font=dict(
+			family="NotoSans-Condensed",
+			size=16,
+			color="#38160f",
+			),
+			xref='container',
+			yref='container',
+			x=0.7,
+			y=0.98,
+			xanchor='center',
+			yanchor='middle',
+			),
+		xaxis=dict(
+			title=dict(
+				text='Quality Measure Performance',
+				font=dict(
+				family="NotoSans-Condensed",
+				size=14,
+				color="#38160f",
+				),
+				standoff=5,
+				),
+			position=0,
+			visible=True,
+			range=[0,1.1],
+			tickformat='0%'
+
+			),
+		barmode='group',
+		bargap=0.2,
+		bargroupgap=0,
+		paper_bgcolor=colors['transparent'],
+		plot_bgcolor=colors['transparent'],
+		showlegend=True,
+		legend=dict(
+			orientation='h',
+			traceorder='reversed',
+			x=-0.5,y=-0.1
+		),
+		margin=dict(l=300,r=60,b=80,t=20,pad=5,autoexpand=False,),
+		font=dict(
+			family="NotoSans-Condensed",
+			size=14,
+			color="#38160f"
+		),
+		shapes=shapes,
+	)
+	return fig
+
+def data_bars_diverging(df, column,col_max, color_above='#3D9970', color_below='#FF4136'):
+
+#	col_max=df[column].max()
+	styles = []
+	for i in df[column].to_list():
+
+		bound_percentage = round(i/col_max/2,4) * 100
+
+		if i>0:
+			bound_percentage=bound_percentage+50
+			styles.append({
+				'if': {
+					'filter_query': (
+						'{{{column}}} = {value}'
+					).format(column=column, value=i),
+					'column_id': column
+				},
+				'background': (
+					"""
+						linear-gradient(90deg,
+						white 0%,
+						white 50%,
+						{color_above} 50%,
+						{color_above} {bound_percentage}%,
+						white {bound_percentage}%,
+						white 100%)
+					""".format(bound_percentage=bound_percentage,color_above=color_above)
+				),
+				'paddingBottom': 2,
+				'paddingTop': 2,
+				'textAlign':'start',
+				'paddingLeft':'5.5rem',
+				'color':color_above,
+			})
+
+		else :
+			bound_percentage=50+bound_percentage
+			styles.append({
+				'if': {
+					'filter_query': (
+						'{{{column}}} = {value}' 
+					).format(column=column, value=i),
+					'column_id': column
+				},
+				'background': (
+					"""
+						linear-gradient(90deg,
+						white 0%,
+						white  {bound_percentage}%,
+						{color_below} {bound_percentage}%,
+						{color_below} 50%,
+						white 50%,
+						white 100%)
+					""".format(bound_percentage=bound_percentage,color_below=color_below)
+				),
+				'paddingBottom': 2,
+				'paddingTop': 2,
+				'textAlign':'start',
+				'paddingLeft':'2.5rem',
+				'color':color_below,
+			})
+			
 
 
+	return styles
+
+def table_perform_bundle(df):
+
+	tbl=dash_table.DataTable(
+		id=tableid,
+		data=df.to_dict('records'),
+		columns=[
+		{"name": 'Bundle Name', "id": 'Bundle Name'},
+		{"name": 'YTD Cnt', "id": 'YTD Cnt','type':'numeric','format':Format( precision=0, group=',',scheme=Scheme.fixed,)},
+		{"name": 'Projected PY Gain/Loss', "id": 'Projected PY Gain/Loss','type':'numeric','format':FormatTemplate.money(0)}, 
+		{"name": 'Projected PY Gain/Loss %', "id": 'Projected PY Gain/Loss %','type':'numeric','format':FormatTemplate.percentage(1)}, 
+		],
+		
+		sort_action="native",
+		sort_mode='single',
+		sort_by=[{"column_id":"Projected PY Gain/Loss","direction":"asc"}],
+		style_data={
+			'whiteSpace': 'normal',
+			'height': 'auto'
+		},
+		style_data_conditional=(
+		data_bars_diverging(df, 'Projected PY Gain/Loss',10) +
+		data_bars_diverging(df, 'Projected PY Gain/Loss %',0.1)+
+		[{'if': {'column_id':'Diff % from Benchmark'},
+			 
+			 'width': '10rem',
+			}, 
+		{'if': {'column_id': 'Contribution to Overall Performance Difference'},
+			 
+			 'width': '10rem',
+			},
+
+		]
+		),
+	   
+		style_cell={
+			'textAlign': 'center',
+			'font-family':'NotoSans-Condensed',
+			'fontSize':14
+		},
+		style_header={
+			'height': '4rem',
+			'minWidth': '3rem',
+			'maxWidth':'3rem',
+			'whiteSpace': 'normal',
+			'backgroundColor': "#f1f6ff",
+			'fontWeight': 'bold',
+			'font-family':'NotoSans-CondensedLight',
+			'fontSize':16,
+			'color': '#1357DD',
+			'text-align':'center',
+		},
+	)
+	return tbl
 ####################################################################################################################################################################################
 ######################################################################       DrillDown         ####################################################################################
 ####################################################################################################################################################################################
