@@ -1,11 +1,12 @@
 ﻿name,value,id
 Attributed Members,"4,250",1
-YTD PMPM Cost ,$964 ,2
-Projected PMPM Cost,"$1,061 ",3
-Target PMPM Cost (Adj),"$1,029 ",4
-PMPM Savings/Losses,$31.9 ,5
-Savings/Losses % (of Target) ,3.1%,6
-Projected ACO’s Quality Score,82%,7
-Projected ACO’s Sharing Rate,32%,8
-Projected Plan’s PMPM Shared Savings/Losses (M),$21.7 ,9
-Projected ACO’s PMPM Shared Savings/Losses (M),$10.1 ,10
+Projected Risk Score,1.250,2
+YTD PMPM Cost ,$964 ,3
+Projected PMPM Cost,"$1,061 ",4
+Target PMPM Cost (Adj),"$1,029 ",5
+PMPM Savings/Losses,$31.9 ,6
+Savings/Losses % (of Target) ,3.1%,7
+Projected ACO’s Quality Score,82%,8
+Projected ACO’s Sharing Rate,32%,9
+Projected Plan’s PMPM Shared Savings/Losses (M),$21.7 ,10
+Projected ACO’s PMPM Shared Savings/Losses (M),$10.1 ,11

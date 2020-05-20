@@ -292,7 +292,7 @@ def table_result_dtls(df):
 			{'if': {'column_id': df.columns[1],'row_index':c},
 			 'color':'red',
 			 'font-family':'NotoSans-Condensed',
-			} for c in [4,5,8,9]
+			} for c in [5,6,9,10]
 		],
 		style_cell={
 			'textAlign': 'center',
