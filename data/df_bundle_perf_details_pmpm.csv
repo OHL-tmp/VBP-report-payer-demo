@@ -1,0 +1,10 @@
+﻿Bundle Name,Major joint replacement of the lower extremity (MJRLE),Stroke,Congestive heart failure,Acute myocardial infarction
+YTD Attributed Episodes,142,65,135,40
+YTD Bundle Cost (FFS Payment)(M),"$29,445 ","$33,664 ","$26,166 ","$24,994 "
+Projected PY Bundle Cost (FFS Payment)(M),"$28,856 ","$32,991 ","$25,643 ","$24,494 "
+Adjusted Bundle Target Payment(M),"$26,769 ","$32,061 ","$25,160 ","$26,875 "
+Expected Gains/Losses,"$2,088 ",$930 ,$483 ,"($2,381)"
+Projected Quality Score,80%,80%,80%,80%
+Projected Quality Adjustment on Expected Gains/Losses,92%,92%,92%,92%
+Expected Gains/Losses (Quality Adjusted),"$1,921 ",$855 ,$444 ,"($2,191)"
+Expected Bundle Payout to Provider,"$26,936 ","$32,135 ","$25,198 ","$26,685 "

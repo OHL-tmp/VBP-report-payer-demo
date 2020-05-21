@@ -1,7 +1,7 @@
 ﻿measure,Baseline,YTD,Annualized,Target
-All-Cause Hospital Readmission Measure, 0.800 , 0.828 , 0.891 , 1.000 
-Advance Care Plan, 0.671 , 0.714 , 0.786 , 1.000 
-Hospital-Level Risk-Standardized Complication Rate (RSCR) <br>Following Elective Primary Total Hip Arthroplasty (THA)<br> and/or Total Knee Arthroplasty (TKA), 0.844 , 0.851 , 0.891 , 1.000 
-Excess Days in Acute Care after Hospitalization<br> for Acute Myocardial Infarction (AMI), 0.800 , 0.847 , 0.928 , 1.000 
-Perioperative Care: Selection of Prophylactic Antibiotic:<br> First or Second Generation Cephalosporin, 0.300 , 0.357 , 0.429 , 1.000 
-Overall, 0.702 , 0.736 , 0.800 , 1.000 
+Perioperative Care: Selection of Prophylactic Antibiotic,0.3,0.357,0.428571429,1
+Hospital-Level Risk-Standardized Complication Rate (RSCR),0.844444444,0.850523472,0.891317743,1
+Excess Days in Acute Care after Hospitalization,0.8,0.846647394,0.927851825,1
+All-Cause Hospital Readmission Measure,0.8,0.828482816,0.890781256,1
+Advance Care Plan,0.671428571,0.714,0.785714286,1
+Overall,0.701785848,0.735775958,0.79979774,1

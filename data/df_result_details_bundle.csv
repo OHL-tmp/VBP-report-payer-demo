@@ -1,10 +1,10 @@
 ﻿name,value,id
 YTD Attributed Episodes,383,1
-YTD Bundle Cost (FFS Payment)(M),$10.9 ,2
-Projected PY Bundle Cost (FFS Payment)(M),$23.6 ,3
-Adjusted Bundle Target Payment(M),$22.8 ,4
-Expected Gains/Losses,$0.72 ,5
+YTD Bundle Cost (FFS Payment),"$10,925,917 ",2
+Projected PY Bundle Cost (FFS Payment),"$23,556,277 ",3
+Adjusted Bundle Target Payment,"$22,836,430 ",4
+Expected Gains/Losses,"$719,847 ",5
 Projected Quality Score,80%,6
 Projected Quality Adjustment on Expected Gains/Losses,92%,7
-Expected Gains/Losses (Quality Adjusted),$0.66 ,8
-Expected Bundle Payout to Provider,$22.9 ,9
+Expected Gains/Losses (Quality Adjusted),"$662,274 ",8
+Expected Bundle Payout to Provider,"$22,894,003 ",9

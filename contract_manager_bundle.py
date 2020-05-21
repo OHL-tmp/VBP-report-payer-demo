@@ -40,7 +40,7 @@ df_result_details_bundle=pd.read_csv("data/df_result_details_bundle.csv")
 df_bundle_performance=pd.read_csv("data/df_bundle_performance.csv")
 df_bundle_performance_pmpm=pd.read_csv("data/df_bundle_performance_pmpm.csv")
 df_bundle_performance_details=pd.read_csv("data/df_bundle_performance_details.csv")
-df_bundle_performance_details_pmpm=pd.read_csv("data/df_bundle_performance_details_pmpm.csv")
+df_bundle_performance_details_pmpm=pd.read_csv("data/df_bundle_perf_details_pmpm.csv")
 df_measure_score_bundle=pd.read_csv("data/df_measure_score_bundle.csv")
 
 df_network_cost_split_bundle=pd.read_csv('data/df_network_cost_split_bundle.csv')
