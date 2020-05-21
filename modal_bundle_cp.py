@@ -64,7 +64,7 @@ def bundle_modal_bundles():
 			dbc.ModalBody(bundle_modal_bundles_body()),
 			dbc.ModalFooter(
 				dbc.Button('Submit', id = 'bundle-button-closemodal'))
-			], id = 'bundle-modal-bundles', size = 'xl')
+			], id = 'bundle-modal-bundles', size = 'xl', backdrop = 'static')
 		],
 		style={"padding":"1rem"})
 

@@ -49,9 +49,9 @@ df_network_cost_split=pd.read_csv('data/df_network_cost_split.csv')
 df_network_facility_split=pd.read_csv('data/df_network_facility_split.csv')
 df_network_prof_split=pd.read_csv('data/df_network_prof_split.csv')
 
-file = open('configure/input_ds.json', encoding = 'utf-8')
-custom_input = json.load(file)
-twoside = custom_input['savings/losses sharing arrangement']["two side"]
+# file = open('configure/input_ds.json', encoding = 'utf-8')
+# custom_input = json.load(file)
+# twoside = custom_input['savings/losses sharing arrangement']["two side"]
 
 #modebar display
 button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
@@ -140,7 +140,7 @@ def manager_modal_metricsdetail(app):
                 ),
                 dbc.ModalBody(children=table_result_dtls(df_result_details), style={"padding":"2rem"}),
                 dbc.ModalFooter(dbc.Button('Close', style={"border-radius":"10rem"}, id = 'manager-button-closemodal-metricsdetail')),
-                ], id = 'manager-modal-metricsdetail'),
+                ], id = 'manager-modal-metricsdetail', backdrop = 'static'),
 
         ])
 
@@ -286,7 +286,7 @@ def manager_modal_totalcost(app):
                     dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}), style={"padding":"2rem"}),
                     dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-totalcost')),
                     ], id = 'manager-modal-totalcost',
-                style={"text-align":"center"}),
+                style={"text-align":"center"}, backdrop = 'static'),
             ],
             style={"text-align":"end","padding-right":"12rem"})
 
@@ -309,7 +309,7 @@ def manager_modal_pmpm(app):
                     dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj_pmpm), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}), style={"padding":"2rem"}),
                     dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-pmpm')),
                     ], id = 'manager-modal-pmpm',
-                style={"text-align":"center"}),
+                style={"text-align":"center"}, backdrop = 'static'),
             ],
             style={"text-align":"end","padding-right":"12rem"})
 
@@ -376,7 +376,7 @@ def manager_modal_alldrivers(app):
                                                  style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
                                              )
                                  )
-                         ], id = 'manager-modal-alldriver', size="lg")
+                         ], id = 'manager-modal-alldriver', size="lg", backdrop = 'static')
             ],
             
         )
@@ -490,7 +490,7 @@ def manager_modal_qualityscore(app):
                                              )
                                  )
                          ], 
-                         id = 'manager-modal-qualityscore', size="xl")
+                         id = 'manager-modal-qualityscore', size="xl", backdrop = 'static')
             ],
             
         )

@@ -157,7 +157,7 @@ def modal_dashboard_domain_selection(n):
                         id="modal-centered",
                         size='lg',
                         scrollable=True,
-                        style={"border":"none"}
+                        style={"border":"none"}, backdrop = 'static'
                     ),
                 ]
             )

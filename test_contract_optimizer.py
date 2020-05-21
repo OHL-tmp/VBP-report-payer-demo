@@ -676,8 +676,8 @@ def card_quality_adjustment(app):
                             dbc.Row(
                                 [
                                     dbc.Col(html.H2("Total Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=10),
-                                    dbc.Col(html.Div("100%", id = 'div-recom-overall', style={"text-align":"center","background-color":"#fff","border-radius":"8rem","font-size":"0.8rem"}), style={"padding-left":"0.5rem","padding-right":"0.3rem"}),
-                                    dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center","background-color":"#fff","border-radius":"8rem","font-size":"0.8rem"}), style={"padding-left":"0.3rem"}),
+                                    dbc.Col(html.Div("100%", id = 'div-recom-overall', style={"text-align":"center","background-color":"#fff","border-radius":"8rem","font-size":"0.8rem"}), style={"padding-left":"3.5rem","padding-right":"0.5rem"}),
+                                    dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center","background-color":"#fff","border-radius":"8rem","font-size":"0.8rem"}), style={"padding-left":"0.5rem"}),
                                 ],
                                 no_gutters=True,
                                 style={"padding-right":"0.5rem","padding-top":"0.5rem", "padding-bottom":"0.2rem", "background-color":"#bbd4ff", "border-radius":"10rem","width":"101.5%"}
@@ -707,7 +707,7 @@ def tab_result(app):
                                     dbc.ModalBody([sim_assump_input_session(),]),
                                     dbc.ModalFooter(
                                         dbc.Button('Close', id = 'button-close-assump-modal'))
-                                    ], id = 'modal-assump', size = 'xl'),
+                                    ], id = 'modal-assump', size = 'xl', backdrop = 'static'),
                                 ],
                                 style={"padding-top":"1rem"}
                             ),
@@ -788,13 +788,13 @@ def tab_result(app):
                         )
                     ),
                     html.Hr(),
-                    html.H6(
-                        "Best case scenario means more cost reduction is achieved in performance year than expected",
-                        style={"font-size":"1rem"}
+                    html.H1(
+                        "\u25c9 Best case scenario means more cost reduction is achieved in performance year than expected",
+                        style={"font-size":"0.8rem"}
                     ),
-                    html.H6(
-                        "Worst case scenario means less cost reduction is achieved in performance year than expected",
-                        style={"font-size":"1rem"}
+                    html.H1(
+                        "\u25c9Worst case scenario means less cost reduction is achieved in performance year than expected",
+                        style={"font-size":"0.8rem"}
                     )
                 ],
                 style={"padding-top":"2rem","padding-bottom":"2rem","padding-left":"1rem","padding-right":"1rem"}
@@ -996,12 +996,17 @@ def toggle_saving_method(v):
     Output('text-loss-max', 'style'),
     Output('text-loss-max-recom', 'style'),
     Output('switch-quality-adj-rate', 'options')],
-    [Input('switch-loss-method', 'value')]
+    [Input('switch-loss-method', 'value'),
+    Input('switch-share-loss', 'value')]
     )
-def toggle_loss_method(v):
-    if v and len(v)>0:
-        return [html.H5("Min Sharing % (When quality targets are met)", style={"font-size":"0.8rem"})], False,{"font-size":"0.8rem"},{}, [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate", 'disabled':False}]
-    return [html.H5("Sharing %", style={"font-size":"0.8rem"})],True,{"font-size":"0.8rem", "color":'#919191'},{"color":'#919191'}, [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate", 'disabled':True}]
+def toggle_loss_method(v, v1):
+    if 'Shared Losses' not in v1:
+        return [html.H5("Min Sharing % (When quality targets are met)", style={"font-size":"0.8rem"})], True,{"font-size":"0.8rem"},{}, [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate", 'disabled':True}]
+    else:
+        if v and len(v)>0:
+            return [html.H5("Min Sharing % (When quality targets are met)", style={"font-size":"0.8rem"})], False,{"font-size":"0.8rem"},{}, [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate", 'disabled':False}]
+        else:
+            return [html.H5("Sharing %", style={"font-size":"0.8rem"})],True,{"font-size":"0.8rem", "color":'#919191'},{"color":'#919191'}, [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate", 'disabled':True}]
 
 
 
@@ -1058,7 +1063,7 @@ def cal_usr_like(usr_tgt):
         elif usr_tgt < 2.5:
             return html.Div(html.H1("Low",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"red"})
         else:
-            return html.Div(html.H1("Mid",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem"}), style={"border-radius":"0.5rem", "background-color":"#fff"})
+            return html.Div(html.H1("Mid",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem"}), style={"border-radius":"0.5rem", "background-color":"#F5B111"})
     else:
         return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"})
 
@@ -1138,7 +1143,7 @@ def update_columns(timestamp, data,selected_quality):
         else:
             row['tar_user']=float('nan')
 
-    return data 
+    return data
 
 # store data
 @app.callback(

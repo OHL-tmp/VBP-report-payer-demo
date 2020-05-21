@@ -244,7 +244,7 @@ def card_key_driver_drilldown(app):
                                                                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
                                                                     )
                                                         )
-                                                ], id = 'modal-all-driver', size="lg")],
+                                                ], id = 'modal-all-driver', size="lg", backdrop = 'static')],
                                         width=3,
                                         ),
                             ],

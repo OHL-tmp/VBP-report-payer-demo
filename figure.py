@@ -162,6 +162,34 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 			}  for c in range(0,23)
 
 		]+[
+            { 
+                'if': {'row_index':c,'column_id':"domain"}, 
+                
+                'border-top':'1px solid grey',
+                'border-left':'1px solid grey',
+                'border-right':'1px solid grey',
+                'border-bottom':'0px solid grey',
+             
+            } if c in [0,10,14,20] else
+            {
+                'if': {'row_index':c,'column_id':"domain"}, 
+                
+                'border-bottom':'1px solid grey',
+                'border-left':'1px solid grey',
+                'border-right':'1px solid grey',
+                'border-top':'0px solid grey',
+             
+            } if c in [9,13,19,22] else
+            {
+                'if': {'row_index':c,'column_id':"domain"},
+                
+                'border-left':'1px solid grey',
+                'border-right':'1px solid grey',
+                'border-bottom':'0px solid grey',
+                'border-top':'0px solid grey',
+            }  for c in range(0,23)
+
+        ]+[
 			{
 				'if': { 'column_id': 'tar_user','row_index': c},
 				#'backgroundColor': 'green',
@@ -434,7 +462,7 @@ def sim_result_box(df_sim_result):
 	elif df.values[0,7] in ["ACO's Margin %"]:
 		suf='%'
 	else:
-		suf='Mn'
+		suf='M'
 
 	fig_sim =go.Figure()
 	
@@ -567,13 +595,13 @@ def table_sim_result(df):
 	elif df.values[0,7] in ["ACO's Margin %"]:
 		header=['Best Estimate(%)','Worst Case(%)','Best Case(%)','Worst Case(%)','Best Case(%)']
 	else:
-		header=['Best Estimate(Mn)','Worst Case(Mn)','Best Case(Mn)','Worst Case(Mn)','Best Case(Mn)']
+		header=['Best Estimate(M)','Worst Case(M)','Best Case(M)','Worst Case(M)','Best Case(M)']
 
 	if df.values[0,7] =="ACO's Margin %":
 		df.iloc[:,2:7]=df.iloc[:,2:7]/100
 		num_format=Format( precision=1, scheme=Scheme.percentage,nully='N/A')   
 	else:
-		num_format=Format( precision=1, scheme=Scheme.fixed,nully='N/A')
+		num_format=Format( precision=0,group=',', scheme=Scheme.fixed,nully='N/A')
 	
    
 	table=dash_table.DataTable(
@@ -1350,7 +1378,7 @@ def bar_riskdist(df):
 				textangle=0,
 				marker=dict(
 						color=color_bar[i],
-						opacity=[0.7,1]
+						opacity=[1,1]
 						),
 				hoverinfo='skip',
 				#hovertemplate='%{x:,.2f}',
@@ -1955,7 +1983,7 @@ def drilltable_lv1(df,tableid):
 		sort_col=[{"column_id":"Cost %","direction":"desc"}]
 
 	if 'Episode Ct' in df.columns:
-		col1_format=Format( precision=0, scheme=Scheme.fixed,)
+		col1_format=Format( precision=0,group=',', scheme=Scheme.fixed,)
 
 	else:
 		col1_format=FormatTemplate.percentage(1)
@@ -2096,7 +2124,7 @@ def drilltable_physician(df,tableid,row_select):
 	tbl=dash_table.DataTable(
 		id=tableid,
 		data=df.to_dict('records'),
-		columns=[{"name": i, "id": i} if i==df.columns[0] else {"name": i, "id": i,'type':'numeric','format':Format( precision=0, scheme=Scheme.fixed,)} if i==df.columns[1] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.money(0)} if i==df.columns[2] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.percentage(1)} for i in df.columns[0:6]],
+		columns=[{"name": i, "id": i} if i==df.columns[0] else {"name": i, "id": i,'type':'numeric','format':Format( precision=0,group=',', scheme=Scheme.fixed,)} if i==df.columns[1] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.money(0)} if i==df.columns[2] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.percentage(1)} for i in df.columns[0:6]],
 		row_selectable=row_sel,
 		selected_rows=[len(df)-1],
 		sort_action="custom",
@@ -2164,7 +2192,7 @@ def pie_cost_split(df):
 					colors=[colors['yellow'],colors['blue']],#.replace('rgb','rgba').replace(')',',0.7)')
 					#
 				),
-			hovertemplate='%{value}Mn <extra>%{label}</extra>',
+			hovertemplate='%{value}M <extra>%{label}</extra>',
 
 			)
 		])
@@ -2239,7 +2267,7 @@ def network_cost_stack_h(df):
 			#position=0,
 			visible=True,
 			range=[0,(df['Out of ACO']+df['In ACO']).max()*1.02],
-			ticksuffix='Mn',
+			ticksuffix='M',
 			tickfont=dict(
 			family="NotoSans-Condensed",
 			size=10,

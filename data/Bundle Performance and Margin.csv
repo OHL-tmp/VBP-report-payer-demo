@@ -1,32 +1,32 @@
 ﻿Bundle,Baseline Trend,Cost Best Estimate from baseline,Cost Worst Case from BE,Cost Best Case from BE,Quality Baseline,Quality Best Est,Quality Worst Case,Quality Best Case,FFS Margin
-Back and neck except spinal fusion,0.03,0.07,0.05,0.05,0.872,0.915,0.885,0.965, 0.0500 
-Double joint replacement of the lower extremity,0.03,0.07,0.05,0.05,0.962,1,0.97,1, 0.0500 
-Fractures of the femur and hip or pelvis,0.03,0.07,0.05,0.05,0.58,0.609,0.579,0.659, 0.0500 
-Hip and femur procedures except major joint,0.03,0.07,0.05,0.05,0.958,1,0.97,1, 0.0540 
-"Lower extremity/humerus procedure except hip, foot, femur",0.03,0.065864774,0.05,0.05,0.543,0.57,0.54,0.62, 0.0500 
-Major joint replacement of the lower extremity (MJRLE),0.03,0.07,0.05,0.05,0.584,0.613,0.583,0.663, 0.0519 
-Major joint replacement of the upper extremity,0.03,0.07,0.05,0.05,0.5,0.525,0.495,0.575, 0.0500 
-Spinal fusion,0.03,0.028974037,0.05,0.05,0.857,0.9,0.87,0.95, 0.0500 
-Renal failure,0.03,0.07,0.05,0.05,0.927,0.973,0.943,1, 0.0539 
-Cellulitis,0.03,0.07,0.05,0.05,0.663,0.696,0.666,0.746, 0.0500 
-Sepsis,0.03,0.024025098,0.05,0.05,0.566,0.595,0.565,0.645, 0.0500 
-Urinary tract infection,0.03,0.057575608,0.05,0.05,0.907,0.952,0.922,1, 0.0556 
-Seizures,0.03,0.07,0.05,0.05,0.628,0.659,0.629,0.709, 0.0500 
-Stroke,0.03,0.07,0.05,0.05,0.803,0.843,0.813,0.893, 0.0532 
-Acute myocardial infarction,0.03,0.07,0.05,0.05,0.961,1,0.97,1, 0.0540 
-Cardiac arrhythmia,0.03,0.02,0.05,0.05,0.807,0.848,0.818,0.898, 0.0500 
-Cardiac defibrillator,0.03,0.07,0.05,0.05,0.935,0.982,0.952,1, 0.0500 
-Cardiac valve,0.03,0.032359385,0.05,0.05,0.619,0.65,0.62,0.7, 0.0500 
-Congestive heart failure,0.03,0.07,0.05,0.05,0.695,0.729,0.699,0.779, 0.0525 
-Coronary artery bypass graft,0.03,0.047092395,0.05,0.05,0.545,0.573,0.543,0.623, 0.0500 
-Pacemaker,0.03,0.02,0.05,0.05,0.743,0.78,0.75,0.83, 0.0500 
-Percutaneous coronary intervention,0.03,0.02,0.05,0.05,0.95,0.997,0.967,1, 0.0500 
-Transcatheter Aortic Valve Replacement,0.03,0.02,0.05,0.05,0.833,0.875,0.845,0.925, 0.0500 
-"COPD, bronchitis, asthma",0.03,0.07,0.05,0.05,0.864,0.907,0.877,0.957, 0.0535 
-Simple pneumonia and respiratory infections,0.03,0.035246111,0.05,0.05,0.909,0.954,0.924,1, 0.0500 
-Bariatric Surgery,0.03,0.053692949,0.05,0.05,0.559,0.587,0.557,0.637, 0.0500 
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",0.03,0.022946005,0.05,0.05,0.871,0.915,0.885,0.965, 0.0500 
-Gastrointestinal hemorrhage,0.03,0.053935128,0.05,0.05,0.573,0.602,0.572,0.652, 0.0500 
-Gastrointestinal obstruction,0.03,0.061992803,0.05,0.05,0.66,0.693,0.663,0.743, 0.0500 
-Inflammatory Bowel Disease,0.03,0.066756945,0.05,0.05,0.539,0.566,0.536,0.616, 0.0500 
-Major bowel procedure,0.03,0.041939833,0.05,0.05,0.77,0.808,0.778,0.858, 0.0500 
+Back and neck except spinal fusion,0.03,0.07,0.05,0.05,0.872,0.5,0.45,0.55,0.05
+Double joint replacement of the lower extremity,0.03,0.07,0.05,0.05,0.962,0.5,0.45,0.55,0.05
+Fractures of the femur and hip or pelvis,0.03,0.07,0.05,0.05,0.58,0.5,0.45,0.55,0.05
+Hip and femur procedures except major joint,0.03,0.07,0.05,0.05,0.958,0.5,0.45,0.55,0.054036528
+"Lower extremity/humerus procedure except hip, foot, femur",0.03,0.065864774,0.05,0.05,0.543,0.5,0.45,0.55,0.05
+Major joint replacement of the lower extremity (MJRLE),0.03,0.07,0.05,0.05,0.584,0.5,0.45,0.55,0.051906949
+Major joint replacement of the upper extremity,0.03,0.07,0.05,0.05,0.5,0.5,0.45,0.55,0.05
+Spinal fusion,0.03,0.028974037,0.05,0.05,0.857,0.5,0.45,0.55,0.05
+Renal failure,0.03,0.07,0.05,0.05,0.927,0.5,0.45,0.55,0.053892488
+Cellulitis,0.03,0.07,0.05,0.05,0.663,0.5,0.45,0.55,0.05
+Sepsis,0.03,0.024025098,0.05,0.05,0.566,0.5,0.45,0.55,0.05
+Urinary tract infection,0.03,0.057575608,0.05,0.05,0.907,0.5,0.45,0.55,0.055615012
+Seizures,0.03,0.07,0.05,0.05,0.628,0.5,0.45,0.55,0.05
+Stroke,0.03,0.07,0.05,0.05,0.803,0.5,0.45,0.55,0.051304128
+Acute myocardial infarction,0.03,0.07,0.05,0.05,0.803,0.5,0.45,0.55,0.051239199
+Cardiac arrhythmia,0.03,0.02,0.05,0.05,0.807,0.5,0.45,0.55,0.05
+Cardiac defibrillator,0.03,0.07,0.05,0.05,0.935,0.5,0.45,0.55,0.05
+Cardiac valve,0.03,0.032359385,0.05,0.05,0.619,0.5,0.45,0.55,0.05
+Congestive heart failure,0.03,0.07,0.05,0.05,0.695,0.5,0.45,0.55,0.051337866
+Coronary artery bypass graft,0.03,0.047092395,0.05,0.05,0.545,0.5,0.45,0.55,0.05
+Pacemaker,0.03,0.02,0.05,0.05,0.743,0.5,0.45,0.55,0.05
+Percutaneous coronary intervention,0.03,0.02,0.05,0.05,0.95,0.5,0.45,0.55,0.05
+Transcatheter Aortic Valve Replacement,0.03,0.02,0.05,0.05,0.833,0.5,0.45,0.55,0.05
+"COPD, bronchitis, asthma",0.03,0.07,0.05,0.05,0.864,0.5,0.45,0.55,0.053539821
+Simple pneumonia and respiratory infections,0.03,0.035246111,0.05,0.05,0.909,0.5,0.45,0.55,0.05
+Bariatric Surgery,0.03,0.053692949,0.05,0.05,0.559,0.5,0.45,0.55,0.05
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",0.03,0.022946005,0.05,0.05,0.871,0.5,0.45,0.55,0.05
+Gastrointestinal hemorrhage,0.03,0.053935128,0.05,0.05,0.573,0.5,0.45,0.55,0.05
+Gastrointestinal obstruction,0.03,0.061992803,0.05,0.05,0.66,0.5,0.45,0.55,0.05
+Inflammatory Bowel Disease,0.03,0.066756945,0.05,0.05,0.539,0.5,0.45,0.55,0.05
+Major bowel procedure,0.03,0.041939833,0.05,0.05,0.77,0.5,0.45,0.55,0.05

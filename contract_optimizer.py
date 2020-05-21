@@ -657,7 +657,7 @@ def tab_result(app):
                             		dbc.ModalBody([sim_assump_input_session(),]),
                             		dbc.ModalFooter(
                             			dbc.Button('Close', id = 'button-close-assump-modal'))
-                            		], id = 'modal-assump', size = 'xl'),
+                            		], id = 'modal-assump', size = 'xl', backdrop = 'static'),
                             	],
                                 style={"padding-top":"1rem"}
                             ),
