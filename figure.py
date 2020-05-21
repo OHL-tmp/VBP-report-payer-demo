@@ -2339,13 +2339,15 @@ def table_sim_result(df):
 	elif df.values[0,7] in ["ACO's Margin %"]:
 		header=['Best Estimate(%)','Worst Case(%)','Best Case(%)','Worst Case(%)','Best Case(%)','Variation(%)']
 	else:
-		header=['Best Estimate(Mn)','Worst Case(Mn)','Best Case(Mn)','Worst Case(Mn)','Best Case(Mn)','Variation(Mn)']
+		header=['Best Estimate(M)','Worst Case(M)','Best Case(M)','Worst Case(M)','Best Case(M)','Variation(M)']
 
 	if df.values[0,7] =="ACO's Margin %":
 		df.iloc[:,2:7]=df.iloc[:,2:7]/100
 		num_format=Format( precision=1, scheme=Scheme.percentage,nully='N/A')   
+	elif df.values[0,7] =="ACO's PMPM":
+		num_format=Format( precision=0,group=',', scheme=Scheme.fixed,nully='N/A')
 	else:
-		num_format=Format( precision=1, scheme=Scheme.fixed,nully='N/A')
+		num_format=Format( precision=1,group=',', scheme=Scheme.fixed,nully='N/A')
 
 
 	df['Variation']=(df['Lower End']-df['Higher End']).abs().tolist()
