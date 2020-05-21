@@ -514,8 +514,9 @@ def card_sl_sharing_arrangement(app):
                                             dbc.Col(html.Div(), width = 1),
                                             dbc.Col(html.H5("Sharing Method", style={"font-size":"0.8rem"}),width=4),
                                             dbc.Col(dcc.Dropdown(id = 'dropdown-firstdollar-saving', 
-                                                options = [{'label': 'First Dollar Sharing', 'value': 1}, {'label':'Second Dollar Sharing (Above MSR)','value' : 2}],
-                                                value = 1,
+
+                                                options = [{'label': 'First Dollar Sharing', 'value': 'First Dollar Sharing'}, {'label':'Second Dollar Sharing (Above MSR)','value' : 'Second Dollar Sharing (Above MSR)'}],
+                                                value = 'First Dollar Sharing',
                                                 style={"font-size":"0.8rem"}), width = 7),
 #                                            dbc.Col(html.H5("Second Dollar Sharing (Above MSR)", id = 'text-saving-right',style={"font-size":"0.6rem"}),width=4),
                                             ],
@@ -615,8 +616,9 @@ def card_sl_sharing_arrangement(app):
                                             dbc.Col(html.Div(), width = 1),
                                             dbc.Col(html.H5("Sharing Method", style={"font-size":"0.8rem"}),width=4),
                                             dbc.Col(dcc.Dropdown(id = 'dropdown-firstdollar-loss', 
-                                                options = [{'label': 'First Dollar Sharing', 'value': 1}, {'label':'Second Dollar Sharing (Below MLR)','value' : 2}],
-                                                value = 1,
+
+                                                options = [{'label': 'First Dollar Sharing', 'value': 'First Dollar Sharing'}, {'label':'Second Dollar Sharing (Below MLR)','value' : 'Second Dollar Sharing (Below MLR)'}],
+                                                value = 'First Dollar Sharing',
                                                 style={"font-size":"0.8rem"}), width = 7),
 #                                            dbc.Col(html.H5("Second Dollar Sharing (Below MLR)", id = 'text-loss-right',style={"font-size":"0.6rem"}),width=4),
                                             ],
@@ -711,6 +713,11 @@ def tab_result(app):
                                 ],
                                 style={"padding-top":"1rem"}
                             ),
+                            dbc.Col([dbc.DropdownMenu(
+                                label = 'Choose Version to Generate Contract',
+                                children = [dbc.DropdownMenuItem('User Defined Setting', href = '/vbc-demo/contract-generator/', id = 'dropdownmenu-contract-gen'),
+                                dbc.DropdownMenuItem('Recommended Setting')],
+                                )])
                             
                         ]
                     ),
@@ -1160,9 +1167,11 @@ def update_columns(timestamp, data,selected_quality):
     Input('switch-share-loss', 'value'),
     Input('switch-loss-method', 'value'),
     Input('table-measure-setup', 'selected_rows'),
-    Input('table-measure-setup', 'data')]
+    Input('table-measure-setup', 'data'),
+    Input('dropdown-firstdollar-saving', 'value'),
+    Input('dropdown-firstdollar-loss', 'value'),]
     )
-def store_data(usr_tgt_int, usr_msr, usr_planshare, usr_planshare_min, usr_sharecap, usr_mlr, usr_planshare_l, usr_planshare_l_min, usr_sharecap_l, ts, lm, select_row, data):
+def store_data(usr_tgt_int, usr_msr, usr_planshare, usr_planshare_min, usr_sharecap, usr_mlr, usr_planshare_l, usr_planshare_l_min, usr_sharecap_l, ts, lm, select_row, data, sharemethod, sharemethod_l):
     df = pd.DataFrame(data)
 
     if 'Shared Losses' in ts:
@@ -1194,7 +1203,7 @@ def store_data(usr_tgt_int, usr_msr, usr_planshare, usr_planshare_min, usr_share
     datasets = {
         'medical cost target' : {'user target' : usr_tgt},
         'savings/losses sharing arrangement' : {'two side' : two_side, 'msr': usr_msr, 'savings sharing' : usr_planshare, 'savings sharing min' : usr_planshare_min, 'savings share cap' : usr_sharecap,
-        'mlr' : usr_mlr, 'losses sharing' : usr_planshare_l, 'losses sharing min' : usr_planshare_l_min, 'losses share cap' : usr_sharecap_l, 'loss method' : loss_method},
+        'mlr' : usr_mlr, 'losses sharing' : usr_planshare_l, 'losses sharing min' : usr_planshare_l_min, 'losses share cap' : usr_sharecap_l, 'loss method' : loss_method, 'saving sharing method': sharemethod, 'loss sharing method' : sharemethod_l},
         'quality adjustment' : {'selected measures' : select_row, 'recom_dom_1' : recom_dom_1, 'recom_dom_2' : recom_dom_2, 'recom_dom_3' : recom_dom_3, 'recom_dom_4' : recom_dom_4,
         'usr_dom_1' : usr_dom_1, 'usr_dom_2' : usr_dom_2, 'usr_dom_3' : usr_dom_3, 'usr_dom_4' : usr_dom_4,
         'user_tar_type':user_tar_type,'user_tar_value':user_tar_value}
@@ -1267,6 +1276,6 @@ def update_grapg_cost(metric, data):
     return {}, ""
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True,port=8049)
+    app.run_server(host="127.0.0.1",debug=True,port=8052)
 
 
