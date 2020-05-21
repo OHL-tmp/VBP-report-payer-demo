@@ -3,15 +3,23 @@ import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 
 
-def Header_mgmt(app, dashboard_active, drilldown_active, report_active, Homepage_active):
-    return html.Div([get_header_mgmt(app, dashboard_active, drilldown_active, report_active, Homepage_active)])
+def Header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, Homepage_active):
+    return html.Div([get_header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, Homepage_active)])
+
+def Header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, Homepage_active):
+    return html.Div([get_header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, Homepage_active)])
 
 def Header_contract(app, acp, bec, pbp, bhp):
     return html.Div([get_header_contract(app, acp, bec, pbp, bhp)])
 
 
-def get_header_mgmt(app, dashboard_active, drilldown_active, report_active, Homepage_active):
-    menu = dbc.Nav([
+def get_header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, Homepage_active):
+    menu_aco = dbc.Nav([
+            dbc.NavItem(dbc.DropdownMenu(
+                            label = 'Accountable Care Programs',
+                            children = dbc.DropdownMenuItem('Bundles & Episodes of Care', href = '/vbc-demo/contract-optimizer-bundle/'),
+                            
+                        )),
             dbc.NavItem(dbc.NavLink(
                         "Dashboard",
                         href="/vbc-demo/contract-manager/",
@@ -63,7 +71,80 @@ def get_header_mgmt(app, dashboard_active, drilldown_active, report_active, Home
                     ),
                 ),
                 dbc.NavbarToggler(id="navbar-toggler"),
-                dbc.Collapse(menu, id="navbar-collapse", navbar=True),
+                dbc.Collapse(menu_aco, id="navbar-collapse-mgmt", navbar=True),
+                ],
+            color="#fff",
+            sticky = "top",
+            expand = True,
+            className="sticky-top",
+            style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)"}
+#            dark=True,
+        )
+    return header
+
+
+def get_header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, Homepage_active):
+
+    menu_bundle = dbc.Nav([
+            dbc.NavItem(dbc.NavLink(
+                        "Dashboard",
+                        href="/vbc-demo/contract-optimizer-bundle/",
+                        className="nav-link",
+                        active = dashboard_active,
+                        ),
+                className="tab  first",
+                ),
+            dbc.NavItem(dbc.NavLink(
+                        "Drilldown",
+#                        href="/vbc-demo/contract-manager-drilldown/",
+                        className="nav-link",
+                        active = drilldown_active,
+                        ),
+                className="tab",
+                ),
+            dbc.NavItem(dbc.NavLink(
+                        "Report Generator",
+                        #href="/vbc-demo/contract-manager/report-generator/",
+                        className="nav-link",
+                        active = report_active,
+                        ),
+                className="tab",
+                ),
+            dbc.NavItem(dbc.NavLink(
+                        "Back to Homepage", 
+                        href="/vbc-demo/launch/", 
+                        className="nav-link",
+                        active = Homepage_active,
+                        ),
+                className="tab",
+                ),
+        ],
+        pills = True, 
+        navbar = True,
+        className="ml-auto flex-nowrap mt-3 mt-md-0",)
+
+    dropdowm = dbc.NavItem(dbc.DropdownMenu(
+                        label = 'Bundles & Episodes of Care',
+                        children = dbc.DropdownMenuItem('Accountable Care Programs', href = '/vbc-demo/contract-manager/'),
+                        
+                    )),
+
+    header = dbc.Navbar(
+            [
+                html.A(
+                    # Use row and col to control vertical alignment of logo / brand
+                    dbc.Row(
+                        [
+                            dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png"), style={"height":"4rem", "padding-top":"1px", "padding-left":"2rem"})),
+                            dbc.Col(dbc.NavbarBrand("Contract Manager", className="ml-2", style={"font-family":"NotoSans-Black","font-size":"1.5rem","color":"#bfd4ff"})),
+                        ],
+                        align="center",
+                        no_gutters=True,
+                    ),
+                ),
+                dbc.NavbarToggler(id="navbar-toggler"),
+                
+                dbc.Collapse([dropdown,menu_bundle], id="navbar-collapse-mgmt", navbar=True),
                 ],
             color="#fff",
             sticky = "top",

@@ -27,6 +27,9 @@ file = open('configure/default_ds.json', encoding = 'utf-8')
 default_input = json.load(file)
 df_quality = pd.read_csv("data/quality_setup.csv")
 
+#modebar display
+button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
+
 
 def create_layout(app):
 #    load_data()
@@ -63,7 +66,16 @@ def tab_setup(app):
                 [
                     dbc.Row(
                         [
-                            dbc.Col(html.H1("Contract Simulation Setup", style={"padding-left":"2rem","font-size":"3"}), width=9),
+                            dbc.Col(html.H1("Contract Simulation Setup", style={"padding-left":"2rem","font-size":"3"}), width=8),
+                            dbc.Col(html.Div(html.H2("LOB", style={"padding":"0.5rem","color":"#F5B111", "background-color":"#ffe6ab", "font-size":"1rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
+                            dbc.Col(
+                                dcc.Dropdown(
+                                    #id = 'dropdown-firstdollar-loss', 
+                                    options = [{'label': 'Medicare FFS', 'value': 1}, {'label':'MA/MAPD','value' : 2}, {'label':'Commercial','value' : 3}],
+                                    value = 2
+                                ), 
+                                width = 3
+                            ),
                         ],
                         style={"padding-top":"2rem"}
                     ),
@@ -126,65 +138,101 @@ def card_summary_improvement(app):
                                 dbc.Col(
                                     html.Div(
                                         [
-                                            html.H6("Overuser Reduction", style={"height":"1.8rem"}),
-                                            html.H1("0.7%", style={"font-size":"1.5rem","color":"#F5B111"})
+                                            dbc.Row(
+                                                [
+                                                    # dbc.Col(html.H3("\u0024", style={"font-size":"1em","margin-top":"-1.2rem","color":"#1357DD"}), width="auto"),
+                                                    dbc.Col(html.H3("\u0024 Cost Reduction", style={"font-size":"1em","color":"#1357DD","margin-left":"-2rem"})),
+                                                ],
+                                                style={"margin-top":"-1.6rem","margin-left":"-3rem","background-color":"#f5f5f5","width":"12rem","height":"3rem","padding-left":"0.5rem","padding-right":"0.5rem","text-align":"center"}
+                                            ),
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(
+                                                        html.Div(
+                                                            [
+                                                                html.H6("Overuse Reduction", style={"height":"1.8rem"}),
+                                                                html.H1("1.0%", style={"font-size":"1.5rem","color":"#F5B111"})
+                                                            ],
+                                                            style={"padding-left":"1rem", "padding-right":"1rem", "text-align":"center"}
+                                                        ),
+                                                        
+                                                    ),
+                                                    dbc.Col(
+                                                        html.Div(
+                                                            [
+                                                                html.H6("Service Optimization", style={"height":"1.8rem"}),
+                                                                html.H1("0.4%", style={"font-size":"1.5rem","color":"#F5B111"})
+                                                            ],
+                                                            style={"padding-left":"1rem", "padding-right":"1rem", "text-align":"center"}
+                                                        ),
+                                                    ),
+                                                    dbc.Col(
+                                                        html.Div(
+                                                            [
+                                                                html.H6("Transition of Care Management", style={"height":"1.8rem"}),
+                                                                html.H1("0.7%", style={"font-size":"1.5rem","color":"#F5B111"})
+                                                            ],
+                                                            style={"padding-left":"1rem", "padding-right":"1rem", "text-align":"center"}
+                                                        ),
+                                                    ),
+                                                    dbc.Col(
+                                                        html.Div(
+                                                            [
+                                                                html.H6("Chronic Disease Management", style={"height":"1.8rem"}),
+                                                                html.H1("1.2%", style={"font-size":"1.5rem","color":"#F5B111"})
+                                                            ],
+                                                            style={"padding-left":"1rem", "padding-right":"1rem", "text-align":"center"}
+                                                        ),
+                                                    ),
+                                                    dbc.Col(
+                                                        html.Div(
+                                                            [
+                                                                html.H6("High Risk Patient Management", style={"height":"1.8rem"}),
+                                                                html.H1("0.7%", style={"font-size":"1.5rem","color":"#F5B111"})
+                                                            ],
+                                                            style={"padding-left":"1rem", "padding-right":"1rem", "text-align":"center"}
+                                                        ),
+                                                    ),
+                                                ]
+                                            )
                                         ],
-                                        style={"padding":"1rem","text-align":"center"}
+                                        style={"border-radius":"0.5rem","border":"2px solid #91b2ff","padding":"1rem","max-height":"25rem","margin-top":"1rem"}
                                     ),
-                                    width=2,
+                                    width=9,
+                                    style={"padding-left":"2rem","padding-right":"1rem"}
                                 ),
                                 dbc.Col(
                                     html.Div(
                                         [
-                                            html.H6("Service Optimization", style={"height":"1.8rem"}),
-                                            html.H1("0.2%", style={"font-size":"1.5rem","color":"#F5B111"})
+                                            dbc.Row(
+                                                [
+                                                    
+                                                    dbc.Col(html.H3("\u0024 Revenue Improvement", style={"font-size":"1em","color":"#1357DD","margin-left":"-2rem"})),
+                                                ],
+                                                style={"margin-top":"-1.6rem","margin-left":"-3rem","background-color":"#f5f5f5","width":"14rem","height":"3rem","padding-left":"0.5rem","padding-right":"0.5rem","text-align":"center"}
+                                            ),
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(
+                                                        html.Div(
+                                                            [
+                                                                html.H6("Coding Improvement Opportunity", style={"height":"1.8rem"}),
+                                                                html.H1("0.7%", style={"font-size":"1.5rem","color":"#F5B111"})
+                                                            ],
+                                                            style={"padding-left":"1rem", "padding-right":"1rem", "text-align":"center"}
+                                                        ),
+                                                    ),
+                                                ]
+                                            )
                                         ],
-                                        style={"padding":"1rem","text-align":"center"}
+                                        style={"border-radius":"0.5rem","border":"2px solid #91b2ff","padding":"1rem","max-height":"25rem","margin-top":"1rem"}
                                     ),
-                                    width=2,
-                                ),
-                                dbc.Col(
-                                    html.Div(
-                                        [
-                                            html.H6("Transition of Care Management", style={"height":"1.8rem"}),
-                                            html.H1("0.3%", style={"font-size":"1.5rem","color":"#F5B111"})
-                                        ],
-                                        style={"padding":"1rem","text-align":"center"}
-                                    ),
-                                    width=2,
-                                ),
-                                dbc.Col(
-                                    html.Div(
-                                        [
-                                            html.H6("Chronic Disease Management", style={"height":"1.8rem"}),
-                                            html.H1("0.5%", style={"font-size":"1.5rem","color":"#F5B111"})
-                                        ],
-                                        style={"padding":"1rem","text-align":"center"}
-                                    ),
-                                    width=2,
-                                ),
-                                dbc.Col(
-                                    html.Div(
-                                        [
-                                            html.H6("High Risk Patient Management", style={"height":"1.8rem"}),
-                                            html.H1("0.7%", style={"font-size":"1.5rem","color":"#F5B111"})
-                                        ],
-                                        style={"padding":"1rem","text-align":"center"}
-                                    ),
-                                    width=2,
-                                ),
-                                dbc.Col(
-                                    html.Div(
-                                        [
-                                            html.H6("Coding Improvement Opportunity", style={"height":"1.8rem"}),
-                                            html.H1("0.7%", style={"font-size":"1.5rem","color":"#F5B111"})
-                                        ],
-                                        style={"padding":"1rem","text-align":"center"}
-                                    ),
-                                    width=2,
+                                    width=3,
+                                    style={"padding-left":"2rem","padding-right":"1rem"}
                                 ),
                             ]
                         )
+                        
                     ]
                 ),
                 className="mb-3",
@@ -217,9 +265,9 @@ def card_medical_cost_target(app):
                                                 html.Hr(className="ml-1"),
                                                 dbc.Row(
                                                     [
-                                                        dbc.Col(html.H4("ACO's Member Count", style={"font-size":"0.8rem"})),
-                                                        dbc.Col(html.H4("ACO's Medical Cost PMPM", style={"font-size":"0.8rem"})),
-                                                        dbc.Col(html.H4("Peer Group Medical Cost PMPM", style={"font-size":"0.8rem"})),
+                                                        dbc.Col(html.H4("ACO's Cost", style={"font-size":"0.8rem"})),
+                                                        dbc.Col(html.H4("Benckmark Cost", style={"font-size":"0.8rem"})),
+                                                        dbc.Col(html.H4("Best in-Class Cost", style={"font-size":"0.8rem"})),
                                                     ]
                                                 ),
                                             ]
@@ -249,7 +297,7 @@ def card_medical_cost_target(app):
                                                             [
                                                                 html.H4(
                                                                     [
-                                                                        "Recommended",
+                                                                        "Recommended ",
                                                                         html.Span(
                                                                             "\u24D8",
                                                                             style={"font-size":"0.8rem"}
@@ -259,7 +307,7 @@ def card_medical_cost_target(app):
                                                                     style={"font-size":"0.8rem"}
                                                                 ),
                                                                 dbc.Tooltip(
-                                                                    "?????",
+                                                                    "Cost target recommended for ACO to achieve reasonable margin improvement with high likelihood compared to FFS contract",
                                                                     target="tooltip-vbc-measure",
                                                                     style={"text-align":"start"}
                                                                 ),
@@ -311,13 +359,13 @@ def card_med_cost_target():
                     [
                         dbc.Row(
                             [
-                                dbc.Col(html.H6("Medical Cost Target"), width=4),
+                                dbc.Col(html.H6("Medical Cost Trend"), width=4),
                                 dbc.Col(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.H6("5.7%")),
+                                            dbc.Col(html.H6("5.6%")),
                                             dbc.Col(html.H6("3.5%")),
-                                            dbc.Col(html.H6("3.1%")),
+                                            dbc.Col(html.H6("2.0%")),
                                         ]
                                     )
                                     , width=4
@@ -345,7 +393,7 @@ def card_med_cost_target():
 
                         dbc.Row(
                             [
-                                dbc.Col(html.H6("Medical Cost Target PMPM"), width=4),
+                                dbc.Col(html.H6("Medical Cost PMPM"), width=4),
                                 dbc.Col(
                                     dbc.Row(
                                         [
@@ -360,7 +408,7 @@ def card_med_cost_target():
                                     dbc.Row(
                                         [
                                             dbc.Col(html.H6(default_input['medical cost target']['recom target'], id = 'div-recom-tgt')),
-                                            dbc.Col(html.H6( id = 'div-usr-tgt')),
+                                            dbc.Col(html.H6(children = "$951", id = 'div-usr-tgt')),
                                         ]
                                     )
                                     , width=4
@@ -429,7 +477,7 @@ def card_sl_sharing_arrangement(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=3),
-                                                dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected'}], value = [], id = 'switch-saving-method', style={"font-family":"NotoSans-Regular","font-size":"0.8rem"}))
+                                                dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected'}], value = ['selected'], id = 'switch-saving-method', style={"font-family":"NotoSans-Regular","font-size":"0.8rem"}))
                                             ],
                                             style={"padding-top":"1rem"}),
                                         dbc.Row(
@@ -450,7 +498,7 @@ def card_sl_sharing_arrangement(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.Div(), width = 1),
-                                                dbc.Col(html.H5("Min Sharing %", id = 'text-saving-min', style={"font-size":"0.6rem"}),width=4),
+                                                dbc.Col(html.H5("Min Sharing %", id = 'text-saving-min', style={"font-size":"0.8rem"}),width=4),
                                                 dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing min'],id = 'text-saving-min-recom'),style={"text-align":"center"},width=3),
                                                 dbc.Col([
                                                     dbc.InputGroup([
@@ -464,9 +512,12 @@ def card_sl_sharing_arrangement(app):
                                         ),
                                         dbc.Row([
                                             dbc.Col(html.Div(), width = 1),
-                                            dbc.Col(html.H5("First Dollar Sharing", id = 'text-saving-left',style={"font-size":"0.6rem"}),width=4),
-                                            dbc.Col(daq.ToggleSwitch(id = 'toggleswitch-firstdollar-saving', value = False, size = 30, color = 'blue'), width = 3),
-                                            dbc.Col(html.H5("Second Dollar Sharing (Above MSR)", id = 'text-saving-right',style={"font-size":"0.6rem"}),width=4),
+                                            dbc.Col(html.H5("Sharing Method", style={"font-size":"0.8rem"}),width=4),
+                                            dbc.Col(dcc.Dropdown(id = 'dropdown-firstdollar-saving', 
+                                                options = [{'label': 'First Dollar Sharing', 'value': 'First Dollar Sharing'}, {'label':'Second Dollar Sharing (Above MSR)','value' : 'Second Dollar Sharing (Above MSR)'}],
+                                                value = 'First Dollar Sharing',
+                                                style={"font-size":"0.8rem"}), width = 7),
+#                                            dbc.Col(html.H5("Second Dollar Sharing (Above MSR)", id = 'text-saving-right',style={"font-size":"0.6rem"}),width=4),
                                             ],
                                              style={"padding-top":"1rem"}
                                         ),
@@ -527,7 +578,7 @@ def card_sl_sharing_arrangement(app):
                                         ),
                                         dbc.Row([
                                             dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=3),
-                                            dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected'}], value = [], id = 'switch-loss-method',style={"font-family":"NotoSans-Regular","font-size":"0.8rem"}))
+                                            dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected'}], value = ['selected'], id = 'switch-loss-method',style={"font-family":"NotoSans-Regular","font-size":"0.8rem"}))
                                             ],
                                             style={"padding-top":"1rem"}),
                                         dbc.Row(
@@ -548,7 +599,7 @@ def card_sl_sharing_arrangement(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.Div(), width = 1),
-                                                dbc.Col(html.H5("Max Sharing %", style={"font-size":"0.6rem"}, id = 'text-loss-max'),width=4),
+                                                dbc.Col(html.H5("Max Sharing %", style={"font-size":"0.8rem"}, id = 'text-loss-max'),width=4),
                                                 dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing'], id = 'text-loss-max-recom'),style={"text-align":"center"},width=3),
                                                 dbc.Col([
                                                     dbc.InputGroup([
@@ -560,17 +611,20 @@ def card_sl_sharing_arrangement(app):
                                             ],
                                             style={"padding-top":"1rem"}
                                         ),
-                                        dbc.Row([
+                                         dbc.Row([
                                             dbc.Col(html.Div(), width = 1),
-                                            dbc.Col(html.H5("First Dollar Sharing", id = 'text-loss-left',style={"font-size":"0.6rem"}),width=4),
-                                            dbc.Col(daq.ToggleSwitch(id = 'toggleswitch-firstdollar-loss', value = False, size = 30, color = 'blue'), width = 3),
-                                            dbc.Col(html.H5("Second Dollar Sharing (Below MLR)", id = 'text-loss-right',style={"font-size":"0.6rem"}),width=4),
+                                            dbc.Col(html.H5("Sharing Method", style={"font-size":"0.8rem"}),width=4),
+                                            dbc.Col(dcc.Dropdown(id = 'dropdown-firstdollar-loss', 
+                                                options = [{'label': 'First Dollar Sharing', 'value': 'First Dollar Sharing'}, {'label':'Second Dollar Sharing (Below MLR)','value' : 'Second Dollar Sharing (Below MLR)'}],
+                                                value = 'First Dollar Sharing',
+                                                style={"font-size":"0.8rem"}), width = 7),
+#                                            dbc.Col(html.H5("Second Dollar Sharing (Below MLR)", id = 'text-loss-right',style={"font-size":"0.6rem"}),width=4),
                                             ],
                                              style={"padding-top":"1rem"}
                                         ),
                                         dbc.Row([
                                             dbc.Col(html.Div(), width = 1),
-                                            dbc.Col(dbc.Checklist(options = [{'label':"1 - Quality Adjusted Sharing Rate", 'value':"Quality Adjusted Sharing Rate"}], id = 'switch-quality-adj-rate',style={"font-family":"NotoSans-Regular","font-size":"0.6rem"})),
+                                            dbc.Col(dbc.Checklist(options = [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate"}], id = 'switch-quality-adj-rate',style={"font-family":"NotoSans-Regular","font-size":"0.8rem"})),
                                             ],
                                              style={"padding-top":"1rem"}
                                         ),
@@ -622,8 +676,8 @@ def card_quality_adjustment(app):
                             dbc.Row(
                                 [
                                     dbc.Col(html.H2("Total Weight", style={"font-size":"1rem", "margin-left":"10px"}), width=10),
-                                    dbc.Col(html.Div("100%", id = 'div-recom-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"}), style={"padding-left":"0.5rem","padding-right":"0.3rem"}),
-                                    dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center","background-color":"#fff","border-radius":"10rem","font-size":"0.8rem"}), style={"padding-left":"0.3rem"}),
+                                    dbc.Col(html.Div("100%", id = 'div-recom-overall', style={"text-align":"center","background-color":"#fff","border-radius":"8rem","font-size":"0.8rem"}), style={"padding-left":"3.5rem","padding-right":"0.5rem"}),
+                                    dbc.Col(html.Div("100%", id ='div-usr-overall', style={"text-align":"center","background-color":"#fff","border-radius":"8rem","font-size":"0.8rem"}), style={"padding-left":"0.5rem"}),
                                 ],
                                 no_gutters=True,
                                 style={"padding-right":"0.5rem","padding-top":"0.5rem", "padding-bottom":"0.2rem", "background-color":"#bbd4ff", "border-radius":"10rem","width":"101.5%"}
@@ -653,10 +707,15 @@ def tab_result(app):
                                     dbc.ModalBody([sim_assump_input_session(),]),
                                     dbc.ModalFooter(
                                         dbc.Button('Close', id = 'button-close-assump-modal'))
-                                    ], id = 'modal-assump', size = 'xl'),
+                                    ], id = 'modal-assump', size = 'xl', backdrop = 'static'),
                                 ],
                                 style={"padding-top":"1rem"}
                             ),
+                            dbc.Col([dbc.DropdownMenu(
+                                label = 'Choose Version to Generate Contract',
+                                children = [dbc.DropdownMenuItem('User Defined Setting', href = '/vbc-demo/contract-generator/'),
+                                dbc.DropdownMenuItem('Recommended Setting')],
+                                )])
                             
                         ]
                     ),
@@ -683,9 +742,8 @@ def tab_result(app):
                                 html.Div(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'figure-cost',style={"height":"60vh", "width":"60vh"}), width=5),
-                                            dbc.Col(html.Div(id = 'table-cost'), width=6),
+                                            dbc.Col(dcc.Graph(id = 'figure-cost', config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"24rem", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(id = 'table-cost'), width=7),
                                         ],
                                         no_gutters=True,
                                     ),
@@ -713,7 +771,7 @@ def tab_result(app):
                                             {'label' : "ACO's Total Revenue", 'value' : "ACO's Total Revenue" },
                                             {'label' : "ACO's Margin", 'value' : "ACO's Margin" },
                                             {'label' : "ACO's Margin %", 'value' : "ACO's Margin %" }],
-                                            value = "ACO's Total Revenue",
+                                            value = "ACO's Margin",
                                             ))
                                     ],
                                     no_gutters=True,
@@ -721,9 +779,8 @@ def tab_result(app):
                                 html.Div(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.Div("1"), width=1),
-                                            dbc.Col(dcc.Graph(id = 'figure-fin',style={"height":"60vh", "width":"60vh"}), width=5),
-                                            dbc.Col(html.Div(id = 'table-fin'), width=6),
+                                            dbc.Col(dcc.Graph(id = 'figure-fin', config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"24rem", "width":"60vh"}), width=5),
+                                            dbc.Col(html.Div(id = 'table-fin'), width=7),
                                         ],
                                         no_gutters=True,
                                     ),
@@ -734,6 +791,15 @@ def tab_result(app):
                             className="mb-3",
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem", "padding-top":"1rem"}
                         )
+                    ),
+                    html.Hr(),
+                    html.H6(
+                        "Best case scenario means more cost reduction is achieved in performance year than expected",
+                        style={"font-size":"1rem"}
+                    ),
+                    html.H6(
+                        "Worst case scenario means less cost reduction is achieved in performance year than expected",
+                        style={"font-size":"1rem"}
                     )
                 ],
                 style={"padding-top":"2rem","padding-bottom":"2rem","padding-left":"1rem","padding-right":"1rem"}
@@ -915,25 +981,7 @@ def sim_assump_input_session():
 
 layout = create_layout(app)
 
-@app.callback(
-    [Output('text-saving-left', 'style'),
-    Output("text-saving-right", 'style')],
-    [Input('toggleswitch-firstdollar-saving', 'value')]
-    )
-def toogle_saving(v):
-    if v == False:
-        return {"font-size":"0.6rem", "color":'blue'},{"font-size":"0.6rem"}
-    return {"font-size":"0.6rem"},{"font-size":"0.6rem", 'color':'blue'}
 
-@app.callback(
-    [Output('text-loss-left', 'style'),
-    Output("text-loss-right", 'style')],
-    [Input('toggleswitch-firstdollar-loss', 'value')]
-    )
-def toogle_saving(v):
-    if v == False:
-        return {"font-size":"0.6rem", "color":'blue'},{"font-size":"0.6rem"}
-    return {"font-size":"0.6rem"},{"font-size":"0.6rem", 'color':'blue'}
 
 @app.callback(
     [Output('text-saving', 'children'),
@@ -944,8 +992,8 @@ def toogle_saving(v):
     )
 def toggle_saving_method(v):
     if v and len(v)>0:
-        return [html.H5("Max Sharing % (When quality targets are met)", style={"font-size":"0.6rem"})], False,{"font-size":"0.6rem"},{}
-    return [html.H5("Sharing %", style={"font-size":"0.6rem"})],True,{"font-size":"0.6rem", "color":'#919191'},{"color":'#919191'}
+        return [html.H5("Max Sharing % (When quality targets are met)", style={"font-size":"0.8rem"})], False,{"font-size":"0.8rem"},{}
+    return [html.H5("Sharing %", style={"font-size":"0.8rem"})],True,{"font-size":"0.8rem", "color":'#919191'},{"color":'#919191'}
 
 @app.callback(
     [Output('text-loss', 'children'),
@@ -953,12 +1001,17 @@ def toggle_saving_method(v):
     Output('text-loss-max', 'style'),
     Output('text-loss-max-recom', 'style'),
     Output('switch-quality-adj-rate', 'options')],
-    [Input('switch-loss-method', 'value')]
+    [Input('switch-loss-method', 'value'),
+    Input('switch-share-loss', 'value')]
     )
-def toggle_loss_method(v):
-    if v and len(v)>0:
-        return [html.H5("Min Sharing % (When quality targets are met)", style={"font-size":"0.6rem"})], False,{"font-size":"0.6rem"},{}, [{'label':"1 - Quality Adjusted Sharing Rate", 'value':"Quality Adjusted Sharing Rate", 'disabled':False}]
-    return [html.H5("Sharing %", style={"font-size":"0.6rem"})],True,{"font-size":"0.6rem", "color":'#919191'},{"color":'#919191'}, [{'label':"1 - Quality Adjusted Sharing Rate", 'value':"Quality Adjusted Sharing Rate", 'disabled':True}]
+def toggle_loss_method(v, v1):
+    if 'Shared Losses' not in v1:
+        return [html.H5("Min Sharing % (When quality targets are met)", style={"font-size":"0.8rem"})], True,{"font-size":"0.8rem"},{}, [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate", 'disabled':True}]
+    else:
+        if v and len(v)>0:
+            return [html.H5("Min Sharing % (When quality targets are met)", style={"font-size":"0.8rem"})], False,{"font-size":"0.8rem"},{}, [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate", 'disabled':False}]
+        else:
+            return [html.H5("Sharing %", style={"font-size":"0.8rem"})],True,{"font-size":"0.8rem", "color":'#919191'},{"color":'#919191'}, [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate", 'disabled':True}]
 
 
 
@@ -967,7 +1020,7 @@ def toggle_loss_method(v):
 #    Output('input-usr-planshare-l', 'disabled'),
     Output('input-usr-sharecap-l', 'disabled'),
     Output('input-usr-planshare-l-min', 'disabled'),
-    Output('toggleswitch-firstdollar-loss', 'disabled'),
+    Output('dropdown-firstdollar-loss', 'disabled'),
     Output('switch-loss-method', 'options')],
     [Input('switch-share-loss', 'value')]
     )
@@ -998,28 +1051,27 @@ def update_usr_target(v):
         tgt = int(round(base*v/100+base,0))
         return '$'+str(tgt)
     else:
-        return '$800'
+        return '$'+str(base)
    
 
 @app.callback(
     Output('div-usr-like', 'children'),
-    [Input('div-usr-tgt', 'children')],
-    [State('div-recom-like', 'children'),
-    State('div-recom-tgt', 'children')]
+    [Input('input-usr-tgt-trend', 'value')]
     )
-def cal_usr_like(usr_tgt, recom_like, recom_tgt):
+def cal_usr_like(usr_tgt):
 
     if usr_tgt:
-        recom_tgt_int = int(recom_tgt.replace('$','').replace('%','').replace(',',''))
-        usr_tgt_int = int(usr_tgt.replace('$','').replace('%','').replace(',',''))
-        if usr_tgt_int >= recom_tgt_int:
+#        recom_tgt_int = int(recom_tgt.replace('$','').replace('%','').replace(',',''))
+#        usr_tgt_int = int(usr_tgt.replace('$','').replace('%','').replace(',',''))
+        if usr_tgt >= 3.9:
             return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"})
-        elif usr_tgt_int < recom_tgt_int*0.95:
+        elif usr_tgt < 2.5:
             return html.Div(html.H1("Low",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"red"})
         else:
-            return html.Div(html.H1("Mid",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem"}), style={"border-radius":"0.5rem", "background-color":"#fff"})
+            return html.Div(html.H1("Mid",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem"}), style={"border-radius":"0.5rem", "background-color":"#F5B111"})
     else:
-        return html.Div()
+        return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"})
+
 
 @app.callback(
     Output('modal-assump', 'is_open'),
@@ -1082,13 +1134,21 @@ def update_columns(timestamp, data,selected_quality):
         if i in selected_quality:
             if row['tar_user_type']=='Report':
                 row['tar_user']='R'
+            elif row['tar_user_type']=='Performance' and  row['tar_user']=='R':
+                if row['tar_recom']=='R':
+                    row['tar_user']=row['bic']
+
+                else:
+                    row['tar_user']=row['tar_recom']
             else:
-                if i in [10,11,12,13,14,17,18,21,22]:
+                if i in range(10,23):
                     row['tar_user']=str(row['tar_user']).replace('$','').replace('%','').replace(',','')+'%'
+
+
         else:
             row['tar_user']=float('nan')
 
-    return data  
+    return data
 
 # store data
 @app.callback(
@@ -1105,9 +1165,11 @@ def update_columns(timestamp, data,selected_quality):
     Input('switch-share-loss', 'value'),
     Input('switch-loss-method', 'value'),
     Input('table-measure-setup', 'selected_rows'),
-    Input('table-measure-setup', 'data')]
+    Input('table-measure-setup', 'data'),
+    Input('dropdown-firstdollar-saving', 'value'),
+    Input('dropdown-firstdollar-loss', 'value'),]
     )
-def store_data(usr_tgt_int, usr_msr, usr_planshare, usr_planshare_min, usr_sharecap, usr_mlr, usr_planshare_l, usr_planshare_l_min, usr_sharecap_l, ts, lm, select_row, data):
+def store_data(usr_tgt_int, usr_msr, usr_planshare, usr_planshare_min, usr_sharecap, usr_mlr, usr_planshare_l, usr_planshare_l_min, usr_sharecap_l, ts, lm, select_row, data, sharemethod, sharemethod_l):
     df = pd.DataFrame(data)
 
     if 'Shared Losses' in ts:
@@ -1139,7 +1201,7 @@ def store_data(usr_tgt_int, usr_msr, usr_planshare, usr_planshare_min, usr_share
     datasets = {
         'medical cost target' : {'user target' : usr_tgt},
         'savings/losses sharing arrangement' : {'two side' : two_side, 'msr': usr_msr, 'savings sharing' : usr_planshare, 'savings sharing min' : usr_planshare_min, 'savings share cap' : usr_sharecap,
-        'mlr' : usr_mlr, 'losses sharing' : usr_planshare_l, 'losses sharing min' : usr_planshare_l_min, 'losses share cap' : usr_sharecap_l, 'loss method' : loss_method},
+        'mlr' : usr_mlr, 'losses sharing' : usr_planshare_l, 'losses sharing min' : usr_planshare_l_min, 'losses share cap' : usr_sharecap_l, 'loss method' : loss_method, 'saving sharing method': sharemethod, 'loss sharing method' : sharemethod_l},
         'quality adjustment' : {'selected measures' : select_row, 'recom_dom_1' : recom_dom_1, 'recom_dom_2' : recom_dom_2, 'recom_dom_3' : recom_dom_3, 'recom_dom_4' : recom_dom_4,
         'usr_dom_1' : usr_dom_1, 'usr_dom_2' : usr_dom_2, 'usr_dom_3' : usr_dom_3, 'usr_dom_4' : usr_dom_4,
         'user_tar_type':user_tar_type,'user_tar_value':user_tar_value}
@@ -1212,6 +1274,6 @@ def update_grapg_cost(metric, data):
     return {}, ""
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True,port=8049)
+    app.run_server(host="127.0.0.1",debug=True,port=8052)
 
 
