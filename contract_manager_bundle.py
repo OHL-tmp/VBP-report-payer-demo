@@ -91,12 +91,11 @@ def manager_div_year_to_date_metrics(app):
     return html.Div(
                 [
                     html.H2("Key Performance Metrics", style={"padding-top":"2rem", "font-weight":"lighter", "font-size":"1rem"}),
-                    manager_card_year_to_date_metrics("Attributed Members", "4,250", "#381610f"),
-                    manager_card_year_to_date_metrics("YTD Total Cost", "$24.6M", "#381610f"),
-                    manager_card_year_to_date_metrics("Projected Total Cost", "$54.1M", "#381610f"),
+                    manager_card_year_to_date_metrics("Attributed Bundle", "383", "#381610f"),
+                    manager_card_year_to_date_metrics("YTD Bundle Cost (FFS)", "$10,925,917", "#381610f"),
+                    manager_card_year_to_date_metrics("Projected PY Bundle Cost (FFS)", "$23,556,277", "#381610f"),
                     html.Hr(className="ml-1"),
-                    manager_card_year_to_date_metrics("Projected Total Losses", "\u25bc $1.6M", "#db2200"),
-                    manager_card_year_to_date_metrics("Projected Plan's Shared Losses", "\u25bc $1.1M", "#db2200"),
+                    manager_card_year_to_date_metrics("Expected Total Losses", "\u25bc $662,247", "#db2200"),
                     html.Hr(className="ml-1"),
                     manager_modal_metricsdetail(app),
                 ],
@@ -149,7 +148,7 @@ def manager_div_overall_performance(app):
                             dbc.Col(html.H1("OVERALL PERFORMANCE"), width="auto"),
                             dbc.Col(
                                 html.Div(
-                                    html.H5("05/18/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
+                                    html.H5("05/22/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
                                 ),
                                 width=2,
                                 style={"padding-top":"2rem"}
@@ -161,7 +160,7 @@ def manager_div_overall_performance(app):
                         [
                             html.Div(
                                 [
-                                    html.Div(dcc.Graph(figure=waterfall_overall_bundle(df_overall_bundle), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"width":"100%","height":"100%"}), style={"height":"28rem"}),
+                                    html.Div(dcc.Graph(figure=waterfall_overall_bundle(df_overall_bundle), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"width":"100%","height":"100%"}), style={"height":"25rem"}),
                                     manager_modal_totalcost(app),
                                 ]
                             )
@@ -196,16 +195,25 @@ def manager_card_quality_score(app):
                                                 dbc.Tabs(
                                                     [
                                                         dbc.Tab(
-                                                            html.Div( children=table_perform_bundle(df_bundle_performance)
-
-                                                            ), 
-                                                            label="Total Cost", style={"background-color":"#fff","height":"16rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                                            [
+                                                                html.Div(
+                                                                    dbc.Row(
+                                                                        [
+                                                                            dbc.Col(width=10),
+                                                                            dbc.Col(html.H6("\u25A0 Gain", style={"color":"green"}), width=1),
+                                                                            dbc.Col(html.H6("\u25A0 Loss", style={"color":"red"}), width=1),
+                                                                        ]
+                                                                    )
+                                                                ),
+                                                                html.Div( children=table_perform_bundle(df_bundle_performance)),
+                                                            ],
+                                                            label="Episode Total", style={"background-color":"#fff","height":"16rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
                                                         ),
                                                         dbc.Tab(
                                                             html.Div( children=table_perform_bundle(df_bundle_performance_pmpm)
 
                                                             ), 
-                                                            label="PMPM", style={"background-color":"#fff","height":"16rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                                            label="Episode Average", style={"background-color":"#fff","height":"16rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
                                                         ),
                                                         
                                                     ], 
@@ -299,7 +307,7 @@ def manager_modal_totalcost(app):
                     ], id = 'manager-modal-totalcost',
                 style={"text-align":"center"}),
             ],
-            style={"text-align":"end","padding-right":"9rem"})
+            style={"text-align":"start","padding-left":"24.5rem"})
 
 
 def manager_modal_bundle_performance_details(app):
