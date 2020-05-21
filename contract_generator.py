@@ -20,11 +20,11 @@ from app import app
 
 # server = app.server
 
-file = open('configure/input_ds.json', encoding = 'utf-8')
-custom_input = json.load(file)
+
 df_quality = pd.read_csv("data/quality_setup.csv")
 
 def create_layout(app):
+	
 	return html.Div(
                 [ 
                     html.Div([Header_contract(app, True, False, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
@@ -33,11 +33,11 @@ def create_layout(app):
                     	html.Div(
 	                        [
 	                        	html.H1("Contract Generator", style={"padding-left":"20px","padding-bottom":"30px"}),
-		                        contract_gen_basic(app),
+		                        html.Div(id = 'contract-gen-basic'),
 		                        html.Div(style={"height":"20px"}),
-		                        contract_gen_parameter(app),
+		                        html.Div(id = 'contract-gen-parameter'),
 		                        html.Div(style={"height":"40px"}),
-		                        contract_gen_measure(app),
+		                        html.Div(id = 'contract-gen-measure'),
 		                        html.Div(style={"height":"20px"}),
 								html.Div(
 									[
@@ -62,7 +62,12 @@ def create_layout(app):
 									style={"padding":"20px","background-color":"#f2f7ff"}
 								),
 								html.Div(style={"height":"20px"}),
-								html.Div(dbc.Button('Generate Contract', style={"text-align":"center", "background-color":"#381610", "border-radius":"10rem"}), style={"padding-bottom":"40px", "text-align":"center"})
+								html.Div(dbc.Button('Generate Contract', style={"text-align":"center", "background-color":"#381610", "border-radius":"10rem"}), style={"padding-bottom":"40px", "text-align":"center"}),
+								dcc.Interval(
+									id = 'contract-gen-interval',
+									interval = 600*1000,
+									n_intervals = 0
+									)
 							]      
 	                        
 	                    ),
@@ -72,7 +77,14 @@ def create_layout(app):
                     
                 ])
 
-def contract_gen_basic(app):
+
+@app.callback(
+	Output('contract-gen-basic','children'),
+	[Input('contract-gen-interval','n_intervals')]
+	)
+def contract_gen_basic(n):
+	file = open('configure/input_ds.json', encoding = 'utf-8')
+	custom_input = json.load(file)
 	return html.Div([
 		html.Div(
 			[
@@ -101,7 +113,15 @@ def contract_gen_basic(app):
 		],
 		style={"padding":"20px","background-color":"#f2f7ff"})
 
-def contract_gen_parameter(app):
+
+
+@app.callback(
+	Output('contract-gen-parameter','children'),
+	[Input('contract-gen-interval','n_intervals')]
+	)
+def contract_gen_parameter(n):
+	file = open('configure/input_ds.json', encoding = 'utf-8')
+	custom_input = json.load(file)
 	return html.Div([
 		html.Div(
 			[
@@ -161,7 +181,7 @@ def contract_gen_parameter(app):
 					dbc.Col('Sharing Method', width=7),
 					dbc.Col([
 						dcc.Dropdown(options = [{'label':'First Dollar Sharing', 'value':'First Dollar Sharing'},
-							{'label':'Second Dollar Sharing (Below MLR)', 'value':'Second Dollar Sharing (Below MLR)'}],
+							{'label':'Second Dollar Sharing (Above MSR)', 'value':'Second Dollar Sharing (Above MSR)'}],
 							value = custom_input['savings/losses sharing arrangement']['saving sharing method'],clearable = False,style={"font-size":"0.8rem"}),
 
 						], width=5)
@@ -241,13 +261,22 @@ def contract_gen_parameter(app):
 		style={"font-family":"NotoSans-Regular"}
 	)
 
-def contract_gen_measure(app):
+
+@app.callback(
+	Output('contract-gen-measure','children'),
+	[Input('contract-gen-interval','n_intervals')]
+	)
+def contract_gen_measure(n):
+	file = open('configure/input_ds.json', encoding = 'utf-8')
+	custom_input = json.load(file)
 
 	df = df_quality.iloc[custom_input['quality adjustment']['selected measures']]
 	df=pd.DataFrame(df['measure'].tolist(),columns=['Measure'])
 	df=df.reindex(columns=['Measure','Target Type','Target Value','Domain','Weight'])
-	df['Target Type'] = custom_input['quality adjustment']['user_tar_type']
-	df['Target Value']  = custom_input['quality adjustment']['user_tar_value']
+	tgt_type = custom_input['quality adjustment']['user_tar_type']
+	tgt_value = custom_input['quality adjustment']['user_tar_value']
+	df['Target Type'] = [tgt_type[i] for i in range(0, len(tgt_type)) if tgt_type[i] is not None]
+	df['Target Value']  = [tgt_value[i] for i in range(0, len(tgt_value)) if tgt_value[i] is not None]
 	domain_list = []
 	weight_list = []
 
@@ -261,13 +290,14 @@ def contract_gen_measure(app):
 
 	style1=[]
 	style2=[]
+	style3=[]
 
 	domain_name=['Patient/Caregiver Experience','Care Coordination/Patient Safety','Preventive Health','At-Risk Population']
 
 	for i in range(0,4):
 		exec('selected_intersect_' + str(i) + '=set(selected_row).intersection( set(eval("domain"+str(i+1)) ))')
 		n = eval('len(selected_intersect_' + str(i)+')')
-		if n>0:	
+		if n>1:	
 			style1.append(table_len)		
 			pos=int(round(n/2,0))
 			domain_list = domain_list + (['']*n)
@@ -278,6 +308,19 @@ def contract_gen_measure(app):
 			table_len=table_len+n
 
 			style2.append(table_len-1)
+		elif n == 1:
+			style3.append(table_len)		
+			pos=int(round(n/2,0))
+			domain_list = domain_list + (['']*n)
+			domain_list[pos+table_len]=domain_name[i]
+			weight_list = weight_list + (['']*n)
+			weight_list[pos+table_len]=custom_input['quality adjustment'][eval('"usr_dom_'+str(i+1)+'"')]
+
+			table_len=table_len+n
+
+			
+
+		print(style3)
 
 
 	df['Domain'] = domain_list
@@ -322,15 +365,19 @@ def contract_gen_measure(app):
 					  } if c in style2 else
 			{'if': {'row_index':c},
 					'border':'1px solid grey',
+					} if c in style3 else
+			{'if': {'row_index':c},
+					'border':'1px solid grey', 
 					'border-bottom':'0px',
-					'border-top':'0px',   
-					}  for c in range(0,len(df))
+					'border-top':'0px', 
+					} for c in range(0,len(df))
 
 
 		]
 			)
 		],
 		style={"padding-left":"20px","padding-right":"20px"})
+	
 
 layout = create_layout(app)
 

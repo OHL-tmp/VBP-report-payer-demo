@@ -17,7 +17,7 @@ def get_header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, 
     menu_aco = dbc.Nav([
             dbc.NavItem(dbc.DropdownMenu(
                             label = 'Accountable Care Programs',
-                            children = dbc.DropdownMenuItem('Bundles & Episodes of Care', href = '/vbc-demo/contract-optimizer-bundle/'),
+                            children = dbc.DropdownMenuItem('Bundles & Episodes of Care', href = '/vbc-demo/contract-manager-bundle/'),
                             
                         )),
             dbc.NavItem(dbc.NavLink(
@@ -86,9 +86,14 @@ def get_header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, 
 def get_header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, Homepage_active):
 
     menu_bundle = dbc.Nav([
+            dbc.NavItem(dbc.DropdownMenu(
+                            label = 'Bundles & Episodes of Care',
+                            children = dbc.DropdownMenuItem('Accountable Care Programs', href = '/vbc-demo/contract-manager/'),
+                            
+                        )),
             dbc.NavItem(dbc.NavLink(
                         "Dashboard",
-                        href="/vbc-demo/contract-optimizer-bundle/",
+                        href="/vbc-demo/contract-manager-bundle/",
                         className="nav-link",
                         active = dashboard_active,
                         ),
@@ -123,12 +128,6 @@ def get_header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, H
         navbar = True,
         className="ml-auto flex-nowrap mt-3 mt-md-0",)
 
-    dropdowm = dbc.NavItem(dbc.DropdownMenu(
-                        label = 'Bundles & Episodes of Care',
-                        children = dbc.DropdownMenuItem('Accountable Care Programs', href = '/vbc-demo/contract-manager/'),
-                        
-                    )),
-
     header = dbc.Navbar(
             [
                 html.A(
@@ -144,7 +143,7 @@ def get_header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, H
                 ),
                 dbc.NavbarToggler(id="navbar-toggler"),
                 
-                dbc.Collapse([dropdown,menu_bundle], id="navbar-collapse-mgmt", navbar=True),
+                dbc.Collapse(menu_bundle, id="navbar-collapse-mgmt", navbar=True),
                 ],
             color="#fff",
             sticky = "top",
