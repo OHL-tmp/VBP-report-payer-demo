@@ -8,7 +8,7 @@ def simulation_cal(selected_rows,domian_weight,user_tar_type,user_tar_value,df_j
 	domain3=list(range(14,20))
 	domain4=list(range(20,23))
 
-	pmpy_mean=930*12
+	pmpy_mean=920*12
 	pmpy_rangepct=[1,1.2,0.8,1.1,0.9] # be,worst,best,worse,better
 	
 	aco_margin=0.05

@@ -25,10 +25,12 @@ from utils import *
 from figure import *
 from modal_dashboard_domain_selection import *
 
+from app import app
 
-app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract-bundle-manager/')
 
-server = app.server
+#app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract-bundle-manager/')
+
+#server = app.server
 
 
 
@@ -58,7 +60,7 @@ def create_layout(app):
 
     return html.Div(
                 [ 
-                    html.Div([Header_mgmt(app, True, False, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
+                    html.Div([Header_mgmt_bp(app, True, False, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
                     
                     html.Div(
                         [
@@ -91,11 +93,12 @@ def manager_div_year_to_date_metrics(app):
     return html.Div(
                 [
                     html.H2("Key Performance Metrics", style={"padding-top":"2rem", "font-weight":"lighter", "font-size":"1rem"}),
-                    manager_card_year_to_date_metrics("Attributed Bundle", "383", "#381610f"),
-                    manager_card_year_to_date_metrics("YTD Bundle Cost (FFS)", "$10,925,917", "#381610f"),
-                    manager_card_year_to_date_metrics("Projected PY Bundle Cost (FFS)", "$23,556,277", "#381610f"),
+                    manager_card_year_to_date_metrics("Attributed Members", "4,250", "#381610f"),
+                    manager_card_year_to_date_metrics("YTD Total Cost", "$24.6M", "#381610f"),
+                    manager_card_year_to_date_metrics("Projected Total Cost", "$54.1M", "#381610f"),
                     html.Hr(className="ml-1"),
-                    manager_card_year_to_date_metrics("Expected Total Losses", "\u25bc $662,247", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected Total Losses", "\u25bc $1.6M", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected Plan's Shared Losses", "\u25bc $1.1M", "#db2200"),
                     html.Hr(className="ml-1"),
                     manager_modal_metricsdetail(app),
                 ],
@@ -107,7 +110,7 @@ def manager_modal_metricsdetail(app):
     return html.Div([
             dbc.Button(
                         "Result Details",
-                        id = 'manager-button-openmodal-metricsdetail',
+                        id = 'bundle-manager-button-openmodal-metricsdetail',
                         className="mb-3",
                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
                     ),
@@ -119,8 +122,8 @@ def manager_modal_metricsdetail(app):
                     
                 ),
                 dbc.ModalBody(children=table_result_dtls(df_result_details_bundle), style={"padding":"2rem"}),
-                dbc.ModalFooter(dbc.Button('Close', style={"border-radius":"10rem"}, id = 'manager-button-closemodal-metricsdetail')),
-                ], id = 'manager-modal-metricsdetail'),
+                dbc.ModalFooter(dbc.Button('Close', style={"border-radius":"10rem"}, id = 'bundle-manager-button-closemodal-metricsdetail')),
+                ], id = 'bundle-manager-modal-metricsdetail'),
 
         ])
 
@@ -148,7 +151,7 @@ def manager_div_overall_performance(app):
                             dbc.Col(html.H1("OVERALL PERFORMANCE"), width="auto"),
                             dbc.Col(
                                 html.Div(
-                                    html.H5("05/22/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
+                                    html.H5("05/18/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
                                 ),
                                 width=2,
                                 style={"padding-top":"2rem"}
@@ -160,7 +163,7 @@ def manager_div_overall_performance(app):
                         [
                             html.Div(
                                 [
-                                    html.Div(dcc.Graph(figure=waterfall_overall_bundle(df_overall_bundle), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"width":"100%","height":"100%"}), style={"height":"25rem"}),
+                                    html.Div(dcc.Graph(figure=waterfall_overall_bundle(df_overall_bundle), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"width":"100%","height":"100%"}), style={"height":"28rem"}),
                                     manager_modal_totalcost(app),
                                 ]
                             )
@@ -195,25 +198,16 @@ def manager_card_quality_score(app):
                                                 dbc.Tabs(
                                                     [
                                                         dbc.Tab(
-                                                            [
-                                                                html.Div(
-                                                                    dbc.Row(
-                                                                        [
-                                                                            dbc.Col(width=10),
-                                                                            dbc.Col(html.H6("\u25A0 Gain", style={"color":"green"}), width=1),
-                                                                            dbc.Col(html.H6("\u25A0 Loss", style={"color":"red"}), width=1),
-                                                                        ]
-                                                                    )
-                                                                ),
-                                                                html.Div( children=table_perform_bundle(df_bundle_performance)),
-                                                            ],
-                                                            label="Episode Total", style={"background-color":"#fff","height":"16rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                                            html.Div( children=table_perform_bundle(df_bundle_performance)
+
+                                                            ), 
+                                                            label="Total Cost", style={"background-color":"#fff","height":"16rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
                                                         ),
                                                         dbc.Tab(
                                                             html.Div( children=table_perform_bundle(df_bundle_performance_pmpm)
 
                                                             ), 
-                                                            label="Episode Average", style={"background-color":"#fff","height":"16rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
+                                                            label="PMPM", style={"background-color":"#fff","height":"16rem","padding":"1rem"}, tab_style={"font-family":"NotoSans-Condensed"}
                                                         ),
                                                         
                                                     ], 
@@ -290,7 +284,7 @@ def manager_modal_totalcost(app):
     return html.Div([
                 dbc.Button(
                     "Details",
-                    id = 'manager-button-openmodal-totalcost',
+                    id = 'bundle-manager-button-openmodal-totalcost',
                     className="mb-3",
                     style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
                 ),
@@ -303,18 +297,18 @@ def manager_modal_totalcost(app):
                         
                     ),
                     dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj_bundle),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"padding":"2rem"})),
-                    dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-totalcost')),
-                    ], id = 'manager-modal-totalcost',
+                    dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'bundle-manager-button-closemodal-totalcost')),
+                    ], id = 'bundle-manager-modal-totalcost',
                 style={"text-align":"center"}),
             ],
-            style={"text-align":"start","padding-left":"24.5rem"})
+            style={"text-align":"end","padding-right":"9rem"})
 
 
 def manager_modal_bundle_performance_details(app):
     return html.Div([
             dbc.Button(
                         "Result Details",
-                        id = 'manager-button-openmodal-bundle-performance-details',
+                        id = 'bundle-manager-button-openmodal-bundle-performance-details',
                         className="mb-3",
                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
                     ),
@@ -332,20 +326,20 @@ def manager_modal_bundle_performance_details(app):
                     html.Div('Bundle Average'),
                     table_bundle_dtls(df_bundle_performance_details_pmpm),
                     ], style={"padding":"2rem"}),
-                dbc.ModalFooter(dbc.Button('Close', style={"border-radius":"10rem"}, id = 'manager-button-closemodal-bundle-performance-details')),
-                ], id = 'manager-modal-bundle-performance-details'),
+                dbc.ModalFooter(dbc.Button('Close', style={"border-radius":"10rem"}, id = 'bundle-manager-button-closemodal-bundle-performance-details')),
+                ], id = 'bundle-manager-modal-bundle-performance-details'),
 
         ])
 
 
-app.layout = create_layout(app)
+layout = create_layout(app)
 
 
 @app.callback(
-    Output('manager-modal-metricsdetail', 'is_open'),
-    [Input('manager-button-openmodal-metricsdetail', 'n_clicks'),
-    Input('manager-button-closemodal-metricsdetail', 'n_clicks')],
-    [State('manager-modal-metricsdetail', 'is_open')]
+    Output('bundle-manager-modal-metricsdetail', 'is_open'),
+    [Input('bundle-manager-button-openmodal-metricsdetail', 'n_clicks'),
+    Input('bundle-manager-button-closemodal-metricsdetail', 'n_clicks')],
+    [State('bundle-manager-modal-metricsdetail', 'is_open')]
     )
 def open_modal(n1, n2, is_open):
     if n1 or n2:
@@ -354,10 +348,10 @@ def open_modal(n1, n2, is_open):
 
 
 @app.callback(
-    Output('manager-modal-totalcost', 'is_open'),
-    [Input('manager-button-openmodal-totalcost', 'n_clicks'),
-    Input('manager-button-closemodal-totalcost', 'n_clicks')],
-    [State('manager-modal-totalcost', 'is_open')]
+    Output('bundle-manager-modal-totalcost', 'is_open'),
+    [Input('bundle-manager-button-openmodal-totalcost', 'n_clicks'),
+    Input('bundle-manager-button-closemodal-totalcost', 'n_clicks')],
+    [State('bundle-manager-modal-totalcost', 'is_open')]
     )
 def open_modal(n1, n2, is_open):
     if n1 or n2:
@@ -366,10 +360,10 @@ def open_modal(n1, n2, is_open):
 
 
 @app.callback(
-    Output('manager-modal-bundle-performance-details', 'is_open'),
-    [Input('manager-button-openmodal-bundle-performance-details', 'n_clicks'),
-    Input('manager-button-closemodal-bundle-performance-details', 'n_clicks')],
-    [State('manager-modal-bundle-performance-details', 'is_open')]
+    Output('bundle-manager-modal-bundle-performance-details', 'is_open'),
+    [Input('bundle-manager-button-openmodal-bundle-performance-details', 'n_clicks'),
+    Input('bundle-manager-button-closemodal-bundle-performance-details', 'n_clicks')],
+    [State('bundle-manager-modal-bundle-performance-details', 'is_open')]
     )
 def open_modal(n1, n2, is_open):
     if n1 or n2:
@@ -379,4 +373,4 @@ def open_modal(n1, n2, is_open):
 
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True, port = 8049)
+    app.run_server(host="127.0.0.1",debug=True, port = 8052)

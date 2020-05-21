@@ -46,7 +46,7 @@ def waterfall_overall(df):
 	if df.values[0,1]<10000:
 		number_fomart='%{y:,.0f}'
 	else:
-		number_fomart='%{y:.2s}'
+		number_fomart='%{y:,.0f}'
 
 
 	fig_waterfall = go.Figure(data=[
@@ -55,7 +55,7 @@ def waterfall_overall(df):
 			x=df.columns[0:3].tolist()+[gain], 
 			y=df.values[0,0:3].tolist()+[base],
 			#text=y1_waterfall,
-			textposition='auto',
+			textposition='outside',
 			textfont=dict(color=['black','black','black',colors['transparent']]),
 			texttemplate=number_fomart,
 			marker=dict(
@@ -64,7 +64,7 @@ def waterfall_overall(df):
 					),
 			marker_line=dict( color = colors['transparent'] ),
 			hovertemplate='%{y:,.0f}',
-			hoverinfo='y',
+			hoverinfo='skip',
 			
 		),
 		go.Bar(  
@@ -81,7 +81,7 @@ def waterfall_overall(df):
 					opacity=0.7
 					),
 			hovertemplate='%{y:,.0f}',
-			hoverinfo='y',
+			hoverinfo='skip',
 		)
 	])
 	# Change the bar mode
@@ -98,7 +98,7 @@ def waterfall_overall(df):
 			zeroline=True,
 			zerolinecolor=colors['grey'],
 			zerolinewidth=1,
-			range=[0,df.max(axis=1)*1.4]
+			range=[0,df.max(axis=1)*1.2]
 		),
 		showlegend=False,
 		modebar=dict(
@@ -219,10 +219,10 @@ def waterfall_target_adj(df):
 		adj=df['adj']
 		suf=''
 	else:
-		number_fomart='%{y:.1f}M'
-		base=df['base']/1000/1000
-		adj=df['adj']/1000/1000
-		suf='M'
+		number_fomart='%{y:,.0f}'
+		base=df['base']
+		adj=df['adj']
+		suf=''
 
 	fig_waterfall = go.Figure(data=[
 		go.Bar(
@@ -239,7 +239,7 @@ def waterfall_target_adj(df):
 					),
 			marker_line=dict( color = colors['transparent'] ),
 			hovertemplate='%{text:,.0f}',
-			hoverinfo='y',
+			hoverinfo='skip',
 			
 		),
 		go.Bar(  
@@ -255,7 +255,7 @@ def waterfall_target_adj(df):
 					opacity=0.7
 					),
 			hovertemplate='%{text:,.0f}',
-			hoverinfo='y',
+			hoverinfo='skip',
 		)
 	])
 	# Change the bar mode
@@ -916,42 +916,42 @@ def waterfall_overall_bundle(df):
 	if df.values[0,1]<10000:
 		number_fomart='%{y:,.0f}'
 	else:
-		number_fomart='%{y:.2s}'
+		number_fomart='%{y:,.0f}'
 
 
 	fig_waterfall = go.Figure(data=[
 		go.Bar(
 			name='',
 			x=df['name'], 
-			y=df['base']/1000/1000,
+			y=df['base'],
 			text=df['base'],
 			textposition='outside',
 			textfont=dict(color=['black','black','black',colors['transparent'],colors['transparent'],'black']),
-			texttemplate='%{y:.1f}M',
+			texttemplate='%{y:,.0f}',
 			marker=dict(
 					color=[colors['blue'],colors['blue'],colors['grey'],colors['transparent'],colors['transparent'],colors['blue']],
 					opacity=[1,0.7,0.7,0,0,1]
 					),
 			marker_line=dict( color = colors['transparent'] ),
 			hovertemplate='%{text:,.0f}',
-			hoverinfo='y',
+			hoverinfo='skip',
 			
 		),
 		go.Bar(  
 			name='',
 			x=df['name'], 
-			y=df['adj']/1000/1000,
+			y=df['adj'],
 			text=df['adj'],
 			cliponaxis=False,
 			textposition='outside',
 			textfont=dict(color=[colors['transparent'],colors['transparent'],colors['transparent'],'black','black',colors['transparent']]),
-			texttemplate='%{y:.1f}M',
+			texttemplate='%{y:,.0f}',
 			marker=dict(
 					color=colors['yellow'],
 					opacity=0.7
 					),
 			hovertemplate='%{text:,.0f}',
-			hoverinfo='y',
+			hoverinfo='skip',
 		)
 	])
 	# Change the bar mode
@@ -969,7 +969,7 @@ def waterfall_overall_bundle(df):
 			zeroline=True,
 			zerolinecolor=colors['grey'],
 			zerolinewidth=1,
-			range=[0,df['base'].max()/1000/1000*1.2]
+			range=[0,df['base'].max()*1.2]
 		),
 		showlegend=False,
 		modebar=dict(
@@ -1124,7 +1124,7 @@ def measure_quality_bar_bundle(df):
 	)
 	return fig
 
-def data_bars_diverging_bundle(df, column, color_above='#3D9970', color_below='#FF4136'):
+def data_bars_diverging_bundle(df, column, color_above='#FF4136', color_below='#3D9970'):
 
 	col_max=df[column].abs().max()
 	styles = []
@@ -1192,19 +1192,21 @@ def data_bars_diverging_bundle(df, column, color_above='#3D9970', color_below='#
 
 def table_perform_bundle(df):
 
+
 	tbl=dash_table.DataTable(
 #		id=tableid,
 		data=df.to_dict('records'),
 		columns=[
 		{"name": 'Bundle Name', "id": 'Bundle Name'},
 		{"name": 'YTD Cnt', "id": 'YTD Cnt','type':'numeric','format':Format( precision=0, group=',',scheme=Scheme.fixed,)},
+		{"name": 'YTD FFS Cost', "id": 'YTD FFS Cost','type':'numeric','format':FormatTemplate.money(0)},
 		{"name": 'Projected PY Gain/Loss', "id": 'Projected PY Gain/Loss','type':'numeric','format':FormatTemplate.money(0)}, 
 		{"name": 'Projected PY Gain/Loss %', "id": 'Projected PY Gain/Loss %','type':'numeric','format':FormatTemplate.percentage(1)}, 
 		],
 		
 		sort_action="native",
 		sort_mode='single',
-		sort_by=[{"column_id":"Projected PY Gain/Loss","direction":"asc"}],
+		sort_by=[{"column_id":"Projected PY Gain/Loss","direction":"desc"}],
 		style_data={
 			'whiteSpace': 'normal',
 			'height': 'auto'
@@ -1226,7 +1228,6 @@ def table_perform_bundle(df):
 			 'width': '20rem',
 			 'paddingLeft':'10px'
 			},
-
 
 		]
 		),
@@ -1264,6 +1265,26 @@ def table_bundle_dtls(df):
 			{'if': {'column_id':df.columns[0]},
 			 'textAlign':'start',
 			},
+			{'if': {'column_id':df.columns[4],'row_index':4},
+			 'color':'green',
+			},
+			{'if': {'column_id':df.columns[4],'row_index':7},
+			 'color':'green',
+			},
+		]+[
+
+		{'if': {'column_id':c,'row_index':4},
+			 'color':'red',
+			} for c in df.columns[1:4]
+
+
+		]+[
+
+		{'if': {'column_id':c,'row_index':7},
+			 'color':'red',
+			} for c in df.columns[1:4]
+
+
 		],
 		style_cell={
 			'textAlign': 'center',
@@ -1479,7 +1500,7 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 			df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Patient':'Diff % from Benchmark'})
 			showcolumn=[d_ori,'Patient %','Cost %','YTD Avg Cost/Patient','Diff % from Benchmark','Contribution to Overall Performance Difference']
 		
-	df_agg.to_csv(d+'.csv')
+#	df_agg.to_csv(d+'.csv')
 	return df_agg[showcolumn]
 
 
@@ -2314,17 +2335,21 @@ def table_sim_result(df):
 	df['scenario']=column1
 
 	if df.values[0,7] in ["ACO's PMPM"]:
-		header=['Best Estimate','Worst Case','Best Case','Worst Case','Best Case']
+		header=['Best Estimate','Worst Case','Best Case','Worst Case','Best Case','Variation']
 	elif df.values[0,7] in ["ACO's Margin %"]:
-		header=['Best Estimate(%)','Worst Case(%)','Best Case(%)','Worst Case(%)','Best Case(%)']
+		header=['Best Estimate(%)','Worst Case(%)','Best Case(%)','Worst Case(%)','Best Case(%)','Variation(%)']
 	else:
-		header=['Best Estimate(Mn)','Worst Case(Mn)','Best Case(Mn)','Worst Case(Mn)','Best Case(Mn)']
+		header=['Best Estimate(Mn)','Worst Case(Mn)','Best Case(Mn)','Worst Case(Mn)','Best Case(Mn)','Variation(Mn)']
 
 	if df.values[0,7] =="ACO's Margin %":
 		df.iloc[:,2:7]=df.iloc[:,2:7]/100
 		num_format=Format( precision=1, scheme=Scheme.percentage,nully='N/A')   
 	else:
 		num_format=Format( precision=1, scheme=Scheme.fixed,nully='N/A')
+
+
+	df['Variation']=(df['Lower End']-df['Higher End']).abs().tolist()
+	df.loc[[0,1,2,4,5,6,8,9,10],['Variation']]=float('nan')
 	
    
 	table=dash_table.DataTable(
@@ -2338,6 +2363,7 @@ def table_sim_result(df):
 		#{"name": [ "Full Range",header[2]], "id": "Best",'type': 'numeric',"format":num_format,},
 		{"name": [ "Scenario Analysis",header[3]], "id": "Lower End",'type': 'numeric',"format":num_format,},
 		{"name": [ "Scenario Analysis",header[4]], "id": "Higher End",'type': 'numeric',"format":num_format,},
+		{"name": [ "Scenario Analysis",header[5]], "id": "Variation",'type': 'numeric',"format":num_format,},
 		],  
 		merge_duplicate_headers=True,
 		style_data={
@@ -2617,6 +2643,11 @@ def table_bundle_sim_result(df):
 	style2=[1,2,5,6,9,10]
 	style3=[3,7,11]
 
+	df=df.reset_index(drop=True)
+
+	df['Variation']=(df[ df.columns[3]]-df[ df.columns[4]]).abs().tolist()
+	df.loc[[0,1,2,4,5,6,8,9,10],['Variation']]=float('nan')
+
 	
 	
 	#column1=column1+['Contract','w/o','VBC Payout','Contract with','VBC Payout','(Recommended)','Contract with','VBC Payout','(User Defined)']
@@ -2637,7 +2668,7 @@ def table_bundle_sim_result(df):
 #	else:
 #		num_format=Format( precision=1, scheme=Scheme.fixed,nully='N/A')
 	
-	num_format=Format( precision=0, group='yes',scheme=Scheme.fixed,nully='N/A')
+	num_format=Format( precision=0, group=',',scheme=Scheme.fixed,nully='N/A')
    
 	table=dash_table.DataTable(
 		data=df.to_dict('records'),
@@ -2650,6 +2681,7 @@ def table_bundle_sim_result(df):
 		#{"name": [ "Full Range",header[2]], "id": "Best",'type': 'numeric',"format":num_format,},
 		{"name": [ "Scenario Analysis",header[1]], "id": df.columns[3],'type': 'numeric',"format":num_format,},
 		{"name": [ "Scenario Analysis",header[2]], "id": df.columns[4],'type': 'numeric',"format":num_format,},
+		{"name": [ "Scenario Analysis",'Variation'], "id": 'Variation','type': 'numeric',"format":num_format,},
 		],  
 		merge_duplicate_headers=True,
 		style_data={

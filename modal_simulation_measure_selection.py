@@ -163,7 +163,7 @@ def modal_optimizer_domain_selection(n):
                         ],
                         id="optimizer-modal-centered",
                         size='lg',
-                        scrollable=True,
+                        scrollable=True, backdrop = 'static'
                     ),
                 ]
             )

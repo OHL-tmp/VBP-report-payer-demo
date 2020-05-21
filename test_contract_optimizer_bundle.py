@@ -20,6 +20,7 @@ from utils import *
 from figure import *
 from simulation_cal import *
 from modal_bundle import *
+from modal_test import *
 from bp_contract_calculation import *
 
 from app import app
@@ -331,12 +332,12 @@ def card_quality_adjustment(app):
                                                     style={"font-size":"0.8rem"}
                                                 )
                                             ],
-                                            id="tooltip-vbc-measure",
+                                            id="tooltip-mqa-saving",
                                             style={"font-size":"0.8rem"}
                                         ),
                                         dbc.Tooltip(
                                             "Maximum reduction in savings as a result of quality adjustment (i.e., when quality score = 0)",
-                                            target="tooltip-vbc-measure",
+                                            target="tooltip-mqa-saving",
                                             style={"text-align":"start"}
                                         ),
                                     ],
@@ -357,12 +358,12 @@ def card_quality_adjustment(app):
                                                     style={"font-size":"0.8rem"}
                                                 )
                                             ],
-                                            id="tooltip-vbc-measure",
+                                            id="tooltip-mqa-loss",
                                             style={"font-size":"0.8rem"}
                                         ),
                                         dbc.Tooltip(
                                             "Maximum reduction in losses/repayment as a result of quality adjustment (i.e., when quality score = 100)",
-                                            target="tooltip-vbc-measure",
+                                            target="tooltip-mqa-loss",
                                             style={"text-align":"start"}
                                         ),
                                     ],
@@ -427,7 +428,8 @@ def tab_result(app):
                 [
                     dbc.Row(
                         [
-                            dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"2rem","font-size":"3"}), width=9),
+                            dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"2rem","padding-bottom":"3rem","font-size":"3"}), width=9),
+                            html.Hr(),
                             dbc.Col([
                                 dbc.Button("Edit Scenario Assumptions",
                                     className="mb-3",
@@ -436,10 +438,10 @@ def tab_result(app):
                                 ),
                                 dbc.Modal([
                                     dbc.ModalHeader(html.H1("Key Simulation Assumptions", style={"font-family":"NotoSans-Black","font-size":"1.5rem"})),
-                                    dbc.ModalBody([sim_assump_input_session(),]),
+                                    dbc.ModalBody([bundle_assumption(),]),
                                     dbc.ModalFooter(
                                         dbc.Button('Close', id = 'button-close-assump-modal'))
-                                    ], id = 'modal-assump', size = 'xl'),
+                                    ], id = 'modal-assump', size = 'xl', backdrop = 'static'),
                                 ],
                                 style={"padding-top":"1rem"}
                             ),
@@ -470,7 +472,7 @@ def tab_result(app):
                                 width=3
                             )
                         ]
-                    )
+                    ),
                     dbc.Card(
                         dbc.CardBody(
                             [
@@ -527,6 +529,15 @@ def tab_result(app):
                             className="mb-3",
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem", "padding-top":"1rem"}
                         )
+                    ),
+                    html.Hr(),
+                    html.H1(
+                        "\u25c9 Best case scenario means more cost reduction is achieved in performance year than expected",
+                        style={"font-size":"0.8rem"}
+                    ),
+                    html.H1(
+                        "\u25c9 Worst case scenario means less cost reduction is achieved in performance year than expected",
+                        style={"font-size":"0.8rem"}
                     )
                 ],
                 style={"padding-top":"2rem","padding-bottom":"2rem","padding-left":"1rem","padding-right":"1rem"}
@@ -833,7 +844,7 @@ def update_bundlerows(timestamp, data):
         recom_val=int(str(row['Recommended Target']).replace('$','').replace('%','').replace(',',''))
         if defined_val/recom_val>=1 :
             row['User Defined']='High'
-        elif defined_val/recom_val<=0.9 :
+        elif defined_val/recom_val<=0.98 :
             row['User Defined']='Low'
         else:
             row['User Defined']='Mid'
