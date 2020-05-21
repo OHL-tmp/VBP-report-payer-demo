@@ -64,7 +64,7 @@ def bundle_modal_bundles():
 			dbc.ModalBody(bundle_modal_bundles_body()),
 			dbc.ModalFooter(
 				dbc.Button('Submit', id = 'bundle-button-closemodal'))
-			], id = 'bundle-modal-bundles', size = 'xl')
+			], id = 'bundle-modal-bundles', size = 'xl', backdrop = 'static')
 		],
 		style={"padding":"1rem"})
 
@@ -103,7 +103,7 @@ def bundle_modal_bundles_body():
 
 			        style_as_list_view = True,
 			        row_selectable = 'multi',
-			        selected_rows = [0,1,2],
+			        selected_rows = [5],
 				), style = {'padding-bottom' :'1rem'}
 			),
 		], style={"padding-left":"1rem","padding-right":"1rem"}),
@@ -208,7 +208,7 @@ def bundle_modal_bundles_body():
 
 			        style_as_list_view = True,
 			        row_selectable = 'multi',
-			        selected_rows = [],
+			        selected_rows = [1],
 				), style = {'padding-bottom' :'1rem'}
 			),
 		], style={"padding-left":"1rem","padding-right":"1rem"}),
@@ -243,7 +243,7 @@ def bundle_modal_bundles_body():
 
 			        style_as_list_view = True,
 			        row_selectable = 'multi',
-			        selected_rows = [],
+			        selected_rows = [4],
 				), style = {'padding-bottom' :'1rem'}
 			),
 		], style={"padding-left":"1rem","padding-right":"1rem"}),

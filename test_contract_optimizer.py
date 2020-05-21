@@ -514,6 +514,7 @@ def card_sl_sharing_arrangement(app):
                                             dbc.Col(html.Div(), width = 1),
                                             dbc.Col(html.H5("Sharing Method", style={"font-size":"0.8rem"}),width=4),
                                             dbc.Col(dcc.Dropdown(id = 'dropdown-firstdollar-saving', 
+
                                                 options = [{'label': 'First Dollar Sharing', 'value': 'First Dollar Sharing'}, {'label':'Second Dollar Sharing (Above MSR)','value' : 'Second Dollar Sharing (Above MSR)'}],
                                                 value = 'First Dollar Sharing',
                                                 style={"font-size":"0.8rem"}), width = 7),
@@ -615,6 +616,7 @@ def card_sl_sharing_arrangement(app):
                                             dbc.Col(html.Div(), width = 1),
                                             dbc.Col(html.H5("Sharing Method", style={"font-size":"0.8rem"}),width=4),
                                             dbc.Col(dcc.Dropdown(id = 'dropdown-firstdollar-loss', 
+
                                                 options = [{'label': 'First Dollar Sharing', 'value': 'First Dollar Sharing'}, {'label':'Second Dollar Sharing (Below MLR)','value' : 'Second Dollar Sharing (Below MLR)'}],
                                                 value = 'First Dollar Sharing',
                                                 style={"font-size":"0.8rem"}), width = 7),
@@ -793,13 +795,13 @@ def tab_result(app):
                         )
                     ),
                     html.Hr(),
-                    html.H6(
-                        "Best case scenario means more cost reduction is achieved in performance year than expected",
-                        style={"font-size":"1rem"}
+                    html.H1(
+                        "\u25c9 Best case scenario means more cost reduction is achieved in performance year than expected",
+                        style={"font-size":"0.8rem"}
                     ),
-                    html.H6(
-                        "Worst case scenario means less cost reduction is achieved in performance year than expected",
-                        style={"font-size":"1rem"}
+                    html.H1(
+                        "\u25c9Worst case scenario means less cost reduction is achieved in performance year than expected",
+                        style={"font-size":"0.8rem"}
                     )
                 ],
                 style={"padding-top":"2rem","padding-bottom":"2rem","padding-left":"1rem","padding-right":"1rem"}

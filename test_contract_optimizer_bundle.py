@@ -531,13 +531,13 @@ def tab_result(app):
                         )
                     ),
                     html.Hr(),
-                    html.H6(
-                        "Best case scenario means more cost reduction is achieved in performance year than expected",
-                        style={"font-size":"1rem"}
+                    html.H1(
+                        "\u25c9 Best case scenario means more cost reduction is achieved in performance year than expected",
+                        style={"font-size":"0.8rem"}
                     ),
-                    html.H6(
-                        "Worst case scenario means less cost reduction is achieved in performance year than expected",
-                        style={"font-size":"1rem"}
+                    html.H1(
+                        "\u25c9 Worst case scenario means less cost reduction is achieved in performance year than expected",
+                        style={"font-size":"0.8rem"}
                     )
                 ],
                 style={"padding-top":"2rem","padding-bottom":"2rem","padding-left":"1rem","padding-right":"1rem"}

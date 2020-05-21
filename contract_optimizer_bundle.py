@@ -405,7 +405,7 @@ def tab_result(app):
                             		dbc.ModalBody([sim_assump_input_session(),]),
                             		dbc.ModalFooter(
                             			dbc.Button('Close', id = 'button-close-assump-modal'))
-                            		], id = 'modal-assump', size = 'xl'),
+                            		], id = 'modal-assump', size = 'xl', backdrop = 'static'),
                             	],
                                 style={"padding-top":"1rem"}
                             ),
@@ -751,19 +751,30 @@ def update_selected_bundles(n,data,r1,r2,r3,r4,r5,r6,r7,r8):
 
 
         measure_list=[0,1]
-
         episode_list=update_data['Bundle']
+        episode=['All Episodes','All Episodes']
 
         for i in range(2,7):
-            if len(set(episode_list).intersection( set(eval('measure_epo_list'+str(i)) )))>0:
+            epi_list_intersection=set(episode_list).intersection( set(eval('measure_epo_list'+str(i)) ))
+            if len(epi_list_intersection)>0:
+
+                if i==6:
+                    episode.append('All Inpatient Episodes')
+                else:
+                    epi_for_each_meas=','.join(epi_list_intersection)
+                    episode.append(epi_for_each_meas)
+                
                 measure_list.append(i)
 
-        update_measure=df_bundle_measure.iloc[measure_list] 
+        update_measure=df_bundle_measure.iloc[measure_list].reset_index() 
+        update_measure['Applicable Episodes']=episode
 
+    else:
+        update_data=df_bundles.iloc[[0,1,2]]
+        update_measure=df_bundle_measure.iloc[[0,1,3,6]].reset_index()
+        update_measure['Applicable Episodes']=['All Episodes','All Episodes','Major joint replacement of the lower extremity (MJRLE)','All Inpatient Episodes']
 
-
-        return table_setup(update_data),bundle_measure_setup(update_measure)
-    return table_setup(df_bundles.iloc[[0,1,2]]),bundle_measure_setup(df_bundle_measure.iloc[[0,1,2,3,6]] )
+    return table_setup(update_data),bundle_measure_setup(update_measure)
 
 # set up table selfupdate
 @app.callback(
@@ -805,7 +816,9 @@ def store_inter_results(n, data, adj_pos, adj_neg, stop_loss, stop_gain):
         df = pd.DataFrame(data)
         dff = df[['Bundle', 'Bundle Count', 'Average Bundle Cost', 'Recommended Target', 'User Defined Target']]
         dff.columns = ['Bundle', 'Bundle Count', 'Average Bundle Cost', 'Recommended', 'User Defined']
-        dff['User Defined'] = dff['User Defined'].apply(lambda x: int(x.replace('$','')))
+        dff['User Defined'] = dff['User Defined'].apply(lambda x: int(x.replace('$','').replace(',','')))
+        dff['Average Bundle Cost'] = dff['Average Bundle Cost'].apply(lambda x: int(x.replace('$','').replace(',','')))
+        dff['Recommended'] = dff['Recommended'].apply(lambda x: int(x.replace('$','').replace(',','')))
         adj_pos = adj_pos/100
         adj_neg = adj_neg/100
         stop_loss = stop_loss/100

@@ -8,7 +8,7 @@ def simulation_cal(selected_rows,domian_weight,user_tar_type,user_tar_value,df_j
 	domain3=list(range(14,20))
 	domain4=list(range(20,23))
 
-	pmpy_mean=820*12
+	pmpy_mean=920*12
 	pmpy_rangepct=[1,1.2,0.8,1.1,0.9] # be,worst,best,worse,better
 	
 	aco_margin=0.05
@@ -19,7 +19,7 @@ def simulation_cal(selected_rows,domian_weight,user_tar_type,user_tar_value,df_j
 
 	cost_range=[pmpy_mean*i*member_cnt for i in pmpy_rangepct]
 	
-	cost_wo_contract=864*12
+	cost_wo_contract=915*(1+5.4/100)*12
 	cost_wo_contract_range=[cost_wo_contract*i*member_cnt for i in pmpy_rangepct]
 
 	outof_aco_cost=cost_wo_contract*member_cnt*6
@@ -42,23 +42,36 @@ def simulation_cal(selected_rows,domian_weight,user_tar_type,user_tar_value,df_j
 	cap_recom_losspct_position=df_json['savings/losses sharing arrangement']['recom losses share cap'].find('%')
 	cap_recom_losspct=int(df_json['savings/losses sharing arrangement']['recom losses share cap'][0:cap_recom_losspct_position])/100#0.1
 
-	min_recom_savepct=0.2
-	min_recom_losspct=0.2
+	min_recom_savepct=0
+	min_recom_losspct=0.3
 	#min_user_savepct=0.2
 	#min_user_losspct=0.2
 	#losspct_calfrom_save=True
 	#quality score
-	quality_score_recom=[0.824583333,0.67375,0.908645833,0.762083333,0.869895833]
+	quality_score_recom=[0.680813924,0.647454913,0.706232492,0.647454913,0.706232492]
 
+#	for i in ['recom','user']:
+#		print('target_'+i+':'+str(eval('target_'+i)))
+#		print('msr_'+i+':'+str(eval('msr_'+i)))
+#		print('mlr_'+i+':'+str(eval('mlr_'+i)))
+#		print('max_'+i+'_savepct'+':'+str(eval('max_'+i+'_savepct')))
+#		print('max_'+i+'_losspct'+':'+str(eval('max_'+i+'_losspct')))
+#		print('min_'+i+'_savepct'+':'+str(eval('min_'+i+'_savepct')))
+#		print('min_'+i+'_losspct'+':'+str(eval('min_'+i+'_losspct')))
+#		print('cap_'+i+'_savepct'+':'+str(eval('cap_'+i+'_savepct')))
+#		print('cap_'+i+'_losspct'+':'+str(eval('cap_'+i+'_losspct')))
+	
 
 	k=0
 	for i in range(1,5):
 		domain=eval('domain'+str(i))
 		selected_indomain=[ j in domain for j in  selected_rows]
+
 		if True in selected_indomain:
 			k=k+1
 			selected_index=[j for j, e in enumerate(selected_indomain) if e == True]
 			selected_eachdomain=[selected_rows[j] for j in selected_index]
+			
 			be=0
 			better=0
 			worse=0
@@ -84,11 +97,14 @@ def simulation_cal(selected_rows,domian_weight,user_tar_type,user_tar_value,df_j
 				
 			quality=[be,worse,better,worse,better]
 			weight=domian_weight[i-1]
+			
 			if k==1:
+				
 				quality_score_user=[t1*weight/len(selected_eachdomain)/2 for t1 in quality]
 			else:
-				quality_score_user=[quality_score_user[t1]+(quality[t1]*weight/len(selected_eachdomain)) for t1 in range(0,5)]
-
+				
+				quality_score_user=[quality_score_user[t1]+(quality[t1]*weight/len(selected_eachdomain)/2) for t1 in range(0,5)]
+	#print(quality_score_user)
 	sharing_gain_recom=[]
 	sharing_loss_recom=[]
 	sharing_gain_user=[]

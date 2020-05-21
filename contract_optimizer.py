@@ -36,7 +36,7 @@ def create_layout(app):
 #    load_data()
     return html.Div(
                 [ 
-                    html.Div([Header_contract(app, True, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
+                    html.Div([Header_contract(app, True, False, False,False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
                     
                     html.Div(
                         [
@@ -657,7 +657,7 @@ def tab_result(app):
                             		dbc.ModalBody([sim_assump_input_session(),]),
                             		dbc.ModalFooter(
                             			dbc.Button('Close', id = 'button-close-assump-modal'))
-                            		], id = 'modal-assump', size = 'xl'),
+                            		], id = 'modal-assump', size = 'xl', backdrop = 'static'),
                             	],
                                 style={"padding-top":"1rem"}
                             ),
@@ -1086,9 +1086,17 @@ def update_columns(timestamp, data,selected_quality):
         if i in selected_quality:
             if row['tar_user_type']=='Report':
                 row['tar_user']='R'
+            elif row['tar_user_type']=='Performance' and  row['tar_user']=='R':
+                if row['tar_recom']=='R':
+                    row['tar_user']=row['bic']
+
+                else:
+                    row['tar_user']=row['tar_recom']
             else:
-                if i in [10,11,12,13,14,17,18,21,22]:
+                if i in range(10,23):
                     row['tar_user']=str(row['tar_user']).replace('$','').replace('%','').replace(',','')+'%'
+
+
         else:
             row['tar_user']=float('nan')
 

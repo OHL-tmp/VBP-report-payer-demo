@@ -1,5 +1,6 @@
 ﻿Name,%
-driver1,0.04
-driver2,0.03
-driver3,0.02
-driver4,0.01
+High Risk Patient,0.020096809
+Mid Risk Patient,0.014606316
+Primary Care Physician,0.012
+Cardiology Physician,0.009
+Orthopedics Physician,0.005

@@ -115,13 +115,13 @@ def manager_div_year_to_date_metrics(app):
     return html.Div(
                 [
                     html.H2("Key Performance Metrics", style={"padding-top":"2rem", "font-weight":"lighter", "font-size":"1rem"}),
-                    manager_card_year_to_date_metrics("Attributed Members", "1,000", "#381610f"),
-                    manager_card_year_to_date_metrics("YTD Total Cost", "$100M", "#381610f"),
-                    manager_card_year_to_date_metrics("Projected Total Cost", "$230M", "#381610f"),
+                    manager_card_year_to_date_metrics("Attributed Members", "4,250", "#381610f"),
+                    manager_card_year_to_date_metrics("YTD Total Cost", "$24.6M", "#381610f"),
+                    manager_card_year_to_date_metrics("Projected Total Cost", "$54.1M", "#381610f"),
                     html.Hr(className="ml-1"),
-                    manager_card_year_to_date_metrics("Projected Total Losses", "\u25bc $15M", "#db2200"),
-                    manager_card_year_to_date_metrics("Projected Plan's Shared Losses", "\u25bc $7.5M", "#db2200"),
-                    manager_card_year_to_date_metrics("Projected ACO's Shared Losses", "\u25bc $7.5M", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected Total Losses", "\u25bc $1.6M", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected Plan's Shared Losses", "\u25bc $1.1M", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected ACO's Shared Losses", "\u25bc $0.5M", "#db2200"),
                     html.Hr(className="ml-1"),
                     manager_modal_metricsdetail(app),
                 ],
@@ -147,7 +147,7 @@ def manager_modal_metricsdetail(app):
                 ),
                 dbc.ModalBody(children=table_result_dtls(df_result_details), style={"padding":"2rem"}),
                 dbc.ModalFooter(dbc.Button('Close', style={"border-radius":"10rem"}, id = 'manager-button-closemodal-metricsdetail')),
-                ], id = 'manager-modal-metricsdetail'),
+                ], id = 'manager-modal-metricsdetail', backdrop = 'static'),
 
         ])
 
@@ -292,8 +292,8 @@ def manager_modal_totalcost(app):
                     ),
                     dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"padding":"2rem"})),
                     dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-totalcost')),
-                    ], id = 'manager-modal-totalcost',
-                style={"text-align":"center"}),
+                    ], id = 'manager-modal-totalcost', 
+                style={"text-align":"center"}, backdrop = 'static'),
             ],
             style={"text-align":"end","padding-right":"9rem"})
 
@@ -316,7 +316,7 @@ def manager_modal_pmpm(app):
                     dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj_pmpm),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"padding":"2rem"})),
                     dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-pmpm')),
                     ], id = 'manager-modal-pmpm',
-                style={"text-align":"center"}),
+                style={"text-align":"center"}, backdrop = 'static'),
             ],
             style={"text-align":"end","padding-right":"9rem"})
 
@@ -383,7 +383,7 @@ def manager_modal_alldrivers(app):
                                                  style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
                                              )
                                  )
-                         ], id = 'manager-modal-alldriver', size="lg")
+                         ], id = 'manager-modal-alldriver', size="lg", backdrop = 'static')
             ],
             
         )
@@ -497,7 +497,7 @@ def manager_modal_qualityscore(app):
                                              )
                                  )
                          ], 
-                         id = 'manager-modal-qualityscore', size="xl")
+                         id = 'manager-modal-qualityscore', size="xl", backdrop = 'static')
             ],
             
         )
