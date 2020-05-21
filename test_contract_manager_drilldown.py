@@ -159,7 +159,7 @@ def card_overview_drilldown(percentage):
                         ],
                         style={"padding-left":"1rem"}
                     ),
-                html.P("As of 05/18/2020", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
+                html.P("As of 05/22/2020", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
                 html.Div(
                     [
                         dbc.Tabs(

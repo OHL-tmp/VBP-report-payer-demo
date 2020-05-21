@@ -109,12 +109,12 @@ def manager_div_year_to_date_metrics(app):
                 [
                     html.H2("Key Performance Metrics", style={"padding-top":"2rem", "font-weight":"lighter", "font-size":"1rem"}),
                     manager_card_year_to_date_metrics("Attributed Members", "4,250", "#381610f"),
-                    manager_card_year_to_date_metrics("YTD Total Cost", "$24.6M", "#381610f"),
-                    manager_card_year_to_date_metrics("Projected Total Cost", "$54.1M", "#381610f"),
+                    manager_card_year_to_date_metrics("YTD Total Cost", "$24,594,014", "#381610f"),
+                    manager_card_year_to_date_metrics("Projected Total Cost", "$54,106,831", "#381610f"),
                     html.Hr(className="ml-1"),
-                    manager_card_year_to_date_metrics("Projected Total Losses", "\u25bc $1.6M", "#db2200"),
-                    manager_card_year_to_date_metrics("Projected Plan's Shared Losses", "\u25bc $1.1M", "#db2200"),
-                    manager_card_year_to_date_metrics("Projected ACO's Shared Losses", "\u25bc $0.5M", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected Total Losses", "\u25bc $1,625,109", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected Plan's Shared Losses", "\u25bc $1,108,520", "#db2200"),
+                    manager_card_year_to_date_metrics("Projected ACO's Shared Losses", "\u25bc $516,589", "#db2200"),
                     html.Hr(className="ml-1"),
                     manager_modal_metricsdetail(app),
                 ],
@@ -168,7 +168,7 @@ def manager_div_overall_performance(app):
                             dbc.Col(html.H1("OVERALL PERFORMANCE"), width="auto"),
                             dbc.Col(
                                 html.Div(
-                                    html.H5("- 05/18/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
+                                    html.H5("- 05/22/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
                                 ),
                                 width=2,
                                 style={"padding-top":"2rem"}

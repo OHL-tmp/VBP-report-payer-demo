@@ -1216,16 +1216,17 @@ def table_perform_bundle(df):
 		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %')+
 		[{'if': {'column_id':'Diff % from Benchmark'},
 			 
-			 'width': '20rem',
+			 'width': '15rem',
 			}, 
 		{'if': {'column_id': 'Contribution to Overall Performance Difference'},
 			 
-			 'width': '20rem',
+			 'width': '15rem',
 			},
 		{'if': {'column_id': 'Bundle Name'},
 			 
 			 'textAlign': 'start',
 			 'width': '20rem',
+			 'paddingLeft':'10px'
 			},
 
 		]

@@ -38,7 +38,7 @@ def get_header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, 
                 ),
             dbc.NavItem(dbc.NavLink(
                         "Report Generator",
-                        #href="/vbc-demo/contract-manager/report-generator/",
+                        href="/vbc-demo/contract-manager/report-generator/",
                         className="nav-link",
                         active = report_active,
                         ),

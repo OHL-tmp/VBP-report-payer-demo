@@ -15,8 +15,9 @@ import test_contract_manager
 import test_contract_manager_drilldown
 import test_contract_optimizer
 import test_contract_optimizer_bundle
-import contract_generator
+import test_contract_generator
 import test_contract_manager_bundle
+import test_contract_report_generator
 
 
 
@@ -86,6 +87,8 @@ def display_page(pathname):
         return contract_generator.layout
     elif pathname == "/vbc-demo/contract-manager-bundle/":
         return test_contract_manager_bundle.layout
+    elif pathname == "/vbc-demo/contract-manager/report-generator/":
+        return test_contract_report_generator.layout
     else:
         return launch_layout()
 
