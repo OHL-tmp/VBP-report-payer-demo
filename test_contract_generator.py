@@ -91,7 +91,11 @@ def contract_gen_basic(n):
 				html.H1("Basic Info", style={"font-size":"1.25rem"}),
 				html.Hr(),
 				dbc.Row([
+<<<<<<< HEAD
 					dbc.Col('Contract Period', width=7),
+=======
+					dbc.Col('BI1. Contract Period', width=7),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 					dbc.Col([
 						dbc.InputGroup([
 							dbc.Input(value = '1/1/2020', style={"text-align":"center"}),
@@ -102,7 +106,11 @@ def contract_gen_basic(n):
 					],
 					style={"padding-bottom":"10px"}),
 				dbc.Row([
+<<<<<<< HEAD
 					dbc.Col("ACO's name", width=7),
+=======
+					dbc.Col("BI2. ACO's name", width=7),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 					dbc.Col([
 						dbc.Input(value = 'ACO1', bs_size="sm", style={"text-align":"center"})
 						], width=5),
@@ -128,7 +136,11 @@ def contract_gen_parameter(n):
 			html.H1("Cost Target", style={"font-size":"1.25rem"}),
 			html.Hr(),
 			dbc.Row([
+<<<<<<< HEAD
 				dbc.Col('Medical Cost Target PMPM', width=7),
+=======
+				dbc.Col('CT1. Medical Cost Target PMPM', width=7),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 				dbc.Col([
 					dbc.InputGroup([
 						dbc.InputGroupAddon('$', addon_type = 'prepend'),
@@ -148,7 +160,11 @@ def contract_gen_parameter(n):
 				html.H1("Shared Savings", style={"font-size":"1.25rem"}),
 				html.Hr(),
 				dbc.Row([
+<<<<<<< HEAD
 					dbc.Col('MSR (Minimum Savings Rate)', width=7),
+=======
+					dbc.Col('SS1. MSR (Minimum Savings Rate)', width=7),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 					dbc.Col([
 						dbc.InputGroup([
 							dbc.Input(value = custom_input['savings/losses sharing arrangement']['msr']),
@@ -158,7 +174,11 @@ def contract_gen_parameter(n):
 					],
 					style={"padding-bottom":"10px"}),
 				dbc.Row([
+<<<<<<< HEAD
 					dbc.Col('Max Sharing % (When quality targets are met)', width=7),
+=======
+					dbc.Col('SS2. Max Sharing % (When quality targets are met)', width=7),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 					dbc.Col([
 						dbc.InputGroup([
 							dbc.Input(value = custom_input['savings/losses sharing arrangement']['savings sharing']),
@@ -168,7 +188,11 @@ def contract_gen_parameter(n):
 					],
 					style={"padding-bottom":"10px"}),
 				dbc.Row([
+<<<<<<< HEAD
 					dbc.Col('Min Sharing %', width=7),
+=======
+					dbc.Col('SS3. Min Sharing %', width=7),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 					dbc.Col([
 						dbc.InputGroup([
 							dbc.Input(value = custom_input['savings/losses sharing arrangement']['savings sharing min']),
@@ -178,7 +202,11 @@ def contract_gen_parameter(n):
 					],
 					style={"padding-bottom":"10px"}),
 				dbc.Row([
+<<<<<<< HEAD
 					dbc.Col('Sharing Method', width=7),
+=======
+					dbc.Col('SS4. Sharing Method', width=7),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 					dbc.Col([
 						dcc.Dropdown(options = [{'label':'First Dollar Sharing', 'value':'First Dollar Sharing'},
 							{'label':'Second Dollar Sharing (Above MSR)', 'value':'Second Dollar Sharing (Above MSR)'}],
@@ -188,7 +216,11 @@ def contract_gen_parameter(n):
 					],
 					style={"padding-bottom":"10px"}),
 				dbc.Row([
+<<<<<<< HEAD
 					dbc.Col('Shared Savings Cap', width=7),
+=======
+					dbc.Col('SS5. Shared Savings Cap', width=7),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 					dbc.Col([
 						dbc.InputGroup([
 							dbc.Input(value = custom_input['savings/losses sharing arrangement']['savings share cap']),
@@ -207,7 +239,11 @@ def contract_gen_parameter(n):
 			html.H1("Shared Losses", style={"font-size":"1.25rem"}),
 			html.Hr(),
 			dbc.Row([
+<<<<<<< HEAD
 				dbc.Col('MLR (Minimum Losses Rate)', width=7),
+=======
+				dbc.Col('SL1. MLR (Minimum Losses Rate)', width=7),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 				dbc.Col([
 					dbc.InputGroup([
 						dbc.Input(value = custom_input['savings/losses sharing arrangement']['mlr']),
@@ -217,7 +253,11 @@ def contract_gen_parameter(n):
 				],
 				style={"padding-bottom":"10px"}),
 			dbc.Row([
+<<<<<<< HEAD
 				dbc.Col('Min Sharing % (When quality targets are met)', width=7),
+=======
+				dbc.Col('SL2. Min Sharing % (When quality targets are met)', width=7),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 				dbc.Col([
 					dbc.InputGroup([
 						dbc.Input(value = custom_input['savings/losses sharing arrangement']['losses sharing min']),
@@ -227,7 +267,11 @@ def contract_gen_parameter(n):
 				],
 				style={"padding-bottom":"10px"}),
 			dbc.Row([
+<<<<<<< HEAD
 				dbc.Col('Max Sharing %', width=7),
+=======
+				dbc.Col('SL3. Max Sharing %', width=7),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 				dbc.Col([
 					dbc.InputGroup([
 						dbc.Input(value = custom_input['savings/losses sharing arrangement']['losses sharing']),
@@ -237,7 +281,11 @@ def contract_gen_parameter(n):
 				],
 				style={"padding-bottom":"10px"}),
 			dbc.Row([
+<<<<<<< HEAD
 				dbc.Col('Sharing Method', width=7),
+=======
+				dbc.Col('SL4. Sharing Method', width=7),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 				dbc.Col([
 					dcc.Dropdown(options = [{'label':'First Dollar Sharing', 'value':'First Dollar Sharing'},
 					{'label':'Second Dollar Sharing (Below MLR)', 'value':'Second Dollar Sharing (Below MLR)'}],
@@ -246,7 +294,11 @@ def contract_gen_parameter(n):
 				],
 				style={"padding-bottom":"10px"}),
 			dbc.Row([
+<<<<<<< HEAD
 				dbc.Col('Shared Losses Cap', width=7),
+=======
+				dbc.Col('SL5. Shared Losses Cap', width=7),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 				dbc.Col([
 					dbc.InputGroup([
 						dbc.Input(value = custom_input['savings/losses sharing arrangement']['losses share cap']),
@@ -329,6 +381,10 @@ def contract_gen_measure(n):
 	return html.Div([
 		html.H1("Quality Measures", style={"font-size":"1.25rem"}),
 		html.Hr(),
+<<<<<<< HEAD
+=======
+		html.Div('QM1. '),
+>>>>>>> 8c20d676f5f19f6e94d1a1b355182151e224b260
 		dash_table.DataTable(
 			data = df.to_dict('records'),
 			columns = [{'name': i, 'id':i} for i in df.columns],

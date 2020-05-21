@@ -84,7 +84,7 @@ def display_page(pathname):
     elif pathname == "/vbc-demo/contract-optimizer-bundle/":
         return test_contract_optimizer_bundle.layout
     elif pathname == "/vbc-demo/contract-generator/":
-        return contract_generator.layout
+        return test_contract_generator.layout
     elif pathname == "/vbc-demo/contract-manager-bundle/":
         return test_contract_manager_bundle.layout
     elif pathname == "/vbc-demo/contract-manager/report-generator/":
