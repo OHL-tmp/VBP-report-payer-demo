@@ -54,6 +54,7 @@ def waterfall_overall(df):
 			name='',
 			x=df.columns[0:3].tolist()+[gain], 
 			y=df.values[0,0:3].tolist()+[base],
+			cliponaxis=False,
 			#text=y1_waterfall,
 			textposition='outside',
 			textfont=dict(color=['black','black','black',colors['transparent']]),
@@ -1155,8 +1156,8 @@ def data_bars_diverging_bundle(df, column, color_above='#FF4136', color_below='#
 				),
 				'paddingBottom': 2,
 				'paddingTop': 2,
-				'textAlign':'start',
-				'paddingLeft':'7.5rem',
+				'textAlign':'end',
+				'paddingRight':'7.5rem',
 				'color':color_above,
 			})
 
@@ -1183,7 +1184,7 @@ def data_bars_diverging_bundle(df, column, color_above='#FF4136', color_below='#
 				'paddingBottom': 2,
 				'paddingTop': 2,
 				'textAlign':'start',
-				'paddingLeft':'11.5rem',
+				'paddingLeft':'7.5rem',
 				'color':color_below,
 			})
 			
@@ -1217,16 +1218,20 @@ def table_perform_bundle(df):
 		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %')+
 		[{'if': {'column_id':'Diff % from Benchmark'},
 			 
-			 'width': '15rem',
+			 'width': '25%',
 			}, 
 		{'if': {'column_id': 'Contribution to Overall Performance Difference'},
 			 
-			 'width': '15rem',
+			 'width': '25%',
+			},
+		{'if': {'column_id': 'YTD Cnt'},
+			 
+			 'width': '10%',
 			},
 		{'if': {'column_id': 'Bundle Name'},
 			 
 			 'textAlign': 'start',
-			 'width': '25rem',
+			 'width': '40%',
 			 'paddingLeft':'10px'
 			},
 
@@ -1265,6 +1270,7 @@ def table_bundle_dtls(df):
 		style_data_conditional=[
 			{'if': {'column_id':df.columns[0]},
 			 'textAlign':'start',
+			 'paddingLeft':'10px',
 			},
 			{'if': {'column_id':df.columns[4],'row_index':4},
 			 'color':'green',
@@ -1293,6 +1299,15 @@ def table_bundle_dtls(df):
 			'fontSize':14,
 #			'backgroundColor':"#f7f7f7"
 		},
+		style_cell_conditional=[
+		{'if': {'column_id':df.columns[c]},
+			 'width':'40%',
+			} if c==0 else 
+		{'if': {'column_id':df.columns[c]},
+			 'width':'15%',
+			} 
+			for c in range(len(df.columns))
+		],
 
 		style_header={
 			'height': '4rem',
@@ -1438,14 +1453,17 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 	elif d in ['Clinical Condition']:
 		allvalue[selected_index]=df_pt_lv1_f.agg({'Pt Ct':'nunique'})[0]
 
+	df_agg.loc[len(df_agg)] = allvalue
+	df_agg=df_agg.reset_index(drop=True)
+
 	if len(df_agg[df_agg[d]=='Others'])>0:
 		otherpos=df_agg[df_agg[d]=='Others'].index[0]
 		otherlist=df_agg.loc[otherpos]
-		df_agg.loc[otherpos]=df_agg.loc[len(df_agg)-1]
-		df_agg.loc[len(df_agg)-1]=otherlist
-  
-	df_agg.loc[len(df_agg)] = allvalue
+		df_agg.loc[otherpos]=df_agg.loc[len(df_agg)-2]
+		df_agg.loc[len(df_agg)-2]=otherlist
 
+	df_agg=df_agg.reset_index(drop=True)
+  
 
 	df_agg['Patient %'] = df_agg['Pt Ct']/df_pt_lv1_f['Pt Ct'].agg('nunique')
 	df_agg['Episode %'] = df_agg['Episode Ct']/ df_pt_lv1_f['Episode Ct'].agg('count')
@@ -1591,13 +1609,15 @@ def drilltable_lv1(df,tableid):
 	else:
 		col1_format=FormatTemplate.percentage(1)
 
+	sel_default=len(df)-1
+
 	df['id']=df[df.columns[0]]
 	tbl=dash_table.DataTable(
 		id=tableid,
 		data=df.to_dict('records'),
 		columns=[{"name": i, "id": i} if i==df.columns[0] else {"name": i, "id": i,'type':'numeric','format':col1_format} if i==df.columns[1] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.money(0)} if i==df.columns[3] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.percentage(1)} for i in df.columns[0:6]],
 		row_selectable="single",
-		selected_rows=[len(df)-1],
+		selected_rows=[sel_default],
 		#selected_row_ids=['All'],
 		sort_action="custom",
 		sort_mode='single',

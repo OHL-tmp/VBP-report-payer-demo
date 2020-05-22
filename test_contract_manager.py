@@ -279,14 +279,13 @@ def manager_modal_totalcost(app):
                     dbc.ModalHeader(
                         [
                             html.H1("Target Adjustment Details", style={"font-size":"0.8rem"}),
-                            html.H2("TOTAL COST", style={"font-size":"1.6rem","color":"#1357DD","background-color":"#c6d9ff","padding":"0.5rem","border-radius":"0.5rem"})
+                            html.H2("TOTAL COST", style={"font-size":"1rem","color":"#1357DD"})
                         ],
                         
                     ),
                     dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}), style={"padding":"2rem"}),
                     dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'manager-button-closemodal-totalcost')),
-                    ], id = 'manager-modal-totalcost',
-                style={"text-align":"center"}, backdrop = 'static'),
+                    ], id = 'manager-modal-totalcost', backdrop = 'static'),
             ],
             style={"text-align":"end","padding-right":"12rem"})
 
