@@ -207,7 +207,7 @@ def contract_gen_measure(app):
 				dbc.Input(value= 20),
 				dbc.InputGroupAddon('%', addon_type = 'append')
 				], size="sm"),
-				, width=2
+				width=2
 			)
 			],
 			style={"padding-bottom":"10px"}),

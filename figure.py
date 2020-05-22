@@ -1135,7 +1135,7 @@ def data_bars_diverging_bundle(df, column, color_above='#FF4136', color_below='#
 		bound_percentage = round(i/col_max/2,4) * 100
 
 		if i>0:
-			bound_percentage=bound_percentage+50
+			bound_percentage=min(bound_percentage+50,100)
 			styles.append({
 				'if': {
 					'filter_query': (
@@ -1157,12 +1157,12 @@ def data_bars_diverging_bundle(df, column, color_above='#FF4136', color_below='#
 				'paddingBottom': 2,
 				'paddingTop': 2,
 				'textAlign':'end',
-				'paddingRight':'7.5rem',
+				'paddingRight':'7.6rem',
 				'color':color_above,
 			})
 
 		else :
-			bound_percentage=50+bound_percentage
+			bound_percentage=max(50+bound_percentage,0)
 			styles.append({
 				'if': {
 					'filter_query': (
@@ -1184,7 +1184,7 @@ def data_bars_diverging_bundle(df, column, color_above='#FF4136', color_below='#
 				'paddingBottom': 2,
 				'paddingTop': 2,
 				'textAlign':'start',
-				'paddingLeft':'7.5rem',
+				'paddingLeft':'7.6rem',
 				'color':color_below,
 			})
 			
@@ -1218,20 +1218,20 @@ def table_perform_bundle(df):
 		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %')+
 		[{'if': {'column_id':'Diff % from Benchmark'},
 			 
-			 'width': '25%',
+			 'width': '15rem',
 			}, 
 		{'if': {'column_id': 'Contribution to Overall Performance Difference'},
 			 
-			 'width': '25%',
+			 'width': '15rem',
 			},
 		{'if': {'column_id': 'YTD Cnt'},
 			 
-			 'width': '10%',
+			 'width': '5rem',
 			},
 		{'if': {'column_id': 'Bundle Name'},
 			 
 			 'textAlign': 'start',
-			 'width': '40%',
+			 'width': '20rem',
 			 'paddingLeft':'10px'
 			},
 
@@ -1255,6 +1255,27 @@ def table_perform_bundle(df):
 			'color': '#1357DD',
 			'text-align':'center',
 		},
+		style_header_conditional=[
+		{'if': {'column_id':'Diff % from Benchmark'},
+			 
+			 'width': '14rem',
+			}, 
+		{'if': {'column_id': 'Contribution to Overall Performance Difference'},
+			 
+			 'width': '14rem',
+			},
+		{'if': {'column_id': 'YTD Cnt'},
+			 
+			 'width': '5rem',
+			},
+		{'if': {'column_id': 'Bundle Name'},
+			 
+			 'textAlign': 'start',
+			 'width': '20rem',
+			 'paddingLeft':'10px'
+			},
+
+		]
 	)
 	return tbl
 
