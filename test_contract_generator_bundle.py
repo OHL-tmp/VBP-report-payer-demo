@@ -87,7 +87,7 @@ def contract_gen_basic(app):
 				dbc.Row([
 					dbc.Col('BS1. Bundle Length', width=7),
 					dbc.Col([
-						dbc.Dropdown(options = [{'label':'90D', 'value':'90D'},{'label':'60D', 'value':'60D'},{'label':'30D', 'value':'30D'}],
+						dcc.Dropdown(options = [{'label':'90D', 'value':'90D'},{'label':'60D', 'value':'60D'},{'label':'30D', 'value':'30D'}],
 							value = '90D',
 							)
 						], width=5)
@@ -96,7 +96,7 @@ def contract_gen_basic(app):
 				dbc.Row([
 					dbc.Col("BS2. ", width=7),
 					]),
-				dbc.Row([
+				html.Div([
 					dash_table.DataTable(
 						data = df.to_dict('records'),
 						columns = [{'name':'IP/OP', 'id':'IP/OP'},{'name':'Bundle', 'id':'Bundle'},{'name':'Recommended Target', 'id':'Recommended Target'} ],
@@ -127,7 +127,7 @@ def contract_gen_parameter(app):
 			html.H1("Quality Adjustment", style={"font-size":"1.25rem"}),
 			html.Hr(),
 			dbc.Row([
-				dbc.Col('QA1. Maximum Adjustment on Positive Reconciliation Amount', width=7),
+				dbc.Col(html.H6('QA1. Maximum Adjustment on Positive Reconciliation Amount', style={"font-size":"1rem"}), width=7),
 				dbc.Col([
 					dbc.InputGroup([
 						dbc.Input(value = 10), 
@@ -137,7 +137,7 @@ def contract_gen_parameter(app):
 				],
 				style={"padding-bottom":"10px"}),
 			dbc.Row([
-				dbc.Col('QA2. Maximum Adjustment on Negative Reconciliation Amount', width=7),
+				dbc.Col(html.H6('QA2. Maximum Adjustment on Negative Reconciliation Amount', style={"font-size":"1rem"}), width=7),
 				dbc.Col([
 					dbc.InputGroup([
 						dbc.Input(value = 10), 
@@ -158,11 +158,11 @@ def contract_gen_parameter(app):
 					dbc.Col('QA2. ', width=7),
 					],
 					style={"padding-bottom":"10px"}),
-				dbc.Row([
+				html.Div([
 					dash_table.DataTable(
 						data = df_bundle_measure.to_dict('records'),
 						columns = [{'name':'Measure', 'id':'Measure'},{'name':'Applicable Episodes', 'id':'Applicable Episodes'},{'name':'Recommended Target', 'id':'recommended'}],
-						style_data = {'textAlign' : 'center','font-family': 'NotoSans-CondensedLight',"font-size":"0.85rem"},
+						style_data = {'textAlign' : 'center','font-family': 'NotoSans-CondensedLight',"font-size":"0.85rem",'height':'auto','width':'4rem','whiteSpace':'normal'},
 						style_header = {'backgroundColor': '#f1f6ff',
 						'fontWeight': 'bold',
 						'font-family':'NotoSans-CondensedLight',
@@ -170,15 +170,16 @@ def contract_gen_parameter(app):
 						'color': '#1357DD',
 						'text-align':'center',
 						'border':'1px solid grey'},
+						style_cell_conditional = [{'if': {'column_id': 'Measure'}, 'width': '50%'}],
 						style_as_list_view=True,
-						)
+						),
 					],
 					style={"padding-bottom":"10px"}),
 			],
 			style={"padding":"20px","background-color":"#f2f7ff"}
 		),
 
-		]
+		],
 		style={"font-family":"NotoSans-Regular"}
 	)
 
@@ -189,17 +190,21 @@ def contract_gen_measure(app):
 		html.Hr(),
 		dbc.Row([
 			dbc.Col('SS1. Stop Loss'),
+			dbc.Col(
 			dbc.InputGroup([
-				dbc.Input('20'),
+				dbc.Input(value= 20),
 				dbc.InputGroupAddon('%', addon_type = 'append')
 				])
+			),
 			]),
 		dbc.Row([
 			dbc.Col('SS2. Stop Gain'),
+			dbc.Col(
 			dbc.InputGroup([
-				dbc.Input('20'),
+				dbc.Input(value= 20),
 				dbc.InputGroupAddon('%', addon_type = 'append')
 				])
+			)
 			]),
 		
 		],
