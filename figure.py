@@ -1157,7 +1157,7 @@ def data_bars_diverging_bundle(df, column, color_above='#FF4136', color_below='#
 				'paddingBottom': 2,
 				'paddingTop': 2,
 				'textAlign':'end',
-				'paddingRight':'7.6rem',
+				'paddingRight':'7.8rem',
 				'color':color_above,
 			})
 
@@ -1184,7 +1184,7 @@ def data_bars_diverging_bundle(df, column, color_above='#FF4136', color_below='#
 				'paddingBottom': 2,
 				'paddingTop': 2,
 				'textAlign':'start',
-				'paddingLeft':'7.6rem',
+				'paddingLeft':'7.8rem',
 				'color':color_below,
 			})
 			
@@ -1216,22 +1216,22 @@ def table_perform_bundle(df):
 		style_data_conditional=(
 		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss') +
 		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %')+
-		[{'if': {'column_id':'Diff % from Benchmark'},
+		[{'if': {'column_id':'Projected PY Gain/Loss'},
 			 
 			 'width': '15rem',
 			}, 
-		{'if': {'column_id': 'Contribution to Overall Performance Difference'},
+		{'if': {'column_id': 'Projected PY Gain/Loss %'},
 			 
 			 'width': '15rem',
 			},
-		{'if': {'column_id': 'YTD Cnt'},
-			 
-			 'width': '5rem',
-			},
+#		{'if': {'column_id': 'YTD Cnt'},
+#			 
+#			 'width': '5rem',
+#			},
 		{'if': {'column_id': 'Bundle Name'},
 			 
 			 'textAlign': 'start',
-			 'width': '20rem',
+#			 'width': '20rem',
 			 'paddingLeft':'10px'
 			},
 
@@ -1255,27 +1255,6 @@ def table_perform_bundle(df):
 			'color': '#1357DD',
 			'text-align':'center',
 		},
-		style_header_conditional=[
-		{'if': {'column_id':'Diff % from Benchmark'},
-			 
-			 'width': '14rem',
-			}, 
-		{'if': {'column_id': 'Contribution to Overall Performance Difference'},
-			 
-			 'width': '14rem',
-			},
-		{'if': {'column_id': 'YTD Cnt'},
-			 
-			 'width': '5rem',
-			},
-		{'if': {'column_id': 'Bundle Name'},
-			 
-			 'textAlign': 'start',
-			 'width': '20rem',
-			 'paddingLeft':'10px'
-			},
-
-		]
 	)
 	return tbl
 
