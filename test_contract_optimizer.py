@@ -697,11 +697,11 @@ def tab_result(app):
                 [
                     dbc.Row(
                         [
-                            dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"2rem","font-size":"3"}), width=9),
+                            dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"0rem","font-size":"1.8rem"}), width=6),
                             dbc.Col([
                                 dbc.Button("Edit Scenario Assumptions",
                                     className="mb-3",
-                                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem"},
+                                    style={"background-color":"#38160f", "border":"none", "border-radius":"0.25rem", "font-family":"NotoSans-Regular", "font-size":"1rem"},
                                     id = 'button-open-assump-modal'
                                 ),
                                 dbc.Modal([
@@ -711,15 +711,26 @@ def tab_result(app):
                                         dbc.Button('Close', id = 'button-close-assump-modal'))
                                     ], id = 'modal-assump', size = 'xl', backdrop = 'static'),
                                 ],
-                                style={"padding-top":"1rem"}
+                                width="auto"
                             ),
-                            dbc.Col([dbc.DropdownMenu(
-                                label = 'Choose Version to Generate Contract',
-                                children = [dbc.DropdownMenuItem('User Defined Setting', href = '/vbc-demo/contract-generator/', id = 'dropdownmenu-contract-gen'),
-                                dbc.DropdownMenuItem('Recommended Setting')],
-                                )])
+                            dbc.Col(
+                                [
+                                    dbc.DropdownMenu(
+                                    label = 'Choose Version to Generate Contract',
+                                    children = [
+                                                dbc.DropdownMenuItem('User Defined Setting', 
+                                                href = '/vbc-demo/contract-generator/', 
+                                                id = 'dropdownmenu-contract-gen'),
+                                                dbc.DropdownMenuItem('Recommended Setting')
+                                                ],
+                                    style={"font-family":"NotoSans-Regular", "font-size":"1rem"},
+                                    color="warning"
+                                    )
+                                ]
+                            )
                             
-                        ]
+                        ],
+                        style={"padding-left":"2rem"}
                     ),
                     dbc.Card(
                         dbc.CardBody(

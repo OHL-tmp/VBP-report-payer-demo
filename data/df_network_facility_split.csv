@@ -1,6 +1,6 @@
 ﻿Facility,In ACO,Out of ACO
-Home Health,0.1,0.4
-Outpatient Non-ER,0.3,0.4
-SNF,0.3,0.7
-Outpatient ER,2.2,0.6
-Inpatient,6.3,2.1
+Home Health,95401.30942,381605.2377
+Outpatient ER,298347.668,447521.502
+SNF,303157.4098,707367.2895
+Outpatient Non-ER,2204306.838,551076.7094
+Inpatient Hospital,6292331.547,2097443.849
