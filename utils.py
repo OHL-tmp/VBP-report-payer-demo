@@ -18,6 +18,8 @@ def get_header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, 
             dbc.NavItem(dbc.DropdownMenu(
                             label = 'Accountable Care Programs',
                             children = dbc.DropdownMenuItem('Bundles & Episodes of Care', href = '/vbc-demo/contract-manager-bundle/'),
+                            color="light",
+                            style={"font-family":"NotoSans-Condensed","font-size":"0.8rem", "border":"1px solid #000"}
                             
                         )),
             dbc.NavItem(dbc.NavLink(
@@ -88,7 +90,10 @@ def get_header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, H
     menu_bundle = dbc.Nav([
             dbc.NavItem(dbc.DropdownMenu(
                             label = 'Bundles & Episodes of Care',
-                            children = dbc.DropdownMenuItem('Accountable Care Programs', href = '/vbc-demo/contract-manager/'),
+                            children = dbc.DropdownMenuItem('Accountable Care Programs', href = '/vbc-demo/contract-manager/'
+                        ),
+                        color="light",
+                        style={"font-family":"NotoSans-Condensed","font-size":"0.8rem","border":"1px solid #000"}
                             
                         )),
             dbc.NavItem(dbc.NavLink(
