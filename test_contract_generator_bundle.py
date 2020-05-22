@@ -89,6 +89,7 @@ def contract_gen_basic(app):
 					dbc.Col([
 						dcc.Dropdown(options = [{'label':'90D', 'value':'90D'},{'label':'60D', 'value':'60D'},{'label':'30D', 'value':'30D'}],
 							value = '90D',
+							style={"font-size":"0.8rem"}
 							)
 						], width=5)
 					],
@@ -133,7 +134,7 @@ def contract_gen_parameter(app):
 						dbc.Input(value = 10), 
 						dbc.InputGroupAddon('%', addon_type = 'append'),
 						], size="sm"),
-					], width=5)
+					], width=2)
 				],
 				style={"padding-bottom":"10px"}),
 			dbc.Row([
@@ -143,7 +144,7 @@ def contract_gen_parameter(app):
 						dbc.Input(value = 10), 
 						dbc.InputGroupAddon('%', addon_type = 'append'),
 						], size="sm"),
-					], width=5)
+					], width=2)
 				],
 				style={"padding-bottom":"10px"}),
 			],
@@ -194,18 +195,22 @@ def contract_gen_measure(app):
 			dbc.InputGroup([
 				dbc.Input(value= 20),
 				dbc.InputGroupAddon('%', addon_type = 'append')
-				])
+				], size="sm"),
+				width=2
 			),
-			]),
+			],
+			style={"padding-bottom":"10px"}),
 		dbc.Row([
 			dbc.Col('SS2. Stop Gain'),
 			dbc.Col(
 			dbc.InputGroup([
 				dbc.Input(value= 20),
 				dbc.InputGroupAddon('%', addon_type = 'append')
-				])
+				], size="sm"),
+				, width=2
 			)
-			]),
+			],
+			style={"padding-bottom":"10px"}),
 		
 		],
 		style={"padding":"20px","background-color":"#f2f7ff"})

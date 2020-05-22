@@ -301,7 +301,7 @@ def manager_modal_pmpm(app):
                     dbc.ModalHeader(
                         [
                             html.H1("Target Adjustment Details", style={"font-size":"0.8rem"}),
-                            html.H2("PMPM", style={"font-size":"1.6rem","color":"#1357DD","background-color":"#c6d9ff","padding":"0.5rem","border-radius":"0.5rem"})
+                            html.H2("PMPM", style={"font-size":"1rem","color":"#1357DD"})
                         ],
                         
                     ),
