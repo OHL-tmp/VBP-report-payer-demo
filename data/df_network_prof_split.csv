@@ -1,9 +1,9 @@
 ﻿type,In ACO,Out of ACO
-Intensive Care,0.1,0.0
-Gastroenterologist,0.2,0.1
-Orthopedics,0.3,0.1
-Nephrology,0.6,0.1
-Neurology,0.2,0.4
-Oncology,0.0,1.0
-Cardiology,1.4,1.4
-Primary Care,5.5,0.0
+Intensive Care,139052.7068,0
+Gastroenterologist,152391.533,65310.65698
+Orthopedics,338341.5972,84585.39929
+Nephrology,550397.9171,97129.04419
+Neurology,168782.2914,393825.3466
+Oncology,0,994104.2287
+Cardiology,1361195.915,1361195.915
+Primary Care,5479763.766,0

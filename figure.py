@@ -98,7 +98,7 @@ def waterfall_overall(df):
 			zeroline=True,
 			zerolinecolor=colors['grey'],
 			zerolinewidth=1,
-			range=[0,df.max(axis=1)*1.2]
+			range=[0,df.max(axis=1)*1.4]
 		),
 		showlegend=False,
 		modebar=dict(
@@ -394,7 +394,7 @@ def bar_riskdist(df):
 				textangle=0,
 				marker=dict(
 						color=color_bar[i],
-						opacity=[0.7,1]
+						opacity=[1,1]
 						),
 				hoverinfo='skip',
 				#hovertemplate='%{x:,.2f}',
@@ -506,7 +506,7 @@ def domain_quality_bubble(df): # 数据，[0,1] ,'Domain' or 'Measure'
 	
 	for i in range(0,4):
 
-		if i==0:
+		if i==1:
 			selected=0
 		else:
 			selected=10
@@ -793,13 +793,14 @@ def pie_cost_split(df):
 			hole=.6,
 			textinfo='label+percent',
 			textposition='auto',
+			texttemplate='%{label}: %{percent:.0%}',
 			insidetextorientation='horizontal',
 			opacity=0.7,
 			marker=dict(
 					colors=[colors['yellow'],colors['blue']],#.replace('rgb','rgba').replace(')',',0.7)')
 					#
 				),
-			hovertemplate='%{value}Mn <extra>%{label}</extra>',
+			hovertemplate='%{value:,.0f} <extra>%{label}</extra>',
 
 			)
 		])
@@ -836,7 +837,7 @@ def network_cost_stack_h(df):
 			y=df[df.columns[0]],
 			text="",
 			textposition='none', 
-			texttemplate='%{x:,.1f}',
+			texttemplate='%{x:,.0f}',
 			#width=0.3,
 			textangle=0,
 			marker=dict(
@@ -845,7 +846,7 @@ def network_cost_stack_h(df):
 					),
 			orientation='h',
 			hoverinfo='name+y+x',
-			#hovertemplate='%{x:,.2f}',
+			hovertemplate='%{x:,.0f}',
 		),
 
 		go.Bar(
@@ -854,7 +855,7 @@ def network_cost_stack_h(df):
 			y=df[df.columns[0]],
 			text="",
 			textposition='none', 
-			texttemplate='%{x:,.1f}',
+			texttemplate='%{x:,.0f}',
 			#width=0.3,
 			textangle=0,
 			marker=dict(
@@ -863,7 +864,7 @@ def network_cost_stack_h(df):
 					),
 			orientation='h',
 			hoverinfo='name+y+x',
-			#hovertemplate='%{x:,.2f}',
+			hovertemplate='%{x:,.0f}',
 		),
 	])
 		
@@ -874,7 +875,7 @@ def network_cost_stack_h(df):
 			#position=0,
 			visible=True,
 			range=[0,(df['Out of ACO']+df['In ACO']).max()*1.02],
-			ticksuffix='Mn',
+#			ticksuffix='Mn',
 			tickfont=dict(
 			family="NotoSans-Condensed",
 			size=10,
@@ -1199,7 +1200,7 @@ def table_perform_bundle(df):
 		columns=[
 		{"name": 'Bundle Name', "id": 'Bundle Name'},
 		{"name": 'YTD Cnt', "id": 'YTD Cnt','type':'numeric','format':Format( precision=0, group=',',scheme=Scheme.fixed,)},
-		{"name": 'YTD FFS Cost', "id": 'YTD FFS Cost','type':'numeric','format':FormatTemplate.money(0)},
+#		{"name": 'YTD FFS Cost', "id": 'YTD FFS Cost','type':'numeric','format':FormatTemplate.money(0)},
 		{"name": 'Projected PY Gain/Loss', "id": 'Projected PY Gain/Loss','type':'numeric','format':FormatTemplate.money(0)}, 
 		{"name": 'Projected PY Gain/Loss %', "id": 'Projected PY Gain/Loss %','type':'numeric','format':FormatTemplate.percentage(1)}, 
 		],
@@ -1225,7 +1226,7 @@ def table_perform_bundle(df):
 		{'if': {'column_id': 'Bundle Name'},
 			 
 			 'textAlign': 'start',
-			 'width': '20rem',
+			 'width': '25rem',
 			 'paddingLeft':'10px'
 			},
 
@@ -1420,7 +1421,12 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 
 	selected_index_d=[j for j, e in enumerate(df_agg.columns) if e == d][0]
 
-	allvalue[selected_index_d]='All'
+	if d_ori=='Top 10 Chronic':
+		allvalue[selected_index_d]='All Chronic'
+	elif d_ori=='Top 10 Acute':
+		allvalue[selected_index_d]='All Acute'
+	else:
+		allvalue[selected_index_d]='All'
 
 	
 	selected_index=[j for j, e in enumerate(df_agg.columns) if e == 'Pt Ct'][0]
@@ -1443,7 +1449,7 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 
 	df_agg['Patient %'] = df_agg['Pt Ct']/df_pt_lv1_f['Pt Ct'].agg('nunique')
 	df_agg['Episode %'] = df_agg['Episode Ct']/ df_pt_lv1_f['Episode Ct'].agg('count')
-	df_agg['Cost %'] = df_agg['YTD Total Cost']/(df_agg[df_agg[d]=='All']['YTD Total Cost'].values[0])
+	df_agg['Cost %'] = df_agg['YTD Total Cost']/(df_agg.tail(1)['YTD Total Cost'].values[0])
 
 
 	df_agg['YTD Avg Cost/Patient'] = df_agg['YTD Total Cost']/df_agg['Pt Ct']
@@ -1580,7 +1586,7 @@ def drilltable_lv1(df,tableid):
 		sort_col=[{"column_id":"Cost %","direction":"desc"}]
 
 	if 'Episode Ct' in df.columns:
-		col1_format=Format( precision=0, scheme=Scheme.fixed,)
+		col1_format=Format( precision=0,group=',', scheme=Scheme.fixed,)
 
 	else:
 		col1_format=FormatTemplate.percentage(1)
@@ -1721,7 +1727,7 @@ def drilltable_physician(df,tableid,row_select):
 	tbl=dash_table.DataTable(
 		id=tableid,
 		data=df.to_dict('records'),
-		columns=[{"name": i, "id": i} if i==df.columns[0] else {"name": i, "id": i,'type':'numeric','format':Format( precision=0, scheme=Scheme.fixed,)} if i==df.columns[1] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.money(0)} if i==df.columns[2] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.percentage(1)} for i in df.columns[0:6]],
+		columns=[{"name": i, "id": i} if i==df.columns[0] else {"name": i, "id": i,'type':'numeric','format':Format( precision=0,group=',', scheme=Scheme.fixed,)} if i==df.columns[1] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.money(0)} if i==df.columns[2] else {"name": i, "id": i,'type':'numeric','format':FormatTemplate.percentage(1)} for i in df.columns[0:6]],
 		row_selectable=row_sel,
 		selected_rows=[len(df)-1],
 		sort_action="custom",
