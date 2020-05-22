@@ -320,8 +320,6 @@ def contract_gen_measure(n):
 
 			
 
-		print(style3)
-
 
 	df['Domain'] = domain_list
 	df['Weight'] = weight_list

@@ -180,7 +180,7 @@ def contract_gen_parameter_recom(app):
 					dbc.Col('SS5. Shared Savings Cap', width=7),
 					dbc.Col([
 						dbc.InputGroup([
-							dbc.Input(value = default_input['savings/losses sharing arrangement']['recom savings share cap']),
+							dbc.Input(value = 10),
 							dbc.InputGroupAddon('%', addon_type = 'append'),
 							],size="sm"),
 						], width=2)
@@ -238,7 +238,7 @@ def contract_gen_parameter_recom(app):
 				dbc.Col('SL5. Shared Losses Cap', width=7),
 				dbc.Col([
 					dbc.InputGroup([
-						dbc.Input(value = default_input['savings/losses sharing arrangement']['recom losses share cap']),
+						dbc.Input(value = 10),
 						dbc.InputGroupAddon('%', addon_type = 'append'),
 						],size="sm"),
 					], width=2)
