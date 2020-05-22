@@ -78,7 +78,7 @@ def create_layout(app):
 
 
 def contract_gen_basic(app):
-	df = df_bundle[df_bundle['Bundle'].isin(['Major joint replacement of the lower extremity (MJRLE)', 'Stroke', 'Acute myocardial infarction', 'Congestive heart failure'])]
+	df = df_bundle[(df_bundle['Bundle'].isin(['Major joint replacement of the lower extremity (MJRLE)', 'Stroke', 'Acute myocardial infarction', 'Congestive heart failure'])) & (df_bundle['IP/OP'] == 'Inpatient')]
 	return html.Div([
 		html.Div(
 			[
@@ -115,7 +115,7 @@ def contract_gen_basic(app):
 		),
 		
 		],
-		style={"padding":"20px","background-color":"#f2f7ff"})
+		style={"padding":"20px"})
 
 
 
@@ -155,7 +155,7 @@ def contract_gen_parameter(app):
 		html.Div(
 			[
 				dbc.Row([
-					dbc.Col('QA2. ', width=7),
+					dbc.Col('QA3. Quality Measures', width=7),
 					],
 					style={"padding-bottom":"10px"}),
 				html.Div([
@@ -176,7 +176,7 @@ def contract_gen_parameter(app):
 					],
 					style={"padding-bottom":"10px"}),
 			],
-			style={"padding":"20px","background-color":"#f2f7ff"}
+			style={"padding":"20px"}
 		),
 
 		],
@@ -208,7 +208,7 @@ def contract_gen_measure(app):
 			]),
 		
 		],
-		style={"padding-left":"20px","padding-right":"20px"})
+		style={"padding":"20px","background-color":"#f2f7ff"})
 	
 
 layout = create_layout(app)

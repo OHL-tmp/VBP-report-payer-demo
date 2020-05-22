@@ -418,7 +418,7 @@ def tab_physician_analysis():
                                 dbc.Row(
                                     [
                                         dbc.Col(html.H4("Physician Performance: ", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                        dbc.Col(html.H4("Cardiology",id='name-physician-drill-lv2', style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                        dbc.Col(html.H4("All",id='name-physician-drill-lv2', style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                     ],
                                     no_gutters=True,
                                 ),
@@ -722,12 +722,12 @@ def sort_table_lv4(sort_dim,data):
     if sort_dim==[]:
         sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
 
-    if 'Others' in df[df.columns[0]].tolist():
-        df1=df[0:len(df)-2].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+    if 'Others' in df['Sub Category'].tolist():
+        df1=df[0:len(df)-2].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc').reset_index(drop=True)
         df1=pd.concat([df1,df.tail(2)]).reset_index(drop=True)
 
     else:
-        df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+        df1=df[0:len(df)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc').reset_index(drop=True)
         df1=pd.concat([df1,df.tail(1)]).reset_index(drop=True)
 
     df1['id']=df1[df1.columns[0]]

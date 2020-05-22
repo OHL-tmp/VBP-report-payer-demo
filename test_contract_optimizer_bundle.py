@@ -433,7 +433,7 @@ def tab_result(app):
                             dbc.Col([
                                 dbc.Button("Edit Scenario Assumptions",
                                     className="mb-3",
-                                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem"},
+                                    style={"background-color":"#38160f", "border":"none", "border-radius":"0.25rem", "font-family":"NotoSans-Regular", "font-size":"1rem"},
                                     id = 'button-open-assump-modal'
                                 ),
                                 dbc.Modal([
