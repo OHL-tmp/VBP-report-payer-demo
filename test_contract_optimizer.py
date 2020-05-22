@@ -718,10 +718,11 @@ def tab_result(app):
                                     dbc.DropdownMenu(
                                     label = 'Choose Version to Generate Contract',
                                     children = [
-                                                dbc.DropdownMenuItem('User Defined Setting', 
-                                                href = '/vbc-demo/contract-generator/', 
-                                                id = 'dropdownmenu-contract-gen'),
-                                                dbc.DropdownMenuItem('Recommended Setting')
+                                                    dbc.DropdownMenuItem('User Defined Setting', 
+                                                        href = '/vbc-demo/contract-generator/', 
+                                                        id = 'dropdownmenu-contract-gen'),
+                                                    dbc.DropdownMenuItem('Recommended Setting',
+                                                        href = '/vbc-demo/contract-generator-recommend/')
                                                 ],
                                     style={"font-family":"NotoSans-Regular", "font-size":"1rem"},
                                     color="warning"

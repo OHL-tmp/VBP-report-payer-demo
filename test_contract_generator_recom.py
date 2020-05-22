@@ -22,6 +22,8 @@ from app import app
 
 
 df_quality = pd.read_csv("data/quality_setup.csv")
+file = open('configure/default_ds.json', encoding = 'utf-8')
+default_input = json.load(file)
 
 def create_layout(app):
 	
@@ -33,11 +35,11 @@ def create_layout(app):
                     	html.Div(
 	                        [
 	                        	html.H1("Contract Generator", style={"padding-left":"20px","padding-bottom":"30px"}),
-		                        html.Div(id = 'contract-gen-basic'),
+		                        contract_gen_basic_recom(app),
 		                        html.Div(style={"height":"20px"}),
-		                        html.Div(id = 'contract-gen-parameter'),
+		                        contract_gen_parameter_recom(app),
 		                        html.Div(style={"height":"40px"}),
-		                        html.Div(id = 'contract-gen-measure'),
+		                        contract_gen_measure_recom(app),
 		                        html.Div(style={"height":"20px"}),
 								html.Div(
 									[
@@ -78,13 +80,7 @@ def create_layout(app):
                 ])
 
 
-@app.callback(
-	Output('contract-gen-basic','children'),
-	[Input('contract-gen-interval','n_intervals')]
-	)
-def contract_gen_basic(n):
-	file = open('configure/input_ds.json', encoding = 'utf-8')
-	custom_input = json.load(file)
+def contract_gen_basic_recom(app):
 	return html.Div([
 		html.Div(
 			[
@@ -114,14 +110,7 @@ def contract_gen_basic(n):
 		style={"padding":"20px","background-color":"#f2f7ff"})
 
 
-
-@app.callback(
-	Output('contract-gen-parameter','children'),
-	[Input('contract-gen-interval','n_intervals')]
-	)
-def contract_gen_parameter(n):
-	file = open('configure/input_ds.json', encoding = 'utf-8')
-	custom_input = json.load(file)
+def contract_gen_parameter_recom(app):
 	return html.Div([
 		html.Div(
 			[
@@ -132,7 +121,7 @@ def contract_gen_parameter(n):
 				dbc.Col([
 					dbc.InputGroup([
 						dbc.InputGroupAddon('$', addon_type = 'prepend'),
-						dbc.Input(value = custom_input['medical cost target']['user target']), 
+						dbc.Input(value = default_input['medical cost target']['recom target']), 
 						], size="sm"),
 					], width=5)
 				],
@@ -151,7 +140,7 @@ def contract_gen_parameter(n):
 					dbc.Col('SS1. MSR (Minimum Savings Rate)', width=7),
 					dbc.Col([
 						dbc.InputGroup([
-							dbc.Input(value = custom_input['savings/losses sharing arrangement']['msr']),
+							dbc.Input(value = default_input['savings/losses sharing arrangement']['recom msr']),
 							dbc.InputGroupAddon('%', addon_type = 'append'),
 							],size="sm"),
 						], width=2)
@@ -161,7 +150,7 @@ def contract_gen_parameter(n):
 					dbc.Col('SS2. Max Sharing % (When quality targets are met)', width=7),
 					dbc.Col([
 						dbc.InputGroup([
-							dbc.Input(value = custom_input['savings/losses sharing arrangement']['savings sharing']),
+							dbc.Input(value = default_input['savings/losses sharing arrangement']['recom savings sharing']),
 							dbc.InputGroupAddon('%', addon_type = 'append'),
 							],size="sm"),
 						], width=2)
@@ -171,7 +160,7 @@ def contract_gen_parameter(n):
 					dbc.Col('SS3. Min Sharing %', width=7),
 					dbc.Col([
 						dbc.InputGroup([
-							dbc.Input(value = custom_input['savings/losses sharing arrangement']['savings sharing min']),
+							dbc.Input(value = default_input['savings/losses sharing arrangement']['recom savings sharing min']),
 							dbc.InputGroupAddon('%', addon_type = 'append'),
 							],size="sm"),
 						], width=2)
@@ -182,7 +171,7 @@ def contract_gen_parameter(n):
 					dbc.Col([
 						dcc.Dropdown(options = [{'label':'First Dollar Sharing', 'value':'First Dollar Sharing'},
 							{'label':'Second Dollar Sharing (Above MSR)', 'value':'Second Dollar Sharing (Above MSR)'}],
-							value = custom_input['savings/losses sharing arrangement']['saving sharing method'],clearable = False,style={"font-size":"0.8rem"}),
+							value = 'First Dollar Sharing', clearable = False,style={"font-size":"0.8rem"}),
 
 						], width=5)
 					],
@@ -191,7 +180,7 @@ def contract_gen_parameter(n):
 					dbc.Col('SS5. Shared Savings Cap', width=7),
 					dbc.Col([
 						dbc.InputGroup([
-							dbc.Input(value = custom_input['savings/losses sharing arrangement']['savings share cap']),
+							dbc.Input(value = 10),
 							dbc.InputGroupAddon('%', addon_type = 'append'),
 							],size="sm"),
 						], width=2)
@@ -210,7 +199,7 @@ def contract_gen_parameter(n):
 				dbc.Col('SL1. MLR (Minimum Losses Rate)', width=7),
 				dbc.Col([
 					dbc.InputGroup([
-						dbc.Input(value = custom_input['savings/losses sharing arrangement']['mlr']),
+						dbc.Input(value = default_input['savings/losses sharing arrangement']['recom mlr']),
 						dbc.InputGroupAddon('%', addon_type = 'append'),
 						],size="sm"),
 					], width=2)
@@ -220,7 +209,7 @@ def contract_gen_parameter(n):
 				dbc.Col('SL2. Min Sharing % (When quality targets are met)', width=7),
 				dbc.Col([
 					dbc.InputGroup([
-						dbc.Input(value = custom_input['savings/losses sharing arrangement']['losses sharing min']),
+						dbc.Input(value = default_input['savings/losses sharing arrangement']['recom losses sharing min']),
 						dbc.InputGroupAddon('%', addon_type = 'append'),
 						],size="sm"),
 					], width=2)
@@ -230,7 +219,7 @@ def contract_gen_parameter(n):
 				dbc.Col('SL3. Max Sharing %', width=7),
 				dbc.Col([
 					dbc.InputGroup([
-						dbc.Input(value = custom_input['savings/losses sharing arrangement']['losses sharing']),
+						dbc.Input(value = default_input['savings/losses sharing arrangement']['recom losses sharing']),
 						dbc.InputGroupAddon('%', addon_type = 'append'),
 						],size="sm"),
 					], width=2)
@@ -241,7 +230,7 @@ def contract_gen_parameter(n):
 				dbc.Col([
 					dcc.Dropdown(options = [{'label':'First Dollar Sharing', 'value':'First Dollar Sharing'},
 					{'label':'Second Dollar Sharing (Below MLR)', 'value':'Second Dollar Sharing (Below MLR)'}],
-						value = custom_input['savings/losses sharing arrangement']['loss sharing method'],clearable = False,style={"font-size":"0.8rem"}),
+						value = 'First Dollar Sharing',clearable = False,style={"font-size":"0.8rem"}),
 					], width=5)
 				],
 				style={"padding-bottom":"10px"}),
@@ -249,81 +238,23 @@ def contract_gen_parameter(n):
 				dbc.Col('SL5. Shared Losses Cap', width=7),
 				dbc.Col([
 					dbc.InputGroup([
-						dbc.Input(value = custom_input['savings/losses sharing arrangement']['losses share cap']),
+						dbc.Input(value = 10),
 						dbc.InputGroupAddon('%', addon_type = 'append'),
 						],size="sm"),
 					], width=2)
 				]),
 			], 
-			hidden = not custom_input['savings/losses sharing arrangement']['two side'],
+			hidden = False,
 			style={"padding":"20px","background-color":"#f2f7ff"}),
 		],
 		style={"font-family":"NotoSans-Regular"}
 	)
 
 
-@app.callback(
-	Output('contract-gen-measure','children'),
-	[Input('contract-gen-interval','n_intervals')]
-	)
-def contract_gen_measure(n):
-	file = open('configure/input_ds.json', encoding = 'utf-8')
-	custom_input = json.load(file)
 
-	df = df_quality.iloc[custom_input['quality adjustment']['selected measures']]
-	df=pd.DataFrame(df['measure'].tolist(),columns=['Measure'])
-	df=df.reindex(columns=['Measure','Target Type','Target Value','Domain','Weight'])
-	tgt_type = custom_input['quality adjustment']['user_tar_type']
-	tgt_value = custom_input['quality adjustment']['user_tar_value']
-	df['Target Type'] = [tgt_type[i] for i in range(0, len(tgt_type)) if tgt_type[i] is not None]
-	df['Target Value']  = [tgt_value[i] for i in range(0, len(tgt_value)) if tgt_value[i] is not None]
-	domain_list = []
-	weight_list = []
-
-	selected_row=custom_input['quality adjustment']['selected measures']
-	domain1=list(range(0,10))
-	domain2=list(range(10,14))
-	domain3=list(range(14,20))
-	domain4=list(range(20,23))
-	pos=0
-	table_len=0
-
-	style1=[]
-	style2=[]
-	style3=[]
-
-	domain_name=['Patient/Caregiver Experience','Care Coordination/Patient Safety','Preventive Health','At-Risk Population']
-
-	for i in range(0,4):
-		exec('selected_intersect_' + str(i) + '=set(selected_row).intersection( set(eval("domain"+str(i+1)) ))')
-		n = eval('len(selected_intersect_' + str(i)+')')
-		if n>1:	
-			style1.append(table_len)		
-			pos=int(round(n/2,0))
-			domain_list = domain_list + (['']*n)
-			domain_list[pos+table_len-1]=domain_name[i]
-			weight_list = weight_list + (['']*n)
-			weight_list[pos+table_len-1]=custom_input['quality adjustment'][eval('"usr_dom_'+str(i+1)+'"')]
-
-			table_len=table_len+n
-
-			style2.append(table_len-1)
-		elif n == 1:
-			style3.append(table_len)		
-			pos=int(round(n/2,0))
-			domain_list = domain_list + (['']*n)
-			domain_list[pos+table_len]=domain_name[i]
-			weight_list = weight_list + (['']*n)
-			weight_list[pos+table_len]=custom_input['quality adjustment'][eval('"usr_dom_'+str(i+1)+'"')]
-
-			table_len=table_len+n
-
-			
-
-
-	df['Domain'] = domain_list
-	df['Weight'] = weight_list
-
+def contract_gen_measure_recom(app):
+	df = df_quality[['measure','tar_user_type','tar_recom', 'domain', 'recommended']]
+	df.columns = ['Measure','Target Type','Target Value', 'Domain', 'Weight']
 	return html.Div([
 		html.H1("Quality Measures", style={"font-size":"1.25rem"}),
 		html.Hr(),
@@ -356,23 +287,48 @@ def contract_gen_measure(n):
 					'border':'1px solid grey',
 					'border-bottom':'0px',
 			 
-					  } if c in style1 else
+					  } if c in [0,10,14,20] else
 			{'if': {'row_index':c},
 					'border':'1px solid grey',
-					'border-top':'0px',
+					'border-top':'0px solid grey',
 			 
-					  } if c in style2 else
+					  } if c in [9,13,19,22] else
 			{'if': {'row_index':c},
 					'border':'1px solid grey',
-					} if c in style3 else
-			{'if': {'row_index':c},
-					'border':'1px solid grey', 
-					'border-bottom':'0px',
-					'border-top':'0px', 
-					} for c in range(0,len(df))
+					'border-bottom':'0px solid grey',
+					'border-top':'0px solid grey',   
+					}  for c in range(0,23)
 
 
-		]
+		]+[
+            { 
+                'if': {'row_index':c,'column_id':"domain"}, 
+                
+                'border-top':'1px solid grey',
+                'border-left':'1px solid grey',
+                'border-right':'1px solid grey',
+                'border-bottom':'0px solid grey',
+             
+            } if c in [0,10,14,20] else
+            {
+                'if': {'row_index':c,'column_id':"domain"}, 
+                
+                'border-bottom':'1px solid grey',
+                'border-left':'1px solid grey',
+                'border-right':'1px solid grey',
+                'border-top':'0px solid grey',
+             
+            } if c in [9,13,19,22] else
+            {
+                'if': {'row_index':c,'column_id':"domain"},
+                
+                'border-left':'1px solid grey',
+                'border-right':'1px solid grey',
+                'border-bottom':'0px solid grey',
+                'border-top':'0px solid grey',
+            }  for c in range(0,23)
+
+        ]
 			)
 		],
 		style={"padding-left":"20px","padding-right":"20px"})

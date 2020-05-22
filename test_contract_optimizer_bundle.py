@@ -428,7 +428,7 @@ def tab_result(app):
                 [
                     dbc.Row(
                         [
-                            dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"2rem","padding-bottom":"3rem","font-size":"3"}), width=9),
+                            dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"2rem","padding-bottom":"3rem","font-size":"1.8rem"}), width=6),
                             html.Hr(),
                             dbc.Col([
                                 dbc.Button("Edit Scenario Assumptions",
@@ -443,9 +443,23 @@ def tab_result(app):
                                         dbc.Button('Close', id = 'button-close-assump-modal'))
                                     ], id = 'modal-assump', size = 'xl', backdrop = 'static'),
                                 ],
-                                style={"padding-top":"1rem"}
+                                width="auto"
                             ),
-                            
+                            dbc.Col(
+                                [
+                                    dbc.DropdownMenu(
+                                    label = 'Choose Version to Generate Contract',
+                                    children = [
+                                                dbc.DropdownMenuItem('User Defined Setting', 
+                                                ),
+                                                dbc.DropdownMenuItem('Recommended Setting',
+                                                href = '/vbc-demo/contract-generator-bundle/')
+                                                ],
+                                    style={"font-family":"NotoSans-Regular", "font-size":"1rem"},
+                                    color="warning"
+                                    )
+                                ]
+                            )
                         ]
                     ),
                     dbc.Row(
@@ -470,7 +484,7 @@ def tab_result(app):
                                 style={"font-size":"0.8rem"}
                                 ),
                                 width=3
-                            )
+                            ),
                         ]
                     ),
                     dbc.Card(
