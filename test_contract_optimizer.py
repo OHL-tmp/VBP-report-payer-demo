@@ -37,6 +37,8 @@ def create_layout(app):
                 [ 
                     html.Div([Header_contract(app, True, False, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
                     
+                    html.A(id="top"),
+
                     html.Div(
                         [
                             dbc.Tabs(
@@ -111,7 +113,8 @@ def card_performance_measure_setup(app):
                             dbc.Button("SUBMIT",
                                 className="mb-3",
                                 style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem"},
-                                id = 'button-submit-simulation'
+                                id = 'button-submit-simulation',
+                                href='#top'
                             ),
                             style={"text-align":"center"}
                         )
