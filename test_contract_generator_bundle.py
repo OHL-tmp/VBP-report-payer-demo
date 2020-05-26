@@ -30,7 +30,8 @@ def create_layout(app):
 	return html.Div(
                 [ 
                     html.Div([Header_contract(app, False, True, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
-                    
+                    html.Div(dbc.Button('Back to Simulation', style={"text-align":"center", "font-size":"0.8rem", "border":"1px dashed #919191"}, color="light"), style={"text-align":"start", "width":"850px", "margin":"auto","padding-bottom":"2rem"}),
+	                
                     html.Div(
                     	html.Div(
 	                        [
