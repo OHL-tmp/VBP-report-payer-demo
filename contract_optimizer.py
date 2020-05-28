@@ -22,6 +22,8 @@ from simulation_cal import *
 
 
 app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract-optimizer/')
+app.css.config.serve_locally = True
+app.scripts.config.serve_locally = True
 
 server = app.server
 

@@ -65,6 +65,16 @@
   visibility: hidden;
 }
 
+*[data-dash-is-loading="true"]{
+    visibility: hidden;
+}
+*[data-dash-is-loading="true"]::before{
+    content: "";
+    display: inline-block;
+    color: #000;
+    visibility: visible;
+}
+
 ._dash-loading {
   font-family: "NotoSans-CondensedBlackItalic";
   font-size: 4rem;
@@ -73,3 +83,44 @@
   color: #1357DD;
   
 }
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+._dash-loading-callback {
+  font-family: sans-serif;
+  padding-top: 50px;
+  color: #fff;
+
+  /* The banner */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  cursor: progress;
+
+  opacity: 0;
+  background-image: url("./loading-bars.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100px;
+  background-color: rgb(250, 250, 250);
+  
+  /* Delay animation by 1s to prevent flashing 
+     and smoothly transition the animation over 0.5s 
+   */
+  -moz-animation: fadein 0.0s ease-in 0s forwards; /* Firefox */
+  -webkit-animation: fadein 0.0s ease-in 0s forwards; /* Safari and Chrome */
+  -o-animation: fadein 0.0s ease-in 0s forwards; /* Opera */
+    animation: fadein 0.0s ease-in 0s forwards;
+}
+
+

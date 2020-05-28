@@ -16,8 +16,11 @@ import test_contract_manager_drilldown
 import test_contract_optimizer
 import test_contract_optimizer_bundle
 import test_contract_generator
+import test_contract_generator_recom
+import test_contract_generator_bundle
 import test_contract_manager_bundle
 import test_contract_report_generator
+
 
 
 
@@ -85,6 +88,10 @@ def display_page(pathname):
         return test_contract_optimizer_bundle.layout
     elif pathname == "/vbc-demo/contract-generator/":
         return test_contract_generator.layout
+    elif pathname == "/vbc-demo/contract-generator-recommend/":
+        return test_contract_generator_recom.layout
+    elif pathname == "/vbc-demo/contract-generator-bundle/":
+        return test_contract_generator_bundle.layout
     elif pathname == "/vbc-demo/contract-manager-bundle/":
         return test_contract_manager_bundle.layout
     elif pathname == "/vbc-demo/contract-manager/report-generator/":
@@ -97,6 +104,6 @@ def display_page(pathname):
 
 if __name__ == "__main__":
 
-    app.run_server( port = 8052)
+    app.run_server(port=8050)
 
                         

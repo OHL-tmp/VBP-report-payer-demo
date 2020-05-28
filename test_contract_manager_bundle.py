@@ -97,7 +97,7 @@ def manager_div_year_to_date_metrics(app):
                     manager_card_year_to_date_metrics("YTD Bundle Cost", "$10,925,917", "#381610f"),
                     manager_card_year_to_date_metrics("Projected PY Bundle Cost", "$23,556,277", "#381610f"),
                     html.Hr(className="ml-1"),
-                    manager_card_year_to_date_metrics("Expected Total Losses", "\u25bc $552,274", "#db2200"),
+                    manager_card_year_to_date_metrics("Expected Total Losses", "\u25bc $662,274", "#db2200"),
                     html.Hr(className="ml-1"),
                     manager_modal_metricsdetail(app),
                 ],
@@ -304,7 +304,7 @@ def manager_card_quality_score(app):
 def manager_modal_totalcost(app):
     return html.Div([
                 dbc.Button(
-                    "Details",
+                    "Target Adjustment Details",
                     id = 'bundle-manager-button-openmodal-totalcost',
                     className="mb-3",
                     style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
@@ -313,14 +313,14 @@ def manager_modal_totalcost(app):
                     dbc.ModalHeader(
                         [
                             html.H1("Target Adjustment Details", style={"font-size":"0.8rem"}),
-                            html.H2("TOTAL COST", style={"font-size":"1.6rem","color":"#1357DD","background-color":"#c6d9ff","padding":"0.5rem","border-radius":"0.5rem"})
+                            html.H2("TOTAL COST", style={"font-size":"1rem","color":"#1357DD"})
                         ],
                         
                     ),
                     dbc.ModalBody(dcc.Graph(figure=waterfall_target_adj(df_target_adj_bundle),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, style={"padding":"2rem"})),
                     dbc.ModalFooter(dbc.Button('Close',style={"border-radius":"10rem"}, id = 'bundle-manager-button-closemodal-totalcost')),
-                    ], id = 'bundle-manager-modal-totalcost',
-                style={"text-align":"center"}),
+                    ], id = 'bundle-manager-modal-totalcost'
+                ),
             ],
             style={"text-align":"center","padding-right":"7rem"})
 
