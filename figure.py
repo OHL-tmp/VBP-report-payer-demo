@@ -1958,28 +1958,8 @@ def waterfall_bundle_cost(df):
 ####################################################################################################################################################################################
 ######################################################################      Simulation         ##################################################################################### 
 #################################################################################################################################################################################### 
-
-def qualitytable(df,selected_rows=list(range(0,23))):
-
-
-	table=dash_table.DataTable(
-		data=df.to_dict('records'),
-		id='table-measure-setup',
-		columns=[
-		{"name": ["","Measure"], "id": "measure"},
-		{"name": [ "ACO Baseline","ACO"], "id": "aco"},
-		{"name": [ "ACO Baseline","Benchmark"], "id": "benchmark"},
-		{"name": [ "ACO Baseline","Best-in-Class"], "id": "bic"},
-		{"name": [ "Target","Recommended"], "id": "tar_recom"},
-		{"name": [ "Target","P4P/P4R"], "id": "tar_user_type",'editable':True,'presentation':'dropdown'},
-		{"name": [ "Target","User Defined Value"], "id": "tar_user",'editable': True},
-		{"name": [ "Weight","Domain"], "id": "domain"},
-		{"name": [ "Weight","Recommended"], "id": "recommended"},
-		{"name": [ "Weight","User Defined"], "id": "userdefined",'editable': True},
-		#{"name": [ "","id"], "id": "rowid"},
-		],
-		merge_duplicate_headers=True,
-		dropdown_conditional=[{
+def qualitytable_dropdown_conditional(selected_rows):
+	dropdown_conditional=[{
 			'if': {
 				'column_id': 'tar_user_type',
 				'filter_query': '{{rowid}} = {}'.format(c)
@@ -2004,30 +1984,11 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 						]
 		} 
 		for c in range(0,23)
-		] ,
-#		dropdown={
-#			'tar_user_type': {
-#				'options': [
-#					{'label': k, 'value': k}
-#					for k in ['Performance','Report']
-#				]
-#			},
-#		},
-		row_selectable='multi',
-		selected_rows=selected_rows,
-		style_data={
-				'color': 'black', 
-				'backgroundColor': 'rgba(0,0,0,0)',
-				'font-family': 'NotoSans-CondensedLight',
-				'width':'4rem',
-				'minWidth': '4rem',
-				'maxWidth':'14rem',
-				#'border':'1px solid grey',
-				#'border-bottom': '1px solid grey',
-				#'border-top': '1px solid grey',
+		]
+	return dropdown_conditional
 
-		},
-		style_data_conditional=[
+def qualitytable_data_conditional(selected_rows):
+	style_data_conditional=[
 				{ 'if': {'column_id':'measure'}, 
 				 'font-weight':'bold', 
 				 'textAlign': 'start',
@@ -2037,8 +1998,7 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 				 #'minWidth': '25rem',
 				 #'maxWidth':'25rem',
 				  },
-		]+
-		[
+		]+[
 			{ 'if': {'row_index':c}, 
 					'border':'1px solid grey',
 					'border-bottom':'0px',
@@ -2120,14 +2080,71 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 				'if': { 'column_id': 'tar_user','row_index': c},
 				#'backgroundColor': 'green',
 				'border': '1px solid blue',
-			} for c in selected_rows
+			} if c in selected_rows else
+			{
+				'if': { 'column_id': 'tar_user','row_index': c},
+				#'backgroundColor': 'green',
+				'color': 'rgba(0,0,0,0)',
+			} for c in range(0,23)
 		]+[
 			{
 				'if': { 'column_id': 'tar_user_type','row_index': c},
 				#'backgroundColor': 'green',
 				'border': '1px solid blue',
-			} for c in selected_rows
+			} if c in selected_rows else
+			{
+				'if': { 'column_id': 'tar_user_type','row_index': c},
+				#'backgroundColor': 'green',
+				'color': 'rgba(0,0,0,0)',
+			} for c in range(0,23)
+		]
+	return style_data_conditional
+
+
+def qualitytable(df,selected_rows=list(range(0,23))):
+
+
+	table=dash_table.DataTable(
+		data=df.to_dict('records'),
+		id='table-measure-setup',
+		columns=[
+		{"name": ["","Measure"], "id": "measure"},
+		{"name": [ "ACO Baseline","ACO"], "id": "aco"},
+		{"name": [ "ACO Baseline","Benchmark"], "id": "benchmark"},
+		{"name": [ "ACO Baseline","Best-in-Class"], "id": "bic"},
+		{"name": [ "Target","Recommended"], "id": "tar_recom"},
+		{"name": [ "Target","P4P/P4R"], "id": "tar_user_type",'editable':True,'presentation':'dropdown'},
+		{"name": [ "Target","User Defined Value"], "id": "tar_user",'editable': True},
+		{"name": [ "Weight","Domain"], "id": "domain"},
+		{"name": [ "Weight","Recommended"], "id": "recommended"},
+		{"name": [ "Weight","User Defined"], "id": "userdefined",'editable': True},
+		#{"name": [ "","id"], "id": "rowid"},
 		],
+		merge_duplicate_headers=True,
+		dropdown_conditional=qualitytable_dropdown_conditional(selected_rows) ,
+#		dropdown={
+#			'tar_user_type': {
+#				'options': [
+#					{'label': k, 'value': k}
+#					for k in ['Performance','Report']
+#				]
+#			},
+#		},
+		row_selectable='multi',
+		selected_rows=selected_rows,
+		style_data={
+				'color': 'black', 
+				'backgroundColor': 'rgba(0,0,0,0)',
+				'font-family': 'NotoSans-CondensedLight',
+				'width':'4rem',
+				'minWidth': '4rem',
+				'maxWidth':'14rem',
+				#'border':'1px solid grey',
+				#'border-bottom': '1px solid grey',
+				#'border-top': '1px solid grey',
+
+		},
+		style_data_conditional=qualitytable_data_conditional(selected_rows),
 		style_cell={
 			'textAlign': 'center',
 			'font-family':'NotoSans-Regular',
