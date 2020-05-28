@@ -1798,32 +1798,168 @@ def drilltable_physician(df,tableid,row_select):
 	)
 	return tbl
 
-
 ####################################################################################################################################################################################
-######################################################################     Drilldown         ##################################################################################### 
-#################################################################################################################################################################################### 
+######################################################################    Bundle DrillDown     #####################################################################################
+####################################################################################################################################################################################
 
-def qualitytable(df,selected_rows=list(range(0,23))):
+def table_perform_bundle_drill(df1,df2):
+
+	df=pd.merge(df1,df2,how='left',on='Bundle Name')
 
 
-	table=dash_table.DataTable(
+	tbl=dash_table.DataTable(
+#		id=tableid,
 		data=df.to_dict('records'),
-		id='table-measure-setup',
 		columns=[
-		{"name": ["","Measure"], "id": "measure"},
-		{"name": [ "ACO Baseline","ACO"], "id": "aco"},
-		{"name": [ "ACO Baseline","Benchmark"], "id": "benchmark"},
-		{"name": [ "ACO Baseline","Best-in-Class"], "id": "bic"},
-		{"name": [ "Target","Recommended"], "id": "tar_recom"},
-		{"name": [ "Target","P4P/P4R"], "id": "tar_user_type",'editable':True,'presentation':'dropdown'},
-		{"name": [ "Target","User Defined Value"], "id": "tar_user",'editable': True},
-		{"name": [ "Weight","Domain"], "id": "domain"},
-		{"name": [ "Weight","Recommended"], "id": "recommended"},
-		{"name": [ "Weight","User Defined"], "id": "userdefined",'editable': True},
-		#{"name": [ "","id"], "id": "rowid"},
+		{"name": ['','Bundle Name'], "id": 'Bundle Name'},
+		{"name": ['','YTD Cnt'], "id": 'YTD Cnt_x','type':'numeric','format':Format( precision=0, group=',',scheme=Scheme.fixed,)},
+#		{"name": 'YTD FFS Cost', "id": 'YTD FFS Cost','type':'numeric','format':FormatTemplate.money(0)},
+		{"name": ['Bundle Total','Projected PY Gain/Loss'], "id": 'Projected PY Gain/Loss_x','type':'numeric','format':FormatTemplate.money(0)}, 
+		{"name": ['Bundle Total','Projected PY Gain/Loss %'], "id": 'Projected PY Gain/Loss %_x','type':'numeric','format':FormatTemplate.percentage(1)}, 
+		{"name": ['Bundle Average','Projected PY Gain/Loss'], "id": 'Projected PY Gain/Loss_y','type':'numeric','format':FormatTemplate.money(0)}, 
+		{"name": ['Bundle Average','Projected PY Gain/Loss %'], "id": 'Projected PY Gain/Loss %_y','type':'numeric','format':FormatTemplate.percentage(1)}, 
+
 		],
 		merge_duplicate_headers=True,
-		dropdown_conditional=[{
+		row_selectable='single',
+		selected_rows=[0],
+		sort_action="native",
+		sort_mode='single',
+		sort_by=[{"column_id":"Projected PY Gain/Loss","direction":"desc"}],
+		style_data={
+			'whiteSpace': 'normal',
+			'height': 'auto'
+		},
+		style_data_conditional=(
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_x') +
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %_x')+
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_y') +
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %_y')+
+		[{'if': {'column_id':'Projected PY Gain/Loss_x'},
+			 
+			 'width': '15rem',
+			}, 
+		{'if': {'column_id': 'Projected PY Gain/Loss %_x'},
+			 
+			 'width': '15rem',
+			},
+		{'if': {'column_id':'Projected PY Gain/Loss_y'},
+			 
+			 'width': '15rem',
+			}, 
+		{'if': {'column_id': 'Projected PY Gain/Loss %_y'},
+			 
+			 'width': '15rem',
+			},
+		{'if': {'column_id': 'Bundle Name'},
+			 
+			 'textAlign': 'start',
+			 'width': '25rem',
+			 'paddingLeft':'10px'
+			},
+
+		]
+		),
+	   
+		style_cell={
+			'textAlign': 'center',
+			'font-family':'NotoSans-Condensed',
+			'fontSize':14
+		},
+		style_header={
+			'height': '4rem',
+			'minWidth': '3rem',
+			'maxWidth':'3rem',
+			'whiteSpace': 'normal',
+			'backgroundColor': "#f1f6ff",
+			'fontWeight': 'bold',
+			'font-family':'NotoSans-CondensedLight',
+			'fontSize':16,
+			'color': '#1357DD',
+			'text-align':'center',
+		},
+	)
+	return tbl
+
+
+def waterfall_bundle_cost(df): 
+
+	number_fomart='%{y:,.0f}'
+
+	n=len(df)
+
+
+	fig_waterfall = go.Figure(data=[
+		go.Bar(
+			name='',
+			x=df['Service Category'], 
+			y=df['YTD Cost PMPM'].cumsum(),
+			#text=y1_waterfall,
+			textposition='outside',
+			textfont=dict(color=['black']+[colors['transparent']]*(n-2)+['black']),
+			texttemplate=number_fomart,
+			marker=dict(
+					color=[colors['blue']]+[colors['transparent']]*(n-2)+[colors['blue']],
+					opacity=0.7
+					),
+			marker_line=dict( color = colors['transparent'] ),
+			hovertemplate='%{y:,.0f}',
+			hoverinfo='skip',
+			
+		),
+		go.Bar(  
+			name='',
+			x=df['Service Category'], 
+			y=[0]+(df['YTD Cost PMPM'][1:(n-2)].tolist())+[0],
+			#text=y2_waterfall,
+			cliponaxis=False,
+			textposition='outside',
+			textfont=dict(color=[colors['transparent']]+['black']*(n-2)+[colors['transparent']]),
+			texttemplate=number_fomart,
+			marker=dict(
+					color=[colors['transparent']]+[colors['yellow']]*(n-2)+[colors['transparent']],
+					opacity=0.7
+					),
+			hovertemplate='%{y:,.0f}',
+			hoverinfo='skip',
+		)
+	])
+	# Change the bar mode
+	fig_waterfall.update_layout(
+		barmode='stack',
+		#title='Revenue Projection',
+		plot_bgcolor=colors['transparent'],
+		paper_bgcolor=colors['transparent'],
+		yaxis = dict(
+			showgrid = True, 
+			gridcolor =colors['grey'],
+			nticks=5,
+			showticklabels=True,
+			zeroline=True,
+			zerolinecolor=colors['grey'],
+			zerolinewidth=1,
+			range=[0,df['YTD Cost PMPM'].max()*1.2]
+		),
+		showlegend=False,
+		modebar=dict(
+			bgcolor=colors['transparent'],
+		),
+		margin=dict(l=10,r=10,b=10,t=50,pad=0),
+		font=dict(
+			family="NotoSans-Condensed",
+			size=12,
+			color="#38160f"
+		),
+	)
+	return fig_waterfall
+
+
+
+####################################################################################################################################################################################
+######################################################################      Simulation         ##################################################################################### 
+#################################################################################################################################################################################### 
+def qualitytable_dropdown_conditional(selected_rows):
+	dropdown_conditional=[{
 			'if': {
 				'column_id': 'tar_user_type',
 				'filter_query': '{{rowid}} = {}'.format(c)
@@ -1848,30 +1984,11 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 						]
 		} 
 		for c in range(0,23)
-		] ,
-#		dropdown={
-#			'tar_user_type': {
-#				'options': [
-#					{'label': k, 'value': k}
-#					for k in ['Performance','Report']
-#				]
-#			},
-#		},
-		row_selectable='multi',
-		selected_rows=selected_rows,
-		style_data={
-				'color': 'black', 
-				'backgroundColor': 'rgba(0,0,0,0)',
-				'font-family': 'NotoSans-CondensedLight',
-				'width':'4rem',
-				'minWidth': '4rem',
-				'maxWidth':'14rem',
-				#'border':'1px solid grey',
-				#'border-bottom': '1px solid grey',
-				#'border-top': '1px solid grey',
+		]
+	return dropdown_conditional
 
-		},
-		style_data_conditional=[
+def qualitytable_data_conditional(selected_rows):
+	style_data_conditional=[
 				{ 'if': {'column_id':'measure'}, 
 				 'font-weight':'bold', 
 				 'textAlign': 'start',
@@ -1881,8 +1998,7 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 				 #'minWidth': '25rem',
 				 #'maxWidth':'25rem',
 				  },
-		]+
-		[
+		]+[
 			{ 'if': {'row_index':c}, 
 					'border':'1px solid grey',
 					'border-bottom':'0px',
@@ -1964,14 +2080,71 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 				'if': { 'column_id': 'tar_user','row_index': c},
 				#'backgroundColor': 'green',
 				'border': '1px solid blue',
-			} for c in selected_rows
+			} if c in selected_rows else
+			{
+				'if': { 'column_id': 'tar_user','row_index': c},
+				#'backgroundColor': 'green',
+				'color': 'rgba(0,0,0,0)',
+			} for c in range(0,23)
 		]+[
 			{
 				'if': { 'column_id': 'tar_user_type','row_index': c},
 				#'backgroundColor': 'green',
 				'border': '1px solid blue',
-			} for c in selected_rows
+			} if c in selected_rows else
+			{
+				'if': { 'column_id': 'tar_user_type','row_index': c},
+				#'backgroundColor': 'green',
+				'color': 'rgba(0,0,0,0)',
+			} for c in range(0,23)
+		]
+	return style_data_conditional
+
+
+def qualitytable(df,selected_rows=list(range(0,23))):
+
+
+	table=dash_table.DataTable(
+		data=df.to_dict('records'),
+		id='table-measure-setup',
+		columns=[
+		{"name": ["","Measure"], "id": "measure"},
+		{"name": [ "ACO Baseline","ACO"], "id": "aco"},
+		{"name": [ "ACO Baseline","Benchmark"], "id": "benchmark"},
+		{"name": [ "ACO Baseline","Best-in-Class"], "id": "bic"},
+		{"name": [ "Target","Recommended"], "id": "tar_recom"},
+		{"name": [ "Target","P4P/P4R"], "id": "tar_user_type",'editable':True,'presentation':'dropdown'},
+		{"name": [ "Target","User Defined Value"], "id": "tar_user",'editable': True},
+		{"name": [ "Weight","Domain"], "id": "domain"},
+		{"name": [ "Weight","Recommended"], "id": "recommended"},
+		{"name": [ "Weight","User Defined"], "id": "userdefined",'editable': True},
+		#{"name": [ "","id"], "id": "rowid"},
 		],
+		merge_duplicate_headers=True,
+		dropdown_conditional=qualitytable_dropdown_conditional(selected_rows) ,
+#		dropdown={
+#			'tar_user_type': {
+#				'options': [
+#					{'label': k, 'value': k}
+#					for k in ['Performance','Report']
+#				]
+#			},
+#		},
+		row_selectable='multi',
+		selected_rows=selected_rows,
+		style_data={
+				'color': 'black', 
+				'backgroundColor': 'rgba(0,0,0,0)',
+				'font-family': 'NotoSans-CondensedLight',
+				'width':'4rem',
+				'minWidth': '4rem',
+				'maxWidth':'14rem',
+				#'border':'1px solid grey',
+				#'border-bottom': '1px solid grey',
+				#'border-top': '1px solid grey',
+
+		},
+		style_data_conditional=qualitytable_data_conditional(selected_rows),
 		style_cell={
 			'textAlign': 'center',
 			'font-family':'NotoSans-Regular',
@@ -2855,13 +3028,17 @@ def bundle_measure_setup(df):
 		)
 	return table
 
+
 #def table_network_cost(df):
 
-#df_quality = pd.read_csv("data/quality_setup.csv")
+#df_bundle_performance=pd.read_csv("data/df_bundle_performance.csv")
+#df_bundle_performance_pmpm=pd.read_csv("data/df_bundle_performance_pmpm.csv")
+
+
 #app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract-manager-drilldown/')
 
 #server = app.server
-#app.layout=html.Div([qualitytable(df_quality)])
+#app.layout=html.Div([table_perform_bundle_drill(df_bundle_performance,df_bundle_performance_pmpm)])
 
 #if __name__ == "__main__":
 #   app.run_server(host="127.0.0.1",debug=True)

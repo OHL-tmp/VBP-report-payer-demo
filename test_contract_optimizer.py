@@ -9,6 +9,7 @@ import datetime
 import json
 import pandas as pd
 import numpy as np
+import math
 
 import pathlib
 import plotly.graph_objects as go
@@ -22,6 +23,9 @@ from simulation_cal import *
 
 
 from app import app
+#app = dash.Dash(__name__)
+
+#server = app.server
 
 file = open('configure/default_ds.json', encoding = 'utf-8')
 default_input = json.load(file)
@@ -997,7 +1001,7 @@ def sim_assump_input_session():
 
 
 layout = create_layout(app)
-
+#app.layout = create_layout(app)
 
 
 @app.callback(
@@ -1115,41 +1119,32 @@ def cal_overall_weight(data):
 
 # table style update on selected_rows
 @app.callback(
-    Output('container-measure-setup', 'children'),
-    [Input('table-measure-setup', 'selected_rows'),],
-    [State('table-measure-setup', 'data'),])
-def update_columns(selected_quality, data):
+    [Output('table-measure-setup', 'dropdown_conditional'),
+    Output('table-measure-setup', 'style_data_conditional'),
+    Output('table-measure-setup', 'data'),],
+    [Input('table-measure-setup', 'selected_rows'),
+    Input('table-measure-setup', 'data_timestamp'),],
+    [State('table-measure-setup', 'data'),]
+    )
+def update_columns(selected_quality,timestamp, data):
     for i in range(0,23):
         row=data[i]
 
-        if i in selected_quality:
-            row['tar_user']=row['tar_recom']
-            if i in [6,8,9,15,16,19,20]:
-                row['tar_user_type']='Report'
-            else:
-                row['tar_user_type']='Performance'
-        else:
-            row['tar_user']=float('nan')
-            row['tar_user_type']=float('nan')
-
-    return qualitytable(pd.DataFrame.from_dict(data),selected_quality)
-
-# set up table selfupdate
-@app.callback(
-    Output('table-measure-setup', 'data'),
-    [Input('table-measure-setup', 'data_timestamp'),],
-    [State('table-measure-setup', 'data'),
-     State('table-measure-setup', 'selected_rows'),])
-def update_columns(timestamp, data,selected_quality):
-    for i in range(0,23):
-        row=data[i]
         if i in [4,11,16,21]:  
             row['userdefined']=str(row['userdefined']).replace('$','').replace('%','').replace(',','')+'%'
         else:
             row['userdefined']=float('nan')
 
         if i in selected_quality:
-            if row['tar_user_type']=='Report':
+ 
+            if (row['tar_user_type'] is None) or (row['tar_user_type'] is np.nan):
+                row['tar_user']=row['tar_recom']
+                if i in [6,8,9,15,16,19,20]:
+                    row['tar_user_type']='Report'
+                else:
+                    row['tar_user_type']='Performance'
+
+            elif row['tar_user_type']=='Report':
                 row['tar_user']='R'
             elif row['tar_user_type']=='Performance' and  row['tar_user']=='R':
                 if row['tar_recom']=='R':
@@ -1163,9 +1158,12 @@ def update_columns(timestamp, data,selected_quality):
 
 
         else:
-            row['tar_user']=float('nan')
+            row['tar_user']=np.nan
+            row['tar_user_type']=np.nan
 
-    return data
+
+    return qualitytable_dropdown_conditional(selected_quality),qualitytable_data_conditional(selected_quality),data
+
 
 # store data
 @app.callback(
@@ -1291,6 +1289,6 @@ def update_grapg_cost(metric, data):
     return {}, ""
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True,port=8052)
+    app.run_server(host="127.0.0.1",debug=True,port=8050)
 
 
