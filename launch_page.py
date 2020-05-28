@@ -38,7 +38,7 @@ def launch_layout():
                     ),
                     html.Div(
                         [
-                            html.P("© 2020 Sinolation. ")
+                            html.P("PAYER   © 2020 Sinolation. ")
                         ],
                         style={"text-align":"center", "font-size":"0.6rem"}
                     ),
@@ -60,7 +60,7 @@ def launch_layout():
                                 )
 
                             ],
-                            style={"background-color":"transparent", "border":"none"}
+                            style={"background-color":"transparent", "border":"none", "width":"1400px", "margin":"auto"}
                             ),
                         ],
                         style={"margin-top":"-30rem","background-color":"transparent","text-align":"center"}

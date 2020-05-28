@@ -56,13 +56,11 @@ def create_layout(app):
     return html.Div(
                 [ 
                     html.Div([Header_mgmt(app, False, True, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
-                    
-                    html.Div([html.Div([col_menu_drilldown()], style={"border-radius":"5rem","background-color":"none"})], style={"padding-bottom":"3rem"}),
-                
+                       
                     html.Div(
                         [
                             html.Div(col_content_drilldown(app), id='drilldown-div-avgcost-container', hidden=False),
-                            html.Div(col_content_drilldown_crhr(app), id='drilldown-div-crhr-container', hidden=True),
+                            html.Div(col_content_drilldown_bundle(app), id='drilldown-div-bundle-container', hidden=True),
                         ],
                         className="mb-3",
                         style={"padding-left":"3rem", "padding-right":"3rem","padding-top":"1rem"},
@@ -110,7 +108,7 @@ def dropdownmenu_select_measures():
                     dbc.DropdownMenuItem(divider=True),
                     dbc.DropdownMenuItem("Value Based Measures", header=True),
                     dbc.DropdownMenuItem("CHF Related Average Cost per Patient", id="avg_cost"),
-                    dbc.DropdownMenuItem("CHF Related Hospitalization Rate", id="crhr"),
+                    dbc.DropdownMenuItem("CHF Related Hospitalization Rate", id="bundle"),
                     dbc.DropdownMenuItem("NT - proBNP Change %"),
                     dbc.DropdownMenuItem("LVEF LS Mean Change %"),
                     dbc.DropdownMenuItem(divider=True),
@@ -132,6 +130,484 @@ def card_selected_measures():
 
 
 
+
+def col_content_drilldown_bundle(app):
+    return html.Div(
+            [
+                dbc.Row(
+                    [
+                        dbc.Col(card_overview_drilldown_bundle(0.03),width=8),
+                        dbc.Col(card_key_driver_drilldown_bundle(app),width=4),
+                    ]
+                ),
+                
+                html.Div(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.Div(
+                                        [
+                                            html.H2("Performance Drilldown", style={"font-size":"3rem"}),
+                                            html.H3("check table view for more details...", style={"font-size":"1rem"}),
+                                        ],
+                                        style={"padding-left":"2rem"}
+                                    ), width=8),
+                                dbc.Col(modal_drilldown_tableview(), width=4)
+                            ]
+                        )
+                    ],
+                    style={"padding-bottom":"1rem", "padding-top":"2rem"}
+                ),
+                html.Div(
+                    dbc.Tabs(
+                        [
+                            dbc.Tab(tab_patient_analysis_bundle(app), label="Patient Analysis", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
+                            dbc.Tab(tab_physician_analysis_bundle(app), label="Physician Analysis", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
+                        ], 
+                        # id = 'tab_container'
+                    ),
+                )
+                
+            ]
+        )
+
+
+def card_overview_drilldown_bundle(percentage):
+    if percentage > 0:
+        color = "#dc3545"
+        condition = "worse than target"
+    elif percentage == 0:
+        color = "#1357DD"
+        condition = "same as target"
+    else:
+        color = "#28a745"
+        condition = "better than target"
+
+    return html.Div(
+            [
+                dbc.Row(
+                        [
+                            dbc.Col(html.H1("CHF Related Hospitalization Rate", style={"font-size":"1.6rem"}), width="auto"),
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        html.H3("worse than target", style={"font-size":"0.8rem", "color":"#fff"}),
+                                        html.H2(str(percentage*100)+"%", style={"font-size":"1.2rem", "margin-top":"-9px", "color":"#fff"}),
+                                    ],
+                                    style={"margin-top":"-20px"}
+                                ),
+                                style={"height":"2.5rem", "border":"none", "background-color":color, "text-align":"center", "margin-top":"-6px"},
+                            ),
+                        ],
+                        style={"padding-left":"1rem"}
+                    ),
+                html.P("As of June 30th.", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            [
+                                html.Div(
+                                    [
+                                        dcc.Graph(figure=drill_bar(df_drill_waterfall_bundle),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"28rem"}),
+                                    ]
+                                )
+                            ],
+                            width=7,
+                            style={"height":"10rem"}
+                        ),
+                        dbc.Col(
+                            [
+                                html.Div(
+                                    [
+                                        html.H3("Risk Adjustment Details", style={"font-size":"0.8rem","margin-top":"-1.8rem","color":"#919191","background-color":"#f5f5f5","width":"9rem","padding-left":"1rem","padding-right":"1rem","text-align":"center"}),
+                                        html.Div([dcc.Graph(figure=drill_waterfall(df_drill_waterfall_bundle),style={"height":"24rem","padding-bottom":"1rem"},config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,})]),
+                                    ],
+                                    style={"border-radius":"0.5rem","border":"2px solid #d2d2d2","padding":"1rem","height":"25.5rem"}
+                                )
+                            ],
+                            width=4,
+                            
+                        )
+                    ],
+                ),
+            ],
+        )
+
+
+def card_key_driver_drilldown_bundle(app):
+    return dbc.Card(
+                dbc.CardBody(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                dbc.Col(html.H4("Key Drivers", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                dbc.Col([dbc.Button("See All Drivers", id = 'button-all-driver-bundle',
+                                                        style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
+                                                    ),
+                                        dbc.Modal([
+                                                dbc.ModalHeader("All Drivers"),
+                                                dbc.ModalBody(children = html.Div([table_driver_all(df_driver_all_bundle)], style={"padding":"1rem"})),
+                                                dbc.ModalFooter(
+                                                        dbc.Button("Close", id = 'close-all-driver-bundle',
+                                                                        style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
+                                                                    )
+                                                        )
+                                                ], id = 'modal-all-driver-bundle', size="lg")],
+                                        width=3,
+                                        ),
+                            ],
+                            no_gutters=True,
+                        ),
+                        
+                        dbc.Row(
+                            [
+                                dbc.Col(
+                                    [
+                                        html.Div([gaugegraph(df_driver_bundle,0)], style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_driver_bundle['%'][0]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#ffeb78"}),
+                                    ],
+                                    width=6),
+                                dbc.Col(
+                                    [
+                                        html.Div([gaugegraph(df_driver_bundle,1)], style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_driver_bundle['%'][1]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#aeff78"}),
+                                    ],
+                                    width=6),
+                                dbc.Col(
+                                    [
+                                        html.Div([gaugegraph(df_driver_bundle,2)], style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_driver_bundle['%'][2]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#39db44"}),
+                                    ],
+                                    width=6),
+                                dbc.Col(
+                                    [
+                                        html.Div([gaugegraph(df_driver_bundle,3)], style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_driver_bundle['%'][3]*100)),style={"color":"#18cc75"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#39db44"}),
+                                    ],
+                                    width=6),
+                                
+                            ],
+                        ),
+                    ]
+                ),
+                className="mb-3",
+                style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
+            )
+
+
+
+def card_confounding_factors_bundle(app):
+    return dbc.Card(
+                dbc.CardBody(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                dbc.Col(html.H4("Confounding Factors Unaccounted for in the Contract", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                            ],
+                            no_gutters=True,
+                        ),
+                        
+                        dbc.Row(
+                            [
+                               
+                                dbc.Col(element_confounding_factors_bundle(0.003, "Benefit Change")),
+                                dbc.Col(element_confounding_factors_bundle(-0.002, "Outlier Impact")),
+                            ],
+                        ),
+                    ]
+                ),
+                className="mb-3",
+                style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
+            )
+
+
+def element_confounding_factors_bundle(percentage, factor):
+    if percentage > 0:
+        color = "success"
+    elif percentage == 0:
+        color = "secondary"
+    else:
+        color = "danger"
+
+    return dbc.Row(
+            [
+                dbc.Col(dbc.Badge(str(abs(percentage*100))+"%", color=color, className="mr-1"), width=3, style={"font-family":"NotoSans-SemiBold"}),
+                dbc.Col(html.H6(factor, style = {"font-size":"1rem", "padding-top":"0.1rem"}), width=9),
+            ],
+            style={"padding":"1rem"}
+        )
+
+
+def tab_patient_analysis_bundle(app):
+    return html.Div(
+                [
+                    dbc.Card(
+                        dbc.CardBody(
+                            [
+                                card_graph1_patient_performance_drilldown_bundle(app),
+                                
+                                
+
+                    html.Hr(),
+
+                                card_table1_patient_performance_drilldown_bundle(app),
+
+                                
+                            ]
+                        ),
+                        className="mb-3",
+                        style={"border":"none", "border-radius":"0.5rem"}
+                    ),
+
+                    
+                ]
+            )
+
+
+def tab_physician_analysis_bundle(app):
+    return html.Div(
+                [
+                    dbc.Card(
+                        dbc.CardBody(
+                            [
+                                card_graph2_physician_performance_drilldown_bundle(app),
+                                
+                                
+
+                    html.Hr(),
+
+                                card_table1_physician_performance_drilldown_bundle(app),
+
+                                
+                            ]
+                        ),
+                        className="mb-3",
+                        style={"border":"none", "border-radius":"0.5rem"}
+                    ),
+
+                    
+                ]
+            )
+
+def mod_criteria_button_bundle():
+    return [
+                                dbc.Button(
+                                    "Click to modify criteria",
+                                    id="button-mod-dim-lv1-bundle",
+                                    className="mb-3",
+                                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
+                                ),
+                                dbc.Popover([
+                                    dbc.PopoverHeader("Modify criteria"),
+                                    dbc.PopoverBody([
+                                        html.Div(
+                                            [
+                                                dbc.RadioItems(
+                                                    options = [{'label':c , 'value':c,'disabled' : False} if c not in disable_list else {'label':c , 'value':c,'disabled' : True} for c in dimensions
+                                                              ],
+                                                    value = "Medication Adherence",
+                                                    labelCheckedStyle={"color": "#057aff"},
+                                                    id = "list-dim-lv1-bundle",
+                                                    style={"font-family":"NotoSans-Condensed", "font-size":"0.8rem", "padding":"1rem"},
+                                                ),
+                                            ],
+                                            style={"padding-top":"0.5rem", "padding-bottom":"2rem"}
+                                        )
+                                         
+                                       
+                                        
+                                    ]
+                                    ),
+                                ],
+                                id = "popover-mod-dim-lv1-bundle",
+                                is_open = False,
+                                target = "button-mod-dim-lv1-bundle",
+                                placement = "top",
+                                ),
+                                
+                            ]
+
+
+def card_graph1_patient_performance_drilldown_bundle(app):
+    return dbc.Card(
+                dbc.CardBody(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                dbc.Col(html.H4("Performance Drilldown by Patient Cohort", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                            ],
+                            no_gutters=True,
+                        ),
+                        
+                        html.Div(
+                            [
+                                html.Div(
+                                    [
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(html.H1("By Medication Adherence",id='dimname_on_patient_lv1_bundle', style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"0.8rem"}), width=9),
+                                                dbc.Col(mod_criteria_button_bundle(), style={"padding-top":"0.8rem"}),
+                                            ]
+                                        )
+                                    ],
+                                    style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
+                                ), 
+                                
+                                html.Div(drillgraph_lv1_bundle(drilldata_process_bundle(df_drilldown,'Medication Adherence'),'dashtable_patient_lv1_bundle','Medication Adherence'),id="drill_patient_lv1_bundle",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
+                            ], 
+                            style={"max-height":"80rem"}
+                        ),
+                    ]
+                ),
+                className="mb-3",
+                style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
+            )
+
+
+
+def filter_template_bundle(dim,idname,default_val='All'):
+    return(dcc.Dropdown(
+                                id=idname,
+                                options=[{'label': i, 'value': i} for i in all_dimension[all_dimension['dimension']==dim].loc[:,'value']],
+                                value=default_val,
+                                clearable=False,
+                            ))
+
+def card_table1_patient_performance_drilldown_bundle(app):
+    return dbc.Card(
+                dbc.CardBody(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                dbc.Col(html.H4("Hospitalization Rate by Medical Condition", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                            ],
+                            no_gutters=True,
+                        ),
+
+                        html.Div(
+                            [
+                                html.Div(
+                                    [
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(html.H1("By Medical Condition", style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=5),
+                                                
+                                                dbc.Col(
+                                                    [
+                                                        html.Div("Medication Adherence",id="filter_patient_1_2_name_bundle", style={"font-size":"0.6rem"}),
+                                                        html.Div(filter_template_bundle("Medication Adherence","filter_patient_1_2_value_bundle",default_val='All'),id="filter_patient_1_2_contain_bundle"),
+                                                    ], 
+                                                    style={"padding":"0.8rem"},
+                                                    width=2,
+                                                ),
+                                                                                    
+                                            ]
+                                        )
+                                    ],
+                                    style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
+                                ), 
+                                html.H4("* Default sorting: by Contribution to Overall Performance Difference", style={"font-size":"0.8rem","color":"#919191","padding-top":"1rem","margin-bottom":"-1rem"}), 
+                                html.Div([dashtable_lv3_bundle(data_lv2_bundle,'Sub Category','dashtable_patient_lv2_bundle',0)],id="drill_patient_lv2_bundle",style={"padding":"1rem"})
+                            ], 
+                            style={"max-height":"120rem"}
+                        ),
+                        
+
+                    ]
+                ),
+                className="mb-3",
+                style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
+            )
+
+def card_graph2_physician_performance_drilldown_bundle(app):
+    return dbc.Card(
+                dbc.CardBody(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                dbc.Col(html.H4("Performance Drilldown by Managing Physician (Group)", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                            ],
+                            no_gutters=True,
+                        ),
+
+                        html.Div(
+                            [
+                                html.Div(
+                                    [
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(html.H1("By Managing Physician (Group)", style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=6),
+                                                
+                                            ]
+                                        )
+                                    ],
+                                    style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
+                                ), 
+                                html.Div(drillgraph_lv1_bundle(drilldata_process_bundle(df_drilldown,'Managing Physician (Group)'),'dashtable_physician_lv1_bundle','Managing Physician (Group)'),id="drill_physician_lv1_bundle",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
+                            ], 
+                            style={"max-height":"80rem"}
+                        ),
+                    ]
+                ),
+                className="mb-3",
+                style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
+            )
+
+
+def card_table1_physician_performance_drilldown_bundle(app):
+    return dbc.Card(
+                dbc.CardBody(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                dbc.Col(html.H4("Hospitalization Rate by Medical Condition", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                            ],
+                            no_gutters=True,
+                        ),
+
+                        html.Div(
+                            [
+                                html.Div(
+                                    [
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(html.H1("By Medical Condition", style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=5),
+                                                
+                                                dbc.Col(
+                                                    [
+                                                        html.Div("Managing Physician (Group)",id="filter_physician_1_2_name_bundle", style={"font-size":"0.6rem"}),
+                                                        html.Div(filter_template_bundle("Managing Physician (Group)","filter_physician_1_2_value_bundle",default_val='All'),id='filter_physician_1_2_contain_bundle'),
+                                                    ], 
+                                                    style={"padding":"0.8rem"},
+                                                    width=2,
+                                                ),
+                                                    
+                                            ]
+                                        )
+                                    ],
+                                    style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
+                                ), 
+                                html.H4("* Default sorting: by Contribution to Overall Performance Difference", style={"font-size":"0.8rem","color":"#919191","padding-top":"1rem","margin-bottom":"-1rem"}), 
+                                html.Div([dashtable_lv3_bundle(data_lv2_bundle,'Sub Category','dashtable_physician_lv2_bundle',0)],id="drill_physician_lv2_bundle",style={"padding":"1rem"})
+                            ], 
+                            style={"max-height":"120rem"}
+                        ),
+                        
+
+                    ]
+                ),
+                className="mb-3",
+                style={"box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)", "border":"none", "border-radius":"0.5rem"}
+            )
+
+
+
 layout = create_layout(app)
 #app.layout = create_layout(app)
 
@@ -141,16 +617,16 @@ layout = create_layout(app)
     [
     Output('drilldown-dropdownmenu','label'),
     Output('drilldown-div-avgcost-container', 'hidden'),
-    Output('drilldown-div-crhr-container', 'hidden')],
+    Output('drilldown-div-bundle-container', 'hidden')],
     [
         Input("avg_cost", "n_clicks"),
-        Input("crhr", "n_clicks"),
+        Input("bundle", "n_clicks"),
         
     ],
 )
 def select_drilldown(*args):
     state_avg_cost = True
-    state_crhr = True
+    state_bundle = True
 
     ctx = dash.callback_context
 
@@ -161,15 +637,15 @@ def select_drilldown(*args):
     else:
         button_id = ctx.triggered[0]["prop_id"].split(".")[0]
 
-        if button_id == "crhr":
-            state_crhr = False
+        if button_id == "bundle":
+            state_bundle = False
             label = "CHF Related Hospitalization Rate"
         elif button_id == "avg_cost":
             state_avg_cost = False
             label = "CHF Related Average Cost per Patient"
 
 
-    return label, state_avg_cost, state_crhr
+    return label, state_avg_cost, state_bundle
 
 
 
@@ -610,10 +1086,10 @@ def datatable_data_selection(v1, v2, v3, d1, d2, f1, f2, m):
 ##### hosp_rate callbacks #####
 
 @app.callback(
-    Output("modal-all-driver-crhr","is_open"),
-    [Input("button-all-driver-crhr","n_clicks"),
-     Input("close-all-driver-crhr","n_clicks")],
-    [State("modal-all-driver-crhr","is_open")]        
+    Output("modal-all-driver-bundle","is_open"),
+    [Input("button-all-driver-bundle","n_clicks"),
+     Input("close-all-driver-bundle","n_clicks")],
+    [State("modal-all-driver-bundle","is_open")]        
 )
 def open_all_driver(n1,n2,is_open):
     if n1 or n2:
@@ -624,10 +1100,10 @@ def open_all_driver(n1,n2,is_open):
 
 # modify lv1 criteria
 @app.callback(
-    Output("popover-mod-dim-lv1-crhr","is_open"),
-    [Input("button-mod-dim-lv1-crhr","n_clicks"),],
+    Output("popover-mod-dim-lv1-bundle","is_open"),
+    [Input("button-mod-dim-lv1-bundle","n_clicks"),],
    # Input("mod-button-mod-measure","n_clicks"),
-    [State("popover-mod-dim-lv1-crhr", "is_open")],
+    [State("popover-mod-dim-lv1-bundle", "is_open")],
 )
 def toggle_popover_mod_criteria(n1, is_open):
     if n1 :
@@ -636,25 +1112,25 @@ def toggle_popover_mod_criteria(n1, is_open):
 
 #update patient lv1 table and filter1 on following page based on criteria button
 @app.callback(
-   [ Output("drill_patient_lv1_crhr","children"),
-     Output("filter_patient_1_2_name_crhr","children"),
-     Output("filter_patient_1_2_contain_crhr","children"),
-     Output("dimname_on_patient_lv1_crhr","children"),
+   [ Output("drill_patient_lv1_bundle","children"),
+     Output("filter_patient_1_2_name_bundle","children"),
+     Output("filter_patient_1_2_contain_bundle","children"),
+     Output("dimname_on_patient_lv1_bundle","children"),
    ],
-   [Input("list-dim-lv1-crhr","value")] 
+   [Input("list-dim-lv1-bundle","value")] 
 )
 def update_table_dimension(dim):
     f1_name=dim
 #    filter1_value_list=[{'label': i, 'value': i} for i in all_dimension[all_dimension['dimension']==dim].loc[:,'value']]
     
     
-    return drillgraph_lv1_crhr(drilldata_process_crhr(df_drilldown,dim),'dashtable_patient_lv1_crhr',dim),f1_name,filter_template_crhr(dim,"filter_patient_1_2_value_crhr"),'By '+f1_name
+    return drillgraph_lv1_bundle(drilldata_process_bundle(df_drilldown,dim),'dashtable_patient_lv1_bundle',dim),f1_name,filter_template_bundle(dim,"filter_patient_1_2_value_bundle"),'By '+f1_name
 
 #update patient filter1 on following page based on selected rows
 
 @app.callback(
-    Output("filter_patient_1_2_value_crhr","value"),   
-   [ Input("dashtable_patient_lv1_crhr","selected_row_ids"),
+    Output("filter_patient_1_2_value_bundle","value"),   
+   [ Input("dashtable_patient_lv1_bundle","selected_row_ids"),
    ] 
 )
 def update_filter1value_patient(row):
@@ -669,16 +1145,16 @@ def update_filter1value_patient(row):
 #update patient lv2 on filter1
 
 @app.callback(
-   Output("dashtable_patient_lv2_crhr","data"), 
-   [ Input("filter_patient_1_2_name_crhr","children"),
-     Input("filter_patient_1_2_value_crhr","value"),
-     Input('dashtable_patient_lv2_crhr', 'sort_by'),
+   Output("dashtable_patient_lv2_bundle","data"), 
+   [ Input("filter_patient_1_2_name_bundle","children"),
+     Input("filter_patient_1_2_value_bundle","value"),
+     Input('dashtable_patient_lv2_bundle', 'sort_by'),
    ] 
 )
 def update_table3(dim1,val1,sort_dim):
     #global data_lv3
     
-    data_lv3=drilldata_process_crhr(df_drilldown,'Sub Category',dim1,val1)       
+    data_lv3=drilldata_process_bundle(df_drilldown,'Sub Category',dim1,val1)       
     #data_lv3.to_csv('data/overall_performance.csv')
     if sort_dim==[]:
         sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
@@ -693,8 +1169,8 @@ def update_table3(dim1,val1,sort_dim):
 #update physician filter1 on following page based on selected rows
 
 @app.callback(
-    Output("filter_physician_1_2_value_crhr","value"),   
-   [ Input("dashtable_physician_lv1_crhr","selected_row_ids"),
+    Output("filter_physician_1_2_value_bundle","value"),   
+   [ Input("dashtable_physician_lv1_bundle","selected_row_ids"),
    ] 
 )
 def update_filter1value(row):
@@ -709,16 +1185,16 @@ def update_filter1value(row):
 #update physician lv2 on filter1
 
 @app.callback(
-   Output("dashtable_physician_lv2_crhr","data"), 
-   [ Input("filter_physician_1_2_name_crhr","children"),
-     Input("filter_physician_1_2_value_crhr","value"),
-     Input('dashtable_physician_lv2_crhr', 'sort_by'),
+   Output("dashtable_physician_lv2_bundle","data"), 
+   [ Input("filter_physician_1_2_name_bundle","children"),
+     Input("filter_physician_1_2_value_bundle","value"),
+     Input('dashtable_physician_lv2_bundle', 'sort_by'),
    ] 
 )
 def update_table3(dim1,val1,sort_dim):
 
     
-    data_lv3=drilldata_process_crhr(df_drilldown,'Sub Category',dim1,val1)     
+    data_lv3=drilldata_process_bundle(df_drilldown,'Sub Category',dim1,val1)     
     if sort_dim==[]:
         sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
   
@@ -732,9 +1208,9 @@ def update_table3(dim1,val1,sort_dim):
 
 ## modal
 @app.callback(
-    Output("drilldown-modal-centered-crhr", "is_open"),
-    [Input("drilldown-open-centered-crhr", "n_clicks"), Input("drilldown-close-centered", "n_clicks")],
-    [State("drilldown-modal-centered-crhr", "is_open")],
+    Output("drilldown-modal-centered-bundle", "is_open"),
+    [Input("drilldown-open-centered-bundle", "n_clicks"), Input("drilldown-close-centered", "n_clicks")],
+    [State("drilldown-modal-centered-bundle", "is_open")],
 )
 def toggle_modal_dashboard_domain_selection(n1, n2, is_open):
     if n1 or n2:
@@ -743,10 +1219,10 @@ def toggle_modal_dashboard_domain_selection(n1, n2, is_open):
 
 
 @app.callback(
-    [Output('dimension_filter_1_crhr', 'options'),
-    Output('dimension_filter_1_crhr', 'value'),
-    Output('dimension_filter_1_crhr', 'multi')],
-    [Input('dimension_filter_selection_1_crhr', 'value')]
+    [Output('dimension_filter_1_bundle', 'options'),
+    Output('dimension_filter_1_bundle', 'value'),
+    Output('dimension_filter_1_bundle', 'multi')],
+    [Input('dimension_filter_selection_1_bundle', 'value')]
     )
 def filter_dimension_1(v):
     if v:
@@ -758,12 +1234,12 @@ def filter_dimension_1(v):
 
 
 @app.callback(
-    [Output('dimension_filter_2_crhr', 'options'),
-    Output('dimension_filter_2_crhr', 'value'),
-    Output('dimension_filter_2_crhr', 'multi')],
-    [Input('dimension_filter_selection_1_crhr', 'value'),
-    Input('dimension_filter_selection_2_crhr', 'value'),
-    Input('dimension_filter_1_crhr', 'value')]
+    [Output('dimension_filter_2_bundle', 'options'),
+    Output('dimension_filter_2_bundle', 'value'),
+    Output('dimension_filter_2_bundle', 'multi')],
+    [Input('dimension_filter_selection_1_bundle', 'value'),
+    Input('dimension_filter_selection_2_bundle', 'value'),
+    Input('dimension_filter_1_bundle', 'value')]
     )
 def filter_dimension_1(v1, v2, v3):
     if v2:
@@ -780,8 +1256,8 @@ def filter_dimension_1(v1, v2, v3):
 
     
 @app.callback(
-    Output('dropdown-dimension-2-crhr','clearable'),
-    [Input('dropdown-dimension-3-crhr','value')]
+    Output('dropdown-dimension-2-bundle','clearable'),
+    [Input('dropdown-dimension-3-bundle','value')]
     )
 def dropdown_clear(v):
     if v:
@@ -789,9 +1265,9 @@ def dropdown_clear(v):
     return True
 
 @app.callback(
-    [Output('dropdown-dimension-2-crhr','options'),
-    Output('dropdown-dimension-2-crhr','disabled')],
-    [Input('dropdown-dimension-1-crhr','value')]
+    [Output('dropdown-dimension-2-bundle','options'),
+    Output('dropdown-dimension-2-bundle','disabled')],
+    [Input('dropdown-dimension-1-bundle','value')]
     )
 def dropdown_menu_2(v):
     if v is None:
@@ -804,10 +1280,10 @@ def dropdown_menu_2(v):
         return dropdown_option, False
 
 @app.callback(
-    [Output('dropdown-dimension-3-crhr','options'),
-    Output('dropdown-dimension-3-crhr','disabled')],
-    [Input('dropdown-dimension-1-crhr','value'),
-    Input('dropdown-dimension-2-crhr','value')]
+    [Output('dropdown-dimension-3-bundle','options'),
+    Output('dropdown-dimension-3-bundle','disabled')],
+    [Input('dropdown-dimension-1-bundle','value'),
+    Input('dropdown-dimension-2-bundle','value')]
     )
 def dropdown_menu_3(v1, v2):
     v = [v1, v2]
@@ -824,10 +1300,10 @@ def dropdown_menu_3(v1, v2):
         return dropdown_option, False
 
 @app.callback(
-    [Output('dimension_filter_selection_2_crhr', 'options'),
-    Output('dimension_filter_selection_2_crhr', 'disabled')],
-    [Input('dimension_filter_selection_1_crhr', 'value'),
-    Input('dimension_filter_1_crhr', 'value')]
+    [Output('dimension_filter_selection_2_bundle', 'options'),
+    Output('dimension_filter_selection_2_bundle', 'disabled')],
+    [Input('dimension_filter_selection_1_bundle', 'value'),
+    Input('dimension_filter_1_bundle', 'value')]
     )
 def filter_menu_2(v, f):
     if v is None:
@@ -845,16 +1321,16 @@ def filter_menu_2(v, f):
 
 
 @app.callback(
-    [Output('datatable-tableview-crhr', "columns"),
-    Output('datatable-tableview-crhr', "data")],
-    [Input('dropdown-dimension-1-crhr','value'),
-    Input('dropdown-dimension-2-crhr','value'),
-    Input('dropdown-dimension-3-crhr','value'),
-    Input('dimension_filter_selection_1_crhr','value'),
-    Input('dimension_filter_selection_2_crhr','value'),
-    Input('dimension_filter_1_crhr','value'),
-    Input('dimension_filter_2_crhr','value'),
-    Input('dropdown-measure-1-crhr', 'value')]
+    [Output('datatable-tableview-bundle', "columns"),
+    Output('datatable-tableview-bundle', "data")],
+    [Input('dropdown-dimension-1-bundle','value'),
+    Input('dropdown-dimension-2-bundle','value'),
+    Input('dropdown-dimension-3-bundle','value'),
+    Input('dimension_filter_selection_1_bundle','value'),
+    Input('dimension_filter_selection_2_bundle','value'),
+    Input('dimension_filter_1_bundle','value'),
+    Input('dimension_filter_2_bundle','value'),
+    Input('dropdown-measure-1-bundle', 'value')]
     )
 def datatable_data_selection(v1, v2, v3, d1, d2, f1, f2, m):
     if d1:
