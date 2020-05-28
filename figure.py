@@ -1155,8 +1155,8 @@ def data_bars_diverging_bundle(df, column, color_above='#FF4136', color_below='#
 				),
 				'paddingBottom': 2,
 				'paddingTop': 2,
-				'textAlign':'start',
-				'paddingLeft':'7.5rem',
+				'textAlign':'end',
+				'paddingRight':'7.8rem',
 				'color':color_above,
 			})
 
@@ -1183,7 +1183,7 @@ def data_bars_diverging_bundle(df, column, color_above='#FF4136', color_below='#
 				'paddingBottom': 2,
 				'paddingTop': 2,
 				'textAlign':'start',
-				'paddingLeft':'11.5rem',
+				'paddingLeft':'7.8rem',
 				'color':color_below,
 			})
 			
@@ -1215,11 +1215,11 @@ def table_perform_bundle(df):
 		style_data_conditional=(
 		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss') +
 		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %')+
-		[{'if': {'column_id':'Diff % from Benchmark'},
+		[{'if': {'column_id':'Projected PY Gain/Loss'},
 			 
 			 'width': '15rem',
 			}, 
-		{'if': {'column_id': 'Contribution to Overall Performance Difference'},
+		{'if': {'column_id': 'Projected PY Gain/Loss %'},
 			 
 			 'width': '15rem',
 			},
@@ -1778,9 +1778,165 @@ def drilltable_physician(df,tableid,row_select):
 	)
 	return tbl
 
+####################################################################################################################################################################################
+######################################################################    Bundle DrillDown     #####################################################################################
+####################################################################################################################################################################################
+
+def table_perform_bundle_drill(df1,df2):
+
+	df=pd.merge(df1,df2,how='left',on='Bundle Name')
+
+
+	tbl=dash_table.DataTable(
+#		id=tableid,
+		data=df.to_dict('records'),
+		columns=[
+		{"name": ['','Bundle Name'], "id": 'Bundle Name'},
+		{"name": ['','YTD Cnt'], "id": 'YTD Cnt_x','type':'numeric','format':Format( precision=0, group=',',scheme=Scheme.fixed,)},
+#		{"name": 'YTD FFS Cost', "id": 'YTD FFS Cost','type':'numeric','format':FormatTemplate.money(0)},
+		{"name": ['Bundle Total','Projected PY Gain/Loss'], "id": 'Projected PY Gain/Loss_x','type':'numeric','format':FormatTemplate.money(0)}, 
+		{"name": ['Bundle Total','Projected PY Gain/Loss %'], "id": 'Projected PY Gain/Loss %_x','type':'numeric','format':FormatTemplate.percentage(1)}, 
+		{"name": ['Bundle Average','Projected PY Gain/Loss'], "id": 'Projected PY Gain/Loss_y','type':'numeric','format':FormatTemplate.money(0)}, 
+		{"name": ['Bundle Average','Projected PY Gain/Loss %'], "id": 'Projected PY Gain/Loss %_y','type':'numeric','format':FormatTemplate.percentage(1)}, 
+
+		],
+		merge_duplicate_headers=True,
+		row_selectable='single',
+		selected_rows=[0],
+		sort_action="native",
+		sort_mode='single',
+		sort_by=[{"column_id":"Projected PY Gain/Loss","direction":"desc"}],
+		style_data={
+			'whiteSpace': 'normal',
+			'height': 'auto'
+		},
+		style_data_conditional=(
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_x') +
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %_x')+
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_y') +
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %_y')+
+		[{'if': {'column_id':'Projected PY Gain/Loss_x'},
+			 
+			 'width': '15rem',
+			}, 
+		{'if': {'column_id': 'Projected PY Gain/Loss %_x'},
+			 
+			 'width': '15rem',
+			},
+		{'if': {'column_id':'Projected PY Gain/Loss_y'},
+			 
+			 'width': '15rem',
+			}, 
+		{'if': {'column_id': 'Projected PY Gain/Loss %_y'},
+			 
+			 'width': '15rem',
+			},
+		{'if': {'column_id': 'Bundle Name'},
+			 
+			 'textAlign': 'start',
+			 'width': '25rem',
+			 'paddingLeft':'10px'
+			},
+
+		]
+		),
+	   
+		style_cell={
+			'textAlign': 'center',
+			'font-family':'NotoSans-Condensed',
+			'fontSize':14
+		},
+		style_header={
+			'height': '4rem',
+			'minWidth': '3rem',
+			'maxWidth':'3rem',
+			'whiteSpace': 'normal',
+			'backgroundColor': "#f1f6ff",
+			'fontWeight': 'bold',
+			'font-family':'NotoSans-CondensedLight',
+			'fontSize':16,
+			'color': '#1357DD',
+			'text-align':'center',
+		},
+	)
+	return tbl
+
+
+def waterfall_bundle_cost(df): 
+
+	number_fomart='%{y:,.0f}'
+
+	n=len(df)
+
+
+	fig_waterfall = go.Figure(data=[
+		go.Bar(
+			name='',
+			x=df['Service Category'], 
+			y=df['YTD Cost PMPM'].cumsum(),
+			#text=y1_waterfall,
+			textposition='outside',
+			textfont=dict(color=['black']+[colors['transparent']]*(n-2)+['black']),
+			texttemplate=number_fomart,
+			marker=dict(
+					color=[colors['blue']]+[colors['transparent']]*(n-2)+[colors['blue']],
+					opacity=0.7
+					),
+			marker_line=dict( color = colors['transparent'] ),
+			hovertemplate='%{y:,.0f}',
+			hoverinfo='skip',
+			
+		),
+		go.Bar(  
+			name='',
+			x=df['Service Category'], 
+			y=[0]+(df['YTD Cost PMPM'][1:(n-2)].tolist())+[0],
+			#text=y2_waterfall,
+			cliponaxis=False,
+			textposition='outside',
+			textfont=dict(color=[colors['transparent']]+['black']*(n-2)+[colors['transparent']]),
+			texttemplate=number_fomart,
+			marker=dict(
+					color=[colors['transparent']]+[colors['yellow']]*(n-2)+[colors['transparent']],
+					opacity=0.7
+					),
+			hovertemplate='%{y:,.0f}',
+			hoverinfo='skip',
+		)
+	])
+	# Change the bar mode
+	fig_waterfall.update_layout(
+		barmode='stack',
+		#title='Revenue Projection',
+		plot_bgcolor=colors['transparent'],
+		paper_bgcolor=colors['transparent'],
+		yaxis = dict(
+			showgrid = True, 
+			gridcolor =colors['grey'],
+			nticks=5,
+			showticklabels=True,
+			zeroline=True,
+			zerolinecolor=colors['grey'],
+			zerolinewidth=1,
+			range=[0,df['YTD Cost PMPM'].max()*1.2]
+		),
+		showlegend=False,
+		modebar=dict(
+			bgcolor=colors['transparent'],
+		),
+		margin=dict(l=10,r=10,b=10,t=50,pad=0),
+		font=dict(
+			family="NotoSans-Condensed",
+			size=12,
+			color="#38160f"
+		),
+	)
+	return fig_waterfall
+
+
 
 ####################################################################################################################################################################################
-######################################################################     Drilldown         ##################################################################################### 
+######################################################################      Simulation         ##################################################################################### 
 #################################################################################################################################################################################### 
 
 def qualitytable(df,selected_rows=list(range(0,23))):
@@ -2835,13 +2991,17 @@ def bundle_measure_setup(df):
 		)
 	return table
 
+
 #def table_network_cost(df):
 
-#df_quality = pd.read_csv("data/quality_setup.csv")
+#df_bundle_performance=pd.read_csv("data/df_bundle_performance.csv")
+#df_bundle_performance_pmpm=pd.read_csv("data/df_bundle_performance_pmpm.csv")
+
+
 #app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract-manager-drilldown/')
 
 #server = app.server
-#app.layout=html.Div([qualitytable(df_quality)])
+#app.layout=html.Div([table_perform_bundle_drill(df_bundle_performance,df_bundle_performance_pmpm)])
 
 #if __name__ == "__main__":
 #   app.run_server(host="127.0.0.1",debug=True)
