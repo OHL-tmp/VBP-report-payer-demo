@@ -1806,11 +1806,13 @@ def table_perform_bundle_drill(df1,df2):
 
 	df=pd.merge(df1,df2,how='left',on='Bundle Name')
 
+
 	df['id']=df['Bundle Name']
 
 
 	tbl=dash_table.DataTable(
 		id='table_perform_drill_bundle',
+
 		data=df.to_dict('records'),
 		columns=[
 		{"name": ['','Bundle Name'], "id": 'Bundle Name'},

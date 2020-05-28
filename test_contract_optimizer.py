@@ -9,6 +9,7 @@ import datetime
 import json
 import pandas as pd
 import numpy as np
+import math
 
 import pathlib
 import plotly.graph_objects as go
@@ -22,6 +23,7 @@ from simulation_cal import *
 
 
 from app import app
+
 #app = dash.Dash(__name__, url_base_pathname='/vbc-demo/')
 
 #server = app.server
@@ -1016,7 +1018,7 @@ def sim_assump_input_session():
 
 
 layout = create_layout(app)
-
+#app.layout = create_layout(app)
 
 
 @app.callback(
@@ -1363,6 +1365,6 @@ def reset_user_define(n):
 
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True,port=8052)
+    app.run_server(host="127.0.0.1",debug=True,port=8050)
 
 
