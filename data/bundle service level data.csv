@@ -1,5 +1,5 @@
 ﻿Bundle Name,Bundle Risk,Physician ID,Service Category,Episode Count,YTD Utilization,Annualized Utilization,Benchmark Utilization,YTD Total Cost,Annualized Total Cost,Benchmark Total Cost
-Acute myocardial infarction,CC,Physician 16,Anchor Inpatient Stay,27,1,27,27,382983.5808,370565.4517,361619.5812
+Acute myocardial infarction,CC,Physician 16,Anchor Inpatient Stay,27,27,27,27,382983.5808,370565.4517,361619.5812
 Acute myocardial infarction,CC,Physician 16,Readmission,27,9.746943856,9.402621044,9.72,99175.93428,103740.6056,108635.9883
 Acute myocardial infarction,CC,Physician 16,Post-Discharge ER,27,10.14283469,10.5291268,10.88453018,21532.14843,20924.9917,21912.41454
 Acute myocardial infarction,CC,Physician 16,Post-Discharge Professional Services,27,323.9243225,339.7841088,338.6298277,103607.994,101906.2284,101528.4937
@@ -7,7 +7,7 @@ Acute myocardial infarction,CC,Physician 16,Post-Discharge Non-ER Outpatient Ser
 Acute myocardial infarction,CC,Physician 16,Post-Discharge SNF,27,61.64743864,61.66821213,60.46961209,38252.2258,37398.23892,36453.2393
 Acute myocardial infarction,CC,Physician 16,Post-Discharge HH,27,155.9555267,150.3455116,145.127069,46987.55134,45926.70112,43833.5388
 Acute myocardial infarction,CC,Physician 16,Post-Discharge IRF,27,5.864878766,6.173038558,6.219731529,22587.90911,21596.59497,21837.8256
-Acute myocardial infarction,CC,Physician 17,Anchor Inpatient Stay,11,1,11,11,153936.1628,149051.2764,147520.4937
+Acute myocardial infarction,CC,Physician 17,Anchor Inpatient Stay,11,11,11,11,153936.1628,149051.2764,147520.4937
 Acute myocardial infarction,CC,Physician 17,Readmission,11,3.644579892,3.667103669,3.96,38825.1627,40226.23258,44629.14978
 Acute myocardial infarction,CC,Physician 17,Post-Discharge ER,11,4.006016523,4.106450673,4.43443822,8198.276744,7948.999416,8819.048236
 Acute myocardial infarction,CC,Physician 17,Post-Discharge Professional Services,11,128.4318405,132.5187462,137.9603002,38534.93249,39335.43995,41519.82729
@@ -15,7 +15,7 @@ Acute myocardial infarction,CC,Physician 17,Post-Discharge Non-ER Outpatient Ser
 Acute myocardial infarction,CC,Physician 17,Post-Discharge SNF,11,24.98839231,24.051137,24.63576789,14689.60208,14187.03328,14650.78429
 Acute myocardial infarction,CC,Physician 17,Post-Discharge HH,11,60.3787602,58.63605208,59.12584293,17034.41468,17489.95377,17685.3743
 Acute myocardial infarction,CC,Physician 17,Post-Discharge IRF,11,2.294788699,2.407538519,2.533964697,8265.999929,8204.722702,8789.665125
-Acute myocardial infarction,CC,Physician 18,Anchor Inpatient Stay,38,1,38,38,529336.3894,517367.2467,508408.1416
+Acute myocardial infarction,CC,Physician 18,Anchor Inpatient Stay,38,38,38,38,529336.3894,517367.2467,508408.1416
 Acute myocardial infarction,CC,Physician 18,Readmission,38,13.17519736,12.94711273,13.68,144080.215,141013.0154,151987.0306
 Acute myocardial infarction,CC,Physician 18,Post-Discharge ER,38,14.26135562,14.49827564,15.3189684,29159.14447,28304.8601,30507.62107
 Acute myocardial infarction,CC,Physician 18,Post-Discharge Professional Services,38,486.6833007,467.872005,476.5901279,134941.5402,140360.4805,143931.0357
@@ -23,7 +23,7 @@ Acute myocardial infarction,CC,Physician 18,Post-Discharge Non-ER Outpatient Ser
 Acute myocardial infarction,CC,Physician 18,Post-Discharge SNF,38,89.12587835,84.91518381,85.10537998,52509.8623,51072.09127,51237.86274
 Acute myocardial infarction,CC,Physician 18,Post-Discharge HH,38,198.5634997,207.0210294,204.2529119,60422.58519,62799.39717,61690.62168
 Acute myocardial infarction,CC,Physician 18,Post-Discharge IRF,38,8.332160686,8.500079469,8.753696226,30924.82055,29468.13227,30668.96431
-Acute myocardial infarction,CC,Physician 19,Anchor Inpatient Stay,23,1,23,23,302727.5092,316232.7209,311260.6408
+Acute myocardial infarction,CC,Physician 19,Anchor Inpatient Stay,23,23,23,23,302727.5092,316232.7209,311260.6408
 Acute myocardial infarction,CC,Physician 19,Readmission,23,7.503975014,7.797360885,8.28,83912.88961,86044.77261,93356.63567
 Acute myocardial infarction,CC,Physician 19,Post-Discharge ER,23,8.896623738,8.731544223,9.272007187,17312.0205,17087.30047,18539.33524
 Acute myocardial infarction,CC,Physician 19,Post-Discharge Professional Services,23,277.2328483,281.7745506,288.4624458,88427.88534,84303.44991,87021.8521
@@ -31,7 +31,7 @@ Acute myocardial infarction,CC,Physician 19,Post-Discharge Non-ER Outpatient Ser
 Acute myocardial infarction,CC,Physician 19,Post-Discharge SNF,23,49.83002336,51.13992182,51.51115104,29992.42682,30850.8823,31156.47554
 Acute myocardial infarction,CC,Physician 19,Post-Discharge HH,23,128.9240445,124.6778112,123.6267625,35894.64882,37614.07643,37195.24685
 Acute myocardial infarction,CC,Physician 19,Post-Discharge IRF,23,4.980108836,5.119148073,5.298289821,18057.21408,17557.1031,18393.85377
-Acute myocardial infarction,CC,Physician 20,Anchor Inpatient Stay,34,1,34,34,475972.0388,466761.63,460391.0453
+Acute myocardial infarction,CC,Physician 20,Anchor Inpatient Stay,34,34,34,34,475972.0388,466761.63,460391.0453
 Acute myocardial infarction,CC,Physician 20,Readmission,34,11.15752941,11.45253626,12.24,122994.0898,124625.5701,136376.3986
 Acute myocardial infarction,CC,Physician 20,Post-Discharge ER,34,12.95824441,12.82463751,13.70644541,24986.19666,25117.0307,27485.29203
 Acute myocardial infarction,CC,Physician 20,Post-Discharge Professional Services,34,425.3378376,413.8622423,426.422746,118623.3149,123565.2538,128644.3445
@@ -39,7 +39,7 @@ Acute myocardial infarction,CC,Physician 20,Post-Discharge Non-ER Outpatient Ser
 Acute myocardial infarction,CC,Physician 20,Post-Discharge SNF,34,76.02257267,75.11282572,76.14691893,45235.09868,44595.79463,45424.06535
 Acute myocardial infarction,CC,Physician 20,Post-Discharge HH,34,176.6715233,183.123133,182.7526054,56062.10898,54705.23243,54560.36515
 Acute myocardial infarction,CC,Physician 20,Post-Discharge IRF,34,7.805020467,7.518855394,7.832254518,25500.8626,26012.43992,27486.04912
-Acute myocardial infarction,No CC,Physician 16,Anchor Inpatient Stay,36,1,36,36,413297.6961,408989.0816,407178.563
+Acute myocardial infarction,No CC,Physician 16,Anchor Inpatient Stay,36,36,36,36,413297.6961,408989.0816,407178.563
 Acute myocardial infarction,No CC,Physician 16,Readmission,36,10.88034564,10.53093557,10.8864,114800.3829,117491.3731,123035.6365
 Acute myocardial infarction,No CC,Physician 16,Post-Discharge ER,36,12.03476209,11.79262201,12.1906738,22807.67157,23318.29583,24418.65555
 Acute myocardial infarction,No CC,Physician 16,Post-Discharge Professional Services,36,399.9671136,382.5028666,379.265407,109958.3236,114480.7532,113273.614
@@ -47,7 +47,7 @@ Acute myocardial infarction,No CC,Physician 16,Post-Discharge Non-ER Outpatient 
 Acute myocardial infarction,No CC,Physician 16,Post-Discharge SNF,36,67.93789685,69.53665836,67.72596554,41748.75944,41976.57689,40546.23272
 Acute myocardial infarction,No CC,Physician 16,Post-Discharge HH,36,155.5150117,159.1656471,162.5423173,47790.63612,47750.76338,49176.57629
 Acute myocardial infarction,No CC,Physician 16,Post-Discharge IRF,36,6.619064946,6.744542418,6.966099312,23691.17632,23189.5685,24254.74606
-Acute myocardial infarction,No CC,Physician 17,Anchor Inpatient Stay,25,1,25,25,268698.2093,280710.7555,283440.4897
+Acute myocardial infarction,No CC,Physician 17,Anchor Inpatient Stay,25,25,25,25,268698.2093,280710.7555,283440.4897
 Acute myocardial infarction,No CC,Physician 17,Readmission,25,7.328152848,7.000834276,7.56,76353.89823,76353.1212,84710.26649
 Acute myocardial infarction,No CC,Physician 17,Post-Discharge ER,25,8.017746782,7.839587648,8.465745692,15443.74389,15374.66365,17057.48023
 Acute myocardial infarction,No CC,Physician 17,Post-Discharge Professional Services,25,244.6897255,254.2831225,263.3787549,76604.88017,76060.97941,79733.80767
@@ -55,7 +55,7 @@ Acute myocardial infarction,No CC,Physician 17,Post-Discharge Non-ER Outpatient 
 Acute myocardial infarction,No CC,Physician 17,Post-Discharge SNF,25,46.41623833,46.22710091,47.03192051,28694.23903,27576.50823,28220.65408
 Acute myocardial infarction,No CC,Physician 17,Post-Discharge HH,25,103.3482816,105.8113318,112.8766092,30387.60307,30970.15929,33791.36393
 Acute myocardial infarction,No CC,Physician 17,Post-Discharge IRF,25,4.574974552,4.483687459,4.837568967,14948.53635,15156.30489,16795.06579
-Acute myocardial infarction,No CC,Physician 18,Anchor Inpatient Stay,59,1,59,59,655727.3675,660576.1298,662250.9973
+Acute myocardial infarction,No CC,Physician 18,Anchor Inpatient Stay,59,59,59,59,655727.3675,660576.1298,662250.9973
 Acute myocardial infarction,No CC,Physician 18,Readmission,59,17.44571572,16.88576071,17.8416,180988.752,186883.7249,201427.5231
 Acute myocardial infarction,No CC,Physician 18,Post-Discharge ER,59,19.15375557,18.9088037,19.97915983,37795.96645,36809.85051,39674.49289
 Acute myocardial infarction,No CC,Physician 18,Post-Discharge Professional Services,59,616.0097079,613.3217541,621.5738615,184361.7814,182999.7967,186367.1122
@@ -63,7 +63,7 @@ Acute myocardial infarction,No CC,Physician 18,Post-Discharge Non-ER Outpatient 
 Acute myocardial infarction,No CC,Physician 18,Post-Discharge SNF,59,116.4821574,111.4981063,110.9953324,68716.16326,66914.88586,66525.57242
 Acute myocardial infarction,No CC,Physician 18,Post-Discharge HH,59,245.2470404,255.2131301,266.3887978,75791.66134,75632.69332,80169.63871
 Acute myocardial infarction,No CC,Physician 18,Post-Discharge IRF,59,11.19186985,10.81449303,11.41666276,37561.89108,36907.38066,39731.93153
-Acute myocardial infarction,No CC,Physician 19,Anchor Inpatient Stay,38,1,38,38,433316.9241,430678.7317,432471.0166
+Acute myocardial infarction,No CC,Physician 19,Anchor Inpatient Stay,38,38,38,38,433316.9241,430678.7317,432471.0166
 Acute myocardial infarction,No CC,Physician 19,Readmission,38,10.92442021,10.82138085,11.4912,115941.0911,119531.6495,129689.141
 Acute myocardial infarction,No CC,Physician 19,Post-Discharge ER,38,12.53732906,12.11786485,12.86793345,24971.09824,23822.29133,25846.64827
 Acute myocardial infarction,No CC,Physician 19,Post-Discharge Professional Services,38,377.524102,393.052371,400.3357074,114560.4551,117092.6833,120038.8421
@@ -71,7 +71,7 @@ Acute myocardial infarction,No CC,Physician 19,Post-Discharge Non-ER Outpatient 
 Acute myocardial infarction,No CC,Physician 19,Post-Discharge SNF,38,70.40725311,71.45449309,71.48851918,41917.95334,43089.51258,43123.18511
 Acute myocardial infarction,No CC,Physician 19,Post-Discharge HH,38,156.4117403,163.555467,171.572446,49256.25074,48050.90095,51271.41058
 Acute myocardial infarction,No CC,Physician 19,Post-Discharge IRF,38,7.116788015,6.930558226,7.35310483,23944.89062,23944.53834,25948.14361
-Acute myocardial infarction,No CC,Physician 20,Anchor Inpatient Stay,48,1,48,48,553474.0017,540777.0633,544171.9631
+Acute myocardial infarction,No CC,Physician 20,Anchor Inpatient Stay,48,48,48,48,553474.0017,540777.0633,544171.9631
 Acute myocardial infarction,No CC,Physician 20,Readmission,48,13.18867862,13.58136065,14.5152,152914.6495,148990.5401,163038.7188
 Acute myocardial infarction,No CC,Physician 20,Post-Discharge ER,48,14.90506079,15.2085113,16.25423173,29776.38149,29767.54015,32574.29367
 Acute myocardial infarction,No CC,Physician 20,Post-Discharge Professional Services,48,511.4028217,493.2998923,505.6872094,152439.9166,147619.6194,152632.6619
@@ -79,7 +79,7 @@ Acute myocardial infarction,No CC,Physician 20,Post-Discharge Non-ER Outpatient 
 Acute myocardial infarction,No CC,Physician 20,Post-Discharge SNF,48,91.26253736,89.67887321,90.30128738,51908.96783,53480.66482,53981.80532
 Acute myocardial infarction,No CC,Physician 20,Post-Discharge HH,48,206.4113265,205.2700867,216.7230897,61606.03828,59855.67675,64415.50775
 Acute myocardial infarction,No CC,Physician 20,Post-Discharge IRF,48,8.484292481,8.698188534,9.288132417,29512.53453,29531.17321,32276.90497
-Acute myocardial infarction,MCC,Physician 16,Anchor Inpatient Stay,18,1,18,18,348238.5936,341351.3383,339840.2394
+Acute myocardial infarction,MCC,Physician 16,Anchor Inpatient Stay,18,18,18,18,348238.5936,341351.3383,339840.2394
 Acute myocardial infarction,MCC,Physician 16,Readmission,18,7.023249971,7.35268024,9.072,74989.35064,75504.21275,101657.7736
 Acute myocardial infarction,MCC,Physician 16,Post-Discharge ER,18,7.827506101,8.233587443,10.15889483,14377.30164,14957.69538,20138.82346
 Acute myocardial infarction,MCC,Physician 16,Post-Discharge Professional Services,18,298.0160573,307.8553563,316.0545058,91131.92306,92303.01281,95748.53307
@@ -87,7 +87,7 @@ Acute myocardial infarction,MCC,Physician 16,Post-Discharge Non-ER Outpatient Se
 Acute myocardial infarction,MCC,Physician 16,Post-Discharge SNF,18,57.46808537,56.61221355,56.43830462,33131.23164,34072.85481,33961.53786
 Acute myocardial infarction,MCC,Physician 16,Post-Discharge HH,18,139.15143,134.5315507,135.4519311,40875.96109,40166.14394,40575.25624
 Acute myocardial infarction,MCC,Physician 16,Post-Discharge IRF,18,5.552906799,5.830627627,5.80508276,19654.67152,20607.18745,20503.39702
-Acute myocardial infarction,MCC,Physician 17,Anchor Inpatient Stay,7,1,7,7,133775.0824,129273.6656,130530.7701
+Acute myocardial infarction,MCC,Physician 17,Anchor Inpatient Stay,7,7,7,7,133775.0824,129273.6656,130530.7701
 Acute myocardial infarction,MCC,Physician 17,Readmission,7,2.865839175,2.737263131,3.528,27520.31538,27925.2567,39833.72276
 Acute myocardial infarction,MCC,Physician 17,Post-Discharge ER,7,3.127135411,3.065208143,3.950681323,5285.518289,5522.248253,7877.159672
 Acute myocardial infarction,MCC,Physician 17,Post-Discharge Professional Services,7,114.6376664,114.608699,122.9100856,32483.74613,33751.32639,37092.95298
@@ -95,7 +95,7 @@ Acute myocardial infarction,MCC,Physician 17,Post-Discharge Non-ER Outpatient Se
 Acute myocardial infarction,MCC,Physician 17,Post-Discharge SNF,7,21.58245237,21.07565131,21.94822957,13009.93845,12411.90827,13106.95157
 Acute myocardial infarction,MCC,Physician 17,Post-Discharge HH,7,51.02994316,50.08353983,52.67575097,15344.50266,14641.40622,15669.97245
 Acute myocardial infarction,MCC,Physician 17,Post-Discharge IRF,7,2.155283676,2.170631867,2.257532185,7651.21626,7455.145879,7858.642953
-Acute myocardial infarction,MCC,Physician 18,Anchor Inpatient Stay,33,1,33,33,602604.9769,616695.4747,618259.0843
+Acute myocardial infarction,MCC,Physician 18,Anchor Inpatient Stay,33,33,33,33,602604.9769,616695.4747,618259.0843
 Acute myocardial infarction,MCC,Physician 18,Readmission,33,13.1352386,13.18837472,16.632,137758.0679,134290.1532,186095.5419
 Acute myocardial infarction,MCC,Physician 18,Post-Discharge ER,33,15.01207424,14.76844265,18.62464052,27412.54742,26943.36438,37337.3615
 Acute myocardial infarction,MCC,Physician 18,Post-Discharge Professional Services,33,578.6718541,552.1948004,579.4332607,166590.0834,162853.2347,173874.1545
@@ -103,7 +103,7 @@ Acute myocardial infarction,MCC,Physician 18,Post-Discharge Non-ER Outpatient Se
 Acute myocardial infarction,MCC,Physician 18,Post-Discharge SNF,33,99.09091657,101.5443432,103.4702251,62465.07709,60732.93657,62305.37235
 Acute myocardial infarction,MCC,Physician 18,Post-Discharge HH,33,240.2584247,241.3069035,248.3285403,72969.14006,71393.40102,74230.36428
 Acute myocardial infarction,MCC,Physician 18,Post-Discharge IRF,33,10.11376195,10.45829541,10.64265173,35733.81738,36222.1726,37094.02711
-Acute myocardial infarction,MCC,Physician 19,Anchor Inpatient Stay,7,1,7,7,129503.5798,130954.7502,131499.7231
+Acute myocardial infarction,MCC,Physician 19,Anchor Inpatient Stay,7,7,7,7,129503.5798,130954.7502,131499.7231
 Acute myocardial infarction,MCC,Physician 19,Readmission,7,2.728014296,2.783593698,3.528,28863.27436,28603.99837,39901.74743
 Acute myocardial infarction,MCC,Physician 19,Post-Discharge ER,7,3.226751871,3.117089465,3.950681323,5953.373172,5695.573446,7945.15963
 Acute myocardial infarction,MCC,Physician 19,Post-Discharge Professional Services,7,117.3611177,116.5485512,122.9100856,33318.4288,34409.75519,36982.27258
@@ -111,7 +111,7 @@ Acute myocardial infarction,MCC,Physician 19,Post-Discharge Non-ER Outpatient Se
 Acute myocardial infarction,MCC,Physician 19,Post-Discharge SNF,7,20.42357692,21.4323751,21.94822957,13242.91151,12662.21753,13076.28435
 Acute myocardial infarction,MCC,Physician 19,Post-Discharge HH,7,52.65341001,50.93124743,52.67575097,15637.3249,15196.12032,15904.85136
 Acute myocardial infarction,MCC,Physician 19,Post-Discharge IRF,7,2.125618374,2.207371705,2.257532185,8044.917325,7719.545869,7957.829173
-Acute myocardial infarction,MCC,Physician 20,Anchor Inpatient Stay,20,1,20,20,361311.1592,375220.8444,377576.4124
+Acute myocardial infarction,MCC,Physician 20,Anchor Inpatient Stay,20,20,20,20,361311.1592,375220.8444,377576.4124
 Acute myocardial infarction,MCC,Physician 20,Readmission,20,8.272674311,7.902067947,10.08,76441.3691,79613.85575,112012.1637
 Acute myocardial infarction,MCC,Physician 20,Post-Discharge ER,20,9.00424829,8.84879599,11.28766092,15806.56588,16037.37761,22563.6775
 Acute myocardial infarction,MCC,Physician 20,Post-Discharge Professional Services,20,320.5176181,330.8581176,351.1716732,100037.0062,96782.81979,104911.1486
@@ -119,7 +119,7 @@ Acute myocardial infarction,MCC,Physician 20,Post-Discharge Non-ER Outpatient Se
 Acute myocardial infarction,MCC,Physician 20,Post-Discharge SNF,20,62.98721149,60.84224304,62.70922735,35155.07033,36201.91071,37706.60544
 Acute myocardial infarction,MCC,Physician 20,Post-Discharge HH,20,138.0776546,144.5836647,150.5021456,40726.63911,42725.64711,45102.114
 Acute myocardial infarction,MCC,Physician 20,Post-Discharge IRF,20,6.187135161,6.266288507,6.450091956,22315.337,21591.92485,22449.44341
-Congestive heart failure,CC,Physician 11,Anchor Inpatient Stay,80,1,80,80,1069268.345,1048105.453,1005464.085
+Congestive heart failure,CC,Physician 11,Anchor Inpatient Stay,80,80,80,80,1069268.345,1048105.453,1005464.085
 Congestive heart failure,CC,Physician 11,Readmission,80,36.65233038,37.4745,33.6,337710.5428,349829.891,302883.0225
 Congestive heart failure,CC,Physician 11,Post-Discharge ER,80,32.85585904,33.67295743,30.19150008,67717.14628,69848.64921,60475.02096
 Congestive heart failure,CC,Physician 11,Post-Discharge Professional Services,80,1023.057945,979.6106862,939.2911136,310189.32,299568.6516,283327.9527
@@ -127,7 +127,7 @@ Congestive heart failure,CC,Physician 11,Post-Discharge Non-ER Outpatient Servic
 Congestive heart failure,CC,Physician 11,Post-Discharge SNF,80,173.1814242,176.8947261,167.730556,111630.5708,107078.3121,99781.89785
 Congestive heart failure,CC,Physician 11,Post-Discharge HH,80,422.6730441,427.5229966,402.5533344,130486.333,130317.8502,120319.5033
 Congestive heart failure,CC,Physician 11,Post-Discharge IRF,80,17.93902797,18.80598115,17.25228576,65200.52445,67866.50292,60545.31601
-Congestive heart failure,CC,Physician 12,Anchor Inpatient Stay,44,1,44,44,583229.3858,581014.9089,551271.8686
+Congestive heart failure,CC,Physician 12,Anchor Inpatient Stay,44,44,44,44,583229.3858,581014.9089,551271.8686
 Congestive heart failure,CC,Physician 12,Readmission,44,20.76465247,21.35595,18.48,208990.4032,201938.6239,166891.4247
 Congestive heart failure,CC,Physician 12,Post-Discharge ER,44,19.76417874,19.18952875,16.60532504,41380.06695,40582.79149,33539.4971
 Congestive heart failure,CC,Physician 12,Post-Discharge Professional Services,44,571.5875859,558.2600658,516.6101125,180622.1146,172386.6485,155629.9934
@@ -135,7 +135,7 @@ Congestive heart failure,CC,Physician 12,Post-Discharge Non-ER Outpatient Servic
 Congestive heart failure,CC,Physician 12,Post-Discharge SNF,44,96.69952325,100.8086813,92.2518058,60250.10132,62801.7598,55862.28172
 Congestive heart failure,CC,Physician 12,Post-Discharge HH,44,253.5139974,243.6365993,221.4043339,73974.02362,75895.83646,66887.76571
 Congestive heart failure,CC,Physician 12,Post-Discharge IRF,44,10.57289703,10.71714347,9.488757168,39317.57185,39187.28308,33370.81761
-Congestive heart failure,CC,Physician 13,Anchor Inpatient Stay,119,1,119,119,1486921.479,1524528.17,1499599.759
+Congestive heart failure,CC,Physician 13,Anchor Inpatient Stay,119,119,119,119,1486921.479,1524528.17,1499599.759
 Congestive heart failure,CC,Physician 13,Readmission,119,53.08107635,51.71368125,49.98,442832.5415,465077.4217,445050.1643
 Congestive heart failure,CC,Physician 13,Post-Discharge ER,119,47.21353447,46.46766701,44.90985637,89940.3856,94642.74362,90567.21878
 Congestive heart failure,CC,Physician 13,Post-Discharge Professional Services,119,1397.654661,1351.833241,1397.195531,390057.7663,404641.0132,422988.5895
@@ -143,7 +143,7 @@ Congestive heart failure,CC,Physician 13,Post-Discharge Non-ER Outpatient Servic
 Congestive heart failure,CC,Physician 13,Post-Discharge SNF,119,252.1785356,244.1093939,249.4992021,150168.5725,145486.5785,149843.8308
 Congestive heart failure,CC,Physician 13,Post-Discharge HH,119,589.2829182,589.9688582,598.7980849,182956.876,174368.7373,177937.072
 Congestive heart failure,CC,Physician 13,Post-Discharge IRF,119,26.58609143,25.95168754,25.66277507,90456.25995,91164.55128,89891.11588
-Congestive heart failure,CC,Physician 14,Anchor Inpatient Stay,60,1,60,60,761928.6271,764214.7546,747692.8462
+Congestive heart failure,CC,Physician 14,Anchor Inpatient Stay,60,60,60,60,761928.6271,764214.7546,747692.8462
 Congestive heart failure,CC,Physician 14,Readmission,60,26.70689716,26.480475,25.2,244675.576,240179.6188,225098.0495
 Congestive heart failure,CC,Physician 14,Post-Discharge ER,60,23.3484077,23.79420426,22.64362506,49442.69155,48369.50488,45332.2445
 Congestive heart failure,CC,Physician 14,Post-Discharge Professional Services,60,710.9428025,692.2188765,704.4683352,213736.2629,207797.4506,212740.8247
@@ -151,7 +151,7 @@ Congestive heart failure,CC,Physician 14,Post-Discharge Non-ER Outpatient Servic
 Congestive heart failure,CC,Physician 14,Post-Discharge SNF,60,130.8425386,124.9985022,125.797917,77644.03213,74766.3814,75417.85391
 Congestive heart failure,CC,Physician 14,Post-Discharge HH,60,316.7063686,302.0990814,301.9150008,92339.89251,90110.4443,90058.52286
 Congestive heart failure,CC,Physician 14,Post-Discharge IRF,60,13.80137866,13.28880475,12.93921432,44365.55982,46461.11935,44867.54559
-Congestive heart failure,CC,Physician 15,Anchor Inpatient Stay,118,1,118,118,1450871.856,1504298.196,1479700.576
+Congestive heart failure,CC,Physician 15,Anchor Inpatient Stay,118,118,118,118,1450871.856,1504298.196,1479700.576
 Congestive heart failure,CC,Physician 15,Readmission,118,49.30700865,51.2791125,49.56,455480.5045,461649.9936,441770.3288
 Congestive heart failure,CC,Physician 15,Post-Discharge ER,118,44.59809207,46.07718242,44.53246262,96909.60905,93179.42422,89166.91313
 Congestive heart failure,CC,Physician 15,Post-Discharge Professional Services,118,1404.269395,1340.473297,1385.454393,378537.8358,395350.7072,413277.0345
@@ -159,7 +159,7 @@ Congestive heart failure,CC,Physician 15,Post-Discharge Non-ER Outpatient Servic
 Congestive heart failure,CC,Physician 15,Post-Discharge SNF,118,231.8838708,242.0580544,247.4025701,142782.6752,145425.5686,149780.9937
 Congestive heart failure,CC,Physician 15,Post-Discharge HH,118,613.1307995,585.0111367,593.7661682,167560.6317,174911.3999,178490.8399
 Congestive heart failure,CC,Physician 15,Post-Discharge IRF,118,26.63315643,25.73360613,25.4471215,94035.07556,91166.15116,89892.69342
-Congestive heart failure,No CC,Physician 11,Anchor Inpatient Stay,128,1,128,128,1404328.476,1418083.205,1360389.575
+Congestive heart failure,No CC,Physician 11,Anchor Inpatient Stay,128,128,128,128,1404328.476,1418083.205,1360389.575
 Congestive heart failure,No CC,Physician 11,Readmission,128,50.0712398,48.1948507,45.1584,442511.0394,444108.1864,407389.7113
 Congestive heart failure,No CC,Physician 11,Post-Discharge ER,128,41.68332076,43.00516619,40.57737611,86717.48696,86821.39023,80380.23527
 Congestive heart failure,No CC,Physician 11,Post-Discharge Professional Services,128,1332.489129,1311.678504,1262.407257,385332.9817,398872.2526,379133.0556
@@ -167,7 +167,7 @@ Congestive heart failure,No CC,Physician 11,Post-Discharge Non-ER Outpatient Ser
 Congestive heart failure,No CC,Physician 11,Post-Discharge SNF,128,233.0959041,237.8621634,225.4298673,149512.5818,145070.7822,135098.3737
 Congestive heart failure,No CC,Physician 11,Post-Discharge HH,128,595.0838348,567.0085031,541.0316814,177288.7347,171018.4832,160703.4307
 Congestive heart failure,No CC,Physician 11,Post-Discharge IRF,128,25.69621549,24.74634034,23.18707206,88817.0905,87643.01321,80396.03785
-Congestive heart failure,No CC,Physician 12,Anchor Inpatient Stay,75,1,75,75,836011.7029,833042.3248,790397.6162
+Congestive heart failure,No CC,Physician 12,Anchor Inpatient Stay,75,75,75,75,836011.7029,833042.3248,790397.6162
 Congestive heart failure,No CC,Physician 12,Readmission,75,30.62564146,29.25986324,26.46,265854.5139,273859.1593,239797.7823
 Congestive heart failure,No CC,Physician 12,Post-Discharge ER,75,25.48714023,26.10912292,23.77580631,52524.84714,54132.13384,47838.14139
 Congestive heart failure,No CC,Physician 12,Post-Discharge Professional Services,75,761.1284031,796.3409595,739.691752,243971.577,242606.9077,220119.0356
@@ -175,7 +175,7 @@ Congestive heart failure,No CC,Physician 12,Post-Discharge Non-ER Outpatient Ser
 Congestive heart failure,No CC,Physician 12,Post-Discharge SNF,75,150.8959434,144.4099166,132.0878129,91755.2573,88558.3648,78722.04565
 Congestive heart failure,No CC,Physician 12,Post-Discharge HH,75,349.8623719,344.2399139,317.0107508,105080.4508,106127.7512,95193.583
 Congestive heart failure,No CC,Physician 12,Post-Discharge IRF,75,15.72904759,15.02389827,13.58617504,54515.57576,54047.83566,47325.17917
-Congestive heart failure,No CC,Physician 13,Anchor Inpatient Stay,212,1,212,212,2162331.67,2256057.353,2219167.299
+Congestive heart failure,No CC,Physician 13,Anchor Inpatient Stay,212,212,212,212,2162331.67,2256057.353,2219167.299
 Congestive heart failure,No CC,Physician 13,Readmission,212,73.23857423,74.05240426,74.7936,640269.6954,666517.7129,675769.6253
 Congestive heart failure,No CC,Physician 13,Post-Discharge ER,212,64.87085019,66.07834459,67.20627918,126010.7177,132147.3937,135221.8375
 Congestive heart failure,No CC,Physician 13,Post-Discharge Professional Services,212,1994.178234,2015.421678,2090.862019,588956.2058,598662.0657,628934.2689
@@ -183,7 +183,7 @@ Congestive heart failure,No CC,Physician 13,Post-Discharge Non-ER Outpatient Ser
 Congestive heart failure,No CC,Physician 13,Post-Discharge SNF,212,382.6171973,365.4802293,373.3682177,214219.0212,217761.6215,224138.8832
 Congestive heart failure,No CC,Physician 13,Post-Discharge HH,212,897.1183577,871.2205201,896.0837224,263486.6678,258789.6544,268778.6092
 Congestive heart failure,No CC,Physician 13,Post-Discharge IRF,212,38.42419177,38.02327369,38.4035881,126392.826,132110.3749,133942.9823
-Congestive heart failure,No CC,Physician 14,Anchor Inpatient Stay,109,1,109,109,1116952.853,1166909.635,1141681.682
+Congestive heart failure,No CC,Physician 14,Anchor Inpatient Stay,109,109,109,109,1116952.853,1166909.635,1141681.682
 Congestive heart failure,No CC,Physician 14,Readmission,109,39.72388663,38.66747632,38.4552,341149.8942,346823.0038,344386.9911
 Congestive heart failure,No CC,Physician 14,Post-Discharge ER,109,35.32320458,34.50371193,34.55417184,72223.06128,69424.79001,69575.23419
 Congestive heart failure,No CC,Physician 14,Post-Discharge Professional Services,109,1097.696855,1052.380011,1075.01868,327984.708,316067.3652,325203.3765
@@ -191,7 +191,7 @@ Congestive heart failure,No CC,Physician 14,Post-Discharge Non-ER Outpatient Ser
 Congestive heart failure,No CC,Physician 14,Post-Discharge SNF,109,198.6481442,190.8405034,191.9676213,113359.7913,115270.6439,116200.0867
 Congestive heart failure,No CC,Physician 14,Post-Discharge HH,109,461.8987341,454.9197175,460.7222912,135441.4601,136744.2039,139094.0619
 Congestive heart failure,No CC,Physician 14,Post-Discharge IRF,109,20.24095244,19.85437272,19.74524105,68978.27983,69914.27897,69422.58701
-Congestive heart failure,No CC,Physician 15,Anchor Inpatient Stay,164,1,164,164,1826914.471,1771966.192,1742991.783
+Congestive heart failure,No CC,Physician 15,Anchor Inpatient Stay,164,164,164,164,1826914.471,1771966.192,1742991.783
 Congestive heart failure,No CC,Physician 15,Readmission,164,55.31239865,57.28582217,57.8592,495524.0355,509322.0079,516391.8915
 Congestive heart failure,No CC,Physician 15,Post-Discharge ER,164,51.64907876,51.11720996,51.98976314,100948.2501,102383.1332,104765.1037
 Congestive heart failure,No CC,Physician 15,Post-Discharge Professional Services,164,1555.799092,1559.099789,1617.459298,466602.8309,461340.4816,484668.8225
@@ -199,7 +199,7 @@ Congestive heart failure,No CC,Physician 15,Post-Discharge Non-ER Outpatient Ser
 Congestive heart failure,No CC,Physician 15,Post-Discharge SNF,164,296.0058071,282.7299887,288.8320174,163341.027,167027.8719,171919.3696
 Congestive heart failure,No CC,Physician 15,Post-Discharge HH,164,697.5739529,673.9630438,693.1968418,197958.1495,199831.8634,207545.1217
 Congestive heart failure,No CC,Physician 15,Post-Discharge IRF,164,29.75304054,29.41423059,29.70843608,97724.22298,101965.969,103380.4195
-Congestive heart failure,MCC,Physician 11,Anchor Inpatient Stay,57,1,57,57,1077545.425,1037295.394,996171.7375
+Congestive heart failure,MCC,Physician 11,Anchor Inpatient Stay,57,57,57,57,1077545.425,1037295.394,996171.7375
 Congestive heart failure,MCC,Physician 11,Readmission,57,41.45110191,42.59674125,33.516,412334.9496,407258.9444,298358.201
 Congestive heart failure,MCC,Physician 11,Post-Discharge ER,57,36.63676392,38.27558086,30.11602133,83563.76353,82964.91221,60780.15547
 Congestive heart failure,MCC,Physician 11,Post-Discharge Professional Services,57,1110.611398,1068.225439,936.9428858,321132.1511,333957.1231,280996.9372
@@ -207,7 +207,7 @@ Congestive heart failure,MCC,Physician 11,Post-Discharge Non-ER Outpatient Servi
 Congestive heart failure,MCC,Physician 11,Post-Discharge SNF,57,200.0442097,190.5578398,167.3112296,116206.2883,119995.8428,101101.4039
 Congestive heart failure,MCC,Physician 11,Post-Discharge HH,57,428.5214538,436.8654748,401.5469511,134217.8069,134362.4524,120171.9042
 Congestive heart failure,MCC,Physician 11,Post-Discharge IRF,57,18.37788893,18.99098007,17.20915505,69505.36759,68195.65403,59867.31104
-Congestive heart failure,MCC,Physician 12,Anchor Inpatient Stay,34,1,34,34,648527.0563,635833.8974,603938.084
+Congestive heart failure,MCC,Physician 12,Anchor Inpatient Stay,34,34,34,34,648527.0563,635833.8974,603938.084
 Congestive heart failure,MCC,Physician 12,Readmission,34,27.30587678,26.326965,19.992,259971.9901,258761.887,180952.3685
 Congestive heart failure,MCC,Physician 12,Post-Discharge ER,34,23.52350855,23.65626684,17.96394255,51799.1375,50915.9076,35605.52979
 Congestive heart failure,MCC,Physician 12,Post-Discharge Professional Services,34,672.0872154,660.2179629,558.8782126,204825.5243,209908.0143,168591.8239
@@ -215,7 +215,7 @@ Congestive heart failure,MCC,Physician 12,Post-Discharge Non-ER Outpatient Servi
 Congestive heart failure,MCC,Physician 12,Post-Discharge SNF,34,122.7183181,117.7744924,99.79968082,73478.64034,74248.17721,59713.61939
 Congestive heart failure,MCC,Physician 12,Post-Discharge HH,34,282.8798305,270.00521,239.519234,81311.38096,84448.45606,72096.36168
 Congestive heart failure,MCC,Physician 12,Post-Discharge IRF,34,12.26485577,11.73739711,10.26511003,42501.28217,43028.20683,36056.44581
-Congestive heart failure,MCC,Physician 13,Anchor Inpatient Stay,85,1,85,85,1532785.317,1505229.632,1482220.627
+Congestive heart failure,MCC,Physician 13,Anchor Inpatient Stay,85,85,85,85,1532785.317,1505229.632,1482220.627
 Congestive heart failure,MCC,Physician 13,Readmission,85,56.54575838,58.92954375,49.98,546374.2903,558173.1703,451962.0812
 Congestive heart failure,MCC,Physician 13,Post-Discharge ER,85,52.81669667,52.95152753,44.90985637,109783.9812,110244.6101,89266.8908
 Congestive heart failure,MCC,Physician 13,Post-Discharge Professional Services,85,1549.040144,1477.813463,1397.195531,462509.7147,454372.4941,422560.2122
@@ -223,7 +223,7 @@ Congestive heart failure,MCC,Physician 13,Post-Discharge Non-ER Outpatient Servi
 Congestive heart failure,MCC,Physician 13,Post-Discharge SNF,85,260.1618543,263.623137,249.4992021,157251.0055,161891.0623,150757.717
 Congestive heart failure,MCC,Physician 13,Post-Discharge HH,85,588.1922806,604.3721269,598.7980849,187186.782,180265.7064,178198.4119
 Congestive heart failure,MCC,Physician 13,Post-Discharge IRF,85,25.4960037,26.27266214,25.66277507,89185.5708,93195.54387,90426.11951
-Congestive heart failure,MCC,Physician 14,Anchor Inpatient Stay,45,1,45,45,849691.8562,816898.1887,800103.0492
+Congestive heart failure,MCC,Physician 14,Anchor Inpatient Stay,45,45,45,45,849691.8562,816898.1887,800103.0492
 Congestive heart failure,MCC,Physician 14,Readmission,45,31.41715616,31.68419625,26.46,286916.1589,300836.7122,238569.9542
 Congestive heart failure,MCC,Physician 14,Post-Discharge ER,45,28.46455718,28.47004207,23.77580631,56662.33096,59471.56271,47162.22261
 Congestive heart failure,MCC,Physician 14,Post-Discharge Professional Services,45,793.7779027,794.5646414,739.691752,256318.2902,245943.989,224008.5797
@@ -231,7 +231,7 @@ Congestive heart failure,MCC,Physician 14,Post-Discharge Non-ER Outpatient Servi
 Congestive heart failure,MCC,Physician 14,Post-Discharge SNF,45,137.8663639,141.7402321,132.0878129,84221.04896,86381.68898,78782.58771
 Congestive heart failure,MCC,Physician 14,Post-Discharge HH,45,315.2327343,324.9481306,317.0107508,100015.5706,98346.45397,95214.10536
 Congestive heart failure,MCC,Physician 14,Post-Discharge IRF,45,13.92375973,14.12582094,13.58617504,51060.59414,49649.43082,47180.75564
-Congestive heart failure,MCC,Physician 15,Anchor Inpatient Stay,65,1,65,65,1143117.841,1153884.045,1136245.724
+Congestive heart failure,MCC,Physician 15,Anchor Inpatient Stay,65,65,65,65,1143117.841,1153884.045,1136245.724
 Congestive heart failure,MCC,Physician 15,Readmission,65,44.54269784,45.06376875,38.22,441962.7663,424530.1637,343749.1204
 Congestive heart failure,MCC,Physician 15,Post-Discharge ER,65,38.75066034,40.49234458,34.34283134,83440.18649,85381.36147,69134.70564
 Congestive heart failure,MCC,Physician 15,Post-Discharge Professional Services,65,1106.530376,1130.092649,1068.443642,358366.976,347619.3663,323281.2616
@@ -239,7 +239,7 @@ Congestive heart failure,MCC,Physician 15,Post-Discharge Non-ER Outpatient Servi
 Congestive heart failure,MCC,Physician 15,Post-Discharge SNF,65,211.1027093,201.5941636,190.7935075,124859.4487,123197.1246,114724.7846
 Congestive heart failure,MCC,Physician 15,Post-Discharge HH,65,446.7414359,462.1669206,457.9044179,139773.7141,138837.7453,137245.5484
 Congestive heart failure,MCC,Physician 15,Post-Discharge IRF,65,19.44950874,20.09085928,19.62447505,68890.55456,71248.60497,69131.36187
-Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 1,Anchor Inpatient Stay,222,1,222,222,3606596.82,3474240.75,3467975.376
+Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 1,Anchor Inpatient Stay,222,222,222,222,3606596.82,3474240.75,3467975.376
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 1,Readmission,222,26.04882476,26.91732069,23.976,493544.472,501400.7232,431503.1006
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 1,Post-Discharge ER,222,90.22915943,90.06714148,80.22528726,184345.1916,184751.2516,158996.0569
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 1,Post-Discharge Professional Services,222,2510.122807,2401.79044,2139.340994,716806.2505,752196.597,647336.8482
@@ -247,7 +247,7 @@ Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 1,Post-D
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 1,Post-Discharge SNF,222,265.5201679,261.5468188,267.4176242,149970.2941,157235.4788,161980.0556
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 1,Post-Discharge HH,222,556.1672913,557.9719473,534.8352484,164367.0229,170583.4043,161391.4467
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 1,Post-Discharge IRF,222,65.08259947,62.69132306,61.12402839,222791.7048,222076.531,214846.1065
-Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 2,Anchor Inpatient Stay,132,1,132,132,1915200.531,1968979.381,2061165.094
+Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 2,Anchor Inpatient Stay,132,132,132,132,1915200.531,1968979.381,2061165.094
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 2,Readmission,132,13.90145164,14.10210733,14.256,239148.7891,249061.9006,255111.8003
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 2,Post-Discharge ER,132,45.08915711,47.18658708,47.70152215,96486.71655,92642.79467,94893.15736
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 2,Post-Discharge Professional Services,132,1310.281544,1258.308989,1272.040591,368255.4659,370950.1321,379960.7879
@@ -255,7 +255,7 @@ Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 2,Post-D
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 2,Post-Discharge SNF,132,134.6260664,137.0255738,159.0050738,76590.4766,77852.77481,95457.35074
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 2,Post-Discharge HH,132,294.2236145,292.3240534,318.0101477,85478.37192,85250.34205,95998.43478
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 2,Post-Discharge IRF,132,34.43466245,32.84427068,36.34401688,106213.508,109600.4093,126200.5606
-Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 3,Anchor Inpatient Stay,361,1,361,361,6084203.997,5844805.162,5654961.416
+Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 3,Anchor Inpatient Stay,361,361,361,361,6084203.997,5844805.162,5654961.416
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 3,Readmission,361,46.57801113,48.21166322,38.988,899340.971,922176.3172,698377.7327
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 3,Post-Discharge ER,361,160.5701994,161.3194249,130.4564356,350979.3428,344511.139,260903.3692
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 3,Post-Discharge Professional Services,361,4140.031316,4301.85133,3478.838282,1365135.823,1386080.253,1049699.029
@@ -263,7 +263,7 @@ Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 3,Post-D
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 3,Post-Discharge SNF,361,468.6809013,468.4569944,434.8547853,299819.1759,288018.6188,261101.2878
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 3,Post-Discharge HH,361,1032.153456,999.3845942,869.7095706,314995.4686,313378.8355,260910.0775
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 3,Post-Discharge IRF,361,117.1858441,112.2865455,99.39537949,430876.5917,410409.3339,349397.2694
-Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 4,Anchor Inpatient Stay,175,1,175,175,2530161.911,2647790.699,2762935.643
+Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 4,Anchor Inpatient Stay,175,175,175,175,2530161.911,2647790.699,2762935.643
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 4,Readmission,175,19.73777621,18.84282154,18.9,326408.1566,335561.5826,339948.5462
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 4,Post-Discharge ER,175,65.46546572,63.04933143,63.24065437,124935.0202,125731.0375,127374.7819
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 4,Post-Discharge Professional Services,175,1669.381532,1681.315505,1686.41745,497247.8179,494884.8382,501354.7139
@@ -271,7 +271,7 @@ Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 4,Post-D
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 4,Post-Discharge SNF,175,189.7089629,183.0895462,210.8021812,105043.2294,103907.3475,126008.3265
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 4,Post-Discharge HH,175,395.9609469,390.5948125,421.6043625,112793.6499,113792.5646,126735.8879
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 4,Post-Discharge IRF,175,44.68522535,43.8855496,48.18335571,155081.4205,148444.0507,169055.6186
-Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 5,Anchor Inpatient Stay,295,1,295,295,4702301.306,4825920.459,4601213.924
+Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 5,Anchor Inpatient Stay,295,295,295,295,4702301.306,4825920.459,4601213.924
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 5,Readmission,295,41.83604525,41.41663789,31.86,783805.4389,794625.1883,564109.6015
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 5,Post-Discharge ER,295,143.3760776,138.5828191,106.6056745,302530.4122,297741.2135,211368.4285
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 5,Post-Discharge Professional Services,295,3671.497473,3695.541844,2842.817987,1188994.615,1195022.328,848354.141
@@ -279,7 +279,7 @@ Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 5,Post-D
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 5,Post-Discharge SNF,295,418.3145417,402.4319512,355.3522484,239257.5524,251613.241,213819.1938
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 5,Post-Discharge HH,295,845.8267852,858.5298055,710.7044967,279516.5384,271067.8364,211555.3079
 Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 5,Post-Discharge IRF,295,91.76611621,96.46070855,81.22337105,342902.7817,359017.7807,286512.1084
-Major joint replacement of the lower extremity (MJRLE),MCC,Physician 1,Anchor Inpatient Stay,66,1,66,66,1572046.889,1621422.91,1618498.87
+Major joint replacement of the lower extremity (MJRLE),MCC,Physician 1,Anchor Inpatient Stay,66,66,66,66,1572046.889,1621422.91,1618498.87
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 1,Readmission,66,12.02055446,11.63640799,11.088,211792.7875,211476.8184,198541.0404
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 1,Post-Discharge ER,66,39.22853773,38.93619343,37.1011839,80740.54713,79440.28785,74581.02276
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 1,Post-Discharge Professional Services,66,951.5358254,965.4681491,989.3649039,278713.3562,285428.9724,294925.749
@@ -287,7 +287,7 @@ Major joint replacement of the lower extremity (MJRLE),MCC,Physician 1,Post-Disc
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 1,Post-Discharge SNF,66,122.294221,119.2632963,123.670613,72779.26865,71011.03294,74543.5188
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 1,Post-Discharge HH,66,231.0884893,233.4531898,247.341226,71024.95186,68558.46745,74078.45152
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 1,Post-Discharge IRF,66,28.31272681,27.20212922,28.26756868,92829.85296,93553.7324,98488.42335
-Major joint replacement of the lower extremity (MJRLE),MCC,Physician 2,Anchor Inpatient Stay,33,1,33,33,782043.6189,775465.7539,811772.3113
+Major joint replacement of the lower extremity (MJRLE),MCC,Physician 2,Anchor Inpatient Stay,33,33,33,33,782043.6189,775465.7539,811772.3113
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 2,Readmission,33,5.113231706,5.12649071,5.544,92401.54664,88149.74389,98499.23675
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 2,Post-Discharge ER,33,17.69200073,17.15357815,18.55059195,33204.61625,33507.10463,37441.10971
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 2,Post-Discharge Professional Services,33,409.2304737,425.342898,494.682452,124514.8262,120947.4186,148742.6537
@@ -295,7 +295,7 @@ Major joint replacement of the lower extremity (MJRLE),MCC,Physician 2,Post-Disc
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 2,Post-Discharge SNF,33,53.59819942,52.5421746,61.83530649,30794.41138,29419.44445,36757.23304
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 2,Post-Discharge HH,33,101.0072227,102.8492306,123.670613,28528.81438,29031.24339,37335.39207
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 2,Post-Discharge IRF,33,11.69893633,11.9840644,14.13378434,37695.5134,39285.0017,49223.79887
-Major joint replacement of the lower extremity (MJRLE),MCC,Physician 3,Anchor Inpatient Stay,75,1,75,75,1818559.008,1879561.945,1818512.334
+Major joint replacement of the lower extremity (MJRLE),MCC,Physician 3,Anchor Inpatient Stay,75,75,75,75,1818559.008,1879561.945,1818512.334
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 3,Readmission,75,14.54545416,14.56472623,12.6,274815.0556,271863.2097,224602.9313
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 3,Post-Discharge ER,75,51.14539015,48.73454061,42.16043625,99723.96803,101762.6168,84072.36146
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 3,Post-Discharge Professional Services,75,1157.2068,1208.429551,1124.2783,371038.8293,371888.2569,338146.235
@@ -303,7 +303,7 @@ Major joint replacement of the lower extremity (MJRLE),MCC,Physician 3,Post-Disc
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 3,Post-Discharge SNF,75,156.3829621,149.2760705,140.5347875,92685.9473,91265.28597,84307.67892
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 3,Post-Discharge HH,75,299.2932027,292.2020095,281.069575,85204.94101,88357.78197,84014.26927
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 3,Post-Discharge IRF,75,33.90453407,34.04758284,32.12223714,117069.9103,121291.8688,112365.5569
-Major joint replacement of the lower extremity (MJRLE),MCC,Physician 4,Anchor Inpatient Stay,39,1,39,39,929811.8164,919007.4855,958972.5271
+Major joint replacement of the lower extremity (MJRLE),MCC,Physician 4,Anchor Inpatient Stay,39,39,39,39,929811.8164,919007.4855,958972.5271
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 4,Readmission,39,6.131702586,6.106166515,6.552,101879.4537,105766.3401,116889.9012
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 4,Post-Discharge ER,39,20.84387399,20.43163842,21.92342685,38183.3375,39458.8917,43608.82628
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 4,Post-Discharge Professional Services,39,490.8779135,506.6262105,584.6247159,151805.2796,144882.5112,176227.0581
@@ -311,7 +311,7 @@ Major joint replacement of the lower extremity (MJRLE),MCC,Physician 4,Post-Disc
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 4,Post-Discharge SNF,39,64.25460673,62.58301933,73.07808949,34927.23079,35302.74612,43624.90945
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 4,Post-Discharge HH,39,120.4705247,122.5037874,146.156179,33496.35308,34253.81849,43569.41977
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 4,Post-Discharge IRF,39,14.86694772,14.27422713,16.70356331,46844.08083,47546.00874,58922.35846
-Major joint replacement of the lower extremity (MJRLE),MCC,Physician 5,Anchor Inpatient Stay,70,1,70,70,1731776.084,1790536.316,1707164.612
+Major joint replacement of the lower extremity (MJRLE),MCC,Physician 5,Anchor Inpatient Stay,70,70,70,70,1731776.084,1790536.316,1707164.612
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 5,Readmission,70,14.95156961,14.29048654,11.76,261853.216,268285.6606,207772.0794
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 5,Post-Discharge ER,70,49.11573808,47.81691639,39.3497405,97343.23366,102044.9301,79028.0303
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 5,Post-Discharge Professional Services,70,1158.708302,1185.675992,1049.326413,390060.5925,373005.4469,317930.3663
@@ -319,7 +319,7 @@ Major joint replacement of the lower extremity (MJRLE),MCC,Physician 5,Post-Disc
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 5,Post-Discharge SNF,70,145.3847462,146.4653466,131.1658017,90668.80438,90127.84298,78045.02725
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 5,Post-Discharge HH,70,300.9377496,286.7001285,262.3316033,92046.00175,88857.19478,79200.07501
 Major joint replacement of the lower extremity (MJRLE),MCC,Physician 5,Post-Discharge IRF,70,32.78123656,33.40649982,29.98075466,119792.9079,121878.8607,105841.1748
-Stroke,CC,Physician 10,Anchor Inpatient Stay,53,1,53,53,797822.8247,828703.4529,856396.154
+Stroke,CC,Physician 10,Anchor Inpatient Stay,53,53,53,53,797822.8247,828703.4529,856396.154
 Stroke,CC,Physician 10,Readmission,53,15.1189079,15.23897065,15.9,244082.1065,240823.589,255935.814
 Stroke,CC,Physician 10,Post-Discharge ER,53,24.65272945,24.42867732,25.48833371,47281.44387,47584.48844,50570.52273
 Stroke,CC,Physician 10,Post-Discharge Professional Services,53,723.7779016,746.5110758,792.9703822,217148.7123,220444.2846,239825.4217
@@ -327,7 +327,7 @@ Stroke,CC,Physician 10,Post-Discharge Non-ER Outpatient Services,53,129.2898237,
 Stroke,CC,Physician 10,Post-Discharge SNF,53,129.5316953,131.2940392,141.601854,75666.61448,76204.91057,84576.84515
 Stroke,CC,Physician 10,Post-Discharge HH,53,302.6441128,305.1366708,339.8444495,84649.55417,87351.09081,101160.8036
 Stroke,CC,Physician 10,Post-Discharge IRF,53,13.28505229,13.73504969,14.56476212,47883.89198,46840.82062,50844.23121
-Stroke,CC,Physician 6,Anchor Inpatient Stay,46,1,46,46,758292.318,732867.7893,734658.1447
+Stroke,CC,Physician 6,Anchor Inpatient Stay,46,46,46,46,758292.318,732867.7893,734658.1447
 Stroke,CC,Physician 6,Readmission,46,13.88099317,14.36534425,13.8,231925.4845,232119.2124,220317.3945
 Stroke,CC,Physician 6,Post-Discharge ER,46,22.72800729,23.02821938,22.12195002,47882.72095,46222.34521,43872.22651
 Stroke,CC,Physician 6,Post-Discharge Professional Services,46,683.0377167,703.714761,688.238445,209795.9198,213548.7106,207490.8679
@@ -335,7 +335,7 @@ Stroke,CC,Physician 6,Post-Discharge Non-ER Outpatient Services,46,113.1150774,1
 Stroke,CC,Physician 6,Post-Discharge SNF,46,129.5885648,123.7671568,122.8997223,71068.62517,74035.87992,73386.54239
 Stroke,CC,Physician 6,Post-Discharge HH,46,291.3615237,287.6436617,294.9593336,88937.198,86337.10896,89299.10381
 Stroke,CC,Physician 6,Post-Discharge IRF,46,13.37658603,12.94764073,12.6411143,46950.291,45206.07795,43824.77349
-Stroke,CC,Physician 7,Anchor Inpatient Stay,27,1,27,27,441482.4603,423328.7355,435440.9278
+Stroke,CC,Physician 7,Anchor Inpatient Stay,27,27,27,27,441482.4603,423328.7355,435440.9278
 Stroke,CC,Physician 7,Readmission,27,8.092425076,7.857444645,8.1,120763.0629,124913.4749,130550.7774
 Stroke,CC,Physician 7,Post-Discharge ER,27,13.07077865,12.59579693,12.98462284,24009.84993,24749.27675,25866.20318
 Stroke,CC,Physician 7,Post-Discharge Professional Services,27,366.3185102,384.9124452,403.9660438,114322.1828,113456.0494,121384.2013
@@ -343,7 +343,7 @@ Stroke,CC,Physician 7,Post-Discharge Non-ER Outpatient Services,27,65.47923451,6
 Stroke,CC,Physician 7,Post-Discharge SNF,27,66.21346177,67.69720006,72.13679353,40451.28587,39454.73696,43063.15157
 Stroke,CC,Physician 7,Post-Discharge HH,27,163.1138778,157.3331004,173.1283045,45314.07124,45270.91063,51558.62216
 Stroke,CC,Physician 7,Post-Discharge IRF,27,7.024599933,7.082000164,7.419784478,23149.2768,24272.30688,25909.9383
-Stroke,CC,Physician 8,Anchor Inpatient Stay,71,1,71,71,1154437.42,1147118.289,1142215.342
+Stroke,CC,Physician 8,Anchor Inpatient Stay,71,71,71,71,1154437.42,1147118.289,1142215.342
 Stroke,CC,Physician 8,Readmission,71,22.98394877,22.61087425,21.3,373252.3383,366281.7987,338635.4023
 Stroke,CC,Physician 8,Post-Discharge ER,71,35.41927342,36.24613261,34.14474894,71375.32304,73314.56011,67780.88797
 Stroke,CC,Physician 8,Post-Discharge Professional Services,71,1128.623119,1107.638334,1062.281078,353305.2231,340000.9416,321781.7993
@@ -351,7 +351,7 @@ Stroke,CC,Physician 8,Post-Discharge Non-ER Outpatient Services,71,184.7603087,1
 Stroke,CC,Physician 8,Post-Discharge SNF,71,200.8119351,194.8079747,189.6930497,123594.2125,117713.194,113652.4102
 Stroke,CC,Physician 8,Post-Discharge HH,71,474.5493646,452.7475674,455.2633192,128795.6295,135435.4408,136446.1375
 Stroke,CC,Physician 8,Post-Discharge IRF,71,20.86254439,20.37942644,19.51128511,73243.14227,72438.36549,68402.31735
-Stroke,CC,Physician 9,Anchor Inpatient Stay,24,1,24,24,364407.6209,382705.5441,383389.0455
+Stroke,CC,Physician 9,Anchor Inpatient Stay,24,24,24,24,364407.6209,382705.5441,383389.0455
 Stroke,CC,Physician 9,Readmission,24,7.239147043,7.509112064,7.2,119151.2531,120804.0287,114370.8269
 Stroke,CC,Physician 9,Post-Discharge ER,24,11.82893347,12.03740592,11.54188697,23571.48923,24370.5918,23072.77966
 Stroke,CC,Physician 9,Post-Discharge Professional Services,24,370.7098726,367.8486857,359.0809278,110330.1996,110682.0598,107269.2913
@@ -359,7 +359,7 @@ Stroke,CC,Physician 9,Post-Discharge Non-ER Outpatient Services,24,59.85245337,6
 Stroke,CC,Physician 9,Post-Discharge SNF,24,64.74491067,64.69607928,64.12159425,38003.66558,38875.33394,38436.55549
 Stroke,CC,Physician 9,Post-Discharge HH,24,157.2860827,150.3582826,153.8918262,46565.52962,45125.22495,46554.87049
 Stroke,CC,Physician 9,Post-Discharge IRF,24,6.493952718,6.768044227,6.59536398,23335.19526,23971.90363,23180.43162
-Stroke,No CC,Physician 10,Anchor Inpatient Stay,103,1,103,103,1347063.418,1389279.745,1391887.422
+Stroke,No CC,Physician 10,Anchor Inpatient Stay,103,103,103,103,1347063.418,1389279.745,1391887.422
 Stroke,No CC,Physician 10,Readmission,103,23.89952377,24.87690077,25.956,406962.9317,390009.0017,414482.9488
 Stroke,No CC,Physician 10,Post-Discharge ER,103,38.20020357,39.87866343,41.60850251,75247.6976,78479.62334,83404.39724
 Stroke,No CC,Physician 10,Post-Discharge Professional Services,103,1198.022631,1176.20569,1294.486745,322491.2238,337327.6898,384529.9985
@@ -367,7 +367,7 @@ Stroke,No CC,Physician 10,Post-Discharge Non-ER Outpatient Services,103,212.1996
 Stroke,No CC,Physician 10,Post-Discharge SNF,103,214.3148762,218.1607241,231.1583473,121700.8988,126755.7641,137448.352
 Stroke,No CC,Physician 10,Post-Discharge HH,103,524.8045917,530.7788688,554.7800335,162373.6158,156864.1862,167091.3024
 Stroke,No CC,Physician 10,Post-Discharge IRF,103,21.60200082,21.76027978,23.77628715,72711.11213,73033.23269,82461.25265
-Stroke,No CC,Physician 6,Anchor Inpatient Stay,65,1,65,65,893168.824,897052.8222,871799.3219
+Stroke,No CC,Physician 6,Anchor Inpatient Stay,65,65,65,65,893168.824,897052.8222,871799.3219
 Stroke,No CC,Physician 6,Readmission,65,17.64706751,17.05103904,16.38,267584.6947,279203.7601,265007.9858
 Stroke,No CC,Physician 6,Post-Discharge ER,65,27.77896089,27.33349518,26.25779285,54522.22975,55068.37978,52268.49525
 Stroke,No CC,Physician 6,Post-Discharge Professional Services,65,792.9502409,806.1908248,816.9091107,254242.5961,242161.7329,246541.1461
@@ -375,7 +375,7 @@ Stroke,No CC,Physician 6,Post-Discharge Non-ER Outpatient Services,65,138.966047
 Stroke,No CC,Physician 6,Post-Discharge SNF,65,153.839779,149.5309668,145.8766269,86499.97372,89776.28459,86943.89817
 Stroke,No CC,Physician 6,Post-Discharge HH,65,360.1440207,363.8046113,350.1039046,106009.832,110437.0155,105063.1374
 Stroke,No CC,Physician 6,Post-Discharge IRF,65,15.02236627,14.91485549,15.00445305,51378.26954,51817.2698,52252.80281
-Stroke,No CC,Physician 7,Anchor Inpatient Stay,30,1,30,30,424133.4679,404407.3699,403282.5266
+Stroke,No CC,Physician 7,Anchor Inpatient Stay,30,30,30,30,424133.4679,404407.3699,403282.5266
 Stroke,No CC,Physician 7,Readmission,30,7.070649495,7.333615002,7.56,116509.7855,116924.4634,122201.2246
 Stroke,No CC,Physician 7,Post-Discharge ER,30,11.99031297,11.75607714,12.11898131,23864.98907,23258.03137,24307.65841
 Stroke,No CC,Physician 7,Post-Discharge Professional Services,30,331.6621133,346.7409295,377.0349742,104668.3772,100401.5298,112552.9025
@@ -383,7 +383,7 @@ Stroke,No CC,Physician 7,Post-Discharge Non-ER Outpatient Services,30,61.0171669
 Stroke,No CC,Physician 7,Post-Discharge SNF,30,65.92676011,64.31294531,67.32767396,36456.04105,38113.2124,40642.97678
 Stroke,No CC,Physician 7,Post-Discharge HH,30,152.1609817,156.4715762,161.5864175,47644.48845,46237.25716,48435.1045
 Stroke,No CC,Physician 7,Post-Discharge IRF,30,6.624892012,6.414847079,6.925132179,21738.89099,21786.56454,24191.13756
-Stroke,No CC,Physician 8,Anchor Inpatient Stay,116,1,116,116,1549380.742,1604141.648,1548536.144
+Stroke,No CC,Physician 8,Anchor Inpatient Stay,116,116,116,116,1549380.742,1604141.648,1548536.144
 Stroke,No CC,Physician 8,Readmission,116,29.65082652,31.03103643,29.232,525290.1522,503973.7258,465934.551
 Stroke,No CC,Physician 8,Post-Discharge ER,116,50.26903519,49.74398818,46.86006108,101867.3744,101585.3003,93917.79546
 Stroke,No CC,Physician 8,Post-Discharge Professional Services,116,1478.438985,1467.179612,1457.868567,443362.2848,445006.6798,441295.7522
@@ -391,7 +391,7 @@ Stroke,No CC,Physician 8,Post-Discharge Non-ER Outpatient Services,116,257.34661
 Stroke,No CC,Physician 8,Post-Discharge SNF,116,274.2084201,272.1300953,260.3336727,161783.0788,166707.1865,157257.412
 Stroke,No CC,Physician 8,Post-Discharge HH,116,658.9483523,662.084822,624.8008144,196372.2535,202422.5421,187574.5445
 Stroke,No CC,Physician 8,Post-Discharge IRF,116,26.41644467,27.14341472,26.77717776,95345.8092,95453.33353,93757.38507
-Stroke,No CC,Physician 9,Anchor Inpatient Stay,57,1,57,57,771573.0018,785213.5367,762608.3751
+Stroke,No CC,Physician 9,Anchor Inpatient Stay,57,57,57,57,771573.0018,785213.5367,762608.3751
 Stroke,No CC,Physician 9,Readmission,57,15.04777128,14.98067857,14.364,233837.7285,245238.4274,232178.6949
 Stroke,No CC,Physician 9,Post-Discharge ER,57,24.67806632,24.01462482,23.0260645,47359.93786,49034.52254,46423.27702
 Stroke,No CC,Physician 9,Post-Discharge Professional Services,57,720.6539883,708.3020325,716.366451,209766.2517,211038.4462,214309.5972
@@ -399,7 +399,7 @@ Stroke,No CC,Physician 9,Post-Discharge Non-ER Outpatient Services,57,124.321119
 Stroke,No CC,Physician 9,Post-Discharge SNF,57,125.3604386,131.3747124,127.9225805,76827.73267,80146.47387,77420.86949
 Stroke,No CC,Physician 9,Post-Discharge HH,57,335.1301264,319.630958,307.0141933,98752.48499,97801.59447,92806.36945
 Stroke,No CC,Physician 9,Post-Discharge IRF,57,13.44799028,13.10387335,13.15775114,46147.36099,45779.10711,46046.70159
-Stroke,MCC,Physician 10,Anchor Inpatient Stay,21,1,21,21,469612.7595,468999.5534,474556.9425
+Stroke,MCC,Physician 10,Anchor Inpatient Stay,21,21,21,21,469612.7595,468999.5534,474556.9425
 Stroke,MCC,Physician 10,Readmission,21,9.598585633,9.632848232,8.82,162885.5887,157984.9307,142068.2514
 Stroke,MCC,Physician 10,Post-Discharge ER,21,14.84814862,15.44183964,14.13881153,31165.23509,31621.45094,28435.65028
 Stroke,MCC,Physician 10,Post-Discharge Professional Services,21,442.0662832,436.2932471,439.8741366,127300.0953,129309.424,131448.9315
@@ -407,7 +407,7 @@ Stroke,MCC,Physician 10,Post-Discharge Non-ER Outpatient Services,21,69.0496643,
 Stroke,MCC,Physician 10,Post-Discharge SNF,21,76.43898564,74.71127743,78.54895296,45230.8587,43877.69222,47097.45437
 Stroke,MCC,Physician 10,Post-Discharge HH,21,171.0749866,177.5688001,188.5174871,53862.7305,51527.58862,56017.96976
 Stroke,MCC,Physician 10,Post-Discharge IRF,21,7.857249388,7.520021432,8.079320876,26616.42406,25630.82613,28303.25605
-Stroke,MCC,Physician 6,Anchor Inpatient Stay,24,1,24,24,542466.4266,553906.7869,543671.6564
+Stroke,MCC,Physician 6,Anchor Inpatient Stay,24,24,24,24,542466.4266,553906.7869,543671.6564
 Stroke,MCC,Physician 6,Readmission,24,11.64176535,11.95707926,10.08,203934.1173,201900.6752,162152.9309
 Stroke,MCC,Physician 6,Post-Discharge ER,24,20.01861002,19.16767461,16.15864175,39304.24687,40362.2823,32416.24806
 Stroke,MCC,Physician 6,Post-Discharge Professional Services,24,540.6144457,541.5628701,502.7132989,161355.3625,165043.9433,149841.508
@@ -415,7 +415,7 @@ Stroke,MCC,Physician 6,Post-Discharge Non-ER Outpatient Services,24,85.00526318,
 Stroke,MCC,Physician 6,Post-Discharge SNF,24,93.51088489,92.73774943,89.77023195,58508.04318,56535.52467,54197.68595
 Stroke,MCC,Physician 6,Post-Discharge HH,24,216.322895,220.412921,215.4485567,65790.9382,67047.70566,65099.42125
 Stroke,MCC,Physician 6,Post-Discharge IRF,24,9.535233263,9.33446579,9.233509572,31903.61343,32484.11135,32036.89713
-Stroke,MCC,Physician 7,Anchor Inpatient Stay,12,1,12,12,253384.7546,266441.8532,268345.4805
+Stroke,MCC,Physician 7,Anchor Inpatient Stay,12,12,12,12,253384.7546,266441.8532,268345.4805
 Stroke,MCC,Physician 7,Readmission,12,5.449360548,5.571273412,5.04,88530.18619,91922.06826,81290.40606
 Stroke,MCC,Physician 7,Post-Discharge ER,12,8.981385511,8.93097333,8.079320876,17653.92327,18189.14227,16085.39482
 Stroke,MCC,Physician 7,Post-Discharge Professional Services,12,251.8369865,252.3354369,251.3566495,74969.1959,74801.30918,74778.06388
@@ -423,7 +423,7 @@ Stroke,MCC,Physician 7,Post-Discharge Non-ER Outpatient Services,12,40.48687209,
 Stroke,MCC,Physician 7,Post-Discharge SNF,12,41.64100195,43.21016417,44.88511598,25036.30926,25674.24779,27101.26229
 Stroke,MCC,Physician 7,Post-Discharge HH,12,105.5286427,102.6990471,107.7242783,31257.90426,29954.67822,32025.08854
 Stroke,MCC,Physician 7,Post-Discharge IRF,12,4.434401984,4.349294669,4.616754786,14077.09035,14800.2174,16072.37382
-Stroke,MCC,Physician 8,Anchor Inpatient Stay,44,1,44,44,1066896.046,1020508.313,994939.5035
+Stroke,MCC,Physician 8,Anchor Inpatient Stay,44,44,44,44,1066896.046,1020508.313,994939.5035
 Stroke,MCC,Physician 8,Readmission,44,21.74499353,22.35462261,18.48,394174.1597,380192.1956,297419.5769
 Stroke,MCC,Physician 8,Post-Discharge ER,44,34.52490098,35.83535102,29.62417654,75386.26209,75810.4995,59305.60107
 Stroke,MCC,Physician 8,Post-Discharge Professional Services,44,1029.565185,1012.49087,921.641048,326458.178,311211.2461,275211.8617
@@ -431,7 +431,7 @@ Stroke,MCC,Physician 8,Post-Discharge Non-ER Outpatient Services,44,161.2813995,
 Stroke,MCC,Physician 8,Post-Discharge SNF,44,174.3613151,173.3799154,164.5787586,107890.3384,106792.3479,99719.19737
 Stroke,MCC,Physician 8,Post-Discharge HH,44,414.48637,412.0778629,394.9890206,132042.9311,125911.9342,119080.164
 Stroke,MCC,Physician 8,Post-Discharge IRF,44,17.00209625,17.45145746,16.92810088,62844.71161,62198.08861,59749.71213
-Stroke,MCC,Physician 9,Anchor Inpatient Stay,20,1,20,20,438699.2433,457756.722,449003.8022
+Stroke,MCC,Physician 9,Anchor Inpatient Stay,20,20,20,20,438699.2433,457756.722,449003.8022
 Stroke,MCC,Physician 9,Readmission,20,10.41390907,9.983044333,8.4,165761.595,169465.5591,135757.7479
 Stroke,MCC,Physician 9,Post-Discharge ER,20,16.45413858,16.00321795,13.46553479,34639.83011,33920.23799,27173.28018
 Stroke,MCC,Physician 9,Post-Discharge Professional Services,20,461.9938087,452.154412,418.9277491,144642.2258,139976.5242,126760.4853

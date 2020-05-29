@@ -1489,14 +1489,14 @@ def drilldata_process(d,d1='All',d1v='All',d2='All',d2v='All',d3='All',d3v='All'
 	df_agg['Contribution to Overall Performance Difference']=(df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/(52495307.84)
 
 
-	df_agg['YTD Avg Utilization Rate/Patient'] = df_agg['YTD Utilization']/df_agg['Pt Ct']
-	df_agg['Annualized Avg Utilization Rate/Patient'] = df_agg['Annualized Utilization']/df_agg['Pt Ct']
-	df_agg['Benchmark Avg Utilization Rate/Patient'] = df_agg['Benchmark Utilization']/df_agg['Pt Ct']
+	df_agg['YTD Avg Utilization Rate/Patient'] = df_agg['YTD Utilization']/df_agg['Pt Ct']*1000
+	df_agg['Annualized Avg Utilization Rate/Patient'] = df_agg['Annualized Utilization']/df_agg['Pt Ct']*1000
+	df_agg['Benchmark Avg Utilization Rate/Patient'] = df_agg['Benchmark Utilization']/df_agg['Pt Ct']*1000
 	df_agg['Diff % from Benchmark Avg Utilization Rate/Patient'] = (df_agg['Annualized Avg Utilization Rate/Patient'] - df_agg['Benchmark Avg Utilization Rate/Patient'])/df_agg['Benchmark Avg Utilization Rate/Patient']
 
-	df_agg['YTD Avg Utilization Rate/Episode'] = df_agg['YTD Utilization']/df_agg['Episode Ct']
-	df_agg['Annualized Avg Utilization Rate/Episode'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']
-	df_agg['Benchmark Avg Utilization Rate/Episode'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']
+	df_agg['YTD Avg Utilization Rate/Episode'] = df_agg['YTD Utilization']/df_agg['Episode Ct']*1000
+	df_agg['Annualized Avg Utilization Rate/Episode'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']*1000
+	df_agg['Benchmark Avg Utilization Rate/Episode'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']*1000
 	df_agg['Diff % from Benchmark Avg Utilization Rate/Episode'] = (df_agg['Annualized Avg Utilization Rate/Episode'] - df_agg['Benchmark Avg Utilization Rate/Episode'])/df_agg['Benchmark Avg Utilization Rate/Episode']
 
 	df_agg['YTD Avg Cost per Unit'] = df_agg['YTD Total Cost']/df_agg['YTD Utilization']
@@ -1614,7 +1614,7 @@ def drilltable_lv1(df,tableid):
 
 	sel_default=len(df)-1
 
-	col_max=max(df['Diff % from Benchmark'].max(),df['Contribution to Overall Performance Difference'].max())
+	col_max=max(df['Diff % from Benchmark'].abs().max(),df['Contribution to Overall Performance Difference'].abs().max())
 
 	df['id']=df[df.columns[0]]
 	tbl=dash_table.DataTable(
@@ -1673,8 +1673,6 @@ def drilltable_lv3(df,dimension,tableid,row_select):#row_select: numeric 0 or 1
 	#df1.append(df[len(df)-1:len(df)])
 	#df1['id']=df1[df1.columns[0]]
 	#df1.set_index('id', inplace=True, drop=False)
-	df['id']=df[df.columns[0]]
-	df.set_index('id', inplace=True, drop=False)
 
 	if row_select==0:
 		row_sel=False
@@ -1683,6 +1681,14 @@ def drilltable_lv3(df,dimension,tableid,row_select):#row_select: numeric 0 or 1
 
 	sel_default=len(df)-1
 
+	if tableid.find('bundle')>=0:
+		sort='none'
+	else:
+		sort='custom'
+
+	df['id']=df[df.columns[0]]
+	df.set_index('id', inplace=True, drop=False)
+
 	table_lv3=dash_table.DataTable(
 		data=df.to_dict('records'),
 		id=tableid,
@@ -1690,13 +1696,13 @@ def drilltable_lv3(df,dimension,tableid,row_select):#row_select: numeric 0 or 1
 		[{"name": ["Total Cost", df.columns[1]], "id": df.columns[1],'type': 'numeric',"format":FormatTemplate.money(0)},]+
 		[{"name": ["Total Cost", 'Diff % from Benchmark'], "id": c,'type': 'numeric',"format":FormatTemplate.percentage(1)} for c in df.columns[2:3]]+
 		[{"name": ["Total Cost", c], "id": c,'type': 'numeric',"format":FormatTemplate.percentage(1)} for c in df.columns[3:4]]+  
-		[{"name": ["Utilization Rate",  df.columns[4]], "id": df.columns[4],'type': 'numeric',"format":Format( precision=1, scheme=Scheme.fixed,),},
+		[{"name": ["Utilization Rate",  df.columns[4]+' per 1000'], "id": df.columns[4],'type': 'numeric',"format":Format( precision=0,group=',', scheme=Scheme.fixed,),},
 		{"name": ["Utilization Rate",'Diff % from Benchmark'], "id": df.columns[5],'type': 'numeric',"format":FormatTemplate.percentage(1)},
 		{"name": ["Unit Cost",  df.columns[6]], "id":  df.columns[6],'type': 'numeric',"format":FormatTemplate.money(0)},
 		{"name": ["Unit Cost",  'Diff % from Benchmark'], "id":  df.columns[7],'type': 'numeric',"format":FormatTemplate.percentage(1)},
 		],
 		merge_duplicate_headers=True,
-		sort_action="custom",
+		sort_action=sort,
 		sort_mode='single',
 		sort_by=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"},],
 		row_selectable=row_sel,
@@ -1748,7 +1754,7 @@ def drilltable_physician(df,tableid,row_select):
 		row_sel='single'
 		export_format='none'
 		
-	col_max=max(df['Avg Cost/Episode Diff % from Benchmark'].max(),df['Contribution to Overall Performance Difference'].max())
+	col_max=max(df['Avg Cost/Episode Diff % from Benchmark'].abs().max(),df['Contribution to Overall Performance Difference'].abs().max())
 	tbl=dash_table.DataTable(
 		id=tableid,
 		data=df.to_dict('records'),
@@ -1814,19 +1820,16 @@ def table_perform_bundle_drill(df1,df2):
 	df['id']=df['Bundle Name']
 	df.set_index('id', inplace=True, drop=False)
 
-
-
 	tbl=dash_table.DataTable(
 		id='table_perform_drill_bundle',
 		data=df.to_dict('records'),
 		columns=[
-		{"name": ['','Bundle Name'], "id": 'Bundle Name'},
+		{"name": [' ','Bundle Name'], "id": 'Bundle Name'},
 		{"name": ['','YTD Cnt'], "id": 'YTD Cnt_x','type':'numeric','format':Format( precision=0, group=',',scheme=Scheme.fixed,)},
 #		{"name": 'YTD FFS Cost', "id": 'YTD FFS Cost','type':'numeric','format':FormatTemplate.money(0)},
-		{"name": ['Bundle Total','Projected PY Gain/Loss'], "id": 'Projected PY Gain/Loss_x','type':'numeric','format':FormatTemplate.money(0)}, 
-		{"name": ['Bundle Total','Projected PY Gain/Loss %'], "id": 'Projected PY Gain/Loss %_x','type':'numeric','format':FormatTemplate.percentage(1)}, 
-		{"name": ['Bundle Average','Projected PY Gain/Loss'], "id": 'Projected PY Gain/Loss_y','type':'numeric','format':FormatTemplate.money(0)}, 
-		{"name": ['Bundle Average','Projected PY Gain/Loss %'], "id": 'Projected PY Gain/Loss %_y','type':'numeric','format':FormatTemplate.percentage(1)}, 
+		{"name": ['Projected PY Gain/Loss','Bundle Total'], "id": 'Projected PY Gain/Loss_x','type':'numeric','format':FormatTemplate.money(0)},
+		{"name": ['Projected PY Gain/Loss','Bundle Average'], "id": 'Projected PY Gain/Loss_y','type':'numeric','format':FormatTemplate.money(0)},  
+		{"name": ['Projected PY Gain/Loss','Projected PY Gain/Loss %'], "id": 'Projected PY Gain/Loss %_x','type':'numeric','format':FormatTemplate.percentage(1)}, 
 
 		],
 		merge_duplicate_headers=True,
@@ -1834,36 +1837,35 @@ def table_perform_bundle_drill(df1,df2):
 		selected_rows=[0],
 		sort_action="native",
 		sort_mode='single',
-		sort_by=[{"column_id":"Projected PY Gain/Loss","direction":"desc"}],
+		sort_by=[{"column_id":"Projected PY Gain/Loss %_x","direction":"desc"}],
 		style_data={
 			'whiteSpace': 'normal',
 			'height': 'auto'
 		},
 		style_data_conditional=(
-		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_x',12) +
-		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %_x',12)+
-		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_y',12) +
-		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %_y',12)+
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_x',15) +
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %_x',15)+
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_y',15) +
 		[{'if': {'column_id':'Projected PY Gain/Loss_x'},
 			 
-			 'width': '12rem',
+			 'width': '15rem',
 			}, 
 		{'if': {'column_id': 'Projected PY Gain/Loss %_x'},
 			 
-			 'width': '12rem',
+			 'width': '15rem',
 			},
 		{'if': {'column_id':'Projected PY Gain/Loss_y'},
 			 
-			 'width': '12rem',
+			 'width': '15rem',
 			}, 
-		{'if': {'column_id': 'Projected PY Gain/Loss %_y'},
+		{'if': {'column_id': 'YTD Cnt'},
 			 
-			 'width': '12rem',
+			 'width': '4rem',
 			},
 		{'if': {'column_id': 'Bundle Name'},
 			 
 			 'textAlign': 'start',
-			 'width': '20rem',
+			 'width': '25rem',
 			 'paddingLeft':'10px'
 			},
 
@@ -1972,6 +1974,7 @@ def drilldata_process_bundle(d,d1='All',d1v='All',d2='All',d2v='All'):
 		df_pt_epi_phy_srv_bundle_f = df_pt_epi_phy_srv_bundle_f[(df_pt_epi_phy_srv_bundle_f[d1]==d1v)]
 
 	if d2v!='All':
+		df_pt_bundle_f = df_pt_bundle_f[df_pt_bundle_f[d2]==d2v]
 		df_pt_epi_phy_srv_bundle_f = df_pt_epi_phy_srv_bundle_f[(df_pt_epi_phy_srv_bundle_f[d2]==d2v)]
 
 
@@ -2013,9 +2016,9 @@ def drilldata_process_bundle(d,d1='All',d1v='All',d2='All',d2v='All'):
 	df_agg['Contribution to Overall Performance Difference']=(df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/(df_agg.tail(1)['Benchmark Total Cost'].values[0])
 
 
-	df_agg['YTD Avg Utilization Rate/Episode'] = df_agg['YTD Utilization']/df_agg['Episode Ct']
-	df_agg['Annualized Avg Utilization Rate/Episode'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']
-	df_agg['Benchmark Avg Utilization Rate/Episode'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']
+	df_agg['YTD Avg Utilization Rate/Episode'] = df_agg['YTD Utilization']/df_agg['Episode Ct']*1000
+	df_agg['Annualized Avg Utilization Rate/Episode'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']*1000
+	df_agg['Benchmark Avg Utilization Rate/Episode'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']*1000
 	df_agg['Diff % from Benchmark Avg Utilization Rate/Episode'] = (df_agg['Annualized Avg Utilization Rate/Episode'] - df_agg['Benchmark Avg Utilization Rate/Episode'])/df_agg['Benchmark Avg Utilization Rate/Episode']
 
 	df_agg['YTD Avg Cost per Unit'] = df_agg['YTD Total Cost']/df_agg['YTD Utilization']
@@ -2023,16 +2026,22 @@ def drilldata_process_bundle(d,d1='All',d1v='All',d2='All',d2v='All'):
 	df_agg['Benchmark Avg Cost per Unit'] = df_agg['Benchmark Total Cost']/df_agg['Benchmark Utilization']
 	df_agg['Diff % from Benchmark Unit Cost'] = (df_agg['Annualized Avg Cost per Unit'] - df_agg['Benchmark Avg Cost per Unit'])/df_agg['Benchmark Avg Cost per Unit']
 
-	if d in ['Service Category','Sub Category']:
+	if d in ['Service Category']:
+
+		sort_dim=pd.DataFrame(
+			{'Service Category':['Anchor Inpatient Stay','Readmission','Post-Discharge ER','Post-Discharge Professional Services','Post-Discharge Non-ER Outpatient Services','Post-Discharge SNF','Post-Discharge HH','Post-Discharge IRF','All'],
+			'ordering':list(range(0,9))}
+			)
+		df_agg=df_agg.merge(sort_dim,how='left',on='Service Category').sort_values(by='ordering')
 		
 		showcolumn=[d,'YTD Avg Cost/Episode','Diff % from Benchmark Avg Cost/Episode','Contribution to Overall Performance Difference','YTD Avg Utilization Rate/Episode','Diff % from Benchmark Avg Utilization Rate/Episode','YTD Avg Cost per Unit','Diff % from Benchmark Unit Cost']
 	
 	elif d in ['Physician ID']:
+
 		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Episode':'Avg Cost/Episode Diff % from Benchmark'})
 		showcolumn=[d,'Episode Ct','YTD Total Cost','Cost %','Avg Cost/Episode Diff % from Benchmark','Contribution to Overall Performance Difference']
 		
 	else:
-		
 		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Episode':'Diff % from Benchmark'})
 		showcolumn=[d,'Episode %','Cost %','YTD Avg Cost/Episode','Diff % from Benchmark','Contribution to Overall Performance Difference']	
 
