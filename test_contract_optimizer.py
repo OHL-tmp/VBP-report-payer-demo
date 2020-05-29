@@ -1162,7 +1162,6 @@ def update_usr_target(v, n):
     Input('button-reset-simulation', 'n_clicks')]
     )
 def cal_usr_like(usr_tgt, n):
-    print(usr_tgt)
     ctx = dash.callback_context
     if ctx.triggered[0]['prop_id'].split('.')[0] == 'button-reset-simulation':
         return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"})
