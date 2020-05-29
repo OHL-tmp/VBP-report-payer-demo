@@ -1814,6 +1814,8 @@ def table_perform_bundle_drill(df1,df2):
 	df['id']=df['Bundle Name']
 	df.set_index('id', inplace=True, drop=False)
 
+
+
 	tbl=dash_table.DataTable(
 		id='table_perform_drill_bundle',
 		data=df.to_dict('records'),
@@ -2188,7 +2190,7 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 
 
 	table=dash_table.DataTable(
-		data=df.to_dict('records'),
+		data=df,
 		id='table-measure-setup',
 		columns=[
 		{"name": ["","Measure"], "id": "measure"},

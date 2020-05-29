@@ -84,7 +84,7 @@
   
 }
 
-@keyframes fadein {
+/*@keyframes fadein {
     0% {
         opacity: 0;
     }
@@ -98,7 +98,7 @@
   padding-top: 50px;
   color: #fff;
 
-  /* The banner */
+
   position: fixed;
   top: 0;
   left: 0;
@@ -114,13 +114,11 @@
   background-size: 100px;
   background-color: rgb(250, 250, 250);
   
-  /* Delay animation by 1s to prevent flashing 
-     and smoothly transition the animation over 0.5s 
-   */
-  -moz-animation: fadein 0.0s ease-in 0s forwards; /* Firefox */
-  -webkit-animation: fadein 0.0s ease-in 0s forwards; /* Safari and Chrome */
-  -o-animation: fadein 0.0s ease-in 0s forwards; /* Opera */
+
+  -moz-animation: fadein 0.0s ease-in 0s forwards; 
+  -webkit-animation: fadein 0.0s ease-in 0s forwards; 
+  -o-animation: fadein 0.0s ease-in 0s forwards; 
     animation: fadein 0.0s ease-in 0s forwards;
-}
+}*/
 
 
