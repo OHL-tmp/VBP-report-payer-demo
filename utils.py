@@ -106,7 +106,7 @@ def get_header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, H
                 ),
             dbc.NavItem(dbc.NavLink(
                         "Drilldown",
-#                        href="/vbc-demo/contract-manager-drilldown/",
+                       href="/vbc-demo/contract-manager-drilldown-bundle/",
                         className="nav-link",
                         active = drilldown_active,
                         ),

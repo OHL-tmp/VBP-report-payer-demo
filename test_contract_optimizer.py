@@ -41,7 +41,12 @@ def create_layout(app):
 #    load_data()
     return html.Div(
                 [ 
-                    html.Div(load_files(), style = {'display':'none'}),
+                    html.Div(load_files(), id='load-file', style = {'display':'none'}),
+#                    dcc.Interval(
+#                        id='interval-load-file',
+#                        interval=10*1000, # in milliseconds
+#                        n_intervals=0
+#                    ),
 
                     html.Div([Header_contract(app, True, False, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
                     
@@ -75,6 +80,7 @@ def load_files():
     file = open('configure/default_ds.json', encoding = 'utf-8')
     default_input = json.load(file)
     custom_input = json.load(open('configure/input_ds.json', encoding = 'utf-8'))
+
     return []
 
 def tab_setup(app):
@@ -400,7 +406,9 @@ def card_med_cost_target():
                                             dbc.Col(html.H6("3.9%")),
                                             dbc.Col([
                                                 dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-tgt-trend', type = "number", step = 0.1, debounce = True, value = custom_input['medical cost target']['user target trend']),
+                                                    dbc.Input(id = 'input-usr-tgt-trend', type = "number", debounce = True, step = 0.1, value = custom_input['medical cost target']['user target trend'],
+                                                        persistence = True, 
+                                                        persistence_type = 'memory',),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ],
                                                     size="sm")
@@ -450,7 +458,9 @@ def card_med_cost_target():
                     dbc.Row(
                         [
                             dbc.Col(html.Div(html.H1("High", id = 'div-recom-like',style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem", "color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"}), style={"padding-left":"1rem", "padding-right":"0.5rem"}, width=6),
-                            dbc.Col(html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"}),id = 'div-usr-like', style={"padding-left":"0.5rem", "padding-right":"0.5rem"}, width=6),
+                            dbc.Col(
+#                                html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"}),
+                                id = 'div-usr-like', style={"padding-left":"0.5rem", "padding-right":"0.5rem"}, width=6),
                         ]
                     ),
                     width=3
@@ -490,7 +500,9 @@ def card_sl_sharing_arrangement(app):
                                                 dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom msr']),style={"text-align":"center"},width=3),
                                                 dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-msr', type = "number", debounce = True, value = custom_input['savings/losses sharing arrangement']['msr']),
+                                                    dbc.Input(id = 'input-usr-msr', type = "number", debounce = True, value = custom_input['savings/losses sharing arrangement']['msr'],
+                                                        persistence = True, 
+                                                        persistence_type = 'memory',),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ],
                                                     size="sm")
@@ -501,7 +513,9 @@ def card_sl_sharing_arrangement(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=3),
-                                                dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected'}], value = custom_input['savings/losses sharing arrangement']['saving qa'], id = 'switch-saving-method', style={"font-family":"NotoSans-Regular","font-size":"0.8rem"}))
+                                                dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected'}], value = custom_input['savings/losses sharing arrangement']['saving qa'], id = 'switch-saving-method', style={"font-family":"NotoSans-Regular","font-size":"0.8rem"},
+                                                    persistence = True, 
+                                                    persistence_type = 'memory',))
                                             ],
                                             style={"padding-top":"1rem"}),
                                         dbc.Row(
@@ -511,7 +525,9 @@ def card_sl_sharing_arrangement(app):
                                                 dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing']),style={"text-align":"center"},width=3),
                                                 dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-planshare', type = "number", debounce = True, value = custom_input['savings/losses sharing arrangement']['savings sharing']),
+                                                    dbc.Input(id = 'input-usr-planshare', type = "number", debounce = True, value = custom_input['savings/losses sharing arrangement']['savings sharing'],
+                                                        persistence = True, 
+                                                        persistence_type = 'memory',),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ],
                                                     size="sm")
@@ -526,7 +542,9 @@ def card_sl_sharing_arrangement(app):
                                                 dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings sharing min'],id = 'text-saving-min-recom'),style={"text-align":"center"},width=3),
                                                 dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-planshare-min', type = "number", disabled = not custom_input["savings/losses sharing arrangement"]["two side"], debounce = True, value = custom_input['savings/losses sharing arrangement']['savings sharing min']),
+                                                    dbc.Input(id = 'input-usr-planshare-min', type = "number", debounce = True, value = custom_input['savings/losses sharing arrangement']['savings sharing min'],
+                                                        persistence = True, 
+                                                        persistence_type = 'memory',),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ],
                                                     size="sm")
@@ -541,6 +559,8 @@ def card_sl_sharing_arrangement(app):
 
                                                 options = [{'label': 'First Dollar Sharing', 'value': 'First Dollar Sharing'}, {'label':'Second Dollar Sharing (Above MSR)','value' : 'Second Dollar Sharing (Above MSR)'}],
                                                 value = custom_input["savings/losses sharing arrangement"]["saving sharing method"],
+                                                persistence = True, 
+                                                persistence_type = 'memory',
                                                 style={"font-size":"0.8rem"}), width = 7),
 #                                            dbc.Col(html.H5("Second Dollar Sharing (Above MSR)", id = 'text-saving-right',style={"font-size":"0.6rem"}),width=4),
                                             ],
@@ -557,7 +577,9 @@ def card_sl_sharing_arrangement(app):
                                                 dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom savings share cap']),style={"text-align":"center"},width=3),
                                                 dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-sharecap', type = "number", debounce = True, value = custom_input['savings/losses sharing arrangement']['savings share cap']),
+                                                    dbc.Input(id = 'input-usr-sharecap', type = "number", debounce = True, value = custom_input['savings/losses sharing arrangement']['savings share cap'],
+                                                        persistence = True, 
+                                                        persistence_type = 'memory',),
                                                     dbc.InputGroupAddon('% of target', addon_type = 'append'),
                                                     ],
                                                     size="sm")
@@ -573,7 +595,9 @@ def card_sl_sharing_arrangement(app):
                                     [
                                         dbc.Checklist(
                                             options = [{'label': "Shared Losses", 'value': 'Shared Losses'}], 
-                                            value = custom_input['savings/losses sharing arrangement']['two side value'], 
+                                            value = custom_input['savings/losses sharing arrangement']['two side value'],
+                                            persistence = True, 
+                                            persistence_type = 'memory',
                                             id = 'switch-share-loss',
                                             switch = True,
                                             style={"font-family":"NotoSans-CondensedLight"}),
@@ -593,7 +617,10 @@ def card_sl_sharing_arrangement(app):
                                                 dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom mlr']),style={"text-align":"center"},width=3),
                                                 dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-mlr', type = "number", step = 0.1, debounce = True, value = custom_input['savings/losses sharing arrangement']['mlr'], disabled = not custom_input["savings/losses sharing arrangement"]["two side"]),
+                                                    dbc.Input(id = 'input-usr-mlr', type = "number", step = 0.1, debounce = True, value = custom_input['savings/losses sharing arrangement']['mlr'], 
+#                                                        disabled = not custom_input["savings/losses sharing arrangement"]["two side"],
+                                                        persistence = True, 
+                                                        persistence_type = 'memory',),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ],
                                                     size="sm")
@@ -603,7 +630,10 @@ def card_sl_sharing_arrangement(app):
                                         ),
                                         dbc.Row([
                                             dbc.Col(html.H2("ACO's Sharing", style={"font-size":"0.8rem"}),width=3),
-                                            dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected', 'disabled': not custom_input["savings/losses sharing arrangement"]["two side"]}], value = custom_input['savings/losses sharing arrangement']['losses qa'], id = 'switch-loss-method',style={"font-family":"NotoSans-Regular","font-size":"0.8rem"}))
+                                            dbc.Col(dbc.Checklist(options = [{'label':'Quality Adjustment', 'value' : 'selected'}], 
+                                                value = custom_input['savings/losses sharing arrangement']['losses qa'], id = 'switch-loss-method',style={"font-family":"NotoSans-Regular","font-size":"0.8rem"},
+                                                persistence = True, 
+                                                persistence_type = 'memory',))
                                             ],
                                             style={"padding-top":"1rem"}),
                                         dbc.Row(
@@ -613,7 +643,10 @@ def card_sl_sharing_arrangement(app):
                                                 dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing min']),style={"text-align":"center"},width=3),
                                                 dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-planshare-l-min', type = "number", debounce = True, value = custom_input['savings/losses sharing arrangement']['losses sharing min'], disabled = not custom_input["savings/losses sharing arrangement"]["two side"]),
+                                                    dbc.Input(id = 'input-usr-planshare-l-min', type = "number", debounce = True, value = custom_input['savings/losses sharing arrangement']['losses sharing min'], 
+#                                                        disabled = not custom_input["savings/losses sharing arrangement"]["two side"],
+                                                        persistence = True, 
+                                                        persistence_type = 'memory',),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ],
                                                     size="sm")
@@ -628,7 +661,10 @@ def card_sl_sharing_arrangement(app):
                                                 dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses sharing'], id = 'text-loss-max-recom'),style={"text-align":"center"},width=3),
                                                 dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-planshare-l', type = "number", debounce = True, value = custom_input['savings/losses sharing arrangement']['losses sharing'], disabled = not custom_input["savings/losses sharing arrangement"]["two side"]),
+                                                    dbc.Input(id = 'input-usr-planshare-l', type = "number", debounce = True, value = custom_input['savings/losses sharing arrangement']['losses sharing'], 
+#                                                        disabled = not custom_input["savings/losses sharing arrangement"]["two side"],
+                                                        persistence = True, 
+                                                        persistence_type = 'memory',),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                                     ],
                                                     size="sm")
@@ -643,14 +679,19 @@ def card_sl_sharing_arrangement(app):
 
                                                 options = [{'label': 'First Dollar Sharing', 'value': 'First Dollar Sharing'}, {'label':'Second Dollar Sharing (Below MLR)','value' : 'Second Dollar Sharing (Below MLR)'}],
                                                 value = custom_input["savings/losses sharing arrangement"]["loss sharing method"],
-                                                style={"font-size":"0.8rem"}, disabled = not custom_input["savings/losses sharing arrangement"]["two side"]), width = 7),
+                                                style={"font-size":"0.8rem"}, 
+#                                                disabled = not custom_input["savings/losses sharing arrangement"]["two side"],
+                                                persistence = True, 
+                                                persistence_type = 'memory',), width = 7),
 #                                            dbc.Col(html.H5("Second Dollar Sharing (Below MLR)", id = 'text-loss-right',style={"font-size":"0.6rem"}),width=4),
                                             ],
                                              style={"padding-top":"1rem"}
                                         ),
                                         dbc.Row([
                                             dbc.Col(html.Div(), width = 1),
-                                            dbc.Col(dbc.Checklist(options = [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate", 'disabled' : not custom_input["savings/losses sharing arrangement"]["two side"]}], id = 'switch-quality-adj-rate',style={"font-family":"NotoSans-Regular","font-size":"0.8rem"})),
+                                            dbc.Col(dbc.Checklist(options = [{'label':"1 - Quality Adjusted Sharing Rate (CMS MSSP Enhanced Track Methodology)", 'value':"Quality Adjusted Sharing Rate"}], id = 'switch-quality-adj-rate',style={"font-family":"NotoSans-Regular","font-size":"0.8rem"},
+                                                persistence = True, 
+                                                persistence_type = 'memory',)),
                                             ],
                                              style={"padding-top":"1rem"}
                                         ),
@@ -660,7 +701,10 @@ def card_sl_sharing_arrangement(app):
                                                 dbc.Col(html.H6(default_input['savings/losses sharing arrangement']['recom losses share cap']),style={"text-align":"center"},width=4),
                                                 dbc.Col([
                                                     dbc.InputGroup([
-                                                    dbc.Input(id = 'input-usr-sharecap-l', type = "number", debounce = True, value = custom_input['savings/losses sharing arrangement']['losses share cap'], disabled = not custom_input["savings/losses sharing arrangement"]["two side"]),
+                                                    dbc.Input(id = 'input-usr-sharecap-l', type = "number", debounce = True, value = custom_input['savings/losses sharing arrangement']['losses share cap'], 
+#                                                        disabled = not custom_input["savings/losses sharing arrangement"]["two side"],
+                                                        persistence = True, 
+                                                        persistence_type = 'memory',),
                                                     dbc.InputGroupAddon('% of target', addon_type = 'append'),
                                                     ],
                                                     size="sm")
@@ -1020,6 +1064,13 @@ def sim_assump_input_session():
 layout = create_layout(app)
 #app.layout = create_layout(app)
 
+'''@app.callback(
+    Output('load-file', 'children'),
+    [Input('interval-load-file', 'n_intervals')]
+    )
+def live_load_file(n):
+    return load_files()
+'''
 
 @app.callback(
     [Output('text-saving', 'children'),
@@ -1089,12 +1140,16 @@ def show_meas_table(n, hidden):
 
 @app.callback(
     Output('div-usr-tgt', 'children'),
-    [Input('input-usr-tgt-trend', 'value')]
+    [Input('input-usr-tgt-trend', 'value'),
+    Input('button-reset-simulation', 'n_clicks')]
     )
-def update_usr_target(v):
+def update_usr_target(v, n):
     base = default_input['medical cost target']['medical cost pmpm']
     base = int(base.replace("$",""))
-    if v:
+    ctx = dash.callback_context
+    if ctx.triggered[0]['prop_id'].split('.')[0] == 'button-reset-simulation':
+        return default_input['medical cost target']['recom target']
+    elif v:
         tgt = int(round(base*v/100+base,0))
         return '$'+str(tgt)
     else:
@@ -1107,6 +1162,7 @@ def update_usr_target(v):
     Input('button-reset-simulation', 'n_clicks')]
     )
 def cal_usr_like(usr_tgt, n):
+    print(usr_tgt)
     ctx = dash.callback_context
     if ctx.triggered[0]['prop_id'].split('.')[0] == 'button-reset-simulation':
         return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"})
@@ -1214,6 +1270,7 @@ def update_columns(selected_quality,timestamp, data):
     Input('dropdown-firstdollar-saving', 'value'),
     Input('dropdown-firstdollar-loss', 'value'),
     Input('switch-saving-method', 'value'),
+#    Input('interval-load-file', 'n_intervals')
     ]
     )
 def store_data(usr_tgt_int, usr_tgt_trend, usr_msr, usr_planshare, usr_planshare_min, usr_sharecap, usr_mlr, usr_planshare_l, usr_planshare_l_min, usr_sharecap_l, ts, lm, select_row, data, sharemethod, sharemethod_l, sm):
@@ -1263,7 +1320,6 @@ def store_data(usr_tgt_int, usr_tgt_trend, usr_msr, usr_planshare, usr_planshare
         json.dump(datasets, outfile)
 
     custom_input = json.load(open('configure/input_ds.json', encoding = 'utf-8'))
-
     return json.dumps(datasets)
 
 @app.callback(

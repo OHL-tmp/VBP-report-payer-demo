@@ -122,10 +122,10 @@ def card_selected_measures():
 def col_content_drilldown_bundle(app):
     return html.Div(
             [
-                dbc.Row(
+                html.Div(
                     [
-                        dbc.Col(card_overview_drilldown_bundle(0.03),width=8),
-                        dbc.Col(card_key_driver_drilldown_bundle(app),width=4),
+                        html.Div(card_overview_drilldown_bundle(0.03), style={"max-height":"100rem","padding":"1rem"}),
+                        html.Div(card_key_driver_drilldown_bundle(app)),
                     ]
                 ),
                 
@@ -135,7 +135,7 @@ def col_content_drilldown_bundle(app):
                             [
                                 dbc.Col(html.Div(
                                         [
-                                            html.H2("Performance Drilldown", style={"font-size":"3rem"}),
+                                            html.H2("Performance Drilldown", style={"font-size":"2rem"}),
                                             html.H3("check table view for more details...", style={"font-size":"1rem"}),
                                         ],
                                         style={"padding-left":"2rem"}
@@ -175,7 +175,7 @@ def card_overview_drilldown_bundle(percentage):
             [
                 dbc.Row(
                         [
-                            dbc.Col(html.H1("Bundle Payment", style={"font-size":"1.6rem"}), width="auto"),
+                            dbc.Col(html.H1("Bundle Payment", style={"font-size":"3rem"}), width="auto"),
                             dbc.Card(
                                 dbc.CardBody(
                                     [
@@ -184,7 +184,7 @@ def card_overview_drilldown_bundle(percentage):
                                     ],
                                     style={"margin-top":"-20px"}
                                 ),
-                                style={"height":"2.5rem", "border":"none", "background-color":color, "text-align":"center", "margin-top":"-6px"},
+                                style={"height":"2.5rem", "border":"none", "background-color":color, "text-align":"center", "margin-top":"6px"},
                             ),
                         ],
                         style={"padding-left":"1rem"}
@@ -197,11 +197,10 @@ def card_overview_drilldown_bundle(percentage):
                                 html.Div(
                                     [
                                         table_perform_bundle_drill(df_bundle_performance,df_bundle_performance_pmpm),
-                                    ]
+                                    ],
+                                    style={"padding":"1rem"}
                                 )
                             ],
-                            width=7,
-                            style={"height":"10rem"}
                         ),
 #                        dbc.Col(
 #                            [
@@ -229,7 +228,7 @@ def card_key_driver_drilldown_bundle(app):
                         dbc.Row(
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                dbc.Col(html.H4("Key Drivers", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                dbc.Col(html.H4("Key Drivers", style={"font-size":"1rem", "margin-left":"10px"}), width=2),
                                 dbc.Col([dbc.Button("See All Drivers", id = 'button-all-driver-bundle',
                                                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.6rem"},
                                                     ),
@@ -252,22 +251,34 @@ def card_key_driver_drilldown_bundle(app):
                             [
                                 dbc.Col(
                                     [
-                                        html.Div([gaugegraph(df_overall_driver_bundle,5)],id='figure-driver-bundle-1', style={"padding-top":"1.5rem"}),
-                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][5]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-1', style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#ffeb78"}),
-                                    ],
-                                    width=6),
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(html.Div([gaugegraph(df_overall_driver_bundle,5)],id='figure-driver-bundle-1', style={"padding-top":"1.5rem"})),
+                                                dbc.Col(html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][5]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-1', style={"font-size":"1rem","color":"#ffeb78","margin-top":"6rem","margin-left":"-1rem"})),
+                                            ]
+                                        )
+                                    ]
+                                ),
                                 dbc.Col(
                                     [
-                                        html.Div([gaugegraph(df_overall_driver_bundle,6)],id='figure-driver-bundle-2', style={"padding-top":"1.5rem"}),
-                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][6]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-2', style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#aeff78"}),
-                                    ],
-                                    width=6),
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(html.Div([gaugegraph(df_overall_driver_bundle,6)],id='figure-driver-bundle-2', style={"padding-top":"1.5rem"})),
+                                                dbc.Col(html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][6]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-2', style={"font-size":"1rem","color":"#aeff78","margin-top":"6rem","margin-left":"-1rem"}))
+                                            ]
+                                        )
+                                    ]
+                                ),
                                 dbc.Col(
                                     [
-                                        html.Div([gaugegraph(df_overall_driver_bundle,7)],id='figure-driver-bundle-3', style={"padding-top":"1.5rem"}),
-                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][7]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-3', style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#39db44"}),
-                                    ],
-                                    width=6),
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(html.Div([gaugegraph(df_overall_driver_bundle,7)],id='figure-driver-bundle-3', style={"padding-top":"1.5rem"})),
+                                                dbc.Col(html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][7]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-3', style={"font-size":"1rem","color":"#39db44","margin-top":"6rem","margin-left":"-1rem"}),)
+                                            ]
+                                        )
+                                    ]
+                                ),
                                 
                                 
                             ],

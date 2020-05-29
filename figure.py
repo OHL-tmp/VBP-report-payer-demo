@@ -1843,26 +1843,29 @@ def table_perform_bundle_drill(df1,df2):
 			'height': 'auto'
 		},
 		style_data_conditional=(
-		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_x',12) +
-		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %_x',12)+
-		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_y',12) +
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_x',15) +
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %_x',15)+
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_y',15) +
 		[{'if': {'column_id':'Projected PY Gain/Loss_x'},
 			 
-			 'width': '12rem',
+			 'width': '15rem',
 			}, 
 		{'if': {'column_id': 'Projected PY Gain/Loss %_x'},
 			 
-			 'width': '12rem',
+			 'width': '15rem',
 			},
 		{'if': {'column_id':'Projected PY Gain/Loss_y'},
 			 
-			 'width': '12rem',
+			 'width': '15rem',
 			}, 
-
+		{'if': {'column_id': 'YTD Cnt'},
+			 
+			 'width': '4rem',
+			},
 		{'if': {'column_id': 'Bundle Name'},
 			 
 			 'textAlign': 'start',
-			 'width': '20rem',
+			 'width': '25rem',
 			 'paddingLeft':'10px'
 			},
 
@@ -2257,6 +2260,8 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 			'text-align':'center',
 			'border':'1px solid grey',
 		},
+        persistence = True, 
+        persistence_type = 'session',
 	)
 
 	return table
