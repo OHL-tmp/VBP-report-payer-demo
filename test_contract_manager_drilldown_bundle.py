@@ -189,7 +189,7 @@ def card_overview_drilldown_bundle(percentage):
                         ],
                         style={"padding-left":"1rem"}
                     ),
-                html.P("As of June 30th.", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
+                html.P("As of 05/29/2020.", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
                 html.H6("Performance of Each Bundle", style={"padding-left":"1rem","font-size":"1.5rem"}),
                 dbc.Row(
                     [
