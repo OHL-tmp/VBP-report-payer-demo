@@ -2251,6 +2251,8 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 			'text-align':'center',
 			'border':'1px solid grey',
 		},
+        persistence = True, 
+        persistence_type = 'session',
 	)
 
 	return table

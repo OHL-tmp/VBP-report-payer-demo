@@ -30,6 +30,9 @@ default_input = json.load(file)
 df_quality = pd.read_csv("data/quality_setup.csv")
 df_bundle_measure=pd.read_csv("data/bundle_measure_setup.csv")
 
+update_measure=df_bundle_measure.iloc[[0,1,3,6]].reset_index()
+update_measure['Applicable Episodes']=['All Episodes','All Episodes','All Inpatient Episodes','Major joint replacement of the lower extremity (MJRLE)']
+
 # measure_list for episode
 measure_epo_list2=df_bundles_default[df_bundles_default['IP/OP'] == "Inpatient"]
 measure_epo_list3=['Double joint replacement of the lower extremity','Major joint replacement of the lower extremity (MJRLE)']
@@ -134,6 +137,8 @@ def card_bundle_selection(app):
                                         value = '90D',
                                         id = 'bundle-dropdown-duration',
                                         clearable = False,
+                                        persistence = True, 
+                                        persistence_type = 'memory',
                                     ),
                                     width = 2
                                 ),
@@ -204,101 +209,105 @@ def card_bundle_selection(app):
 
 def table_setup(df):
     table=dash_table.DataTable(
-                    id = 'bundle-table-selectedbundles',
-                    columns = [{"name":i,"id":i} for i in df_bundles_default.columns[:8]] +[{"name":'Recommended',"id":'Recommended Target'}]+[{"name":'User Defined',"id":'User Defined Target','editable':True}]+ [{"name":i,"id":i} for i in df_bundles_default.columns[11:13]],
+        id = 'bundle-table-selectedbundles',
+        columns = [{"name":i,"id":i} for i in df_bundles_default.columns[:8]] +[{"name":'Recommended',"id":'Recommended Target'}]+[{"name":'User Defined',"id":'User Defined Target','editable':True}]+ [{"name":i,"id":i} for i in df_bundles_default.columns[11:13]],
+        
+        data = df.to_dict('records'),
+        # style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
+        persistence = True, 
+        persistence_type = 'memory',
+#        persisted_props = ['data'],
+        style_data_conditional=[
+                {
+                    'if': {'column_id': 'Bundle'},
+                    'textAlign': 'left'
+                },
+                {
+                    'if': {'column_id': 'Category'},
+                    'textAlign': 'left',
+                    'width':'8%'
+                },
+                {
+                    'if': {'column_id': 'IP/OP'},
+                    'textAlign': 'left',
+                    'width':'7%'
+                },
+                {
+                    'if': {'column_id': 'User Defined Target'},
+                    'border':'1px solid blue',
+                    'backgroundColor':'white',
+
+                },
+                {
+                    'if': {
+                    'column_id': 'User Defined',
+                    'filter_query': '{User Defined} eq "High"'
+                    },
+                    'backgroundColor':'green',
+                    'color':'white'
+                },
+                {
+                    'if': {
+                    'column_id': 'User Defined',
+                    'filter_query': '{User Defined} eq "Mid"'
+                    },
+                    'backgroundColor':'#f5b111',
+                    'color':'black'
+                },
+                {
+                    'if': {
+                    'column_id': 'User Defined',
+                    'filter_query': '{User Defined} eq "Low"'
+                    },
+                    'backgroundColor':'red',
+                    'color':'white'
+                },
+
+                ] + [
+                {
+                    'if':{'column_id':i},
+                    'width':'7.5%',
                     
-                    data = df.to_dict('records'),
-                    # style_cell = {'textAlign': 'center', 'padding': '5px', "font-size":"0.7rem", 'height' : 'auto', 'whiteSpace':'normal'},
-                    style_data_conditional=[
-                            {
-                                'if': {'column_id': 'Bundle'},
-                                'textAlign': 'left'
-                            },
-                            {
-                                'if': {'column_id': 'Category'},
-                                'textAlign': 'left',
-                                'width':'8%'
-                            },
-                            {
-                                'if': {'column_id': 'IP/OP'},
-                                'textAlign': 'left',
-                                'width':'7%'
-                            },
-                            {
-                                'if': {'column_id': 'User Defined Target'},
-                                'border':'1px solid blue',
-                                'backgroundColor':'white',
-
-                            },
-                            {
-                                'if': {
-                                'column_id': 'User Defined',
-                                'filter_query': '{User Defined} eq "High"'
-                                },
-                                'backgroundColor':'green',
-                                'color':'white'
-                            },
-                            {
-                                'if': {
-                                'column_id': 'User Defined',
-                                'filter_query': '{User Defined} eq "Mid"'
-                                },
-                                'backgroundColor':'#f5b111',
-                                'color':'black'
-                            },
-                            {
-                                'if': {
-                                'column_id': 'User Defined',
-                                'filter_query': '{User Defined} eq "Low"'
-                                },
-                                'backgroundColor':'red',
-                                'color':'white'
-                            },
-
-                            ] + [
-                            {
-                                'if':{'column_id':i},
-                                'width':'7.5%',
-                                
-                            } for i in df_bundles_default.columns[3:8]
-                            ] + [
-                            {
-                                'if':{'column_id':i},
-                                'width':'7.5%'
-                            } for i in df_bundles_default.columns[9:13]
-                            ],
-                    style_header_conditional = [
-                                {'if': {'column_id': 'Bundle'},
-                                    'textAlign': 'left'},
-                                {'if': {'column_id': 'IP/OP'},
-                                    'textAlign': 'left'},
-                                {'if': {'column_id': 'Category'},
-                                    'textAlign': 'left'}
-                                ],
-                    style_header={
-                        'backgroundColor': '#bfd4ff',
-                        'fontWeight': 'bold',
-                        'font-family':'NotoSans-Condensed',
-                    },
-                    style_data={
-                        'whiteSpace': 'normal',
-                        'height': 'auto',
-                        'backgroundColor':'rgba(0,0,0,0)',
-                        'border-left':'0px',
-                        'border-right':'0px',
-                    },
-                   
-                    style_cell={
-                        'textAlign': 'center',
-                        'font-family':'NotoSans-Regular',
-                        'fontSize':10,
-                        'height' : 'auto', 
-                        'whiteSpace':'normal',
-                        'max-width':'3rem',
-                        'padding':'10px',
-                    },
-                    #style_as_list_view = True,
-                    )
+                } for i in df_bundles_default.columns[3:8]
+                ] + [
+                {
+                    'if':{'column_id':i},
+                    'width':'7.5%'
+                } for i in df_bundles_default.columns[9:13]
+                ],
+        style_header_conditional = [
+                    {'if': {'column_id': 'Bundle'},
+                        'textAlign': 'left'},
+                    {'if': {'column_id': 'IP/OP'},
+                        'textAlign': 'left'},
+                    {'if': {'column_id': 'Category'},
+                        'textAlign': 'left'}
+                    ],
+        style_header={
+            'backgroundColor': '#bfd4ff',
+            'fontWeight': 'bold',
+            'font-family':'NotoSans-Condensed',
+        },
+        style_data={
+            'whiteSpace': 'normal',
+            'height': 'auto',
+            'backgroundColor':'rgba(0,0,0,0)',
+            'border-left':'0px',
+            'border-right':'0px',
+        },
+       
+        style_cell={
+            'textAlign': 'center',
+            'font-family':'NotoSans-Regular',
+            'fontSize':10,
+            'height' : 'auto', 
+            'whiteSpace':'normal',
+            'max-width':'3rem',
+            'padding':'10px',
+        },
+        
+        #style_as_list_view = True,
+        )
     return table
 
 def card_bundle_table():
@@ -347,7 +356,9 @@ def card_quality_adjustment(app):
                                     width="auto"
                                 ),
                                 dbc.Col(dbc.InputGroup([
-                                    dbc.Input(id = 'bundle-input-adj-pos', type = 'number', debounce = True, value = 10),
+                                    dbc.Input(id = 'bundle-input-adj-pos', type = 'number', debounce = True, value = 10,
+                                        persistence = True, 
+                                        persistence_type = 'memory',),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                     ], size="sm"), width=2),
                                 dbc.Col(html.Div(), width=2),
@@ -373,12 +384,14 @@ def card_quality_adjustment(app):
                                     width="auto"
                                 ),
                                 dbc.Col(dbc.InputGroup([
-                                    dbc.Input(id = 'bundle-input-adj-neg', type = 'number', debounce = True, value = 10),
+                                    dbc.Input(id = 'bundle-input-adj-neg', type = 'number', debounce = True, value = 10,
+                                        persistence = True, 
+                                        persistence_type = 'memory',),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                     ], size="sm"), width=2),
                             ], style={"padding":"1rem"}
                         ),
-                        html.Div(id='bundle-card-measselection', style={"padding-left":"1rem", "padding-right":"1rem"})
+                        html.Div(children=bundle_measure_setup(update_measure),id='bundle-card-measselection', style={"padding-left":"1rem", "padding-right":"1rem"})
                     ]
                 ),
                 className="mb-3",
@@ -403,14 +416,18 @@ def card_stop_loss_gain(app):
                             [
                                 dbc.Col(html.H6("Stop Loss", style={"padding-top":"0.5rem"}), width="auto"),
                                 dbc.Col(dbc.InputGroup([
-                                    dbc.Input(id = 'bundle-input-stop-loss', type = 'number', debounce = True, value = 20),
+                                    dbc.Input(id = 'bundle-input-stop-loss', type = 'number', debounce = True, value = 20,
+                                        persistence = True, 
+                                        persistence_type = 'memory',),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                     ],size="sm"), width=2),
                                 dbc.Col(html.H6("of total target payment", style={"padding-top":"0.5rem"}), width="auto"),
                                 dbc.Col(html.Div(), width=3),
                                 dbc.Col(html.H6("Stop Gain", style={"padding-top":"0.5rem"}), width="auto"),
                                 dbc.Col(dbc.InputGroup([
-                                    dbc.Input(id = 'bundle-input-stop-gain', type = 'number', debounce = True, value = 20),
+                                    dbc.Input(id = 'bundle-input-stop-gain', type = 'number', debounce = True, value = 20,
+                                        persistence = True, 
+                                        persistence_type = 'memory',),
                                     dbc.InputGroupAddon('%', addon_type = 'append'),
                                     ],size="sm"), width=2),
                                 dbc.Col(html.H6("of total target payment", style={"padding-top":"0.5rem"}), width="auto"),
@@ -561,7 +578,7 @@ def tab_result(app):
 
         )
 
-def sim_assump_input_session():
+'''def sim_assump_input_session():
     return html.Div([
         html.Div(
             dbc.Row([
@@ -731,7 +748,7 @@ def sim_assump_input_session():
 
         
         ]
-    )
+    )'''
 
 
 layout = create_layout(app)
