@@ -1,22 +1,22 @@
-﻿Bundle Name,Driver Name,%
-Acute myocardial infarction,High Risk (MCC),-1.8%
-Acute myocardial infarction,Physician 18,-1.0%
-Acute myocardial infarction,Low Risk (No CC),-1.0%
-Acute myocardial infarction,Physician 20,-0.9%
-Congestive heart failure,High Risk (MCC),2.8%
-Congestive heart failure,Physician 11,1.7%
-Congestive heart failure,Physician 12,1.3%
-Congestive heart failure,Mid Risk (CC),1.0%
-Congestive heart failure,Low Risk (No CC),0.7%
-Congestive heart failure,Physician 13,0.6%
-Major joint replacement of the lower extremity (MJRLE),Low Risk (No MCC),5.0%
-Major joint replacement of the lower extremity (MJRLE),Physician 5,3.5%
-Major joint replacement of the lower extremity (MJRLE),Physician 3,3.0%
-Major joint replacement of the lower extremity (MJRLE),High Risk (MCC),0.6%
-Major joint replacement of the lower extremity (MJRLE),Physician 1,0.6%
-Major joint replacement of the lower extremity (MJRLE),Physician 2,-0.7%
-Major joint replacement of the lower extremity (MJRLE),Physician 4,-0.8%
-Stroke,Physician 8,1.7%
-Stroke,High Risk (MCC),1.4%
-Stroke,Physician 6,0.6%
-Stroke,Physician 10,-1.0%
+﻿Name,Driver Name,%
+Acute myocardial infarction,High Risk (MCC),-1.80%
+Acute myocardial infarction,Physician 18,-1.00%
+Acute myocardial infarction,Low Risk (No CC),-1.00%
+Acute myocardial infarction,Physician 20,-0.90%
+Congestive heart failure,High Risk (MCC),2.80%
+Congestive heart failure,Physician 11,1.70%
+Congestive heart failure,Physician 12,1.30%
+Congestive heart failure,Mid Risk (CC),1.00%
+Congestive heart failure,Low Risk (No CC),0.70%
+Congestive heart failure,Physician 13,0.60%
+Major joint replacement of the lower extremity (MJRLE),Low Risk (No MCC),5.00%
+Major joint replacement of the lower extremity (MJRLE),Physician 5,3.50%
+Major joint replacement of the lower extremity (MJRLE),Physician 3,3.00%
+Major joint replacement of the lower extremity (MJRLE),High Risk (MCC),0.60%
+Major joint replacement of the lower extremity (MJRLE),Physician 1,0.60%
+Major joint replacement of the lower extremity (MJRLE),Physician 2,-0.70%
+Major joint replacement of the lower extremity (MJRLE),Physician 4,-0.80%
+Stroke,Physician 8,1.70%
+Stroke,High Risk (MCC),1.40%
+Stroke,Physician 6,0.60%
+Stroke,Physician 10,-1.00%
