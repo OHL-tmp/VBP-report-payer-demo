@@ -352,8 +352,8 @@ def manager_modal_bundle_performance_details(app):
         ])
 
 
-#layout = create_layout(app)
-app.layout = create_layout(app)
+layout = create_layout(app)
+# app.layout = create_layout(app)
 
 @app.callback(
     Output('bundle-manager-modal-metricsdetail', 'is_open'),
