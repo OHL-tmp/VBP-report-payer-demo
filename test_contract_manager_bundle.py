@@ -352,8 +352,8 @@ def manager_modal_bundle_performance_details(app):
         ])
 
 
-layout = create_layout(app)
-
+#layout = create_layout(app)
+app.layout = create_layout(app)
 
 @app.callback(
     Output('bundle-manager-modal-metricsdetail', 'is_open'),
@@ -393,4 +393,4 @@ def open_modal(n1, n2, is_open):
 
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True, port = 8052)
+    app.run_server(host="127.0.0.1",debug=True, port = 8049)

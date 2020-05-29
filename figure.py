@@ -22,6 +22,8 @@ df_pt_lv1=pd.read_csv("data/Pt Level V1.csv")
 df_pt_epi_phy_lv1=pd.read_csv("data/Pt Episode Phy Level V1.csv")
 df_pt_epi_phy_srv_lv1=pd.read_csv("data/Pt Episode Phy Srv Level V1.csv")
 
+df_pt_bundle=pd.read_csv("data/bundled level data.csv")
+df_pt_epi_phy_srv_bundle=pd.read_csv("data/bundle service level data.csv")
 
 colors={'blue':'rgba(18,85,222,100)','yellow':'rgba(246,177,17,100)','transparent':'rgba(255,255,255,0)','grey':'rgba(191,191,191,100)',
 	   'lightblue':'rgba(143,170,220,100)'}
@@ -1126,10 +1128,11 @@ def measure_quality_bar_bundle(df):
 	)
 	return fig
 
-def data_bars_diverging_bundle(df, column, color_above='#FF4136', color_below='#3D9970'):
+def data_bars_diverging_bundle(df, column,width, color_above='#FF4136', color_below='#3D9970'):
 
 	col_max=df[column].abs().max()
 	styles = []
+	col_wid=round(width/2,1)+0.2
 	for i in df[column].to_list():
 
 		bound_percentage = round(i/col_max/2,4) * 100
@@ -1157,7 +1160,7 @@ def data_bars_diverging_bundle(df, column, color_above='#FF4136', color_below='#
 				'paddingBottom': 2,
 				'paddingTop': 2,
 				'textAlign':'end',
-				'paddingRight':'7.8rem',
+				'paddingRight':str(col_wid)+'rem',
 				'color':color_above,
 			})
 
@@ -1184,7 +1187,7 @@ def data_bars_diverging_bundle(df, column, color_above='#FF4136', color_below='#
 				'paddingBottom': 2,
 				'paddingTop': 2,
 				'textAlign':'start',
-				'paddingLeft':'7.8rem',
+				'paddingLeft':str(col_wid)+'rem',
 				'color':color_below,
 			})
 			
@@ -1214,8 +1217,8 @@ def table_perform_bundle(df):
 			'height': 'auto'
 		},
 		style_data_conditional=(
-		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss') +
-		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %')+
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss',15) +
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %',15)+
 		[{'if': {'column_id':'Projected PY Gain/Loss'},
 			 
 			 'width': '15rem',
@@ -1598,7 +1601,7 @@ def data_bars_diverging(df, column,col_max, color_above='#FF4136', color_below='
 def drilltable_lv1(df,tableid):
 	#df['Growth Trend']=df['Trend'].apply(lambda x: '↗️' if x > 0.02 else '↘️' if x<-0.02 else '→' )
 	#col=df.columns.tolist()
-	if tableid=='table-patient-drill-lv1':
+	if (tableid=='table-patient-drill-lv1') or (tableid=='dashtable_patient_lv1_bundle'):
 		sort_col=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
 	else:
 		sort_col=[{"column_id":"Cost %","direction":"desc"}]
@@ -1610,6 +1613,8 @@ def drilltable_lv1(df,tableid):
 		col1_format=FormatTemplate.percentage(1)
 
 	sel_default=len(df)-1
+
+	col_max=max(df['Diff % from Benchmark'].max(),df['Contribution to Overall Performance Difference'].max())
 
 	df['id']=df[df.columns[0]]
 	tbl=dash_table.DataTable(
@@ -1627,8 +1632,8 @@ def drilltable_lv1(df,tableid):
 			'height': 'auto'
 		},
 		style_data_conditional=(
-		data_bars_diverging(df, 'Diff % from Benchmark',0.1) +
-		data_bars_diverging(df, 'Contribution to Overall Performance Difference',0.1)+
+		data_bars_diverging(df, 'Diff % from Benchmark',col_max) +
+		data_bars_diverging(df, 'Contribution to Overall Performance Difference',col_max)+
 		[{'if': {'column_id':'Diff % from Benchmark'},
 			 
 			 'width': '20rem',
@@ -1743,7 +1748,7 @@ def drilltable_physician(df,tableid,row_select):
 		row_sel='single'
 		export_format='none'
 		
-
+	col_max=max(df['Avg Cost/Episode Diff % from Benchmark'].max(),df['Contribution to Overall Performance Difference'].max())
 	tbl=dash_table.DataTable(
 		id=tableid,
 		data=df.to_dict('records'),
@@ -1764,8 +1769,8 @@ def drilltable_physician(df,tableid,row_select):
 			'height': 'auto'
 		},
 		style_data_conditional=(
-		data_bars_diverging(df, 'Avg Cost/Episode Diff % from Benchmark',0.12) +
-		data_bars_diverging(df, 'Contribution to Overall Performance Difference',0.17)+
+		data_bars_diverging(df, 'Avg Cost/Episode Diff % from Benchmark',col_max) +
+		data_bars_diverging(df, 'Contribution to Overall Performance Difference',col_max)+
 		[{'if': {'column_id':'Avg Cost/Episode Diff % from Benchmark'},
 			 
 			 'width': '20rem',
@@ -1806,9 +1811,11 @@ def table_perform_bundle_drill(df1,df2):
 
 	df=pd.merge(df1,df2,how='left',on='Bundle Name')
 
+	df['id']=df['Bundle Name']
+	df.set_index('id', inplace=True, drop=False)
 
 	tbl=dash_table.DataTable(
-#		id=tableid,
+		id='table_perform_drill_bundle',
 		data=df.to_dict('records'),
 		columns=[
 		{"name": ['','Bundle Name'], "id": 'Bundle Name'},
@@ -1831,30 +1838,30 @@ def table_perform_bundle_drill(df1,df2):
 			'height': 'auto'
 		},
 		style_data_conditional=(
-		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_x') +
-		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %_x')+
-		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_y') +
-		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %_y')+
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_x',12) +
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %_x',12)+
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss_y',12) +
+		data_bars_diverging_bundle(df, 'Projected PY Gain/Loss %_y',12)+
 		[{'if': {'column_id':'Projected PY Gain/Loss_x'},
 			 
-			 'width': '15rem',
+			 'width': '12rem',
 			}, 
 		{'if': {'column_id': 'Projected PY Gain/Loss %_x'},
 			 
-			 'width': '15rem',
+			 'width': '12rem',
 			},
 		{'if': {'column_id':'Projected PY Gain/Loss_y'},
 			 
-			 'width': '15rem',
+			 'width': '12rem',
 			}, 
 		{'if': {'column_id': 'Projected PY Gain/Loss %_y'},
 			 
-			 'width': '15rem',
+			 'width': '12rem',
 			},
 		{'if': {'column_id': 'Bundle Name'},
 			 
 			 'textAlign': 'start',
-			 'width': '25rem',
+			 'width': '20rem',
 			 'paddingLeft':'10px'
 			},
 
@@ -1953,6 +1960,82 @@ def waterfall_bundle_cost(df):
 	)
 	return fig_waterfall
 
+def drilldata_process_bundle(d,d1='All',d1v='All',d2='All',d2v='All'):
+	# d1 is patient cohort dimension, d2 is service category
+	df_pt_bundle_f = df_pt_bundle
+	df_pt_epi_phy_srv_bundle_f = df_pt_epi_phy_srv_bundle
+
+	if d1v!='All':
+		df_pt_bundle_f = df_pt_bundle_f[df_pt_bundle_f[d1]==d1v]
+		df_pt_epi_phy_srv_bundle_f = df_pt_epi_phy_srv_bundle_f[(df_pt_epi_phy_srv_bundle_f[d1]==d1v)]
+
+	if d2v!='All':
+		df_pt_epi_phy_srv_bundle_f = df_pt_epi_phy_srv_bundle_f[(df_pt_epi_phy_srv_bundle_f[d2]==d2v)]
+
+
+	if d not in ['Service Category', 'Sub Category']:
+		df_agg_pt = df_pt_bundle_f.groupby(by = [d]).agg({'Episode Count':'sum'}).reset_index()
+		df_agg_pt=df_agg_pt.rename(columns={'Episode Count':'Episode Ct'})
+		df_agg_cost = df_pt_epi_phy_srv_bundle_f.groupby(by = [d]).sum().reset_index()
+
+		df_agg = pd.merge(df_agg_cost, df_agg_pt, how = 'left', on = [d] ).reset_index() 
+		
+	else:           
+		df_agg = df_pt_epi_phy_srv_bundle_f.groupby(by = [d]).sum().reset_index()
+		df_agg['Episode Ct'] = df_pt_bundle_f['Episode Count'].agg('sum')
+
+	allvalue=df_agg.sum().values
+
+	selected_index_d=[j for j, e in enumerate(df_agg.columns) if e == d][0]
+
+	allvalue[selected_index_d]='All'
+
+	selected_index_ep=[j for j, e in enumerate(df_agg.columns) if e == 'Episode Ct'][0]
+
+	if d in ['Service Category', 'Sub Category']:
+		allvalue[selected_index_ep]=df_agg['Episode Ct'].mean()
+
+	df_agg.loc[len(df_agg)] = allvalue
+  
+	df_agg['Episode %'] = df_agg['Episode Ct']/ (df_agg.tail(1)['Episode Ct'].values[0])
+	df_agg['Cost %'] = df_agg['YTD Total Cost']/(df_agg.tail(1)['YTD Total Cost'].values[0])
+
+
+
+	df_agg['YTD Avg Cost/Episode'] = df_agg['YTD Total Cost']/df_agg['Episode Ct']
+	df_agg['Annualized Avg Cost/Episode'] = df_agg['Annualized Total Cost']/df_agg['Episode Ct']
+	df_agg['Benchmark Avg Cost/Episode'] = df_agg['Benchmark Total Cost']/df_agg['Episode Ct']
+	df_agg['Diff % from Benchmark Avg Cost/Episode'] = (df_agg['Annualized Avg Cost/Episode'] - df_agg['Benchmark Avg Cost/Episode'])/df_agg['Benchmark Avg Cost/Episode']
+
+
+	df_agg['Contribution to Overall Performance Difference']=(df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/(df_agg.tail(1)['Benchmark Total Cost'].values[0])
+
+
+	df_agg['YTD Avg Utilization Rate/Episode'] = df_agg['YTD Utilization']/df_agg['Episode Ct']
+	df_agg['Annualized Avg Utilization Rate/Episode'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']
+	df_agg['Benchmark Avg Utilization Rate/Episode'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']
+	df_agg['Diff % from Benchmark Avg Utilization Rate/Episode'] = (df_agg['Annualized Avg Utilization Rate/Episode'] - df_agg['Benchmark Avg Utilization Rate/Episode'])/df_agg['Benchmark Avg Utilization Rate/Episode']
+
+	df_agg['YTD Avg Cost per Unit'] = df_agg['YTD Total Cost']/df_agg['YTD Utilization']
+	df_agg['Annualized Avg Cost per Unit'] = df_agg['Annualized Total Cost']/df_agg['Annualized Utilization']
+	df_agg['Benchmark Avg Cost per Unit'] = df_agg['Benchmark Total Cost']/df_agg['Benchmark Utilization']
+	df_agg['Diff % from Benchmark Unit Cost'] = (df_agg['Annualized Avg Cost per Unit'] - df_agg['Benchmark Avg Cost per Unit'])/df_agg['Benchmark Avg Cost per Unit']
+
+	if d in ['Service Category','Sub Category']:
+		
+		showcolumn=[d,'YTD Avg Cost/Episode','Diff % from Benchmark Avg Cost/Episode','Contribution to Overall Performance Difference','YTD Avg Utilization Rate/Episode','Diff % from Benchmark Avg Utilization Rate/Episode','YTD Avg Cost per Unit','Diff % from Benchmark Unit Cost']
+	
+	elif d in ['Physician ID']:
+		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Episode':'Avg Cost/Episode Diff % from Benchmark'})
+		showcolumn=[d,'Episode Ct','YTD Total Cost','Cost %','Avg Cost/Episode Diff % from Benchmark','Contribution to Overall Performance Difference']
+		
+	else:
+		
+		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Episode':'Diff % from Benchmark'})
+		showcolumn=[d,'Episode %','Cost %','YTD Avg Cost/Episode','Diff % from Benchmark','Contribution to Overall Performance Difference']	
+
+#	df_agg.to_csv(d+'.csv')
+	return df_agg[showcolumn]
 
 
 ####################################################################################################################################################################################

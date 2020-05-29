@@ -24,30 +24,17 @@ from app import app
 #app = dash.Dash(__name__)
 #server = app.server
 
-df_drilldown=pd.read_csv("data/drilldown_sample_6.csv")
-#dimensions=df_drilldown.columns[0:12]
-df_drill_waterfall=pd.read_csv("data/drilldown waterfall graph.csv")
-df_driver=pd.read_csv("data/Drilldown Odometer.csv")
-df_driver_all=pd.read_csv("data/Drilldown All Drivers.csv")
-data_lv3=drilldata_process(df_drilldown,'Service Category')
-data_lv4=drilldata_process(df_drilldown,'Sub Category')
+#df_drilldown=pd.read_csv("data/drilldown_sample_6.csv")
 
-all_dimension=[]
-for i in list(df_drilldown.columns[0:14]):
-    all_dimension.append([i,'All'])
-    for j in list(df_drilldown[i].unique()):
-        all_dimension.append([i,j])
-all_dimension=pd.DataFrame(all_dimension,columns=['dimension','value'])
+df_bundle_performance=pd.read_csv("data/df_bundle_performance.csv")
+df_bundle_performance_pmpm=pd.read_csv("data/df_bundle_performance_pmpm.csv")
 
-#for modify criteria list
-dimensions = ['Age Band' , 'Gender'  , 'Patient Health Risk Level' , 'NYHA Class' , 'Medication Adherence' , 'Comorbidity Type',  'Weight Band' , 'Comorbidity Score' , 'Ejection Fraction' , 'Years Since HF Diagnosis' , 'Prior Use of ACE/ARB' ]
+df_overall_driver_bundle=pd.read_csv("data/df_overall_driver_bundle.csv")
 
-disable_list=['Comorbidity Type', 'Weight Band','Comorbidity Score','Ejection Fraction','Years Since HF Diagnosis','Prior Use of ACE/ARB']
+data_lv2_bundle=drilldata_process_bundle('Service Category')
 
 #modebar display
 button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
-
-
 
 
 
@@ -55,12 +42,12 @@ def create_layout(app):
 #    load_data()
     return html.Div(
                 [ 
-                    html.Div([Header_mgmt(app, False, True, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
+                    html.Div([Header_mgmt_bp(app, False, True, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
                        
                     html.Div(
                         [
-                            html.Div(col_content_drilldown(app), id='drilldown-div-avgcost-container', hidden=False),
-                            html.Div(col_content_drilldown_bundle(app), id='drilldown-div-bundle-container', hidden=True),
+
+                            html.Div(col_content_drilldown_bundle(app), id='drilldown-div-bundle-container', hidden=False),
                         ],
                         className="mb-3",
                         style={"padding-left":"3rem", "padding-right":"3rem","padding-top":"1rem"},
@@ -152,7 +139,6 @@ def col_content_drilldown_bundle(app):
                                         ],
                                         style={"padding-left":"2rem"}
                                     ), width=8),
-                                dbc.Col(modal_drilldown_tableview(), width=4)
                             ]
                         )
                     ],
@@ -187,7 +173,7 @@ def card_overview_drilldown_bundle(percentage):
             [
                 dbc.Row(
                         [
-                            dbc.Col(html.H1("CHF Related Hospitalization Rate", style={"font-size":"1.6rem"}), width="auto"),
+                            dbc.Col(html.H1("Bundle Payment", style={"font-size":"1.6rem"}), width="auto"),
                             dbc.Card(
                                 dbc.CardBody(
                                     [
@@ -208,26 +194,26 @@ def card_overview_drilldown_bundle(percentage):
                             [
                                 html.Div(
                                     [
-                                        dcc.Graph(figure=drill_bar(df_drill_waterfall_bundle),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},style={"height":"28rem"}),
+                                        table_perform_bundle_drill(df_bundle_performance,df_bundle_performance_pmpm),
                                     ]
                                 )
                             ],
                             width=7,
                             style={"height":"10rem"}
                         ),
-                        dbc.Col(
-                            [
-                                html.Div(
-                                    [
-                                        html.H3("Risk Adjustment Details", style={"font-size":"0.8rem","margin-top":"-1.8rem","color":"#919191","background-color":"#f5f5f5","width":"9rem","padding-left":"1rem","padding-right":"1rem","text-align":"center"}),
-                                        html.Div([dcc.Graph(figure=drill_waterfall(df_drill_waterfall_bundle),style={"height":"24rem","padding-bottom":"1rem"},config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,})]),
-                                    ],
-                                    style={"border-radius":"0.5rem","border":"2px solid #d2d2d2","padding":"1rem","height":"25.5rem"}
-                                )
-                            ],
-                            width=4,
-                            
-                        )
+#                        dbc.Col(
+#                            [
+#                                html.Div(
+#                                    [
+#                                        html.H3("Risk Adjustment Details", style={"font-size":"0.8rem","margin-top":"-1.8rem","color":"#919191","background-color":"#f5f5f5","width":"9rem","padding-left":"1rem","padding-right":"1rem","text-align":"center"}),
+#                                        html.Div([dcc.Graph(figure=drill_waterfall(df_drill_waterfall_bundle),style={"height":"24rem","padding-bottom":"1rem"},config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,})]),
+#                                    ],
+#                                    style={"border-radius":"0.5rem","border":"2px solid #d2d2d2","padding":"1rem","height":"25.5rem"}
+#                                )
+#                            ],
+#                            width=4,
+#                            
+#                        )
                     ],
                 ),
             ],
@@ -247,7 +233,7 @@ def card_key_driver_drilldown_bundle(app):
                                                     ),
                                         dbc.Modal([
                                                 dbc.ModalHeader("All Drivers"),
-                                                dbc.ModalBody(children = html.Div([table_driver_all(df_driver_all_bundle)], style={"padding":"1rem"})),
+                                                dbc.ModalBody(children = html.Div([table_driver_all(df_overall_driver_bundle)], style={"padding":"1rem"})),
                                                 dbc.ModalFooter(
                                                         dbc.Button("Close", id = 'close-all-driver-bundle',
                                                                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
@@ -264,26 +250,26 @@ def card_key_driver_drilldown_bundle(app):
                             [
                                 dbc.Col(
                                     [
-                                        html.Div([gaugegraph(df_driver_bundle,0)], style={"padding-top":"1.5rem"}),
-                                        html.Div(html.H4("{:.1f} %".format(abs(df_driver_bundle['%'][0]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#ffeb78"}),
+                                        html.Div([gaugegraph(df_overall_driver_bundle,0)], style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][0]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#ffeb78"}),
                                     ],
                                     width=6),
                                 dbc.Col(
                                     [
-                                        html.Div([gaugegraph(df_driver_bundle,1)], style={"padding-top":"1.5rem"}),
-                                        html.Div(html.H4("{:.1f} %".format(abs(df_driver_bundle['%'][1]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#aeff78"}),
+                                        html.Div([gaugegraph(df_overall_driver_bundle,1)], style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][1]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#aeff78"}),
                                     ],
                                     width=6),
                                 dbc.Col(
                                     [
-                                        html.Div([gaugegraph(df_driver_bundle,2)], style={"padding-top":"1.5rem"}),
-                                        html.Div(html.H4("{:.1f} %".format(abs(df_driver_bundle['%'][2]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#39db44"}),
+                                        html.Div([gaugegraph(df_overall_driver_bundle,2)], style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][2]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#39db44"}),
                                     ],
                                     width=6),
                                 dbc.Col(
                                     [
-                                        html.Div([gaugegraph(df_driver_bundle,3)], style={"padding-top":"1.5rem"}),
-                                        html.Div(html.H4("{:.1f} %".format(abs(df_driver_bundle['%'][3]*100)),style={"color":"#18cc75"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#39db44"}),
+                                        html.Div([gaugegraph(df_overall_driver_bundle,3)], style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][3]*100)),style={"color":"#18cc75"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#39db44"}),
                                     ],
                                     width=6),
                                 
@@ -391,43 +377,6 @@ def tab_physician_analysis_bundle(app):
                 ]
             )
 
-def mod_criteria_button_bundle():
-    return [
-                                dbc.Button(
-                                    "Click to modify criteria",
-                                    id="button-mod-dim-lv1-bundle",
-                                    className="mb-3",
-                                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
-                                ),
-                                dbc.Popover([
-                                    dbc.PopoverHeader("Modify criteria"),
-                                    dbc.PopoverBody([
-                                        html.Div(
-                                            [
-                                                dbc.RadioItems(
-                                                    options = [{'label':c , 'value':c,'disabled' : False} if c not in disable_list else {'label':c , 'value':c,'disabled' : True} for c in dimensions
-                                                              ],
-                                                    value = "Medication Adherence",
-                                                    labelCheckedStyle={"color": "#057aff"},
-                                                    id = "list-dim-lv1-bundle",
-                                                    style={"font-family":"NotoSans-Condensed", "font-size":"0.8rem", "padding":"1rem"},
-                                                ),
-                                            ],
-                                            style={"padding-top":"0.5rem", "padding-bottom":"2rem"}
-                                        )
-                                         
-                                       
-                                        
-                                    ]
-                                    ),
-                                ],
-                                id = "popover-mod-dim-lv1-bundle",
-                                is_open = False,
-                                target = "button-mod-dim-lv1-bundle",
-                                placement = "top",
-                                ),
-                                
-                            ]
 
 
 def card_graph1_patient_performance_drilldown_bundle(app):
@@ -437,7 +386,7 @@ def card_graph1_patient_performance_drilldown_bundle(app):
                         dbc.Row(
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                dbc.Col(html.H4("Performance Drilldown by Patient Cohort", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                dbc.Col(html.H4("Performance Drilldown by Bundle Risk", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                             ],
                             no_gutters=True,
                         ),
@@ -448,15 +397,15 @@ def card_graph1_patient_performance_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.H1("By Medication Adherence",id='dimname_on_patient_lv1_bundle', style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"0.8rem"}), width=9),
-                                                dbc.Col(mod_criteria_button_bundle(), style={"padding-top":"0.8rem"}),
+                                                dbc.Col(html.H1("By Bundle Risk",id='dimname_on_patient_lv1_bundle', style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"0.8rem"}), width=9),
+                                                
                                             ]
                                         )
                                     ],
                                     style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
                                 ), 
                                 
-                                html.Div(drillgraph_lv1_bundle(drilldata_process_bundle(df_drilldown,'Medication Adherence'),'dashtable_patient_lv1_bundle','Medication Adherence'),id="drill_patient_lv1_bundle",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
+                                html.Div(drilltable_lv1(drilldata_process_bundle('Bundle Risk'),'dashtable_patient_lv1_bundle'),id="drill_patient_lv1_bundle",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
                             ], 
                             style={"max-height":"80rem"}
                         ),
@@ -468,14 +417,6 @@ def card_graph1_patient_performance_drilldown_bundle(app):
 
 
 
-def filter_template_bundle(dim,idname,default_val='All'):
-    return(dcc.Dropdown(
-                                id=idname,
-                                options=[{'label': i, 'value': i} for i in all_dimension[all_dimension['dimension']==dim].loc[:,'value']],
-                                value=default_val,
-                                clearable=False,
-                            ))
-
 def card_table1_patient_performance_drilldown_bundle(app):
     return dbc.Card(
                 dbc.CardBody(
@@ -483,7 +424,7 @@ def card_table1_patient_performance_drilldown_bundle(app):
                         dbc.Row(
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                dbc.Col(html.H4("Hospitalization Rate by Medical Condition", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                dbc.Col(html.H4("Cost by Service Category", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                             ],
                             no_gutters=True,
                         ),
@@ -494,16 +435,8 @@ def card_table1_patient_performance_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.H1("By Medical Condition", style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=5),
+                                                dbc.Col(html.H1("By Service Category", style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=5),
                                                 
-                                                dbc.Col(
-                                                    [
-                                                        html.Div("Medication Adherence",id="filter_patient_1_2_name_bundle", style={"font-size":"0.6rem"}),
-                                                        html.Div(filter_template_bundle("Medication Adherence","filter_patient_1_2_value_bundle",default_val='All'),id="filter_patient_1_2_contain_bundle"),
-                                                    ], 
-                                                    style={"padding":"0.8rem"},
-                                                    width=2,
-                                                ),
                                                                                     
                                             ]
                                         )
@@ -511,7 +444,7 @@ def card_table1_patient_performance_drilldown_bundle(app):
                                     style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
                                 ), 
                                 html.H4("* Default sorting: by Contribution to Overall Performance Difference", style={"font-size":"0.8rem","color":"#919191","padding-top":"1rem","margin-bottom":"-1rem"}), 
-                                html.Div([dashtable_lv3_bundle(data_lv2_bundle,'Sub Category','dashtable_patient_lv2_bundle',0)],id="drill_patient_lv2_bundle",style={"padding":"1rem"})
+                                html.Div([drilltable_lv3(data_lv2_bundle,'Service Category','dashtable_patient_lv2_bundle',0)],id="drill_patient_lv2_bundle",style={"padding":"1rem"})
                             ], 
                             style={"max-height":"120rem"}
                         ),
@@ -530,7 +463,7 @@ def card_graph2_physician_performance_drilldown_bundle(app):
                         dbc.Row(
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                dbc.Col(html.H4("Performance Drilldown by Managing Physician (Group)", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                dbc.Col(html.H4("Performance Drilldown by Managing Physician", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                             ],
                             no_gutters=True,
                         ),
@@ -541,14 +474,14 @@ def card_graph2_physician_performance_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.H1("By Managing Physician (Group)", style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=6),
+                                                dbc.Col(html.H1("By Managing Physician", style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=6),
                                                 
                                             ]
                                         )
                                     ],
                                     style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
                                 ), 
-                                html.Div(drillgraph_lv1_bundle(drilldata_process_bundle(df_drilldown,'Managing Physician (Group)'),'dashtable_physician_lv1_bundle','Managing Physician (Group)'),id="drill_physician_lv1_bundle",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
+                                html.Div(drilltable_physician(drilldata_process_bundle('Physician ID'),'dashtable_physician_lv1_bundle',1),id="drill_physician_lv1_bundle",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
                             ], 
                             style={"max-height":"80rem"}
                         ),
@@ -566,7 +499,7 @@ def card_table1_physician_performance_drilldown_bundle(app):
                         dbc.Row(
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                dbc.Col(html.H4("Hospitalization Rate by Medical Condition", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                dbc.Col(html.H4("Cost by Service Category", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                             ],
                             no_gutters=True,
                         ),
@@ -577,16 +510,8 @@ def card_table1_physician_performance_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.H1("By Medical Condition", style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=5),
+                                                dbc.Col(html.H1("By Service Category", style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=5),
                                                 
-                                                dbc.Col(
-                                                    [
-                                                        html.Div("Managing Physician (Group)",id="filter_physician_1_2_name_bundle", style={"font-size":"0.6rem"}),
-                                                        html.Div(filter_template_bundle("Managing Physician (Group)","filter_physician_1_2_value_bundle",default_val='All'),id='filter_physician_1_2_contain_bundle'),
-                                                    ], 
-                                                    style={"padding":"0.8rem"},
-                                                    width=2,
-                                                ),
                                                     
                                             ]
                                         )
@@ -594,7 +519,7 @@ def card_table1_physician_performance_drilldown_bundle(app):
                                     style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
                                 ), 
                                 html.H4("* Default sorting: by Contribution to Overall Performance Difference", style={"font-size":"0.8rem","color":"#919191","padding-top":"1rem","margin-bottom":"-1rem"}), 
-                                html.Div([dashtable_lv3_bundle(data_lv2_bundle,'Sub Category','dashtable_physician_lv2_bundle',0)],id="drill_physician_lv2_bundle",style={"padding":"1rem"})
+                                html.Div([drilltable_lv3(data_lv2_bundle,'Service Category','dashtable_physician_lv2_bundle',0)],id="drill_physician_lv2_bundle",style={"padding":"1rem"})
                             ], 
                             style={"max-height":"120rem"}
                         ),
@@ -612,12 +537,12 @@ layout = create_layout(app)
 #app.layout = create_layout(app)
 
 ##### select drilldown #####
-
+'''
 @app.callback(
     [
-    Output('drilldown-dropdownmenu','label'),
-    Output('drilldown-div-avgcost-container', 'hidden'),
-    Output('drilldown-div-bundle-container', 'hidden')],
+    Output('drilldown-dropdownmenu-bundle','label'),
+    Output('drilldown-div-avgcost-container-bundle', 'hidden'),
+    Output('drilldown-div-bundle-container-bundle', 'hidden')],
     [
         Input("avg_cost", "n_clicks"),
         Input("bundle", "n_clicks"),
@@ -647,443 +572,8 @@ def select_drilldown(*args):
 
     return label, state_avg_cost, state_bundle
 
-
-
-
-
-##### avg_cost callbacks #####
-
-@app.callback(
-    Output("modal-all-driver","is_open"),
-    [Input("button-all-driver","n_clicks"),
-     Input("close-all-driver","n_clicks")],
-    [State("modal-all-driver","is_open")]        
-)
-def open_all_driver(n1,n2,is_open):
-    if n1 or n2:
-        return not is_open
-    return is_open
-
-
-
-# modify lv1 criteria
-@app.callback(
-    Output("popover-mod-dim-lv1","is_open"),
-    [Input("button-mod-dim-lv1","n_clicks"),],
-   # Input("mod-button-mod-measure","n_clicks"),
-    [State("popover-mod-dim-lv1", "is_open")],
-)
-def toggle_popover_mod_criteria(n1, is_open):
-    if n1 :
-        return not is_open
-    return is_open
-
-#update patient lv1 table and filter1 on following page based on criteria button
-@app.callback(
-   [ Output("drill_patient_lv1","children"),
-     Output("filter_patient_1_2_name","children"),
-     Output("filter_patient_1_2_contain","children"),
-     Output("filter_patient_1_3_name","children"),
-     Output("filter_patient_1_3_contain","children"),
-     Output("dimname_on_patient_lv1","children"),
-   ],
-   [Input("list-dim-lv1","value")] 
-)
-def update_table_dimension(dim):
-    f1_name=dim
-#    filter1_value_list=[{'label': i, 'value': i} for i in all_dimension[all_dimension['dimension']==dim].loc[:,'value']]
-#    filter1=filter_template(dim,"filter_patient_1_2_value")
-    
-    return drillgraph_lv1(drilldata_process(df_drilldown,dim),'dashtable_patient_lv1',dim),f1_name,filter_template(dim,"filter_patient_1_2_value"),f1_name,filter_template(dim,"filter_patient_1_3_value"),'By '+f1_name
-
-#update patient filter1 on following page based on selected rows
-
-@app.callback(
-   [ Output("filter_patient_1_2_value","value"),   
-     Output("filter_patient_1_3_value","value"),    ],
-   [ Input("dashtable_patient_lv1","selected_row_ids"),
-   ] 
-)
-def update_filter1value_patient(row):
-
-    if row is None or row==[]:
-        row_1='All'
-    else:row_1=row[0]        
-    
-    return row_1,row_1
-
-#update patient filter2 on following page based on selected rows
-
-@app.callback(
-    Output("filter_patient_2_3_value","value"),   
-   [ Input("dashtable_patient_lv2","selected_row_ids"),
-   ] 
-)
-def update_filter2value(row):
-    if row is None or row==[]:
-        row_1='All'
-    else:row_1=row[0]        
-    
-    return row_1
-
-
-
-#update patient lv2 on filter1
-
-@app.callback(
-   Output("dashtable_patient_lv2","data"), 
-   [ Input("filter_patient_1_2_name","children"),
-     Input("filter_patient_1_2_value","value"),
-     Input('dashtable_patient_lv2', 'sort_by'),
-   ] 
-)
-def update_table3(dim1,val1,sort_dim):
-    #global data_lv3
-    
-    data_lv3=drilldata_process(df_drilldown,'Service Category',dim1,val1)       
-    #data_lv3.to_csv('data/overall_performance.csv')
-    if sort_dim==[]:
-        sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
-  
-    df1=data_lv3[0:len(data_lv3)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
-    df1=pd.concat([df1,data_lv3[len(data_lv3)-1:len(data_lv3)]])
-    df1['id']=df1[df1.columns[0]]
-    df1.set_index('id', inplace=True, drop=False)
-    return df1.to_dict('records')
-
-
-
-#update patient lv3 on filter1,filter2
-
-@app.callback(
-    Output("dashtable_patient_lv3","data"),    
-   [ Input("filter_patient_1_3_name","children"),
-     Input("filter_patient_1_3_value","value"),
-     Input("filter_patient_2_3_name","children"),
-     Input("filter_patient_2_3_value","value"),
-     Input('dashtable_patient_lv3', 'sort_by'),
-   ] 
-)
-def update_table4(dim1,val1,dim2,val2,sort_dim):
-    
-    #global data_lv4
-    data_lv4=drilldata_process(df_drilldown,'Sub Category',dim1,val1,dim2,val2)   
-    
-    if sort_dim==[]:
-        sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
-  
-    df1=data_lv4[0:len(data_lv4)-2].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
-    df1=pd.concat([df1,data_lv4[len(data_lv4)-2:len(data_lv4)]])
-    
-    return df1.to_dict('records')
-
-
-
-
-#update physician filter1 on following page based on selected rows
-
-@app.callback(
-   [ Output("filter_physician_1_2_value","value"),   
-     Output("filter_physician_1_3_value","value"),    ],
-   [ Input("dashtable_physician_lv1","selected_row_ids"),
-   ] 
-)
-def update_filter1value(row):
-
-    if row is None or row==[]:
-        row_1='All'
-    else:row_1=row[0]        
-    
-    return row_1,row_1
-
-#update physician filter2 on following page based on selected columns
-
-@app.callback(
-    Output("filter_physician_2_3_value","value"),   
-   [ Input("dashtable_physician_lv2","selected_row_ids"),
-   ] 
-)
-def update_filter2value(row):
-    if row is None or row==[]:
-        row_1='All'
-    else:row_1=row[0]        
-    
-    return row_1
-
-
-
-#update physician lv2 on filter1
-
-@app.callback(
-   Output("dashtable_physician_lv2","data"), 
-   [ Input("filter_physician_1_2_name","children"),
-     Input("filter_physician_1_2_value","value"),
-     Input('dashtable_physician_lv2', 'sort_by'),
-   ] 
-)
-def update_table3(dim1,val1,sort_dim):
-
-    
-    data_lv3=drilldata_process(df_drilldown,'Service Category',dim1,val1)     
-    if sort_dim==[]:
-        sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
-  
-    df1=data_lv3[0:len(data_lv3)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
-    df1=pd.concat([df1,data_lv3[len(data_lv3)-1:len(data_lv3)]])
-    df1['id']=df1[df1.columns[0]]
-    df1.set_index('id', inplace=True, drop=False)
-    return df1.to_dict('records')
-
-
-
-#update physician lv3 on filter1,filter2
-
-@app.callback(
-    Output("dashtable_physician_lv3","data"),    
-   [ Input("filter_physician_1_3_name","children"),
-     Input("filter_physician_1_3_value","value"),
-     Input("filter_physician_2_3_name","children"),
-     Input("filter_physician_2_3_value","value"),
-     Input('dashtable_physician_lv3', 'sort_by'),
-   ] 
-)
-def update_table4(dim1,val1,dim2,val2,sort_dim):
-    
-    #global data_lv4
-    data_lv4=drilldata_process(df_drilldown,'Sub Category',dim1,val1,dim2,val2)   
-    
-    if sort_dim==[]:
-        sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
-  
-    df1=data_lv4[0:len(data_lv4)-2].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
-    df1=pd.concat([df1,data_lv4[len(data_lv4)-2:len(data_lv4)]])
-    
-    return df1.to_dict('records')    
-
-
-
-#### callback ####
-
-## modal
-@app.callback(
-    Output("drilldown-modal-centered", "is_open"),
-    [Input("drilldown-open-centered", "n_clicks"), Input("drilldown-close-centered", "n_clicks")],
-    [State("drilldown-modal-centered", "is_open")],
-)
-def toggle_modal_dashboard_domain_selection(n1, n2, is_open):
-    if n1 or n2:
-        return not is_open
-    return is_open
-
-
-@app.callback(
-    [Output('dimension_filter_1', 'options'),
-    Output('dimension_filter_1', 'value'),
-    Output('dimension_filter_1', 'multi')],
-    [Input('dimension_filter_selection_1', 'value')]
-    )
-def filter_dimension_1(v):
-    if v:
-        if v == 'Service Category':
-            return [{"label": 'All', "value": 'All'}]+[{"label": k, "value": k} for k in list(filter_list.keys())], 'All', False
-        else:
-            return [{"label": k, "value": k} for k in dimension[v]], dimension[v], True
-    return [], [], True
-
-
-@app.callback(
-    [Output('dimension_filter_2', 'options'),
-    Output('dimension_filter_2', 'value'),
-    Output('dimension_filter_2', 'multi')],
-    [Input('dimension_filter_selection_1', 'value'),
-    Input('dimension_filter_selection_2', 'value'),
-    Input('dimension_filter_1', 'value')]
-    )
-def filter_dimension_1(v1, v2, v3):
-    if v2:
-        if v2 == 'Service Category':
-            return [{"label": 'All', "value": 'All'}]+[{"label": k, "value": k} for k in list(filter_list.keys())], 'All', False
-        elif v1 == 'Service Category' and v2 == 'Sub Category':
-            sub_filter = filter_list[v3]
-            if v3 == 'All':
-                return [], 'All', False
-            return [{"label": k, "value": k} for k in sub_filter], sub_filter, True
-        else:
-            return [{"label": k, "value": k} for k in dimension[v2]], dimension[v2], True
-    return [], [], True
-
-    
-@app.callback(
-    Output('dropdown-dimension-2','clearable'),
-    [Input('dropdown-dimension-3','value')]
-    )
-def dropdown_clear(v):
-    if v:
-        return False
-    return True
-
-@app.callback(
-    [Output('dropdown-dimension-2','options'),
-    Output('dropdown-dimension-2','disabled')],
-    [Input('dropdown-dimension-1','value')]
-    )
-def dropdown_menu_2(v):
-    if v is None:
-        return [], True
-    elif v == 'Service Category':
-        dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0] + [{"label": 'Service Category', "value": 'Service Category', 'disabled' : True}, {"label": 'Sub Category', "value": 'Sub Category'}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0]
-        return dropdown_option, False
-    else:
-        dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0 and k != v] + [{"label": 'Service Category', "value": 'Service Category'}, {"label": 'Sub Category', "value": 'Sub Category', 'disabled' : True}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0 or k ==v]
-        return dropdown_option, False
-
-@app.callback(
-    [Output('dropdown-dimension-3','options'),
-    Output('dropdown-dimension-3','disabled')],
-    [Input('dropdown-dimension-1','value'),
-    Input('dropdown-dimension-2','value')]
-    )
-def dropdown_menu_3(v1, v2):
-    v = [v1, v2]
-    if v2 is None:
-        return [], True
-    elif 'Service Category' in v and 'Sub Category' not in v:
-        dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0] + [{"label": 'Service Category', "value": 'Service Category', 'disabled' : True}, {"label": 'Sub Category', "value": 'Sub Category'}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0]
-        return dropdown_option, False
-    elif 'Service Category' in v and 'Sub Category' in v:
-        dropdown_option =  [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0] + [{"label": 'Service Category', "value": 'Service Category', 'disabled' : True}, {"label": 'Sub Category', "value": 'Sub Category', 'disabled' : True}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0]
-        return dropdown_option, False
-    else:
-        dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0 and k not in v] + [{"label": 'Service Category', "value": 'Service Category'}, {"label": 'Sub Category', "value": 'Sub Category', 'disabled' : True}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0 or k in v]
-        return dropdown_option, False
-
-@app.callback(
-    [Output('dimension_filter_selection_2', 'options'),
-    Output('dimension_filter_selection_2', 'disabled')],
-    [Input('dimension_filter_selection_1', 'value'),
-    Input('dimension_filter_1', 'value')]
-    )
-def filter_menu_2(v, f):
-    if v is None:
-        return [], True
-    elif v == 'Service Category':
-        if f =='All':
-            dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0] + [{"label": 'Service Category', "value": 'Service Category', 'disabled' : True}, {"label": 'Sub Category', "value": 'Sub Category', 'disabled' : True}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0]
-            return dropdown_option, False
-        else:
-            dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0] + [{"label": 'Service Category', "value": 'Service Category', 'disabled' : True}, {"label": 'Sub Category', "value": 'Sub Category'}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0]
-            return dropdown_option, False
-    else:
-        dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0 and k != v] + [{"label": 'Service Category', "value": 'Service Category'}, {"label": 'Sub Category', "value": 'Sub Category', 'disabled' : True}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0 or k ==v]
-        return dropdown_option, False
-
-
-@app.callback(
-    [Output('datatable-tableview', "columns"),
-    Output('datatable-tableview', "data")],
-    [Input('dropdown-dimension-1','value'),
-    Input('dropdown-dimension-2','value'),
-    Input('dropdown-dimension-3','value'),
-    Input('dimension_filter_selection_1','value'),
-    Input('dimension_filter_selection_2','value'),
-    Input('dimension_filter_1','value'),
-    Input('dimension_filter_2','value'),
-    Input('dropdown-measure-1', 'value')]
-    )
-def datatable_data_selection(v1, v2, v3, d1, d2, f1, f2, m):
-    if d1:
-        if d1 == 'Service Category':
-            if d2 is None:
-                if f1 == 'All':
-                    df_drilldown_filtered = df_drilldown
-                    cate_cnt = cate_mix_cnt
-                else:
-                    df_drilldown_filtered = df_drilldown[df_drilldown['Service Category'].isin([f1])]
-                    cate_cnt = len(filter_list[f1])
-            elif f1 != 'All' and d2 == 'Sub Category':
-                df_drilldown_filtered = df_drilldown[(df_drilldown['Service Category'].isin([f1])) & (df_drilldown['Sub Category'].isin(f2))]
-                cate_cnt = len(f2)
-            else:
-                df_drilldown_filtered = df_drilldown[df_drilldown[d2].isin(f2)]
-                if f1 == 'All':
-                    cate_cnt = cate_mix_cnt
-                else:
-                    cate_cnt = len(filter_list[f1])
-        elif d2 == 'Service Category':
-            if f2 == 'All':
-                df_drilldown_filtered = df_drilldown[df_drilldown[d1].isin(f1)]
-                cate_cnt = cate_mix_cnt
-            else:
-                df_drilldown_filtered = df_drilldown[(df_drilldown['Service Category'].isin([f2])) & (df_drilldown[d1].isin(f1))]
-                cate_cnt = len(filter_list[f2])
-        else:
-            if d2:
-                df_drilldown_filtered = df_drilldown[(df_drilldown[d1].isin(f1)) & (df_drilldown[d2].isin(f2))]
-                cate_cnt = cate_mix_cnt
-            else: 
-                df_drilldown_filtered = df_drilldown[df_drilldown[d1].isin(f1)]
-                cate_cnt = cate_mix_cnt
-    else:
-        df_drilldown_filtered = df_drilldown
-        cate_cnt = cate_mix_cnt
-
-    df_drilldown_filtered['YTD IP Utilization'] = df_drilldown_filtered.apply(lambda x: x['YTD Utilization'] if x['Service Category'] == 'Inpatient' else 0, axis = 1)
-    df_drilldown_filtered['Annualized IP Utilization'] = df_drilldown_filtered.apply(lambda x: x['Annualized Utilization'] if x['Service Category'] == 'Inpatient' else 0, axis = 1)
-    df_drilldown_filtered['Benchmark IP Utilization'] = df_drilldown_filtered.apply(lambda x: x['Benchmark Utilization'] if x['Service Category'] == 'Inpatient' else 0, axis = 1)
-
-    table_column = []
-    selected_dimension = []
-    if v1 is not None:
-        selected_dimension.append(v1)
-    if v2 is not None:
-        selected_dimension.append(v2)
-    if v3 is not None:
-        selected_dimension.append(v3)
-
-    table_column.extend(list(set(selected_dimension + ['Service Category', 'Sub Category'])))
-    table_column.append("Pt Count")
-    percent_list = ['Diff % from Benchmark Utilization', 'Diff % from Benchmark Total Cost', 'Diff % from Benchmark Unit Cost', 'Patient %', 'Diff % from Benchmark Hospitalization Rate per Patient']
-    dollar_list = ['YTD Total Cost', 'Annualized Total Cost', 'Benchmark Total Cost', 'YTD Unit Cost', 'Annualized Unit Cost', 'Benchmark Unit Cost']
-    if len(selected_dimension) > 0:
-#        ptct_dimension = set(selected_dimension + ['Service Category', 'Sub Category'])
-        table_column.extend(measure_ori) 
-        df_agg_pre = df_drilldown_filtered[table_column].groupby(by = list(set(selected_dimension + ['Service Category', 'Sub Category']))).sum().reset_index()
-        df_agg = df_agg_pre[table_column].groupby(by = selected_dimension).agg({'Pt Count':'mean', 'YTD Utilization':'sum', 'Annualized Utilization':'sum', 'Benchmark Utilization':'sum', 
-            'YTD Total Cost':'sum', 'Annualized Total Cost':'sum', 'Benchmark Total Cost':'sum', 'YTD IP Utilization':'sum', 'Annualized IP Utilization':'sum', 'Benchmark IP Utilization':'sum'}).reset_index()
-#        df_agg['Pt Count'] = df_agg['Pt Count']/cate_cnt
-        df_agg['Patient %'] = df_agg['Pt Count']/995000
-        df_agg['YTD Utilization'] = df_agg['YTD Utilization']/df_agg['Pt Count']
-        df_agg['Annualized Utilization'] = df_agg['Annualized Utilization']/df_agg['Pt Count']
-        df_agg['Benchmark Utilization'] = df_agg['Benchmark Utilization']/df_agg['Pt Count']
-        df_agg['Diff % from Benchmark Utilization'] = (df_agg['Annualized Utilization'] - df_agg['Benchmark Utilization'])/df_agg['Benchmark Utilization']
-        df_agg['YTD Total Cost'] = df_agg['YTD Total Cost']/df_agg['Pt Count']
-        df_agg['Annualized Total Cost'] = df_agg['Annualized Total Cost']/df_agg['Pt Count']
-        df_agg['Benchmark Total Cost'] = df_agg['Benchmark Total Cost']/df_agg['Pt Count']
-        df_agg['Diff % from Benchmark Total Cost'] = (df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/df_agg['Benchmark Total Cost']
-        df_agg['YTD Unit Cost'] = df_agg['YTD Total Cost']/df_agg['YTD Utilization']
-        df_agg['Annualized Unit Cost'] = df_agg['Annualized Total Cost']/df_agg['Annualized Utilization']
-        df_agg['Benchmark Unit Cost'] = df_agg['Benchmark Total Cost']/df_agg['Benchmark Utilization']
-        df_agg['Diff % from Benchmark Unit Cost'] = (df_agg['Annualized Unit Cost'] - df_agg['Benchmark Unit Cost'])/df_agg['Benchmark Unit Cost']
-        df_agg['YTD Hospitalization Rate per Patient'] = df_agg['YTD IP Utilization']/df_agg['Pt Count']
-        df_agg['Annualized Hospitalization Rate per Patient'] = df_agg['Annualized IP Utilization']/df_agg['Pt Count']
-        df_agg['Benchmark Hospitalization Rate per Patient'] = df_agg['Benchmark IP Utilization']/df_agg['Pt Count']
-        df_agg['Diff % from Benchmark Hospitalization Rate per Patient'] = (df_agg['Annualized IP Utilization'] - df_agg['Benchmark IP Utilization'])/df_agg['Benchmark IP Utilization']
-#        df_agg.style.format({'Diff % from Target Utilization' : "{:.2%}", 'Diff % from Target Total Cost': "{:.2%}", 'Diff % from Target Unit Cost' : "{:.2%}"})
-#        df_agg.reset_index(inplace = True)
-        show_column = selected_dimension + ['Patient %'] + m 
-        if 'Diff % from Benchmark Total Cost' in m:
-            df_agg =  df_agg[show_column].sort_values(by =  'Diff % from Benchmark Total Cost', ascending =False)
-        else:
-            df_agg = df_agg[show_column]
-    else:
-        show_column = ['Patient %'] + m 
-        df_agg = df_drilldown_filtered[show_column]
-    
-    
-    return [{"name": i, "id": i, "selectable":True,"type":"numeric", "format": FormatTemplate.percentage(1)} if i in percent_list else {"name": i, "id": i, "selectable":True, "type":"numeric","format": FormatTemplate.money(0)} if i in dollar_list else {"name": i, "id": i, "selectable":True, "type":"numeric","format": Format(precision=1, scheme = Scheme.fixed)} for i in show_column], df_agg.to_dict('records')
-
-
-##### hosp_rate callbacks #####
+'''
+##### bundle drilldown callbacks #####
 
 @app.callback(
     Output("modal-all-driver-bundle","is_open"),
@@ -1098,337 +588,137 @@ def open_all_driver(n1,n2,is_open):
 
 
 
-# modify lv1 criteria
+#update patient lv1 table on selected bundle
 @app.callback(
-    Output("popover-mod-dim-lv1-bundle","is_open"),
-    [Input("button-mod-dim-lv1-bundle","n_clicks"),],
-   # Input("mod-button-mod-measure","n_clicks"),
-    [State("popover-mod-dim-lv1-bundle", "is_open")],
+    Output("drill_patient_lv1_bundle","children"),
+   [Input("table_perform_drill_bundle","selected_row_ids"),] 
 )
-def toggle_popover_mod_criteria(n1, is_open):
-    if n1 :
-        return not is_open
-    return is_open
-
-#update patient lv1 table and filter1 on following page based on criteria button
-@app.callback(
-   [ Output("drill_patient_lv1_bundle","children"),
-     Output("filter_patient_1_2_name_bundle","children"),
-     Output("filter_patient_1_2_contain_bundle","children"),
-     Output("dimname_on_patient_lv1_bundle","children"),
-   ],
-   [Input("list-dim-lv1-bundle","value")] 
-)
-def update_table_dimension(dim):
-    f1_name=dim
-#    filter1_value_list=[{'label': i, 'value': i} for i in all_dimension[all_dimension['dimension']==dim].loc[:,'value']]
-    
-    
-    return drillgraph_lv1_bundle(drilldata_process_bundle(df_drilldown,dim),'dashtable_patient_lv1_bundle',dim),f1_name,filter_template_bundle(dim,"filter_patient_1_2_value_bundle"),'By '+f1_name
-
-#update patient filter1 on following page based on selected rows
-
-@app.callback(
-    Output("filter_patient_1_2_value_bundle","value"),   
-   [ Input("dashtable_patient_lv1_bundle","selected_row_ids"),
-   ] 
-)
-def update_filter1value_patient(row):
+def update_data_lv1(row):
 
     if row is None or row==[]:
-        row_1='All'
-    else:row_1=row[0]        
+        row_1='Major joint replacement of the lower extremity (MJRLE)'
+    else:row_1=row[0]
+
+    data_pat=drilldata_process_bundle('Bundle Risk','Bundle Name',row_1)
     
-    return row_1
+    return drilltable_lv1(data_pat,"dashtable_patient_lv1_bundle")
 
-
-#update patient lv2 on filter1
-
+#sort patient lv1 
 @app.callback(
-   Output("dashtable_patient_lv2_bundle","data"), 
-   [ Input("filter_patient_1_2_name_bundle","children"),
-     Input("filter_patient_1_2_value_bundle","value"),
-     Input('dashtable_patient_lv2_bundle', 'sort_by'),
-   ] 
+    Output("dashtable_patient_lv1_bundle","data"),
+   [Input('dashtable_patient_lv1_bundle', 'sort_by'),],
+   [State('dashtable_patient_lv1_bundle', 'data'),] 
 )
-def update_table3(dim1,val1,sort_dim):
-    #global data_lv3
-    
-    data_lv3=drilldata_process_bundle(df_drilldown,'Sub Category',dim1,val1)       
-    #data_lv3.to_csv('data/overall_performance.csv')
+def update_data_lv1(sort_dim,data):
+
+    data_pat=pd.DataFrame(data)
+
     if sort_dim==[]:
         sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
   
-    df1=data_lv3[0:len(data_lv3)-2].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
-    df1=pd.concat([df1,data_lv3[len(data_lv3)-2:len(data_lv3)]])
+    df1=data_pat[0:len(data_pat)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+    df1=pd.concat([df1,data_pat.tail(1)])
 
     return df1.to_dict('records')
 
-
-
-#update physician filter1 on following page based on selected rows
+#update patient lv2 on patient lv1 select row
 
 @app.callback(
-    Output("filter_physician_1_2_value_bundle","value"),   
-   [ Input("dashtable_physician_lv1_bundle","selected_row_ids"),
+   Output("dashtable_patient_lv2_bundle","data"), 
+   [ Input("table_perform_drill_bundle","selected_row_ids"),
+     Input("dashtable_patient_lv1_bundle","selected_row_ids"),
+     Input('dashtable_patient_lv2_bundle', 'sort_by'),
    ] 
 )
-def update_filter1value(row):
+def update_table3(row_lv1,row_lv2,sort_dim):
 
-    if row is None or row==[]:
-        row_1='All'
-    else:row_1=row[0]        
-    
-    return row_1
+    if row_lv1 is None or row_lv1==[]:
+        val1='Major joint replacement of the lower extremity (MJRLE)'
+    else:val1=row_lv1[0]
 
-
-#update physician lv2 on filter1
-
-@app.callback(
-   Output("dashtable_physician_lv2_bundle","data"), 
-   [ Input("filter_physician_1_2_name_bundle","children"),
-     Input("filter_physician_1_2_value_bundle","value"),
-     Input('dashtable_physician_lv2_bundle', 'sort_by'),
-   ] 
-)
-def update_table3(dim1,val1,sort_dim):
+    if row_lv2 is None or row_lv2==[]:
+        val2='All'
+    else:val2=row_lv2[0]
 
     
-    data_lv3=drilldata_process_bundle(df_drilldown,'Sub Category',dim1,val1)     
+    data_lv3=drilldata_process_bundle('Service Category','Bundle Name',val1,'Patient Health Risk Level',val2)   
+    
     if sort_dim==[]:
         sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
   
-    df1=data_lv3[0:len(data_lv3)-2].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
-    df1=pd.concat([df1,data_lv3[len(data_lv3)-2:len(data_lv3)]])
+    df1=data_lv3[0:len(data_lv3)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+    df1=pd.concat([df1,data_lv3.tail(1)])
+
+    return df1.to_dict('records')
+
+#update physician lv1 table on selected bundle
+@app.callback(
+    Output("drill_physician_lv1_bundle","children"),
+   [Input("table_perform_drill_bundle","selected_row_ids"),
+   ] 
+)
+def update_data_lv1(row):
+
+    if row is None or row==[]:
+        row_1='Major joint replacement of the lower extremity (MJRLE)'
+    else:row_1=row[0]
+
+    data_doc=drilldata_process_bundle('Physician ID','Bundle Name',row_1)
+    
+    return drilltable_physician(data_doc,"dashtable_physician_lv1_bundle",1)
+
+#sort physician lv1 
+@app.callback(
+    Output("dashtable_physician_lv1_bundle","data"),
+   [Input('dashtable_physician_lv1_bundle', 'sort_by'),],
+   [State("dashtable_physician_lv1_bundle","data")] 
+)
+def update_data_lv1(sort_dim,data):
+
+    data_doc=pd.DataFrame(data)
+    
+    if sort_dim==[]:
+        sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
+  
+    df1=data_doc[0:len(data_doc)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+    df1=pd.concat([df1,data_doc.tail(1)])
+    
+    return df1.to_dict('records')
+
+
+#update physician lv2 on physician lv1 select row
+
+@app.callback(
+   Output("dashtable_physician_lv2_bundle","data"), 
+   [ Input("table_perform_drill_bundle","selected_row_ids"),
+     Input("dashtable_physician_lv1_bundle","selected_row_ids"),
+     Input('dashtable_physician_lv2_bundle', 'sort_by'),
+   ] 
+)
+def update_table3(row_lv1,row_lv2,sort_dim):
+
+    if row_lv1 is None or row_lv1==[]:
+        val1='Major joint replacement of the lower extremity (MJRLE)'
+    else:val1=row_lv1[0]
+
+    if row_lv2 is None or row_lv2==[]:
+        val2='All'
+    else:val2=row_lv2[0]
+
+    
+    data_lv3=drilldata_process_bundle('Service Category','Bundle Name',val1,'Physician ID',val2)
+    
+    if sort_dim==[]:
+        sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
+  
+    df1=data_lv3[0:len(data_lv3)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
+    df1=pd.concat([df1,data_lv3.tail(1)])
 
     return df1.to_dict('records')  
 
 
-#### callback ####
-
-## modal
-@app.callback(
-    Output("drilldown-modal-centered-bundle", "is_open"),
-    [Input("drilldown-open-centered-bundle", "n_clicks"), Input("drilldown-close-centered", "n_clicks")],
-    [State("drilldown-modal-centered-bundle", "is_open")],
-)
-def toggle_modal_dashboard_domain_selection(n1, n2, is_open):
-    if n1 or n2:
-        return not is_open
-    return is_open
-
-
-@app.callback(
-    [Output('dimension_filter_1_bundle', 'options'),
-    Output('dimension_filter_1_bundle', 'value'),
-    Output('dimension_filter_1_bundle', 'multi')],
-    [Input('dimension_filter_selection_1_bundle', 'value')]
-    )
-def filter_dimension_1(v):
-    if v:
-        if v == 'Service Category':
-            return [{"label": 'All', "value": 'All'}]+[{"label": k, "value": k} for k in list(filter_list.keys())], 'All', False
-        else:
-            return [{"label": k, "value": k} for k in dimension[v]], dimension[v], True
-    return [], [], True
-
-
-@app.callback(
-    [Output('dimension_filter_2_bundle', 'options'),
-    Output('dimension_filter_2_bundle', 'value'),
-    Output('dimension_filter_2_bundle', 'multi')],
-    [Input('dimension_filter_selection_1_bundle', 'value'),
-    Input('dimension_filter_selection_2_bundle', 'value'),
-    Input('dimension_filter_1_bundle', 'value')]
-    )
-def filter_dimension_1(v1, v2, v3):
-    if v2:
-        if v2 == 'Service Category':
-            return [{"label": 'All', "value": 'All'}]+[{"label": k, "value": k} for k in list(filter_list.keys())], 'All', False
-        elif v1 == 'Service Category' and v2 == 'Sub Category':
-            sub_filter = filter_list[v3]
-            if v3 == 'All':
-                return [], 'All', False
-            return [{"label": k, "value": k} for k in sub_filter], sub_filter, True
-        else:
-            return [{"label": k, "value": k} for k in dimension[v2]], dimension[v2], True
-    return [], [], True
-
-    
-@app.callback(
-    Output('dropdown-dimension-2-bundle','clearable'),
-    [Input('dropdown-dimension-3-bundle','value')]
-    )
-def dropdown_clear(v):
-    if v:
-        return False
-    return True
-
-@app.callback(
-    [Output('dropdown-dimension-2-bundle','options'),
-    Output('dropdown-dimension-2-bundle','disabled')],
-    [Input('dropdown-dimension-1-bundle','value')]
-    )
-def dropdown_menu_2(v):
-    if v is None:
-        return [], True
-    elif v == 'Service Category':
-        dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0] + [{"label": 'Service Category', "value": 'Service Category', 'disabled' : True}, {"label": 'Sub Category', "value": 'Sub Category'}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0]
-        return dropdown_option, False
-    else:
-        dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0 and k != v] + [{"label": 'Service Category', "value": 'Service Category'}, {"label": 'Sub Category', "value": 'Sub Category', 'disabled' : True}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0 or k ==v]
-        return dropdown_option, False
-
-@app.callback(
-    [Output('dropdown-dimension-3-bundle','options'),
-    Output('dropdown-dimension-3-bundle','disabled')],
-    [Input('dropdown-dimension-1-bundle','value'),
-    Input('dropdown-dimension-2-bundle','value')]
-    )
-def dropdown_menu_3(v1, v2):
-    v = [v1, v2]
-    if v2 is None:
-        return [], True
-    elif 'Service Category' in v and 'Sub Category' not in v:
-        dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0] + [{"label": 'Service Category', "value": 'Service Category', 'disabled' : True}, {"label": 'Sub Category', "value": 'Sub Category'}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0]
-        return dropdown_option, False
-    elif 'Service Category' in v and 'Sub Category' in v:
-        dropdown_option =  [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0] + [{"label": 'Service Category', "value": 'Service Category', 'disabled' : True}, {"label": 'Sub Category', "value": 'Sub Category', 'disabled' : True}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0]
-        return dropdown_option, False
-    else:
-        dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0 and k not in v] + [{"label": 'Service Category', "value": 'Service Category'}, {"label": 'Sub Category', "value": 'Sub Category', 'disabled' : True}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0 or k in v]
-        return dropdown_option, False
-
-@app.callback(
-    [Output('dimension_filter_selection_2_bundle', 'options'),
-    Output('dimension_filter_selection_2_bundle', 'disabled')],
-    [Input('dimension_filter_selection_1_bundle', 'value'),
-    Input('dimension_filter_1_bundle', 'value')]
-    )
-def filter_menu_2(v, f):
-    if v is None:
-        return [], True
-    elif v == 'Service Category':
-        if f =='All':
-            dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0] + [{"label": 'Service Category', "value": 'Service Category', 'disabled' : True}, {"label": 'Sub Category', "value": 'Sub Category', 'disabled' : True}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0]
-            return dropdown_option, False
-        else:
-            dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0] + [{"label": 'Service Category', "value": 'Service Category', 'disabled' : True}, {"label": 'Sub Category', "value": 'Sub Category'}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0]
-            return dropdown_option, False
-    else:
-        dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension.keys()) if len(dimension[k]) != 0 and k != v] + [{"label": 'Service Category', "value": 'Service Category'}, {"label": 'Sub Category', "value": 'Sub Category', 'disabled' : True}] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension.keys()) if len(dimension[k]) == 0 or k ==v]
-        return dropdown_option, False
-
-
-@app.callback(
-    [Output('datatable-tableview-bundle', "columns"),
-    Output('datatable-tableview-bundle', "data")],
-    [Input('dropdown-dimension-1-bundle','value'),
-    Input('dropdown-dimension-2-bundle','value'),
-    Input('dropdown-dimension-3-bundle','value'),
-    Input('dimension_filter_selection_1_bundle','value'),
-    Input('dimension_filter_selection_2_bundle','value'),
-    Input('dimension_filter_1_bundle','value'),
-    Input('dimension_filter_2_bundle','value'),
-    Input('dropdown-measure-1-bundle', 'value')]
-    )
-def datatable_data_selection(v1, v2, v3, d1, d2, f1, f2, m):
-    if d1:
-        if d1 == 'Service Category':
-            if d2 is None:
-                if f1 == 'All':
-                    df_drilldown_filtered = df_drilldown
-                    cate_cnt = cate_mix_cnt
-                else:
-                    df_drilldown_filtered = df_drilldown[df_drilldown['Service Category'].isin([f1])]
-                    cate_cnt = len(filter_list[f1])
-            elif f1 != 'All' and d2 == 'Sub Category':
-                df_drilldown_filtered = df_drilldown[(df_drilldown['Service Category'].isin([f1])) & (df_drilldown['Sub Category'].isin(f2))]
-                cate_cnt = len(f2)
-            else:
-                df_drilldown_filtered = df_drilldown[df_drilldown[d2].isin(f2)]
-                if f1 == 'All':
-                    cate_cnt = cate_mix_cnt
-                else:
-                    cate_cnt = len(filter_list[f1])
-        elif d2 == 'Service Category':
-            if f2 == 'All':
-                df_drilldown_filtered = df_drilldown[df_drilldown[d1].isin(f1)]
-                cate_cnt = cate_mix_cnt
-            else:
-                df_drilldown_filtered = df_drilldown[(df_drilldown['Service Category'].isin([f2])) & (df_drilldown[d1].isin(f1))]
-                cate_cnt = len(filter_list[f2])
-        else:
-            if d2:
-                df_drilldown_filtered = df_drilldown[(df_drilldown[d1].isin(f1)) & (df_drilldown[d2].isin(f2))]
-                cate_cnt = cate_mix_cnt
-            else: 
-                df_drilldown_filtered = df_drilldown[df_drilldown[d1].isin(f1)]
-                cate_cnt = cate_mix_cnt
-    else:
-        df_drilldown_filtered = df_drilldown
-        cate_cnt = cate_mix_cnt
-
-    df_drilldown_filtered['YTD IP Utilization'] = df_drilldown_filtered.apply(lambda x: x['YTD Utilization'] if x['Service Category'] == 'Inpatient' else 0, axis = 1)
-    df_drilldown_filtered['Annualized IP Utilization'] = df_drilldown_filtered.apply(lambda x: x['Annualized Utilization'] if x['Service Category'] == 'Inpatient' else 0, axis = 1)
-    df_drilldown_filtered['Benchmark IP Utilization'] = df_drilldown_filtered.apply(lambda x: x['Benchmark Utilization'] if x['Service Category'] == 'Inpatient' else 0, axis = 1)
-
-    table_column = []
-    selected_dimension = []
-    if v1 is not None:
-        selected_dimension.append(v1)
-    if v2 is not None:
-        selected_dimension.append(v2)
-    if v3 is not None:
-        selected_dimension.append(v3)
-
-    table_column.extend(list(set(selected_dimension + ['Service Category', 'Sub Category'])))
-    table_column.append("Pt Count")
-    percent_list = ['Diff % from Benchmark Utilization', 'Diff % from Benchmark Total Cost', 'Diff % from Benchmark Unit Cost', 'Patient %', 'Diff % from Benchmark Hospitalization Rate per Patient']
-    dollar_list = ['YTD Total Cost', 'Annualized Total Cost', 'Benchmark Total Cost', 'YTD Unit Cost', 'Annualized Unit Cost', 'Benchmark Unit Cost']
-    if len(selected_dimension) > 0:
-#        ptct_dimension = set(selected_dimension + ['Service Category', 'Sub Category'])
-        table_column.extend(measure_ori) 
-        df_agg_pre = df_drilldown_filtered[table_column].groupby(by = list(set(selected_dimension + ['Service Category', 'Sub Category']))).sum().reset_index()
-        df_agg = df_agg_pre[table_column].groupby(by = selected_dimension).agg({'Pt Count':'mean', 'YTD Utilization':'sum', 'Annualized Utilization':'sum', 'Benchmark Utilization':'sum', 
-            'YTD Total Cost':'sum', 'Annualized Total Cost':'sum', 'Benchmark Total Cost':'sum', 'YTD IP Utilization':'sum', 'Annualized IP Utilization':'sum', 'Benchmark IP Utilization':'sum'}).reset_index()
-#        df_agg['Pt Count'] = df_agg['Pt Count']/cate_cnt
-        df_agg['Patient %'] = df_agg['Pt Count']/995000
-        df_agg['YTD Utilization'] = df_agg['YTD Utilization']/df_agg['Pt Count']
-        df_agg['Annualized Utilization'] = df_agg['Annualized Utilization']/df_agg['Pt Count']
-        df_agg['Benchmark Utilization'] = df_agg['Benchmark Utilization']/df_agg['Pt Count']
-        df_agg['Diff % from Benchmark Utilization'] = (df_agg['Annualized Utilization'] - df_agg['Benchmark Utilization'])/df_agg['Benchmark Utilization']
-        df_agg['YTD Total Cost'] = df_agg['YTD Total Cost']/df_agg['Pt Count']
-        df_agg['Annualized Total Cost'] = df_agg['Annualized Total Cost']/df_agg['Pt Count']
-        df_agg['Benchmark Total Cost'] = df_agg['Benchmark Total Cost']/df_agg['Pt Count']
-        df_agg['Diff % from Benchmark Total Cost'] = (df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/df_agg['Benchmark Total Cost']
-        df_agg['YTD Unit Cost'] = df_agg['YTD Total Cost']/df_agg['YTD Utilization']
-        df_agg['Annualized Unit Cost'] = df_agg['Annualized Total Cost']/df_agg['Annualized Utilization']
-        df_agg['Benchmark Unit Cost'] = df_agg['Benchmark Total Cost']/df_agg['Benchmark Utilization']
-        df_agg['Diff % from Benchmark Unit Cost'] = (df_agg['Annualized Unit Cost'] - df_agg['Benchmark Unit Cost'])/df_agg['Benchmark Unit Cost']
-        df_agg['YTD Hospitalization Rate per Patient'] = df_agg['YTD IP Utilization']/df_agg['Pt Count']
-        df_agg['Annualized Hospitalization Rate per Patient'] = df_agg['Annualized IP Utilization']/df_agg['Pt Count']
-        df_agg['Benchmark Hospitalization Rate per Patient'] = df_agg['Benchmark IP Utilization']/df_agg['Pt Count']
-        df_agg['Diff % from Benchmark Hospitalization Rate per Patient'] = (df_agg['Annualized IP Utilization'] - df_agg['Benchmark IP Utilization'])/df_agg['Benchmark IP Utilization']
-#        df_agg.style.format({'Diff % from Target Utilization' : "{:.2%}", 'Diff % from Target Total Cost': "{:.2%}", 'Diff % from Target Unit Cost' : "{:.2%}"})
-#        df_agg.reset_index(inplace = True)
-        show_column = selected_dimension + ['Patient %'] + m 
-        if 'Diff % from Benchmark Total Cost' in m:
-            df_agg =  df_agg[show_column].sort_values(by =  'Diff % from Benchmark Total Cost', ascending =False)
-        else:
-            df_agg = df_agg[show_column]
-    else:
-        show_column = ['Patient %'] + m 
-        df_agg = df_drilldown_filtered[show_column]
-    
-    
-    return [{"name": i, "id": i, "selectable":True,"type":"numeric", "format": FormatTemplate.percentage(1)} if i in percent_list else {"name": i, "id": i, "selectable":True, "type":"numeric","format": FormatTemplate.money(0)} if i in dollar_list else {"name": i, "id": i, "selectable":True, "type":"numeric","format": Format(precision=1, scheme = Scheme.fixed)} for i in show_column], df_agg.to_dict('records')
-
-
-
-
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True)
+    app.run_server(host="127.0.0.1",debug=True,port=8048)
 
 
 
