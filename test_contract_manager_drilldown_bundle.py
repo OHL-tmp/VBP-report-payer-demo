@@ -18,10 +18,11 @@ from dash.dependencies import Input, Output, State
 from utils import *
 from figure import *
 
-from modal_drilldown_tableview import *
+from modal_drilldown_tableview_bundle import *
 
 from app import app
-
+#app = dash.Dash(__name__)
+#server = app.server
 
 #df_drilldown=pd.read_csv("data/drilldown_sample_6.csv")
 
@@ -31,7 +32,7 @@ df_bundle_performance_pmpm=pd.read_csv("data/df_bundle_performance_pmpm.csv")
 df_overall_driver_bundle=pd.read_csv("data/BP_Drivers_Odometer.csv")
 df_driver_dtl_bundle=pd.read_csv("data/BP_Drivers_All.csv")
 
-data_lv2_bundle=drilldata_process_bundle('Service Category')
+data_lv2_bundle=drilldata_process_bundle('Service Category','Bundle Name','Major joint replacement of the lower extremity (MJRLE)')
 
 #modebar display
 button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
@@ -139,6 +140,7 @@ def col_content_drilldown_bundle(app):
                                         ],
                                         style={"padding-left":"2rem"}
                                     ), width=8),
+                                dbc.Col(modal_drilldown_tableview_bundle(), width=4)
                             ]
                         )
                     ],
@@ -413,7 +415,7 @@ def card_graph1_patient_performance_drilldown_bundle(app):
                                 ), 
                                 html.H4("* Default sorting: by Contribution to Overall Performance Difference", style={"font-size":"0.8rem","color":"#919191","padding-top":"1rem","margin-bottom":"-1rem"}),
 
-                                html.Div(drilltable_lv1(drilldata_process_bundle('Bundle Risk'),'dashtable_patient_lv1_bundle'),id="drill_patient_lv1_bundle",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
+                                html.Div(drilltable_lv1(drilldata_process_bundle('Bundle Risk','Bundle Name','Major joint replacement of the lower extremity (MJRLE)'),'dashtable_patient_lv1_bundle'),id="drill_patient_lv1_bundle",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
                             ], 
                             style={"max-height":"80rem"}
                         ),
@@ -490,7 +492,7 @@ def card_graph2_physician_performance_drilldown_bundle(app):
                                     style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
                                 ), 
                                 html.H4("* Default sorting: by Contribution to Overall Performance Difference", style={"font-size":"0.8rem","color":"#919191","padding-top":"1rem","margin-bottom":"-1rem"}),
-                                html.Div(drilltable_physician(drilldata_process_bundle('Physician ID'),'dashtable_physician_lv1_bundle',1),id="drill_physician_lv1_bundle",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
+                                html.Div(drilltable_physician(drilldata_process_bundle('Physician ID','Bundle Name','Major joint replacement of the lower extremity (MJRLE)'),'dashtable_physician_lv1_bundle',1),id="drill_physician_lv1_bundle",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
                             ], 
                             style={"max-height":"80rem"}
                         ),
@@ -543,7 +545,7 @@ def card_table1_physician_performance_drilldown_bundle(app):
 
 
 layout = create_layout(app)
-# app.layout = create_layout(app)
+#app.layout = create_layout(app)
 
 ##### select drilldown #####
 '''
@@ -752,8 +754,261 @@ def update_table3(row_lv1,row_lv2):
     return data_lv3.to_dict('records')  
 
 
+##### table view #####
+@app.callback(
+    Output("drilldown-modal-centered-bundle", "is_open"),
+    [Input("drilldown-open-centered-bundle", "n_clicks"), Input("drilldown-close-centered-bundle", "n_clicks")],
+    [State("drilldown-modal-centered-bundle", "is_open")],
+)
+def toggle_modal_dashboard_domain_selection(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    [Output('drilldown-dropdown-dimension-filter-bundle', 'options'),
+    Output('drilldown-dropdown-dimension-filter-bundle', 'value'),
+    Output('drilldown-dropdown-dimension-filter-bundle', 'disabled')],
+    [Input('drilldown-dropdown-dimension-filter-selection-bundle', 'value')]
+    )
+def update_filter(v):
+    if v:
+#       if v=='Service Category':
+#           return [{'label': k, 'value': k} for k in list(filter_list.keys())], list(filter_list.keys()), False 
+#       else:
+        return [{'label':k, 'value':k} for k in dimension_bundle[v]], dimension_bundle[v], False
+    return [],[],True
+
+@app.callback(
+    [Output("drilldown-dropdown-dimension-filter-1-bundle", 'options'),
+    Output("drilldown-dropdown-dimension-filter-1-bundle", 'value'),
+    Output("drilldown-dropdown-dimension-filter-1-bundle", 'disabled')],
+    [Input('drilldown-dropdown-dimension-1-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-filter-selection-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-filter-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-filter-bundle', 'options')]
+    )
+def update_dimension_filter_1(v1, v2, v3, op):
+    if v1:
+        if v2 and v1 == v2:
+            return op, v3, False
+        else:
+            
+            if v2 and v3:
+                df = df_pt_epi_phy_srv_lv1_bundle[df_pt_epi_phy_srv_lv1_bundle[v2].isin(v3)]
+            else:
+                df = df_pt_epi_phy_srv_lv1_bundle
+            options = list(df[v1].unique())
+            return [{'label':k, 'value':k} for k in options], options, False 
+    return [],[],True
+
+@app.callback(
+    [Output('drilldown-dropdown-dimension-2-bundle', 'options'),
+    Output('drilldown-dropdown-dimension-2-bundle', 'disabled')],
+    [Input('drilldown-dropdown-dimension-1-bundle', 'value')]
+    )
+def update_dimension_option_2(v):
+    if v:
+        dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension_bundle.keys()) if len(dimension_bundle[k]) != 0 and k != v]  + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension_bundle.keys()) if len(dimension_bundle[k]) == 0 or k ==v]
+        return dropdown_option, False
+    return [], True
+
+
+@app.callback(
+    [Output("drilldown-dropdown-dimension-filter-2-bundle", 'options'),
+    Output("drilldown-dropdown-dimension-filter-2-bundle", 'value'),
+    Output("drilldown-dropdown-dimension-filter-2-bundle", 'disabled')],
+    [Input('drilldown-dropdown-dimension-2-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-filter-selection-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-filter-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-1-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-filter-1-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-filter-bundle', 'options')]
+    )
+def update_dimension_filter_2(v1, v2, v3, d1, d1v, op):
+    if v1:
+        if v2 and v1 == v2:
+            return op, v3, False
+        else:
+            
+            if v2 and v3:
+                df = df_pt_epi_phy_srv_lv1_bundle[(df_pt_epi_phy_srv_lv1_bundle[v2].isin(v3)) & (df_pt_epi_phy_srv_lv1_bundle[d1].isin(d1v))]
+            else:
+                df = df_pt_epi_phy_srv_lv1_bundle[df_pt_epi_phy_srv_lv1_bundle[d1].isin(d1v)]
+            options = list(df[v1].unique())
+            return [{'label':k, 'value':k} for k in options], options, False 
+    return [],[],True
+
+@app.callback(
+    [Output('drilldown-dropdown-dimension-3-bundle', 'options'),
+    Output('drilldown-dropdown-dimension-3-bundle', 'disabled')],
+    [Input('drilldown-dropdown-dimension-2-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-1-bundle', 'value')]
+    )
+def update_dimension_option_3(v1,v2):
+    v = [v1, v2]
+    if v1:
+        
+        dropdown_option = [{"label": k, "value": k, 'disabled' : False} for k in list(dimension_bundle.keys()) if len(dimension_bundle[k]) != 0 and k not in v] + [{"label": k, "value": k, 'disabled' : True} for k in list(dimension_bundle.keys()) if len(dimension_bundle[k]) == 0 or k in v]
+        return dropdown_option, False
+    return [], True
+
+
+@app.callback(
+    [Output("drilldown-dropdown-dimension-filter-3-bundle", 'options'),
+    Output("drilldown-dropdown-dimension-filter-3-bundle", 'value'),
+    Output("drilldown-dropdown-dimension-filter-3-bundle", 'disabled')],
+    [Input('drilldown-dropdown-dimension-3-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-filter-selection-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-filter-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-1-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-filter-1-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-2-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-filter-2-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-filter-bundle', 'options')]
+    )
+def update_dimension_filter_3(v1, v2, v3, d1, d1v, d2, d2v, op):
+    if v3 is None:
+        v3 = []
+    if d1v is None:
+        d1v = []
+    if d2v is None:
+        d2v = []
+
+    if v1:
+        if v2 and v1 == v2:
+            return op, v3, False
+        else:
+            
+            if v2 and v3:
+                df = df_pt_epi_phy_srv_lv1_bundle[(df_pt_epi_phy_srv_lv1_bundle[v2].isin(v3)) & (df_pt_epi_phy_srv_lv1_bundle[d1].isin(d1v)) & (df_pt_epi_phy_srv_lv1_bundle[d2].isin(d2v))]
+            
+            else:
+                df = df_pt_epi_phy_srv_lv1_bundle[(df_pt_epi_phy_srv_lv1_bundle[d1].isin(d1v)) & (df_pt_epi_phy_srv_lv1_bundle[d2].isin(d2v))]
+            options = list(df[v1].unique())
+            return [{'label':k, 'value':k} for k in options], options, False 
+    return [],[],True
+
+@app.callback(
+    Output('drilldown-dropdown-measure-1-bundle', 'options'),
+    [Input('drilldown-dropdown-dimension-1-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-2-bundle', 'value'),
+    Input('drilldown-dropdown-dimension-3-bundle', 'value')]
+    )
+def update_measure_option(d1, d2, d3):
+    d = [d1, d2, d3]
+    if len(d) == 0:
+        return [{"label": k, "value": k} for k in measure_bundle]
+    else:   
+        return [{"label": k, "value": k} for k in measure_bundle]
+
+@app.callback(
+    [Output('drilldown-datatable-tableview-bundle', "columns"),
+    Output('drilldown-datatable-tableview-bundle', "data")],
+    [Input('drilldown-dropdown-dimension-1-bundle','value'),
+    Input('drilldown-dropdown-dimension-2-bundle','value'),
+    Input('drilldown-dropdown-dimension-3-bundle','value'),
+    Input('drilldown-dropdown-dimension-filter-1-bundle','value'),
+    Input('drilldown-dropdown-dimension-filter-2-bundle','value'),
+    Input('drilldown-dropdown-dimension-filter-3-bundle','value'),
+    Input('drilldown-dropdown-dimension-filter-selection-bundle','value'),
+    Input('drilldown-dropdown-dimension-filter-bundle', 'value'),
+    Input('drilldown-dropdown-measure-1-bundle', 'value')]
+    )
+def datatable_data_selection(d1, d2, d3, d1v, d2v, d3v, f, fv, m):
+    if d1v is None:
+        d1v = []
+    if d2v is None:
+        d2v = []
+    if d3v is None:
+        d3v = []
+    if fv is None:
+        fv = []
+
+    if f and fv:
+        df_pt_lv1_f = df_pt_lv1_bundle[df_pt_lv1_bundle[f].isin(fv)]
+        df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_bundle[df_pt_epi_phy_srv_lv1_bundle[f].isin(fv)]
+    else:
+        df_pt_lv1_f = df_pt_lv1_bundle
+        df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_bundle
+
+    d = []
+    show_column = []
+    if d1 is not None:
+        d.append(d1)
+    if d2 is not None:
+        d.append(d2)
+    if d3 is not None:
+        d.append(d3)
+    show_column = d  + m
+
+
+
+    for i in range(3):
+        if eval('d'+str(i+1)) and eval('d'+str(i+1)) not in ['Service Category', 'Sub Category']:
+            df_pt_lv1_f = df_pt_lv1_f[(df_pt_lv1_f[eval('d'+str(i+1))].isin(eval('d'+str(i+1)+'v')))]
+            df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_f[(df_pt_epi_phy_srv_lv1_f[eval('d'+str(i+1))].isin(eval('d'+str(i+1)+'v')))]
+        elif eval('d'+str(i+1)) == 'Service Category':
+            df_pt_lv1_f = df_pt_lv1_f
+            df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_f[(df_pt_epi_phy_srv_lv1_f[eval('d'+str(i+1))].isin(eval('d'+str(i+1)+'v')))]
+        else:       
+            df_pt_lv1_f = df_pt_lv1_f
+            df_pt_epi_phy_srv_lv1_f = df_pt_epi_phy_srv_lv1_f
+
+    d_set = list(set(d) - set(['Service Category']))
+    if len(d_set)>0:
+        df_agg_pt = df_pt_lv1_f.groupby(by = d_set).agg({'Episode Count':'sum'}).reset_index()
+        df_agg_pt=df_agg_pt.rename(columns={'Episode Count':'Episode Ct'})
+        df_agg_cost = df_pt_epi_phy_srv_lv1_f.groupby(by = d).sum().reset_index()
+
+        df_agg = pd.merge(df_agg_cost, df_agg_pt, how = 'left', on = d_set )
+               
+    else:
+
+        df_agg = df_pt_epi_phy_srv_lv1_f.groupby(by = d).sum().reset_index()
+        df_agg['Episode Ct'] = df_pt_lv1_f['Episode Count'].agg('sum')
+
+    cost_all=df_agg['YTD Total Cost'].sum()
+
+   
+    epi_all=df_pt_lv1_f['Episode Count'].sum()
+
+
+    df_agg['Episode %'] = df_agg['Episode Ct']/epi_all
+
+    df_agg['Cost %'] = df_agg['YTD Total Cost']/cost_all
+
+    df_agg['YTD Utilization/Episode per 1000'] = df_agg['YTD Utilization']/df_agg['Episode Ct']*1000
+    df_agg['Annualized Utilization/Episode per 1000'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']*1000
+    df_agg['Benchmark Utilization/Episode per 1000'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']*1000
+    df_agg['Diff % from Benchmark Utilization/Episode'] = (df_agg['Annualized Utilization/Episode per 1000'] - df_agg['Benchmark Utilization/Episode per 1000'])/df_agg['Benchmark Utilization/Episode per 1000']
+
+    df_agg['YTD Total Cost/Episode'] = df_agg['YTD Total Cost']/df_agg['Episode Ct']
+    df_agg['Annualized Total Cost/Episode'] = df_agg['Annualized Total Cost']/df_agg['Episode Ct']
+    df_agg['Benchmark Total Cost/Episode'] = df_agg['Benchmark Total Cost']/df_agg['Episode Ct']
+    df_agg['Diff % from Benchmark Total Cost/Episode'] = (df_agg['Annualized Total Cost/Episode'] - df_agg['Benchmark Total Cost/Episode'])/df_agg['Benchmark Total Cost/Episode']
+
+    df_agg['YTD Unit Cost'] = df_agg['YTD Total Cost']/df_agg['YTD Utilization']
+    df_agg['Annualized Unit Cost'] = df_agg['Annualized Total Cost']/df_agg['Annualized Utilization']
+    df_agg['Benchmark Unit Cost'] = df_agg['Benchmark Total Cost']/df_agg['Benchmark Utilization']
+    df_agg['Diff % from Benchmark Unit Cost'] = (df_agg['Annualized Unit Cost'] - df_agg['Benchmark Unit Cost'])/df_agg['Benchmark Unit Cost']
+
+
+    if 'Diff % from Benchmark Total Cost/Episode' in m:
+        df_agg =  df_agg[show_column].sort_values(by =  'Diff % from Benchmark Total Cost/Episode', ascending =False)
+    else:
+        df_agg = df_agg[show_column]
+
+    pct_list = ['Cost %','Episode %','Diff % from Benchmark Utilization/Episode', 'Diff % from Benchmark Total Cost/Episode', 'Diff % from Benchmark Unit Cost']
+    dollar_list = ['YTD Total Cost/Episode', 'Annualized Total Cost/Episode', 'Benchmark Total Cost/Episode',
+    'YTD Unit Cost', 'Annualized Unit Cost', 'Benchmark Unit Cost']
+
+    return [{"name": i, "id": i, "selectable":True,"type":"numeric", "format": FormatTemplate.percentage(1)} if i in pct_list else {"name": i, "id": i, "selectable":True, "type":"numeric","format": FormatTemplate.money(0)} if i in dollar_list else {"name": i, "id": i, "selectable":True, "type":"numeric","format": Format(precision=0,group=',', scheme = Scheme.fixed)} for i in show_column], df_agg.to_dict('records')
+
+
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True,port=8049)
+    app.run_server(host="127.0.0.1",debug=True,port=8050)
 
 
 
