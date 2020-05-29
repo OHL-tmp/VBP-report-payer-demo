@@ -969,7 +969,7 @@ def waterfall_overall_bundle(df):
 			gridcolor =colors['grey'],
 			nticks=5,
 			showticklabels=True,
-			ticksuffix='M',
+#			ticksuffix='M',
 			zeroline=True,
 			zerolinecolor=colors['grey'],
 			zerolinewidth=1,
@@ -1754,7 +1754,7 @@ def drilltable_physician(df,tableid,row_select):
 		row_sel='single'
 		export_format='none'
 		
-	col_max=max(df['Avg Cost/Episode Diff % from Benchmark'].abs().max(),df['Contribution to Overall Performance Difference'].abs().max())
+	col_max=max(df['Avg Cost/Bundle Diff % from Benchmark'].abs().max(),df['Contribution to Overall Performance Difference'].abs().max())
 	tbl=dash_table.DataTable(
 		id=tableid,
 		data=df.to_dict('records'),
@@ -1775,9 +1775,9 @@ def drilltable_physician(df,tableid,row_select):
 			'height': 'auto'
 		},
 		style_data_conditional=(
-		data_bars_diverging(df, 'Avg Cost/Episode Diff % from Benchmark',col_max) +
+		data_bars_diverging(df, 'Avg Cost/Bundle Diff % from Benchmark',col_max) +
 		data_bars_diverging(df, 'Contribution to Overall Performance Difference',col_max)+
-		[{'if': {'column_id':'Avg Cost/Episode Diff % from Benchmark'},
+		[{'if': {'column_id':'Avg Cost/Bundle Diff % from Benchmark'},
 			 
 			 'width': '20rem',
 			}, 
@@ -1972,6 +1972,7 @@ def drilldata_process_bundle(d,d1='All',d1v='All',d2='All',d2v='All'):
 	if d1v!='All':
 		df_pt_bundle_f = df_pt_bundle_f[df_pt_bundle_f[d1]==d1v]
 		df_pt_epi_phy_srv_bundle_f = df_pt_epi_phy_srv_bundle_f[(df_pt_epi_phy_srv_bundle_f[d1]==d1v)]
+		cost_all=df_pt_epi_phy_srv_bundle_f['Benchmark Total Cost'].sum()
 
 	if d2v!='All':
 		df_pt_bundle_f = df_pt_bundle_f[df_pt_bundle_f[d2]==d2v]
@@ -2002,24 +2003,23 @@ def drilldata_process_bundle(d,d1='All',d1v='All',d2='All',d2v='All'):
 
 	df_agg.loc[len(df_agg)] = allvalue
   
-	df_agg['Episode %'] = df_agg['Episode Ct']/ (df_agg.tail(1)['Episode Ct'].values[0])
+	df_agg['Bundle %'] = df_agg['Episode Ct']/ (df_agg.tail(1)['Episode Ct'].values[0])
 	df_agg['Cost %'] = df_agg['YTD Total Cost']/(df_agg.tail(1)['YTD Total Cost'].values[0])
 
 
-
-	df_agg['YTD Avg Cost/Episode'] = df_agg['YTD Total Cost']/df_agg['Episode Ct']
-	df_agg['Annualized Avg Cost/Episode'] = df_agg['Annualized Total Cost']/df_agg['Episode Ct']
-	df_agg['Benchmark Avg Cost/Episode'] = df_agg['Benchmark Total Cost']/df_agg['Episode Ct']
-	df_agg['Diff % from Benchmark Avg Cost/Episode'] = (df_agg['Annualized Avg Cost/Episode'] - df_agg['Benchmark Avg Cost/Episode'])/df_agg['Benchmark Avg Cost/Episode']
-
-
-	df_agg['Contribution to Overall Performance Difference']=(df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/(df_agg.tail(1)['Benchmark Total Cost'].values[0])
+	df_agg['YTD Avg Cost/Bundle'] = df_agg['YTD Total Cost']/df_agg['Episode Ct']
+	df_agg['Annualized Avg Cost/Bundle'] = df_agg['Annualized Total Cost']/df_agg['Episode Ct']
+	df_agg['Benchmark Avg Cost/Bundle'] = df_agg['Benchmark Total Cost']/df_agg['Episode Ct']
+	df_agg['Diff % from Benchmark Avg Cost/Bundle'] = (df_agg['Annualized Avg Cost/Bundle'] - df_agg['Benchmark Avg Cost/Bundle'])/df_agg['Benchmark Avg Cost/Bundle']
 
 
-	df_agg['YTD Avg Utilization Rate/Episode'] = df_agg['YTD Utilization']/df_agg['Episode Ct']*1000
-	df_agg['Annualized Avg Utilization Rate/Episode'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']*1000
-	df_agg['Benchmark Avg Utilization Rate/Episode'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']*1000
-	df_agg['Diff % from Benchmark Avg Utilization Rate/Episode'] = (df_agg['Annualized Avg Utilization Rate/Episode'] - df_agg['Benchmark Avg Utilization Rate/Episode'])/df_agg['Benchmark Avg Utilization Rate/Episode']
+	df_agg['Contribution to Overall Performance Difference']=(df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/(cost_all)
+
+
+	df_agg['YTD Avg Utilization Rate/Bundle'] = df_agg['YTD Utilization']/df_agg['Episode Ct']*1000
+	df_agg['Annualized Avg Utilization Rate/Bundle'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']*1000
+	df_agg['Benchmark Avg Utilization Rate/Bundle'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']*1000
+	df_agg['Diff % from Benchmark Avg Utilization Rate/Bundle'] = (df_agg['Annualized Avg Utilization Rate/Bundle'] - df_agg['Benchmark Avg Utilization Rate/Bundle'])/df_agg['Benchmark Avg Utilization Rate/Bundle']
 
 	df_agg['YTD Avg Cost per Unit'] = df_agg['YTD Total Cost']/df_agg['YTD Utilization']
 	df_agg['Annualized Avg Cost per Unit'] = df_agg['Annualized Total Cost']/df_agg['Annualized Utilization']
@@ -2034,16 +2034,16 @@ def drilldata_process_bundle(d,d1='All',d1v='All',d2='All',d2v='All'):
 			)
 		df_agg=df_agg.merge(sort_dim,how='left',on='Service Category').sort_values(by='ordering')
 		
-		showcolumn=[d,'YTD Avg Cost/Episode','Diff % from Benchmark Avg Cost/Episode','Contribution to Overall Performance Difference','YTD Avg Utilization Rate/Episode','Diff % from Benchmark Avg Utilization Rate/Episode','YTD Avg Cost per Unit','Diff % from Benchmark Unit Cost']
+		showcolumn=[d,'YTD Avg Cost/Bundle','Diff % from Benchmark Avg Cost/Bundle','Contribution to Overall Performance Difference','YTD Avg Utilization Rate/Bundle','Diff % from Benchmark Avg Utilization Rate/Bundle','YTD Avg Cost per Unit','Diff % from Benchmark Unit Cost']
 	
 	elif d in ['Physician ID']:
 
-		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Episode':'Avg Cost/Episode Diff % from Benchmark'})
-		showcolumn=[d,'Episode Ct','YTD Total Cost','Cost %','Avg Cost/Episode Diff % from Benchmark','Contribution to Overall Performance Difference']
+		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Bundle':'Avg Cost/Bundle Diff % from Benchmark','Episode Ct':'Bundle Ct'})
+		showcolumn=[d,'Bundle Ct','YTD Total Cost','Cost %','Avg Cost/Bundle Diff % from Benchmark','Contribution to Overall Performance Difference']
 		
 	else:
-		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Episode':'Diff % from Benchmark'})
-		showcolumn=[d,'Episode %','Cost %','YTD Avg Cost/Episode','Diff % from Benchmark','Contribution to Overall Performance Difference']	
+		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Bundle':'Diff % from Benchmark'})
+		showcolumn=[d,'Bundle %','Cost %','YTD Avg Cost/Bundle','Diff % from Benchmark','Contribution to Overall Performance Difference']	
 
 #	df_agg.to_csv(d+'.csv')
 	return df_agg[showcolumn]

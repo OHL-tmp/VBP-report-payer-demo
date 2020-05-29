@@ -33,9 +33,7 @@ df_pt_epi_phy_srv_lv1_bundle=pd.read_csv("data/bundle service level data.csv")
 
 dimension_bundle = {'Bundle Name' : list(df_pt_epi_phy_srv_lv1_bundle['Bundle Name'].unique()), 'Bundle Risk' : list(df_pt_epi_phy_srv_lv1_bundle['Bundle Risk'].unique()), 
 'Physician ID' : list(df_pt_epi_phy_srv_lv1_bundle['Physician ID'].unique()), 'Service Category' : list(df_pt_epi_phy_srv_lv1_bundle['Service Category'].unique())}
-measure_bundle = ['Cost %','Episode %','YTD Utilization/Episode per 1000', 'Annualized Utilization/Episode per 1000', 'Benchmark Utilization/Episode per 1000', 'Diff % from Benchmark Utilization/Episode',
-		'YTD Total Cost/Episode', 'Annualized Total Cost/Episode', 'Benchmark Total Cost/Episode', 'Diff % from Benchmark Total Cost/Episode',
-		'YTD Unit Cost', 'Annualized Unit Cost', 'Benchmark Unit Cost', 'Diff % from Benchmark Unit Cost']
+measure_bundle = ['Cost %','Bundle %','YTD Total Cost/Bundle', 'Annualized Total Cost/Bundle', 'Benchmark Total Cost/Bundle', 'Diff % from Benchmark Total Cost/Bundle','YTD Utilization/Bundle per 1000', 'Annualized Utilization/Bundle per 1000', 'Benchmark Utilization/Bundle per 1000', 'Diff % from Benchmark Utilization/Bundle','YTD Unit Cost', 'Annualized Unit Cost', 'Benchmark Unit Cost', 'Diff % from Benchmark Unit Cost']
 
 def tableview_bundle():
 	return html.Div(
@@ -113,7 +111,7 @@ def tableview_bundle():
 									dcc.Dropdown(
 										id = "drilldown-dropdown-measure-1-bundle",
 										options = [{"label": k, "value": k} for k in measure_bundle],
-										value = ['Diff % from Benchmark Total Cost/Episode', 'YTD Total Cost/Episode', 'Annualized Total Cost/Episode', 'Benchmark Total Cost/Episode'],
+										value = ['Diff % from Benchmark Total Cost/Bundle', 'YTD Total Cost/Bundle', 'Annualized Total Cost/Bundle', 'Benchmark Total Cost/Bundle'],
 										placeholder ="Select measures",
 										multi = True,
 										style = {"font-family":"NotoSans-Condensed"}
