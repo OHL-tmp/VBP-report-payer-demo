@@ -19,6 +19,7 @@ import test_contract_generator
 import test_contract_generator_recom
 import test_contract_generator_bundle
 import test_contract_manager_bundle
+import test_contract_manager_drilldown_bundle
 import test_contract_report_generator
 
 
@@ -37,7 +38,7 @@ def launch_layout():
                     ),
                     html.Div(
                         [
-                            html.P("© 2020 Sinolation. ")
+                            html.P("PAYER   © 2020 Sinolation. ")
                         ],
                         style={"text-align":"center", "font-size":"0.6rem"}
                     ),
@@ -59,7 +60,7 @@ def launch_layout():
                                 )
 
                             ],
-                            style={"background-color":"transparent", "border":"none"}
+                            style={"background-color":"transparent", "border":"none", "width":"1400px", "margin":"auto"}
                             ),
                         ],
                         style={"margin-top":"-30rem","background-color":"transparent","text-align":"center"}
@@ -94,6 +95,8 @@ def display_page(pathname):
         return test_contract_generator_bundle.layout
     elif pathname == "/vbc-demo/contract-manager-bundle/":
         return test_contract_manager_bundle.layout
+    elif pathname == "/vbc-demo/contract-manager-drilldown-bundle/":
+        return test_contract_manager_drilldown_bundle.layout
     elif pathname == "/vbc-demo/contract-manager/report-generator/":
         return test_contract_report_generator.layout
     else:
