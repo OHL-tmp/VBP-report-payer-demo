@@ -75,8 +75,8 @@ def dropdownmenu_select_measures():
                 [
                     dbc.DropdownMenuItem("Drilldown Menu", header=True),
                     dbc.DropdownMenuItem("Total Cost"),
-                    dbc.DropdownMenuItem("Quality Measures"),
-                    dbc.DropdownMenuItem("Physician Profiling"),
+                    dbc.DropdownMenuItem("Quality Measures", disabled=True),
+                    dbc.DropdownMenuItem("Physician Profiling", disabled=True),
                     dbc.DropdownMenuItem(divider=True),
                     html.P(
                         "Select one to drill.",
@@ -159,7 +159,7 @@ def card_overview_drilldown(percentage):
                         ],
                         style={"padding-left":"1rem"}
                     ),
-                html.P("As of 05/22/2020", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
+                html.P("As of 05/29/2020", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
                 html.Div(
                     [
                         dbc.Tabs(

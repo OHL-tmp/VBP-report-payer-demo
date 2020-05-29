@@ -6,6 +6,8 @@ import dash_auth
 from configure.login import *
 
 app = dash.Dash(__name__, url_base_pathname='/vbc-demo/launch/')
+app.css.config.serve_locally = True
+app.scripts.config.serve_locally = True
 
 server = app.server
 

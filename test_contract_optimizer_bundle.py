@@ -23,7 +23,9 @@ from modal_bundle import *
 from modal_test import *
 from bp_contract_calculation import *
 
-from app import app
+#from app import app
+app = dash.Dash(__name__)
+server = app.server
 
 
 df_quality = pd.read_csv("data/quality_setup.csv")
@@ -587,8 +589,8 @@ def tab_result(app):
 
 
 
-layout = create_layout(app)
-
+#layout = create_layout(app)
+app.layout = create_layout(app)
 
 
 ### bundle selection ###
