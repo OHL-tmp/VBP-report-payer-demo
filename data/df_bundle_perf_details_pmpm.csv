@@ -1,10 +1,10 @@
 ﻿Bundle Name,Major joint replacement of the lower extremity (MJRLE),Stroke,Congestive heart failure,Acute myocardial infarction
 YTD Attributed Episodes,142,65,135,40
-YTD Bundle Cost (FFS Payment)(M),"$28,258 ","$32,139 ","$26,178 ","$26,188 "
-Projected PY Bundle Cost (FFS Payment)(M),"$28,181 ","$32,119 ","$26,350 ","$26,141 "
-Adjusted Bundle Target Payment(M),"$26,699 ","$31,598 ","$25,219 ","$26,964 "
-Expected Gains/Losses,"$1,482 ",$521 ,"$1,131 ",($823)
+YTD Bundle Cost (FFS Payment)(M),"$28,052 ","$32,020 ","$26,221 ","$26,143 "
+Projected PY Bundle Cost (FFS Payment)(M),"$28,165 ","$32,106 ","$26,350 ","$26,143 "
+Adjusted Bundle Target Payment(M),"$26,686 ","$31,586 ","$25,217 ","$26,964 "
+Expected Gains/Losses,"$1,480 ",$520 ,"$1,133 ",($822)
 Projected Quality Score,80%,80%,80%,80%
 Projected Quality Adjustment on Expected Gains/Losses,92%,92%,92%,92%
-Expected Gains/Losses (Quality Adjusted),"$1,364 ",$479 ,"$1,041 ",($757)
-Expected Bundle Payout to Provider,"$26,817 ","$31,640 ","$25,309 ","$26,898 "
+Expected Gains/Losses (Quality Adjusted),"$1,361 ",$479 ,"$1,042 ",($756)
+Expected Bundle Payout to Provider,"$26,804 ","$31,627 ","$25,307 ","$26,899 "

@@ -23,6 +23,7 @@ import test_contract_generator_bundle
 import test_contract_manager_bundle
 import test_contract_manager_drilldown_bundle
 import test_contract_report_generator
+import test_contract_report_generator_bundle
 
 
 
@@ -105,6 +106,10 @@ def display_page(pathname):
         return test_contract_manager_drilldown_bundle.layout
     elif pathname == "/vbc-demo/contract-manager/report-generator/":
         return test_contract_report_generator.layout
+    elif pathname == "/vbc-demo/contract-manager-bundle/report-generator/":
+        return test_contract_report_generator_bundle.layout
+
+        
     else:
         return launch_layout()
 
@@ -113,6 +118,6 @@ def display_page(pathname):
 
 if __name__ == "__main__":
 
-    app.run_server(port=8052)
+    app.run_server(host='0.0.0.0',port=8099)
 
                         
