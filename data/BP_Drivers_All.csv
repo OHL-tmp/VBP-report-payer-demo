@@ -1,0 +1,22 @@
+﻿Bundle Name,Name,%
+Acute myocardial infarction,High Risk (MCC), -0.0180 
+Acute myocardial infarction,Physician 18, -0.0100 
+Acute myocardial infarction,Low Risk (No CC), -0.0100 
+Acute myocardial infarction,Physician 20, -0.0090 
+Congestive heart failure,High Risk (MCC), 0.0280 
+Congestive heart failure,Physician 11, 0.0170 
+Congestive heart failure,Physician 12, 0.0130 
+Congestive heart failure,Mid Risk (CC), 0.0100 
+Congestive heart failure,Low Risk (No CC), 0.0070 
+Congestive heart failure,Physician 13, 0.0060 
+Major joint replacement of the lower extremity (MJRLE),Low Risk (No MCC), 0.0500 
+Major joint replacement of the lower extremity (MJRLE),Physician 5, 0.0350 
+Major joint replacement of the lower extremity (MJRLE),Physician 3, 0.0300 
+Major joint replacement of the lower extremity (MJRLE),High Risk (MCC), 0.0060 
+Major joint replacement of the lower extremity (MJRLE),Physician 1, 0.0060 
+Major joint replacement of the lower extremity (MJRLE),Physician 2, -0.0070 
+Major joint replacement of the lower extremity (MJRLE),Physician 4, -0.0080 
+Stroke,Physician 8, 0.0170 
+Stroke,High Risk (MCC), 0.0140 
+Stroke,Physician 6, 0.0060 
+Stroke,Physician 10, -0.0100 

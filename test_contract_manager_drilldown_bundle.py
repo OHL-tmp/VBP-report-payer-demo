@@ -20,16 +20,17 @@ from figure import *
 
 from modal_drilldown_tableview import *
 
-from app import app
-#app = dash.Dash(__name__)
-#server = app.server
+#from app import app
+app = dash.Dash(__name__)
+server = app.server
 
 #df_drilldown=pd.read_csv("data/drilldown_sample_6.csv")
 
 df_bundle_performance=pd.read_csv("data/df_bundle_performance.csv")
 df_bundle_performance_pmpm=pd.read_csv("data/df_bundle_performance_pmpm.csv")
 
-df_overall_driver_bundle=pd.read_csv("data/df_overall_driver_bundle.csv")
+df_overall_driver_bundle=pd.read_csv("data/BP_Drivers_Odometer.csv")
+df_driver_dtl_bundle=pd.read_csv("data/BP_Drivers_All.csv")
 
 data_lv2_bundle=drilldata_process_bundle('Service Category')
 
@@ -233,7 +234,7 @@ def card_key_driver_drilldown_bundle(app):
                                                     ),
                                         dbc.Modal([
                                                 dbc.ModalHeader("All Drivers"),
-                                                dbc.ModalBody(children = html.Div([table_driver_all(df_overall_driver_bundle)], style={"padding":"1rem"})),
+                                                dbc.ModalBody(children = html.Div([table_driver_all(df_driver_dtl_bundle.iloc[10:16])],id='table-all-driver-bundle', style={"padding":"1rem"})),
                                                 dbc.ModalFooter(
                                                         dbc.Button("Close", id = 'close-all-driver-bundle',
                                                                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
@@ -250,28 +251,23 @@ def card_key_driver_drilldown_bundle(app):
                             [
                                 dbc.Col(
                                     [
-                                        html.Div([gaugegraph(df_overall_driver_bundle,0)], style={"padding-top":"1.5rem"}),
-                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][0]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#ffeb78"}),
+                                        html.Div([gaugegraph(df_overall_driver_bundle,5)],id='figure-driver-bundle-1', style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][5]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-1', style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#ffeb78"}),
                                     ],
                                     width=6),
                                 dbc.Col(
                                     [
-                                        html.Div([gaugegraph(df_overall_driver_bundle,1)], style={"padding-top":"1.5rem"}),
-                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][1]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#aeff78"}),
+                                        html.Div([gaugegraph(df_overall_driver_bundle,6)],id='figure-driver-bundle-2', style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][6]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-2', style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#aeff78"}),
                                     ],
                                     width=6),
                                 dbc.Col(
                                     [
-                                        html.Div([gaugegraph(df_overall_driver_bundle,2)], style={"padding-top":"1.5rem"}),
-                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][2]*100)),style={"color":"#ff4d17"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#39db44"}),
+                                        html.Div([gaugegraph(df_overall_driver_bundle,7)],id='figure-driver-bundle-3', style={"padding-top":"1.5rem"}),
+                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][7]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-3', style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#39db44"}),
                                     ],
                                     width=6),
-                                dbc.Col(
-                                    [
-                                        html.Div([gaugegraph(df_overall_driver_bundle,3)], style={"padding-top":"1.5rem"}),
-                                        html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][3]*100)),style={"color":"#18cc75"}), style={"margin-top":"-1.5rem","text-align":"center","font-size":"1rem","color":"#39db44"}),
-                                    ],
-                                    width=6),
+                                
                                 
                             ],
                         ),
@@ -397,14 +393,15 @@ def card_graph1_patient_performance_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.H1("By Bundle Risk",id='dimname_on_patient_lv1_bundle', style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"0.8rem"}), width=9),
+                                                dbc.Col(html.H1("Major joint replacement of the lower extremity (MJRLE)",id='dimname_on_patient_lv1_bundle', style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"0.8rem"}), width=9),
                                                 
                                             ]
                                         )
                                     ],
                                     style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
                                 ), 
-                                
+                                html.H4("* Default sorting: by Contribution to Overall Performance Difference", style={"font-size":"0.8rem","color":"#919191","padding-top":"1rem","margin-bottom":"-1rem"}),
+
                                 html.Div(drilltable_lv1(drilldata_process_bundle('Bundle Risk'),'dashtable_patient_lv1_bundle'),id="drill_patient_lv1_bundle",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
                             ], 
                             style={"max-height":"80rem"}
@@ -435,7 +432,7 @@ def card_table1_patient_performance_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.H1("By Service Category", style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=5),
+                                                dbc.Col(html.H1("Major joint replacement of the lower extremity (MJRLE)",id='dimname_on_patient_lv2_bundle', style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=9),
                                                 
                                                                                     
                                             ]
@@ -443,7 +440,7 @@ def card_table1_patient_performance_drilldown_bundle(app):
                                     ],
                                     style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
                                 ), 
-                                html.H4("* Default sorting: by Contribution to Overall Performance Difference", style={"font-size":"0.8rem","color":"#919191","padding-top":"1rem","margin-bottom":"-1rem"}), 
+                                 
                                 html.Div([drilltable_lv3(data_lv2_bundle,'Service Category','dashtable_patient_lv2_bundle',0)],id="drill_patient_lv2_bundle",style={"padding":"1rem"})
                             ], 
                             style={"max-height":"120rem"}
@@ -474,13 +471,14 @@ def card_graph2_physician_performance_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.H1("By Managing Physician", style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=6),
+                                                dbc.Col(html.H1("Major joint replacement of the lower extremity (MJRLE)",id='dimname_on_physician_lv1_bundle', style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=9),
                                                 
                                             ]
                                         )
                                     ],
                                     style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
                                 ), 
+                                html.H4("* Default sorting: by Contribution to Overall Performance Difference", style={"font-size":"0.8rem","color":"#919191","padding-top":"1rem","margin-bottom":"-1rem"}),
                                 html.Div(drilltable_physician(drilldata_process_bundle('Physician ID'),'dashtable_physician_lv1_bundle',1),id="drill_physician_lv1_bundle",style={"padding-top":"2rem","padding-bottom":"2rem"}), 
                             ], 
                             style={"max-height":"80rem"}
@@ -510,7 +508,7 @@ def card_table1_physician_performance_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.H1("By Service Category", style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=5),
+                                                dbc.Col(html.H1("Major joint replacement of the lower extremity (MJRLE)", id='dimname_on_physician_lv2_bundle',style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=9),
                                                 
                                                     
                                             ]
@@ -518,7 +516,7 @@ def card_table1_physician_performance_drilldown_bundle(app):
                                     ],
                                     style={"padding-left":"2rem","padding-right":"1rem","border-radius":"5rem","background-color":"#f7f7f7","margin-top":"2rem"}
                                 ), 
-                                html.H4("* Default sorting: by Contribution to Overall Performance Difference", style={"font-size":"0.8rem","color":"#919191","padding-top":"1rem","margin-bottom":"-1rem"}), 
+                                
                                 html.Div([drilltable_lv3(data_lv2_bundle,'Service Category','dashtable_physician_lv2_bundle',0)],id="drill_physician_lv2_bundle",style={"padding":"1rem"})
                             ], 
                             style={"max-height":"120rem"}
@@ -533,8 +531,8 @@ def card_table1_physician_performance_drilldown_bundle(app):
 
 
 
-layout = create_layout(app)
-#app.layout = create_layout(app)
+#layout = create_layout(app)
+app.layout = create_layout(app)
 
 ##### select drilldown #####
 '''
@@ -590,7 +588,19 @@ def open_all_driver(n1,n2,is_open):
 
 #update patient lv1 table on selected bundle
 @app.callback(
-    Output("drill_patient_lv1_bundle","children"),
+   [ Output("drill_patient_lv1_bundle","children"),
+     Output("dimname_on_patient_lv1_bundle","children"),
+     Output("dimname_on_patient_lv2_bundle","children"),
+     Output("dimname_on_physician_lv1_bundle","children"),
+     Output("dimname_on_physician_lv2_bundle","children"),
+     Output("table-all-driver-bundle","children"),
+     Output("figure-driver-bundle-1","children"),
+     Output("figure-driver-bundle-2","children"),
+     Output("figure-driver-bundle-3","children"),
+     Output("value-driver-bundle-1","children"),
+     Output("value-driver-bundle-2","children"),
+     Output("value-driver-bundle-3","children"),
+   ],
    [Input("table_perform_drill_bundle","selected_row_ids"),] 
 )
 def update_data_lv1(row):
@@ -600,8 +610,35 @@ def update_data_lv1(row):
     else:row_1=row[0]
 
     data_pat=drilldata_process_bundle('Bundle Risk','Bundle Name',row_1)
+
+    df_detail=df_driver_dtl_bundle[df_driver_dtl_bundle['Bundle Name']==row_1].iloc[:,[1,2]]
+
+    df_driver=df_overall_driver_bundle[df_overall_driver_bundle['Bundle Name']==row_1].reset_index(drop=True)
+
+    val1="{:.1f} %".format(abs(df_driver['%'][0]*100))
+    val2="{:.1f} %".format(abs(df_driver['%'][1]*100))
+
+    if df_driver['%'][0]>0:
+        val1=html.H4("{:.1f} %".format(abs(df_driver['%'][0]*100)),style={"color":"#ff4d17"})
+    else:
+        val1=html.H4("{:.1f} %".format(abs(df_driver['%'][0]*100)),style={"color":"#18cc75"})
+
+    if df_driver['%'][1]>0:
+        val2=html.H4("{:.1f} %".format(abs(df_driver['%'][1]*100)),style={"color":"#ff4d17"})
+    else:
+        val2=html.H4("{:.1f} %".format(abs(df_driver['%'][1]*100)),style={"color":"#18cc75"})
     
-    return drilltable_lv1(data_pat,"dashtable_patient_lv1_bundle")
+    if len(df_driver)>2:
+        figure3=gaugegraph(df_driver,2)
+        if df_driver['%'][2]>0:
+            val3=html.H4("{:.1f} %".format(abs(df_driver['%'][2]*100)),style={"color":"#ff4d17"})
+        else:
+            val3=html.H4("{:.1f} %".format(abs(df_driver['%'][2]*100)),style={"color":"#18cc75"})
+    else:
+        val3=html.H4("")
+        figure3=[]
+
+    return drilltable_lv1(data_pat,"dashtable_patient_lv1_bundle"),row_1,row_1,row_1,row_1,table_driver_all(df_detail),gaugegraph(df_driver,0),gaugegraph(df_driver,1),figure3,val1,val2,val3
 
 #sort patient lv1 
 @app.callback(
@@ -627,10 +664,9 @@ def update_data_lv1(sort_dim,data):
    Output("dashtable_patient_lv2_bundle","data"), 
    [ Input("table_perform_drill_bundle","selected_row_ids"),
      Input("dashtable_patient_lv1_bundle","selected_row_ids"),
-     Input('dashtable_patient_lv2_bundle', 'sort_by'),
-   ] 
+    ] 
 )
-def update_table3(row_lv1,row_lv2,sort_dim):
+def update_table3(row_lv1,row_lv2):
 
     if row_lv1 is None or row_lv1==[]:
         val1='Major joint replacement of the lower extremity (MJRLE)'
@@ -641,15 +677,9 @@ def update_table3(row_lv1,row_lv2,sort_dim):
     else:val2=row_lv2[0]
 
     
-    data_lv3=drilldata_process_bundle('Service Category','Bundle Name',val1,'Patient Health Risk Level',val2)   
+    data_lv3=drilldata_process_bundle('Service Category','Bundle Name',val1,'Bundle Risk',val2)   
     
-    if sort_dim==[]:
-        sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
-  
-    df1=data_lv3[0:len(data_lv3)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
-    df1=pd.concat([df1,data_lv3.tail(1)])
-
-    return df1.to_dict('records')
+    return data_lv3.to_dict('records')
 
 #update physician lv1 table on selected bundle
 @app.callback(
@@ -692,10 +722,9 @@ def update_data_lv1(sort_dim,data):
    Output("dashtable_physician_lv2_bundle","data"), 
    [ Input("table_perform_drill_bundle","selected_row_ids"),
      Input("dashtable_physician_lv1_bundle","selected_row_ids"),
-     Input('dashtable_physician_lv2_bundle', 'sort_by'),
    ] 
 )
-def update_table3(row_lv1,row_lv2,sort_dim):
+def update_table3(row_lv1,row_lv2):
 
     if row_lv1 is None or row_lv1==[]:
         val1='Major joint replacement of the lower extremity (MJRLE)'
@@ -708,17 +737,12 @@ def update_table3(row_lv1,row_lv2,sort_dim):
     
     data_lv3=drilldata_process_bundle('Service Category','Bundle Name',val1,'Physician ID',val2)
     
-    if sort_dim==[]:
-        sort_dim=[{"column_id":"Contribution to Overall Performance Difference","direction":"desc"}]
-  
-    df1=data_lv3[0:len(data_lv3)-1].sort_values(by=sort_dim[0]['column_id'],ascending= sort_dim[0]['direction']=='asc')
-    df1=pd.concat([df1,data_lv3.tail(1)])
 
-    return df1.to_dict('records')  
+    return data_lv3.to_dict('records')  
 
 
 if __name__ == "__main__":
-    app.run_server(host="127.0.0.1",debug=True,port=8048)
+    app.run_server(host="127.0.0.1",debug=True,port=8049)
 
 
 
