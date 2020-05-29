@@ -1,0 +1,56 @@
+﻿Bundle Name,Bundle Risk,Physician ID,Episode Count
+Acute myocardial infarction,CC,Physician 16,27
+Acute myocardial infarction,CC,Physician 17,11
+Acute myocardial infarction,CC,Physician 18,38
+Acute myocardial infarction,CC,Physician 19,23
+Acute myocardial infarction,CC,Physician 20,34
+Acute myocardial infarction,MCC,Physician 16,18
+Acute myocardial infarction,MCC,Physician 17,7
+Acute myocardial infarction,MCC,Physician 18,33
+Acute myocardial infarction,MCC,Physician 19,7
+Acute myocardial infarction,MCC,Physician 20,20
+Acute myocardial infarction,No CC,Physician 16,36
+Acute myocardial infarction,No CC,Physician 17,25
+Acute myocardial infarction,No CC,Physician 18,59
+Acute myocardial infarction,No CC,Physician 19,38
+Acute myocardial infarction,No CC,Physician 20,48
+Congestive heart failure,CC,Physician 11,80
+Congestive heart failure,CC,Physician 12,44
+Congestive heart failure,CC,Physician 13,119
+Congestive heart failure,CC,Physician 14,60
+Congestive heart failure,CC,Physician 15,118
+Congestive heart failure,MCC,Physician 11,57
+Congestive heart failure,MCC,Physician 12,34
+Congestive heart failure,MCC,Physician 13,85
+Congestive heart failure,MCC,Physician 14,45
+Congestive heart failure,MCC,Physician 15,65
+Congestive heart failure,No CC,Physician 11,128
+Congestive heart failure,No CC,Physician 12,75
+Congestive heart failure,No CC,Physician 13,212
+Congestive heart failure,No CC,Physician 14,109
+Congestive heart failure,No CC,Physician 15,164
+Major joint replacement of the lower extremity (MJRLE),MCC,Physician 1,66
+Major joint replacement of the lower extremity (MJRLE),MCC,Physician 2,33
+Major joint replacement of the lower extremity (MJRLE),MCC,Physician 3,75
+Major joint replacement of the lower extremity (MJRLE),MCC,Physician 4,39
+Major joint replacement of the lower extremity (MJRLE),MCC,Physician 5,70
+Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 1,222
+Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 2,132
+Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 3,361
+Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 4,175
+Major joint replacement of the lower extremity (MJRLE),No MCC,Physician 5,295
+Stroke,CC,Physician 10,53
+Stroke,CC,Physician 6,46
+Stroke,CC,Physician 7,27
+Stroke,CC,Physician 8,71
+Stroke,CC,Physician 9,24
+Stroke,MCC,Physician 10,21
+Stroke,MCC,Physician 6,24
+Stroke,MCC,Physician 7,12
+Stroke,MCC,Physician 8,44
+Stroke,MCC,Physician 9,20
+Stroke,No CC,Physician 10,103
+Stroke,No CC,Physician 6,65
+Stroke,No CC,Physician 7,30
+Stroke,No CC,Physician 8,116
+Stroke,No CC,Physician 9,57

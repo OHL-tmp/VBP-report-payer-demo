@@ -13,6 +13,8 @@ import numpy as np
 from app import app
 import test_contract_manager
 import test_contract_manager_drilldown
+import test_contract_manager_bundle
+import test_contract_manager_drilldown_bundle
 import test_contract_optimizer
 import test_contract_optimizer_bundle
 import test_contract_generator
@@ -83,6 +85,10 @@ def display_page(pathname):
         return test_contract_manager.layout
     elif pathname == "/vbc-demo/contract-manager-drilldown/":
         return test_contract_manager_drilldown.layout
+    elif pathname == "/vbc-demo/contract-manager-bundle/":
+        return test_contract_manager_bundle.layout
+    elif pathname == "/vbc-demo/contract-manager-drilldown-bundle/":
+        return test_contract_manager_drilldown_bundle.layout
     elif pathname == "/vbc-demo/contract-optimizer/":
         return test_contract_optimizer.layout
     elif pathname == "/vbc-demo/contract-optimizer-bundle/":
