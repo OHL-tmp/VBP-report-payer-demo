@@ -94,10 +94,10 @@ def manager_div_year_to_date_metrics(app):
                 [
                     html.H2("Key Performance Metrics", style={"padding-top":"2rem", "font-weight":"lighter", "font-size":"1rem"}),
                     manager_card_year_to_date_metrics("Attributed Bundle", "383", "#381610f"),
-                    manager_card_year_to_date_metrics("YTD Bundle Cost", "$10,925,917", "#381610f"),
-                    manager_card_year_to_date_metrics("Projected PY Bundle Cost", "$23,556,277", "#381610f"),
+                    manager_card_year_to_date_metrics("YTD Bundle Cost", "$10,673,831", "#381610f"),
+                    manager_card_year_to_date_metrics("Projected PY Bundle Cost", "$23,568,570", "#381610f"),
                     html.Hr(className="ml-1"),
-                    manager_card_year_to_date_metrics("Expected Total Losses", "\u25bc $662,274", "#db2200"),
+                    manager_card_year_to_date_metrics("Expected Total Losses", "\u25bc $737,486", "#db2200"),
                     html.Hr(className="ml-1"),
                     manager_modal_metricsdetail(app),
                 ],

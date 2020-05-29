@@ -75,8 +75,8 @@ def dropdownmenu_select_measures():
                 [
                     dbc.DropdownMenuItem("Drilldown Menu", header=True),
                     dbc.DropdownMenuItem("Total Cost"),
-                    dbc.DropdownMenuItem("Quality Measures"),
-                    dbc.DropdownMenuItem("Physician Profiling"),
+                    dbc.DropdownMenuItem("Quality Measures", disabled=True),
+                    dbc.DropdownMenuItem("Physician Profiling", disabled=True),
                     dbc.DropdownMenuItem(divider=True),
                     html.P(
                         "Select one to drill.",

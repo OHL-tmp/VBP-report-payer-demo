@@ -174,20 +174,21 @@ def card_overview_drilldown_bundle(percentage):
                 dbc.Row(
                         [
                             dbc.Col(html.H1("Bundle Payment", style={"font-size":"3rem"}), width="auto"),
-                            dbc.Card(
-                                dbc.CardBody(
-                                    [
-                                        html.H3("worse than target", style={"font-size":"0.8rem", "color":"#fff"}),
-                                        html.H2(str(percentage*100)+"%", style={"font-size":"1.2rem", "margin-top":"-9px", "color":"#fff"}),
-                                    ],
-                                    style={"margin-top":"-20px"}
-                                ),
-                                style={"height":"2.5rem", "border":"none", "background-color":color, "text-align":"center", "margin-top":"6px"},
-                            ),
+                            # dbc.Card(
+                            #     dbc.CardBody(
+                            #         [
+                            #             html.H3("worse than target", style={"font-size":"0.8rem", "color":"#fff"}),
+                            #             html.H2(str(percentage*100)+"%", style={"font-size":"1.2rem", "margin-top":"-9px", "color":"#fff"}),
+                            #         ],
+                            #         style={"margin-top":"-20px"}
+                            #     ),
+                            #     style={"height":"2.5rem", "border":"none", "background-color":color, "text-align":"center", "margin-top":"6px"},
+                            # ),
                         ],
                         style={"padding-left":"1rem"}
                     ),
                 html.P("As of June 30th.", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
+                html.H6("Performance of Each Bundle", style={"padding-left":"1rem","font-size":"1.5rem"})
                 dbc.Row(
                     [
                         dbc.Col(
@@ -431,7 +432,7 @@ def card_table1_patient_performance_drilldown_bundle(app):
                         dbc.Row(
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                dbc.Col(html.H4("Cost by Service Category", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                dbc.Col(html.H4("Drilldown by Service Category", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                             ],
                             no_gutters=True,
                         ),
