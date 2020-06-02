@@ -132,13 +132,13 @@ def card_performance_measure_setup(app):
                         html.Div(
                             [dbc.Button("RESET",
                                 className="mb-3",
-                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem"},
+                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem","padding":"1rem"},
                                 id = 'button-reset-simulation',
                                 href='#top'
                             ),
                             dbc.Button("SUBMIT",
                                 className="mb-3",
-                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem"},
+                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem", "padding":"1rem"},
                                 id = 'button-submit-simulation',
                                 href='#top'
                             ),
@@ -1162,7 +1162,6 @@ def update_usr_target(v, n):
     Input('button-reset-simulation', 'n_clicks')]
     )
 def cal_usr_like(usr_tgt, n):
-    print(usr_tgt)
     ctx = dash.callback_context
     if ctx.triggered[0]['prop_id'].split('.')[0] == 'button-reset-simulation':
         return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"})

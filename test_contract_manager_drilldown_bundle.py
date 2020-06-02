@@ -31,6 +31,8 @@ df_bundle_performance_pmpm=pd.read_csv("data/df_bundle_performance_pmpm.csv")
 
 df_overall_driver_bundle=pd.read_csv("data/BP_Drivers_Odometer.csv")
 df_driver_dtl_bundle=pd.read_csv("data/BP_Drivers_All.csv")
+df_driver_default=df_overall_driver_bundle[df_overall_driver_bundle['Bundle Name']=='Major joint replacement of the lower extremity (MJRLE)'].reset_index(drop=True)
+df_detail_default=df_driver_dtl_bundle[df_driver_dtl_bundle['Bundle Name']=='Major joint replacement of the lower extremity (MJRLE)'].iloc[:,[1,2]]
 
 data_lv2_bundle=drilldata_process_bundle('Service Category','Bundle Name','Major joint replacement of the lower extremity (MJRLE)')
 
@@ -189,8 +191,8 @@ def card_overview_drilldown_bundle(percentage):
                         ],
                         style={"padding-left":"1rem"}
                     ),
-                html.P("As of June 30th.", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
-                html.H6("Performance of Each Bundle", style={"padding-left":"1rem","font-size":"1.5rem"}),
+                html.P("As of 06/02/2020.", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
+                html.H4("Performance of Each Bundle", style={"padding-left":"1rem","padding-top":"1rem","font-size":"1.5rem"}),
                 dbc.Row(
                     [
                         dbc.Col(
@@ -199,7 +201,7 @@ def card_overview_drilldown_bundle(percentage):
                                     [
                                         table_perform_bundle_drill(df_bundle_performance,df_bundle_performance_pmpm),
                                     ],
-                                    style={"padding":"1rem"}
+                                    style={"padding-left":"1rem","padding-right":"1rem"}
                                 )
                             ],
                         ),
@@ -235,7 +237,7 @@ def card_key_driver_drilldown_bundle(app):
                                                     ),
                                         dbc.Modal([
                                                 dbc.ModalHeader("All Drivers"),
-                                                dbc.ModalBody(children = html.Div([table_driver_all(df_driver_dtl_bundle.iloc[10:16])],id='table-all-driver-bundle', style={"padding":"1rem"})),
+                                                dbc.ModalBody(children = html.Div([table_driver_all(df_detail_default)],id='table-all-driver-bundle', style={"padding":"1rem"})),
                                                 dbc.ModalFooter(
                                                         dbc.Button("Close", id = 'close-all-driver-bundle',
                                                                         style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.8rem"},
@@ -254,8 +256,8 @@ def card_key_driver_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.Div([gaugegraph(df_overall_driver_bundle,5)],id='figure-driver-bundle-1', style={"padding-top":"1.5rem"})),
-                                                dbc.Col(html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][5]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-1', style={"font-size":"1rem","color":"#ffeb78","margin-top":"6rem","margin-left":"-1rem"})),
+                                                dbc.Col(html.Div([gaugegraph(df_driver_default,0)],id='figure-driver-bundle-1', style={"padding-top":"1.5rem"})),
+                                                dbc.Col(html.Div(html.H4("{:.1f} %".format(abs(df_driver_default['%'][0]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-1', style={"font-size":"1rem","color":"#ffeb78","margin-top":"6rem","margin-left":"-1rem"})),
                                             ]
                                         )
                                     ]
@@ -264,8 +266,8 @@ def card_key_driver_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.Div([gaugegraph(df_overall_driver_bundle,6)],id='figure-driver-bundle-2', style={"padding-top":"1.5rem"})),
-                                                dbc.Col(html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][6]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-2', style={"font-size":"1rem","color":"#aeff78","margin-top":"6rem","margin-left":"-1rem"}))
+                                                dbc.Col(html.Div([gaugegraph(df_driver_default,1)],id='figure-driver-bundle-2', style={"padding-top":"1.5rem"})),
+                                                dbc.Col(html.Div(html.H4("{:.1f} %".format(abs(df_driver_default['%'][1]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-2', style={"font-size":"1rem","color":"#aeff78","margin-top":"6rem","margin-left":"-1rem"}))
                                             ]
                                         )
                                     ]
@@ -274,8 +276,8 @@ def card_key_driver_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.Div([gaugegraph(df_overall_driver_bundle,7)],id='figure-driver-bundle-3', style={"padding-top":"1.5rem"})),
-                                                dbc.Col(html.Div(html.H4("{:.1f} %".format(abs(df_overall_driver_bundle['%'][7]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-3', style={"font-size":"1rem","color":"#39db44","margin-top":"6rem","margin-left":"-1rem"}),)
+                                                dbc.Col(html.Div([gaugegraph(df_driver_default,2)],id='figure-driver-bundle-3', style={"padding-top":"1.5rem"})),
+                                                dbc.Col(html.Div(html.H4("{:.1f} %".format(abs(df_driver_default['%'][2]*100)),style={"color":"#ff4d17"}),id='value-driver-bundle-3', style={"font-size":"1rem","color":"#39db44","margin-top":"6rem","margin-left":"-1rem"}),)
                                             ]
                                         )
                                     ]
@@ -445,7 +447,7 @@ def card_table1_patient_performance_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.H1("Major joint replacement of the lower extremity (MJRLE)",id='dimname_on_patient_lv2_bundle', style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=9),
+                                                dbc.Col(html.H1("Bundle Risk: All",id='dimname_on_patient_lv2_bundle', style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=9),
                                                 
                                                                                     
                                             ]
@@ -521,7 +523,7 @@ def card_table1_physician_performance_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.H1("Major joint replacement of the lower extremity (MJRLE)", id='dimname_on_physician_lv2_bundle',style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=9),
+                                                dbc.Col(html.H1("Physician ID: All", id='dimname_on_physician_lv2_bundle',style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=9),
                                                 
                                                     
                                             ]
@@ -603,9 +605,9 @@ def open_all_driver(n1,n2,is_open):
 @app.callback(
    [ Output("drill_patient_lv1_bundle","children"),
      Output("dimname_on_patient_lv1_bundle","children"),
-     Output("dimname_on_patient_lv2_bundle","children"),
+#     Output("dimname_on_patient_lv2_bundle","children"),
      Output("dimname_on_physician_lv1_bundle","children"),
-     Output("dimname_on_physician_lv2_bundle","children"),
+#     Output("dimname_on_physician_lv2_bundle","children"),
      Output("table-all-driver-bundle","children"),
      Output("figure-driver-bundle-1","children"),
      Output("figure-driver-bundle-2","children"),
@@ -651,7 +653,8 @@ def update_data_lv1(row):
         val3=html.H4("")
         figure3=[]
 
-    return drilltable_lv1(data_pat,"dashtable_patient_lv1_bundle"),row_1,row_1,row_1,row_1,table_driver_all(df_detail),gaugegraph(df_driver,0),gaugegraph(df_driver,1),figure3,val1,val2,val3
+    return drilltable_lv1(data_pat,"dashtable_patient_lv1_bundle"),row_1,row_1,table_driver_all(df_detail),gaugegraph(df_driver,0),gaugegraph(df_driver,1),figure3,val1,val2,val3
+
 
 #sort patient lv1 
 @app.callback(
@@ -674,7 +677,8 @@ def update_data_lv1(sort_dim,data):
 #update patient lv2 on patient lv1 select row
 
 @app.callback(
-   Output("dashtable_patient_lv2_bundle","data"), 
+   [Output("dashtable_patient_lv2_bundle","data"), 
+    Output("dimname_on_patient_lv2_bundle","children")],
    [ Input("table_perform_drill_bundle","selected_row_ids"),
      Input("dashtable_patient_lv1_bundle","selected_row_ids"),
     ] 
@@ -690,9 +694,9 @@ def update_table3(row_lv1,row_lv2):
     else:val2=row_lv2[0]
 
     
-    data_lv3=drilldata_process_bundle('Service Category','Bundle Name',val1,'Bundle Risk',val2)   
+    data_lv3=drilldata_process_bundle('Service Category','Bundle Name',val1,'Bundle Risk',val2) 
     
-    return data_lv3.to_dict('records')
+    return data_lv3.to_dict('records'),'Bundle Risk: '+ val2
 
 #update physician lv1 table on selected bundle
 @app.callback(
@@ -732,7 +736,8 @@ def update_data_lv1(sort_dim,data):
 #update physician lv2 on physician lv1 select row
 
 @app.callback(
-   Output("dashtable_physician_lv2_bundle","data"), 
+   [Output("dashtable_physician_lv2_bundle","data"), 
+   Output("dimname_on_physician_lv2_bundle","children")],
    [ Input("table_perform_drill_bundle","selected_row_ids"),
      Input("dashtable_physician_lv1_bundle","selected_row_ids"),
    ] 
@@ -751,7 +756,7 @@ def update_table3(row_lv1,row_lv2):
     data_lv3=drilldata_process_bundle('Service Category','Bundle Name',val1,'Physician ID',val2)
     
 
-    return data_lv3.to_dict('records')  
+    return data_lv3.to_dict('records'),'Physician ID: '+val2
 
 
 ##### table view #####
@@ -975,19 +980,19 @@ def datatable_data_selection(d1, d2, d3, d1v, d2v, d3v, f, fv, m):
     epi_all=df_pt_lv1_f['Episode Count'].sum()
 
 
-    df_agg['Episode %'] = df_agg['Episode Ct']/epi_all
+    df_agg['Bundle %'] = df_agg['Episode Ct']/epi_all
 
     df_agg['Cost %'] = df_agg['YTD Total Cost']/cost_all
 
-    df_agg['YTD Utilization/Episode per 1000'] = df_agg['YTD Utilization']/df_agg['Episode Ct']*1000
-    df_agg['Annualized Utilization/Episode per 1000'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']*1000
-    df_agg['Benchmark Utilization/Episode per 1000'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']*1000
-    df_agg['Diff % from Benchmark Utilization/Episode'] = (df_agg['Annualized Utilization/Episode per 1000'] - df_agg['Benchmark Utilization/Episode per 1000'])/df_agg['Benchmark Utilization/Episode per 1000']
+    df_agg['YTD Utilization/1000 Bundle'] = df_agg['YTD Utilization']/df_agg['Episode Ct']*1000
+    df_agg['Annualized Utilization/1000 Bundle'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']*1000
+    df_agg['Benchmark Utilization/1000 Bundle'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']*1000
+    df_agg['Diff % from Benchmark Utilization/Bundle'] = (df_agg['Annualized Utilization/1000 Bundle'] - df_agg['Benchmark Utilization/1000 Bundle'])/df_agg['Benchmark Utilization/1000 Bundle']
 
-    df_agg['YTD Total Cost/Episode'] = df_agg['YTD Total Cost']/df_agg['Episode Ct']
-    df_agg['Annualized Total Cost/Episode'] = df_agg['Annualized Total Cost']/df_agg['Episode Ct']
-    df_agg['Benchmark Total Cost/Episode'] = df_agg['Benchmark Total Cost']/df_agg['Episode Ct']
-    df_agg['Diff % from Benchmark Total Cost/Episode'] = (df_agg['Annualized Total Cost/Episode'] - df_agg['Benchmark Total Cost/Episode'])/df_agg['Benchmark Total Cost/Episode']
+    df_agg['YTD Total Cost/Bundle'] = df_agg['YTD Total Cost']/df_agg['Episode Ct']
+    df_agg['Annualized Total Cost/Bundle'] = df_agg['Annualized Total Cost']/df_agg['Episode Ct']
+    df_agg['Benchmark Total Cost/Bundle'] = df_agg['Benchmark Total Cost']/df_agg['Episode Ct']
+    df_agg['Diff % from Benchmark Total Cost/Bundle'] = (df_agg['Annualized Total Cost/Bundle'] - df_agg['Benchmark Total Cost/Bundle'])/df_agg['Benchmark Total Cost/Bundle']
 
     df_agg['YTD Unit Cost'] = df_agg['YTD Total Cost']/df_agg['YTD Utilization']
     df_agg['Annualized Unit Cost'] = df_agg['Annualized Total Cost']/df_agg['Annualized Utilization']
@@ -995,13 +1000,13 @@ def datatable_data_selection(d1, d2, d3, d1v, d2v, d3v, f, fv, m):
     df_agg['Diff % from Benchmark Unit Cost'] = (df_agg['Annualized Unit Cost'] - df_agg['Benchmark Unit Cost'])/df_agg['Benchmark Unit Cost']
 
 
-    if 'Diff % from Benchmark Total Cost/Episode' in m:
-        df_agg =  df_agg[show_column].sort_values(by =  'Diff % from Benchmark Total Cost/Episode', ascending =False)
+    if 'Diff % from Benchmark Total Cost/Bundle' in m:
+        df_agg =  df_agg[show_column].sort_values(by =  'Diff % from Benchmark Total Cost/Bundle', ascending =False)
     else:
         df_agg = df_agg[show_column]
 
-    pct_list = ['Cost %','Episode %','Diff % from Benchmark Utilization/Episode', 'Diff % from Benchmark Total Cost/Episode', 'Diff % from Benchmark Unit Cost']
-    dollar_list = ['YTD Total Cost/Episode', 'Annualized Total Cost/Episode', 'Benchmark Total Cost/Episode',
+    pct_list = ['Cost %','Bundle %','Diff % from Benchmark Utilization/Bundle', 'Diff % from Benchmark Total Cost/Bundle', 'Diff % from Benchmark Unit Cost']
+    dollar_list = ['YTD Total Cost/Bundle', 'Annualized Total Cost/Bundle', 'Benchmark Total Cost/Bundle',
     'YTD Unit Cost', 'Annualized Unit Cost', 'Benchmark Unit Cost']
 
     return [{"name": i, "id": i, "selectable":True,"type":"numeric", "format": FormatTemplate.percentage(1)} if i in pct_list else {"name": i, "id": i, "selectable":True, "type":"numeric","format": FormatTemplate.money(0)} if i in dollar_list else {"name": i, "id": i, "selectable":True, "type":"numeric","format": Format(precision=0,group=',', scheme = Scheme.fixed)} for i in show_column], df_agg.to_dict('records')

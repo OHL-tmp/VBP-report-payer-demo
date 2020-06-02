@@ -969,7 +969,7 @@ def waterfall_overall_bundle(df):
 			gridcolor =colors['grey'],
 			nticks=5,
 			showticklabels=True,
-			ticksuffix='M',
+#			ticksuffix='M',
 			zeroline=True,
 			zerolinecolor=colors['grey'],
 			zerolinewidth=1,
@@ -1696,7 +1696,7 @@ def drilltable_lv3(df,dimension,tableid,row_select):#row_select: numeric 0 or 1
 		[{"name": ["Total Cost", df.columns[1]], "id": df.columns[1],'type': 'numeric',"format":FormatTemplate.money(0)},]+
 		[{"name": ["Total Cost", 'Diff % from Benchmark'], "id": c,'type': 'numeric',"format":FormatTemplate.percentage(1)} for c in df.columns[2:3]]+
 		[{"name": ["Total Cost", c], "id": c,'type': 'numeric',"format":FormatTemplate.percentage(1)} for c in df.columns[3:4]]+  
-		[{"name": ["Utilization Rate",  df.columns[4]+' per 1000'], "id": df.columns[4],'type': 'numeric',"format":Format( precision=0,group=',', scheme=Scheme.fixed,),},
+		[{"name": ["Utilization Rate",  df.columns[4].replace('/', '/1000 ')], "id": df.columns[4],'type': 'numeric',"format":Format( precision=0,group=',', scheme=Scheme.fixed,),},
 		{"name": ["Utilization Rate",'Diff % from Benchmark'], "id": df.columns[5],'type': 'numeric',"format":FormatTemplate.percentage(1)},
 		{"name": ["Unit Cost",  df.columns[6]], "id":  df.columns[6],'type': 'numeric',"format":FormatTemplate.money(0)},
 		{"name": ["Unit Cost",  'Diff % from Benchmark'], "id":  df.columns[7],'type': 'numeric',"format":FormatTemplate.percentage(1)},
@@ -1753,8 +1753,13 @@ def drilltable_physician(df,tableid,row_select):
 	else:
 		row_sel='single'
 		export_format='none'
-		
-	col_max=max(df['Avg Cost/Episode Diff % from Benchmark'].abs().max(),df['Contribution to Overall Performance Difference'].abs().max())
+
+	if tableid.find('bundle')>=0:
+		col_max=max(df['Avg Cost/Bundle Diff % from Benchmark'].abs().max(),df['Contribution to Overall Performance Difference'].abs().max())
+		col='Avg Cost/Bundle Diff % from Benchmark'
+	else:
+		col_max=max(df['Avg Cost/Episode Diff % from Benchmark'].abs().max(),df['Contribution to Overall Performance Difference'].abs().max())
+		col='Avg Cost/Episode Diff % from Benchmark'
 	tbl=dash_table.DataTable(
 		id=tableid,
 		data=df.to_dict('records'),
@@ -1775,9 +1780,9 @@ def drilltable_physician(df,tableid,row_select):
 			'height': 'auto'
 		},
 		style_data_conditional=(
-		data_bars_diverging(df, 'Avg Cost/Episode Diff % from Benchmark',col_max) +
+		data_bars_diverging(df, col,col_max) +
 		data_bars_diverging(df, 'Contribution to Overall Performance Difference',col_max)+
-		[{'if': {'column_id':'Avg Cost/Episode Diff % from Benchmark'},
+		[{'if': {'column_id':col},
 			 
 			 'width': '20rem',
 			}, 
@@ -1972,6 +1977,7 @@ def drilldata_process_bundle(d,d1='All',d1v='All',d2='All',d2v='All'):
 	if d1v!='All':
 		df_pt_bundle_f = df_pt_bundle_f[df_pt_bundle_f[d1]==d1v]
 		df_pt_epi_phy_srv_bundle_f = df_pt_epi_phy_srv_bundle_f[(df_pt_epi_phy_srv_bundle_f[d1]==d1v)]
+		cost_all=df_pt_epi_phy_srv_bundle_f['Benchmark Total Cost'].sum()
 
 	if d2v!='All':
 		df_pt_bundle_f = df_pt_bundle_f[df_pt_bundle_f[d2]==d2v]
@@ -2002,24 +2008,23 @@ def drilldata_process_bundle(d,d1='All',d1v='All',d2='All',d2v='All'):
 
 	df_agg.loc[len(df_agg)] = allvalue
   
-	df_agg['Episode %'] = df_agg['Episode Ct']/ (df_agg.tail(1)['Episode Ct'].values[0])
+	df_agg['Bundle %'] = df_agg['Episode Ct']/ (df_agg.tail(1)['Episode Ct'].values[0])
 	df_agg['Cost %'] = df_agg['YTD Total Cost']/(df_agg.tail(1)['YTD Total Cost'].values[0])
 
 
-
-	df_agg['YTD Avg Cost/Episode'] = df_agg['YTD Total Cost']/df_agg['Episode Ct']
-	df_agg['Annualized Avg Cost/Episode'] = df_agg['Annualized Total Cost']/df_agg['Episode Ct']
-	df_agg['Benchmark Avg Cost/Episode'] = df_agg['Benchmark Total Cost']/df_agg['Episode Ct']
-	df_agg['Diff % from Benchmark Avg Cost/Episode'] = (df_agg['Annualized Avg Cost/Episode'] - df_agg['Benchmark Avg Cost/Episode'])/df_agg['Benchmark Avg Cost/Episode']
-
-
-	df_agg['Contribution to Overall Performance Difference']=(df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/(df_agg.tail(1)['Benchmark Total Cost'].values[0])
+	df_agg['YTD Avg Cost/Bundle'] = df_agg['YTD Total Cost']/df_agg['Episode Ct']
+	df_agg['Annualized Avg Cost/Bundle'] = df_agg['Annualized Total Cost']/df_agg['Episode Ct']
+	df_agg['Benchmark Avg Cost/Bundle'] = df_agg['Benchmark Total Cost']/df_agg['Episode Ct']
+	df_agg['Diff % from Benchmark Avg Cost/Bundle'] = (df_agg['Annualized Avg Cost/Bundle'] - df_agg['Benchmark Avg Cost/Bundle'])/df_agg['Benchmark Avg Cost/Bundle']
 
 
-	df_agg['YTD Avg Utilization Rate/Episode'] = df_agg['YTD Utilization']/df_agg['Episode Ct']*1000
-	df_agg['Annualized Avg Utilization Rate/Episode'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']*1000
-	df_agg['Benchmark Avg Utilization Rate/Episode'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']*1000
-	df_agg['Diff % from Benchmark Avg Utilization Rate/Episode'] = (df_agg['Annualized Avg Utilization Rate/Episode'] - df_agg['Benchmark Avg Utilization Rate/Episode'])/df_agg['Benchmark Avg Utilization Rate/Episode']
+	df_agg['Contribution to Overall Performance Difference']=(df_agg['Annualized Total Cost'] - df_agg['Benchmark Total Cost'])/(cost_all)
+
+
+	df_agg['YTD Avg Utilization Rate/Bundle'] = df_agg['YTD Utilization']/df_agg['Episode Ct']*1000
+	df_agg['Annualized Avg Utilization Rate/Bundle'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']*1000
+	df_agg['Benchmark Avg Utilization Rate/Bundle'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']*1000
+	df_agg['Diff % from Benchmark Avg Utilization Rate/Bundle'] = (df_agg['Annualized Avg Utilization Rate/Bundle'] - df_agg['Benchmark Avg Utilization Rate/Bundle'])/df_agg['Benchmark Avg Utilization Rate/Bundle']
 
 	df_agg['YTD Avg Cost per Unit'] = df_agg['YTD Total Cost']/df_agg['YTD Utilization']
 	df_agg['Annualized Avg Cost per Unit'] = df_agg['Annualized Total Cost']/df_agg['Annualized Utilization']
@@ -2034,16 +2039,21 @@ def drilldata_process_bundle(d,d1='All',d1v='All',d2='All',d2v='All'):
 			)
 		df_agg=df_agg.merge(sort_dim,how='left',on='Service Category').sort_values(by='ordering')
 		
-		showcolumn=[d,'YTD Avg Cost/Episode','Diff % from Benchmark Avg Cost/Episode','Contribution to Overall Performance Difference','YTD Avg Utilization Rate/Episode','Diff % from Benchmark Avg Utilization Rate/Episode','YTD Avg Cost per Unit','Diff % from Benchmark Unit Cost']
+		showcolumn=[d,'YTD Avg Cost/Bundle','Diff % from Benchmark Avg Cost/Bundle','Contribution to Overall Performance Difference','YTD Avg Utilization Rate/Bundle','Diff % from Benchmark Avg Utilization Rate/Bundle','YTD Avg Cost per Unit','Diff % from Benchmark Unit Cost']
 	
 	elif d in ['Physician ID']:
 
-		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Episode':'Avg Cost/Episode Diff % from Benchmark'})
-		showcolumn=[d,'Episode Ct','YTD Total Cost','Cost %','Avg Cost/Episode Diff % from Benchmark','Contribution to Overall Performance Difference']
+		df1=df_agg[0:(len(df_agg)-1)].sort_values(by='Diff % from Benchmark Avg Cost/Bundle',ascending=False)
+		df_agg=pd.concat([df1,df_agg.tail(1)])
+
+		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Bundle':'Avg Cost/Bundle Diff % from Benchmark','Episode Ct':'Bundle Ct'})
+		showcolumn=[d,'Bundle Ct','YTD Total Cost','Cost %','Avg Cost/Bundle Diff % from Benchmark','Contribution to Overall Performance Difference']
 		
 	else:
-		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Episode':'Diff % from Benchmark'})
-		showcolumn=[d,'Episode %','Cost %','YTD Avg Cost/Episode','Diff % from Benchmark','Contribution to Overall Performance Difference']	
+		df1=df_agg[0:(len(df_agg)-1)].sort_values(by='Diff % from Benchmark Avg Cost/Bundle',ascending=False)
+		df_agg=pd.concat([df1,df_agg.tail(1)])
+		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Bundle':'Diff % from Benchmark'})
+		showcolumn=[d,'Bundle %','Cost %','YTD Avg Cost/Bundle','Diff % from Benchmark','Contribution to Overall Performance Difference']	
 
 #	df_agg.to_csv(d+'.csv')
 	return df_agg[showcolumn]
@@ -2206,11 +2216,11 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 		{"name": [ "ACO Baseline","ACO"], "id": "aco"},
 		{"name": [ "ACO Baseline","Benchmark"], "id": "benchmark"},
 		{"name": [ "ACO Baseline","Best-in-Class"], "id": "bic"},
-		{"name": [ "Target","Recommended"], "id": "tar_recom"},
+		{"name": [ "Target","Recommend"], "id": "tar_recom"},
 		{"name": [ "Target","P4P/P4R"], "id": "tar_user_type",'editable':True,'presentation':'dropdown'},
 		{"name": [ "Target","User Defined Value"], "id": "tar_user",'editable': True},
 		{"name": [ "Weight","Domain"], "id": "domain"},
-		{"name": [ "Weight","Recommended"], "id": "recommended"},
+		{"name": [ "Weight","Recommend"], "id": "recommended"},
 		{"name": [ "Weight","User Defined"], "id": "userdefined",'editable': True},
 		#{"name": [ "","id"], "id": "rowid"},
 		],

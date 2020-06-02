@@ -27,6 +27,8 @@ from modal_dashboard_domain_selection import *
 
 from app import app
 
+
+
 ## load data
 df_overall=pd.read_csv("data/df_overall.csv")
 df_overall_pmpm=pd.read_csv("data/df_overall_pmpm.csv")
@@ -168,7 +170,7 @@ def manager_div_overall_performance(app):
                             dbc.Col(html.H1("OVERALL PERFORMANCE"), width="auto"),
                             dbc.Col(
                                 html.Div(
-                                    html.H5("05/29/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
+                                    html.H5("06/02/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
                                 ),
                                 width=2,
                                 style={"padding-top":"2rem"}
