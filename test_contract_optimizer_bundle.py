@@ -23,9 +23,9 @@ from modal_bundle import *
 from modal_test import *
 from bp_contract_calculation import *
 
-#from app import app
-app = dash.Dash(__name__)
-server = app.server
+from app import app
+# app = dash.Dash(__name__)
+# server = app.server
 
 file = open('configure/default_ds.json', encoding = 'utf-8')
 default_input = json.load(file)
@@ -753,8 +753,8 @@ def tab_result(app):
     )'''
 
 
-#layout = create_layout(app)
-app.layout = create_layout(app)
+layout = create_layout(app)
+# app.layout = create_layout(app)
 
 
 ### bundle selection ###

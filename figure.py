@@ -1696,7 +1696,7 @@ def drilltable_lv3(df,dimension,tableid,row_select):#row_select: numeric 0 or 1
 		[{"name": ["Total Cost", df.columns[1]], "id": df.columns[1],'type': 'numeric',"format":FormatTemplate.money(0)},]+
 		[{"name": ["Total Cost", 'Diff % from Benchmark'], "id": c,'type': 'numeric',"format":FormatTemplate.percentage(1)} for c in df.columns[2:3]]+
 		[{"name": ["Total Cost", c], "id": c,'type': 'numeric',"format":FormatTemplate.percentage(1)} for c in df.columns[3:4]]+  
-		[{"name": ["Utilization Rate",  df.columns[4]+' per 1000'], "id": df.columns[4],'type': 'numeric',"format":Format( precision=0,group=',', scheme=Scheme.fixed,),},
+		[{"name": ["Utilization Rate",  df.columns[4].replace('/', '/1000 ')], "id": df.columns[4],'type': 'numeric',"format":Format( precision=0,group=',', scheme=Scheme.fixed,),},
 		{"name": ["Utilization Rate",'Diff % from Benchmark'], "id": df.columns[5],'type': 'numeric',"format":FormatTemplate.percentage(1)},
 		{"name": ["Unit Cost",  df.columns[6]], "id":  df.columns[6],'type': 'numeric',"format":FormatTemplate.money(0)},
 		{"name": ["Unit Cost",  'Diff % from Benchmark'], "id":  df.columns[7],'type': 'numeric',"format":FormatTemplate.percentage(1)},
@@ -1753,8 +1753,13 @@ def drilltable_physician(df,tableid,row_select):
 	else:
 		row_sel='single'
 		export_format='none'
-		
-	col_max=max(df['Avg Cost/Bundle Diff % from Benchmark'].abs().max(),df['Contribution to Overall Performance Difference'].abs().max())
+
+	if tableid.find('bundle')>=0:
+		col_max=max(df['Avg Cost/Bundle Diff % from Benchmark'].abs().max(),df['Contribution to Overall Performance Difference'].abs().max())
+		col='Avg Cost/Bundle Diff % from Benchmark'
+	else:
+		col_max=max(df['Avg Cost/Episode Diff % from Benchmark'].abs().max(),df['Contribution to Overall Performance Difference'].abs().max())
+		col='Avg Cost/Episode Diff % from Benchmark'
 	tbl=dash_table.DataTable(
 		id=tableid,
 		data=df.to_dict('records'),
@@ -1775,9 +1780,9 @@ def drilltable_physician(df,tableid,row_select):
 			'height': 'auto'
 		},
 		style_data_conditional=(
-		data_bars_diverging(df, 'Avg Cost/Bundle Diff % from Benchmark',col_max) +
+		data_bars_diverging(df, col,col_max) +
 		data_bars_diverging(df, 'Contribution to Overall Performance Difference',col_max)+
-		[{'if': {'column_id':'Avg Cost/Bundle Diff % from Benchmark'},
+		[{'if': {'column_id':col},
 			 
 			 'width': '20rem',
 			}, 
@@ -2038,10 +2043,15 @@ def drilldata_process_bundle(d,d1='All',d1v='All',d2='All',d2v='All'):
 	
 	elif d in ['Physician ID']:
 
+		df1=df_agg[0:(len(df_agg)-1)].sort_values(by='Diff % from Benchmark Avg Cost/Bundle',ascending=False)
+		df_agg=pd.concat([df1,df_agg.tail(1)])
+
 		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Bundle':'Avg Cost/Bundle Diff % from Benchmark','Episode Ct':'Bundle Ct'})
 		showcolumn=[d,'Bundle Ct','YTD Total Cost','Cost %','Avg Cost/Bundle Diff % from Benchmark','Contribution to Overall Performance Difference']
 		
 	else:
+		df1=df_agg[0:(len(df_agg)-1)].sort_values(by='Diff % from Benchmark Avg Cost/Bundle',ascending=False)
+		df_agg=pd.concat([df1,df_agg.tail(1)])
 		df_agg=df_agg.rename(columns={'Diff % from Benchmark Avg Cost/Bundle':'Diff % from Benchmark'})
 		showcolumn=[d,'Bundle %','Cost %','YTD Avg Cost/Bundle','Diff % from Benchmark','Contribution to Overall Performance Difference']	
 
@@ -2206,11 +2216,11 @@ def qualitytable(df,selected_rows=list(range(0,23))):
 		{"name": [ "ACO Baseline","ACO"], "id": "aco"},
 		{"name": [ "ACO Baseline","Benchmark"], "id": "benchmark"},
 		{"name": [ "ACO Baseline","Best-in-Class"], "id": "bic"},
-		{"name": [ "Target","Recommended"], "id": "tar_recom"},
+		{"name": [ "Target","Recommend"], "id": "tar_recom"},
 		{"name": [ "Target","P4P/P4R"], "id": "tar_user_type",'editable':True,'presentation':'dropdown'},
 		{"name": [ "Target","User Defined Value"], "id": "tar_user",'editable': True},
 		{"name": [ "Weight","Domain"], "id": "domain"},
-		{"name": [ "Weight","Recommended"], "id": "recommended"},
+		{"name": [ "Weight","Recommend"], "id": "recommended"},
 		{"name": [ "Weight","User Defined"], "id": "userdefined",'editable': True},
 		#{"name": [ "","id"], "id": "rowid"},
 		],

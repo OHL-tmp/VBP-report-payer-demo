@@ -191,8 +191,8 @@ def card_overview_drilldown_bundle(percentage):
                         ],
                         style={"padding-left":"1rem"}
                     ),
-                html.P("As of 05/29/2020.", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
-                html.H6("Performance of Each Bundle", style={"padding-left":"1rem","font-size":"1.5rem"}),
+                html.P("As of 06/02/2020.", style={"color":"#000", "font-size":"0.8rem","padding-left":"1rem"}),
+                html.H4("Performance of Each Bundle", style={"padding-left":"1rem","padding-top":"1rem","font-size":"1.5rem"}),
                 dbc.Row(
                     [
                         dbc.Col(
@@ -201,7 +201,7 @@ def card_overview_drilldown_bundle(percentage):
                                     [
                                         table_perform_bundle_drill(df_bundle_performance,df_bundle_performance_pmpm),
                                     ],
-                                    style={"padding":"1rem"}
+                                    style={"padding-left":"1rem","padding-right":"1rem"}
                                 )
                             ],
                         ),
@@ -447,7 +447,7 @@ def card_table1_patient_performance_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.H1("Major joint replacement of the lower extremity (MJRLE)",id='dimname_on_patient_lv2_bundle', style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=9),
+                                                dbc.Col(html.H1("Bundle Risk: All",id='dimname_on_patient_lv2_bundle', style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=9),
                                                 
                                                                                     
                                             ]
@@ -523,7 +523,7 @@ def card_table1_physician_performance_drilldown_bundle(app):
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(html.H1("Major joint replacement of the lower extremity (MJRLE)", id='dimname_on_physician_lv2_bundle',style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=9),
+                                                dbc.Col(html.H1("Physician ID: All", id='dimname_on_physician_lv2_bundle',style={"color":"#f0a800", "font-size":"1.5rem","padding-top":"1.2rem"}), width=9),
                                                 
                                                     
                                             ]
@@ -984,10 +984,10 @@ def datatable_data_selection(d1, d2, d3, d1v, d2v, d3v, f, fv, m):
 
     df_agg['Cost %'] = df_agg['YTD Total Cost']/cost_all
 
-    df_agg['YTD Utilization/Bundle per 1000'] = df_agg['YTD Utilization']/df_agg['Episode Ct']*1000
-    df_agg['Annualized Utilization/Bundle per 1000'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']*1000
-    df_agg['Benchmark Utilization/Bundle per 1000'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']*1000
-    df_agg['Diff % from Benchmark Utilization/Bundle'] = (df_agg['Annualized Utilization/Bundle per 1000'] - df_agg['Benchmark Utilization/Bundle per 1000'])/df_agg['Benchmark Utilization/Bundle per 1000']
+    df_agg['YTD Utilization/1000 Bundle'] = df_agg['YTD Utilization']/df_agg['Episode Ct']*1000
+    df_agg['Annualized Utilization/1000 Bundle'] = df_agg['Annualized Utilization']/df_agg['Episode Ct']*1000
+    df_agg['Benchmark Utilization/1000 Bundle'] = df_agg['Benchmark Utilization']/df_agg['Episode Ct']*1000
+    df_agg['Diff % from Benchmark Utilization/Bundle'] = (df_agg['Annualized Utilization/1000 Bundle'] - df_agg['Benchmark Utilization/1000 Bundle'])/df_agg['Benchmark Utilization/1000 Bundle']
 
     df_agg['YTD Total Cost/Bundle'] = df_agg['YTD Total Cost']/df_agg['Episode Ct']
     df_agg['Annualized Total Cost/Bundle'] = df_agg['Annualized Total Cost']/df_agg['Episode Ct']

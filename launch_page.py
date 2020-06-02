@@ -28,7 +28,6 @@ import test_contract_report_generator_bundle
 
 
 
-
 def launch_layout():
     return html.Div([
 

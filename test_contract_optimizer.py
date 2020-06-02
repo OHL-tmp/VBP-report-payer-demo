@@ -132,13 +132,13 @@ def card_performance_measure_setup(app):
                         html.Div(
                             [dbc.Button("RESET",
                                 className="mb-3",
-                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem"},
+                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem","padding":"1rem"},
                                 id = 'button-reset-simulation',
                                 href='#top'
                             ),
                             dbc.Button("SUBMIT",
                                 className="mb-3",
-                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem"},
+                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem", "padding":"1rem"},
                                 id = 'button-submit-simulation',
                                 href='#top'
                             ),

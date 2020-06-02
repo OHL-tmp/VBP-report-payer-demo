@@ -33,7 +33,7 @@ df_pt_epi_phy_srv_lv1_bundle=pd.read_csv("data/bundle service level data.csv")
 
 dimension_bundle = {'Bundle Name' : list(df_pt_epi_phy_srv_lv1_bundle['Bundle Name'].unique()), 'Bundle Risk' : list(df_pt_epi_phy_srv_lv1_bundle['Bundle Risk'].unique()), 
 'Physician ID' : list(df_pt_epi_phy_srv_lv1_bundle['Physician ID'].unique()), 'Service Category' : list(df_pt_epi_phy_srv_lv1_bundle['Service Category'].unique())}
-measure_bundle = ['Cost %','Bundle %','YTD Total Cost/Bundle', 'Annualized Total Cost/Bundle', 'Benchmark Total Cost/Bundle', 'Diff % from Benchmark Total Cost/Bundle','YTD Utilization/Bundle per 1000', 'Annualized Utilization/Bundle per 1000', 'Benchmark Utilization/Bundle per 1000', 'Diff % from Benchmark Utilization/Bundle','YTD Unit Cost', 'Annualized Unit Cost', 'Benchmark Unit Cost', 'Diff % from Benchmark Unit Cost']
+measure_bundle = ['Cost %','Bundle %','YTD Total Cost/Bundle', 'Annualized Total Cost/Bundle', 'Benchmark Total Cost/Bundle', 'Diff % from Benchmark Total Cost/Bundle','YTD Utilization/1000 Bundle', 'Annualized Utilization/1000 Bundle', 'Benchmark Utilization/1000 Bundle', 'Diff % from Benchmark Utilization/Bundle','YTD Unit Cost', 'Annualized Unit Cost', 'Benchmark Unit Cost', 'Diff % from Benchmark Unit Cost']
 
 def tableview_bundle():
 	return html.Div(
