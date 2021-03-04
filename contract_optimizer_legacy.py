@@ -430,7 +430,7 @@ def card_outcome_measure(app):
                         dbc.Row(
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                dbc.Col(
+                                tdbc.Col(
                                     [
                                         html.H4(
                                             [

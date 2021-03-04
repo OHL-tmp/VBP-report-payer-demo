@@ -28,7 +28,7 @@ def get_header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, 
                         className="nav-link",
                         active = dashboard_active,
                         ),
-                className="tab  first",
+                className="tab first",
                 ),
             dbc.NavItem(dbc.NavLink(
                         "Drilldown",
