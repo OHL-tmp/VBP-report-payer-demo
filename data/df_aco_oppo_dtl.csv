@@ -1,0 +1,26 @@
+﻿Patient Cohort,Provider Group,Benchmark*,Cost Reduction if Perform as Benchmark(PMPM),Best-in-Class*,Cost Reduction if Perform as Best-in-Class(PMPM),alias,oppo
+High Risk Chronic Patient,1500,1300,200,1200,300,High Risk Chronic Patient Management,pat_manage
+Patients with Mental illness,1480,1280,180,1180,280,Mental Health Integration,pat_manage
+High ED Utilizers,1460,1260,160,1160,260,High ED Utilizer Management,pat_manage
+Cancer Patients,1440,1240,140,1140,240,Oncology Care Management,pat_manage
+IP Short Stay,200,190,10,180,20,IP Short Stay,overuse_reduction
+ER,195,185,8,175,15,ER,overuse_reduction
+High Cost Imaging,190,180,6,170,10,High Cost Imaging,overuse_reduction
+Colonoscopy,185,175,4,165,5,Colonoscopy,overuse_reduction
+Disease 1,0.2,0.15,200,0.1,300,Disease 1,readmission_reduction
+Disease 2,0.18,0.13,180,0.08,280,Disease 2,readmission_reduction
+Disease 3,0.16,0.11,160,0.06,260,Disease 3,readmission_reduction
+Disease 4,0.14,0.09,140,0.04,240,Disease 4,readmission_reduction
+Disease 5,0.12,0.07,120,0.02,220,Disease 5,readmission_reduction
+Diagnostic Testing,0.6,150,0.4,200,50,Steer Diagnostic Testings to Preferred Providers,referral_steerage
+Surgery,0.4,100,0.3,150,50,Steer Surgeries to Preferred Providers,referral_steerage
+SNF,0.2,50,0.1,100,50,Steer SNF to Preferred Providers,referral_steerage
+OP Surgery Use Rate,0.2,0.25,200,0.3,300,Move Surgeries from IP to OP,service_optimize
+Biosimilar Dispensing Rate,0.18,0.23,180,0.28,280,Increase Biosimilar Dispensing Rate,service_optimize
+High Cost Implantable Device Use Rate,0.16,0.21,160,0.26,260,Reduce High Cost Implantable Device Use,service_optimize
+Urgent Care Center Use Rate,0.14,0.19,140,0.24,240,Use Urgent Care Centers to Replace ER,service_optimize
+Disease 1,0.2,0.15,200,0.1,300,Disease 1,pac_optimize
+Disease 2,0.18,0.13,180,0.08,280,Disease 2,pac_optimize
+Disease 3,0.16,0.11,160,0.06,260,Disease 3,pac_optimize
+Disease 4,0.14,0.09,140,0.04,240,Disease 4,pac_optimize
+Disease 5,0.12,0.07,120,0.02,220,Disease 5,pac_optimize

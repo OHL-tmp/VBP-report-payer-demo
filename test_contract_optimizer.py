@@ -31,6 +31,9 @@ from app import app
 global default_input, custom_input
 
 df_quality = pd.read_csv("data/quality_setup.csv")
+df_carve_out = pd.read_csv("data/df_carve_out.csv")
+df_carve_out_details=pd.read_csv('data/df_carve_out_details.csv')
+
 
 #modebar display
 button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
@@ -48,7 +51,7 @@ def create_layout(app):
 #                        n_intervals=0
 #                    ),
 
-                    html.Div([Header_contract(app, True, False, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
+                    html.Div([Header_contract(app, False, True, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
                     
                     html.A(id="top"),
 
@@ -69,7 +72,7 @@ def create_layout(app):
                     # hidden div inside the app to store the temp data
                     html.Div(id = 'temp-data', style = {'display':'none'}),
                     html.Div(id = 'temp-result', style = {'display':'none'}),
-
+                    html.Div(id = 'temp-carveout', style = {'display':'none'}),
                     
                 ],
                 style={"background-color":"#f5f5f5"},
@@ -93,7 +96,7 @@ def tab_setup(app):
                             dbc.Col(
                                 dcc.Dropdown(
                                     #id = 'dropdown-firstdollar-loss', 
-                                    options = [{'label': 'Medicare FFS', 'value': 1}, {'label':'MA/MAPD','value' : 2}, {'label':'Commercial','value' : 3}],
+                                    options = [{'label': 'Medicare FFS', 'value': 1,'disabled':True}, {'label':'MA/MAPD','value' : 2}, {'label':'Commercial','value' : 3,'disabled':True}],
                                     value = 2
                                 ), 
                                 width = 3
@@ -125,23 +128,25 @@ def card_performance_measure_setup(app):
     return dbc.Card(
                 dbc.CardBody(
                     [
-                        card_summary_improvement(app),
+                        card_recommended_carve_outs(app),
+                        # card_summary_improvement(app),
                         card_medical_cost_target(app),
                         card_sl_sharing_arrangement(app),
                         card_quality_adjustment(app),
                         html.Div(
-                            [dbc.Button("RESET",
-                                className="mb-3",
-                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem","padding":"1rem"},
-                                id = 'button-reset-simulation',
-                                href='#top'
-                            ),
-                            dbc.Button("SUBMIT",
-                                className="mb-3",
-                                style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem", "padding":"1rem"},
-                                id = 'button-submit-simulation',
-                                href='#top'
-                            ),
+                            [
+                                dbc.Button("RESET",
+                                    className="mb-3",
+                                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem","padding":"1rem","margin-right":"1rem"},
+                                    id = 'button-reset-simulation',
+                                    href='#top'
+                                ),
+                                dbc.Button("SUBMIT",
+                                    className="mb-3",
+                                    style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem", "padding":"1rem","margin-left":"1rem"},
+                                    id = 'button-submit-simulation',
+                                    href='#top'
+                                ),
                             ],
                             style={"text-align":"center"}
                         )
@@ -151,6 +156,90 @@ def card_performance_measure_setup(app):
                 style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem"}
             )
 
+
+checklist = dbc.FormGroup(
+    [
+        dbc.Label("Recommended Carve-Outs"),
+        dbc.Checklist(
+            options=[
+                {"label": "ESRD", "value": 1},
+                {"label": "Cancer Patients", "value": 2},
+                {"label": "HighCost Outliers(above 99th percentile)", "value": 3},
+                {"label": "Transplant", "value": 4},
+                {"label": "Trauma", "value": 5},
+                {"label": "High Cost Specialty Drugs", "value": 6},
+                {"label": "Mental Heaalth", "value": 7},
+                {"label": "High Cost Implantable Devices", "value": 8},
+                {"label": "Out of area Services", "value": 9},
+            ],
+            value=[1,2,3,4],
+            id="carve-outs-checklist-input",
+            inline=True,
+        ),
+    ]
+)
+
+
+def card_recommended_carve_outs(app):
+    return dbc.Card(
+                dbc.CardBody(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                dbc.Col(html.H4("Carve-Outs", style={"font-size":"1rem", "margin-left":"10px"}), width="auto"),
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            dbc.Button("Carve-out Details", className="mb-3", style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"10rem","margin-left":"4rem"}, id="open-carve-outs-modal"),
+                                            dbc.Modal(
+                                                [
+                                                    dbc.ModalHeader("Carve Out Details"),
+                                                    dbc.ModalBody(
+                                                        html.Div([tbl_carve_out_dtl(df_carve_out_details)], style={"padding-left":"2rem", "padding-right":"2rem", "padding-bottom":"4rem"})
+                                                    ),
+                                                    dbc.ModalFooter(
+                                                        dbc.Button(
+                                                            "Close", id="close-carve-outs-modal", className="ml-auto"
+                                                        )
+                                                    ),
+                                                ],
+                                                id="carve-outs-modal",
+                                                size="xl",
+                                                scrollable=True
+                                            )
+                                        ]
+                                    )
+                                    , width="auto"
+                                ),
+                            ],
+                            no_gutters=True,
+                        ),
+                        dbc.Row(
+                            [
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            html.Div(
+                                                [
+                                                    dbc.Form([checklist]),
+                                                    html.Div(id="carve-outs-checklist", hidden=True),
+                                                ]
+                                            )
+                                        ],
+                                        style={"background-color":"#fff", "border-radius":"0.5rem","border":"none","padding":"1rem","max-height":"25rem","margin-top":"1rem","font-family": 'NotoSans-Regular',"font-size": "0.8rem"}
+                                    ),
+                                    style={"padding-left":"2rem","padding-right":"1rem"}
+                                ),
+                                
+                            ]
+                        )
+                        
+                    ]
+                ),
+                className="mb-3",
+                style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem"}
+            )
 
 def card_summary_improvement(app):
     return dbc.Card(
@@ -391,19 +480,12 @@ def card_med_cost_target():
                             [
                                 dbc.Col(html.H6("Medical Cost Trend"), width=4),
                                 dbc.Col(
-                                    dbc.Row(
-                                        [
-                                            dbc.Col(html.H6("5.6%")),
-                                            dbc.Col(html.H6("3.5%")),
-                                            dbc.Col(html.H6("2.0%")),
-                                        ]
-                                    )
-                                    , width=4
+                                    html.Div(id='bsl-trend'), width=4
                                 ),
                                 dbc.Col(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.H6("3.9%")),
+                                            dbc.Col(html.Div(id="recom-trend")),
                                             dbc.Col([
                                                 dbc.InputGroup([
                                                     dbc.Input(id = 'input-usr-tgt-trend', type = "number", debounce = True, step = 0.1, value = custom_input['medical cost target']['user target trend'],
@@ -427,19 +509,12 @@ def card_med_cost_target():
                             [
                                 dbc.Col(html.H6("Medical Cost PMPM"), width=4),
                                 dbc.Col(
-                                    dbc.Row(
-                                        [
-                                            dbc.Col(html.H6(default_input['medical cost target']['medical cost pmpm'])),
-                                            dbc.Col(html.H6(default_input['medical cost target']['peer group medical cost pmpm'])),
-                                            dbc.Col(html.H6(default_input['medical cost target']['bic medical cost pmpm'])),
-                                        ]
-                                    )
-                                    , width=4
+                                    html.Div(id='bsl-pmpm'), width=4
                                 ),
                                 dbc.Col(
                                     dbc.Row(
                                         [
-                                            dbc.Col(html.H6(default_input['medical cost target']['recom target'], id = 'div-recom-tgt')),
+                                            dbc.Col(html.Div(id="recom-pmpm")),
                                             dbc.Col(html.H6(custom_input['medical cost target']['user target'], id = 'div-usr-tgt')),
                                         ]
                                     )
@@ -765,9 +840,9 @@ def tab_result(app):
                 [
                     dbc.Row(
                         [
-                            dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"0rem","font-size":"1.8rem"}), width=6),
+                            dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"0rem","font-size":"1.8rem"})),
                             dbc.Col([
-                                dbc.Button("Edit Scenario Assumptions",
+                                dbc.Button("View Scenario Assumptions",
                                     className="mb-3",
                                     style={"background-color":"#38160f", "border":"none", "border-radius":"0.25rem", "font-family":"NotoSans-Regular", "font-size":"1rem"},
                                     id = 'button-open-assump-modal'
@@ -781,22 +856,22 @@ def tab_result(app):
                                 ],
                                 width="auto"
                             ),
-                            dbc.Col(
-                                [
-                                    dbc.DropdownMenu(
-                                    label = 'Choose Version to Generate Contract',
-                                    children = [
-                                                    dbc.DropdownMenuItem('User Defined Setting', 
-                                                        href = '/vbc-demo/contract-generator/', 
-                                                        id = 'dropdownmenu-contract-gen'),
-                                                    dbc.DropdownMenuItem('Recommended Setting',
-                                                        href = '/vbc-demo/contract-generator-recommend/')
-                                                ],
-                                    style={"font-family":"NotoSans-Regular", "font-size":"1rem"},
-                                    color="warning"
-                                    )
-                                ]
-                            )
+                            # dbc.Col(
+                            #     [
+                            #         dbc.DropdownMenu(
+                            #         label = 'Choose Version to Generate Contract',
+                            #         children = [
+                            #                         dbc.DropdownMenuItem('User Defined Setting', 
+                            #                             href = '/vbc-demo/contract-generator/', 
+                            #                             id = 'dropdownmenu-contract-gen'),
+                            #                         dbc.DropdownMenuItem('Recommended Setting',
+                            #                             href = '/vbc-demo/contract-generator-recommend/')
+                            #                     ],
+                            #         style={"font-family":"NotoSans-Regular", "font-size":"1rem"},
+                            #         color="warning"
+                            #         )
+                            #     ]
+                            # )
                             
                         ],
                         style={"padding-left":"2rem"}
@@ -1072,6 +1147,67 @@ def live_load_file(n):
     return load_files()
 '''
 
+### Carve Out ###
+@app.callback(
+    [
+    Output("carve-outs-checklist", "children"),
+    Output("temp-carveout", "children"),
+    Output("bsl-trend", "children"),
+    Output("bsl-pmpm", "children"),
+    Output("recom-trend", "children"),
+    Output("recom-pmpm", "children")
+    ],
+    [
+        Input("carve-outs-checklist-input", "value"),
+    ]
+)
+def on_change_recommended_carve_outs(checklist_value):
+    checklist_str = 'c'
+    maxlength = 9
+    for ml in range(maxlength):
+        if ml+1 in checklist_value:
+            checklist_str += '1'
+        else:
+            checklist_str += '0'
+
+    carve_code = {'code':checklist_str}
+
+    data = df_carve_out[df_carve_out['code'] == checklist_str]
+
+    bsl_trend = dbc.Row(
+        [
+            dbc.Col(html.H6("{:.1f}%".format(data['bsl_aco_trend'].values[0]*100))),
+            dbc.Col(html.H6("{:.1f}%".format(data['bsl_benchmark_trend'].values[0]*100))),
+            dbc.Col(html.H6("{:.1f}%".format(data['bsl_benchbest_trend'].values[0]*100))),
+        ]
+    )
+
+    bsl_pmpm = dbc.Row(
+        [
+            dbc.Col(html.H6("${:.0f}".format(data['bsl_aco_pmpm'].values[0]))),
+            dbc.Col(html.H6("${:.0f}".format(data['bsl_benchmark_pmpm'].values[0]))),
+            dbc.Col(html.H6("${:.0f}".format(data['bsl_benchbest_pmpm'].values[0]))),
+        ]
+    )
+
+    recom_trend = html.H6("{:.1f}%".format(data['recom_tar_trend'].values[0]*100))
+
+    recom_pmpm = html.H6("${:.0f}".format(data['recom_tar_pmpm'].values[0]))
+
+    return [checklist_str, json.dumps(carve_code), bsl_trend, bsl_pmpm, recom_trend, recom_pmpm]
+
+
+@app.callback(
+    Output("carve-outs-modal", "is_open"),
+    [Input("open-carve-outs-modal", "n_clicks"), Input("close-carve-outs-modal", "n_clicks")],
+    [State("carve-outs-modal", "is_open")],
+)
+def toggle_modal_recommended_carve_out(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+###
 @app.callback(
     [Output('text-saving', 'children'),
     Output('input-usr-planshare-min', 'disabled'),
@@ -1325,9 +1461,11 @@ def store_data(usr_tgt_int, usr_tgt_trend, usr_msr, usr_planshare, usr_planshare
     [Output('tab_container', 'active_tab'),
     Output('temp-result', 'children')],
     [Input('button-submit-simulation', 'n_clicks')],
-    [State('temp-data', 'children')]
+    [State('temp-data', 'children'),State('temp-carveout', 'children')]
     )
-def cal_simulation(submit, data):
+def cal_simulation(submit, data, code):
+    # carve_code = json.loads(code)['code']
+    carve_code = eval(code)['code']
     if submit:
         datasets = json.loads(data)
         selected_rows = datasets['quality adjustment']['selected measures']
@@ -1352,7 +1490,7 @@ def cal_simulation(submit, data):
             min_user_losspct = min_user_losspct/100
             cap_user_losspct = cap_user_losspct/100
 
-        df=simulation_cal(selected_rows,domian_weight,user_tar_type,user_tar_value,default_input,target_user_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,min_user_losspct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided,lossmethod)
+        df=simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_type,user_tar_value,default_input,target_user_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,min_user_losspct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided,lossmethod)
 
         return 'tab-1', df.to_json(orient = 'split')
     return 'tab-0', ""

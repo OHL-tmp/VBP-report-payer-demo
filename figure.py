@@ -1,5 +1,6 @@
 
 import pandas as pd
+import numpy as np
 from collections import OrderedDict
 
 import plotly
@@ -30,6 +31,8 @@ colors={'blue':'rgba(18,85,222,100)','yellow':'rgba(246,177,17,100)','transparen
 domain_color={'Patient/Caregiver Experience':'rgb(244,160,159)','Care Coordination/Patient Safety':'rgb(244,160,41)',
 			  'Preventive Health':'rgb(18,85,222)','At-Risk Population':'rgb(208,118,203)'}
 
+
+aco_oppo_drill_mapping = pd.read_csv('data/aco_oppo_drill_mapping.csv')
 
 ####################################################################################################################################################################################
 ######################################################################       Dashboard         #####################################################################################
@@ -3135,16 +3138,968 @@ def bundle_measure_setup(df):
 	return table
 
 
-#def table_network_cost(df):
-
-#df_bundle_performance=pd.read_csv("data/df_bundle_performance.csv")
-#df_bundle_performance_pmpm=pd.read_csv("data/df_bundle_performance_pmpm.csv")
 
 
-#app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract-manager-drilldown/')
+#####   carve out figure   #####
+def data_bars_sensitivity(df, column,col_max, color='#FF4136'):
 
-#server = app.server
-#app.layout=html.Div([table_perform_bundle_drill(df_bundle_performance,df_bundle_performance_pmpm)])
+#   col_max=df[column].max()
+    styles = []
+    for i in df[column].to_list():
 
-#if __name__ == "__main__":
-#   app.run_server(host="127.0.0.1",debug=True)
+        bound_percentage = round(i/col_max,4) * 100
+
+        if i>0:
+            styles.append({
+                'if': {
+                    'filter_query': (
+                        '{{{column}}} = {value}'
+                    ).format(column=column, value=i),
+                    'column_id': column
+                },
+                'background': (
+                    """
+                        linear-gradient(90deg,
+                        {color} 0%,
+                        {color} {bound_percentage}%,
+                        white {bound_percentage}%,
+                        white 100%)
+                    """.format(bound_percentage=bound_percentage,color=color)
+                ),
+                'paddingBottom': 2,
+                'paddingTop': 2,
+                'textAlign':'start',
+                'paddingLeft':str(round(15*bound_percentage/100+0.3,1))+'rem',
+                'color':color,
+            })
+
+        else :
+            bound_percentage = 100+bound_percentage
+            styles.append({
+                'if': {
+                    'filter_query': (
+                        '{{{column}}} = {value}' 
+                    ).format(column=column, value=i),
+                    'column_id': column
+                },
+                'background': (
+                    """
+                        linear-gradient(90deg,
+                        white 0%,
+                        white  {bound_percentage}%,
+                        {color} {bound_percentage}%,
+                        {color} 100%)
+                    """.format(bound_percentage=bound_percentage,color=color)
+                ),
+                'paddingBottom': 2,
+                'paddingTop': 2,
+                'textAlign':'start',
+                'paddingLeft':str(round(15*bound_percentage/100-2.8,1))+'rem',
+                'color':color,
+            })
+            
+
+
+    return styles
+
+def tbl_carve_out_dtl(df):
+    col_max=round(max(df['upper variation'].max(),abs(df['lower variation'].min()))/0.75,2)
+
+    tbl=dash_table.DataTable(
+        data=df.to_dict('records'),
+        columns=[
+            {"name": "Type of Services", "id": "TypeofServices"},
+            {"name": "Average PMPM", "id": "Average PMPM",'type': 'numeric',"format":FormatTemplate.money(0)},
+            {"name": "% of Total Cost", "id": "% of Total Cost"},
+            {"name": "Variation in total cost if the service is included", "id": "lower variation",'type': 'numeric',"format":FormatTemplate.percentage(1)},
+            {"name": "Variation in total cost if the service is included", "id": "upper variation",'type': 'numeric',"format":FormatTemplate.percentage(1)},
+        ],
+        merge_duplicate_headers=True,
+        style_data_conditional=(
+            data_bars_sensitivity(df, 'lower variation',0.04) +
+            data_bars_sensitivity(df, 'upper variation',0.04)+
+            [{'if': {'column_id':'lower variation'},
+                 
+                 'width': '15rem',
+                }, 
+            {'if': {'column_id': 'upper variation'},
+                 
+                 'width': '15rem',
+                },
+
+            ]+[
+                { 
+                    'if': {'row_index':c}, 
+                    
+                    'border-top':'2px solid blue',
+                    'border-left':'2px solid blue',
+                    'border-right':'2px solid blue',
+                    'border-bottom':'0px solid grey',
+                    'height': '1rem'
+                 
+                } if c in [0,3,6] else
+                {
+                    'if': {'row_index':c}, 
+                    
+                    'border-bottom':'2px solid blue',
+                    'border-left':'2px solid blue',
+                    'border-right':'2px solid blue',
+                    'border-top':'0px solid grey',
+                    'height': '1rem'
+                 
+                } if c in [2,5,8] else
+                {
+                    'if': {'row_index':c},
+                    
+                    'border-left':'2px solid blue',
+                    'border-right':'2px solid blue',
+                    'border-bottom':'0px solid grey',
+                    'border-top':'0px solid grey',
+                }  for c in range(9)
+
+            ]+[
+                { 
+                    'if': {'row_index':c}, 
+                    
+                    'border-top':'1px solid grey',
+                    'border-left':'1px solid grey',
+                    'border-right':'1px solid grey',
+                    'border-bottom':'0px solid grey',
+                    'height': '1rem'
+                 
+                } if c in [9,12,15,18] else
+                {
+                    'if': {'row_index':c}, 
+                    
+                    'border-bottom':'1px solid grey',
+                    'border-left':'1px solid grey',
+                    'border-right':'1px solid grey',
+                    'border-top':'0px solid grey',
+                    'height': '1rem'
+                 
+                } if c in [11,14,17,20] else
+                {
+                    'if': {'row_index':c},
+                    
+                    'border-left':'1px solid grey',
+                    'border-right':'1px solid grey',
+                    'border-bottom':'0px solid grey',
+                    'border-top':'0px solid grey',
+                }  for c in range(9,21)
+
+            ]+[
+                {
+                    'if': { 'column_id': c},
+                    'border-right':'1px solid grey',
+                } if c in ['Type of Services'] else
+                {
+                    'if': { 'column_id': c},
+                    'border-left':'1px solid grey',
+                    'border-right':'1px solid grey',
+                } for c in ['Average PMPM','% of Total Cost','lower variation']
+            ]
+            ),
+           
+            style_cell={
+                'textAlign': 'center',
+                'font-family':'NotoSans-Condensed',
+                'fontSize':14,
+                'border':'0px',
+                'height': '3rem'
+            },
+
+            style_header={
+                'height': '4rem',
+                'minWidth': '3rem',
+                'maxWidth':'3rem',
+                'whiteSpace': 'normal',
+                'backgroundColor': "#f1f6ff",
+                'fontWeight': 'bold',
+                'font-family':'NotoSans-CondensedLight',
+                'fontSize':14,
+                'color': '#1357DD',
+                'text-align':'center',
+                'border':'1px solid grey',
+            },
+    )
+    
+    return tbl
+
+
+
+### opportunities ###
+def bubble_bundle(df):
+
+    fig_domain_perform = go.Figure()
+
+    fig_domain_perform.add_trace(
+            go.Scatter(        
+            x=df['volume'] , 
+            y=df['opportunity'] ,
+            x0=0,y0=0,
+            text=df['bundle'],
+            mode='markers',
+            customdata=df['bundle'],             
+            #name=domain_set[k],
+            #dx=0.1,dy=0.1,
+            marker=dict(
+                size=df['volume']*15,
+                color=colors['blue'],
+                opacity=0.8,
+                sizemode='area',
+            ),
+            selectedpoints=[18],
+            selected=dict(
+                marker=dict(
+                    opacity=0.8,
+                    color='rgb(246,177,17)'
+                    )
+
+                ),
+            unselected=dict(
+                marker=dict(
+                    opacity=0.8
+                    )
+
+                ),
+
+        )
+    )
+
+    annotations = []
+    annotations.append(dict(xref='paper', yref='paper',
+                            x=0, y=1,
+                            text='Cost Reduction Opportunity<br>(as a % of total bundle cost)',
+                            font=dict(family='NotoSans-CondensedLight', size=14, color='#38160f'),
+                            showarrow=False))
+    annotations.append(dict(xref='paper', yref='paper',
+                            x=1, y=0.12,
+                            text='Bundle Volume',
+                            font=dict(family='NotoSans-CondensedLight', size=14, color='#38160f'),
+                            showarrow=False))
+    annotations.append(dict(xref='paper', yref='paper',
+                            x=0.847, y=0.98,
+                            text='Ideal Target',
+                            font=dict(family='NotoSans-CondensedLight', size=16, color='#38160f'),
+                            showarrow=False))
+
+    fig_domain_perform.update_layout(
+        paper_bgcolor=colors['transparent'],
+        plot_bgcolor=colors['transparent'],
+        annotations=annotations,
+        shapes = [{'type':'rect','layer':'below','fillcolor':'rgba(246,177,17,0.4)',
+        'x0':150,'x1':300 ,'y0':0.03,'y1':0.06, 'line':{'color':'rgba(246,177,17,0.4)'}}],
+        showlegend=False,
+        xaxis = dict(
+            tickmode='linear',
+            #range=[0,0.5],
+            tick0=0,
+            dtick=50,
+            showticklabels=True,
+            #tickformat='%',
+            position=0,
+
+            showgrid=True,
+            gridcolor =colors['grey'],
+
+            zeroline=False,
+            zerolinecolor='grey',
+            rangemode="tozero"
+        ),
+        margin=dict(l=0,r=0,b=50,t=10,pad=0),
+        font=dict(
+            family="NotoSans-CondensedLight",
+            size=12,
+            color="#38160f"
+        ),
+        yaxis = dict(
+            showgrid = True, 
+            gridcolor =colors['grey'],
+            showline=True,
+            linecolor='grey',
+            tickmode='linear',
+            dtick=0.02,
+            range=[-0.02,0.06],
+            tickformat='%',
+            showticklabels=True,
+            zeroline=True,
+            zerolinecolor='grey',
+            ticks='inside'
+        ),
+        #hovermode=True,
+        clickmode='event+select',
+        modebar=dict(
+            bgcolor=colors['transparent']
+        ),
+    )
+    return fig_domain_perform    
+
+def bundle_trend(df):
+    
+    fig = go.Figure()
+
+    fig.add_trace(
+        go.Scatter(
+            x=df['year'], 
+            y=df['volume'],
+            #name="Monthly Growth Rate",
+            marker=dict(color=colors['blue']),
+            mode='lines+markers+text',
+            line=dict(color=colors['blue']),
+            textfont=dict(
+            family="NotoSans-CondensedLight",
+            size=12,
+            color="black"
+            ),
+            text=df['volume'],
+            textposition='top center',
+            texttemplate='%{y:,.0f}',
+            hoverinfo='skip',
+            #hovertemplate='%{y:,.0f}',
+        ),
+    )
+    fig.update_layout(
+        #title='Monthly and Cumulative Revenue',
+        plot_bgcolor=colors['transparent'],
+        paper_bgcolor=colors['transparent'],
+        showlegend=False,
+        xaxis = dict(
+            gridcolor =colors['grey'],
+            dtick=1,
+            showticklabels=True,
+        ),
+        yaxis = dict(
+            showgrid = True, 
+            gridcolor =colors['grey'],
+            nticks=5,
+            showticklabels=True,
+            rangemode="tozero",
+            zeroline=True,
+            zerolinecolor='grey',
+            range = [0, 300],
+        ),
+        modebar=dict(
+            bgcolor=colors['transparent']
+        ),        
+        margin=dict(l=10,r=10,b=100,t=40,pad=0),
+        font=dict(
+            family="NotoSans-Condensed",
+            size=12,
+            color="#38160f"
+        ),
+    )
+    return fig
+
+def bundle_avgcost(df):
+    fig = go.Figure(data=[
+        go.Bar(
+            name='',
+            x=['Provider Group','Benchmark','Best-in-Class'], 
+            y=df[['provider','benchmark','best_in_class']].values[0].tolist(),
+            text="",
+            textposition='inside', 
+            texttemplate='%{y:$,.0f}',
+            width=0.3,
+            textangle=0,
+            marker=dict(
+                    color=['rgba(246,177,17,1)','rgba(18,85,222,1)','rgba(143,170,220,1)'],
+                    opacity=[0.7,0.7,0.7]
+                    ),
+            orientation='v',
+            hoverinfo='skip',
+            #hovertemplate='%{x:,.2f}',
+        )
+    ])
+    # Change the bar mode
+    fig.update_layout(
+        
+        yaxis=dict(
+            #ticklen=2,
+            #tickwidth=5,
+            tickformat = '$',
+            #position=0.1,
+            #ticksuffix='Mn',
+            ),
+        #bargap=0,
+        paper_bgcolor=colors['transparent'],
+        plot_bgcolor=colors['transparent'],
+        showlegend=False,
+        margin=dict(l=0,r=0,b=0,t=0,pad=10),
+        font=dict(
+            family="NotoSans-Condensed",
+            size=14,
+            color="#38160f"
+        ),
+        height=360
+    )
+    return fig
+
+def bundle_svccost(df):
+
+    df_figure = df.sort_values(by='best')
+
+    colmax=df_figure['bench'].max()*1.2
+
+    fig = go.Figure(data=[
+    go.Bar(
+        name='Compare with Benchmark',
+        x=df_figure['bench'], 
+        y=df_figure['service'],
+        text="",
+        textposition='outside',#'inside', 
+        texttemplate='%{x:$,.0f}',
+        #width=0.3,
+        textangle=0,
+        marker=dict(
+                color=colors['blue'],
+                opacity=0.8
+                ),
+        orientation='h',
+        hoverinfo='y+x',
+        hovertemplate='%{x:$,.0f}',
+    ),
+
+    go.Bar(
+        name='Compare with Best-in-Class',
+        x=df_figure['best'], 
+        y=df_figure['service'],
+        text="",
+        textposition='outside',#'inside', 
+        texttemplate='%{x:$,.0f}',
+        #width=0.3,
+        textangle=0,
+        marker=dict(
+                color=colors['lightblue'],
+                opacity=0.8
+                ),
+        orientation='h',
+        hoverinfo='y+x',
+        hovertemplate='%{x:$,.0f}',
+    ),
+    ])
+
+    shapes=[]
+    shapes.append(dict(type='line',
+                        xref='x',yref='paper',x0=0,x1=0,y0=0,y1=1,
+                        line=dict(color=colors['grey'],width=2),
+                       )
+    
+    )
+
+    # Change the bar mode
+    fig.update_layout(        
+        xaxis=dict(
+            position=0,
+            visible=True,
+            range=[-colmax,colmax],
+            tickformat='$'
+            ),
+        barmode='group',
+        bargap=0.2,
+        bargroupgap=0,
+        paper_bgcolor=colors['transparent'],
+        plot_bgcolor=colors['transparent'],
+        showlegend=True,
+        legend=dict(
+            orientation='h',
+            traceorder='reversed',
+            x=0,y=-0.1
+        ),
+        margin=dict(l=120,r=120,b=80,t=20,pad=5,autoexpand=False,),
+        font=dict(
+            family="NotoSans-Condensed",
+            size=14,
+            color="#38160f"
+        ),
+        shapes=shapes,
+        height=400
+    )
+    return fig
+
+def bundle_vertical(df, numformat = 'int'):
+
+    if numformat == 'pct':
+        df_figure = df.sort_values(by='est_costpct')
+        numformat =  '%{x:.1%}'
+        xname = 'est_costpct'
+        yname = 'reduction_oppo'
+        tickform = '.1%'
+    else:
+        df_figure = df.sort_values(by='reduct_amount',ascending=False).head(10).sort_values(by='reduct_amount')
+        numformat =  '%{x:$,.0f}'
+        xname = 'reduct_amount'
+        yname = 'bundle'
+        tickform = '$'
+
+    fig = go.Figure(data=[
+        go.Bar(
+            name='',
+            x=df_figure[xname], 
+            y=df_figure[yname],
+            text="",
+            textposition='inside', 
+            texttemplate = numformat,
+            width=0.7,
+            textangle=0,
+            marker=dict(
+                    color='#1357DD',
+                    opacity=0.7
+                    ),
+            orientation='h',
+            hoverinfo='y+x',#'y',
+            hovertemplate=numformat, #'%{x:,.0f}',
+        )
+    ])
+    
+    fig.update_layout(
+        paper_bgcolor=colors['transparent'],
+        plot_bgcolor=colors['transparent'],
+        showlegend=False,
+        xaxis = dict(
+            #dtick=1,
+            rangemode="tozero",
+            tickformat=tickform,
+        ),
+        margin=dict(l=0,r=0,b=30,t=30,pad=10),
+        font=dict(
+            family="NotoSans-Condensed",
+            size=14,
+            color="#38160f"
+        ),
+        height=360
+    )
+    return fig
+
+# aco
+def aco_vertical(df, numformat = 'int'):
+
+    if numformat == 'pct':
+        df_figure = df.sort_values(by='costpct')
+        numformat =  '%{x:.1%}'
+        xname = 'costpct'
+        yname = 'reduction_oppo'
+        tickform = '.1%'
+    else:
+        df_figure = df.sort_values(by='pmpm')
+        numformat =  '%{x:$,.0f}'
+        xname = 'pmpm'
+        yname = 'reduction_oppo'
+        tickform = '$'
+
+    fig = go.Figure(data=[
+        go.Bar(
+            name='',
+            x=df_figure[xname], 
+            y=df_figure[yname],
+            text="",
+            textposition='inside', 
+            texttemplate = numformat,
+            width=0.5,
+            textangle=0,
+            marker=dict(
+                    color='#1357DD',
+                    opacity=0.7
+                    ),
+            orientation='h',
+            hoverinfo='y+x',#'y',
+            #hovertemplate='%{x:,.0f}',
+        )
+    ])
+    
+    fig.update_layout(
+        paper_bgcolor=colors['transparent'],
+        plot_bgcolor=colors['transparent'],
+        showlegend=False,
+        xaxis = dict(
+            #dtick=1,
+            rangemode="tozero",
+            tickformat=tickform,
+        ),
+        margin=dict(l=0,r=0,b=30,t=30,pad=10),
+        font=dict(
+            family="NotoSans-Condensed",
+            size=14,
+            color="#38160f"
+        ),
+        height=360
+    )
+    return fig
+
+def aco_oppo_bar(df,filter_oppo):
+
+    if filter_oppo == 'referral_steerage':
+        col = 'Cost Reduction if Perform as Best-in-Class(PMPM)'
+    else:
+        col = 'Cost Reduction if Perform as Benchmark(PMPM)'
+
+    df_figure = df[df['oppo']==filter_oppo].sort_values(by = col, ascending = False)
+
+    xname=[]
+    for item in df_figure['alias'].tolist():
+        if len(item)>25:
+            pos=item[int(len(item)/7*3):].find(' ') + int(len(item)/7*3) #item.replace(' ', '-', 2).find(' ')
+            temp=item[:pos] + '<br>' + item[pos + 1:]
+        else:
+            temp=item
+        xname.append(temp)
+
+    fig = go.Figure(data=[
+        go.Bar(
+            name='',
+            x=xname, 
+            y=df_figure[col],
+            text="",
+            textposition='inside', 
+            texttemplate='%{y:$,.0f}',
+            width=0.3,
+            textangle=0,
+            marker=dict(
+                    color=colors['blue'],
+                    opacity=np.linspace(1,(1.15-0.15*len(df_figure)),len(df_figure))
+                    ),
+            orientation='v',
+            hoverinfo='skip',
+            #hovertemplate='%{x:,.2f}',
+        )
+    ])
+    # Change the bar mode
+    fig.update_layout(
+        
+        yaxis=dict(
+            #ticklen=2,
+            #tickwidth=5,
+            tickformat = '$',
+            #position=0.1,
+            #ticksuffix='Mn',
+            ),
+        #bargap=0,
+        paper_bgcolor=colors['transparent'],
+        plot_bgcolor=colors['transparent'],
+        showlegend=False,
+        margin=dict(l=0,r=0,b=0,t=0,pad=10),
+        font=dict(
+            family="NotoSans-Condensed",
+            size=14,
+            color="#38160f"
+        ),
+        height=200
+    )
+    return fig
+
+def aco_oppo_tbl(df,filter_oppo):
+
+    df_table = df[df['oppo']==filter_oppo]
+
+    format_money = FormatTemplate.money(0)
+    format_pct = FormatTemplate.percentage(0)
+    format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
+
+    dim_name = {'pat_manage':'Patient Cohort', 'overuse_reduction':'Service', 'readmission_reduction':'Disease', 'service_optimize':'Service Rate', 'pac_optimize':'Disease', }
+
+    if filter_oppo == 'referral_steerage':
+        col = [['','Service'], ['Preferred Provider','% of Total Units'], ['Preferred Provider','Avg Cost/Unit'], 
+        ['Non-Preferred Provider','% of Total Units'], ['Non-Preferred Provider','Avg Cost/Unit'],['','Cost Reduction if Steering All Visits to Preferred Provider(PMPM)']]
+        table_col = [{'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} if k in[2,4,5] \
+        else {'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_pct}for k in range(6)]
+    elif filter_oppo in ['pat_manage']:
+        table_col = [{'name':dim_name[filter_oppo], 'id':df_table.columns[k]} if k==0 \
+        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
+    elif filter_oppo in ['overuse_reduction']:
+        table_col = [{'name':dim_name[filter_oppo], 'id':df_table.columns[k]} if k==0 \
+        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_num} if k in [1,2,4] \
+        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
+    else:
+        table_col = [{'name':dim_name[filter_oppo], 'id':df_table.columns[k]} if k==0 \
+        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_pct} if k in [1,2,4] \
+        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
+    
+    table=dash_table.DataTable(
+        data=df_table.to_dict('records'),
+        columns=table_col,  
+        merge_duplicate_headers=True,
+        style_data={
+            'whiteSpace': 'normal',
+            'height': 'auto'
+        },
+        style_data_conditional=[
+            {'if': {'column_id':df_table.columns[0]},
+             'textAlign':'start',
+             'width':'15rem'
+            },
+        ],
+        style_cell={
+            'textAlign': 'center',
+            'font-family':'NotoSans-Regular',
+            'fontSize':12,
+            'border':'1px solid grey',
+            'height': '1.5rem',
+        },
+        style_table={
+            'back':  colors['blue'],
+        },
+        style_header={
+            'height': '2.5rem',
+            'minWidth':'3rem',
+            'maxWidth':'8rem',
+            'whiteSpace': 'normal',
+            'backgroundColor': '#f1f6ff',
+            'fontWeight': 'bold',
+            'font-family':'NotoSans-CondensedLight',
+            'fontSize':12,
+            'color': '#1357DD',
+            'text-align':'center',
+            'border':'1px solid grey',
+            'text-decoration':'none'
+        },
+    )
+    return table
+
+
+def bundle_oppo_tbl(df):
+    
+    format_money = FormatTemplate.money(0)
+    format_pct = FormatTemplate.percentage(1)
+    format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
+
+    df_table = df.sort_values(by = 'reduct_amount', ascending = False)
+
+    col = ['Bundle','Bundle Volume','Average Cost/Bundle','Estimated Cost Reduction Opportunity(average bundle cost)',
+    'Estimated Cost Reduction Opportunity(% of average bundle cost)','Total Cost Reduction Opportunity']
+
+    table_col = [{'name':col[k], 'id':df_table.columns[k]} if k==0 \
+    else {'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_num} if k==1 \
+    else {'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} if k in [2,3,5] \
+    else {'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_pct} for k in range(6)]
+
+    table=dash_table.DataTable(
+        data=df_table.to_dict('records'),
+        columns=table_col,  
+        merge_duplicate_headers=True,
+        style_data={
+            'whiteSpace': 'normal',
+            'height': 'auto'
+        },
+        style_data_conditional=[
+            {'if': {'column_id':df_table.columns[0]},
+             'textAlign':'start',
+             'width':'24rem'
+            },
+        ],
+        style_cell={
+            'textAlign': 'center',
+            'font-family':'NotoSans-Regular',
+            'fontSize':12,
+            'border':'1px solid grey',
+            'height': '1.5rem',
+        },
+        style_table={
+            'back':  colors['blue'],
+        },
+        style_header={
+            'height': '2.5rem',
+            'minWidth':'3rem',
+            'maxWidth':'8rem',
+            'whiteSpace': 'normal',
+            'backgroundColor': '#f1f6ff',
+            'fontWeight': 'bold',
+            'font-family':'NotoSans-CondensedLight',
+            'fontSize':12,
+            'color': '#1357DD',
+            'text-align':'center',
+            'border':'1px solid grey',
+            'text-decoration':'none'
+        },
+    )
+    return table
+
+def bundle_oppo_dtl_bydim(df, tableid):
+    
+    format_money = FormatTemplate.money(0)
+    format_pct = FormatTemplate.percentage(1)
+    format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
+
+    col = [['',df.columns[k]] if k<=3 else ['Comparison with Benchmark',df.columns[k]] for k in range(1,10)]
+
+    table_col = [{'name':col[k-1], 'id':df.columns[k]} if k==1 \
+    else {'name':col[k-1], 'id':df.columns[k], 'type':'numeric', 'format':format_num} if k==2 \
+    #else {'name':col[k-1], 'id':df.columns[k], 'type':'numeric', 'format':format_money} if k in [4,9] \
+    else {'name':col[k-1], 'id':df.columns[k], 'type':'numeric', 'format':format_pct} for k in range(1,10)]
+
+    table=dash_table.DataTable(
+        data=df.to_dict('records'),
+        id=tableid,
+        columns=table_col,  
+        merge_duplicate_headers=True,
+        style_data={
+            'whiteSpace': 'normal',
+            'height': 'auto'
+        },
+        style_data_conditional=(
+        data_bars_diverging_bundle(df, df.columns[4],10) +
+        data_bars_diverging_bundle(df, df.columns[5],10) +
+        data_bars_diverging_bundle(df, df.columns[6],10) +
+        data_bars_diverging_bundle(df, df.columns[7],10) +
+        data_bars_diverging_bundle(df, df.columns[8],10) +
+        data_bars_diverging_bundle(df, df.columns[9],10) +
+        [{'if': {'column_id':df.columns[k]},
+             
+             'width': '10rem',
+            } for k in range(4,10)]+[ 
+        {'if': {'column_id':df.columns[1]},
+             
+             'width': '5rem',
+            }, 
+        ]
+        ),
+        style_cell={
+            'textAlign': 'center',
+            'font-family':'NotoSans-Regular',
+            'fontSize':12,
+            'border':'1px solid grey',
+            'height': '1.5rem',
+        },
+        style_table={
+            'back':  colors['blue'],
+        },
+        style_header={
+            'height': '2.5rem',
+            'minWidth':'3rem',
+            'maxWidth':'8rem',
+            'whiteSpace': 'normal',
+            'backgroundColor': '#f1f6ff',
+            'fontWeight': 'bold',
+            'font-family':'NotoSans-CondensedLight',
+            'fontSize':12,
+            'color': '#1357DD',
+            'text-align':'center',
+            'border':'1px solid grey',
+            'text-decoration':'none'
+        },
+    )
+    return table
+
+def bundle_oppo_dtl_bench(df, tableid, title):
+    
+    format_money = FormatTemplate.money(0)
+    format_pct = FormatTemplate.percentage(1)
+    format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
+
+    col = [['',df.columns[k]] if k<=1 else [title,df.columns[k]] for k in range(1,7)]
+
+    if 'Rate' in title:
+        format_others = format_pct
+    elif 'Cost' in title:
+        format_others = format_money
+    else:
+        format_others = format_num
+
+    table_col = [{'name':col[k-1], 'id':df.columns[k]} if k==1 \
+    else {'name':col[k-1], 'id':df.columns[k], 'type':'numeric', 'format':format_pct} if k in [4,6] \
+    else {'name':col[k-1], 'id':df.columns[k], 'type':'numeric', 'format':format_others} for k in range(1,7)]
+
+    table=dash_table.DataTable(
+        data=df.to_dict('records'),
+        id=tableid,
+        columns=table_col,  
+        merge_duplicate_headers=True,
+        style_data={
+            'whiteSpace': 'normal',
+            'height': 'auto'
+        },
+        style_data_conditional=(
+        data_bars_diverging(df, 'Diff from Benchmark',df['Diff from Benchmark'].max()/0.9) +
+        data_bars_diverging(df, 'Diff from BIC',df['Diff from BIC'].max()/0.9) +
+        [{'if': {'column_id':'Diff from Benchmark'},
+             
+             'width': '20rem',
+            }, 
+        {'if': {'column_id':'Diff from BIC'},
+             
+             'width': '20rem',
+            }, 
+        {'if': {'column_id':df.columns[1]},
+             
+             'width': '10rem',
+            }, 
+        ]
+        ),
+        style_cell={
+            'textAlign': 'center',
+            'font-family':'NotoSans-Regular',
+            'fontSize':12,
+            'border':'1px solid grey',
+            'height': '1.5rem',
+        },
+        style_table={
+            'back':  colors['blue'],
+        },
+        style_header={
+            'height': '2.5rem',
+            'minWidth':'3rem',
+            'maxWidth':'8rem',
+            'whiteSpace': 'normal',
+            'backgroundColor': '#f1f6ff',
+            'fontWeight': 'bold',
+            'font-family':'NotoSans-CondensedLight',
+            'fontSize':12,
+            'color': '#1357DD',
+            'text-align':'center',
+            'border':'1px solid grey',
+            'text-decoration':'none'
+        },
+    )
+    return table
+
+def aco_oppo_drill_tbl(df):
+    
+    df_table = df[(df['oppo']=='pat_manage') & (df['category']=='High Risk Chronic Patient')]
+
+    fstcol_name = aco_oppo_drill_mapping[(aco_oppo_drill_mapping['oppo']=='pat_manage') & (aco_oppo_drill_mapping['category']=='High Risk Chronic Patient')].values[0]
+
+    format_money = FormatTemplate.money(0)
+    format_pct = FormatTemplate.percentage(0)
+    format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
+
+    table_col = [{'name':'Disease', 'id':df_table.columns[k]} if k==0 else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
+   
+    table=dash_table.DataTable(
+        data=df_table.to_dict('records'),
+        columns=table_col, 
+        id = 'oppo-table-acodrill',
+        merge_duplicate_headers=True,
+        style_data={
+            'whiteSpace': 'normal',
+            'height': 'auto'
+        },
+        style_data_conditional=[
+            {'if': {'column_id':'Subcategory'},
+             'textAlign':'start',
+             'width':'15rem'
+            },
+        ],
+        style_cell={
+            'textAlign': 'center',
+            'font-family':'NotoSans-Regular',
+            'fontSize':12,
+            'border':'1px solid grey',
+            'height': '1.5rem',
+        },
+        style_table={
+            'back':  colors['blue'],
+        },
+        style_header={
+            'height': '2.5rem',
+            'minWidth':'3rem',
+            'maxWidth':'8rem',
+            'whiteSpace': 'normal',
+            'backgroundColor': '#f1f6ff',
+            'fontWeight': 'bold',
+            'font-family':'NotoSans-CondensedLight',
+            'fontSize':12,
+            'color': '#1357DD',
+            'text-align':'center',
+            'border':'1px solid grey',
+            'text-decoration':'none'
+        },
+    )
+    return table

@@ -1,0 +1,281 @@
+﻿bundle,service,best,bench
+Back and neck except spinal fusion,Readmission,1054 ,1125 
+Back and neck except spinal fusion,Post-discharge ER,250 ,362 
+Back and neck except spinal fusion,Other OP,148 ,196 
+Back and neck except spinal fusion,Skilled Nursing Facility,230 ,582 
+Back and neck except spinal fusion,DME,115 ,197 
+Back and neck except spinal fusion,Professional Service,-9 ,-726 
+Back and neck except spinal fusion,Home Health,84 ,87 
+Back and neck except spinal fusion,Inpatient Rehab,83 ,131 
+Double joint replacement of the lower extremity,Readmission,2354 ,2825 
+Double joint replacement of the lower extremity,Post-discharge ER,401 ,709 
+Double joint replacement of the lower extremity,Other OP,388 ,538 
+Double joint replacement of the lower extremity,Skilled Nursing Facility,692 ,872 
+Double joint replacement of the lower extremity,DME,166 ,510 
+Double joint replacement of the lower extremity,Professional Service,-24 ,-1521 
+Double joint replacement of the lower extremity,Home Health,315 ,339 
+Double joint replacement of the lower extremity,Inpatient Rehab,267 ,288 
+Fractures of the femur and hip or pelvis,Readmission,51 ,986 
+Fractures of the femur and hip or pelvis,Post-discharge ER,373 ,367 
+Fractures of the femur and hip or pelvis,Other OP,158 ,374 
+Fractures of the femur and hip or pelvis,Skilled Nursing Facility,447 ,657 
+Fractures of the femur and hip or pelvis,DME,286 ,420 
+Fractures of the femur and hip or pelvis,Professional Service,1527 ,-100 
+Fractures of the femur and hip or pelvis,Home Health,93 ,166 
+Fractures of the femur and hip or pelvis,Inpatient Rehab,87 ,152 
+Hip and femur procedures except major joint,Readmission,1882 ,2538 
+Hip and femur procedures except major joint,Post-discharge ER,314 ,331 
+Hip and femur procedures except major joint,Other OP,118 ,374 
+Hip and femur procedures except major joint,Skilled Nursing Facility,889 ,973 
+Hip and femur procedures except major joint,DME,108 ,300 
+Hip and femur procedures except major joint,Professional Service,714 ,-640 
+Hip and femur procedures except major joint,Home Health,207 ,305 
+Hip and femur procedures except major joint,Inpatient Rehab,120 ,172 
+"Lower extremity/humerus procedure except hip, foot, femur",Readmission,857 ,1330 
+"Lower extremity/humerus procedure except hip, foot, femur",Post-discharge ER,450 ,474 
+"Lower extremity/humerus procedure except hip, foot, femur",Other OP,365 ,473 
+"Lower extremity/humerus procedure except hip, foot, femur",Skilled Nursing Facility,332 ,735 
+"Lower extremity/humerus procedure except hip, foot, femur",DME,495 ,515 
+"Lower extremity/humerus procedure except hip, foot, femur",Professional Service,847 ,-283 
+"Lower extremity/humerus procedure except hip, foot, femur",Home Health,56 ,97 
+"Lower extremity/humerus procedure except hip, foot, femur",Inpatient Rehab,19 ,80 
+Major joint replacement of the lower extremity (MJRLE),Readmission,593 ,1332 
+Major joint replacement of the lower extremity (MJRLE),Post-discharge ER,155 ,323 
+Major joint replacement of the lower extremity (MJRLE),Other OP,374 ,400 
+Major joint replacement of the lower extremity (MJRLE),Skilled Nursing Facility,740 ,729 
+Major joint replacement of the lower extremity (MJRLE),DME,202 ,246 
+Major joint replacement of the lower extremity (MJRLE),Professional Service,216 ,-862 
+Major joint replacement of the lower extremity (MJRLE),Home Health,232 ,292 
+Major joint replacement of the lower extremity (MJRLE),Inpatient Rehab,93 ,144 
+Major joint replacement of the upper extremity,Readmission,250 ,744 
+Major joint replacement of the upper extremity,Post-discharge ER,114 ,279 
+Major joint replacement of the upper extremity,Other OP,156 ,256 
+Major joint replacement of the upper extremity,Skilled Nursing Facility,608 ,683 
+Major joint replacement of the upper extremity,DME,153 ,164 
+Major joint replacement of the upper extremity,Professional Service,917 ,13 
+Major joint replacement of the upper extremity,Home Health,77 ,107 
+Major joint replacement of the upper extremity,Inpatient Rehab,46 ,74 
+Spinal fusion,Readmission,1330 ,1416 
+Spinal fusion,Post-discharge ER,296 ,291 
+Spinal fusion,Other OP,121 ,277 
+Spinal fusion,Skilled Nursing Facility,456 ,490 
+Spinal fusion,DME,258 ,440 
+Spinal fusion,Professional Service,-2045 ,-2484 
+Spinal fusion,Home Health,227 ,217 
+Spinal fusion,Inpatient Rehab,84 ,81 
+Renal failure,Readmission,1527 ,1722 
+Renal failure,Post-discharge ER,233 ,290 
+Renal failure,Other OP,101 ,273 
+Renal failure,Skilled Nursing Facility,506 ,581 
+Renal failure,DME,38 ,219 
+Renal failure,Professional Service,-289 ,-1039 
+Renal failure,Home Health,189 ,226 
+Renal failure,Inpatient Rehab,75 ,108 
+Cellulitis,Readmission,1202 ,1416 
+Cellulitis,Post-discharge ER,157 ,229 
+Cellulitis,Other OP,179 ,273 
+Cellulitis,Skilled Nursing Facility,351 ,371 
+Cellulitis,DME,255 ,352 
+Cellulitis,Professional Service,-361 ,-909 
+Cellulitis,Home Health,131 ,128 
+Cellulitis,Inpatient Rehab,47 ,101 
+Sepsis,Readmission,-363 ,-58 
+Sepsis,Post-discharge ER,-103 ,7 
+Sepsis,Other OP,-9 ,98 
+Sepsis,Skilled Nursing Facility,-174 ,-88 
+Sepsis,DME,-64 ,-32 
+Sepsis,Professional Service,1047 ,206 
+Sepsis,Home Health,-58 ,65 
+Sepsis,Inpatient Rehab,-30 ,49 
+Urinary tract infection,Readmission,275 ,573 
+Urinary tract infection,Post-discharge ER,204 ,223 
+Urinary tract infection,Other OP,230 ,295 
+Urinary tract infection,Skilled Nursing Facility,-71 ,173 
+Urinary tract infection,DME,192 ,207 
+Urinary tract infection,Professional Service,750 ,-28 
+Urinary tract infection,Home Health,43 ,123 
+Urinary tract infection,Inpatient Rehab,24 ,81 
+Seizures,Readmission,620 ,828 
+Seizures,Post-discharge ER,284 ,298 
+Seizures,Other OP,78 ,189 
+Seizures,Skilled Nursing Facility,259 ,331 
+Seizures,DME,202 ,220 
+Seizures,Professional Service,138 ,-383 
+Seizures,Home Health,92 ,140 
+Seizures,Inpatient Rehab,20 ,71 
+Stroke,Readmission,1256 ,1769 
+Stroke,Post-discharge ER,296 ,456 
+Stroke,Other OP,89 ,245 
+Stroke,Skilled Nursing Facility,688 ,753 
+Stroke,DME,240 ,230 
+Stroke,Professional Service,219 ,-774 
+Stroke,Home Health,194 ,275 
+Stroke,Inpatient Rehab,138 ,167 
+Acute myocardial infarction,Readmission,562 ,1146 
+Acute myocardial infarction,Post-discharge ER,512 ,524 
+Acute myocardial infarction,Other OP,471 ,495 
+Acute myocardial infarction,Skilled Nursing Facility,896 ,1007 
+Acute myocardial infarction,DME,84 ,270 
+Acute myocardial infarction,Professional Service,-149 ,-1148 
+Acute myocardial infarction,Home Health,163 ,167 
+Acute myocardial infarction,Inpatient Rehab,77 ,154 
+Cardiac arrhythmia,Readmission,-549 ,19 
+Cardiac arrhythmia,Post-discharge ER,13 ,-1 
+Cardiac arrhythmia,Other OP,-90 ,-34 
+Cardiac arrhythmia,Skilled Nursing Facility,-65 ,252 
+Cardiac arrhythmia,DME,14 ,100 
+Cardiac arrhythmia,Professional Service,-45 ,-1133 
+Cardiac arrhythmia,Home Health,-38 ,14 
+Cardiac arrhythmia,Inpatient Rehab,5 ,30 
+Cardiac defibrillator,Readmission,1349 ,3070 
+Cardiac defibrillator,Post-discharge ER,1266 ,1417 
+Cardiac defibrillator,Other OP,861 ,1074 
+Cardiac defibrillator,Skilled Nursing Facility,2100 ,3002 
+Cardiac defibrillator,DME,776 ,866 
+Cardiac defibrillator,Professional Service,277 ,-3086 
+Cardiac defibrillator,Home Health,722 ,876 
+Cardiac defibrillator,Inpatient Rehab,465 ,597 
+Cardiac valve,Readmission,-422 ,1551 
+Cardiac valve,Post-discharge ER,333 ,421 
+Cardiac valve,Other OP,383 ,700 
+Cardiac valve,Skilled Nursing Facility,389 ,733 
+Cardiac valve,DME,405 ,456 
+Cardiac valve,Professional Service,194 ,-2769 
+Cardiac valve,Home Health,182 ,174 
+Cardiac valve,Inpatient Rehab,26 ,224 
+Congestive heart failure,Readmission,928 ,1296 
+Congestive heart failure,Post-discharge ER,135 ,169 
+Congestive heart failure,Other OP,371 ,390 
+Congestive heart failure,Skilled Nursing Facility,594 ,636 
+Congestive heart failure,DME,118 ,261 
+Congestive heart failure,Professional Service,148 ,-635 
+Congestive heart failure,Home Health,118 ,226 
+Congestive heart failure,Inpatient Rehab,37 ,105 
+Coronary artery bypass graft,Readmission,1355 ,2629 
+Coronary artery bypass graft,Post-discharge ER,197 ,561 
+Coronary artery bypass graft,Other OP,531 ,620 
+Coronary artery bypass graft,Skilled Nursing Facility,1125 ,1232 
+Coronary artery bypass graft,DME,131 ,281 
+Coronary artery bypass graft,Professional Service,-946 ,-3124 
+Coronary artery bypass graft,Home Health,81 ,225 
+Coronary artery bypass graft,Inpatient Rehab,82 ,132 
+Pacemaker,Readmission,-1088 ,-1268 
+Pacemaker,Post-discharge ER,-482 ,-309 
+Pacemaker,Other OP,-365 ,-73 
+Pacemaker,Skilled Nursing Facility,-780 ,-97 
+Pacemaker,DME,-168 ,-156 
+Pacemaker,Professional Service,619 ,-580 
+Pacemaker,Home Health,-242 ,-86 
+Pacemaker,Inpatient Rehab,-157 ,-95 
+Percutaneous coronary intervention,Readmission,69 ,31 
+Percutaneous coronary intervention,Post-discharge ER,-359 ,-87 
+Percutaneous coronary intervention,Other OP,-290 ,-112 
+Percutaneous coronary intervention,Skilled Nursing Facility,-670 ,-119 
+Percutaneous coronary intervention,DME,-99 ,-19 
+Percutaneous coronary intervention,Professional Service,-422 ,-1549 
+Percutaneous coronary intervention,Home Health,-174 ,-115 
+Percutaneous coronary intervention,Inpatient Rehab,-25 ,0 
+Transcatheter Aortic Valve Replacement,Readmission,-2359 ,-1255 
+Transcatheter Aortic Valve Replacement,Post-discharge ER,26 ,112 
+Transcatheter Aortic Valve Replacement,Other OP,-294 ,172 
+Transcatheter Aortic Valve Replacement,Skilled Nursing Facility,-100 ,-113 
+Transcatheter Aortic Valve Replacement,DME,-619 ,-153 
+Transcatheter Aortic Valve Replacement,Professional Service,-1124 ,-3465 
+Transcatheter Aortic Valve Replacement,Home Health,-348 ,-234 
+Transcatheter Aortic Valve Replacement,Inpatient Rehab,-181 ,-64 
+"COPD, bronchitis, asthma",Readmission,439 ,837 
+"COPD, bronchitis, asthma",Post-discharge ER,322 ,317 
+"COPD, bronchitis, asthma",Other OP,156 ,221 
+"COPD, bronchitis, asthma",Skilled Nursing Facility,347 ,474 
+"COPD, bronchitis, asthma",DME,158 ,172 
+"COPD, bronchitis, asthma",Professional Service,362 ,-299 
+"COPD, bronchitis, asthma",Home Health,24 ,83 
+"COPD, bronchitis, asthma",Inpatient Rehab,60 ,62 
+Simple pneumonia and respiratory infections,Readmission,370 ,382 
+Simple pneumonia and respiratory infections,Post-discharge ER,-5 ,-2 
+Simple pneumonia and respiratory infections,Other OP,106 ,115 
+Simple pneumonia and respiratory infections,Skilled Nursing Facility,-43 ,-4 
+Simple pneumonia and respiratory infections,DME,55 ,73 
+Simple pneumonia and respiratory infections,Professional Service,229 ,-2 
+Simple pneumonia and respiratory infections,Home Health,-45 ,79 
+Simple pneumonia and respiratory infections,Inpatient Rehab,35 ,61 
+Bariatric Surgery,Readmission,196 ,981 
+Bariatric Surgery,Post-discharge ER,305 ,352 
+Bariatric Surgery,Other OP,174 ,219 
+Bariatric Surgery,Skilled Nursing Facility,382 ,394 
+Bariatric Surgery,DME,312 ,346 
+Bariatric Surgery,Professional Service,507 ,-635 
+Bariatric Surgery,Home Health,-6 ,130 
+Bariatric Surgery,Inpatient Rehab,-27 ,56 
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Readmission,519 ,711 
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Post-discharge ER,27 ,66 
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Other OP,112 ,169 
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Skilled Nursing Facility,279 ,296 
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",DME,164 ,178 
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Professional Service,-1026 ,-1439 
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Home Health,-36 ,30 
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Inpatient Rehab,45 ,74 
+Gastrointestinal hemorrhage,Readmission,766 ,980 
+Gastrointestinal hemorrhage,Post-discharge ER,159 ,280 
+Gastrointestinal hemorrhage,Other OP,8 ,164 
+Gastrointestinal hemorrhage,Skilled Nursing Facility,168 ,344 
+Gastrointestinal hemorrhage,DME,25 ,158 
+Gastrointestinal hemorrhage,Professional Service,60 ,-794 
+Gastrointestinal hemorrhage,Home Health,74 ,115 
+Gastrointestinal hemorrhage,Inpatient Rehab,66 ,79 
+Gastrointestinal obstruction,Readmission,273 ,645 
+Gastrointestinal obstruction,Post-discharge ER,181 ,177 
+Gastrointestinal obstruction,Other OP,106 ,198 
+Gastrointestinal obstruction,Skilled Nursing Facility,307 ,512 
+Gastrointestinal obstruction,DME,92 ,129 
+Gastrointestinal obstruction,Professional Service,406 ,-349 
+Gastrointestinal obstruction,Home Health,54 ,67 
+Gastrointestinal obstruction,Inpatient Rehab,30 ,72 
+Inflammatory Bowel Disease,Readmission,584 ,681 
+Inflammatory Bowel Disease,Post-discharge ER,133 ,214 
+Inflammatory Bowel Disease,Other OP,175 ,175 
+Inflammatory Bowel Disease,Skilled Nursing Facility,283 ,432 
+Inflammatory Bowel Disease,DME,121 ,125 
+Inflammatory Bowel Disease,Professional Service,-312 ,-677 
+Inflammatory Bowel Disease,Home Health,51 ,70 
+Inflammatory Bowel Disease,Inpatient Rehab,62 ,78 
+Major bowel procedure,Readmission,235 ,705 
+Major bowel procedure,Post-discharge ER,173 ,317 
+Major bowel procedure,Other OP,-85 ,166 
+Major bowel procedure,Skilled Nursing Facility,-26 ,256 
+Major bowel procedure,DME,149 ,157 
+Major bowel procedure,Professional Service,1127 ,-106 
+Major bowel procedure,Home Health,2 ,33 
+Major bowel procedure,Inpatient Rehab,29 ,77 
+(OP) Back & neck except spinal fusion,Readmission,25 ,54 
+(OP) Back & neck except spinal fusion,Post-discharge ER,-75 ,15 
+(OP) Back & neck except spinal fusion,Other OP,-27 ,12 
+(OP) Back & neck except spinal fusion,Skilled Nursing Facility,-82 ,50 
+(OP) Back & neck except spinal fusion,DME,-97 ,-8 
+(OP) Back & neck except spinal fusion,Professional Service,-402 ,-856 
+(OP) Back & neck except spinal fusion,Home Health,-94 ,-33 
+(OP) Back & neck except spinal fusion,Inpatient Rehab,-23 ,-9 
+(OP) Cardiac Defibrillator,Readmission,2332 ,2459 
+(OP) Cardiac Defibrillator,Post-discharge ER,560 ,583 
+(OP) Cardiac Defibrillator,Other OP,452 ,535 
+(OP) Cardiac Defibrillator,Skilled Nursing Facility,1023 ,1508 
+(OP) Cardiac Defibrillator,DME,338 ,528 
+(OP) Cardiac Defibrillator,Professional Service,-1174 ,-2145 
+(OP) Cardiac Defibrillator,Home Health,222 ,257 
+(OP) Cardiac Defibrillator,Inpatient Rehab,156 ,182 
+(OP) Major joint replacement of the lower extremity (MJRLE),Readmission,386 ,534 
+(OP) Major joint replacement of the lower extremity (MJRLE),Post-discharge ER,59 ,69 
+(OP) Major joint replacement of the lower extremity (MJRLE),Other OP,98 ,112 
+(OP) Major joint replacement of the lower extremity (MJRLE),Skilled Nursing Facility,191 ,297 
+(OP) Major joint replacement of the lower extremity (MJRLE),DME,109 ,107 
+(OP) Major joint replacement of the lower extremity (MJRLE),Professional Service,-218 ,-531 
+(OP) Major joint replacement of the lower extremity (MJRLE),Home Health,49 ,70 
+(OP) Major joint replacement of the lower extremity (MJRLE),Inpatient Rehab,37 ,53 
+(OP) Percutaneous Coronary Intervention,Readmission,390 ,549 
+(OP) Percutaneous Coronary Intervention,Post-discharge ER,128 ,157 
+(OP) Percutaneous Coronary Intervention,Other OP,9 ,49 
+(OP) Percutaneous Coronary Intervention,Skilled Nursing Facility,120 ,185 
+(OP) Percutaneous Coronary Intervention,DME,102 ,117 
+(OP) Percutaneous Coronary Intervention,Professional Service,438 ,39 
+(OP) Percutaneous Coronary Intervention,Home Health,13 ,69 
+(OP) Percutaneous Coronary Intervention,Inpatient Rehab,16 ,52 

@@ -1,0 +1,351 @@
+﻿bundle,HCPCS Code,Provider Group,Benchmark,Diff from Benchmark,Best-in-Class,Diff from BIC
+Back and neck except spinal fusion,All,970,702,0.38,710,0.37
+Back and neck except spinal fusion,HCPCS1,175,126,0.38,128,0.37
+Back and neck except spinal fusion,HCPCS2,126,91,0.38,92,0.37
+Back and neck except spinal fusion,HCPCS3,116,84,0.38,85,0.37
+Back and neck except spinal fusion,HCPCS4,97,70,0.38,71,0.37
+Back and neck except spinal fusion,HCPCS5,78,56,0.38,57,0.37
+Back and neck except spinal fusion,HCPCS6,49,35,0.38,36,0.37
+Back and neck except spinal fusion,HCPCS7,49,35,0.38,36,0.37
+Back and neck except spinal fusion,HCPCS8,19,14,0.38,14,0.37
+Back and neck except spinal fusion,HCPCS9,10,7,0.38,7,0.37
+Double joint replacement of the lower extremity,All,"2,300","1,946",0.18,"1,873",0.23
+Double joint replacement of the lower extremity,HCPCS1,414,350,0.18,337,0.23
+Double joint replacement of the lower extremity,HCPCS2,299,253,0.18,244,0.23
+Double joint replacement of the lower extremity,HCPCS3,276,233,0.18,225,0.23
+Double joint replacement of the lower extremity,HCPCS4,230,195,0.18,187,0.23
+Double joint replacement of the lower extremity,HCPCS5,184,156,0.18,150,0.23
+Double joint replacement of the lower extremity,HCPCS6,115,97,0.18,94,0.23
+Double joint replacement of the lower extremity,HCPCS7,115,97,0.18,94,0.23
+Double joint replacement of the lower extremity,HCPCS8,46,39,0.18,37,0.23
+Double joint replacement of the lower extremity,HCPCS9,23,19,0.18,19,0.23
+Fractures of the femur and hip or pelvis,All,"1,478","1,316",0.12,"1,093",0.35
+Fractures of the femur and hip or pelvis,HCPCS1,266,237,0.12,197,0.35
+Fractures of the femur and hip or pelvis,HCPCS2,192,171,0.12,142,0.35
+Fractures of the femur and hip or pelvis,HCPCS3,177,158,0.12,131,0.35
+Fractures of the femur and hip or pelvis,HCPCS4,148,132,0.12,109,0.35
+Fractures of the femur and hip or pelvis,HCPCS5,118,105,0.12,87,0.35
+Fractures of the femur and hip or pelvis,HCPCS6,74,66,0.12,55,0.35
+Fractures of the femur and hip or pelvis,HCPCS7,74,66,0.12,55,0.35
+Fractures of the femur and hip or pelvis,HCPCS8,30,26,0.12,22,0.35
+Fractures of the femur and hip or pelvis,HCPCS9,15,13,0.12,11,0.35
+Hip and femur procedures except major joint,All,"2,150","1,886",0.14,"1,723",0.25
+Hip and femur procedures except major joint,HCPCS1,387,340,0.14,310,0.25
+Hip and femur procedures except major joint,HCPCS2,279,245,0.14,224,0.25
+Hip and femur procedures except major joint,HCPCS3,258,226,0.14,207,0.25
+Hip and femur procedures except major joint,HCPCS4,215,189,0.14,172,0.25
+Hip and femur procedures except major joint,HCPCS5,172,151,0.14,138,0.25
+Hip and femur procedures except major joint,HCPCS6,107,94,0.14,86,0.25
+Hip and femur procedures except major joint,HCPCS7,107,94,0.14,86,0.25
+Hip and femur procedures except major joint,HCPCS8,43,38,0.14,34,0.25
+Hip and femur procedures except major joint,HCPCS9,21,19,0.14,17,0.25
+"Lower extremity/humerus procedure except hip, foot, femur",All,"1,979","1,472",0.34,"1,485",0.33
+"Lower extremity/humerus procedure except hip, foot, femur",HCPCS1,356,265,0.34,267,0.33
+"Lower extremity/humerus procedure except hip, foot, femur",HCPCS2,257,191,0.34,193,0.33
+"Lower extremity/humerus procedure except hip, foot, femur",HCPCS3,238,177,0.34,178,0.33
+"Lower extremity/humerus procedure except hip, foot, femur",HCPCS4,198,147,0.34,148,0.33
+"Lower extremity/humerus procedure except hip, foot, femur",HCPCS5,158,118,0.34,119,0.33
+"Lower extremity/humerus procedure except hip, foot, femur",HCPCS6,99,74,0.34,74,0.33
+"Lower extremity/humerus procedure except hip, foot, femur",HCPCS7,99,74,0.34,74,0.33
+"Lower extremity/humerus procedure except hip, foot, femur",HCPCS8,40,29,0.34,30,0.33
+"Lower extremity/humerus procedure except hip, foot, femur",HCPCS9,20,15,0.34,15,0.33
+Major joint replacement of the lower extremity (MJRLE),All,"1,205","1,110",0.09,"1,072",0.12
+Major joint replacement of the lower extremity (MJRLE),HCPCS1,217,200,0.09,193,0.12
+Major joint replacement of the lower extremity (MJRLE),HCPCS2,157,144,0.09,139,0.12
+Major joint replacement of the lower extremity (MJRLE),HCPCS3,145,133,0.09,129,0.12
+Major joint replacement of the lower extremity (MJRLE),HCPCS4,120,111,0.09,107,0.12
+Major joint replacement of the lower extremity (MJRLE),HCPCS5,96,89,0.09,86,0.12
+Major joint replacement of the lower extremity (MJRLE),HCPCS6,60,55,0.09,54,0.12
+Major joint replacement of the lower extremity (MJRLE),HCPCS7,60,55,0.09,54,0.12
+Major joint replacement of the lower extremity (MJRLE),HCPCS8,24,22,0.09,21,0.12
+Major joint replacement of the lower extremity (MJRLE),HCPCS9,12,11,0.09,11,0.12
+Major joint replacement of the upper extremity,All,"1,153",934,0.23,806,0.43
+Major joint replacement of the upper extremity,HCPCS1,207,168,0.23,145,0.43
+Major joint replacement of the upper extremity,HCPCS2,150,121,0.23,105,0.43
+Major joint replacement of the upper extremity,HCPCS3,138,112,0.23,97,0.43
+Major joint replacement of the upper extremity,HCPCS4,115,93,0.23,81,0.43
+Major joint replacement of the upper extremity,HCPCS5,92,75,0.23,64,0.43
+Major joint replacement of the upper extremity,HCPCS6,58,47,0.23,40,0.43
+Major joint replacement of the upper extremity,HCPCS7,58,47,0.23,40,0.43
+Major joint replacement of the upper extremity,HCPCS8,23,19,0.23,16,0.43
+Major joint replacement of the upper extremity,HCPCS9,12,9,0.23,8,0.43
+Spinal fusion,All,"1,917","2,197",-0.13,"1,872",0.02
+Spinal fusion,HCPCS1,345,395,-0.13,337,0.02
+Spinal fusion,HCPCS2,249,286,-0.13,243,0.02
+Spinal fusion,HCPCS3,230,264,-0.13,225,0.02
+Spinal fusion,HCPCS4,192,220,-0.13,187,0.02
+Spinal fusion,HCPCS5,153,176,-0.13,150,0.02
+Spinal fusion,HCPCS6,96,110,-0.13,94,0.02
+Spinal fusion,HCPCS7,96,110,-0.13,94,0.02
+Spinal fusion,HCPCS8,38,44,-0.13,37,0.02
+Spinal fusion,HCPCS9,19,22,-0.13,19,0.02
+Renal failure,All,"1,245","1,127",0.1,971,0.28
+Renal failure,HCPCS1,224,203,0.1,175,0.28
+Renal failure,HCPCS2,162,146,0.1,126,0.28
+Renal failure,HCPCS3,149,135,0.1,117,0.28
+Renal failure,HCPCS4,124,113,0.1,97,0.28
+Renal failure,HCPCS5,100,90,0.1,78,0.28
+Renal failure,HCPCS6,62,56,0.1,49,0.28
+Renal failure,HCPCS7,62,56,0.1,49,0.28
+Renal failure,HCPCS8,25,23,0.1,19,0.28
+Renal failure,HCPCS9,12,11,0.1,10,0.28
+Cellulitis,All,973,749,0.3,691,0.41
+Cellulitis,HCPCS1,175,135,0.3,124,0.41
+Cellulitis,HCPCS2,126,97,0.3,90,0.41
+Cellulitis,HCPCS3,117,90,0.3,83,0.41
+Cellulitis,HCPCS4,97,75,0.3,69,0.41
+Cellulitis,HCPCS5,78,60,0.3,55,0.41
+Cellulitis,HCPCS6,49,37,0.3,35,0.41
+Cellulitis,HCPCS7,49,37,0.3,35,0.41
+Cellulitis,HCPCS8,19,15,0.3,14,0.41
+Cellulitis,HCPCS9,10,7,0.3,7,0.41
+Sepsis,All,"1,644","1,343",0.22,"1,340",0.23
+Sepsis,HCPCS1,296,242,0.22,241,0.23
+Sepsis,HCPCS2,214,175,0.22,174,0.23
+Sepsis,HCPCS3,197,161,0.22,161,0.23
+Sepsis,HCPCS4,164,134,0.22,134,0.23
+Sepsis,HCPCS5,132,107,0.22,107,0.23
+Sepsis,HCPCS6,82,67,0.22,67,0.23
+Sepsis,HCPCS7,82,67,0.22,67,0.23
+Sepsis,HCPCS8,33,27,0.22,27,0.23
+Sepsis,HCPCS9,16,13,0.22,13,0.23
+Urinary tract infection,All,"1,089","1,089",0,935,0.16
+Urinary tract infection,HCPCS1,196,196,0,168,0.16
+Urinary tract infection,HCPCS2,142,142,0,122,0.16
+Urinary tract infection,HCPCS3,131,131,0,112,0.16
+Urinary tract infection,HCPCS4,109,109,0,94,0.16
+Urinary tract infection,HCPCS5,87,87,0,75,0.16
+Urinary tract infection,HCPCS6,54,54,0,47,0.16
+Urinary tract infection,HCPCS7,54,54,0,47,0.16
+Urinary tract infection,HCPCS8,22,22,0,19,0.16
+Urinary tract infection,HCPCS9,11,11,0,9,0.16
+Seizures,All,853,664,0.28,643,0.33
+Seizures,HCPCS1,153,119,0.28,116,0.33
+Seizures,HCPCS2,111,86,0.28,84,0.33
+Seizures,HCPCS3,102,80,0.28,77,0.33
+Seizures,HCPCS4,85,66,0.28,64,0.33
+Seizures,HCPCS5,68,53,0.28,51,0.33
+Seizures,HCPCS6,43,33,0.28,32,0.33
+Seizures,HCPCS7,43,33,0.28,32,0.33
+Seizures,HCPCS8,17,13,0.28,13,0.33
+Seizures,HCPCS9,9,7,0.28,6,0.33
+Stroke,All,"1,642","1,288",0.27,"1,199",0.37
+Stroke,HCPCS1,296,232,0.27,216,0.37
+Stroke,HCPCS2,213,167,0.27,156,0.37
+Stroke,HCPCS3,197,155,0.27,144,0.37
+Stroke,HCPCS4,164,129,0.27,120,0.37
+Stroke,HCPCS5,131,103,0.27,96,0.37
+Stroke,HCPCS6,82,64,0.27,60,0.37
+Stroke,HCPCS7,82,64,0.27,60,0.37
+Stroke,HCPCS8,33,26,0.27,24,0.37
+Stroke,HCPCS9,16,13,0.27,12,0.37
+Acute myocardial infarction,All,"1,399","1,151",0.22,"1,070",0.31
+Acute myocardial infarction,HCPCS1,252,207,0.22,193,0.31
+Acute myocardial infarction,HCPCS2,182,150,0.22,139,0.31
+Acute myocardial infarction,HCPCS3,168,138,0.22,128,0.31
+Acute myocardial infarction,HCPCS4,140,115,0.22,107,0.31
+Acute myocardial infarction,HCPCS5,112,92,0.22,86,0.31
+Acute myocardial infarction,HCPCS6,70,58,0.22,54,0.31
+Acute myocardial infarction,HCPCS7,70,58,0.22,54,0.31
+Acute myocardial infarction,HCPCS8,28,23,0.22,21,0.31
+Acute myocardial infarction,HCPCS9,14,12,0.22,11,0.31
+Cardiac arrhythmia,All,918,825,0.11,829,0.11
+Cardiac arrhythmia,HCPCS1,165,149,0.11,149,0.11
+Cardiac arrhythmia,HCPCS2,119,107,0.11,108,0.11
+Cardiac arrhythmia,HCPCS3,110,99,0.11,99,0.11
+Cardiac arrhythmia,HCPCS4,92,83,0.11,83,0.11
+Cardiac arrhythmia,HCPCS5,73,66,0.11,66,0.11
+Cardiac arrhythmia,HCPCS6,46,41,0.11,41,0.11
+Cardiac arrhythmia,HCPCS7,46,41,0.11,41,0.11
+Cardiac arrhythmia,HCPCS8,18,17,0.11,17,0.11
+Cardiac arrhythmia,HCPCS9,9,8,0.11,8,0.11
+Cardiac defibrillator,All,"3,585","3,097",0.16,"3,144",0.14
+Cardiac defibrillator,HCPCS1,645,558,0.16,566,0.14
+Cardiac defibrillator,HCPCS2,466,403,0.16,409,0.14
+Cardiac defibrillator,HCPCS3,430,372,0.16,377,0.14
+Cardiac defibrillator,HCPCS4,358,310,0.16,314,0.14
+Cardiac defibrillator,HCPCS5,287,248,0.16,252,0.14
+Cardiac defibrillator,HCPCS6,179,155,0.16,157,0.14
+Cardiac defibrillator,HCPCS7,179,155,0.16,157,0.14
+Cardiac defibrillator,HCPCS8,72,62,0.16,63,0.14
+Cardiac defibrillator,HCPCS9,36,31,0.16,31,0.14
+Cardiac valve,All,"3,149","3,344",-0.06,"2,814",0.12
+Cardiac valve,HCPCS1,567,602,-0.06,506,0.12
+Cardiac valve,HCPCS2,409,435,-0.06,366,0.12
+Cardiac valve,HCPCS3,378,401,-0.06,338,0.12
+Cardiac valve,HCPCS4,315,334,-0.06,281,0.12
+Cardiac valve,HCPCS5,252,268,-0.06,225,0.12
+Cardiac valve,HCPCS6,157,167,-0.06,141,0.12
+Cardiac valve,HCPCS7,157,167,-0.06,141,0.12
+Cardiac valve,HCPCS8,63,67,-0.06,56,0.12
+Cardiac valve,HCPCS9,31,33,-0.06,28,0.12
+Congestive heart failure,All,"1,168","1,041",0.12,"1,001",0.17
+Congestive heart failure,HCPCS1,210,187,0.12,180,0.17
+Congestive heart failure,HCPCS2,152,135,0.12,130,0.17
+Congestive heart failure,HCPCS3,140,125,0.12,120,0.17
+Congestive heart failure,HCPCS4,117,104,0.12,100,0.17
+Congestive heart failure,HCPCS5,93,83,0.12,80,0.17
+Congestive heart failure,HCPCS6,58,52,0.12,50,0.17
+Congestive heart failure,HCPCS7,58,52,0.12,50,0.17
+Congestive heart failure,HCPCS8,23,21,0.12,20,0.17
+Congestive heart failure,HCPCS9,12,10,0.12,10,0.17
+Coronary artery bypass graft,All,"2,126","2,147",-0.01,"1,997",0.06
+Coronary artery bypass graft,HCPCS1,383,387,-0.01,360,0.06
+Coronary artery bypass graft,HCPCS2,276,279,-0.01,260,0.06
+Coronary artery bypass graft,HCPCS3,255,258,-0.01,240,0.06
+Coronary artery bypass graft,HCPCS4,213,215,-0.01,200,0.06
+Coronary artery bypass graft,HCPCS5,170,172,-0.01,160,0.06
+Coronary artery bypass graft,HCPCS6,106,107,-0.01,100,0.06
+Coronary artery bypass graft,HCPCS7,106,107,-0.01,100,0.06
+Coronary artery bypass graft,HCPCS8,43,43,-0.01,40,0.06
+Coronary artery bypass graft,HCPCS9,21,21,-0.01,20,0.06
+Pacemaker,All,"1,752","1,843",-0.05,"1,751",0
+Pacemaker,HCPCS1,315,332,-0.05,315,0
+Pacemaker,HCPCS2,228,240,-0.05,228,0
+Pacemaker,HCPCS3,210,221,-0.05,210,0
+Pacemaker,HCPCS4,175,184,-0.05,175,0
+Pacemaker,HCPCS5,140,147,-0.05,140,0
+Pacemaker,HCPCS6,88,92,-0.05,88,0
+Pacemaker,HCPCS7,88,92,-0.05,88,0
+Pacemaker,HCPCS8,35,37,-0.05,35,0
+Pacemaker,HCPCS9,18,18,-0.05,18,0
+Percutaneous coronary intervention,All,"1,375","1,552",-0.11,"1,435",-0.04
+Percutaneous coronary intervention,HCPCS1,248,279,-0.11,258,-0.04
+Percutaneous coronary intervention,HCPCS2,179,202,-0.11,187,-0.04
+Percutaneous coronary intervention,HCPCS3,165,186,-0.11,172,-0.04
+Percutaneous coronary intervention,HCPCS4,138,155,-0.11,144,-0.04
+Percutaneous coronary intervention,HCPCS5,110,124,-0.11,115,-0.04
+Percutaneous coronary intervention,HCPCS6,69,78,-0.11,72,-0.04
+Percutaneous coronary intervention,HCPCS7,69,78,-0.11,72,-0.04
+Percutaneous coronary intervention,HCPCS8,28,31,-0.11,29,-0.04
+Percutaneous coronary intervention,HCPCS9,14,16,-0.11,14,-0.04
+Transcatheter Aortic Valve Replacement,All,"3,692","3,901",-0.05,"3,311",0.11
+Transcatheter Aortic Valve Replacement,HCPCS1,664,702,-0.05,596,0.11
+Transcatheter Aortic Valve Replacement,HCPCS2,480,507,-0.05,430,0.11
+Transcatheter Aortic Valve Replacement,HCPCS3,443,468,-0.05,397,0.11
+Transcatheter Aortic Valve Replacement,HCPCS4,369,390,-0.05,331,0.11
+Transcatheter Aortic Valve Replacement,HCPCS5,295,312,-0.05,265,0.11
+Transcatheter Aortic Valve Replacement,HCPCS6,185,195,-0.05,166,0.11
+Transcatheter Aortic Valve Replacement,HCPCS7,185,195,-0.05,166,0.11
+Transcatheter Aortic Valve Replacement,HCPCS8,74,78,-0.05,66,0.11
+Transcatheter Aortic Valve Replacement,HCPCS9,37,39,-0.05,33,0.11
+"COPD, bronchitis, asthma",All,891,692,0.29,672,0.33
+"COPD, bronchitis, asthma",HCPCS1,160,125,0.29,121,0.33
+"COPD, bronchitis, asthma",HCPCS2,116,90,0.29,87,0.33
+"COPD, bronchitis, asthma",HCPCS3,107,83,0.29,81,0.33
+"COPD, bronchitis, asthma",HCPCS4,89,69,0.29,67,0.33
+"COPD, bronchitis, asthma",HCPCS5,71,55,0.29,54,0.33
+"COPD, bronchitis, asthma",HCPCS6,45,35,0.29,34,0.33
+"COPD, bronchitis, asthma",HCPCS7,45,35,0.29,34,0.33
+"COPD, bronchitis, asthma",HCPCS8,18,14,0.29,13,0.33
+"COPD, bronchitis, asthma",HCPCS9,9,7,0.29,7,0.33
+Simple pneumonia and respiratory infections,All,"1,157","1,051",0.1,"1,033",0.12
+Simple pneumonia and respiratory infections,HCPCS1,208,189,0.1,186,0.12
+Simple pneumonia and respiratory infections,HCPCS2,150,137,0.1,134,0.12
+Simple pneumonia and respiratory infections,HCPCS3,139,126,0.1,124,0.12
+Simple pneumonia and respiratory infections,HCPCS4,116,105,0.1,103,0.12
+Simple pneumonia and respiratory infections,HCPCS5,93,84,0.1,83,0.12
+Simple pneumonia and respiratory infections,HCPCS6,58,53,0.1,52,0.12
+Simple pneumonia and respiratory infections,HCPCS7,58,53,0.1,52,0.12
+Simple pneumonia and respiratory infections,HCPCS8,23,21,0.1,21,0.12
+Simple pneumonia and respiratory infections,HCPCS9,12,11,0.1,10,0.12
+Bariatric Surgery,All,"1,421","1,161",0.22,"1,106",0.28
+Bariatric Surgery,HCPCS1,256,209,0.22,199,0.28
+Bariatric Surgery,HCPCS2,185,151,0.22,144,0.28
+Bariatric Surgery,HCPCS3,170,139,0.22,133,0.28
+Bariatric Surgery,HCPCS4,142,116,0.22,111,0.28
+Bariatric Surgery,HCPCS5,114,93,0.22,88,0.28
+Bariatric Surgery,HCPCS6,71,58,0.22,55,0.28
+Bariatric Surgery,HCPCS7,71,58,0.22,55,0.28
+Bariatric Surgery,HCPCS8,28,23,0.22,22,0.28
+Bariatric Surgery,HCPCS9,14,12,0.22,11,0.28
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",All,647,708,-0.09,686,-0.06
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",HCPCS1,116,127,-0.09,123,-0.06
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",HCPCS2,84,92,-0.09,89,-0.06
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",HCPCS3,78,85,-0.09,82,-0.06
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",HCPCS4,65,71,-0.09,69,-0.06
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",HCPCS5,52,57,-0.09,55,-0.06
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",HCPCS6,32,35,-0.09,34,-0.06
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",HCPCS7,32,35,-0.09,34,-0.06
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",HCPCS8,13,14,-0.09,14,-0.06
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",HCPCS9,6,7,-0.09,7,-0.06
+Gastrointestinal hemorrhage,All,944,847,0.11,792,0.19
+Gastrointestinal hemorrhage,HCPCS1,170,153,0.11,143,0.19
+Gastrointestinal hemorrhage,HCPCS2,123,110,0.11,103,0.19
+Gastrointestinal hemorrhage,HCPCS3,113,102,0.11,95,0.19
+Gastrointestinal hemorrhage,HCPCS4,94,85,0.11,79,0.19
+Gastrointestinal hemorrhage,HCPCS5,75,68,0.11,63,0.19
+Gastrointestinal hemorrhage,HCPCS6,47,42,0.11,40,0.19
+Gastrointestinal hemorrhage,HCPCS7,47,42,0.11,40,0.19
+Gastrointestinal hemorrhage,HCPCS8,19,17,0.11,16,0.19
+Gastrointestinal hemorrhage,HCPCS9,9,8,0.11,8,0.19
+Gastrointestinal obstruction,All,944,755,0.25,715,0.32
+Gastrointestinal obstruction,HCPCS1,170,136,0.25,129,0.32
+Gastrointestinal obstruction,HCPCS2,123,98,0.25,93,0.32
+Gastrointestinal obstruction,HCPCS3,113,91,0.25,86,0.32
+Gastrointestinal obstruction,HCPCS4,94,76,0.25,72,0.32
+Gastrointestinal obstruction,HCPCS5,75,60,0.25,57,0.32
+Gastrointestinal obstruction,HCPCS6,47,38,0.25,36,0.32
+Gastrointestinal obstruction,HCPCS7,47,38,0.25,36,0.32
+Gastrointestinal obstruction,HCPCS8,19,15,0.25,14,0.32
+Gastrointestinal obstruction,HCPCS9,9,8,0.25,7,0.32
+Inflammatory Bowel Disease,All,560,502,0.12,421,0.33
+Inflammatory Bowel Disease,HCPCS1,101,90,0.12,76,0.33
+Inflammatory Bowel Disease,HCPCS2,73,65,0.12,55,0.33
+Inflammatory Bowel Disease,HCPCS3,67,60,0.12,50,0.33
+Inflammatory Bowel Disease,HCPCS4,56,50,0.12,42,0.33
+Inflammatory Bowel Disease,HCPCS5,45,40,0.12,34,0.33
+Inflammatory Bowel Disease,HCPCS6,28,25,0.12,21,0.33
+Inflammatory Bowel Disease,HCPCS7,28,25,0.12,21,0.33
+Inflammatory Bowel Disease,HCPCS8,11,10,0.12,8,0.33
+Inflammatory Bowel Disease,HCPCS9,6,5,0.12,4,0.33
+Major bowel procedure,All,"1,983","1,444",0.37,"1,452",0.37
+Major bowel procedure,HCPCS1,357,260,0.37,261,0.37
+Major bowel procedure,HCPCS2,258,188,0.37,189,0.37
+Major bowel procedure,HCPCS3,238,173,0.37,174,0.37
+Major bowel procedure,HCPCS4,198,144,0.37,145,0.37
+Major bowel procedure,HCPCS5,159,116,0.37,116,0.37
+Major bowel procedure,HCPCS6,99,72,0.37,73,0.37
+Major bowel procedure,HCPCS7,99,72,0.37,73,0.37
+Major bowel procedure,HCPCS8,40,29,0.37,29,0.37
+Major bowel procedure,HCPCS9,20,14,0.37,15,0.37
+(OP) Back & neck except spinal fusion,All,558,598,-0.07,587,-0.05
+(OP) Back & neck except spinal fusion,HCPCS1,100,108,-0.07,106,-0.05
+(OP) Back & neck except spinal fusion,HCPCS2,73,78,-0.07,76,-0.05
+(OP) Back & neck except spinal fusion,HCPCS3,67,72,-0.07,70,-0.05
+(OP) Back & neck except spinal fusion,HCPCS4,56,60,-0.07,59,-0.05
+(OP) Back & neck except spinal fusion,HCPCS5,45,48,-0.07,47,-0.05
+(OP) Back & neck except spinal fusion,HCPCS6,28,30,-0.07,29,-0.05
+(OP) Back & neck except spinal fusion,HCPCS7,28,30,-0.07,29,-0.05
+(OP) Back & neck except spinal fusion,HCPCS8,11,12,-0.07,12,-0.05
+(OP) Back & neck except spinal fusion,HCPCS9,6,6,-0.07,6,-0.05
+(OP) Cardiac Defibrillator,All,"2,031","1,647",0.23,"1,603",0.27
+(OP) Cardiac Defibrillator,HCPCS1,366,296,0.23,289,0.27
+(OP) Cardiac Defibrillator,HCPCS2,264,214,0.23,208,0.27
+(OP) Cardiac Defibrillator,HCPCS3,244,198,0.23,192,0.27
+(OP) Cardiac Defibrillator,HCPCS4,203,165,0.23,160,0.27
+(OP) Cardiac Defibrillator,HCPCS5,162,132,0.23,128,0.27
+(OP) Cardiac Defibrillator,HCPCS6,102,82,0.23,80,0.27
+(OP) Cardiac Defibrillator,HCPCS7,102,82,0.23,80,0.27
+(OP) Cardiac Defibrillator,HCPCS8,41,33,0.23,32,0.27
+(OP) Cardiac Defibrillator,HCPCS9,20,16,0.23,16,0.27
+(OP) Major joint replacement of the lower extremity (MJRLE),All,707,636,0.11,580,0.22
+(OP) Major joint replacement of the lower extremity (MJRLE),HCPCS1,127,115,0.11,104,0.22
+(OP) Major joint replacement of the lower extremity (MJRLE),HCPCS2,92,83,0.11,75,0.22
+(OP) Major joint replacement of the lower extremity (MJRLE),HCPCS3,85,76,0.11,70,0.22
+(OP) Major joint replacement of the lower extremity (MJRLE),HCPCS4,71,64,0.11,58,0.22
+(OP) Major joint replacement of the lower extremity (MJRLE),HCPCS5,57,51,0.11,46,0.22
+(OP) Major joint replacement of the lower extremity (MJRLE),HCPCS6,35,32,0.11,29,0.22
+(OP) Major joint replacement of the lower extremity (MJRLE),HCPCS7,35,32,0.11,29,0.22
+(OP) Major joint replacement of the lower extremity (MJRLE),HCPCS8,14,13,0.11,12,0.22
+(OP) Major joint replacement of the lower extremity (MJRLE),HCPCS9,7,6,0.11,6,0.22
+(OP) Percutaneous Coronary Intervention,All,609,494,0.23,493,0.24
+(OP) Percutaneous Coronary Intervention,HCPCS1,110,89,0.23,89,0.24
+(OP) Percutaneous Coronary Intervention,HCPCS2,79,64,0.23,64,0.24
+(OP) Percutaneous Coronary Intervention,HCPCS3,73,59,0.23,59,0.24
+(OP) Percutaneous Coronary Intervention,HCPCS4,61,49,0.23,49,0.24
+(OP) Percutaneous Coronary Intervention,HCPCS5,49,40,0.23,39,0.24
+(OP) Percutaneous Coronary Intervention,HCPCS6,30,25,0.23,25,0.24
+(OP) Percutaneous Coronary Intervention,HCPCS7,30,25,0.23,25,0.24
+(OP) Percutaneous Coronary Intervention,HCPCS8,12,10,0.23,10,0.24
+(OP) Percutaneous Coronary Intervention,HCPCS9,6,5,0.23,5,0.24

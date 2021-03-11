@@ -1,0 +1,178 @@
+﻿bundle,Anchor DRG,Bundle Count,% of Total Bundle Count, Average Bundle Cost , Readmission Rate , Post-discharge ER Rate , % Discharged to SNF , % Discharged to IRF , Average Implant Cost 
+Back and neck except spinal fusion,All,7,1, 0.11 , 0.15 , 0.38 , 0.33 , 0.12 , 0.10 
+Double joint replacement of the lower extremity,All,4,1, 0.11 , 0.28 , 0.20 , 0.29 , 0.30 , 0.22 
+Fractures of the femur and hip or pelvis,All,13,1, 0.11 , 0.00 , 0.05 , 0.05 , 0.11 , 0.05 
+Hip and femur procedures except major joint,All,47,1, 0.11 , 0.16 , 0.12 , 0.06 , 0.40 , 0.47 
+"Lower extremity/humerus procedure except hip, foot, femur",All,14,1, 0.10 , 0.26 , 0.25 , 0.17 , 0.42 , 0.17 
+Major joint replacement of the lower extremity (MJRLE),All,192,1, 0.11 , 0.17 , 0.28 , 0.15 , 0.11 , 0.29 
+Major joint replacement of the upper extremity,All,21,1, 0.11 , 0.26 , 0.17 , 0.15 , 0.22 , 0.25 
+Spinal fusion,All,30,1, 0.02 , -0.01 , 0.21 , 0.06 , 0.09 , 0.03 
+Renal failure,All,96,1, 0.11 , 0.12 , 0.07 , 0.32 , 0.16 , 0.17 
+Cellulitis,All,50,1, 0.11 , 0.21 , 0.13 , 0.21 , 0.24 , 0.15 
+Sepsis,All,283,1, 0.01 , -0.09 , 0.02 , 0.08 , 0.02 , 0.02 
+Urinary tract infection,All,81,1, 0.08 , 0.20 , 0.10 , 0.22 , 0.05 , 0.16 
+Seizures,All,24,1, 0.11 , 0.08 , 0.01 , 0.16 , 0.24 , 0.28 
+Stroke,All,88,1, 0.11 , 0.24 , 0.17 , 0.03 , 0.07 , 0.18 
+Acute myocardial infarction,All,54,1, 0.11 , 0.09 , -0.03 , 0.04 , 0.30 , 0.12 
+Cardiac arrhythmia,All,82,1, -0.04 , -0.19 , -0.15 , -0.16 , -0.12 , -0.18 
+Cardiac defibrillator,All,5,1, 0.11 , 0.06 , 0.28 , 0.19 , 0.08 , 0.32 
+Cardiac valve,All,29,1, 0.03 , -0.02 , 0.02 , 0.02 , 0.05 , -0.05 
+Congestive heart failure,All,183,1, 0.11 , 0.13 , 0.16 , 0.16 , 0.14 , 0.01 
+Coronary artery bypass graft,All,22,1, 0.06 , 0.07 , 0.13 , 0.13 , 0.33 , 0.30 
+Pacemaker,All,23,1, -0.08 , -0.08 , -0.06 , -0.03 , -0.17 , -0.04 
+Percutaneous coronary intervention,All,56,1, -0.07 , -0.07 , -0.29 , -0.17 , -0.17 , -0.14 
+Transcatheter Aortic Valve Replacement,All,13,1, -0.07 , -0.04 , -0.07 , -0.24 , 0.02 , -0.05 
+"COPD, bronchitis, asthma",All,141,1, 0.11 , 0.08 , 0.14 , 0.18 , 0.20 , 0.19 
+Simple pneumonia and respiratory infections,All,126,1, 0.03 , 0.11 , -0.03 , 0.17 , 0.01 , 0.23 
+Bariatric Surgery,All,6,1, 0.07 , 0.22 , 0.26 , 0.11 , 0.07 , 0.18 
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",All,14,1, 0.01 , -0.09 , -0.00 , -0.01 , 0.10 , -0.12 
+Gastrointestinal hemorrhage,All,77,1, 0.07 , 0.16 , -0.03 , 0.07 , 0.18 , 0.17 
+Gastrointestinal obstruction,All,37,1, 0.09 , 0.07 , 0.24 , 0.33 , 0.29 , 0.05 
+Inflammatory Bowel Disease,All,5,1, 0.10 , 0.16 , 0.12 , 0.10 , 0.04 , 0.08 
+Major bowel procedure,All,43,1, 0.05 , 0.08 , 0.19 , -0.01 , 0.33 , 0.04 
+(OP) Back & neck except spinal fusion,All,3,1, -0.06 , 0.10 , -0.03 , -0.11 , -0.10 , -0.04 
+(OP) Cardiac Defibrillator,All,2,1, 0.11 , 0.19 , 0.25 , 0.11 , 0.20 , 0.24 
+(OP) Major joint replacement of the lower extremity (MJRLE),All,39,1, 0.06 , 0.21 , -0.02 , 0.22 , 0.13 , 0.32 
+(OP) Percutaneous Coronary Intervention,All,12,1, 0.10 , 0.05 , 0.21 , 0.16 , 0.15 , 0.05 
+Acute myocardial infarction,280,32,0.6, 0.13 , 0.10 , -0.02 , 0.05 , 0.32 , 0.14 
+Acute myocardial infarction,281,16,0.3, 0.09 , 0.07 , -0.06 , 0.02 , 0.28 , 0.10 
+Acute myocardial infarction,282,5,0.1, 0.11 , 0.09 , -0.03 , 0.04 , 0.30 , 0.12 
+Back and neck except spinal fusion,518,4,0.6, 0.11 , 0.14 , 0.37 , 0.32 , 0.12 , 0.09 
+Back and neck except spinal fusion,519,2,0.3, 0.08 , 0.12 , 0.35 , 0.30 , 0.10 , 0.07 
+Back and neck except spinal fusion,520,1,0.1, 0.11 , 0.15 , 0.38 , 0.32 , 0.12 , 0.10 
+Bariatric Surgery,619,4,0.6, 0.09 , 0.24 , 0.28 , 0.13 , 0.09 , 0.20 
+Bariatric Surgery,620,2,0.3, 0.06 , 0.21 , 0.25 , 0.09 , 0.05 , 0.16 
+Bariatric Surgery,621,1,0.1, 0.05 , 0.21 , 0.24 , 0.09 , 0.05 , 0.16 
+Cardiac arrhythmia,308,49,0.6, -0.01 , -0.16 , -0.12 , -0.13 , -0.09 , -0.15 
+Cardiac arrhythmia,309,25,0.3, -0.06 , -0.22 , -0.17 , -0.18 , -0.14 , -0.20 
+Cardiac arrhythmia,310,8,0.1, -0.02 , -0.17 , -0.12 , -0.13 , -0.09 , -0.16 
+Cardiac defibrillator,222,2,0.3, 0.12 , 0.07 , 0.28 , 0.19 , 0.09 , 0.32 
+Cardiac defibrillator,223,1,0.15, 0.14 , 0.09 , 0.31 , 0.22 , 0.11 , 0.35 
+Cardiac defibrillator,224,0,0.05, 0.11 , 0.06 , 0.28 , 0.19 , 0.08 , 0.32 
+Cardiac defibrillator,225,2,0.3, 0.11 , 0.06 , 0.28 , 0.19 , 0.08 , 0.32 
+Cardiac defibrillator,226,1,0.15, 0.10 , 0.05 , 0.26 , 0.17 , 0.07 , 0.30 
+Cardiac defibrillator,227,0,0.05, 0.11 , 0.06 , 0.28 , 0.19 , 0.08 , 0.32 
+Cardiac valve,216,6,0.21, 0.01 , -0.04 , 0.00 , 0.00 , 0.03 , -0.07 
+Cardiac valve,217,3,0.105, 0.03 , -0.02 , 0.03 , 0.02 , 0.05 , -0.05 
+Cardiac valve,218,1,0.035, 0.03 , -0.02 , 0.03 , 0.03 , 0.06 , -0.04 
+Cardiac valve,219,6,0.21, 0.02 , -0.03 , 0.01 , 0.01 , 0.04 , -0.06 
+Cardiac valve,220,3,0.105, 0.03 , -0.02 , 0.03 , 0.02 , 0.05 , -0.05 
+Cardiac valve,221,1,0.035, 0.05 , 0.01 , 0.05 , 0.05 , 0.08 , -0.02 
+Cellulitis,602,40,0.8, 0.11 , 0.21 , 0.13 , 0.21 , 0.24 , 0.15 
+Cellulitis,603,10,0.2, 0.09 , 0.18 , 0.11 , 0.18 , 0.22 , 0.12 
+"COPD, bronchitis, asthma",190,71,0.5, 0.12 , 0.08 , 0.15 , 0.19 , 0.21 , 0.20 
+"COPD, bronchitis, asthma",191,28,0.2, 0.10 , 0.06 , 0.13 , 0.17 , 0.19 , 0.18 
+"COPD, bronchitis, asthma",192,14,0.1, 0.14 , 0.10 , 0.17 , 0.21 , 0.23 , 0.22 
+"COPD, bronchitis, asthma",202,14,0.1, 0.12 , 0.08 , 0.15 , 0.19 , 0.21 , 0.20 
+"COPD, bronchitis, asthma",203,14,0.1, 0.10 , 0.07 , 0.13 , 0.17 , 0.20 , 0.18 
+Congestive heart failure,291,110,0.6, 0.09 , 0.11 , 0.14 , 0.14 , 0.12 , -0.01 
+Congestive heart failure,292,55,0.3, 0.08 , 0.10 , 0.13 , 0.13 , 0.11 , -0.02 
+Congestive heart failure,293,18,0.1, 0.12 , 0.14 , 0.17 , 0.18 , 0.16 , 0.02 
+Coronary artery bypass graft,231,7,0.3, 0.08 , 0.09 , 0.15 , 0.16 , 0.35 , 0.32 
+Coronary artery bypass graft,232,3,0.15, 0.07 , 0.08 , 0.14 , 0.14 , 0.34 , 0.31 
+Coronary artery bypass graft,233,1,0.05, 0.05 , 0.06 , 0.12 , 0.13 , 0.33 , 0.29 
+Coronary artery bypass graft,234,7,0.3, 0.08 , 0.10 , 0.15 , 0.16 , 0.36 , 0.32 
+Coronary artery bypass graft,235,3,0.15, 0.03 , 0.05 , 0.10 , 0.11 , 0.31 , 0.27 
+Coronary artery bypass graft,236,1,0.05, 0.04 , 0.05 , 0.11 , 0.12 , 0.31 , 0.28 
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",441,8,0.6, -0.02 , -0.11 , -0.03 , -0.03 , 0.08 , -0.15 
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",442,4,0.3, 0.03 , -0.06 , 0.02 , 0.01 , 0.13 , -0.10 
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",443,1,0.1, 0.03 , -0.06 , 0.02 , 0.02 , 0.13 , -0.10 
+Double joint replacement of the lower extremity,461,3,0.8, 0.11 , 0.28 , 0.21 , 0.29 , 0.30 , 0.22 
+Double joint replacement of the lower extremity,462,1,0.2, 0.14 , 0.30 , 0.23 , 0.31 , 0.32 , 0.24 
+Fractures of the femur and hip or pelvis,533,5,0.4, 0.10 , -0.01 , 0.04 , 0.04 , 0.10 , 0.04 
+Fractures of the femur and hip or pelvis,534,3,0.2, 0.08 , -0.03 , 0.02 , 0.02 , 0.08 , 0.02 
+Fractures of the femur and hip or pelvis,535,4,0.3, 0.14 , 0.03 , 0.08 , 0.08 , 0.14 , 0.08 
+Fractures of the femur and hip or pelvis,536,1,0.1, 0.12 , 0.01 , 0.06 , 0.06 , 0.13 , 0.07 
+Gastrointestinal hemorrhage,377,46,0.6, 0.07 , 0.16 , -0.03 , 0.07 , 0.18 , 0.17 
+Gastrointestinal hemorrhage,378,23,0.3, 0.07 , 0.16 , -0.03 , 0.07 , 0.18 , 0.17 
+Gastrointestinal hemorrhage,379,8,0.1, 0.09 , 0.17 , -0.02 , 0.09 , 0.20 , 0.19 
+Gastrointestinal obstruction,388,22,0.6, 0.07 , 0.04 , 0.21 , 0.30 , 0.26 , 0.03 
+Gastrointestinal obstruction,389,11,0.3, 0.08 , 0.05 , 0.22 , 0.31 , 0.27 , 0.04 
+Gastrointestinal obstruction,390,4,0.1, 0.07 , 0.05 , 0.22 , 0.31 , 0.27 , 0.04 
+Hip and femur procedures except major joint,480,28,0.6, 0.12 , 0.17 , 0.13 , 0.07 , 0.41 , 0.48 
+Hip and femur procedures except major joint,481,14,0.3, 0.12 , 0.17 , 0.13 , 0.06 , 0.40 , 0.48 
+Hip and femur procedures except major joint,482,5,0.1, 0.09 , 0.14 , 0.10 , 0.04 , 0.38 , 0.45 
+Inflammatory Bowel Disease,385,3,0.6, 0.13 , 0.19 , 0.14 , 0.12 , 0.06 , 0.11 
+Inflammatory Bowel Disease,386,2,0.3, 0.08 , 0.14 , 0.09 , 0.07 , 0.01 , 0.06 
+Inflammatory Bowel Disease,387,1,0.1, 0.12 , 0.18 , 0.14 , 0.12 , 0.05 , 0.10 
+"Lower extremity/humerus procedure except hip, foot, femur",492,8,0.6, 0.09 , 0.25 , 0.24 , 0.16 , 0.41 , 0.16 
+"Lower extremity/humerus procedure except hip, foot, femur",493,4,0.3, 0.11 , 0.27 , 0.26 , 0.18 , 0.43 , 0.18 
+"Lower extremity/humerus procedure except hip, foot, femur",494,1,0.1, 0.11 , 0.27 , 0.25 , 0.18 , 0.43 , 0.18 
+Major bowel procedure,329,26,0.6, 0.06 , 0.09 , 0.20 , 0.00 , 0.34 , 0.05 
+Major bowel procedure,330,13,0.3, 0.02 , 0.05 , 0.16 , -0.03 , 0.30 , 0.02 
+Major bowel procedure,331,4,0.1, 0.05 , 0.08 , 0.19 , -0.01 , 0.33 , 0.04 
+Major joint replacement of the lower extremity (MJRLE),521,58,0.3, 0.12 , 0.19 , 0.30 , 0.17 , 0.13 , 0.30 
+Major joint replacement of the lower extremity (MJRLE),522,38,0.2, 0.09 , 0.16 , 0.26 , 0.13 , 0.09 , 0.27 
+Major joint replacement of the upper extremity,483,21,1, 0.14 , 0.28 , 0.20 , 0.17 , 0.25 , 0.27 
+Pacemaker,242,14,0.6, -0.07 , -0.08 , -0.06 , -0.03 , -0.17 , -0.04 
+Pacemaker,243,7,0.3, -0.09 , -0.09 , -0.07 , -0.04 , -0.18 , -0.05 
+Pacemaker,244,2,0.1, -0.07 , -0.08 , -0.06 , -0.03 , -0.17 , -0.04 
+Percutaneous coronary intervention,246,17,0.3, -0.08 , -0.08 , -0.29 , -0.18 , -0.17 , -0.15 
+Percutaneous coronary intervention,247,8,0.15, -0.06 , -0.06 , -0.28 , -0.16 , -0.16 , -0.13 
+Percutaneous coronary intervention,248,3,0.05, -0.06 , -0.05 , -0.27 , -0.16 , -0.15 , -0.13 
+Percutaneous coronary intervention,249,17,0.3, -0.05 , -0.05 , -0.27 , -0.16 , -0.15 , -0.13 
+Percutaneous coronary intervention,250,8,0.15, -0.05 , -0.05 , -0.27 , -0.16 , -0.15 , -0.13 
+Percutaneous coronary intervention,251,3,0.05, -0.05 , -0.05 , -0.26 , -0.15 , -0.15 , -0.12 
+Renal failure,682,58,0.6, 0.10 , 0.10 , 0.06 , 0.30 , 0.15 , 0.16 
+Renal failure,683,29,0.3, 0.14 , 0.14 , 0.10 , 0.34 , 0.19 , 0.20 
+Renal failure,684,10,0.1, 0.14 , 0.14 , 0.10 , 0.34 , 0.19 , 0.20 
+Seizures,100,19,0.8, 0.11 , 0.08 , 0.01 , 0.16 , 0.24 , 0.28 
+Seizures,101,5,0.2, 0.09 , 0.06 , -0.01 , 0.13 , 0.21 , 0.25 
+Sepsis,870,170,0.6, 0.03 , -0.07 , 0.03 , 0.10 , 0.04 , 0.04 
+Sepsis,871,85,0.3, 0.02 , -0.08 , 0.02 , 0.09 , 0.03 , 0.03 
+Sepsis,872,28,0.1, -0.02 , -0.12 , -0.01 , 0.06 , -0.00 , 0.00 
+Simple pneumonia and respiratory infections,177,38,0.3, 0.04 , 0.12 , -0.02 , 0.17 , 0.02 , 0.24 
+Simple pneumonia and respiratory infections,178,19,0.15, 0.03 , 0.11 , -0.03 , 0.16 , 0.01 , 0.23 
+Simple pneumonia and respiratory infections,179,6,0.05, 0.06 , 0.14 , 0.00 , 0.20 , 0.04 , 0.26 
+Simple pneumonia and respiratory infections,193,38,0.3, 0.03 , 0.12 , -0.02 , 0.17 , 0.02 , 0.23 
+Simple pneumonia and respiratory infections,194,19,0.15, 0.01 , 0.09 , -0.05 , 0.14 , -0.01 , 0.21 
+Simple pneumonia and respiratory infections,195,6,0.05, 0.02 , 0.10 , -0.04 , 0.15 , -0.00 , 0.22 
+Spinal fusion,471,6,0.2, -0.01 , -0.03 , 0.19 , 0.04 , 0.07 , 0.00 
+Spinal fusion,472,5,0.15, 0.00 , -0.03 , 0.20 , 0.05 , 0.07 , 0.01 
+Spinal fusion,473,2,0.05, 0.02 , -0.01 , 0.21 , 0.06 , 0.09 , 0.02 
+Spinal fusion,453,6,0.2, 0.01 , -0.02 , 0.20 , 0.05 , 0.08 , 0.01 
+Spinal fusion,454,5,0.15, 0.01 , -0.01 , 0.21 , 0.06 , 0.09 , 0.02 
+Spinal fusion,455,2,0.05, 0.03 , 0.00 , 0.23 , 0.08 , 0.10 , 0.04 
+Spinal fusion,459,5,0.15, -0.01 , -0.04 , 0.19 , 0.04 , 0.06 , -0.00 
+Spinal fusion,460,2,0.05, 0.04 , 0.01 , 0.24 , 0.09 , 0.12 , 0.05 
+Stroke,61,26,0.3, 0.14 , 0.27 , 0.20 , 0.06 , 0.10 , 0.20 
+Stroke,62,13,0.15, 0.10 , 0.23 , 0.16 , 0.02 , 0.07 , 0.17 
+Stroke,63,4,0.05, 0.12 , 0.25 , 0.18 , 0.04 , 0.08 , 0.18 
+Stroke,64,26,0.3, 0.13 , 0.26 , 0.19 , 0.05 , 0.10 , 0.20 
+Stroke,65,13,0.15, 0.10 , 0.23 , 0.16 , 0.02 , 0.06 , 0.17 
+Stroke,66,4,0.05, 0.09 , 0.22 , 0.15 , 0.01 , 0.05 , 0.16 
+Cardiac valve,266,6,0.2, 0.05 , 0.01 , 0.05 , 0.05 , 0.08 , -0.02 
+Cardiac valve,267,3,0.1, 0.03 , -0.02 , 0.03 , 0.02 , 0.05 , -0.05 
+Urinary tract infection,689,65,0.8, 0.08 , 0.20 , 0.10 , 0.22 , 0.04 , 0.16 
+Urinary tract infection,690,16,0.2, 0.10 , 0.22 , 0.12 , 0.24 , 0.07 , 0.18 
+Major joint replacement of the lower extremity (MJRLE),469,58,0.3, 0.09 , 0.16 , 0.27 , 0.14 , 0.10 , 0.27 
+Major joint replacement of the lower extremity (MJRLE),470,38,0.2, 0.08 , 0.15 , 0.26 , 0.13 , 0.09 , 0.26 
+(OP) Back & neck except spinal fusion,62287,0,0.1, -0.09 , 0.07 , -0.05 , -0.13 , -0.12 , -0.07 
+(OP) Back & neck except spinal fusion,63005,0,0.09, -0.07 , 0.09 , -0.04 , -0.12 , -0.11 , -0.05 
+(OP) Back & neck except spinal fusion,63011,0,0.08, -0.06 , 0.10 , -0.03 , -0.11 , -0.10 , -0.04 
+(OP) Back & neck except spinal fusion,63012,0,0.07, -0.08 , 0.08 , -0.05 , -0.13 , -0.12 , -0.06 
+(OP) Back & neck except spinal fusion,63017,0,0.06, -0.04 , 0.12 , -0.01 , -0.09 , -0.08 , -0.02 
+(OP) Back & neck except spinal fusion,63030,0,0.05, -0.06 , 0.10 , -0.03 , -0.11 , -0.10 , -0.05 
+(OP) Back & neck except spinal fusion,63040,0,0.05, -0.08 , 0.08 , -0.04 , -0.12 , -0.11 , -0.06 
+(OP) Back & neck except spinal fusion,63042,0,0.06, -0.04 , 0.12 , -0.01 , -0.09 , -0.08 , -0.02 
+(OP) Back & neck except spinal fusion,63045,0,0.04, -0.07 , 0.10 , -0.03 , -0.11 , -0.10 , -0.05 
+(OP) Back & neck except spinal fusion,63046,0,0.1, -0.07 , 0.09 , -0.04 , -0.12 , -0.11 , -0.05 
+(OP) Back & neck except spinal fusion,63047,0,0.1, -0.06 , 0.10 , -0.03 , -0.11 , -0.10 , -0.04 
+(OP) Back & neck except spinal fusion,63056,0,0.1, -0.04 , 0.12 , -0.00 , -0.08 , -0.07 , -0.02 
+(OP) Back & neck except spinal fusion,63075,0,0.1, -0.03 , 0.13 , 0.00 , -0.08 , -0.07 , -0.01 
+(OP) Cardiac Defibrillator,33249,1,0.3, 0.13 , 0.21 , 0.27 , 0.13 , 0.22 , 0.26 
+(OP) Cardiac Defibrillator,33262,1,0.3, 0.11 , 0.18 , 0.25 , 0.10 , 0.20 , 0.23 
+(OP) Cardiac Defibrillator,33263,0,0.2, 0.10 , 0.17 , 0.24 , 0.09 , 0.19 , 0.23 
+(OP) Cardiac Defibrillator,33264,0,0.15, 0.14 , 0.21 , 0.28 , 0.13 , 0.23 , 0.27 
+(OP) Cardiac Defibrillator,33270,0,0.05, 0.11 , 0.18 , 0.25 , 0.10 , 0.20 , 0.24 
+(OP) Percutaneous Coronary Intervention,92920,2,0.15, 0.12 , 0.08 , 0.24 , 0.18 , 0.18 , 0.08 
+(OP) Percutaneous Coronary Intervention,92924,2,0.15, 0.10 , 0.05 , 0.22 , 0.16 , 0.16 , 0.05 
+(OP) Percutaneous Coronary Intervention,92928,1,0.1, 0.07 , 0.02 , 0.19 , 0.13 , 0.13 , 0.02 
+(OP) Percutaneous Coronary Intervention,92933,1,0.05, 0.12 , 0.07 , 0.24 , 0.18 , 0.18 , 0.07 
+(OP) Percutaneous Coronary Intervention,92937,0,0.025, 0.13 , 0.08 , 0.24 , 0.19 , 0.18 , 0.08 
+(OP) Percutaneous Coronary Intervention,92943,0,0.025, 0.12 , 0.07 , 0.24 , 0.18 , 0.18 , 0.07 
+(OP) Percutaneous Coronary Intervention,C9600,3,0.25, 0.13 , 0.08 , 0.24 , 0.18 , 0.18 , 0.08 
+(OP) Percutaneous Coronary Intervention,C9602,2,0.15, 0.11 , 0.07 , 0.23 , 0.17 , 0.17 , 0.06 
+(OP) Percutaneous Coronary Intervention,C9604,1,0.05, 0.10 , 0.05 , 0.22 , 0.16 , 0.16 , 0.05 
+(OP) Percutaneous Coronary Intervention,C9607,1,0.05, 0.11 , 0.06 , 0.23 , 0.17 , 0.17 , 0.06 
+(OP) Major joint replacement of the lower extremity (MJRLE),27447,39,1, 0.08 , 0.23 , 0.00 , 0.24 , 0.15 , 0.34 

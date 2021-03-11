@@ -11,6 +11,7 @@ import pandas as pd
 import numpy as np
 
 from app import app
+import test_contract_opportunities
 import test_contract_manager
 import test_contract_manager_drilldown
 import test_contract_manager_bundle
@@ -89,6 +90,8 @@ def display_page(pathname):
         return test_contract_manager_bundle.layout
     elif pathname == "/vbc-demo/contract-manager-drilldown-bundle/":
         return test_contract_manager_drilldown_bundle.layout
+    elif pathname == "/vbc-demo/contract-optimizer-opportunities/":
+        return test_contract_opportunities.layout
     elif pathname == "/vbc-demo/contract-optimizer/":
         return test_contract_optimizer.layout
     elif pathname == "/vbc-demo/contract-optimizer-bundle/":

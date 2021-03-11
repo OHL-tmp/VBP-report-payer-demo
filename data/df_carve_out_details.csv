@@ -1,0 +1,27 @@
+﻿TypeofServices,Average PMPM,% of Total Cost,upper variation,lower variation
+,,,,
+ESRD Patient,104.0727201,11.37%,0.029038392,-0.018966123
+,,,,
+,,,,
+Cancer Patient,55.0379453,6.02%,0.018646921,-0.009041807
+,,,,
+,,,,
+High Cost Outliers (above 99th percentile),40.06796912,4.38%,0.015,-0.012390327
+,,,,
+,,,,
+Transplant,7.725660266,0.84%,0.009756065,-0.005337188
+,,,,
+,,,,
+Trauma,13.70888596,1.50%,0.008887046,-0.004045038
+,,,,
+,,,,
+High Cost Specialty Drugs,20.75692719,2.27%,0.007,-0.005
+,,,,
+,,,,
+Mental Health,10.77186239,1.18%,0.005097362,-0.005024668
+,,,,
+,,,,
+High Cost Implantable Devices,9.15,0.01,0.003,-0.003
+,,,,
+,,,,
+Out of Area Claims,4.575,0.005,0.001,-0.001

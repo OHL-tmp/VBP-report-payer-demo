@@ -49,7 +49,7 @@ def create_layout(app):
 #    load_data()
 	return html.Div(
 				[ 
-					html.Div([Header_contract(app, False,True, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
+					html.Div([Header_contract(app, False, False,True, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
 					
 					html.A(id="top"),
 
@@ -456,10 +456,10 @@ def tab_result(app):
 				[
 					dbc.Row(
 						[
-							dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"2rem","padding-bottom":"3rem","font-size":"1.8rem"}), width=6),
+							dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"2rem","padding-bottom":"3rem","font-size":"1.8rem"})),
 							html.Hr(),
 							dbc.Col([
-								dbc.Button("Edit Scenario Assumptions",
+								dbc.Button("View Scenario Assumptions",
 									className="mb-3",
 									style={"background-color":"#38160f", "border":"none", "border-radius":"0.25rem", "font-family":"NotoSans-Regular", "font-size":"1rem"},
 									id = 'button-open-assump-modal'
@@ -473,21 +473,21 @@ def tab_result(app):
 								],
 								width="auto"
 							),
-							dbc.Col(
-								[
-									dbc.DropdownMenu(
-									label = 'Choose Version to Generate Contract',
-									children = [
-												dbc.DropdownMenuItem('User Defined Setting', 
-												),
-												dbc.DropdownMenuItem('Recommended Setting',
-												href = '/vbc-demo/contract-generator-bundle/')
-												],
-									style={"font-family":"NotoSans-Regular", "font-size":"1rem"},
-									color="warning"
-									)
-								]
-							)
+							# dbc.Col(
+							# 	[
+							# 		dbc.DropdownMenu(
+							# 		label = 'Choose Version to Generate Contract',
+							# 		children = [
+							# 					dbc.DropdownMenuItem('User Defined Setting', 
+							# 					),
+							# 					dbc.DropdownMenuItem('Recommended Setting',
+							# 					href = '/vbc-demo/contract-generator-bundle/')
+							# 					],
+							# 		style={"font-family":"NotoSans-Regular", "font-size":"1rem"},
+							# 		color="warning"
+							# 		)
+							# 	]
+							# )
 						]
 					),
 					dbc.Row(
