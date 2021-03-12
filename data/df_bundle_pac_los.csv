@@ -1,106 +1,106 @@
 ﻿bundle,Post-Acute Care Setting,Provider Group,Benchmark,Diff from Benchmark,Best-in-Class,Diff from BIC
-Back and neck except spinal fusion,SNF,9.5,7.1,0.34,7.42,0.28
-Back and neck except spinal fusion,HH,3.2,2.4,0.33,1.87,0.71
-Back and neck except spinal fusion,IRF,1.8,1.6,0.11,1.38,0.29
-Double joint replacement of the lower extremity,SNF,22.5,18,0.25,17.57,0.28
-Double joint replacement of the lower extremity,HH,7.4,6.1,0.21,5.27,0.39
-Double joint replacement of the lower extremity,IRF,4.1,4.1,0.01,3.51,0.17
-Fractures of the femur and hip or pelvis,SNF,16.5,12.7,0.3,12.22,0.35
-Fractures of the femur and hip or pelvis,HH,4.7,4,0.17,3.66,0.27
-Fractures of the femur and hip or pelvis,IRF,3,2.9,0.02,2.44,0.22
-Hip and femur procedures except major joint,SNF,23.8,17,0.4,16.62,0.43
-Hip and femur procedures except major joint,HH,6.8,5.8,0.18,4.99,0.37
-Hip and femur procedures except major joint,IRF,4,3.6,0.11,3.32,0.21
-"Lower extremity/humerus procedure except hip, foot, femur",SNF,18.6,17.9,0.04,15.49,0.2
-"Lower extremity/humerus procedure except hip, foot, femur",HH,5.8,5.3,0.11,4.65,0.25
-"Lower extremity/humerus procedure except hip, foot, femur",IRF,3.5,3.4,0.03,3.1,0.13
-Major joint replacement of the lower extremity (MJRLE),SNF,13.1,12.2,0.08,10.63,0.24
-Major joint replacement of the lower extremity (MJRLE),HH,4.3,3.5,0.22,3.19,0.34
-Major joint replacement of the lower extremity (MJRLE),IRF,2.4,2.5,-0.04,2.13,0.12
-Major joint replacement of the upper extremity,SNF,11.8,10.1,0.17,9,0.31
-Major joint replacement of the upper extremity,HH,3.4,3,0.12,2.7,0.25
-Major joint replacement of the upper extremity,IRF,2.2,2,0.12,1.8,0.23
-Spinal fusion,SNF,18.7,18,0.04,17.34,0.08
-Spinal fusion,HH,6.1,5.5,0.13,5.2,0.18
-Spinal fusion,IRF,4.4,4.1,0.06,3.47,0.26
-Renal failure,SNF,11.9,11.2,0.06,9.78,0.22
-Renal failure,HH,3.4,3.3,0,2.94,0.14
-Renal failure,IRF,2.4,2.3,0.01,1.96,0.2
-Cellulitis,SNF,10.1,8.6,0.17,7.2,0.41
-Cellulitis,HH,2.8,2.2,0.24,2.16,0.28
-Cellulitis,IRF,1.9,1.5,0.22,1.44,0.31
-Sepsis,SNF,15.6,16.2,-0.04,14.56,0.07
-Sepsis,HH,4.8,4.7,0.01,4.37,0.09
-Sepsis,IRF,2.8,3,-0.08,2.91,-0.04
-Urinary tract infection,SNF,11,8.9,0.23,8.66,0.27
-Urinary tract infection,HH,3.6,3.1,0.17,2.6,0.38
-Urinary tract infection,IRF,2.3,1.9,0.21,1.73,0.33
-Seizures,SNF,8.4,6.5,0.28,5.92,0.42
-Seizures,HH,2.3,1.8,0.26,1.78,0.3
-Seizures,IRF,1.6,1.3,0.26,1.18,0.34
-Stroke,SNF,15.5,12.3,0.26,12.13,0.28
-Stroke,HH,5,4.1,0.21,3.64,0.37
-Stroke,IRF,3.4,2.8,0.18,2.43,0.38
-Acute myocardial infarction,SNF,12.3,11.3,0.08,9.9,0.24
-Acute myocardial infarction,HH,4.3,3.3,0.31,2.97,0.45
-Acute myocardial infarction,IRF,2.4,2.3,0.06,1.98,0.23
-Cardiac arrhythmia,SNF,8,9,-0.11,8.78,-0.09
-Cardiac arrhythmia,HH,2.7,3.1,-0.13,2.63,0.03
-Cardiac arrhythmia,IRF,1.8,2,-0.07,1.76,0.03
-Cardiac defibrillator,SNF,38.1,31.1,0.22,27.13,0.41
-Cardiac defibrillator,HH,12.2,9.7,0.26,8.14,0.5
-Cardiac defibrillator,IRF,8.5,6.3,0.35,5.43,0.57
-Cardiac valve,SNF,31.6,26.1,0.21,24.66,0.28
-Cardiac valve,HH,9.8,8.4,0.16,7.4,0.32
-Cardiac valve,IRF,6.4,5.5,0.16,4.93,0.3
-Congestive heart failure,SNF,12,10.9,0.1,9.24,0.3
-Congestive heart failure,HH,3.3,3,0.09,2.77,0.19
-Congestive heart failure,IRF,2.4,2,0.22,1.85,0.32
-Coronary artery bypass graft,SNF,23.3,21.4,0.09,18.34,0.27
-Coronary artery bypass graft,HH,7,5.6,0.24,5.5,0.26
-Coronary artery bypass graft,IRF,5.1,4.1,0.25,3.67,0.39
-Pacemaker,SNF,17.2,17.3,0,16.6,0.04
-Pacemaker,HH,4.8,5.4,-0.11,4.98,-0.03
-Pacemaker,IRF,3.1,3.8,-0.19,3.32,-0.06
-Percutaneous coronary intervention,SNF,12.4,15.9,-0.22,14.39,-0.14
-Percutaneous coronary intervention,HH,4,4.9,-0.19,4.32,-0.08
-Percutaneous coronary intervention,IRF,2.9,3.3,-0.1,2.88,0.02
-Transcatheter Aortic Valve Replacement,SNF,32,35.9,-0.11,34.08,-0.06
-Transcatheter Aortic Valve Replacement,HH,10.8,10.2,0.05,10.22,0.05
-Transcatheter Aortic Valve Replacement,IRF,6.3,7.5,-0.16,6.82,-0.07
-"COPD, bronchitis, asthma",SNF,9,6.9,0.3,6.76,0.34
-"COPD, bronchitis, asthma",HH,2.6,2.1,0.2,2.03,0.26
-"COPD, bronchitis, asthma",IRF,2,1.5,0.4,1.35,0.51
-Simple pneumonia and respiratory infections,SNF,10.8,10.9,-0.01,9.56,0.13
-Simple pneumonia and respiratory infections,HH,3.5,3.5,0,2.87,0.21
-Simple pneumonia and respiratory infections,IRF,2.1,2,0.06,1.91,0.09
-Bariatric Surgery,SNF,12.7,11.6,0.09,10.82,0.17
-Bariatric Surgery,HH,3.9,3.4,0.13,3.25,0.19
-Bariatric Surgery,IRF,2.9,2.4,0.25,2.16,0.36
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",SNF,6.8,7.5,-0.09,6.48,0.05
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",HH,2.3,2,0.14,1.94,0.2
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",IRF,1.3,1.5,-0.09,1.3,0.04
-Gastrointestinal hemorrhage,SNF,8.8,8.7,0.02,7.78,0.13
-Gastrointestinal hemorrhage,HH,2.9,2.3,0.28,2.33,0.26
-Gastrointestinal hemorrhage,IRF,1.8,1.6,0.16,1.56,0.17
-Gastrointestinal obstruction,SNF,9.2,6.8,0.35,6.35,0.45
-Gastrointestinal obstruction,HH,2.7,2.2,0.25,1.9,0.43
-Gastrointestinal obstruction,IRF,1.8,1.5,0.21,1.27,0.41
-Inflammatory Bowel Disease,SNF,6.4,4.5,0.43,4.32,0.49
-Inflammatory Bowel Disease,HH,1.9,1.5,0.23,1.3,0.46
-Inflammatory Bowel Disease,IRF,1.2,1,0.23,0.86,0.43
-Major bowel procedure,SNF,17.4,15.9,0.09,15.62,0.11
-Major bowel procedure,HH,5.5,5.2,0.05,4.69,0.17
-Major bowel procedure,IRF,3.8,3.3,0.14,3.12,0.21
-(OP) Back & neck except spinal fusion,SNF,5.5,6.6,-0.16,5.96,-0.07
-(OP) Back & neck except spinal fusion,HH,1.6,1.9,-0.14,1.79,-0.08
-(OP) Back & neck except spinal fusion,IRF,1.1,1.2,-0.09,1.19,-0.09
-(OP) Cardiac Defibrillator,SNF,17.8,16,0.12,14.14,0.26
-(OP) Cardiac Defibrillator,HH,5.8,5.1,0.12,4.24,0.36
-(OP) Cardiac Defibrillator,IRF,3.8,3.4,0.1,2.83,0.33
-(OP) Major joint replacement of the lower extremity (MJRLE),SNF,5.9,5.8,0.01,5.26,0.11
-(OP) Major joint replacement of the lower extremity (MJRLE),HH,1.9,1.7,0.16,1.58,0.22
-(OP) Major joint replacement of the lower extremity (MJRLE),IRF,1.3,1.1,0.14,1.05,0.22
-(OP) Percutaneous Coronary Intervention,SNF,6.1,5.9,0.03,5.04,0.21
-(OP) Percutaneous Coronary Intervention,HH,2,1.7,0.15,1.51,0.3
-(OP) Percutaneous Coronary Intervention,IRF,1.4,1.1,0.23,1.01,0.4
+Back and neck except spinal fusion,SNF,10.49172645,8.226515986,0.275354776,7.075659212,0.482791375
+Back and neck except spinal fusion,HH,2.835319998,2.452079514,0.15629203,2.139403435,0.325285335
+Back and neck except spinal fusion,IRF,1.867324369,1.530966605,0.219702875,1.380229459,0.352908647
+Double joint replacement of the lower extremity,SNF,23.38182068,19.52960977,0.197249763,18.60240756,0.256924438
+Double joint replacement of the lower extremity,HH,6.859765002,6.139413552,0.11733229,5.733882231,0.196356103
+Double joint replacement of the lower extremity,IRF,4.751270671,4.253147196,0.117118795,3.668013109,0.295325434
+Fractures of the femur and hip or pelvis,SNF,13.67802872,12.06557702,0.133640662,11.00102476,0.243341327
+Fractures of the femur and hip or pelvis,HH,4.774337891,3.643729968,0.310288615,3.187435485,0.497861812
+Fractures of the femur and hip or pelvis,IRF,3.050806781,2.34124156,0.303072196,2.179418026,0.39982635
+Hip and femur procedures except major joint,SNF,19.80926742,17.75139509,0.115927358,15.35550793,0.290043124
+Hip and femur procedures except major joint,HH,6.953842054,5.309822852,0.309618465,4.546901023,0.529358572
+Hip and femur procedures except major joint,IRF,4.31269431,3.33431635,0.293426855,2.953956817,0.459972023
+"Lower extremity/humerus procedure except hip, foot, femur",SNF,19.56549065,15.86607652,0.233165025,14.63161707,0.337206309
+"Lower extremity/humerus procedure except hip, foot, femur",HH,6.150495959,4.998524412,0.230462323,4.450354739,0.382023753
+"Lower extremity/humerus procedure except hip, foot, femur",IRF,3.375006914,3.025872581,0.115383025,2.922046436,0.155014812
+Major joint replacement of the lower extremity (MJRLE),SNF,12.73484201,9.7513246,0.305960219,9.303501381,0.368822499
+Major joint replacement of the lower extremity (MJRLE),HH,3.712035503,3.115459161,0.191489059,2.835481229,0.309137745
+Major joint replacement of the lower extremity (MJRLE),IRF,2.508962592,1.99086945,0.260234614,1.78712049,0.403913506
+Major joint replacement of the upper extremity,SNF,10.67655567,9.200851067,0.160387837,8.445340063,0.26419488
+Major joint replacement of the upper extremity,HH,3.172945317,2.912420832,0.089452898,2.576069372,0.23170026
+Major joint replacement of the upper extremity,IRF,2.455945311,1.804350956,0.361123956,1.647663079,0.490562811
+Spinal fusion,SNF,20.0051089,19.22778799,0.040426954,17.20528473,0.162730476
+Spinal fusion,HH,5.503158832,6.04524452,-0.089671425,5.349327276,0.028757178
+Spinal fusion,IRF,3.781451489,4.109260477,-0.079773232,3.478012483,0.087244944
+Renal failure,SNF,10.97671943,10.13492484,0.083058789,8.692872418,0.262726392
+Renal failure,HH,3.780578494,2.960270332,0.277105828,2.530641452,0.493921034
+Renal failure,IRF,2.410611741,2.020368036,0.193154761,1.807728121,0.33350348
+Cellulitis,SNF,8.850688158,8.104353691,0.09209056,7.386646658,0.198201101
+Cellulitis,HH,2.911176399,2.480423556,0.173661003,2.313448769,0.258370809
+Cellulitis,IRF,1.966136786,1.665789225,0.18030346,1.568795865,0.253277645
+Sepsis,SNF,15.91936429,15.99805132,-0.004918538,14.1327198,0.126419013
+Sepsis,HH,4.616872332,4.637616719,-0.004473071,4.525190564,0.020260311
+Sepsis,IRF,3.322430383,3.301846394,0.006234085,2.783140203,0.193770396
+Urinary tract infection,SNF,11.35278071,8.960581213,0.266969234,8.357174975,0.358447172
+Urinary tract infection,HH,3.077829448,2.647609255,0.162493839,2.552898686,0.205621463
+Urinary tract infection,IRF,1.981239697,1.796955412,0.102553622,1.62813527,0.216876591
+Seizures,SNF,7.86168941,7.566201322,0.039053691,6.397498256,0.228869332
+Seizures,HH,2.746031609,2.179466993,0.259955584,1.934135095,0.419772391
+Seizures,IRF,1.725774284,1.511448828,0.141801331,1.262226891,0.367245696
+Stroke,SNF,14.2929651,12.41963083,0.150836551,11.57213971,0.23511861
+Stroke,HH,4.759975713,3.949611025,0.205175822,3.416247966,0.393334372
+Stroke,IRF,3.284350197,2.48459117,0.321887575,2.442541671,0.344644489
+Acute myocardial infarction,SNF,12.97806439,11.23070326,0.155587865,9.765973739,0.328906337
+Acute myocardial infarction,HH,4.067668977,3.364280024,0.209075626,2.880054977,0.4123581
+Acute myocardial infarction,IRF,2.876311686,2.158889733,0.332310605,1.967042668,0.462251802
+Cardiac arrhythmia,SNF,8.24893379,9.368863579,-0.119537421,8.846393898,-0.067537136
+Cardiac arrhythmia,HH,2.897417456,3.054868273,-0.051540951,2.717062497,0.066378657
+Cardiac arrhythmia,IRF,1.773291103,1.923958714,-0.078311249,1.881256538,-0.057390065
+Cardiac defibrillator,SNF,41.51154143,31.34585304,0.324307282,29.05082084,0.428928348
+Cardiac defibrillator,HH,12.86499391,8.828056052,0.457285027,8.541155364,0.506235791
+Cardiac defibrillator,IRF,7.35619255,5.929522229,0.240604599,5.635164439,0.305408676
+Cardiac valve,SNF,27.93198271,28.42040685,-0.017185684,25.91190547,0.077959425
+Cardiac valve,HH,8.332557521,8.280405069,0.006298297,7.137071247,0.167503761
+Cardiac valve,IRF,6.085495718,5.248750097,0.159418072,4.761638558,0.278025546
+Congestive heart failure,SNF,12.61391717,10.79241861,0.168775752,9.488519181,0.329387329
+Congestive heart failure,HH,3.386393423,3.180554053,0.064718086,2.910176171,0.163638633
+Congestive heart failure,IRF,2.209623486,2.109834349,0.047297143,1.854074647,0.191766194
+Coronary artery bypass graft,SNF,24.93778687,21.77546868,0.145223887,21.18412466,0.177192226
+Coronary artery bypass graft,HH,6.690320479,7.034729677,-0.048958413,6.443563723,0.038295075
+Coronary artery bypass graft,IRF,4.921797925,4.423877841,0.112552856,4.256910743,0.156190069
+Pacemaker,SNF,16.24556784,18.66048122,-0.129413243,16.63999753,-0.023703711
+Pacemaker,HH,5.030499753,5.613264217,-0.103819176,5.019052539,0.002280752
+Pacemaker,IRF,3.455987886,3.649087707,-0.052917287,3.510103352,-0.015417058
+Percutaneous coronary intervention,SNF,12.37769544,14.68385014,-0.157053816,13.79525312,-0.102756917
+Percutaneous coronary intervention,HH,4.399239146,4.601219437,-0.043897122,4.346797272,0.012064486
+Percutaneous coronary intervention,IRF,2.788523493,2.996072642,-0.069273737,2.836398673,-0.016878861
+Transcatheter Aortic Valve Replacement,SNF,34.00397896,37.32075126,-0.088872067,35.72074316,-0.048060708
+Transcatheter Aortic Valve Replacement,HH,10.41037887,10.91583799,-0.046305114,10.43313447,-0.00218109
+Transcatheter Aortic Valve Replacement,IRF,6.432975946,7.402731182,-0.130999656,7.180681969,-0.104127439
+"COPD, bronchitis, asthma",SNF,9.616056742,7.315596856,0.314459631,6.733803537,0.428027516
+"COPD, bronchitis, asthma",HH,2.520559121,2.230514348,0.130034928,2.06081885,0.223086212
+"COPD, bronchitis, asthma",IRF,1.958115303,1.535925503,0.274876482,1.286180984,0.522425947
+Simple pneumonia and respiratory infections,SNF,12.5958883,10.50857075,0.198630014,9.274660524,0.358096964
+Simple pneumonia and respiratory infections,HH,3.678061414,3.068737858,0.19855836,2.728673906,0.347929998
+Simple pneumonia and respiratory infections,IRF,2.133605337,2.057728653,0.036873999,1.894683176,0.126101379
+Bariatric Surgery,SNF,13.70498251,12.22756791,0.12082653,11.46381553,0.195499219
+Bariatric Surgery,HH,4.39991884,3.759820241,0.170247128,3.272263708,0.344610102
+Bariatric Surgery,IRF,2.998964007,2.5200688,0.190032592,2.234783518,0.341948329
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",SNF,7.422334331,7.239978547,0.025187338,6.727871987,0.103221694
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",HH,1.970672922,2.321001187,-0.150938426,2.139593432,-0.078949817
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",IRF,1.492573224,1.481662496,0.007363842,1.362530371,0.095442168
+Gastrointestinal hemorrhage,SNF,10.63558182,8.562455501,0.2421182,7.978645327,0.333005965
+Gastrointestinal hemorrhage,HH,3.167519587,2.683036411,0.180572718,2.465895737,0.284531028
+Gastrointestinal hemorrhage,IRF,1.929063648,1.672495349,0.153404492,1.527681622,0.262739318
+Gastrointestinal obstruction,SNF,7.766439831,7.661046795,0.013757002,7.283259587,0.066341209
+Gastrointestinal obstruction,HH,2.513893292,2.337596562,0.075417946,2.18916357,0.148335066
+Gastrointestinal obstruction,IRF,1.887899265,1.583509029,0.192225135,1.387819904,0.360334479
+Inflammatory Bowel Disease,SNF,5.321838845,4.833910487,0.100938641,4.439510296,0.198744566
+Inflammatory Bowel Disease,HH,1.902819425,1.46580238,0.298141858,1.369738512,0.389184437
+Inflammatory Bowel Disease,IRF,1.120749522,1.008457478,0.111350301,0.838471568,0.336657753
+Major bowel procedure,SNF,16.56543694,16.61166309,-0.002782753,16.46900448,0.005855391
+Major bowel procedure,HH,5.144238383,5.251966838,-0.020512021,4.71773943,0.090403245
+Major bowel procedure,IRF,3.666144081,3.31155866,0.107075084,3.297825482,0.111685291
+(OP) Back & neck except spinal fusion,SNF,5.74543854,6.364792484,-0.09730937,5.865358941,-0.020445535
+(OP) Back & neck except spinal fusion,HH,1.893307096,1.87805898,0.008119083,1.67565521,0.129890616
+(OP) Back & neck except spinal fusion,IRF,1.057355218,1.285247082,-0.17731366,1.117034204,-0.053426284
+(OP) Cardiac Defibrillator,SNF,21.18621164,15.82821984,0.338508807,14.3104163,0.480474866
+(OP) Cardiac Defibrillator,HH,6.430387601,4.554532432,0.411865586,4.498863098,0.429336137
+(OP) Cardiac Defibrillator,IRF,3.992956888,3.180658392,0.255386903,2.927450352,0.363970831
+(OP) Major joint replacement of the lower extremity (MJRLE),SNF,6.156989731,5.515198368,0.116367775,5.167317362,0.19152537
+(OP) Major joint replacement of the lower extremity (MJRLE),HH,2.113178385,1.77066123,0.193440252,1.539378629,0.372747643
+(OP) Major joint replacement of the lower extremity (MJRLE),IRF,1.257121934,1.143134631,0.099714679,1.020111891,0.2323373
+(OP) Percutaneous Coronary Intervention,SNF,7.084909253,6.163751245,0.149447629,5.689327624,0.245298165
+(OP) Percutaneous Coronary Intervention,HH,1.931698394,1.843888902,0.0476219,1.703254313,0.134122121
+(OP) Percutaneous Coronary Intervention,IRF,1.348093843,1.207763765,0.116190005,1.12735178,0.19580584

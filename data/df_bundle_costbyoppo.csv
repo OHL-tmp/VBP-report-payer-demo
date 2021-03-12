@@ -1,211 +1,211 @@
 ﻿bundle,reduction_oppo,est_costpct
-Back and neck except spinal fusion,Total Estimated Opportunities,0.067
-Back and neck except spinal fusion,Readmission reduction,0.045
-Back and neck except spinal fusion,Post-discharge ER reduction,0.005
-Back and neck except spinal fusion,Skilled Nursing Facility reduction,0.011
-Back and neck except spinal fusion,Inpatient Rehab reduction,0.003
-Back and neck except spinal fusion,Reduce DME costs,0.002
-Double joint replacement of the lower extremity,Total Estimated Opportunities,0.092
-Double joint replacement of the lower extremity,Readmission reduction,0.057
-Double joint replacement of the lower extremity,Post-discharge ER reduction,0.011
-Double joint replacement of the lower extremity,Skilled Nursing Facility reduction,0.015
-Double joint replacement of the lower extremity,Inpatient Rehab reduction,0.002
-Double joint replacement of the lower extremity,Reduce DME costs,0.006
-Fractures of the femur and hip or pelvis,Total Estimated Opportunities,0.072
-Fractures of the femur and hip or pelvis,Readmission reduction,0.037
-Fractures of the femur and hip or pelvis,Post-discharge ER reduction,0.015
-Fractures of the femur and hip or pelvis,Skilled Nursing Facility reduction,0.011
-Fractures of the femur and hip or pelvis,Inpatient Rehab reduction,0.005
-Fractures of the femur and hip or pelvis,Reduce DME costs,0.004
-Hip and femur procedures except major joint,Total Estimated Opportunities,0.104
-Hip and femur procedures except major joint,Readmission reduction,0.067
-Hip and femur procedures except major joint,Post-discharge ER reduction,0.009
-Hip and femur procedures except major joint,Skilled Nursing Facility reduction,0.021
-Hip and femur procedures except major joint,Inpatient Rehab reduction,0.002
-Hip and femur procedures except major joint,Reduce DME costs,0.006
-"Lower extremity/humerus procedure except hip, foot, femur",Total Estimated Opportunities,0.057
-"Lower extremity/humerus procedure except hip, foot, femur",Readmission reduction,0.034
-"Lower extremity/humerus procedure except hip, foot, femur",Post-discharge ER reduction,0.006
-"Lower extremity/humerus procedure except hip, foot, femur",Skilled Nursing Facility reduction,0.011
-"Lower extremity/humerus procedure except hip, foot, femur",Inpatient Rehab reduction,0.002
-"Lower extremity/humerus procedure except hip, foot, femur",Reduce DME costs,0.004
-Major joint replacement of the lower extremity (MJRLE),Total Estimated Opportunities,0.084
-Major joint replacement of the lower extremity (MJRLE),Readmission reduction,0.041
-Major joint replacement of the lower extremity (MJRLE),Post-discharge ER reduction,0.016
-Major joint replacement of the lower extremity (MJRLE),Skilled Nursing Facility reduction,0.016
-Major joint replacement of the lower extremity (MJRLE),Inpatient Rehab reduction,0.003
-Major joint replacement of the lower extremity (MJRLE),Reduce DME costs,0.008
-Major joint replacement of the upper extremity,Total Estimated Opportunities,0.072
-Major joint replacement of the upper extremity,Readmission reduction,0.035
-Major joint replacement of the upper extremity,Post-discharge ER reduction,0.012
-Major joint replacement of the upper extremity,Skilled Nursing Facility reduction,0.015
-Major joint replacement of the upper extremity,Inpatient Rehab reduction,0.003
-Major joint replacement of the upper extremity,Reduce DME costs,0.006
-Spinal fusion,Total Estimated Opportunities,0.013
-Spinal fusion,Readmission reduction, -   
-Spinal fusion,Post-discharge ER reduction, -   
-Spinal fusion,Skilled Nursing Facility reduction,0.007
-Spinal fusion,Inpatient Rehab reduction, -   
-Spinal fusion,Reduce DME costs,0.006
-Renal failure,Total Estimated Opportunities,0.104
-Renal failure,Readmission reduction,0.06
-Renal failure,Post-discharge ER reduction,0.011
-Renal failure,Skilled Nursing Facility reduction,0.02
-Renal failure,Inpatient Rehab reduction,0.004
-Renal failure,Reduce DME costs,0.008
-Cellulitis,Total Estimated Opportunities,0.085
-Cellulitis,Readmission reduction,0.063
-Cellulitis,Post-discharge ER reduction,0.002
-Cellulitis,Skilled Nursing Facility reduction,0.016
-Cellulitis,Inpatient Rehab reduction,0.003
-Cellulitis,Reduce DME costs,0
-Sepsis,Total Estimated Opportunities,0.035
-Sepsis,Readmission reduction,0.024
-Sepsis,Post-discharge ER reduction,0.001
-Sepsis,Skilled Nursing Facility reduction,0.007
-Sepsis,Inpatient Rehab reduction, -   
-Sepsis,Reduce DME costs,0.004
-Urinary tract infection,Total Estimated Opportunities,0.057
-Urinary tract infection,Readmission reduction,0.041
-Urinary tract infection,Post-discharge ER reduction,0.005
-Urinary tract infection,Skilled Nursing Facility reduction,0.008
-Urinary tract infection,Inpatient Rehab reduction,0.003
-Urinary tract infection,Reduce DME costs, -   
-Seizures,Total Estimated Opportunities,0.089
-Seizures,Readmission reduction,0.043
-Seizures,Post-discharge ER reduction,0.016
-Seizures,Skilled Nursing Facility reduction,0.018
-Seizures,Inpatient Rehab reduction,0.003
-Seizures,Reduce DME costs,0.008
-Stroke,Total Estimated Opportunities,0.055
-Stroke,Readmission reduction,0.042
-Stroke,Post-discharge ER reduction,0.008
-Stroke,Skilled Nursing Facility reduction,0
-Stroke,Inpatient Rehab reduction,0.002
-Stroke,Reduce DME costs,0.003
-Acute myocardial infarction,Total Estimated Opportunities,0.066
-Acute myocardial infarction,Readmission reduction,0.039
-Acute myocardial infarction,Post-discharge ER reduction,0.012
-Acute myocardial infarction,Skilled Nursing Facility reduction,0.011
-Acute myocardial infarction,Inpatient Rehab reduction, -   
-Acute myocardial infarction,Reduce DME costs,0.005
-Cardiac arrhythmia,Total Estimated Opportunities,0.001
-Cardiac arrhythmia,Readmission reduction, -   
-Cardiac arrhythmia,Post-discharge ER reduction,0.001
-Cardiac arrhythmia,Skilled Nursing Facility reduction, -   
-Cardiac arrhythmia,Inpatient Rehab reduction, -   
-Cardiac arrhythmia,Reduce DME costs, -   
-Cardiac defibrillator,Total Estimated Opportunities,0.063
-Cardiac defibrillator,Readmission reduction,0.038
-Cardiac defibrillator,Post-discharge ER reduction,0.002
-Cardiac defibrillator,Skilled Nursing Facility reduction,0.019
-Cardiac defibrillator,Inpatient Rehab reduction,0.003
-Cardiac defibrillator,Reduce DME costs,0.001
-Cardiac valve,Total Estimated Opportunities,0.012
-Cardiac valve,Readmission reduction, -   
-Cardiac valve,Post-discharge ER reduction, -   
-Cardiac valve,Skilled Nursing Facility reduction,0.006
-Cardiac valve,Inpatient Rehab reduction,0.001
-Cardiac valve,Reduce DME costs,0.005
-Congestive heart failure,Total Estimated Opportunities,0.056
-Congestive heart failure,Readmission reduction,0.032
-Congestive heart failure,Post-discharge ER reduction,0.003
-Congestive heart failure,Skilled Nursing Facility reduction,0.011
-Congestive heart failure,Inpatient Rehab reduction,0.003
-Congestive heart failure,Reduce DME costs,0.008
-Coronary artery bypass graft,Total Estimated Opportunities,0.02
-Coronary artery bypass graft,Readmission reduction,0.015
-Coronary artery bypass graft,Post-discharge ER reduction,0.001
-Coronary artery bypass graft,Skilled Nursing Facility reduction, -   
-Coronary artery bypass graft,Inpatient Rehab reduction,0.001
-Coronary artery bypass graft,Reduce DME costs,0.002
-Pacemaker,Total Estimated Opportunities, -   
-Pacemaker,Readmission reduction, -   
-Pacemaker,Post-discharge ER reduction, -   
-Pacemaker,Skilled Nursing Facility reduction, -   
-Pacemaker,Inpatient Rehab reduction, -   
-Pacemaker,Reduce DME costs, -   
-Percutaneous coronary intervention,Total Estimated Opportunities,0.004
-Percutaneous coronary intervention,Readmission reduction,0.004
-Percutaneous coronary intervention,Post-discharge ER reduction, -   
-Percutaneous coronary intervention,Skilled Nursing Facility reduction, -   
-Percutaneous coronary intervention,Inpatient Rehab reduction, -   
-Percutaneous coronary intervention,Reduce DME costs, -   
-Transcatheter Aortic Valve Replacement,Total Estimated Opportunities, -   
-Transcatheter Aortic Valve Replacement,Readmission reduction, -   
-Transcatheter Aortic Valve Replacement,Post-discharge ER reduction, -   
-Transcatheter Aortic Valve Replacement,Skilled Nursing Facility reduction, -   
-Transcatheter Aortic Valve Replacement,Inpatient Rehab reduction, -   
-Transcatheter Aortic Valve Replacement,Reduce DME costs, -   
-"COPD, bronchitis, asthma",Total Estimated Opportunities,0.037
-"COPD, bronchitis, asthma",Readmission reduction,0.015
-"COPD, bronchitis, asthma",Post-discharge ER reduction,0.012
-"COPD, bronchitis, asthma",Skilled Nursing Facility reduction, -   
-"COPD, bronchitis, asthma",Inpatient Rehab reduction,0.002
-"COPD, bronchitis, asthma",Reduce DME costs,0.008
-Simple pneumonia and respiratory infections,Total Estimated Opportunities,0.025
-Simple pneumonia and respiratory infections,Readmission reduction, -   
-Simple pneumonia and respiratory infections,Post-discharge ER reduction,0.011
-Simple pneumonia and respiratory infections,Skilled Nursing Facility reduction,0.011
-Simple pneumonia and respiratory infections,Inpatient Rehab reduction,0.003
-Simple pneumonia and respiratory infections,Reduce DME costs, -   
-Bariatric Surgery,Total Estimated Opportunities,0.036
-Bariatric Surgery,Readmission reduction,0.025
-Bariatric Surgery,Post-discharge ER reduction,0.001
-Bariatric Surgery,Skilled Nursing Facility reduction,0.009
-Bariatric Surgery,Inpatient Rehab reduction,0.001
-Bariatric Surgery,Reduce DME costs, -   
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Total Estimated Opportunities,0.021
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Readmission reduction,0.018
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Post-discharge ER reduction,0.002
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Skilled Nursing Facility reduction, -   
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Inpatient Rehab reduction,0.001
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Reduce DME costs, -   
-Gastrointestinal hemorrhage,Total Estimated Opportunities,0.054
-Gastrointestinal hemorrhage,Readmission reduction,0.018
-Gastrointestinal hemorrhage,Post-discharge ER reduction,0.011
-Gastrointestinal hemorrhage,Skilled Nursing Facility reduction,0.019
-Gastrointestinal hemorrhage,Inpatient Rehab reduction,0.002
-Gastrointestinal hemorrhage,Reduce DME costs,0.003
-Gastrointestinal obstruction,Total Estimated Opportunities,0.036
-Gastrointestinal obstruction,Readmission reduction,0.013
-Gastrointestinal obstruction,Post-discharge ER reduction,0.009
-Gastrointestinal obstruction,Skilled Nursing Facility reduction,0.01
-Gastrointestinal obstruction,Inpatient Rehab reduction,0.004
-Gastrointestinal obstruction,Reduce DME costs, -   
-Inflammatory Bowel Disease,Total Estimated Opportunities,0.057
-Inflammatory Bowel Disease,Readmission reduction,0.035
-Inflammatory Bowel Disease,Post-discharge ER reduction,0.007
-Inflammatory Bowel Disease,Skilled Nursing Facility reduction,0.011
-Inflammatory Bowel Disease,Inpatient Rehab reduction,0
-Inflammatory Bowel Disease,Reduce DME costs,0.003
-Major bowel procedure,Total Estimated Opportunities,0.057
-Major bowel procedure,Readmission reduction,0.044
-Major bowel procedure,Post-discharge ER reduction,0.005
-Major bowel procedure,Skilled Nursing Facility reduction,0.006
-Major bowel procedure,Inpatient Rehab reduction,0.001
-Major bowel procedure,Reduce DME costs,0.001
-(OP) Back & neck except spinal fusion,Total Estimated Opportunities,0.001
-(OP) Back & neck except spinal fusion,Readmission reduction,0.001
-(OP) Back & neck except spinal fusion,Post-discharge ER reduction, -   
-(OP) Back & neck except spinal fusion,Skilled Nursing Facility reduction, -   
-(OP) Back & neck except spinal fusion,Inpatient Rehab reduction, -   
-(OP) Back & neck except spinal fusion,Reduce DME costs, -   
-(OP) Cardiac Defibrillator,Total Estimated Opportunities,0.044
-(OP) Cardiac Defibrillator,Readmission reduction,0.023
-(OP) Cardiac Defibrillator,Post-discharge ER reduction,0.004
-(OP) Cardiac Defibrillator,Skilled Nursing Facility reduction,0.014
-(OP) Cardiac Defibrillator,Inpatient Rehab reduction,0.001
-(OP) Cardiac Defibrillator,Reduce DME costs,0.002
-(OP) Major joint replacement of the lower extremity (MJRLE),Total Estimated Opportunities,0.065
-(OP) Major joint replacement of the lower extremity (MJRLE),Readmission reduction,0.04
-(OP) Major joint replacement of the lower extremity (MJRLE),Post-discharge ER reduction,0.013
-(OP) Major joint replacement of the lower extremity (MJRLE),Skilled Nursing Facility reduction,0.01
-(OP) Major joint replacement of the lower extremity (MJRLE),Inpatient Rehab reduction,0.002
-(OP) Major joint replacement of the lower extremity (MJRLE),Reduce DME costs, -   
-(OP) Percutaneous Coronary Intervention,Total Estimated Opportunities,0.014
-(OP) Percutaneous Coronary Intervention,Readmission reduction, -   
-(OP) Percutaneous Coronary Intervention,Post-discharge ER reduction,0.009
-(OP) Percutaneous Coronary Intervention,Skilled Nursing Facility reduction, -   
-(OP) Percutaneous Coronary Intervention,Inpatient Rehab reduction,0.001
-(OP) Percutaneous Coronary Intervention,Reduce DME costs,0.003
+Back and neck except spinal fusion,Total Estimated Opportunities,0.0812846
+Back and neck except spinal fusion,Readmission reduction,0.043916835
+Back and neck except spinal fusion,Post-discharge ER reduction,0.010297278
+Back and neck except spinal fusion,Skilled Nursing Facility reduction,0.015896139
+Back and neck except spinal fusion,Inpatient Rehab reduction,0.003505071
+Back and neck except spinal fusion,Reduce DME costs,0.007669278
+Double joint replacement of the lower extremity,Total Estimated Opportunities,0.070529041
+Double joint replacement of the lower extremity,Readmission reduction,0.02929327
+Double joint replacement of the lower extremity,Post-discharge ER reduction,0.014791171
+Double joint replacement of the lower extremity,Skilled Nursing Facility reduction,0.011208518
+Double joint replacement of the lower extremity,Inpatient Rehab reduction,0.004752615
+Double joint replacement of the lower extremity,Reduce DME costs,0.010483466
+Fractures of the femur and hip or pelvis,Total Estimated Opportunities,0.086958869
+Fractures of the femur and hip or pelvis,Readmission reduction,0.045766721
+Fractures of the femur and hip or pelvis,Post-discharge ER reduction,0.015739346
+Fractures of the femur and hip or pelvis,Skilled Nursing Facility reduction,0.017006753
+Fractures of the femur and hip or pelvis,Inpatient Rehab reduction,0.002613864
+Fractures of the femur and hip or pelvis,Reduce DME costs,0.005832186
+Hip and femur procedures except major joint,Total Estimated Opportunities,0.074516274
+Hip and femur procedures except major joint,Readmission reduction,0.045293423
+Hip and femur procedures except major joint,Post-discharge ER reduction,0.009883317
+Hip and femur procedures except major joint,Skilled Nursing Facility reduction,0.011040483
+Hip and femur procedures except major joint,Inpatient Rehab reduction,0.002804961
+Hip and femur procedures except major joint,Reduce DME costs,0.00549409
+"Lower extremity/humerus procedure except hip, foot, femur",Total Estimated Opportunities,0.063753601
+"Lower extremity/humerus procedure except hip, foot, femur",Readmission reduction,0.053973386
+"Lower extremity/humerus procedure except hip, foot, femur",Post-discharge ER reduction,0.005931914
+"Lower extremity/humerus procedure except hip, foot, femur",Skilled Nursing Facility reduction,0
+"Lower extremity/humerus procedure except hip, foot, femur",Inpatient Rehab reduction,0.003197404
+"Lower extremity/humerus procedure except hip, foot, femur",Reduce DME costs,0.000650897
+Major joint replacement of the lower extremity (MJRLE),Total Estimated Opportunities,0.077698568
+Major joint replacement of the lower extremity (MJRLE),Readmission reduction,0.050137406
+Major joint replacement of the lower extremity (MJRLE),Post-discharge ER reduction,0.005413939
+Major joint replacement of the lower extremity (MJRLE),Skilled Nursing Facility reduction,0.010799887
+Major joint replacement of the lower extremity (MJRLE),Inpatient Rehab reduction,0.004745312
+Major joint replacement of the lower extremity (MJRLE),Reduce DME costs,0.006602025
+Major joint replacement of the upper extremity,Total Estimated Opportunities,0.039995525
+Major joint replacement of the upper extremity,Readmission reduction,0.018205969
+Major joint replacement of the upper extremity,Post-discharge ER reduction,0.005963685
+Major joint replacement of the upper extremity,Skilled Nursing Facility reduction,0.005924871
+Major joint replacement of the upper extremity,Inpatient Rehab reduction,0.002598167
+Major joint replacement of the upper extremity,Reduce DME costs,0.007302832
+Spinal fusion,Total Estimated Opportunities,0.003398265
+Spinal fusion,Readmission reduction,0
+Spinal fusion,Post-discharge ER reduction,0.002785799
+Spinal fusion,Skilled Nursing Facility reduction,0
+Spinal fusion,Inpatient Rehab reduction,0.000612466
+Spinal fusion,Reduce DME costs,0
+Renal failure,Total Estimated Opportunities,0.034116627
+Renal failure,Readmission reduction,0.017768783
+Renal failure,Post-discharge ER reduction,0.003092287
+Renal failure,Skilled Nursing Facility reduction,0.010648538
+Renal failure,Inpatient Rehab reduction,0.000106122
+Renal failure,Reduce DME costs,0.002500897
+Cellulitis,Total Estimated Opportunities,0.08173048
+Cellulitis,Readmission reduction,0.053632699
+Cellulitis,Post-discharge ER reduction,0.010049326
+Cellulitis,Skilled Nursing Facility reduction,0.013420003
+Cellulitis,Inpatient Rehab reduction,0.002478844
+Cellulitis,Reduce DME costs,0.002149608
+Sepsis,Total Estimated Opportunities,0.039559264
+Sepsis,Readmission reduction,0.027058608
+Sepsis,Post-discharge ER reduction,0
+Sepsis,Skilled Nursing Facility reduction,0.011103353
+Sepsis,Inpatient Rehab reduction,0.001397303
+Sepsis,Reduce DME costs,0
+Urinary tract infection,Total Estimated Opportunities,0.074228969
+Urinary tract infection,Readmission reduction,0.034942334
+Urinary tract infection,Post-discharge ER reduction,0.009943286
+Urinary tract infection,Skilled Nursing Facility reduction,0.020718064
+Urinary tract infection,Inpatient Rehab reduction,0.003664655
+Urinary tract infection,Reduce DME costs,0.00496063
+Seizures,Total Estimated Opportunities,0.077468872
+Seizures,Readmission reduction,0.04589197
+Seizures,Post-discharge ER reduction,0.012297507
+Seizures,Skilled Nursing Facility reduction,0.011272796
+Seizures,Inpatient Rehab reduction,0.003924697
+Seizures,Reduce DME costs,0.004081902
+Stroke,Total Estimated Opportunities,0.088417165
+Stroke,Readmission reduction,0.051282024
+Stroke,Post-discharge ER reduction,0.011763048
+Stroke,Skilled Nursing Facility reduction,0.014691867
+Stroke,Inpatient Rehab reduction,0.001974364
+Stroke,Reduce DME costs,0.008705861
+Acute myocardial infarction,Total Estimated Opportunities,0.064997804
+Acute myocardial infarction,Readmission reduction,0.039413439
+Acute myocardial infarction,Post-discharge ER reduction,0.008961679
+Acute myocardial infarction,Skilled Nursing Facility reduction,0.005757724
+Acute myocardial infarction,Inpatient Rehab reduction,0.001023539
+Acute myocardial infarction,Reduce DME costs,0.009841423
+Cardiac arrhythmia,Total Estimated Opportunities,0
+Cardiac arrhythmia,Readmission reduction,0
+Cardiac arrhythmia,Post-discharge ER reduction,0
+Cardiac arrhythmia,Skilled Nursing Facility reduction,0
+Cardiac arrhythmia,Inpatient Rehab reduction,0
+Cardiac arrhythmia,Reduce DME costs,0
+Cardiac defibrillator,Total Estimated Opportunities,0.080589502
+Cardiac defibrillator,Readmission reduction,0.046206479
+Cardiac defibrillator,Post-discharge ER reduction,0.011181014
+Cardiac defibrillator,Skilled Nursing Facility reduction,0.014661851
+Cardiac defibrillator,Inpatient Rehab reduction,0.004155767
+Cardiac defibrillator,Reduce DME costs,0.004384391
+Cardiac valve,Total Estimated Opportunities,0.005189822
+Cardiac valve,Readmission reduction,0.005189822
+Cardiac valve,Post-discharge ER reduction,0
+Cardiac valve,Skilled Nursing Facility reduction,0
+Cardiac valve,Inpatient Rehab reduction,0
+Cardiac valve,Reduce DME costs,0
+Congestive heart failure,Total Estimated Opportunities,0.040124069
+Congestive heart failure,Readmission reduction,0.01032285
+Congestive heart failure,Post-discharge ER reduction,0.007194696
+Congestive heart failure,Skilled Nursing Facility reduction,0.012397728
+Congestive heart failure,Inpatient Rehab reduction,0.00349331
+Congestive heart failure,Reduce DME costs,0.006715485
+Coronary artery bypass graft,Total Estimated Opportunities,0.017767762
+Coronary artery bypass graft,Readmission reduction,0
+Coronary artery bypass graft,Post-discharge ER reduction,0.010895375
+Coronary artery bypass graft,Skilled Nursing Facility reduction,0.004593417
+Coronary artery bypass graft,Inpatient Rehab reduction,0.002152173
+Coronary artery bypass graft,Reduce DME costs,0.000126796
+Pacemaker,Total Estimated Opportunities,0
+Pacemaker,Readmission reduction,0
+Pacemaker,Post-discharge ER reduction,0
+Pacemaker,Skilled Nursing Facility reduction,0
+Pacemaker,Inpatient Rehab reduction,0
+Pacemaker,Reduce DME costs,0
+Percutaneous coronary intervention,Total Estimated Opportunities,0.00783053
+Percutaneous coronary intervention,Readmission reduction,0.00783053
+Percutaneous coronary intervention,Post-discharge ER reduction,0
+Percutaneous coronary intervention,Skilled Nursing Facility reduction,0
+Percutaneous coronary intervention,Inpatient Rehab reduction,0
+Percutaneous coronary intervention,Reduce DME costs,0
+Transcatheter Aortic Valve Replacement,Total Estimated Opportunities,0
+Transcatheter Aortic Valve Replacement,Readmission reduction,0
+Transcatheter Aortic Valve Replacement,Post-discharge ER reduction,0
+Transcatheter Aortic Valve Replacement,Skilled Nursing Facility reduction,0
+Transcatheter Aortic Valve Replacement,Inpatient Rehab reduction,0
+Transcatheter Aortic Valve Replacement,Reduce DME costs,0
+"COPD, bronchitis, asthma",Total Estimated Opportunities,0.100201392
+"COPD, bronchitis, asthma",Readmission reduction,0.062063136
+"COPD, bronchitis, asthma",Post-discharge ER reduction,0.015621502
+"COPD, bronchitis, asthma",Skilled Nursing Facility reduction,0.016375745
+"COPD, bronchitis, asthma",Inpatient Rehab reduction,0.00254772
+"COPD, bronchitis, asthma",Reduce DME costs,0.003593289
+Simple pneumonia and respiratory infections,Total Estimated Opportunities,0.006616552
+Simple pneumonia and respiratory infections,Readmission reduction,0
+Simple pneumonia and respiratory infections,Post-discharge ER reduction,0
+Simple pneumonia and respiratory infections,Skilled Nursing Facility reduction,0.004472778
+Simple pneumonia and respiratory infections,Inpatient Rehab reduction,0.002143774
+Simple pneumonia and respiratory infections,Reduce DME costs,0
+Bariatric Surgery,Total Estimated Opportunities,0.029389535
+Bariatric Surgery,Readmission reduction,0.014146311
+Bariatric Surgery,Post-discharge ER reduction,0.003881594
+Bariatric Surgery,Skilled Nursing Facility reduction,0.006898014
+Bariatric Surgery,Inpatient Rehab reduction,0.001568595
+Bariatric Surgery,Reduce DME costs,0.002895021
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Total Estimated Opportunities,0.039726355
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Readmission reduction,0.029143969
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Post-discharge ER reduction,0
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Skilled Nursing Facility reduction,0.005637069
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Inpatient Rehab reduction,0.000962876
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Reduce DME costs,0.003982441
+Gastrointestinal hemorrhage,Total Estimated Opportunities,0.052785912
+Gastrointestinal hemorrhage,Readmission reduction,0.042609259
+Gastrointestinal hemorrhage,Post-discharge ER reduction,0.002005943
+Gastrointestinal hemorrhage,Skilled Nursing Facility reduction,0.002202785
+Gastrointestinal hemorrhage,Inpatient Rehab reduction,0.00088625
+Gastrointestinal hemorrhage,Reduce DME costs,0.005081675
+Gastrointestinal obstruction,Total Estimated Opportunities,0.057865231
+Gastrointestinal obstruction,Readmission reduction,0.026309376
+Gastrointestinal obstruction,Post-discharge ER reduction,0.011139149
+Gastrointestinal obstruction,Skilled Nursing Facility reduction,0.015298421
+Gastrointestinal obstruction,Inpatient Rehab reduction,0.00177427
+Gastrointestinal obstruction,Reduce DME costs,0.003344016
+Inflammatory Bowel Disease,Total Estimated Opportunities,0.071947932
+Inflammatory Bowel Disease,Readmission reduction,0.042066349
+Inflammatory Bowel Disease,Post-discharge ER reduction,0.007627734
+Inflammatory Bowel Disease,Skilled Nursing Facility reduction,0.012088455
+Inflammatory Bowel Disease,Inpatient Rehab reduction,0.002676738
+Inflammatory Bowel Disease,Reduce DME costs,0.007488657
+Major bowel procedure,Total Estimated Opportunities,0.020458557
+Major bowel procedure,Readmission reduction,0.011771983
+Major bowel procedure,Post-discharge ER reduction,0
+Major bowel procedure,Skilled Nursing Facility reduction,0.00603186
+Major bowel procedure,Inpatient Rehab reduction,0.001540521
+Major bowel procedure,Reduce DME costs,0.001114192
+(OP) Back & neck except spinal fusion,Total Estimated Opportunities,0
+(OP) Back & neck except spinal fusion,Readmission reduction,0
+(OP) Back & neck except spinal fusion,Post-discharge ER reduction,0
+(OP) Back & neck except spinal fusion,Skilled Nursing Facility reduction,0
+(OP) Back & neck except spinal fusion,Inpatient Rehab reduction,0
+(OP) Back & neck except spinal fusion,Reduce DME costs,0
+(OP) Cardiac Defibrillator,Total Estimated Opportunities,0.085379336
+(OP) Cardiac Defibrillator,Readmission reduction,0.052231654
+(OP) Cardiac Defibrillator,Post-discharge ER reduction,0.006462283
+(OP) Cardiac Defibrillator,Skilled Nursing Facility reduction,0.015897013
+(OP) Cardiac Defibrillator,Inpatient Rehab reduction,0.003076303
+(OP) Cardiac Defibrillator,Reduce DME costs,0.007712082
+(OP) Major joint replacement of the lower extremity (MJRLE),Total Estimated Opportunities,0.017317644
+(OP) Major joint replacement of the lower extremity (MJRLE),Readmission reduction,0.010233907
+(OP) Major joint replacement of the lower extremity (MJRLE),Post-discharge ER reduction,0
+(OP) Major joint replacement of the lower extremity (MJRLE),Skilled Nursing Facility reduction,0.00554148
+(OP) Major joint replacement of the lower extremity (MJRLE),Inpatient Rehab reduction,0.001542256
+(OP) Major joint replacement of the lower extremity (MJRLE),Reduce DME costs,0
+(OP) Percutaneous Coronary Intervention,Total Estimated Opportunities,0.086608203
+(OP) Percutaneous Coronary Intervention,Readmission reduction,0.056165322
+(OP) Percutaneous Coronary Intervention,Post-discharge ER reduction,0.00622549
+(OP) Percutaneous Coronary Intervention,Skilled Nursing Facility reduction,0.013111721
+(OP) Percutaneous Coronary Intervention,Inpatient Rehab reduction,0.002207772
+(OP) Percutaneous Coronary Intervention,Reduce DME costs,0.008897898

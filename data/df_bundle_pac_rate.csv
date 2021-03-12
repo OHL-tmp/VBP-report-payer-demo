@@ -1,106 +1,106 @@
 ﻿bundle,Discharge Disposition,Provider Group,Benchmark,Diff from Benchmark,Best-in-Class,Diff from BIC
-Back and neck except spinal fusion,% Discharged to SNF,0.214315566,0.166279034,0.048036532,0.147368991,0.066946575
-Back and neck except spinal fusion,% Discharged to HH,0.061118104,0.051683695,0.00943441,0.046321258,0.014796847
-Back and neck except spinal fusion,% Discharged to IRF,0.04066453,0.036103219,0.004561311,0.030067411,0.010597119
-Double joint replacement of the lower extremity,% Discharged to SNF,0.454815718,0.349532123,0.105283595,0.315539374,0.139276345
-Double joint replacement of the lower extremity,% Discharged to HH,0.134194671,0.112547023,0.021647648,0.094661812,0.039532859
-Double joint replacement of the lower extremity,% Discharged to IRF,0.086303749,0.063181024,0.023122725,0.063107875,0.023195874
-Fractures of the femur and hip or pelvis,% Discharged to SNF,0.271897841,0.263322924,0.008574917,0.236962183,0.034935658
-Fractures of the femur and hip or pelvis,% Discharged to HH,0.081678184,0.073415435,0.008262748,0.071088655,0.010589529
-Fractures of the femur and hip or pelvis,% Discharged to IRF,0.063281185,0.048856281,0.014424904,0.047392437,0.015888748
-Hip and femur procedures except major joint,% Discharged to SNF,0.401440726,0.363773982,0.037666744,0.310478109,0.090962617
-Hip and femur procedures except major joint,% Discharged to HH,0.129126376,0.107034978,0.022091398,0.093143433,0.035982943
-Hip and femur procedures except major joint,% Discharged to IRF,0.083244879,0.069801086,0.013443793,0.062095622,0.021149257
-"Lower extremity/humerus procedure except hip, foot, femur",% Discharged to SNF,0.371379836,0.336145166,0.03523467,0.304204621,0.067175215
-"Lower extremity/humerus procedure except hip, foot, femur",% Discharged to HH,0.104646348,0.106242554,-0.001596206,0.091261386,0.013384961
-"Lower extremity/humerus procedure except hip, foot, femur",% Discharged to IRF,0.080303711,0.060104182,0.020199529,0.060840924,0.019462787
-Major joint replacement of the lower extremity (MJRLE),% Discharged to SNF,0.26438332,0.244874586,0.019508734,0.208922896,0.055460424
-Major joint replacement of the lower extremity (MJRLE),% Discharged to HH,0.072988156,0.065014224,0.007973932,0.062676869,0.010311287
-Major joint replacement of the lower extremity (MJRLE),% Discharged to IRF,0.048732751,0.049677571,-0.000944819,0.041784579,0.006948172
-Major joint replacement of the upper extremity,% Discharged to SNF,0.232335575,0.189111879,0.043223696,0.183900088,0.048435487
-Major joint replacement of the upper extremity,% Discharged to HH,0.06305592,0.059518462,0.003537457,0.055170026,0.007885893
-Major joint replacement of the upper extremity,% Discharged to IRF,0.045541568,0.036408651,0.009132917,0.036780018,0.00876155
-Spinal fusion,% Discharged to SNF,0.437929129,0.434911107,0.003018022,0.380321412,0.057607717
-Spinal fusion,% Discharged to HH,0.118601923,0.115218215,0.003383708,0.114096424,0.004505499
-Spinal fusion,% Discharged to IRF,0.082251452,0.089449127,-0.007197676,0.076064282,0.006187169
-Renal failure,% Discharged to SNF,0.241047181,0.200438746,0.040608435,0.187038899,0.054008281
-Renal failure,% Discharged to HH,0.071247378,0.062072487,0.009174892,0.05611167,0.015135709
-Renal failure,% Discharged to IRF,0.046255511,0.038336635,0.007918876,0.03740778,0.008847731
-Cellulitis,% Discharged to SNF,0.204724512,0.182797043,0.021927469,0.155071654,0.049652858
-Cellulitis,% Discharged to HH,0.061766177,0.049952584,0.011813593,0.046521496,0.015244681
-Cellulitis,% Discharged to IRF,0.039034642,0.035269474,0.003765168,0.031014331,0.008020311
-Sepsis,% Discharged to SNF,0.328960284,0.322583914,0.00637637,0.280380381,0.048579903
-Sepsis,% Discharged to HH,0.094417451,0.084087751,0.0103297,0.084114114,0.010303337
-Sepsis,% Discharged to IRF,0.063121479,0.061340707,0.001780772,0.056076076,0.007045403
-Urinary tract infection,% Discharged to SNF,0.224578679,0.185430474,0.039148205,0.164691859,0.05988682
-Urinary tract infection,% Discharged to HH,0.067281069,0.055847144,0.011433925,0.049407558,0.017873511
-Urinary tract infection,% Discharged to IRF,0.041608433,0.038298412,0.003310021,0.032938372,0.008670061
-Seizures,% Discharged to SNF,0.176668634,0.122895566,0.053773068,0.12036538,0.056303254
-Seizures,% Discharged to HH,0.054536437,0.041253572,0.013282866,0.036109614,0.018426823
-Seizures,% Discharged to IRF,0.031605564,0.029200826,0.002404738,0.024073076,0.007532488
-Stroke,% Discharged to SNF,0.297966369,0.256859756,0.041106613,0.230822983,0.067143386
-Stroke,% Discharged to HH,0.086199992,0.071990403,0.014209589,0.069246895,0.016953097
-Stroke,% Discharged to IRF,0.058652499,0.046575686,0.012076813,0.046164597,0.012487902
-Acute myocardial infarction,% Discharged to SNF,0.259781814,0.234748728,0.025033086,0.19649013,0.063291683
-Acute myocardial infarction,% Discharged to HH,0.085333518,0.067111731,0.018221787,0.058947039,0.026386479
-Acute myocardial infarction,% Discharged to IRF,0.056260387,0.041217608,0.015042779,0.039298026,0.016962361
-Cardiac arrhythmia,% Discharged to SNF,0.166232233,0.196568851,-0.030336618,0.164013094,0.00221914
-Cardiac arrhythmia,% Discharged to HH,0.052952794,0.049121503,0.003831291,0.049203928,0.003748866
-Cardiac arrhythmia,% Discharged to IRF,0.037600253,0.038809757,-0.001209504,0.032802619,0.004797634
-Cardiac defibrillator,% Discharged to SNF,0.830071523,0.752283761,0.077787761,0.632199759,0.197871763
-Cardiac defibrillator,% Discharged to HH,0.255278038,0.206467673,0.048810365,0.189659928,0.065618111
-Cardiac defibrillator,% Discharged to IRF,0.14249194,0.142971285,-0.000479345,0.126439952,0.016051988
-Cardiac valve,% Discharged to SNF,0.587044444,0.525070342,0.061974102,0.495285316,0.091759127
-Cardiac valve,% Discharged to HH,0.192799551,0.171205703,0.021593848,0.148585595,0.044213956
-Cardiac valve,% Discharged to IRF,0.114124253,0.106099315,0.008024937,0.099057063,0.015067189
-Congestive heart failure,% Discharged to SNF,0.223442575,0.199815442,0.023627134,0.178609518,0.044833058
-Congestive heart failure,% Discharged to HH,0.079149814,0.060405646,0.018744167,0.053582855,0.025566958
-Congestive heart failure,% Discharged to IRF,0.045541574,0.040155909,0.005385665,0.035721904,0.00981967
-Coronary artery bypass graft,% Discharged to SNF,0.507997137,0.472925324,0.035071813,0.409424432,0.098572705
-Coronary artery bypass graft,% Discharged to HH,0.140976033,0.139648625,0.001327408,0.12282733,0.018148703
-Coronary artery bypass graft,% Discharged to IRF,0.100961773,0.081803983,0.01915779,0.081884886,0.019076887
-Pacemaker,% Discharged to SNF,0.351930508,0.365039054,-0.013108546,0.344280439,0.007650069
-Pacemaker,% Discharged to HH,0.098892843,0.10580199,-0.006909147,0.103284132,-0.004391288
-Pacemaker,% Discharged to IRF,0.065916032,0.075963261,-0.010047229,0.068856088,-0.002940056
-Percutaneous coronary intervention,% Discharged to SNF,0.280918203,0.293634184,-0.012715981,0.267123018,0.013795185
-Percutaneous coronary intervention,% Discharged to HH,0.077400883,0.079831749,-0.002430866,0.080136905,-0.002736022
-Percutaneous coronary intervention,% Discharged to IRF,0.052678876,0.05650835,-0.003829474,0.053424604,-0.000745727
-Transcatheter Aortic Valve Replacement,% Discharged to SNF,0.64936203,0.810706362,-0.161344333,0.723742342,-0.074380312
-Transcatheter Aortic Valve Replacement,% Discharged to HH,0.191470856,0.213935855,-0.022465,0.217122703,-0.025651847
-Transcatheter Aortic Valve Replacement,% Discharged to IRF,0.146252273,0.167646178,-0.021393905,0.144748468,0.001503804
-"COPD, bronchitis, asthma",% Discharged to SNF,0.177694096,0.163798404,0.013895692,0.148019237,0.029674859
-"COPD, bronchitis, asthma",% Discharged to HH,0.056572665,0.050325647,0.006247018,0.044405771,0.012166894
-"COPD, bronchitis, asthma",% Discharged to IRF,0.040045438,0.033592003,0.006453435,0.029603847,0.010441591
-Simple pneumonia and respiratory infections,% Discharged to SNF,0.212443594,0.190397372,0.022046222,0.185478652,0.026964941
-Simple pneumonia and respiratory infections,% Discharged to HH,0.065826238,0.056299109,0.009527129,0.055643596,0.010182642
-Simple pneumonia and respiratory infections,% Discharged to IRF,0.043749608,0.037309093,0.006440514,0.03709573,0.006653877
-Bariatric Surgery,% Discharged to SNF,0.248167584,0.259857822,-0.011690238,0.237644611,0.010522973
-Bariatric Surgery,% Discharged to HH,0.077719058,0.084636406,-0.006917348,0.071293383,0.006425675
-Bariatric Surgery,% Discharged to IRF,0.057389979,0.055136782,0.002253197,0.047528922,0.009861057
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",% Discharged to SNF,0.139049882,0.137571119,0.001478763,0.136854212,0.002195669
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",% Discharged to HH,0.041810556,0.044540293,-0.002729737,0.041056264,0.000754292
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",% Discharged to IRF,0.02806329,0.026994263,0.001069027,0.027370842,0.000692448
-Gastrointestinal hemorrhage,% Discharged to SNF,0.214789582,0.197587029,0.017202554,0.165563907,0.049225676
-Gastrointestinal hemorrhage,% Discharged to HH,0.057556356,0.050133049,0.007423307,0.049669172,0.007887184
-Gastrointestinal hemorrhage,% Discharged to IRF,0.039594011,0.033078161,0.00651585,0.033112781,0.00648123
-Gastrointestinal obstruction,% Discharged to SNF,0.172686374,0.139982113,0.032704261,0.126421873,0.046264501
-Gastrointestinal obstruction,% Discharged to HH,0.05332461,0.040401966,0.012922644,0.037926562,0.015398048
-Gastrointestinal obstruction,% Discharged to IRF,0.034711161,0.02759108,0.007120081,0.025284375,0.009426786
-Inflammatory Bowel Disease,% Discharged to SNF,0.125546575,0.099651283,0.025895292,0.09179284,0.033753735
-Inflammatory Bowel Disease,% Discharged to HH,0.032360383,0.030545518,0.001814865,0.027537852,0.004822531
-Inflammatory Bowel Disease,% Discharged to IRF,0.021840377,0.021938842,-9.84645E-05,0.018358568,0.003481809
-Major bowel procedure,% Discharged to SNF,0.378980897,0.354929116,0.024051781,0.32577648,0.053204417
-Major bowel procedure,% Discharged to HH,0.109149312,0.097164158,0.011985154,0.097732944,0.011416368
-Major bowel procedure,% Discharged to IRF,0.072985104,0.066460384,0.006524719,0.065155296,0.007829808
-(OP) Back & neck except spinal fusion,% Discharged to SNF,0.111175068,0.133004741,-0.021829673,0.12197402,-0.010798951
-(OP) Back & neck except spinal fusion,% Discharged to HH,0.038342971,0.043443654,-0.005100684,0.036592206,0.001750765
-(OP) Back & neck except spinal fusion,% Discharged to IRF,0.025098122,0.02855719,-0.003459068,0.024394804,0.000703318
-(OP) Cardiac Defibrillator,% Discharged to SNF,0.42645511,0.293950209,0.132504901,0.292257858,0.134197253
-(OP) Cardiac Defibrillator,% Discharged to HH,0.115536238,0.087367803,0.028168434,0.087677357,0.02785888
-(OP) Cardiac Defibrillator,% Discharged to IRF,0.077589353,0.060176847,0.017412506,0.058451572,0.019137782
-(OP) Major joint replacement of the lower extremity (MJRLE),% Discharged to SNF,0.142813536,0.124705612,0.018107925,0.113972271,0.028841265
-(OP) Major joint replacement of the lower extremity (MJRLE),% Discharged to HH,0.037452384,0.036614774,0.00083761,0.034191681,0.003260703
-(OP) Major joint replacement of the lower extremity (MJRLE),% Discharged to IRF,0.023565404,0.025574481,-0.002009077,0.022794454,0.00077095
-(OP) Percutaneous Coronary Intervention,% Discharged to SNF,0.134752127,0.097431611,0.037320516,0.09709456,0.037657567
-(OP) Percutaneous Coronary Intervention,% Discharged to HH,0.03972742,0.031889656,0.007837764,0.029128368,0.010599052
-(OP) Percutaneous Coronary Intervention,% Discharged to IRF,0.029508228,0.019329599,0.010178629,0.019418912,0.010089316
+Back and neck except spinal fusion,% Discharged to SNF,0.1826696,0.158585943,0.024083657,0.1399184,0.0427512
+Back and neck except spinal fusion,% Discharged to HH,0.055664415,0.045260051,0.010404365,0.040999795,0.01466462
+Back and neck except spinal fusion,% Discharged to IRF,0.037739343,0.030505239,0.007234104,0.02768243,0.010056913
+Double joint replacement of the lower extremity,% Discharged to SNF,0.416313688,0.406150312,0.010163376,0.359802324,0.056511364
+Double joint replacement of the lower extremity,% Discharged to HH,0.125563027,0.115593423,0.009969604,0.105102377,0.02046065
+Double joint replacement of the lower extremity,% Discharged to IRF,0.090133198,0.077605371,0.012527827,0.072719575,0.017413623
+Fractures of the femur and hip or pelvis,% Discharged to SNF,0.29930791,0.250490226,0.048817684,0.228233157,0.071074753
+Fractures of the femur and hip or pelvis,% Discharged to HH,0.083137941,0.07479456,0.008343381,0.066439227,0.016698715
+Fractures of the femur and hip or pelvis,% Discharged to IRF,0.066417462,0.050075441,0.016342021,0.043129431,0.023288031
+Hip and femur procedures except major joint,% Discharged to SNF,0.477824618,0.324803782,0.153020836,0.313880208,0.16394441
+Hip and femur procedures except major joint,% Discharged to HH,0.126862868,0.107010523,0.019852345,0.09507451,0.031788358
+Hip and femur procedures except major joint,% Discharged to IRF,0.087707662,0.067897007,0.019810655,0.06313239,0.024575272
+"Lower extremity/humerus procedure except hip, foot, femur",% Discharged to SNF,0.406832547,0.306890145,0.099942401,0.271933518,0.134899028
+"Lower extremity/humerus procedure except hip, foot, femur",% Discharged to HH,0.116726605,0.088544602,0.028182003,0.077246432,0.039480172
+"Lower extremity/humerus procedure except hip, foot, femur",% Discharged to IRF,0.069959326,0.056583967,0.013375359,0.05538837,0.014570955
+Major joint replacement of the lower extremity (MJRLE),% Discharged to SNF,0.249223202,0.209236623,0.039986579,0.190392455,0.058830747
+Major joint replacement of the lower extremity (MJRLE),% Discharged to HH,0.077170171,0.065993098,0.011177073,0.057770065,0.019400106
+Major joint replacement of the lower extremity (MJRLE),% Discharged to IRF,0.056937479,0.042271143,0.014666336,0.037160621,0.019776858
+Major joint replacement of the upper extremity,% Discharged to SNF,0.208871988,0.199713923,0.009158065,0.184626683,0.024245305
+Major joint replacement of the upper extremity,% Discharged to HH,0.065079751,0.056436016,0.008643735,0.053477043,0.011602708
+Major joint replacement of the upper extremity,% Discharged to IRF,0.047191091,0.037712456,0.009478635,0.034198935,0.012992156
+Spinal fusion,% Discharged to SNF,0.373605062,0.398357167,-0.024752105,0.351353578,0.022251485
+Spinal fusion,% Discharged to HH,0.126602277,0.110926154,0.015676124,0.102775026,0.023827252
+Spinal fusion,% Discharged to IRF,0.079429731,0.076560222,0.002869509,0.073212336,0.006217395
+Renal failure,% Discharged to SNF,0.256863868,0.206328117,0.050535751,0.173281856,0.083582012
+Renal failure,% Discharged to HH,0.068881533,0.057766864,0.011114669,0.052081639,0.016799894
+Renal failure,% Discharged to IRF,0.042972124,0.039749516,0.003222608,0.03598425,0.006987874
+Cellulitis,% Discharged to SNF,0.189728207,0.147633975,0.042094232,0.133088818,0.056639389
+Cellulitis,% Discharged to HH,0.059937962,0.04778056,0.012157402,0.042102294,0.017835668
+Cellulitis,% Discharged to IRF,0.037627261,0.031717678,0.005909583,0.028274538,0.009352723
+Sepsis,% Discharged to SNF,0.321778963,0.296570631,0.025208332,0.260118008,0.061660954
+Sepsis,% Discharged to HH,0.091350337,0.088097244,0.003253094,0.081073669,0.010276668
+Sepsis,% Discharged to IRF,0.064492657,0.056459884,0.008032772,0.052307841,0.012184816
+Urinary tract infection,% Discharged to SNF,0.199080994,0.207482412,-0.008401418,0.178815429,0.020265564
+Urinary tract infection,% Discharged to HH,0.063943677,0.059802965,0.004140712,0.053156618,0.010787059
+Urinary tract infection,% Discharged to IRF,0.045112223,0.042148184,0.002964039,0.035652716,0.009459507
+Seizures,% Discharged to SNF,0.165851317,0.132995961,0.032855357,0.12894344,0.036907877
+Seizures,% Discharged to HH,0.053458206,0.040255006,0.013203199,0.037383549,0.016074657
+Seizures,% Discharged to IRF,0.032035313,0.027208431,0.004826882,0.02510109,0.006934223
+Stroke,% Discharged to SNF,0.335141829,0.25617142,0.078970409,0.217793159,0.117348669
+Stroke,% Discharged to HH,0.098710312,0.072380444,0.026329868,0.066025865,0.032684447
+Stroke,% Discharged to IRF,0.064455004,0.046918626,0.017536378,0.0433924,0.021062605
+Acute myocardial infarction,% Discharged to SNF,0.260091104,0.204261932,0.055829173,0.1925024,0.067588705
+Acute myocardial infarction,% Discharged to HH,0.074199203,0.064315144,0.009884059,0.057216449,0.016982754
+Acute myocardial infarction,% Discharged to IRF,0.055059391,0.041162574,0.013896817,0.037249492,0.017809899
+Cardiac arrhythmia,% Discharged to SNF,0.193633332,0.185607071,0.008026261,0.162209724,0.031423608
+Cardiac arrhythmia,% Discharged to HH,0.048975873,0.056974212,-0.007998339,0.052052107,-0.003076234
+Cardiac arrhythmia,% Discharged to IRF,0.035689957,0.037009777,-0.00131982,0.033571676,0.00211828
+Cardiac defibrillator,% Discharged to SNF,0.813366224,0.644572553,0.168793671,0.553376018,0.259990206
+Cardiac defibrillator,% Discharged to HH,0.237238168,0.187194571,0.050043597,0.172234527,0.065003641
+Cardiac defibrillator,% Discharged to IRF,0.164546133,0.12635518,0.038190954,0.115013775,0.049532359
+Cardiac valve,% Discharged to SNF,0.580411725,0.549523394,0.03088833,0.512409834,0.06800189
+Cardiac valve,% Discharged to HH,0.17750391,0.163376543,0.014127367,0.159404687,0.018099223
+Cardiac valve,% Discharged to IRF,0.123978542,0.116584837,0.007393705,0.105429141,0.018549401
+Congestive heart failure,% Discharged to SNF,0.257568697,0.199653968,0.057914729,0.197361516,0.060207182
+Congestive heart failure,% Discharged to HH,0.0783234,0.063466767,0.014856633,0.054279948,0.024043453
+Congestive heart failure,% Discharged to IRF,0.048356734,0.04202055,0.006336184,0.036534822,0.011821912
+Coronary artery bypass graft,% Discharged to SNF,0.474007459,0.401642316,0.072365143,0.397158003,0.076849456
+Coronary artery bypass graft,% Discharged to HH,0.146787945,0.131655145,0.0151328,0.117749152,0.029038794
+Coronary artery bypass graft,% Discharged to IRF,0.092754867,0.080323213,0.012431654,0.074932227,0.01782264
+Pacemaker,% Discharged to SNF,0.351470382,0.335158843,0.016311539,0.311286482,0.0401839
+Pacemaker,% Discharged to HH,0.092663313,0.1083167,-0.015653387,0.098070381,-0.005407068
+Pacemaker,% Discharged to IRF,0.0706219,0.070918295,-0.000296394,0.063496829,0.007125071
+Percutaneous coronary intervention,% Discharged to SNF,0.296551451,0.306682011,-0.01013056,0.296924825,-0.000373374
+Percutaneous coronary intervention,% Discharged to HH,0.077932303,0.098804259,-0.020871956,0.085286914,-0.007354611
+Percutaneous coronary intervention,% Discharged to IRF,0.057245703,0.062200411,-0.004954709,0.056968273,0.00027743
+Transcatheter Aortic Valve Replacement,% Discharged to SNF,0.680641388,0.751503214,-0.070861825,0.718405603,-0.037764215
+Transcatheter Aortic Valve Replacement,% Discharged to HH,0.188190556,0.222958229,-0.034767674,0.207360588,-0.019170033
+Transcatheter Aortic Valve Replacement,% Discharged to IRF,0.137834547,0.15683969,-0.019005143,0.135444811,0.002389736
+"COPD, bronchitis, asthma",% Discharged to SNF,0.170312952,0.140281651,0.030031301,0.132579495,0.037733457
+"COPD, bronchitis, asthma",% Discharged to HH,0.052067679,0.044073129,0.007994551,0.039789306,0.012278373
+"COPD, bronchitis, asthma",% Discharged to IRF,0.039571877,0.0293062,0.010265677,0.024869998,0.014701879
+Simple pneumonia and respiratory infections,% Discharged to SNF,0.252677154,0.220389395,0.032287759,0.218673797,0.034003357
+Simple pneumonia and respiratory infections,% Discharged to HH,0.062191027,0.0703316,-0.008140572,0.06429399,-0.002102963
+Simple pneumonia and respiratory infections,% Discharged to IRF,0.048047193,0.047323944,0.000723249,0.041355204,0.006691989
+Bariatric Surgery,% Discharged to SNF,0.247646821,0.244754383,0.002892439,0.232399964,0.015246857
+Bariatric Surgery,% Discharged to HH,0.075766365,0.073613636,0.002152728,0.068959268,0.006807097
+Bariatric Surgery,% Discharged to IRF,0.050369731,0.04693975,0.003429981,0.046245729,0.004124003
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",% Discharged to SNF,0.155034456,0.144022611,0.011011845,0.144410929,0.010623527
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",% Discharged to HH,0.039770864,0.045901069,-0.006130205,0.039974081,-0.000203217
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",% Discharged to IRF,0.026571443,0.029927929,-0.003356486,0.028603095,-0.002031653
+Gastrointestinal hemorrhage,% Discharged to SNF,0.19019758,0.183610772,0.006586808,0.169090497,0.021107084
+Gastrointestinal hemorrhage,% Discharged to HH,0.054173182,0.055277305,-0.001104123,0.051796938,0.002376243
+Gastrointestinal hemorrhage,% Discharged to IRF,0.041100707,0.034714763,0.006385944,0.033819675,0.007281032
+Gastrointestinal obstruction,% Discharged to SNF,0.184916338,0.145341888,0.039574449,0.133159751,0.051756586
+Gastrointestinal obstruction,% Discharged to HH,0.050725448,0.044332122,0.006393327,0.03766058,0.013064868
+Gastrointestinal obstruction,% Discharged to IRF,0.035002763,0.028234897,0.006767866,0.025010066,0.009992697
+Inflammatory Bowel Disease,% Discharged to SNF,0.128206743,0.09726362,0.030943123,0.089898495,0.038308248
+Inflammatory Bowel Disease,% Discharged to HH,0.036580885,0.028822209,0.007758675,0.027861131,0.008719754
+Inflammatory Bowel Disease,% Discharged to IRF,0.023263974,0.019709199,0.003554775,0.018116543,0.005147431
+Major bowel procedure,% Discharged to SNF,0.385606047,0.351372058,0.034233989,0.339735911,0.045870136
+Major bowel procedure,% Discharged to HH,0.113835561,0.112107863,0.001727698,0.096956196,0.016879365
+Major bowel procedure,% Discharged to IRF,0.070280795,0.07217097,-0.001890174,0.063407276,0.006873519
+(OP) Back & neck except spinal fusion,% Discharged to SNF,0.123060486,0.124690318,-0.001629832,0.114837331,0.008223156
+(OP) Back & neck except spinal fusion,% Discharged to HH,0.034955553,0.038538107,-0.003582554,0.034571321,0.000384232
+(OP) Back & neck except spinal fusion,% Discharged to IRF,0.023005612,0.025559519,-0.002553908,0.024120936,-0.001115324
+(OP) Cardiac Defibrillator,% Discharged to SNF,0.367744049,0.294027486,0.073716563,0.275235301,0.092508748
+(OP) Cardiac Defibrillator,% Discharged to HH,0.11140981,0.087980741,0.023429068,0.083601781,0.027808029
+(OP) Cardiac Defibrillator,% Discharged to IRF,0.073307813,0.060671276,0.012636537,0.05345531,0.019852503
+(OP) Major joint replacement of the lower extremity (MJRLE),% Discharged to SNF,0.12448959,0.121493459,0.002996131,0.117946173,0.006543417
+(OP) Major joint replacement of the lower extremity (MJRLE),% Discharged to HH,0.036874074,0.034998635,0.001875439,0.035063249,0.001810825
+(OP) Major joint replacement of the lower extremity (MJRLE),% Discharged to IRF,0.028281524,0.025089542,0.003191982,0.021844693,0.006436831
+(OP) Percutaneous Coronary Intervention,% Discharged to SNF,0.12430659,0.123503298,0.000803292,0.105800345,0.018506244
+(OP) Percutaneous Coronary Intervention,% Discharged to HH,0.04017253,0.035622164,0.004550365,0.031554265,0.008618264
+(OP) Percutaneous Coronary Intervention,% Discharged to IRF,0.026941055,0.023357955,0.0035831,0.022056014,0.004885041

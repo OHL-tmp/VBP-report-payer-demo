@@ -1,351 +1,351 @@
-﻿bundle,Physician, Bundle Count ,% of Total Bundle Count, Average Bundle Cost , Readmission Rate , Post-discharge ER Rate , % Discharged to SNF , % Discharged to IRF , Average Implant Cost 
-Back and neck except spinal fusion,All, 7 ,1, 0.11 , 0.23 , 0.15 , 0.02 , 0.20 , 0.15 
-Back and neck except spinal fusion,Physician 1, 1 ,0.18, 0.14 , 0.26 , 0.18 , 0.03 , 0.21 , 0.17 
-Back and neck except spinal fusion,Physician 2, 1 ,0.13, 0.11 , 0.23 , 0.15 , 0.01 , 0.18 , 0.15 
-Back and neck except spinal fusion,Physician 3, 1 ,0.12, 0.13 , 0.27 , 0.18 , 0.05 , 0.22 , 0.17 
-Back and neck except spinal fusion,Physician 4, 1 ,0.1, 0.12 , 0.26 , 0.17 , 0.04 , 0.21 , 0.17 
-Back and neck except spinal fusion,Physician 5, 1 ,0.08, 0.06 , 0.18 , 0.11 , -0.04 , 0.15 , 0.09 
-Back and neck except spinal fusion,Physician 6, 0 ,0.05, 0.07 , 0.21 , 0.13 , -0.02 , 0.17 , 0.12 
-Back and neck except spinal fusion,Physician 7, 0 ,0.05, 0.18 , 0.29 , 0.21 , 0.07 , 0.26 , 0.21 
-Back and neck except spinal fusion,Physician 8, 0 ,0.02, 0.12 , 0.24 , 0.16 , 0.04 , 0.21 , 0.16 
-Back and neck except spinal fusion,Physician 9, 0 ,0.01, 0.12 , 0.24 , 0.17 , 0.03 , 0.22 , 0.17 
-Double joint replacement of the lower extremity,All, 4 ,1, 0.11 , 0.14 , 0.25 , 0.05 , 0.04 , 0.27 
-Double joint replacement of the lower extremity,Physician 1, 1 ,0.18, 0.13 , 0.16 , 0.28 , 0.07 , 0.06 , 0.30 
-Double joint replacement of the lower extremity,Physician 2, 1 ,0.13, 0.09 , 0.12 , 0.24 , 0.04 , 0.03 , 0.26 
-Double joint replacement of the lower extremity,Physician 3, 0 ,0.12, 0.13 , 0.16 , 0.28 , 0.07 , 0.07 , 0.29 
-Double joint replacement of the lower extremity,Physician 4, 0 ,0.1, 0.13 , 0.16 , 0.28 , 0.07 , 0.05 , 0.29 
-Double joint replacement of the lower extremity,Physician 5, 0 ,0.08, 0.07 , 0.09 , 0.21 , -0.00 , -0.00 , 0.23 
-Double joint replacement of the lower extremity,Physician 6, 0 ,0.05, 0.09 , 0.10 , 0.22 , 0.02 , 0.01 , 0.24 
-Double joint replacement of the lower extremity,Physician 7, 0 ,0.05, 0.17 , 0.20 , 0.31 , 0.11 , 0.10 , 0.33 
-Double joint replacement of the lower extremity,Physician 8, 0 ,0.02, 0.11 , 0.15 , 0.26 , 0.06 , 0.04 , 0.28 
-Double joint replacement of the lower extremity,Physician 9, 0 ,0.01, 0.13 , 0.17 , 0.28 , 0.06 , 0.05 , 0.30 
-Fractures of the femur and hip or pelvis,All, 13 ,1, 0.11 , 0.20 , 0.24 , 0.06 , 0.28 , 0.13 
-Fractures of the femur and hip or pelvis,Physician 1, 2 ,0.18, 0.13 , 0.21 , 0.25 , 0.07 , 0.30 , 0.14 
-Fractures of the femur and hip or pelvis,Physician 2, 2 ,0.13, 0.11 , 0.20 , 0.23 , 0.04 , 0.26 , 0.11 
-Fractures of the femur and hip or pelvis,Physician 3, 2 ,0.12, 0.13 , 0.21 , 0.26 , 0.08 , 0.31 , 0.15 
-Fractures of the femur and hip or pelvis,Physician 4, 1 ,0.1, 0.12 , 0.22 , 0.27 , 0.08 , 0.31 , 0.14 
-Fractures of the femur and hip or pelvis,Physician 5, 1 ,0.08, 0.06 , 0.15 , 0.19 , 0.00 , 0.23 , 0.08 
-Fractures of the femur and hip or pelvis,Physician 6, 1 ,0.05, 0.09 , 0.16 , 0.21 , 0.02 , 0.26 , 0.10 
-Fractures of the femur and hip or pelvis,Physician 7, 1 ,0.05, 0.17 , 0.25 , 0.30 , 0.12 , 0.34 , 0.18 
-Fractures of the femur and hip or pelvis,Physician 8, 0 ,0.02, 0.11 , 0.20 , 0.26 , 0.07 , 0.29 , 0.13 
-Fractures of the femur and hip or pelvis,Physician 9, 0 ,0.01, 0.12 , 0.22 , 0.27 , 0.08 , 0.29 , 0.14 
-Hip and femur procedures except major joint,All, 47 ,1, 0.11 , 0.31 , 0.20 , 0.13 , 0.34 , 0.26 
-Hip and femur procedures except major joint,Physician 1, 8 ,0.18, 0.14 , 0.33 , 0.21 , 0.14 , 0.35 , 0.28 
-Hip and femur procedures except major joint,Physician 2, 6 ,0.13, 0.10 , 0.29 , 0.19 , 0.12 , 0.32 , 0.26 
-Hip and femur procedures except major joint,Physician 3, 6 ,0.12, 0.13 , 0.34 , 0.22 , 0.15 , 0.36 , 0.28 
-Hip and femur procedures except major joint,Physician 4, 5 ,0.1, 0.13 , 0.33 , 0.22 , 0.16 , 0.36 , 0.29 
-Hip and femur procedures except major joint,Physician 5, 4 ,0.08, 0.06 , 0.25 , 0.14 , 0.08 , 0.29 , 0.21 
-Hip and femur procedures except major joint,Physician 6, 2 ,0.05, 0.08 , 0.28 , 0.17 , 0.10 , 0.30 , 0.23 
-Hip and femur procedures except major joint,Physician 7, 2 ,0.05, 0.17 , 0.37 , 0.26 , 0.19 , 0.40 , 0.32 
-Hip and femur procedures except major joint,Physician 8, 1 ,0.02, 0.12 , 0.33 , 0.21 , 0.15 , 0.34 , 0.27 
-Hip and femur procedures except major joint,Physician 9, 0 ,0.01, 0.14 , 0.32 , 0.21 , 0.16 , 0.36 , 0.28 
-"Lower extremity/humerus procedure except hip, foot, femur",All, 14 ,1, 0.10 , 0.11 , 0.16 , 0.32 , 0.32 , 0.11 
-"Lower extremity/humerus procedure except hip, foot, femur",Physician 1, 3 ,0.18, 0.12 , 0.13 , 0.18 , 0.35 , 0.34 , 0.12 
-"Lower extremity/humerus procedure except hip, foot, femur",Physician 2, 2 ,0.13, 0.08 , 0.09 , 0.16 , 0.31 , 0.31 , 0.10 
-"Lower extremity/humerus procedure except hip, foot, femur",Physician 3, 2 ,0.12, 0.13 , 0.13 , 0.19 , 0.35 , 0.35 , 0.14 
-"Lower extremity/humerus procedure except hip, foot, femur",Physician 4, 1 ,0.1, 0.12 , 0.12 , 0.19 , 0.34 , 0.35 , 0.13 
-"Lower extremity/humerus procedure except hip, foot, femur",Physician 5, 1 ,0.08, 0.05 , 0.05 , 0.10 , 0.28 , 0.28 , 0.06 
-"Lower extremity/humerus procedure except hip, foot, femur",Physician 6, 1 ,0.05, 0.08 , 0.08 , 0.14 , 0.30 , 0.29 , 0.08 
-"Lower extremity/humerus procedure except hip, foot, femur",Physician 7, 1 ,0.05, 0.16 , 0.16 , 0.23 , 0.38 , 0.39 , 0.17 
-"Lower extremity/humerus procedure except hip, foot, femur",Physician 8, 0 ,0.02, 0.12 , 0.12 , 0.18 , 0.34 , 0.34 , 0.12 
-"Lower extremity/humerus procedure except hip, foot, femur",Physician 9, 0 ,0.01, 0.12 , 0.12 , 0.19 , 0.34 , 0.35 , 0.12 
-Major joint replacement of the lower extremity (MJRLE),All, 192 ,1, 0.11 , 0.11 , 0.15 , 0.13 , 0.23 , 0.11 
-Major joint replacement of the lower extremity (MJRLE),Physician 1, 35 ,0.18, 0.14 , 0.14 , 0.17 , 0.16 , 0.25 , 0.13 
-Major joint replacement of the lower extremity (MJRLE),Physician 2, 25 ,0.13, 0.10 , 0.10 , 0.15 , 0.12 , 0.22 , 0.11 
-Major joint replacement of the lower extremity (MJRLE),Physician 3, 23 ,0.12, 0.14 , 0.13 , 0.18 , 0.15 , 0.25 , 0.14 
-Major joint replacement of the lower extremity (MJRLE),Physician 4, 19 ,0.1, 0.12 , 0.13 , 0.17 , 0.14 , 0.24 , 0.14 
-Major joint replacement of the lower extremity (MJRLE),Physician 5, 15 ,0.08, 0.07 , 0.06 , 0.10 , 0.07 , 0.18 , 0.07 
-Major joint replacement of the lower extremity (MJRLE),Physician 6, 10 ,0.05, 0.07 , 0.09 , 0.12 , 0.09 , 0.20 , 0.08 
-Major joint replacement of the lower extremity (MJRLE),Physician 7, 10 ,0.05, 0.17 , 0.17 , 0.21 , 0.19 , 0.28 , 0.18 
-Major joint replacement of the lower extremity (MJRLE),Physician 8, 4 ,0.02, 0.12 , 0.12 , 0.16 , 0.15 , 0.23 , 0.13 
-Major joint replacement of the lower extremity (MJRLE),Physician 9, 2 ,0.01, 0.14 , 0.14 , 0.17 , 0.14 , 0.25 , 0.13 
-Major joint replacement of the upper extremity,All, 21 ,1, 0.11 , 0.46 , 0.31 , 0.12 , 0.22 , 0.32 
-Major joint replacement of the upper extremity,Physician 1, 4 ,0.18, 0.12 , 0.48 , 0.33 , 0.13 , 0.23 , 0.34 
-Major joint replacement of the upper extremity,Physician 2, 3 ,0.13, 0.10 , 0.44 , 0.31 , 0.10 , 0.20 , 0.31 
-Major joint replacement of the upper extremity,Physician 3, 3 ,0.12, 0.14 , 0.47 , 0.34 , 0.14 , 0.24 , 0.35 
-Major joint replacement of the upper extremity,Physician 4, 2 ,0.1, 0.14 , 0.48 , 0.33 , 0.14 , 0.24 , 0.33 
-Major joint replacement of the upper extremity,Physician 5, 2 ,0.08, 0.06 , 0.41 , 0.26 , 0.07 , 0.17 , 0.27 
-Major joint replacement of the upper extremity,Physician 6, 1 ,0.05, 0.08 , 0.43 , 0.28 , 0.10 , 0.19 , 0.29 
-Major joint replacement of the upper extremity,Physician 7, 1 ,0.05, 0.16 , 0.51 , 0.37 , 0.18 , 0.28 , 0.37 
-Major joint replacement of the upper extremity,Physician 8, 0 ,0.02, 0.13 , 0.47 , 0.31 , 0.13 , 0.22 , 0.32 
-Major joint replacement of the upper extremity,Physician 9, 0 ,0.01, 0.12 , 0.48 , 0.32 , 0.15 , 0.25 , 0.33 
-Spinal fusion,All, 30 ,1, 0.02 , -0.10 , 0.06 , -0.03 , 0.05 , -0.03 
-Spinal fusion,Physician 1, 5 ,0.18, 0.04 , -0.08 , 0.08 , -0.01 , 0.07 , -0.01 
-Spinal fusion,Physician 2, 4 ,0.13, 0.01 , -0.10 , 0.04 , -0.03 , 0.05 , -0.03 
-Spinal fusion,Physician 3, 4 ,0.12, 0.04 , -0.07 , 0.08 , -0.00 , 0.07 , -0.01 
-Spinal fusion,Physician 4, 3 ,0.1, 0.03 , -0.08 , 0.07 , -0.01 , 0.07 , -0.01 
-Spinal fusion,Physician 5, 2 ,0.08, -0.04 , -0.16 , 0.02 , -0.07 , -0.01 , -0.08 
-Spinal fusion,Physician 6, 2 ,0.05, -0.00 , -0.14 , 0.02 , -0.06 , 0.02 , -0.06 
-Spinal fusion,Physician 7, 2 ,0.05, 0.07 , -0.05 , 0.13 , 0.04 , 0.10 , 0.03 
-Spinal fusion,Physician 8, 1 ,0.02, 0.03 , -0.08 , 0.07 , -0.01 , 0.06 , -0.01 
-Spinal fusion,Physician 9, 0 ,0.01, 0.04 , -0.07 , 0.09 , 0.00 , 0.07 , -0.01 
-Renal failure,All, 96 ,1, 0.11 , 0.13 , 0.19 , 0.20 , 0.16 , 0.17 
-Renal failure,Physician 1, 17 ,0.18, 0.14 , 0.15 , 0.22 , 0.21 , 0.18 , 0.20 
-Renal failure,Physician 2, 12 ,0.13, 0.10 , 0.13 , 0.18 , 0.19 , 0.15 , 0.16 
-Renal failure,Physician 3, 12 ,0.12, 0.13 , 0.14 , 0.22 , 0.23 , 0.18 , 0.19 
-Renal failure,Physician 4, 10 ,0.1, 0.13 , 0.16 , 0.21 , 0.22 , 0.18 , 0.18 
-Renal failure,Physician 5, 8 ,0.08, 0.06 , 0.09 , 0.14 , 0.14 , 0.12 , 0.13 
-Renal failure,Physician 6, 5 ,0.05, 0.08 , 0.10 , 0.16 , 0.16 , 0.13 , 0.15 
-Renal failure,Physician 7, 5 ,0.05, 0.17 , 0.18 , 0.25 , 0.25 , 0.23 , 0.23 
-Renal failure,Physician 8, 2 ,0.02, 0.12 , 0.14 , 0.20 , 0.21 , 0.17 , 0.18 
-Renal failure,Physician 9, 1 ,0.01, 0.14 , 0.14 , 0.22 , 0.23 , 0.17 , 0.20 
-Cellulitis,All, 50 ,1, 0.11 , 0.17 , 0.37 , 0.32 , 0.26 , 0.27 
-Cellulitis,Physician 1, 9 ,0.18, 0.14 , 0.19 , 0.39 , 0.34 , 0.27 , 0.30 
-Cellulitis,Physician 2, 7 ,0.13, 0.11 , 0.16 , 0.35 , 0.30 , 0.25 , 0.25 
-Cellulitis,Physician 3, 6 ,0.12, 0.13 , 0.20 , 0.41 , 0.35 , 0.29 , 0.30 
-Cellulitis,Physician 4, 5 ,0.1, 0.12 , 0.19 , 0.40 , 0.33 , 0.28 , 0.30 
-Cellulitis,Physician 5, 4 ,0.08, 0.05 , 0.12 , 0.32 , 0.27 , 0.22 , 0.21 
-Cellulitis,Physician 6, 3 ,0.05, 0.09 , 0.14 , 0.34 , 0.29 , 0.23 , 0.24 
-Cellulitis,Physician 7, 3 ,0.05, 0.18 , 0.24 , 0.43 , 0.37 , 0.32 , 0.33 
-Cellulitis,Physician 8, 1 ,0.02, 0.11 , 0.19 , 0.39 , 0.32 , 0.27 , 0.28 
-Cellulitis,Physician 9, 1 ,0.01, 0.13 , 0.18 , 0.39 , 0.34 , 0.29 , 0.30 
-Sepsis,All, 283 ,1, 0.01 , -0.12 , -0.08 , 0.03 , 0.09 , 0.08 
-Sepsis,Physician 1, 51 ,0.18, 0.03 , -0.10 , -0.07 , 0.06 , 0.10 , 0.09 
-Sepsis,Physician 2, 37 ,0.13, 0.01 , -0.13 , -0.08 , 0.03 , 0.07 , 0.08 
-Sepsis,Physician 3, 34 ,0.12, 0.02 , -0.10 , -0.05 , 0.06 , 0.11 , 0.10 
-Sepsis,Physician 4, 28 ,0.1, 0.04 , -0.10 , -0.07 , 0.06 , 0.12 , 0.09 
-Sepsis,Physician 5, 23 ,0.08, -0.05 , -0.17 , -0.13 , -0.02 , 0.04 , 0.02 
-Sepsis,Physician 6, 14 ,0.05, -0.03 , -0.15 , -0.11 , -0.00 , 0.06 , 0.04 
-Sepsis,Physician 7, 14 ,0.05, 0.06 , -0.07 , -0.02 , 0.10 , 0.14 , 0.13 
-Sepsis,Physician 8, 6 ,0.02, 0.01 , -0.11 , -0.07 , 0.05 , 0.10 , 0.09 
-Sepsis,Physician 9, 3 ,0.01, 0.02 , -0.10 , -0.05 , 0.06 , 0.11 , 0.10 
-Urinary tract infection,All, 81 ,1, 0.08 , 0.33 , 0.17 , 0.24 , 0.11 , 0.19 
-Urinary tract infection,Physician 1, 15 ,0.18, 0.10 , 0.35 , 0.18 , 0.26 , 0.14 , 0.21 
-Urinary tract infection,Physician 2, 11 ,0.13, 0.07 , 0.31 , 0.16 , 0.24 , 0.11 , 0.18 
-Urinary tract infection,Physician 3, 10 ,0.12, 0.10 , 0.35 , 0.20 , 0.25 , 0.14 , 0.22 
-Urinary tract infection,Physician 4, 8 ,0.1, 0.11 , 0.34 , 0.18 , 0.27 , 0.14 , 0.21 
-Urinary tract infection,Physician 5, 6 ,0.08, 0.03 , 0.27 , 0.11 , 0.18 , 0.05 , 0.14 
-Urinary tract infection,Physician 6, 4 ,0.05, 0.04 , 0.31 , 0.14 , 0.21 , 0.09 , 0.15 
-Urinary tract infection,Physician 7, 4 ,0.05, 0.14 , 0.40 , 0.22 , 0.29 , 0.18 , 0.24 
-Urinary tract infection,Physician 8, 2 ,0.02, 0.09 , 0.34 , 0.17 , 0.24 , 0.12 , 0.20 
-Urinary tract infection,Physician 9, 1 ,0.01, 0.09 , 0.34 , 0.18 , 0.25 , 0.14 , 0.21 
-Seizures,All, 24 ,1, 0.11 , 0.39 , 0.16 , 0.22 , 0.23 , 0.41 
-Seizures,Physician 1, 4 ,0.18, 0.13 , 0.41 , 0.19 , 0.24 , 0.26 , 0.44 
-Seizures,Physician 2, 3 ,0.13, 0.10 , 0.37 , 0.15 , 0.22 , 0.22 , 0.41 
-Seizures,Physician 3, 3 ,0.12, 0.13 , 0.42 , 0.19 , 0.25 , 0.25 , 0.44 
-Seizures,Physician 4, 2 ,0.1, 0.14 , 0.42 , 0.18 , 0.24 , 0.24 , 0.44 
-Seizures,Physician 5, 2 ,0.08, 0.07 , 0.35 , 0.12 , 0.17 , 0.18 , 0.36 
-Seizures,Physician 6, 1 ,0.05, 0.09 , 0.35 , 0.13 , 0.19 , 0.20 , 0.38 
-Seizures,Physician 7, 1 ,0.05, 0.17 , 0.45 , 0.22 , 0.29 , 0.29 , 0.48 
-Seizures,Physician 8, 0 ,0.02, 0.12 , 0.39 , 0.17 , 0.23 , 0.24 , 0.43 
-Seizures,Physician 9, 0 ,0.01, 0.13 , 0.40 , 0.18 , 0.24 , 0.26 , 0.44 
-Stroke,All, 88 ,1, 0.11 , 0.20 , 0.34 , 0.16 , 0.22 , 0.06 
-Stroke,Physician 1, 16 ,0.18, 0.13 , 0.23 , 0.36 , 0.18 , 0.23 , 0.07 
-Stroke,Physician 2, 11 ,0.13, 0.11 , 0.19 , 0.33 , 0.16 , 0.21 , 0.05 
-Stroke,Physician 3, 11 ,0.12, 0.13 , 0.23 , 0.37 , 0.20 , 0.25 , 0.09 
-Stroke,Physician 4, 9 ,0.1, 0.13 , 0.23 , 0.36 , 0.19 , 0.24 , 0.08 
-Stroke,Physician 5, 7 ,0.08, 0.06 , 0.15 , 0.28 , 0.11 , 0.18 , -0.00 
-Stroke,Physician 6, 4 ,0.05, 0.08 , 0.18 , 0.31 , 0.14 , 0.20 , 0.03 
-Stroke,Physician 7, 4 ,0.05, 0.16 , 0.26 , 0.40 , 0.22 , 0.28 , 0.12 
-Stroke,Physician 8, 2 ,0.02, 0.12 , 0.21 , 0.35 , 0.17 , 0.23 , 0.06 
-Stroke,Physician 9, 1 ,0.01, 0.12 , 0.23 , 0.35 , 0.19 , 0.24 , 0.08 
-Acute myocardial infarction,All, 54 ,1, 0.11 , 0.03 , 0.10 , 0.34 , 0.11 , 0.27 
-Acute myocardial infarction,Physician 1, 10 ,0.18, 0.13 , 0.05 , 0.12 , 0.36 , 0.13 , 0.29 
-Acute myocardial infarction,Physician 2, 7 ,0.13, 0.09 , 0.02 , 0.09 , 0.33 , 0.09 , 0.25 
-Acute myocardial infarction,Physician 3, 6 ,0.12, 0.14 , 0.06 , 0.12 , 0.37 , 0.13 , 0.29 
-Acute myocardial infarction,Physician 4, 5 ,0.1, 0.12 , 0.05 , 0.12 , 0.36 , 0.12 , 0.29 
-Acute myocardial infarction,Physician 5, 4 ,0.08, 0.06 , -0.01 , 0.05 , 0.28 , 0.06 , 0.21 
-Acute myocardial infarction,Physician 6, 3 ,0.05, 0.07 , 0.01 , 0.07 , 0.30 , 0.07 , 0.23 
-Acute myocardial infarction,Physician 7, 3 ,0.05, 0.18 , 0.10 , 0.16 , 0.39 , 0.17 , 0.32 
-Acute myocardial infarction,Physician 8, 1 ,0.02, 0.12 , 0.03 , 0.11 , 0.35 , 0.13 , 0.27 
-Acute myocardial infarction,Physician 9, 1 ,0.01, 0.14 , 0.06 , 0.12 , 0.35 , 0.14 , 0.29 
-Cardiac arrhythmia,All, 82 ,1, -0.04 , -0.02 , -0.07 , -0.14 , -0.22 , -0.10 
-Cardiac arrhythmia,Physician 1, 15 ,0.18, -0.03 , 0.01 , -0.05 , -0.13 , -0.19 , -0.08 
-Cardiac arrhythmia,Physician 2, 11 ,0.13, -0.06 , -0.03 , -0.09 , -0.16 , -0.23 , -0.12 
-Cardiac arrhythmia,Physician 3, 10 ,0.12, -0.01 , 0.01 , -0.04 , -0.12 , -0.19 , -0.09 
-Cardiac arrhythmia,Physician 4, 8 ,0.1, -0.03 , 0.00 , -0.04 , -0.13 , -0.21 , -0.08 
-Cardiac arrhythmia,Physician 5, 7 ,0.08, -0.10 , -0.07 , -0.12 , -0.19 , -0.28 , -0.15 
-Cardiac arrhythmia,Physician 6, 4 ,0.05, -0.07 , -0.05 , -0.11 , -0.17 , -0.25 , -0.13 
-Cardiac arrhythmia,Physician 7, 4 ,0.05, 0.02 , 0.04 , -0.01 , -0.07 , -0.15 , -0.04 
-Cardiac arrhythmia,Physician 8, 2 ,0.02, -0.03 , -0.00 , -0.06 , -0.13 , -0.21 , -0.09 
-Cardiac arrhythmia,Physician 9, 1 ,0.01, -0.02 , -0.00 , -0.05 , -0.13 , -0.20 , -0.07 
-Cardiac defibrillator,All, 5 ,1, 0.11 , 0.19 , 0.25 , 0.24 , 0.21 , 0.36 
-Cardiac defibrillator,Physician 1, 1 ,0.18, 0.13 , 0.22 , 0.26 , 0.27 , 0.24 , 0.38 
-Cardiac defibrillator,Physician 2, 1 ,0.13, 0.11 , 0.17 , 0.23 , 0.23 , 0.19 , 0.34 
-Cardiac defibrillator,Physician 3, 1 ,0.12, 0.13 , 0.22 , 0.28 , 0.27 , 0.24 , 0.38 
-Cardiac defibrillator,Physician 4, 1 ,0.1, 0.13 , 0.20 , 0.27 , 0.26 , 0.23 , 0.38 
-Cardiac defibrillator,Physician 5, 0 ,0.08, 0.07 , 0.14 , 0.20 , 0.19 , 0.16 , 0.31 
-Cardiac defibrillator,Physician 6, 0 ,0.05, 0.08 , 0.17 , 0.21 , 0.22 , 0.17 , 0.34 
-Cardiac defibrillator,Physician 7, 0 ,0.05, 0.18 , 0.25 , 0.30 , 0.31 , 0.27 , 0.42 
-Cardiac defibrillator,Physician 8, 0 ,0.02, 0.12 , 0.19 , 0.25 , 0.25 , 0.22 , 0.38 
-Cardiac defibrillator,Physician 9, 0 ,0.01, 0.12 , 0.22 , 0.27 , 0.27 , 0.23 , 0.38 
-Cardiac valve,All, 29 ,1, 0.03 , -0.02 , 0.21 , 0.21 , -0.01 , 0.12 
-Cardiac valve,Physician 1, 5 ,0.18, 0.04 , 0.01 , 0.23 , 0.22 , 0.00 , 0.15 
-Cardiac valve,Physician 2, 4 ,0.13, 0.01 , -0.03 , 0.20 , 0.19 , -0.02 , 0.11 
-Cardiac valve,Physician 3, 3 ,0.12, 0.04 , 0.01 , 0.23 , 0.24 , 0.02 , 0.16 
-Cardiac valve,Physician 4, 3 ,0.1, 0.04 , 0.01 , 0.23 , 0.23 , 0.02 , 0.15 
-Cardiac valve,Physician 5, 2 ,0.08, -0.03 , -0.07 , 0.16 , 0.16 , -0.06 , 0.07 
-Cardiac valve,Physician 6, 1 ,0.05, -0.00 , -0.06 , 0.17 , 0.17 , -0.04 , 0.10 
-Cardiac valve,Physician 7, 1 ,0.05, 0.09 , 0.04 , 0.26 , 0.26 , 0.06 , 0.18 
-Cardiac valve,Physician 8, 1 ,0.02, 0.03 , -0.01 , 0.22 , 0.22 , 0.00 , 0.13 
-Cardiac valve,Physician 9, 0 ,0.01, 0.05 , -0.00 , 0.23 , 0.22 , 0.00 , 0.15 
-Congestive heart failure,All, 183 ,1, 0.11 , 0.27 , 0.24 , 0.27 , 0.21 , 0.22 
-Congestive heart failure,Physician 1, 33 ,0.18, 0.13 , 0.30 , 0.26 , 0.30 , 0.24 , 0.24 
-Congestive heart failure,Physician 2, 24 ,0.13, 0.10 , 0.26 , 0.23 , 0.26 , 0.19 , 0.22 
-Congestive heart failure,Physician 3, 22 ,0.12, 0.13 , 0.29 , 0.26 , 0.29 , 0.25 , 0.24 
-Congestive heart failure,Physician 4, 18 ,0.1, 0.14 , 0.30 , 0.26 , 0.29 , 0.24 , 0.25 
-Congestive heart failure,Physician 5, 15 ,0.08, 0.07 , 0.22 , 0.20 , 0.23 , 0.15 , 0.17 
-Congestive heart failure,Physician 6, 9 ,0.05, 0.07 , 0.25 , 0.21 , 0.24 , 0.18 , 0.19 
-Congestive heart failure,Physician 7, 9 ,0.05, 0.18 , 0.34 , 0.29 , 0.32 , 0.28 , 0.28 
-Congestive heart failure,Physician 8, 4 ,0.02, 0.12 , 0.29 , 0.25 , 0.27 , 0.23 , 0.23 
-Congestive heart failure,Physician 9, 2 ,0.01, 0.13 , 0.29 , 0.25 , 0.28 , 0.24 , 0.25 
-Coronary artery bypass graft,All, 22 ,1, 0.06 , 0.10 , 0.08 , 0.07 , 0.18 , -0.03 
-Coronary artery bypass graft,Physician 1, 4 ,0.18, 0.08 , 0.12 , 0.10 , 0.09 , 0.20 , -0.01 
-Coronary artery bypass graft,Physician 2, 3 ,0.13, 0.04 , 0.08 , 0.08 , 0.06 , 0.17 , -0.04 
-Coronary artery bypass graft,Physician 3, 3 ,0.12, 0.08 , 0.12 , 0.10 , 0.10 , 0.21 , 0.00 
-Coronary artery bypass graft,Physician 4, 2 ,0.1, 0.07 , 0.11 , 0.10 , 0.10 , 0.20 , -0.01 
-Coronary artery bypass graft,Physician 5, 2 ,0.08, 0.02 , 0.05 , 0.03 , 0.01 , 0.12 , -0.07 
-Coronary artery bypass graft,Physician 6, 1 ,0.05, 0.04 , 0.07 , 0.06 , 0.03 , 0.16 , -0.06 
-Coronary artery bypass graft,Physician 7, 1 ,0.05, 0.13 , 0.17 , 0.15 , 0.13 , 0.25 , 0.04 
-Coronary artery bypass graft,Physician 8, 0 ,0.02, 0.07 , 0.11 , 0.09 , 0.07 , 0.20 , -0.02 
-Coronary artery bypass graft,Physician 9, 0 ,0.01, 0.08 , 0.13 , 0.11 , 0.09 , 0.20 , -0.01 
-Pacemaker,All, 23 ,1, -0.08 , 0.03 , -0.18 , -0.21 , -0.07 , -0.03 
-Pacemaker,Physician 1, 4 ,0.18, -0.07 , 0.05 , -0.15 , -0.19 , -0.05 , -0.01 
-Pacemaker,Physician 2, 3 ,0.13, -0.08 , 0.01 , -0.20 , -0.23 , -0.09 , -0.04 
-Pacemaker,Physician 3, 3 ,0.12, -0.04 , 0.05 , -0.15 , -0.19 , -0.04 , -0.01 
-Pacemaker,Physician 4, 2 ,0.1, -0.05 , 0.05 , -0.17 , -0.18 , -0.06 , -0.02 
-Pacemaker,Physician 5, 2 ,0.08, -0.13 , -0.02 , -0.22 , -0.26 , -0.12 , -0.08 
-Pacemaker,Physician 6, 1 ,0.05, -0.11 , -0.01 , -0.20 , -0.25 , -0.11 , -0.06 
-Pacemaker,Physician 7, 1 ,0.05, -0.02 , 0.09 , -0.13 , -0.14 , -0.01 , 0.03 
-Pacemaker,Physician 8, 0 ,0.02, -0.07 , 0.04 , -0.17 , -0.20 , -0.06 , -0.03 
-Pacemaker,Physician 9, 0 ,0.01, -0.06 , 0.05 , -0.16 , -0.18 , -0.06 , -0.02 
-Percutaneous coronary intervention,All, 56 ,1, -0.07 , -0.15 , -0.25 , -0.06 , -0.14 , -0.13 
-Percutaneous coronary intervention,Physician 1, 10 ,0.18, -0.05 , -0.13 , -0.23 , -0.05 , -0.12 , -0.12 
-Percutaneous coronary intervention,Physician 2, 7 ,0.13, -0.08 , -0.16 , -0.26 , -0.08 , -0.15 , -0.14 
-Percutaneous coronary intervention,Physician 3, 7 ,0.12, -0.04 , -0.13 , -0.21 , -0.04 , -0.12 , -0.11 
-Percutaneous coronary intervention,Physician 4, 6 ,0.1, -0.05 , -0.13 , -0.23 , -0.04 , -0.12 , -0.12 
-Percutaneous coronary intervention,Physician 5, 4 ,0.08, -0.11 , -0.20 , -0.29 , -0.12 , -0.19 , -0.19 
-Percutaneous coronary intervention,Physician 6, 3 ,0.05, -0.10 , -0.17 , -0.28 , -0.09 , -0.17 , -0.16 
-Percutaneous coronary intervention,Physician 7, 3 ,0.05, -0.00 , -0.09 , -0.18 , -0.01 , -0.08 , -0.07 
-Percutaneous coronary intervention,Physician 8, 1 ,0.02, -0.05 , -0.13 , -0.23 , -0.05 , -0.14 , -0.13 
-Percutaneous coronary intervention,Physician 9, 1 ,0.01, -0.04 , -0.13 , -0.22 , -0.04 , -0.13 , -0.11 
-Transcatheter Aortic Valve Replacement,All, 13 ,1, -0.07 , -0.20 , -0.05 , -0.27 , -0.06 , -0.20 
-Transcatheter Aortic Valve Replacement,Physician 1, 2 ,0.18, -0.06 , -0.18 , -0.02 , -0.24 , -0.03 , -0.17 
-Transcatheter Aortic Valve Replacement,Physician 2, 2 ,0.13, -0.08 , -0.20 , -0.05 , -0.27 , -0.06 , -0.20 
-Transcatheter Aortic Valve Replacement,Physician 3, 2 ,0.12, -0.04 , -0.17 , -0.03 , -0.24 , -0.04 , -0.18 
-Transcatheter Aortic Valve Replacement,Physician 4, 1 ,0.1, -0.04 , -0.18 , -0.02 , -0.24 , -0.04 , -0.17 
-Transcatheter Aortic Valve Replacement,Physician 5, 1 ,0.08, -0.11 , -0.25 , -0.10 , -0.31 , -0.11 , -0.24 
-Transcatheter Aortic Valve Replacement,Physician 6, 1 ,0.05, -0.10 , -0.23 , -0.07 , -0.30 , -0.08 , -0.23 
-Transcatheter Aortic Valve Replacement,Physician 7, 1 ,0.05, -0.02 , -0.14 , 0.02 , -0.21 , 0.01 , -0.15 
-Transcatheter Aortic Valve Replacement,Physician 8, 0 ,0.02, -0.06 , -0.19 , -0.04 , -0.25 , -0.05 , -0.18 
-Transcatheter Aortic Valve Replacement,Physician 9, 0 ,0.01, -0.05 , -0.17 , -0.02 , -0.24 , -0.04 , -0.19 
-"COPD, bronchitis, asthma",All, 141 ,1, 0.11 , 0.13 , 0.06 , 0.06 , 0.17 , 0.08 
-"COPD, bronchitis, asthma",Physician 1, 25 ,0.18, 0.13 , 0.16 , 0.09 , 0.08 , 0.20 , 0.10 
-"COPD, bronchitis, asthma",Physician 2, 18 ,0.13, 0.09 , 0.12 , 0.04 , 0.06 , 0.16 , 0.08 
-"COPD, bronchitis, asthma",Physician 3, 17 ,0.12, 0.14 , 0.16 , 0.09 , 0.09 , 0.20 , 0.12 
-"COPD, bronchitis, asthma",Physician 4, 14 ,0.1, 0.12 , 0.14 , 0.09 , 0.08 , 0.19 , 0.11 
-"COPD, bronchitis, asthma",Physician 5, 11 ,0.08, 0.06 , 0.08 , 0.00 , 0.02 , 0.13 , 0.04 
-"COPD, bronchitis, asthma",Physician 6, 7 ,0.05, 0.09 , 0.09 , 0.03 , 0.04 , 0.15 , 0.05 
-"COPD, bronchitis, asthma",Physician 7, 7 ,0.05, 0.17 , 0.20 , 0.12 , 0.13 , 0.24 , 0.14 
-"COPD, bronchitis, asthma",Physician 8, 3 ,0.02, 0.11 , 0.14 , 0.07 , 0.08 , 0.18 , 0.10 
-"COPD, bronchitis, asthma",Physician 9, 1 ,0.01, 0.13 , 0.15 , 0.08 , 0.09 , 0.19 , 0.11 
-Simple pneumonia and respiratory infections,All, 126 ,1, 0.03 , 0.02 , 0.03 , 0.13 , 0.07 , -0.02 
-Simple pneumonia and respiratory infections,Physician 1, 23 ,0.18, 0.04 , 0.03 , 0.04 , 0.14 , 0.09 , -0.00 
-Simple pneumonia and respiratory infections,Physician 2, 16 ,0.13, 0.02 , 0.01 , 0.01 , 0.11 , 0.05 , -0.02 
-Simple pneumonia and respiratory infections,Physician 3, 15 ,0.12, 0.05 , 0.04 , 0.06 , 0.15 , 0.08 , 0.01 
-Simple pneumonia and respiratory infections,Physician 4, 13 ,0.1, 0.05 , 0.03 , 0.04 , 0.15 , 0.08 , 0.01 
-Simple pneumonia and respiratory infections,Physician 5, 10 ,0.08, -0.03 , -0.03 , -0.03 , 0.08 , 0.02 , -0.06 
-Simple pneumonia and respiratory infections,Physician 6, 6 ,0.05, 0.01 , -0.01 , 0.00 , 0.10 , 0.03 , -0.05 
-Simple pneumonia and respiratory infections,Physician 7, 6 ,0.05, 0.10 , 0.08 , 0.10 , 0.18 , 0.13 , 0.04 
-Simple pneumonia and respiratory infections,Physician 8, 3 ,0.02, 0.05 , 0.02 , 0.03 , 0.13 , 0.09 , -0.01 
-Simple pneumonia and respiratory infections,Physician 9, 1 ,0.01, 0.04 , 0.04 , 0.06 , 0.15 , 0.08 , 0.01 
-Bariatric Surgery,All, 6 ,1, 0.07 , 0.10 , 0.30 , 0.33 , 0.32 , 0.22 
-Bariatric Surgery,Physician 1, 1 ,0.18, 0.09 , 0.12 , 0.32 , 0.36 , 0.34 , 0.24 
-Bariatric Surgery,Physician 2, 1 ,0.13, 0.06 , 0.10 , 0.30 , 0.32 , 0.32 , 0.22 
-Bariatric Surgery,Physician 3, 1 ,0.12, 0.09 , 0.14 , 0.32 , 0.35 , 0.35 , 0.25 
-Bariatric Surgery,Physician 4, 1 ,0.1, 0.09 , 0.13 , 0.33 , 0.36 , 0.33 , 0.24 
-Bariatric Surgery,Physician 5, 0 ,0.08, 0.01 , 0.05 , 0.25 , 0.28 , 0.28 , 0.16 
-Bariatric Surgery,Physician 6, 0 ,0.05, 0.03 , 0.07 , 0.27 , 0.30 , 0.30 , 0.20 
-Bariatric Surgery,Physician 7, 0 ,0.05, 0.12 , 0.15 , 0.36 , 0.38 , 0.38 , 0.28 
-Bariatric Surgery,Physician 8, 0 ,0.02, 0.09 , 0.12 , 0.31 , 0.34 , 0.34 , 0.22 
-Bariatric Surgery,Physician 9, 0 ,0.01, 0.10 , 0.11 , 0.31 , 0.36 , 0.34 , 0.25 
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",All, 14 ,1, 0.01 , 0.06 , -0.05 , 0.02 , 0.09 , 0.15 
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 1, 3 ,0.18, 0.02 , 0.08 , -0.03 , 0.04 , 0.12 , 0.16 
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 2, 2 ,0.13, -0.00 , 0.05 , -0.06 , 0.01 , 0.09 , 0.14 
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 3, 2 ,0.12, 0.04 , 0.08 , -0.03 , 0.06 , 0.12 , 0.18 
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 4, 1 ,0.1, 0.03 , 0.08 , -0.03 , 0.05 , 0.12 , 0.16 
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 5, 1 ,0.08, -0.05 , 0.01 , -0.10 , -0.03 , 0.05 , 0.09 
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 6, 1 ,0.05, -0.03 , 0.04 , -0.08 , -0.01 , 0.06 , 0.12 
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 7, 1 ,0.05, 0.07 , 0.13 , 0.01 , 0.09 , 0.15 , 0.21 
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 8, 0 ,0.02, 0.01 , 0.06 , -0.05 , 0.03 , 0.10 , 0.15 
-"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 9, 0 ,0.01, 0.02 , 0.08 , -0.03 , 0.05 , 0.12 , 0.17 
-Gastrointestinal hemorrhage,All, 77 ,1, 0.07 , 0.08 , -0.10 , 0.02 , 0.13 , 0.08 
-Gastrointestinal hemorrhage,Physician 1, 14 ,0.18, 0.10 , 0.10 , -0.07 , 0.03 , 0.15 , 0.10 
-Gastrointestinal hemorrhage,Physician 2, 10 ,0.13, 0.06 , 0.07 , -0.11 , 0.01 , 0.13 , 0.06 
-Gastrointestinal hemorrhage,Physician 3, 9 ,0.12, 0.10 , 0.10 , -0.07 , 0.04 , 0.17 , 0.11 
-Gastrointestinal hemorrhage,Physician 4, 8 ,0.1, 0.10 , 0.11 , -0.08 , 0.04 , 0.15 , 0.11 
-Gastrointestinal hemorrhage,Physician 5, 6 ,0.08, 0.02 , 0.03 , -0.15 , -0.04 , 0.09 , 0.02 
-Gastrointestinal hemorrhage,Physician 6, 4 ,0.05, 0.04 , 0.05 , -0.12 , -0.02 , 0.11 , 0.05 
-Gastrointestinal hemorrhage,Physician 7, 4 ,0.05, 0.14 , 0.13 , -0.03 , 0.08 , 0.20 , 0.14 
-Gastrointestinal hemorrhage,Physician 8, 2 ,0.02, 0.08 , 0.10 , -0.09 , 0.02 , 0.14 , 0.09 
-Gastrointestinal hemorrhage,Physician 9, 1 ,0.01, 0.10 , 0.10 , -0.08 , 0.05 , 0.16 , 0.10 
-Gastrointestinal obstruction,All, 37 ,1, 0.09 , 0.27 , 0.03 , 0.07 , 0.31 , 0.08 
-Gastrointestinal obstruction,Physician 1, 7 ,0.18, 0.11 , 0.29 , 0.05 , 0.08 , 0.32 , 0.11 
-Gastrointestinal obstruction,Physician 2, 5 ,0.13, 0.08 , 0.26 , 0.02 , 0.05 , 0.29 , 0.08 
-Gastrointestinal obstruction,Physician 3, 4 ,0.12, 0.12 , 0.29 , 0.07 , 0.08 , 0.33 , 0.10 
-Gastrointestinal obstruction,Physician 4, 4 ,0.1, 0.11 , 0.29 , 0.04 , 0.09 , 0.33 , 0.10 
-Gastrointestinal obstruction,Physician 5, 3 ,0.08, 0.03 , 0.22 , -0.03 , 0.01 , 0.25 , 0.03 
-Gastrointestinal obstruction,Physician 6, 2 ,0.05, 0.07 , 0.23 , -0.00 , 0.04 , 0.27 , 0.04 
-Gastrointestinal obstruction,Physician 7, 2 ,0.05, 0.15 , 0.33 , 0.08 , 0.12 , 0.36 , 0.14 
-Gastrointestinal obstruction,Physician 8, 1 ,0.02, 0.10 , 0.28 , 0.04 , 0.07 , 0.31 , 0.08 
-Gastrointestinal obstruction,Physician 9, 0 ,0.01, 0.11 , 0.29 , 0.04 , 0.09 , 0.33 , 0.10 
-Inflammatory Bowel Disease,All, 5 ,1, 0.10 , 0.28 , 0.38 , 0.34 , 0.27 , 0.44 
-Inflammatory Bowel Disease,Physician 1, 1 ,0.18, 0.13 , 0.29 , 0.41 , 0.36 , 0.29 , 0.46 
-Inflammatory Bowel Disease,Physician 2, 1 ,0.13, 0.10 , 0.27 , 0.37 , 0.34 , 0.25 , 0.44 
-Inflammatory Bowel Disease,Physician 3, 1 ,0.12, 0.12 , 0.30 , 0.41 , 0.37 , 0.30 , 0.46 
-Inflammatory Bowel Disease,Physician 4, 1 ,0.1, 0.13 , 0.31 , 0.40 , 0.37 , 0.30 , 0.47 
-Inflammatory Bowel Disease,Physician 5, 0 ,0.08, 0.04 , 0.23 , 0.33 , 0.28 , 0.22 , 0.39 
-Inflammatory Bowel Disease,Physician 6, 0 ,0.05, 0.07 , 0.25 , 0.36 , 0.30 , 0.23 , 0.41 
-Inflammatory Bowel Disease,Physician 7, 0 ,0.05, 0.16 , 0.35 , 0.43 , 0.40 , 0.32 , 0.50 
-Inflammatory Bowel Disease,Physician 8, 0 ,0.02, 0.11 , 0.29 , 0.39 , 0.36 , 0.28 , 0.46 
-Inflammatory Bowel Disease,Physician 9, 0 ,0.01, 0.13 , 0.29 , 0.39 , 0.36 , 0.28 , 0.47 
-Major bowel procedure,All, 43 ,1, 0.05 , -0.10 , 0.04 , 0.03 , 0.02 , -0.01 
-Major bowel procedure,Physician 1, 8 ,0.18, 0.07 , -0.07 , 0.06 , 0.06 , 0.04 , 0.01 
-Major bowel procedure,Physician 2, 6 ,0.13, 0.04 , -0.10 , 0.04 , 0.02 , 0.02 , -0.01 
-Major bowel procedure,Physician 3, 5 ,0.12, 0.06 , -0.08 , 0.06 , 0.05 , 0.05 , 0.02 
-Major bowel procedure,Physician 4, 4 ,0.1, 0.07 , -0.08 , 0.07 , 0.06 , 0.04 , 0.01 
-Major bowel procedure,Physician 5, 3 ,0.08, -0.01 , -0.15 , -0.00 , -0.02 , -0.03 , -0.06 
-Major bowel procedure,Physician 6, 2 ,0.05, 0.02 , -0.14 , 0.02 , -0.01 , -0.01 , -0.03 
-Major bowel procedure,Physician 7, 2 ,0.05, 0.10 , -0.04 , 0.11 , 0.09 , 0.09 , 0.05 
-Major bowel procedure,Physician 8, 1 ,0.02, 0.06 , -0.09 , 0.05 , 0.05 , 0.02 , 0.00 
-Major bowel procedure,Physician 9, 0 ,0.01, 0.07 , -0.08 , 0.06 , 0.06 , 0.05 , 0.01 
-(OP) Back & neck except spinal fusion,All, 3 ,1, -0.06 , -0.11 , -0.12 , -0.08 , -0.14 , -0.20 
-(OP) Back & neck except spinal fusion,Physician 1, 1 ,0.18, -0.05 , -0.10 , -0.11 , -0.05 , -0.13 , -0.18 
-(OP) Back & neck except spinal fusion,Physician 2, 0 ,0.13, -0.08 , -0.12 , -0.13 , -0.08 , -0.15 , -0.20 
-(OP) Back & neck except spinal fusion,Physician 3, 0 ,0.12, -0.05 , -0.09 , -0.10 , -0.06 , -0.12 , -0.17 
-(OP) Back & neck except spinal fusion,Physician 4, 0 ,0.1, -0.04 , -0.09 , -0.11 , -0.07 , -0.12 , -0.18 
-(OP) Back & neck except spinal fusion,Physician 5, 0 ,0.08, -0.10 , -0.16 , -0.17 , -0.13 , -0.19 , -0.25 
-(OP) Back & neck except spinal fusion,Physician 6, 0 ,0.05, -0.09 , -0.15 , -0.16 , -0.11 , -0.17 , -0.23 
-(OP) Back & neck except spinal fusion,Physician 7, 0 ,0.05, 0.01 , -0.04 , -0.07 , -0.03 , -0.07 , -0.15 
-(OP) Back & neck except spinal fusion,Physician 8, 0 ,0.02, -0.05 , -0.10 , -0.11 , -0.07 , -0.13 , -0.18 
-(OP) Back & neck except spinal fusion,Physician 9, 0 ,0.01, -0.04 , -0.10 , -0.11 , -0.05 , -0.13 , -0.19 
-(OP) Cardiac Defibrillator,All, 2 ,1, 0.11 , 0.32 , 0.41 , 0.31 , 0.23 , 0.18 
-(OP) Cardiac Defibrillator,Physician 1, 0 ,0.18, 0.13 , 0.34 , 0.43 , 0.34 , 0.26 , 0.21 
-(OP) Cardiac Defibrillator,Physician 2, 0 ,0.13, 0.10 , 0.32 , 0.40 , 0.30 , 0.22 , 0.17 
-(OP) Cardiac Defibrillator,Physician 3, 0 ,0.12, 0.14 , 0.34 , 0.44 , 0.34 , 0.26 , 0.21 
-(OP) Cardiac Defibrillator,Physician 4, 0 ,0.1, 0.14 , 0.33 , 0.43 , 0.33 , 0.24 , 0.20 
-(OP) Cardiac Defibrillator,Physician 5, 0 ,0.08, 0.07 , 0.26 , 0.36 , 0.25 , 0.18 , 0.13 
-(OP) Cardiac Defibrillator,Physician 6, 0 ,0.05, 0.09 , 0.30 , 0.39 , 0.28 , 0.20 , 0.15 
-(OP) Cardiac Defibrillator,Physician 7, 0 ,0.05, 0.17 , 0.37 , 0.47 , 0.37 , 0.28 , 0.24 
-(OP) Cardiac Defibrillator,Physician 8, 0 ,0.02, 0.13 , 0.33 , 0.42 , 0.32 , 0.25 , 0.20 
-(OP) Cardiac Defibrillator,Physician 9, 0 ,0.01, 0.14 , 0.34 , 0.44 , 0.33 , 0.26 , 0.21 
-(OP) Major joint replacement of the lower extremity (MJRLE),All, 39 ,1, 0.06 , 0.08 , -0.03 , -0.13 , 0.09 , 0.14 
-(OP) Major joint replacement of the lower extremity (MJRLE),Physician 1, 7 ,0.18, 0.08 , 0.11 , -0.01 , -0.12 , 0.10 , 0.16 
-(OP) Major joint replacement of the lower extremity (MJRLE),Physician 2, 5 ,0.13, 0.05 , 0.07 , -0.04 , -0.14 , 0.08 , 0.14 
-(OP) Major joint replacement of the lower extremity (MJRLE),Physician 3, 5 ,0.12, 0.08 , 0.10 , 0.00 , -0.11 , 0.11 , 0.17 
-(OP) Major joint replacement of the lower extremity (MJRLE),Physician 4, 4 ,0.1, 0.08 , 0.10 , -0.02 , -0.11 , 0.12 , 0.16 
-(OP) Major joint replacement of the lower extremity (MJRLE),Physician 5, 3 ,0.08, 0.01 , 0.04 , -0.08 , -0.19 , 0.03 , 0.10 
-(OP) Major joint replacement of the lower extremity (MJRLE),Physician 6, 2 ,0.05, 0.02 , 0.04 , -0.07 , -0.16 , 0.06 , 0.10 
-(OP) Major joint replacement of the lower extremity (MJRLE),Physician 7, 2 ,0.05, 0.11 , 0.15 , 0.02 , -0.08 , 0.15 , 0.19 
-(OP) Major joint replacement of the lower extremity (MJRLE),Physician 8, 1 ,0.02, 0.08 , 0.08 , -0.03 , -0.12 , 0.09 , 0.15 
-(OP) Major joint replacement of the lower extremity (MJRLE),Physician 9, 0 ,0.01, 0.07 , 0.09 , -0.00 , -0.12 , 0.11 , 0.15 
-(OP) Percutaneous Coronary Intervention,All, 12 ,1, 0.10 , 0.14 , 0.06 , 0.08 , 0.12 , 0.14 
-(OP) Percutaneous Coronary Intervention,Physician 1, 2 ,0.18, 0.11 , 0.16 , 0.07 , 0.09 , 0.15 , 0.15 
-(OP) Percutaneous Coronary Intervention,Physician 2, 2 ,0.13, 0.09 , 0.14 , 0.05 , 0.08 , 0.10 , 0.13 
-(OP) Percutaneous Coronary Intervention,Physician 3, 1 ,0.12, 0.13 , 0.16 , 0.09 , 0.10 , 0.14 , 0.16 
-(OP) Percutaneous Coronary Intervention,Physician 4, 1 ,0.1, 0.13 , 0.15 , 0.07 , 0.10 , 0.14 , 0.15 
-(OP) Percutaneous Coronary Intervention,Physician 5, 1 ,0.08, 0.05 , 0.09 , 0.01 , 0.04 , 0.06 , 0.10 
-(OP) Percutaneous Coronary Intervention,Physician 6, 1 ,0.05, 0.07 , 0.11 , 0.04 , 0.06 , 0.09 , 0.12 
-(OP) Percutaneous Coronary Intervention,Physician 7, 1 ,0.05, 0.17 , 0.21 , 0.13 , 0.13 , 0.19 , 0.19 
-(OP) Percutaneous Coronary Intervention,Physician 8, 0 ,0.02, 0.12 , 0.16 , 0.08 , 0.09 , 0.12 , 0.14 
-(OP) Percutaneous Coronary Intervention,Physician 9, 0 ,0.01, 0.11 , 0.17 , 0.07 , 0.10 , 0.14 , 0.16 
+﻿bundle,Physician,Bundle Count,% of Total Bundle Count,Average Bundle Cost,Readmission Rate,Post-discharge ER Rate,% Discharged to SNF,% Discharged to IRF,Average Implant Cost
+Back and neck except spinal fusion,All,7,1,0.111111111,0.287349712,0.090133052,0.316252979,0.206141972,0.235652139
+Back and neck except spinal fusion,Physician 1,1.26,0.18,0.13799538,0.313744482,0.118882651,0.333979427,0.227331354,0.253701466
+Back and neck except spinal fusion,Physician 2,0.91,0.13,0.091774908,0.284524718,0.079033303,0.313155307,0.197329796,0.231031322
+Back and neck except spinal fusion,Physician 3,0.84,0.12,0.130636684,0.312023456,0.109890782,0.333594139,0.228077693,0.268275944
+Back and neck except spinal fusion,Physician 4,0.7,0.1,0.131598737,0.310921296,0.109655556,0.340738615,0.219577461,0.257284388
+Back and neck except spinal fusion,Physician 5,0.56,0.08,0.06307437,0.234165468,0.031016397,0.267702314,0.163058343,0.190239826
+Back and neck except spinal fusion,Physician 6,0.35,0.05,0.075235607,0.251474839,0.069323303,0.290813882,0.17770834,0.214620352
+Back and neck except spinal fusion,Physician 7,0.35,0.05,0.170182058,0.348671033,0.143653655,0.376423404,0.263884685,0.288240402
+Back and neck except spinal fusion,Physician 8,0.14,0.02,0.129312587,0.298398358,0.107331754,0.334905513,0.21020464,0.252584975
+Back and neck except spinal fusion,Physician 9,0.07,0.01,0.121984102,0.305474649,0.11782163,0.331030302,0.23177832,0.250874364
+Double joint replacement of the lower extremity,All,4,1,0.111111111,0.309186711,0.147138621,0.133551048,0.052290015,0.154906925
+Double joint replacement of the lower extremity,Physician 1,0.72,0.18,0.138059539,0.324420283,0.162139258,0.153473611,0.074372141,0.178170611
+Double joint replacement of the lower extremity,Physician 2,0.52,0.13,0.103709315,0.295845665,0.132472788,0.122851607,0.051803931,0.143335246
+Double joint replacement of the lower extremity,Physician 3,0.48,0.12,0.130867372,0.337834327,0.168364954,0.155045494,0.080885909,0.169952822
+Double joint replacement of the lower extremity,Physician 4,0.4,0.1,0.139506653,0.326895216,0.172728466,0.161739486,0.065620071,0.167827215
+Double joint replacement of the lower extremity,Physician 5,0.32,0.08,0.057611641,0.2672059,0.099596964,0.092406039,0.001513943,0.111884044
+Double joint replacement of the lower extremity,Physician 6,0.2,0.05,0.088120731,0.285507749,0.111994396,0.102944806,0.028291562,0.133523074
+Double joint replacement of the lower extremity,Physician 7,0.2,0.05,0.175680399,0.374728767,0.210343196,0.184879701,0.120879452,0.213930043
+Double joint replacement of the lower extremity,Physician 8,0.08,0.02,0.12020845,0.327191555,0.149205507,0.149219365,0.060784806,0.171834732
+Double joint replacement of the lower extremity,Physician 9,0.04,0.01,0.133659379,0.320473036,0.159063081,0.152755956,0.063049264,0.182785445
+Fractures of the femur and hip or pelvis,All,13,1,0.111111111,0.260521419,0.279749699,0.196168245,0.249534818,0.37672042
+Fractures of the femur and hip or pelvis,Physician 1,2.34,0.18,0.129062034,0.278122118,0.300102052,0.225313413,0.278510947,0.388924766
+Fractures of the femur and hip or pelvis,Physician 2,1.69,0.13,0.094469692,0.253706938,0.272971469,0.176933618,0.231037131,0.359225026
+Fractures of the femur and hip or pelvis,Physician 3,1.56,0.12,0.134292476,0.2817147,0.31145765,0.217994255,0.278881431,0.400266628
+Fractures of the femur and hip or pelvis,Physician 4,1.3,0.1,0.125114865,0.28023444,0.307391939,0.207343675,0.268082858,0.4063988
+Fractures of the femur and hip or pelvis,Physician 5,1.04,0.08,0.063297414,0.207844839,0.236002242,0.149914535,0.199094377,0.320361964
+Fractures of the femur and hip or pelvis,Physician 6,0.65,0.05,0.081989635,0.230548322,0.255098929,0.16563454,0.222425089,0.345146791
+Fractures of the femur and hip or pelvis,Physician 7,0.65,0.05,0.17239136,0.318011392,0.346038985,0.250709653,0.308264056,0.435853009
+Fractures of the femur and hip or pelvis,Physician 8,0.26,0.02,0.120316743,0.273461637,0.285098924,0.200318244,0.258087639,0.381186907
+Fractures of the femur and hip or pelvis,Physician 9,0.13,0.01,0.12529294,0.279150124,0.296256829,0.212086596,0.270060054,0.406206346
+Hip and femur procedures except major joint,All,47,1,0.111111111,0.220205298,0.214931149,0.337270662,0.230705807,0.145644608
+Hip and femur procedures except major joint,Physician 1,8.46,0.18,0.126569291,0.231749323,0.228731816,0.365261516,0.244951524,0.157598679
+Hip and femur procedures except major joint,Physician 2,6.11,0.13,0.104162668,0.217994842,0.200081768,0.322064986,0.227391061,0.143157653
+Hip and femur procedures except major joint,Physician 3,5.64,0.12,0.137962887,0.245889743,0.236988845,0.361682283,0.253311241,0.179013863
+Hip and femur procedures except major joint,Physician 4,4.7,0.1,0.126393743,0.241260748,0.241121023,0.367125954,0.252575508,0.158157178
+Hip and femur procedures except major joint,Physician 5,3.76,0.08,0.058831604,0.175271104,0.168094443,0.293657045,0.18893044,0.105009557
+Hip and femur procedures except major joint,Physician 6,2.35,0.05,0.072448607,0.196669026,0.184884597,0.312191455,0.193448379,0.121121191
+Hip and femur procedures except major joint,Physician 7,2.35,0.05,0.178325301,0.282985179,0.279934362,0.40378715,0.29742401,0.197959075
+Hip and femur procedures except major joint,Physician 8,0.94,0.02,0.126903856,0.222176757,0.215413786,0.354654025,0.250615022,0.158957077
+Hip and femur procedures except major joint,Physician 9,0.47,0.01,0.14053706,0.235536585,0.24225025,0.356517571,0.255256366,0.161123533
+"Lower extremity/humerus procedure except hip, foot, femur",All,14,1,0.10099365,0.066828687,-0.005038106,0.048786746,0.128771212,0.175794497
+"Lower extremity/humerus procedure except hip, foot, femur",Physician 1,2.52,0.18,0.11174653,0.079327125,0.023969738,0.063320603,0.140315408,0.203586968
+"Lower extremity/humerus procedure except hip, foot, femur",Physician 2,1.82,0.13,0.088746632,0.062648611,-0.024684536,0.033612931,0.118551781,0.175670004
+"Lower extremity/humerus procedure except hip, foot, femur",Physician 3,1.68,0.12,0.119432368,0.082949844,0.014596717,0.070884988,0.155136159,0.200719231
+"Lower extremity/humerus procedure except hip, foot, femur",Physician 4,1.4,0.1,0.118730995,0.090489772,0.01088303,0.063639648,0.141650237,0.202530369
+"Lower extremity/humerus procedure except hip, foot, femur",Physician 5,1.12,0.08,0.060814884,0.01276838,-0.061334683,0.006468804,0.086512761,0.124469767
+"Lower extremity/humerus procedure except hip, foot, femur",Physician 6,0.7,0.05,0.063816108,0.031950049,-0.044985038,0.020642826,0.10587629,0.140688886
+"Lower extremity/humerus procedure except hip, foot, femur",Physician 7,0.7,0.05,0.166252545,0.118443893,0.054963944,0.105700895,0.183552656,0.238820059
+"Lower extremity/humerus procedure except hip, foot, femur",Physician 8,0.28,0.02,0.108272337,0.080182864,0.013890828,0.066073659,0.144540932,0.194019727
+"Lower extremity/humerus procedure except hip, foot, femur",Physician 9,0.14,0.01,0.118687944,0.082987672,0.008271834,0.0657807,0.151584397,0.197009362
+Major joint replacement of the lower extremity (MJRLE),All,192,1,0.111111111,0.176294414,0.213149162,0.323896182,0.383174873,0.231371779
+Major joint replacement of the lower extremity (MJRLE),Physician 1,34.56,0.18,0.126279274,0.189207215,0.223233677,0.352071058,0.411812081,0.245571741
+Major joint replacement of the lower extremity (MJRLE),Physician 2,24.96,0.13,0.103498645,0.161010557,0.202829443,0.304258882,0.382068383,0.217789912
+Major joint replacement of the lower extremity (MJRLE),Physician 3,23.04,0.12,0.145923913,0.195946003,0.246753945,0.338932626,0.41611782,0.265245254
+Major joint replacement of the lower extremity (MJRLE),Physician 4,19.2,0.1,0.125661661,0.196148293,0.233773348,0.348616278,0.401587706,0.248371876
+Major joint replacement of the lower extremity (MJRLE),Physician 5,15.36,0.08,0.051823629,0.135049063,0.164779138,0.28368065,0.334495658,0.184770344
+Major joint replacement of the lower extremity (MJRLE),Physician 6,9.6,0.05,0.072155492,0.1518733,0.18858202,0.289575382,0.356763276,0.193093286
+Major joint replacement of the lower extremity (MJRLE),Physician 7,9.6,0.05,0.179647241,0.2266296,0.269939379,0.38521948,0.443267459,0.284817566
+Major joint replacement of the lower extremity (MJRLE),Physician 8,3.84,0.02,0.120181709,0.188615601,0.221129603,0.334736657,0.396665534,0.245183306
+Major joint replacement of the lower extremity (MJRLE),Physician 9,1.92,0.01,0.128136678,0.197756466,0.223818541,0.343082334,0.398936079,0.25308907
+Major joint replacement of the upper extremity,All,21,1,0.111111111,0.221756662,0.194007891,0.257107783,0.279350419,0.281991803
+Major joint replacement of the upper extremity,Physician 1,3.78,0.18,0.140182683,0.241595083,0.217528735,0.275434105,0.29528687,0.297820794
+Major joint replacement of the upper extremity,Physician 2,2.73,0.13,0.0957063,0.210636226,0.190785788,0.250492153,0.266028926,0.266960715
+Major joint replacement of the upper extremity,Physician 3,2.52,0.12,0.129676942,0.244790878,0.221262845,0.282973269,0.308727398,0.300280797
+Major joint replacement of the upper extremity,Physician 4,2.1,0.1,0.125748364,0.233376214,0.20668656,0.275394798,0.294717143,0.297911079
+Major joint replacement of the upper extremity,Physician 5,1.68,0.08,0.060188729,0.174446025,0.142350567,0.212291613,0.238435889,0.239452833
+Major joint replacement of the upper extremity,Physician 6,1.05,0.05,0.08375515,0.184593703,0.169626929,0.223542364,0.250621602,0.244521232
+Major joint replacement of the upper extremity,Physician 7,1.05,0.05,0.162781127,0.279591335,0.253454755,0.322942815,0.330690971,0.333690136
+Major joint replacement of the upper extremity,Physician 8,0.42,0.02,0.129195136,0.229756476,0.199470901,0.263445299,0.29676314,0.298827429
+Major joint replacement of the upper extremity,Physician 9,0.21,0.01,0.138204617,0.24333201,0.221611937,0.277939315,0.291467662,0.309073702
+Spinal fusion,All,30,1,0.018276095,0.031902367,-0.085833137,-0.06988795,-0.018566442,-0.143336261
+Spinal fusion,Physician 1,5.4,0.18,0.037487238,0.054586144,-0.07220241,-0.053841388,0.004080578,-0.124444423
+Spinal fusion,Physician 2,3.9,0.13,-0.000120623,0.027964672,-0.090280783,-0.077395041,-0.037445451,-0.152589366
+Spinal fusion,Physician 3,3.6,0.12,0.051363199,0.059759231,-0.067274715,-0.041640738,-0.002317213,-0.108502938
+Spinal fusion,Physician 4,3,0.1,0.044197696,0.044204584,-0.074795188,-0.043186195,0.007300542,-0.128397969
+Spinal fusion,Physician 5,2.4,0.08,-0.040755233,-0.026650248,-0.137078929,-0.123097763,-0.074117454,-0.188614691
+Spinal fusion,Physician 6,1.5,0.05,-0.017127649,0.004176805,-0.12000402,-0.109450717,-0.049416663,-0.178803639
+Spinal fusion,Physician 7,1.5,0.05,0.077480336,0.097519431,-0.019580661,-0.006147651,0.05140906,-0.085113931
+Spinal fusion,Physician 8,0.6,0.02,0.029901881,0.042844032,-0.072853201,-0.067129831,-0.004747759,-0.138423146
+Spinal fusion,Physician 9,0.3,0.01,0.045259071,0.061050617,-0.075464422,-0.05396975,-0.007213182,-0.122344012
+Renal failure,All,96,1,0.111111111,0.409384361,0.279925463,0.054071501,0.177703707,0.226642719
+Renal failure,Physician 1,17.28,0.18,0.126219698,0.434815963,0.304731575,0.080164233,0.204227611,0.247759575
+Renal failure,Physician 2,12.48,0.13,0.096572119,0.39242692,0.260803775,0.035937872,0.173492556,0.208408104
+Renal failure,Physician 3,11.52,0.12,0.130907268,0.427947903,0.296603871,0.087621419,0.201292663,0.243982218
+Renal failure,Physician 4,9.6,0.1,0.13926698,0.428397169,0.302643063,0.075188179,0.204671397,0.251743196
+Renal failure,Physician 5,7.68,0.08,0.068551149,0.359997853,0.239533451,0.001667308,0.128918767,0.182505674
+Renal failure,Physician 6,4.8,0.05,0.076247597,0.383875765,0.243630294,0.028600381,0.148714991,0.197748757
+Renal failure,Physician 7,4.8,0.05,0.171072279,0.46791556,0.341304255,0.120012298,0.234758365,0.292263798
+Renal failure,Physician 8,1.92,0.02,0.115730078,0.42189552,0.287468123,0.056759259,0.188453337,0.238726801
+Renal failure,Physician 9,0.96,0.01,0.122508404,0.434490202,0.293018562,0.074884888,0.200121375,0.237818059
+Cellulitis,All,50,1,0.111111111,0.248577874,0.362940878,0.227149812,0.384276545,0.21609643
+Cellulitis,Physician 1,9,0.18,0.128690524,0.27611172,0.386684645,0.247767902,0.398751359,0.239880225
+Cellulitis,Physician 2,6.5,0.13,0.106568773,0.240065763,0.353714536,0.215490039,0.374084521,0.202468798
+Cellulitis,Physician 3,6,0.12,0.131590646,0.28003049,0.379937267,0.254083198,0.418180058,0.239660531
+Cellulitis,Physician 4,5,0.1,0.127510295,0.272750612,0.374910298,0.240730943,0.40952636,0.226794568
+Cellulitis,Physician 5,4,0.08,0.05440057,0.18868721,0.31153806,0.178038426,0.339794687,0.17196448
+Cellulitis,Physician 6,2.5,0.05,0.090280191,0.216885567,0.324238623,0.200118281,0.357388691,0.196079455
+Cellulitis,Physician 7,2.5,0.05,0.171536988,0.29868463,0.419664219,0.292478817,0.439268179,0.280694493
+Cellulitis,Physician 8,1,0.02,0.122206152,0.264893418,0.381357727,0.227800249,0.388063674,0.226184876
+Cellulitis,Physician 9,0.5,0.01,0.132017822,0.274602641,0.377925888,0.2535195,0.398978184,0.227215054
+Sepsis,All,283,1,0.008115528,0.045117973,-0.051245991,0.114332934,-0.049780478,0.043190266
+Sepsis,Physician 1,50.94,0.18,0.02237417,0.060126117,-0.031875944,0.125109136,-0.020037647,0.057899373
+Sepsis,Physician 2,36.79,0.13,0.001245066,0.028668841,-0.062839337,0.100478688,-0.055579191,0.024111106
+Sepsis,Physician 3,33.96,0.12,0.025565601,0.064967591,-0.016412271,0.137371771,-0.020701037,0.059849415
+Sepsis,Physician 4,28.3,0.1,0.022570846,0.062258477,-0.040373089,0.138034049,-0.028240701,0.056526088
+Sepsis,Physician 5,22.64,0.08,-0.034205603,-0.001932584,-0.095240088,0.058640235,-0.103576224,-0.013444126
+Sepsis,Physician 6,14.15,0.05,-0.021941387,0.020661852,-0.082465154,0.074441451,-0.07320296,0.01901618
+Sepsis,Physician 7,14.15,0.05,0.062669405,0.101411989,0.001932311,0.174660801,0.011137288,0.097267658
+Sepsis,Physician 8,5.66,0.02,0.019260092,0.056914942,-0.043059089,0.119360269,-0.04888953,0.047705478
+Sepsis,Physician 9,2.83,0.01,0.02285302,0.058326179,-0.040391923,0.136680849,-0.027717136,0.05475743
+Urinary tract infection,All,81,1,0.081257841,-0.022345357,0.045100115,0.172187619,0.163777779,0.138952366
+Urinary tract infection,Physician 1,14.58,0.18,0.092431437,0.006399883,0.056428058,0.190564102,0.182782596,0.149772331
+Urinary tract infection,Physician 2,10.53,0.13,0.07082357,-0.022349097,0.03977374,0.164353318,0.15227212,0.125649203
+Urinary tract infection,Physician 3,9.72,0.12,0.09900935,0.001827784,0.067733408,0.206840733,0.18885435,0.156681195
+Urinary tract infection,Physician 4,8.1,0.1,0.101646144,-0.009958233,0.057650461,0.183234004,0.186079738,0.168022996
+Urinary tract infection,Physician 5,6.48,0.08,0.037377498,-0.06240916,-0.000849618,0.125622201,0.107740745,0.098414158
+Urinary tract infection,Physician 6,4.05,0.05,0.043636033,-0.049254043,0.018163139,0.140505662,0.135321709,0.105703288
+Urinary tract infection,Physician 7,4.05,0.05,0.132385873,0.040142858,0.104674726,0.233371543,0.217617944,0.190986645
+Urinary tract infection,Physician 8,1.62,0.02,0.083347553,-0.006125603,0.051325232,0.180611421,0.168488917,0.156513904
+Urinary tract infection,Physician 9,0.81,0.01,0.091375714,-0.010939662,0.074541814,0.192167684,0.188945544,0.167213703
+Seizures,All,24,1,0.111111111,0.113093806,0.252983034,0.182447593,0.158021789,0.207405029
+Seizures,Physician 1,4.32,0.18,0.122019098,0.132533817,0.26399243,0.194370748,0.171177033,0.220906875
+Seizures,Physician 2,3.12,0.13,0.094704618,0.09665429,0.239745521,0.178796881,0.154161893,0.203021366
+Seizures,Physician 3,2.88,0.12,0.132278108,0.1405739,0.284604713,0.212302019,0.186985385,0.227454283
+Seizures,Physician 4,2.4,0.1,0.139141821,0.141515401,0.271253827,0.209365141,0.179954668,0.22893097
+Seizures,Physician 5,1.92,0.08,0.063348203,0.069551708,0.212360863,0.126765651,0.105541623,0.165627847
+Seizures,Physician 6,1.2,0.05,0.085518833,0.075834506,0.223435411,0.146889652,0.121561243,0.170250329
+Seizures,Physician 7,1.2,0.05,0.165262608,0.180420704,0.317712883,0.247148182,0.219274005,0.258822202
+Seizures,Physician 8,0.48,0.02,0.120441072,0.121527612,0.263088457,0.199255671,0.158641475,0.226210056
+Seizures,Physician 9,0.24,0.01,0.136296065,0.129075944,0.270709997,0.198725929,0.177442191,0.22684181
+Stroke,All,88,1,0.111111111,0.2639478,0.296703702,0.383743012,0.372936211,0.303414853
+Stroke,Physician 1,15.84,0.18,0.13974687,0.287717468,0.318251416,0.407654095,0.384089026,0.325333527
+Stroke,Physician 2,11.44,0.13,0.109861493,0.262799427,0.295362813,0.380998716,0.360869161,0.301381316
+Stroke,Physician 3,10.56,0.12,0.138279507,0.282576331,0.312085799,0.413695123,0.404334769,0.320091718
+Stroke,Physician 4,8.8,0.1,0.132356641,0.275322011,0.30704862,0.407179608,0.397750286,0.332481442
+Stroke,Physician 5,7.04,0.08,0.062264649,0.206831696,0.241889968,0.342695755,0.319502299,0.255125744
+Stroke,Physician 6,4.4,0.05,0.089795643,0.230075306,0.272061999,0.351754456,0.349989345,0.274151803
+Stroke,Physician 7,4.4,0.05,0.171803901,0.323659555,0.347765881,0.443093655,0.441174101,0.362645798
+Stroke,Physician 8,1.76,0.02,0.1210427,0.275285439,0.303409483,0.394608562,0.391473743,0.307556329
+Stroke,Physician 9,0.88,0.01,0.121256045,0.284606672,0.308840887,0.400599067,0.402100981,0.328405954
+Acute myocardial infarction,All,54,1,0.111111111,0.06294758,0.15597482,0.148793184,0.295806292,0.330909811
+Acute myocardial infarction,Physician 1,9.72,0.18,0.133493714,0.076576332,0.176909845,0.167274062,0.306501101,0.344456396
+Acute myocardial infarction,Physician 2,7.02,0.13,0.102037584,0.045248118,0.142134372,0.1308915,0.287076536,0.322872116
+Acute myocardial infarction,Physician 3,6.48,0.12,0.141333292,0.095798588,0.176739285,0.173553777,0.317176494,0.361235095
+Acute myocardial infarction,Physician 4,5.4,0.1,0.128221447,0.078956414,0.167751628,0.168764308,0.317925613,0.35880914
+Acute myocardial infarction,Physician 5,4.32,0.08,0.064088237,0.022375816,0.103719053,0.089689074,0.240393976,0.285235352
+Acute myocardial infarction,Physician 6,2.7,0.05,0.080700296,0.031371119,0.123691829,0.125868481,0.273874131,0.307010474
+Acute myocardial infarction,Physician 7,2.7,0.05,0.180999219,0.132190369,0.215378386,0.216596618,0.352967695,0.395654949
+Acute myocardial infarction,Physician 8,1.08,0.02,0.123567202,0.079003047,0.171681589,0.154005097,0.31057982,0.341344139
+Acute myocardial infarction,Physician 9,0.54,0.01,0.13029349,0.073830572,0.169891593,0.178194608,0.315713198,0.343053541
+Cardiac arrhythmia,All,82,1,-0.040997105,-0.042192029,0.00476328,0.081117728,-0.100805294,-0.052888866
+Cardiac arrhythmia,Physician 1,14.76,0.18,-0.018470808,-0.024806524,0.022960555,0.107014609,-0.078544184,-0.031871456
+Cardiac arrhythmia,Physician 2,10.66,0.13,-0.046091905,-0.045263971,0.001593555,0.074640467,-0.116929105,-0.0675196
+Cardiac arrhythmia,Physician 3,9.84,0.12,-0.015257133,-0.009294664,0.019865063,0.10517587,-0.076648594,-0.018231114
+Cardiac arrhythmia,Physician 4,8.2,0.1,-0.027839641,-0.023402617,0.017392584,0.095395701,-0.079410279,-0.027017146
+Cardiac arrhythmia,Physician 5,6.56,0.08,-0.099303772,-0.087545013,-0.053061528,0.032452864,-0.155424255,-0.094650426
+Cardiac arrhythmia,Physician 6,4.1,0.05,-0.080345992,-0.066623357,-0.032147085,0.060690778,-0.126562638,-0.079478387
+Cardiac arrhythmia,Physician 7,4.1,0.05,0.009248233,0.026540176,0.074080632,0.14291831,-0.044535013,-0.002476816
+Cardiac arrhythmia,Physician 8,1.64,0.02,-0.030436116,-0.033184094,0.023509865,0.100571179,-0.083364928,-0.048672561
+Cardiac arrhythmia,Physician 9,0.82,0.01,-0.02299973,-0.030480206,0.033937701,0.10838548,-0.079962661,-0.036903405
+Cardiac defibrillator,All,5,1,0.111111111,0.255124968,0.341167659,0.284362566,0.129362021,0.469186675
+Cardiac defibrillator,Physician 1,0.9,0.18,0.131877126,0.283766718,0.359122697,0.301917476,0.149806814,0.491335838
+Cardiac defibrillator,Physician 2,0.65,0.13,0.099739437,0.238536391,0.338993811,0.275388961,0.123553138,0.467451598
+Cardiac defibrillator,Physician 3,0.6,0.12,0.133657806,0.289151973,0.36697573,0.312895702,0.158168146,0.498476831
+Cardiac defibrillator,Physician 4,0.5,0.1,0.121946632,0.284987315,0.358136726,0.29918512,0.152760325,0.492170488
+Cardiac defibrillator,Physician 5,0.4,0.08,0.059234384,0.214590156,0.288132989,0.232457987,0.083438167,0.42854462
+Cardiac defibrillator,Physician 6,0.25,0.05,0.074564807,0.21867102,0.320392094,0.263992456,0.094845985,0.433567343
+Cardiac defibrillator,Physician 7,0.25,0.05,0.180254763,0.322191956,0.410992652,0.345074386,0.198102413,0.537564982
+Cardiac defibrillator,Physician 8,0.1,0.02,0.11657774,0.271143673,0.344684324,0.301189538,0.138968201,0.48659016
+Cardiac defibrillator,Physician 9,0.05,0.01,0.137793211,0.282255767,0.3703292,0.312480327,0.15328001,0.487568515
+Cardiac valve,All,29,1,0.025345273,0.031447098,0.117085665,0.097337233,0.086026138,0.106957849
+Cardiac valve,Physician 1,5.22,0.18,0.037388305,0.061425537,0.140848115,0.110906605,0.101488867,0.136657552
+Cardiac valve,Physician 2,3.77,0.13,0.015829319,0.025259336,0.111224511,0.086082804,0.074852053,0.090436457
+Cardiac valve,Physician 3,3.48,0.12,0.059572984,0.054473355,0.140181055,0.113422854,0.110253437,0.13156065
+Cardiac valve,Physician 4,2.9,0.1,0.054324037,0.046357781,0.141752666,0.110567627,0.110473932,0.127547481
+Cardiac valve,Physician 5,2.32,0.08,-0.018345864,-0.02366036,0.07508586,0.037977104,0.029137993,0.061228649
+Cardiac valve,Physician 6,1.45,0.05,0.004523936,-0.005958503,0.095289958,0.076472019,0.052141756,0.069995512
+Cardiac valve,Physician 7,1.45,0.05,0.078575227,0.082770208,0.180740037,0.160269528,0.148440346,0.16736277
+Cardiac valve,Physician 8,0.58,0.02,0.027435593,0.033210719,0.12032432,0.103487749,0.10439639,0.10772801
+Cardiac valve,Physician 9,0.29,0.01,0.035419044,0.051434728,0.143510935,0.120782008,0.10150647,0.134448193
+Congestive heart failure,All,183,1,0.111111111,0.21754954,0.345680393,0.377191954,0.257946279,0.359483727
+Congestive heart failure,Physician 1,32.94,0.18,0.122263943,0.235998249,0.371473228,0.399536768,0.276355159,0.372780969
+Congestive heart failure,Physician 2,23.79,0.13,0.101443222,0.207056997,0.343434482,0.36139313,0.240765181,0.344556936
+Congestive heart failure,Physician 3,21.96,0.12,0.127298258,0.251877245,0.367702232,0.406169118,0.28740482,0.378490478
+Congestive heart failure,Physician 4,18.3,0.1,0.124208196,0.238377959,0.364217953,0.404325724,0.273337493,0.387230369
+Congestive heart failure,Physician 5,14.64,0.08,0.068016769,0.167670902,0.299566464,0.336032767,0.202305513,0.299974016
+Congestive heart failure,Physician 6,9.15,0.05,0.082198429,0.181240058,0.321423923,0.349615404,0.236204528,0.320554217
+Congestive heart failure,Physician 7,9.15,0.05,0.1635722,0.28418644,0.407708628,0.444140758,0.323140834,0.411227609
+Congestive heart failure,Physician 8,3.66,0.02,0.117705391,0.230814103,0.359119045,0.390023939,0.265205537,0.360363452
+Congestive heart failure,Physician 9,1.83,0.01,0.136500456,0.231201042,0.368816388,0.397740854,0.283347642,0.381448374
+Coronary artery bypass graft,All,22,1,0.05728898,0.155128992,0.051602685,0.143288965,0.077705588,0.029207927
+Coronary artery bypass graft,Physician 1,3.96,0.18,0.079906131,0.166503787,0.080075557,0.154829627,0.098223771,0.045092133
+Coronary artery bypass graft,Physician 2,2.86,0.13,0.044196656,0.137900877,0.038760919,0.134929073,0.06432729,0.023933398
+Coronary artery bypass graft,Physician 3,2.64,0.12,0.076615223,0.183220459,0.070869587,0.164398032,0.105466116,0.062274025
+Coronary artery bypass graft,Physician 4,2.2,0.1,0.0857951,0.181509105,0.063568578,0.167512344,0.104952869,0.04734683
+Coronary artery bypass graft,Physician 5,1.76,0.08,0.006683476,0.114649407,-0.002094211,0.093100555,0.030847072,-0.017696737
+Coronary artery bypass graft,Physician 6,1.1,0.05,0.030230434,0.124663977,0.013133722,0.106292038,0.046467817,0.0028405
+Coronary artery bypass graft,Physician 7,1.1,0.05,0.111917659,0.209641778,0.107591588,0.21111815,0.146093927,0.087048642
+Coronary artery bypass graft,Physician 8,0.44,0.02,0.076660922,0.171381473,0.06107752,0.145171956,0.096817238,0.048745208
+Coronary artery bypass graft,Physician 9,0.22,0.01,0.076730463,0.177403452,0.065169686,0.154682295,0.095403276,0.041901317
+Pacemaker,All,23,1,-0.075583151,-0.025489706,-0.138067822,-0.031361386,-0.160098248,-0.147641462
+Pacemaker,Physician 1,4.14,0.18,-0.048039517,-0.008702104,-0.125017937,-0.015518423,-0.143627977,-0.132695048
+Pacemaker,Physician 2,2.99,0.13,-0.079827241,-0.029452712,-0.146268177,-0.038677311,-0.166399107,-0.15931265
+Pacemaker,Physician 3,2.76,0.12,-0.045970658,-0.010041645,-0.117403075,-0.000347214,-0.143160261,-0.124854366
+Pacemaker,Physician 4,2.3,0.1,-0.047941543,-0.011895759,-0.113249371,-0.004540844,-0.132523589,-0.128671298
+Pacemaker,Physician 5,1.84,0.08,-0.131594735,-0.071226933,-0.184335741,-0.086025091,-0.212239617,-0.189162539
+Pacemaker,Physician 6,1.15,0.05,-0.105477146,-0.055182704,-0.169978799,-0.068142203,-0.199128835,-0.175400813
+Pacemaker,Physician 7,1.15,0.05,-0.02063379,0.031274611,-0.071909443,0.026955292,-0.092266846,-0.092201653
+Pacemaker,Physician 8,0.46,0.02,-0.069010846,-0.017598376,-0.128826271,-0.025805093,-0.158923065,-0.130052982
+Pacemaker,Physician 9,0.23,0.01,-0.057475458,0.002234846,-0.125933409,-0.020978627,-0.145716268,-0.120244135
+Percutaneous coronary intervention,All,56,1,-0.068074406,-0.079565981,0.038167919,-0.061979864,-0.116777221,-0.036447491
+Percutaneous coronary intervention,Physician 1,10.08,0.18,-0.042227861,-0.05362349,0.06296755,-0.033697873,-0.087102817,-0.017378573
+Percutaneous coronary intervention,Physician 2,7.28,0.13,-0.087225903,-0.081616751,0.032582339,-0.074489493,-0.134029381,-0.04660327
+Percutaneous coronary intervention,Physician 3,6.72,0.12,-0.047652441,-0.049291354,0.071893877,-0.030778254,-0.082633045,-0.017408796
+Percutaneous coronary intervention,Physician 4,5.6,0.1,-0.05342225,-0.066436304,0.064503583,-0.04166103,-0.094735325,-0.021106914
+Percutaneous coronary intervention,Physician 5,4.48,0.08,-0.113486118,-0.123569534,-0.008086546,-0.116813565,-0.167662728,-0.084667356
+Percutaneous coronary intervention,Physician 6,2.8,0.05,-0.089983099,-0.103539593,0.013934863,-0.083566762,-0.138949529,-0.059844953
+Percutaneous coronary intervention,Physician 7,2.8,0.05,-0.016245196,-0.026392856,0.104595786,0.006808839,-0.050870445,0.021568139
+Percutaneous coronary intervention,Physician 8,1.12,0.02,-0.056824752,-0.078059705,0.046884105,-0.052814236,-0.110435269,-0.029564797
+Percutaneous coronary intervention,Physician 9,0.56,0.01,-0.045442009,-0.056800178,0.064736317,-0.051822082,-0.094919071,-0.008688626
+Transcatheter Aortic Valve Replacement,All,13,1,-0.068743654,-0.152134022,-0.040630798,-0.09997402,-0.013864363,-0.115502335
+Transcatheter Aortic Valve Replacement,Physician 1,2.34,0.18,-0.048007068,-0.131564828,-0.025335396,-0.081661842,-0.003338861,-0.091152035
+Transcatheter Aortic Valve Replacement,Physician 2,1.69,0.13,-0.076239558,-0.155124138,-0.046289539,-0.111877617,-0.026541806,-0.121025554
+Transcatheter Aortic Valve Replacement,Physician 3,1.56,0.12,-0.041622306,-0.135965209,-0.018602026,-0.070429089,0.014505553,-0.100299609
+Transcatheter Aortic Valve Replacement,Physician 4,1.3,0.1,-0.044773431,-0.135785036,-0.02960371,-0.082961646,0.005763889,-0.099044046
+Transcatheter Aortic Valve Replacement,Physician 5,1.04,0.08,-0.111332162,-0.20398845,-0.084074355,-0.141203204,-0.05536909,-0.165336403
+Transcatheter Aortic Valve Replacement,Physician 6,0.65,0.05,-0.092126532,-0.184855957,-0.077717562,-0.125091249,-0.051461344,-0.153185874
+Transcatheter Aortic Valve Replacement,Physician 7,0.65,0.05,-0.001125391,-0.101385705,0.020396728,-0.046256928,0.055947168,-0.053688266
+Transcatheter Aortic Valve Replacement,Physician 8,0.26,0.02,-0.062331556,-0.13315224,-0.036781117,-0.081513359,-0.008448206,-0.111269704
+Transcatheter Aortic Valve Replacement,Physician 9,0.13,0.01,-0.057466706,-0.13344812,-0.018147054,-0.073531964,0.002803709,-0.087662332
+"COPD, bronchitis, asthma",All,141,1,0.111111111,0.119141956,0.160363263,0.202270158,0.125359754,0.190001184
+"COPD, bronchitis, asthma",Physician 1,25.38,0.18,0.136373548,0.131204259,0.188769809,0.215702081,0.142153951,0.216704589
+"COPD, bronchitis, asthma",Physician 2,18.33,0.13,0.097442411,0.10716448,0.154280011,0.184104871,0.117648992,0.187052705
+"COPD, bronchitis, asthma",Physician 3,16.92,0.12,0.129286394,0.135266803,0.19016701,0.226378047,0.143393388,0.210116229
+"COPD, bronchitis, asthma",Physician 4,14.1,0.1,0.122016851,0.130047923,0.186180582,0.230667771,0.153591718,0.212156781
+"COPD, bronchitis, asthma",Physician 5,11.28,0.08,0.064338576,0.073605383,0.108366937,0.150465435,0.07906531,0.138001489
+"COPD, bronchitis, asthma",Physician 6,7.05,0.05,0.082669007,0.086070643,0.122290748,0.168986346,0.098742821,0.161260074
+"COPD, bronchitis, asthma",Physician 7,7.05,0.05,0.161872972,0.179806039,0.226098323,0.270870951,0.192772248,0.249634696
+"COPD, bronchitis, asthma",Physician 8,2.82,0.02,0.114375191,0.127856941,0.163656289,0.217612103,0.136524887,0.200029248
+"COPD, bronchitis, asthma",Physician 9,1.41,0.01,0.122778292,0.143126421,0.17319611,0.227721046,0.152430638,0.214034742
+Simple pneumonia and respiratory infections,All,126,1,0.031451241,0.016295708,0.010285508,0.062942244,-0.031942165,0.043449233
+Simple pneumonia and respiratory infections,Physician 1,22.68,0.18,0.061068625,0.044298431,0.033535473,0.08083182,-0.015635219,0.057793257
+Simple pneumonia and respiratory infections,Physician 2,16.38,0.13,0.031354851,0.009131075,0.004380646,0.053150333,-0.050014121,0.031064154
+Simple pneumonia and respiratory infections,Physician 3,15.12,0.12,0.061545286,0.033185469,0.044158407,0.094901792,0.000499939,0.068263035
+Simple pneumonia and respiratory infections,Physician 4,12.6,0.1,0.043067381,0.029997682,0.020345709,0.087945858,-0.014081616,0.071937259
+Simple pneumonia and respiratory infections,Physician 5,10.08,0.08,-0.02662831,-0.031113057,-0.048250946,0.004510421,-0.072610022,-0.016134911
+Simple pneumonia and respiratory infections,Physician 6,6.3,0.05,-0.002326321,-0.010329362,-0.016693898,0.028956645,-0.069778399,0.010116907
+Simple pneumonia and respiratory infections,Physician 7,6.3,0.05,0.093196814,0.07620502,0.077752815,0.116221363,0.020261682,0.10204739
+Simple pneumonia and respiratory infections,Physician 8,2.52,0.02,0.044816451,0.034323714,0.018562727,0.082739469,-0.024895014,0.046594732
+Simple pneumonia and respiratory infections,Physician 9,1.26,0.01,0.042274117,0.041583385,0.037790089,0.07893856,-0.013876144,0.060139158
+Bariatric Surgery,All,6,1,0.072254856,0.142774389,0.132592966,0.088092453,0.197865174,0.263067996
+Bariatric Surgery,Physician 1,1.08,0.18,0.09542769,0.165292944,0.162303142,0.115271438,0.209987222,0.292943661
+Bariatric Surgery,Physician 2,0.78,0.13,0.064934764,0.123808918,0.112860439,0.085188833,0.181945175,0.252100059
+Bariatric Surgery,Physician 3,0.72,0.12,0.106296619,0.176704181,0.150730826,0.104752838,0.229776013,0.280022351
+Bariatric Surgery,Physician 4,0.6,0.1,0.093398384,0.162383983,0.159182111,0.106112758,0.209001193,0.277329027
+Bariatric Surgery,Physician 5,0.48,0.08,0.012652361,0.095523312,0.07802985,0.03483266,0.150015351,0.20963782
+Bariatric Surgery,Physician 6,0.3,0.05,0.034706004,0.11720752,0.111730147,0.054677246,0.169351612,0.223145186
+Bariatric Surgery,Physician 7,0.3,0.05,0.125275905,0.204527802,0.196866045,0.147056126,0.249876764,0.316783776
+Bariatric Surgery,Physician 8,0.12,0.02,0.08043176,0.161979724,0.146400759,0.100127444,0.205916762,0.266131862
+Bariatric Surgery,Physician 9,0.06,0.01,0.082291515,0.169173014,0.151569452,0.10802709,0.212852312,0.273911659
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",All,14,1,0.005926932,0.073643159,0.01242146,0.104275708,-0.07903486,-0.040382707
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 1,2.52,0.18,0.031487921,0.087188309,0.022967199,0.122946079,-0.066092065,-0.013434252
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 2,1.82,0.13,0.001849508,0.072937639,-0.007157835,0.09533132,-0.097565755,-0.041131236
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 3,1.68,0.12,0.036076483,0.100068539,0.040535837,0.136133004,-0.04408461,-0.019708504
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 4,1.4,0.1,0.031315776,0.087372223,0.023514446,0.129342282,-0.055253246,-0.019038018
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 5,1.12,0.08,-0.041112872,0.014766182,-0.044183923,0.058747988,-0.13525594,-0.090112679
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 6,0.7,0.05,-0.02471374,0.051243028,-0.014338727,0.081726601,-0.110045893,-0.071806746
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 7,0.7,0.05,0.057492744,0.124718785,0.064470593,0.172489322,-0.018900107,0.021030989
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 8,0.28,0.02,0.023307728,0.082466255,0.016935763,0.118031577,-0.077610913,-0.020951483
+"Disorders of the liver excluding malignancy, cirrhosis, alcoholic hepatitis",Physician 9,0.14,0.01,0.0245171,0.102261465,0.041999264,0.12574212,-0.067115592,-0.017672229
+Gastrointestinal hemorrhage,All,77,1,0.072812026,0.055647942,0.204850525,0.152828194,0.073565877,0.175768708
+Gastrointestinal hemorrhage,Physician 1,13.86,0.18,0.094998034,0.072211853,0.232888042,0.177070937,0.093489895,0.19286024
+Gastrointestinal hemorrhage,Physician 2,10.01,0.13,0.066448721,0.048609176,0.189905216,0.150014738,0.064013118,0.164564962
+Gastrointestinal hemorrhage,Physician 3,9.24,0.12,0.088933845,0.085413449,0.227150794,0.187028424,0.094695096,0.198733117
+Gastrointestinal hemorrhage,Physician 4,7.7,0.1,0.09651379,0.069385258,0.224105567,0.169705185,0.097523265,0.189866341
+Gastrointestinal hemorrhage,Physician 5,6.16,0.08,0.030002397,0.005081145,0.163676764,0.110052517,0.02689182,0.128945059
+Gastrointestinal hemorrhage,Physician 6,3.85,0.05,0.044347506,0.028627272,0.18033137,0.116341606,0.044598309,0.13751682
+Gastrointestinal hemorrhage,Physician 7,3.85,0.05,0.141940213,0.124225753,0.257098848,0.204701484,0.134755411,0.239342066
+Gastrointestinal hemorrhage,Physician 8,1.54,0.02,0.085553709,0.059851968,0.211915585,0.169968522,0.08704729,0.194751678
+Gastrointestinal hemorrhage,Physician 9,0.77,0.01,0.082930039,0.073958946,0.216346647,0.166664325,0.094177484,0.199001652
+Gastrointestinal obstruction,All,37,1,0.091685902,0.139901902,0.237425675,0.111725271,0.05366696,0.056105291
+Gastrointestinal obstruction,Physician 1,6.66,0.18,0.102515224,0.165867205,0.24878501,0.123630908,0.069881717,0.084200842
+Gastrointestinal obstruction,Physician 2,4.81,0.13,0.079632578,0.12676048,0.219416734,0.106295129,0.048436016,0.044491397
+Gastrointestinal obstruction,Physician 3,4.44,0.12,0.108471925,0.156066913,0.26662817,0.130051089,0.075548933,0.07925587
+Gastrointestinal obstruction,Physician 4,3.7,0.1,0.10291157,0.163848602,0.25702204,0.131455804,0.066804834,0.081384989
+Gastrointestinal obstruction,Physician 5,2.96,0.08,0.035367256,0.093236625,0.183527352,0.062300576,0.001043543,-0.000631906
+Gastrointestinal obstruction,Physician 6,1.85,0.05,0.071124634,0.117558229,0.204636576,0.09005538,0.014777076,0.017495887
+Gastrointestinal obstruction,Physician 7,1.85,0.05,0.149391672,0.191461726,0.298515414,0.17091449,0.113243694,0.109734875
+Gastrointestinal obstruction,Physician 8,0.74,0.02,0.100302171,0.142408908,0.24666502,0.113740553,0.060980986,0.064959755
+Gastrointestinal obstruction,Physician 9,0.37,0.01,0.116835378,0.157767424,0.252715408,0.130925853,0.065515182,0.067721874
+Inflammatory Bowel Disease,All,5,1,0.103160865,0.033621237,0.3001094,0.150880637,0.349829521,0.264182887
+Inflammatory Bowel Disease,Physician 1,0.9,0.18,0.127064522,0.056801164,0.319137201,0.173324069,0.379751842,0.293445494
+Inflammatory Bowel Disease,Physician 2,0.65,0.13,0.095861862,0.014462425,0.296638094,0.132546622,0.340292917,0.251741288
+Inflammatory Bowel Disease,Physician 3,0.6,0.12,0.126543051,0.063165887,0.331783461,0.165906949,0.376183598,0.293178074
+Inflammatory Bowel Disease,Physician 4,0.5,0.1,0.13297362,0.051474933,0.329672934,0.172763537,0.361240293,0.29163275
+Inflammatory Bowel Disease,Physician 5,0.4,0.08,0.056035683,-0.009266375,0.249217857,0.091352214,0.297423867,0.208828898
+Inflammatory Bowel Disease,Physician 6,0.25,0.05,0.066529357,-0.004760033,0.270092098,0.116290072,0.314165846,0.24234364
+Inflammatory Bowel Disease,Physician 7,0.25,0.05,0.172021178,0.086980416,0.365279839,0.217267114,0.401206223,0.314591049
+Inflammatory Bowel Disease,Physician 8,0.1,0.02,0.104173955,0.049740889,0.305072709,0.157080651,0.353299124,0.264689896
+Inflammatory Bowel Disease,Physician 9,0.05,0.01,0.121758878,0.062272445,0.318740226,0.165517827,0.367227126,0.282967087
+Major bowel procedure,All,43,1,0.045893456,0.172336468,0.11587001,0.207787835,0.181795579,0.005712366
+Major bowel procedure,Physician 1,7.74,0.18,0.067123397,0.201857868,0.142239116,0.233860365,0.197680468,0.02193527
+Major bowel procedure,Physician 2,5.59,0.13,0.043623817,0.156018209,0.111711446,0.192329004,0.167972835,-0.009672249
+Major bowel procedure,Physician 3,5.16,0.12,0.068486195,0.200321716,0.141008161,0.230820783,0.202226487,0.034164891
+Major bowel procedure,Physician 4,4.3,0.1,0.073373333,0.19181659,0.131783485,0.228462246,0.211192147,0.023952048
+Major bowel procedure,Physician 5,3.44,0.08,-0.006340899,0.119720917,0.067870265,0.158191179,0.126809967,-0.043253822
+Major bowel procedure,Physician 6,2.15,0.05,0.007795262,0.1428054,0.085833361,0.177730084,0.151783165,-0.02657024
+Major bowel procedure,Physician 7,2.15,0.05,0.099167507,0.240283266,0.174964968,0.274216778,0.238338515,0.066718461
+Major bowel procedure,Physician 8,0.86,0.02,0.046951691,0.190275463,0.125701852,0.214250703,0.186661458,0.013640789
+Major bowel procedure,Physician 9,0.43,0.01,0.072442086,0.18331368,0.129323904,0.21945329,0.198818046,0.018812342
+(OP) Back & neck except spinal fusion,All,3,1,-0.061981604,-0.053934137,-0.027496421,-0.091843923,-0.11909189,-0.075276444
+(OP) Back & neck except spinal fusion,Physician 1,0.54,0.18,-0.049138673,-0.029003532,-0.014757308,-0.074036669,-0.099956708,-0.049770659
+(OP) Back & neck except spinal fusion,Physician 2,0.39,0.13,-0.069767668,-0.072457923,-0.030705948,-0.101516114,-0.123179398,-0.093177959
+(OP) Back & neck except spinal fusion,Physician 3,0.36,0.12,-0.044652476,-0.02815642,0.000898272,-0.068492802,-0.09556316,-0.040370771
+(OP) Back & neck except spinal fusion,Physician 4,0.3,0.1,-0.042083226,-0.030421809,-0.008401639,-0.062150739,-0.095001229,-0.050610819
+(OP) Back & neck except spinal fusion,Physician 5,0.24,0.08,-0.102579972,-0.094650973,-0.076270082,-0.132171009,-0.168677065,-0.122571257
+(OP) Back & neck except spinal fusion,Physician 6,0.15,0.05,-0.100330978,-0.077441756,-0.051913477,-0.124672467,-0.145127032,-0.097957236
+(OP) Back & neck except spinal fusion,Physician 7,0.15,0.05,-0.003380997,0.007796314,0.027321968,-0.038177471,-0.059604558,-0.010776224
+(OP) Back & neck except spinal fusion,Physician 8,0.06,0.02,-0.045972145,-0.053782287,-0.019204484,-0.074461174,-0.104974382,-0.068982247
+(OP) Back & neck except spinal fusion,Physician 9,0.03,0.01,-0.04690604,-0.025670435,-0.001248861,-0.063786498,-0.102148029,-0.050485693
+(OP) Cardiac Defibrillator,All,2,1,0.111111111,0.414081186,0.194933001,0.191546398,0.357419588,0.179497568
+(OP) Cardiac Defibrillator,Physician 1,0.36,0.18,0.133308483,0.437436487,0.21940297,0.21717208,0.382159288,0.196355659
+(OP) Cardiac Defibrillator,Physician 2,0.26,0.13,0.102198773,0.403548336,0.193084969,0.174121314,0.354923389,0.171470778
+(OP) Cardiac Defibrillator,Physician 3,0.24,0.12,0.137335144,0.429797481,0.214242076,0.220226121,0.380418185,0.202087833
+(OP) Cardiac Defibrillator,Physician 4,0.2,0.1,0.13538442,0.43843462,0.224617513,0.203047336,0.386738129,0.194111793
+(OP) Cardiac Defibrillator,Physician 5,0.16,0.08,0.07005698,0.35636675,0.154711311,0.135066584,0.306859109,0.136277255
+(OP) Cardiac Defibrillator,Physician 6,0.1,0.05,0.072528287,0.383826613,0.155091263,0.16091321,0.319931204,0.148106565
+(OP) Cardiac Defibrillator,Physician 7,0.1,0.05,0.174226506,0.481949262,0.24832736,0.247894358,0.411836585,0.232367954
+(OP) Cardiac Defibrillator,Physician 8,0.04,0.02,0.113626619,0.415563492,0.212285922,0.20766532,0.367243572,0.19467592
+(OP) Cardiac Defibrillator,Physician 9,0.02,0.01,0.140976148,0.442933446,0.216545838,0.21668672,0.379386265,0.204500877
+(OP) Major joint replacement of the lower extremity (MJRLE),All,39,1,0.057746595,0.009256933,0.035862018,0.017349939,0.142568352,0.01396908
+(OP) Major joint replacement of the lower extremity (MJRLE),Physician 1,7.02,0.18,0.087184687,0.023683925,0.046049185,0.043968725,0.154805339,0.038679836
+(OP) Major joint replacement of the lower extremity (MJRLE),Physician 2,5.07,0.13,0.05575018,-0.009490895,0.029038346,0.013499154,0.122648916,0.004202666
+(OP) Major joint replacement of the lower extremity (MJRLE),Physician 3,4.68,0.12,0.075533633,0.026357082,0.05514976,0.051983426,0.169952168,0.030074085
+(OP) Major joint replacement of the lower extremity (MJRLE),Physician 4,3.9,0.1,0.083234393,0.025762154,0.050330648,0.039715602,0.166926613,0.039057363
+(OP) Major joint replacement of the lower extremity (MJRLE),Physician 5,3.12,0.08,0.011932458,-0.035795435,-0.02223505,-0.024552502,0.096892065,-0.037432244
+(OP) Major joint replacement of the lower extremity (MJRLE),Physician 6,1.95,0.05,0.026107697,-0.018657177,0.002008841,-0.010689862,0.11352438,-0.006250942
+(OP) Major joint replacement of the lower extremity (MJRLE),Physician 7,1.95,0.05,0.121688906,0.068910819,0.097377235,0.084039841,0.205301473,0.064498782
+(OP) Major joint replacement of the lower extremity (MJRLE),Physician 8,0.78,0.02,0.061173944,0.028784846,0.05564344,0.023742462,0.147380178,0.022426201
+(OP) Major joint replacement of the lower extremity (MJRLE),Physician 9,0.39,0.01,0.079630115,0.037766328,0.059428716,0.044780667,0.165069494,0.037386148
+(OP) Percutaneous Coronary Intervention,All,12,1,0.09917121,0.095518804,0.236902746,0.280976551,0.271506971,0.316476747
+(OP) Percutaneous Coronary Intervention,Physician 1,2.16,0.18,0.119079945,0.115009015,0.247044597,0.297111159,0.288042986,0.344419218
+(OP) Percutaneous Coronary Intervention,Physician 2,1.56,0.13,0.098339519,0.082428135,0.220211463,0.274883712,0.257202621,0.308530282
+(OP) Percutaneous Coronary Intervention,Physician 3,1.44,0.12,0.121565223,0.129296283,0.270068038,0.300093693,0.290607534,0.348061149
+(OP) Percutaneous Coronary Intervention,Physician 4,1.2,0.1,0.115952093,0.124613265,0.262440652,0.305548828,0.299181876,0.344931478
+(OP) Percutaneous Coronary Intervention,Physician 5,0.96,0.08,0.045323302,0.035761213,0.185688375,0.234888818,0.23005942,0.270781497
+(OP) Percutaneous Coronary Intervention,Physician 6,0.6,0.05,0.077079742,0.057791228,0.204764433,0.258371278,0.240366794,0.277934561
+(OP) Percutaneous Coronary Intervention,Physician 7,0.6,0.05,0.165158614,0.158773932,0.302263709,0.341544961,0.322707346,0.386342771
+(OP) Percutaneous Coronary Intervention,Physician 8,0.24,0.02,0.117100847,0.096354245,0.250398565,0.281880726,0.273212548,0.321454625
+(OP) Percutaneous Coronary Intervention,Physician 9,0.12,0.01,0.112574702,0.116686457,0.247919888,0.294224894,0.292202848,0.333199311

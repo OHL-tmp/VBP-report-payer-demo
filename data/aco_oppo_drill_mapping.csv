@@ -1,4 +1,4 @@
-oppo,oppo_label,category,drill_dim
+﻿oppo,oppo_label,category,drill_dim
 pat_manage,High Risk Patient Management,High Risk Chronic Patient,Disease
 pat_manage,High Risk Patient Management,Patients with Mental illness,Physical Disease
 pat_manage,High Risk Patient Management,High ED Utilizers,Diagnosis
@@ -6,13 +6,13 @@ pat_manage,High Risk Patient Management,Cancer Patients,Disease
 overuse_reduction,Overuse Reduction,IP Short Stay,DRG
 overuse_reduction,Overuse Reduction,ER,Diagnosis
 overuse_reduction,Overuse Reduction,High Cost Imaging,Procedure
-overuse_reduction,Overuse Reduction,Surgery,Procedure
-readmission_reduction,Readmission Reduction,Disease 1,Readmitting DRG
-readmission_reduction,Readmission Reduction,Disease 2,Readmitting DRG
-readmission_reduction,Readmission Reduction,Disease 3,Readmitting DRG
-readmission_reduction,Readmission Reduction,Disease 4,Readmitting DRG
-readmission_reduction,Readmission Reduction,Disease 5,Readmitting DRG
-referral_steerage,Referral Steerage,Specialist Visit,Disease
+overuse_reduction,Overuse Reduction,Surgical Procedures,Procedure
+readmission_reduction,Readmission Reduction,Acute Myocardial Infarction,Readmitting DRG
+readmission_reduction,Readmission Reduction,Stroke,Readmitting DRG
+readmission_reduction,Readmission Reduction,Heart Failure,Readmitting DRG
+readmission_reduction,Readmission Reduction,Pneumonia,Readmitting DRG
+readmission_reduction,Readmission Reduction,Coronary Artery Bypass Graft,Readmitting DRG
+referral_steerage,Referral Steerage,Specialist Visit,Specialty
 referral_steerage,Referral Steerage,Diagnostic Testing,Procedure
 referral_steerage,Referral Steerage,Surgery,Procedure
 referral_steerage,Referral Steerage,SNF,Service
@@ -20,8 +20,8 @@ service_optimize,Service Optimization,OP Surgery Use Rate,Procedure
 service_optimize,Service Optimization,Biosimilar Dispensing Rate,Drug
 service_optimize,Service Optimization,PCP Use Rate,Disease
 service_optimize,Service Optimization,Urgent Care Center Use Rate,Diagnosis
-pac_optimize,Post Acute Care Optimization,Disease 1,Discharge Disposition
-pac_optimize,Post Acute Care Optimization,Disease 2,Discharge Disposition
-pac_optimize,Post Acute Care Optimization,Disease 3,Discharge Disposition
-pac_optimize,Post Acute Care Optimization,Disease 4,Discharge Disposition
-pac_optimize,Post Acute Care Optimization,Disease 5,Discharge Disposition
+pac_optimize,Post Acute Care Optimization,Hip Replacement,Discharge Disposition
+pac_optimize,Post Acute Care Optimization,Spinal Fusion,Discharge Disposition
+pac_optimize,Post Acute Care Optimization,Acute Myocardial Infarction,Discharge Disposition
+pac_optimize,Post Acute Care Optimization,Stroke,Discharge Disposition
+pac_optimize,Post Acute Care Optimization,Coronary Artery Bypass Graft,Discharge Disposition

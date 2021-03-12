@@ -139,14 +139,25 @@ def tab_aco(app):
                                                     dbc.Row(
                                                         [
                                                             dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                                            dbc.Col(html.H4("Potential Cost Reduction Opportunities(PMPM)*", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                                            dbc.Col(html.H4("Potential Cost Reduction Opportunities(PMPM)*", style={"font-size":"1rem", "margin-left":"10px"})),
+                                                            dbc.Col(dbc.Button("Cost PMPM", className="mb-3", style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"8rem","margin-right":"1rem"}, id="switch-cost-reduction-pmpm"), width="auto"),
+                                                            dbc.Col(dbc.Button("Cost %", className="mb-3", style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"8rem"}, id="switch-cost-reduction-pct"), width="auto")
                                                         ],
                                                         no_gutters=True,
                                                         style={"padding-bottom":"2rem"}
                                                     ),
                                                     html.Div(
                                                         [
-                                                            dcc.Graph(figure=aco_vertical(df_aco_byoppo),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, )
+                                                            html.Div(
+                                                                dcc.Graph(figure=aco_vertical(df_aco_byoppo),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, ),
+                                                                hidden=False,
+                                                                id="cost-reduction-pmpm"
+                                                            ),
+                                                            html.Div(
+                                                                dcc.Graph(figure=aco_vertical(df_aco_byoppo, 'pct'), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},),
+                                                                hidden=True,
+                                                                id="cost-reduction-pct"
+                                                            ),
                                                         ],
                                                         style={"padding-bottom":"2.5rem"}
                                                     ),
@@ -167,7 +178,7 @@ def tab_aco(app):
                         [
                             dbc.Row(
                                 [
-                                    dbc.Col(html.H2("Cost Reduction Opportunity Details", style={"padding-left":"2rem","font-size":"3"}), width=8),
+                                    dbc.Col(html.H2("Cost Reduction Opportunity Details", style={"padding-left":"2rem","font-size":"3","margin-right":"2rem"}), width="auto"),
                                     dbc.Col(
                                         html.Div(
                                             [
@@ -820,6 +831,30 @@ layout = create_layout(app)
 
 
 # aco
+@app.callback(
+    [
+        Output("cost-reduction-pmpm", "hidden"),
+        Output("cost-reduction-pct", "hidden"),
+    ],
+    [
+        Input("switch-cost-reduction-pmpm", "n_clicks"), 
+        Input("switch-cost-reduction-pct", "n_clicks")
+    ],
+    [
+        State("cost-reduction-pmpm", "hidden"),
+        State("cost-reduction-pct", "hidden"),
+    ],
+)
+def toggle_figure_cost_reduction(n1, n2, is_hidden1, is_hidden2):
+    if n1 or n2:
+        if is_hidden1:
+            return False, True
+        else:
+            return True, False
+    else:
+        return is_hidden1, is_hidden2
+
+
 @app.callback(
     [Output('oppo-filter-acolv2','options'),
     Output('oppo-filter-acolv2','value'),],

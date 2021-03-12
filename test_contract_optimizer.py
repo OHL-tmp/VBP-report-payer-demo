@@ -1490,6 +1490,8 @@ def cal_simulation(submit, data, code):
             min_user_losspct = min_user_losspct/100
             cap_user_losspct = cap_user_losspct/100
 
+        print(carve_code, target_user_pmpm)
+
         df=simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_type,user_tar_value,default_input,target_user_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,min_user_losspct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided,lossmethod)
 
         return 'tab-1', df.to_json(orient = 'split')
