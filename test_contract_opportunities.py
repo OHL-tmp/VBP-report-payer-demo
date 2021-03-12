@@ -776,44 +776,51 @@ def bundle_full_details(app):
                     [
                         html.Div(
                             [
-                                bundle_oppo_dtl_bydim(df_bundle_bydrg[df_bundle_bydrg['bundle']=='Sepsis'], 'oppo-table-bydrg')
+                                bundle_oppo_dtl_bydim(df_bundle_bydrg[df_bundle_bydrg['bundle']=='Congestive heart failure']), 
                             ],
+                            id='oppo-table-bydrg',
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem","padding":"2rem"}
                         ),
                         html.Div(
                             [
-                                bundle_oppo_dtl_bydim(df_bundle_byphy[df_bundle_byphy['bundle']=='Sepsis'], 'oppo-table-byphy')
+                                bundle_oppo_dtl_bydim(df_bundle_byphy[df_bundle_byphy['bundle']=='Congestive heart failure']), 
                             ],
+                            id='oppo-table-byphy',
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem","padding":"2rem"}
                         ),
                         html.Div(
                             [
-                                bundle_oppo_dtl_bench(df_bundle_byreadmitdrg[df_bundle_byreadmitdrg['bundle']=='Sepsis'], 'oppo-table-byreadm', 'Readmission Rate Comparison')
+                                bundle_oppo_dtl_bench(df_bundle_byreadmitdrg[df_bundle_byreadmitdrg['bundle']=='Congestive heart failure'], 'Readmission Rate Comparison'), 
                             ],
+                            id= 'oppo-table-byreadm',
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem","padding":"2rem"}
                         ),
                         html.Div(
                             [
-                                bundle_oppo_dtl_bench(df_bundle_byer[df_bundle_byer['bundle']=='Sepsis'], 'oppo-table-byer', 'Readmission Rate Comparison')
+                                bundle_oppo_dtl_bench(df_bundle_byer[df_bundle_byer['bundle']=='Congestive heart failure'], 'Readmission Rate Comparison'), 
                             ],
+                            id='oppo-table-byer',
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem","padding":"2rem"}
                         ),
                         html.Div(
                             [
-                                bundle_oppo_dtl_bench(df_bundle_pac_rate[df_bundle_pac_rate['bundle']=='Sepsis'], 'oppo-table-pacrate', 'Discharge Rate Comparison')
+                                bundle_oppo_dtl_bench(df_bundle_pac_rate[df_bundle_pac_rate['bundle']=='Congestive heart failure'], 'Discharge Rate Comparison'), 
                             ],
+                            id='oppo-table-pacrate',
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem","padding":"2rem"}
                         ),
                         html.Div(
                             [
-                                bundle_oppo_dtl_bench(df_bundle_pac_los[df_bundle_pac_los['bundle']=='Sepsis'], 'oppo-table-paclos', 'LOS Comparison')
+                                bundle_oppo_dtl_bench(df_bundle_pac_los[df_bundle_pac_los['bundle']=='Congestive heart failure'], 'LOS Comparison'), 
                             ],
+                            id='oppo-table-paclos',
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem","padding":"2rem"}
                         ),
                         html.Div(
                             [
-                                bundle_oppo_dtl_bench(df_bundle_dme[df_bundle_dme['bundle']=='Sepsis'], 'oppo-table-bydme', 'Average Cost/Bundle')
+                                bundle_oppo_dtl_bench(df_bundle_dme[df_bundle_dme['bundle']=='Congestive heart failure'], 'Average Cost/Bundle'), 
                             ],
+                            id='oppo-table-bydme',
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem","padding":"2rem"}
                         ),
                     ],
@@ -924,13 +931,13 @@ def toggle_modal_aco_drilldown(n1, n2, is_open):
     Output('oppo-text-bundle-comparebest', 'children'),
     Output('oppo-figure-bundlesvc', 'figure'),
     Output('oppo-figure-costbyoppo', 'figure'),
-    Output('oppo-table-bydrg', 'data'),
-    Output('oppo-table-byphy', 'data'),
-    Output('oppo-table-byreadm', 'data'),
-    Output('oppo-table-byer', 'data'),
-    Output('oppo-table-pacrate', 'data'),
-    Output('oppo-table-paclos', 'data'),
-    Output('oppo-table-bydme', 'data'),
+    Output('oppo-table-bydrg', 'children'),
+    Output('oppo-table-byphy', 'children'),
+    Output('oppo-table-byreadm', 'children'),
+    Output('oppo-table-byer', 'children'),
+    Output('oppo-table-pacrate', 'children'),
+    Output('oppo-table-paclos', 'children'),
+    Output('oppo-table-bydme', 'children'),
     ], 
     [Input('oppo-figure-bundleoppo', 'clickData')])
 def update_y_timeseries(clickData):
@@ -950,13 +957,13 @@ def update_y_timeseries(clickData):
     avgcost_compare_bestsign = 'higher' if avgcost_compare_best>=0 else 'lower'
     avgcost_compare_besttext = 'Provider group bundle cost is {}% {}(${} {}) than Best-in-Class'.format(round(abs(avgcost_compare_bestpct*100),1),avgcost_compare_bestsign,abs(int(round(avgcost_compare_best,0))),avgcost_compare_bestsign)
 
-    df_bydrg = df_bundle_bydrg[df_bundle_bydrg['bundle']==bundle].to_dict('records')
-    df_byphy = df_bundle_byphy[df_bundle_byphy['bundle']==bundle].to_dict('records')
-    df_byreadmitdrg = df_bundle_byreadmitdrg[df_bundle_byreadmitdrg['bundle']==bundle].to_dict('records')
-    df_byer = df_bundle_byer[df_bundle_byer['bundle']==bundle].to_dict('records')
-    df_pacrate = df_bundle_pac_rate[df_bundle_pac_rate['bundle']==bundle].to_dict('records')
-    df_paclos = df_bundle_pac_los[df_bundle_pac_rate['bundle']==bundle].to_dict('records')
-    df_dme = df_bundle_dme[df_bundle_dme['bundle']==bundle].to_dict('records')
+    df_bydrg = bundle_oppo_dtl_bydim(df_bundle_bydrg[df_bundle_bydrg['bundle']==bundle])
+    df_byphy = bundle_oppo_dtl_bydim(df_bundle_byphy[df_bundle_byphy['bundle']==bundle])
+    df_byreadmitdrg = bundle_oppo_dtl_bench(df_bundle_byreadmitdrg[df_bundle_byreadmitdrg['bundle']==bundle], 'Readmission Rate Comparison')
+    df_byer = bundle_oppo_dtl_bench(df_bundle_byer[df_bundle_byer['bundle']==bundle], 'Readmission Rate Comparison')
+    df_pacrate = bundle_oppo_dtl_bench(df_bundle_pac_rate[df_bundle_pac_rate['bundle']==bundle], 'Discharge Rate Comparison')
+    df_paclos = bundle_oppo_dtl_bench(df_bundle_pac_los[df_bundle_pac_rate['bundle']==bundle], 'LOS Comparison')
+    df_dme = bundle_oppo_dtl_bench(df_bundle_dme[df_bundle_dme['bundle']==bundle], 'Average Cost/Bundle')
 
     return bundle,bundle_trend(df_trend), bundle_avgcost(df_avgcost), avgcost_compare_benchtext, avgcost_compare_besttext, bundle_svccost(df_bysvc), bundle_vertical(df_byoppo, 'pct'), df_bydrg, df_byphy, df_byreadmitdrg, df_byer, df_pacrate, df_paclos, df_dme
 
