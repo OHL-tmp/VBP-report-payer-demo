@@ -3266,8 +3266,8 @@ def tbl_carve_out_dtl(df):
                     'border-right':'1px solid grey',
                     'border-bottom':'0px solid grey',
                     'height': '1rem'
-                 
-                } if c in [9,12,15,18,21,24] else
+                
+                } if c in [12,15,18,21,24] else
                 {
                     'if': {'row_index':c}, 
                     
@@ -3277,7 +3277,7 @@ def tbl_carve_out_dtl(df):
                     'border-top':'0px solid grey',
                     'height': '1rem'
                  
-                } if c in [11,14,17,20,23,26] else
+                } if c in [14,17,20,23,26] else
                 {
                     'if': {'row_index':c},
                     
@@ -3285,7 +3285,8 @@ def tbl_carve_out_dtl(df):
                     'border-right':'1px solid grey',
                     'border-bottom':'0px solid grey',
                     'border-top':'0px solid grey',
-                }  for c in range(9,27)
+
+                }  for c in range(12,27)
 
             ]+[
                 {
