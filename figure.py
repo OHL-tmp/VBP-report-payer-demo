@@ -1136,6 +1136,7 @@ def data_bars_diverging_bundle(df, column,width, color_above='#FF4136', color_be
 	col_max=df[column].abs().max()
 	styles = []
 	col_wid=round(width/2,1)+0.2
+
 	for i in df[column].to_list():
 
 		bound_percentage = round(i/col_max/2,4) * 100
@@ -3374,7 +3375,7 @@ def bubble_bundle(df):
                             font=dict(family='NotoSans-CondensedLight', size=14, color='#38160f'),
                             showarrow=False))
     annotations.append(dict(xref='paper', yref='paper',
-                            x=1, y=0.12,
+                            x=1, y=0.14,
                             text='Bundle Volume',
                             font=dict(family='NotoSans-CondensedLight', size=14, color='#38160f'),
                             showarrow=False))
@@ -3389,7 +3390,7 @@ def bubble_bundle(df):
         plot_bgcolor=colors['transparent'],
         annotations=annotations,
         shapes = [{'type':'rect','layer':'below','fillcolor':'rgba(246,177,17,0.4)',
-        'x0':150,'x1':300 ,'y0':0.03,'y1':0.06, 'line':{'color':'rgba(246,177,17,0.4)'}}],
+        'x0':150,'x1':300 ,'y0':0.04,'y1':0.12, 'line':{'color':'rgba(246,177,17,0.4)'}}],
         showlegend=False,
         xaxis = dict(
             tickmode='linear',
@@ -3420,7 +3421,7 @@ def bubble_bundle(df):
             linecolor='grey',
             tickmode='linear',
             dtick=0.02,
-            range=[-0.02,0.06],
+            range=[-0.02,0.12],
             tickformat='%',
             showticklabels=True,
             zeroline=True,
@@ -3539,7 +3540,7 @@ def bundle_svccost(df):
 
     df_figure = df.sort_values(by='best')
 
-    colmax=df_figure['bench'].max()*1.2
+    colmax=df_figure['best'].max()*1.2
 
     fig = go.Figure(data=[
     go.Bar(
@@ -3630,7 +3631,7 @@ def bundle_vertical(df, numformat = 'int'):
         numformat =  '%{x:$,.0f}'
         xname = 'reduct_amount'
         yname = 'bundle'
-        tickform = '$'
+        tickform = '$s'
 
     fig = go.Figure(data=[
         go.Bar(
@@ -3648,7 +3649,7 @@ def bundle_vertical(df, numformat = 'int'):
                     ),
             orientation='h',
             hoverinfo='y+x',#'y',
-            hovertemplate=numformat, #'%{x:,.0f}',
+            hovertemplate= numformat + ' <extra>%{y}</extra> ', #'%{x:,.0f}',
         )
     ])
     
@@ -3751,7 +3752,7 @@ def aco_oppo_bar(df,filter_oppo):
             y=df_figure[col],
             text="",
             textposition='inside', 
-            texttemplate='%{y:$,.0f}',
+            texttemplate='%{y:$,.1f}',
             width=0.3,
             textangle=0,
             marker=dict(
@@ -3769,7 +3770,8 @@ def aco_oppo_bar(df,filter_oppo):
         yaxis=dict(
             #ticklen=2,
             #tickwidth=5,
-            tickformat = '$',
+            #tickformat = '$',
+            visible = False,
             #position=0.1,
             #ticksuffix='Mn',
             ),
@@ -3791,7 +3793,7 @@ def aco_oppo_tbl(df,filter_oppo):
 
     df_table = df[df['oppo']==filter_oppo]
 
-    format_money = FormatTemplate.money(0)
+    format_money = FormatTemplate.money(1)
     format_pct = FormatTemplate.percentage(0)
     format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
 
@@ -3913,7 +3915,7 @@ def bundle_oppo_tbl(df):
     )
     return table
 
-def bundle_oppo_dtl_bydim(df, tableid):
+def bundle_oppo_dtl_bydim(df):
     
     format_money = FormatTemplate.money(0)
     format_pct = FormatTemplate.percentage(1)
@@ -3928,7 +3930,7 @@ def bundle_oppo_dtl_bydim(df, tableid):
 
     table=dash_table.DataTable(
         data=df.to_dict('records'),
-        id=tableid,
+        #id=tableid,
         columns=table_col,  
         merge_duplicate_headers=True,
         style_data={
@@ -3979,7 +3981,7 @@ def bundle_oppo_dtl_bydim(df, tableid):
     )
     return table
 
-def bundle_oppo_dtl_bench(df, tableid, title):
+def bundle_oppo_dtl_bench(df, title):
     
     format_money = FormatTemplate.money(0)
     format_pct = FormatTemplate.percentage(1)
@@ -4000,7 +4002,7 @@ def bundle_oppo_dtl_bench(df, tableid, title):
 
     table=dash_table.DataTable(
         data=df.to_dict('records'),
-        id=tableid,
+        #id=tableid,
         columns=table_col,  
         merge_duplicate_headers=True,
         style_data={
@@ -4057,7 +4059,7 @@ def aco_oppo_drill_tbl(df):
 
     fstcol_name = aco_oppo_drill_mapping[(aco_oppo_drill_mapping['oppo']=='pat_manage') & (aco_oppo_drill_mapping['category']=='High Risk Chronic Patient')].values[0]
 
-    format_money = FormatTemplate.money(0)
+    format_money = FormatTemplate.money(1)
     format_pct = FormatTemplate.percentage(0)
     format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
 
