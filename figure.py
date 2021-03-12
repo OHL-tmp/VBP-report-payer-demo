@@ -3375,7 +3375,7 @@ def bubble_bundle(df):
                             font=dict(family='NotoSans-CondensedLight', size=14, color='#38160f'),
                             showarrow=False))
     annotations.append(dict(xref='paper', yref='paper',
-                            x=1, y=0.12,
+                            x=1, y=0.14,
                             text='Bundle Volume',
                             font=dict(family='NotoSans-CondensedLight', size=14, color='#38160f'),
                             showarrow=False))
@@ -3390,7 +3390,7 @@ def bubble_bundle(df):
         plot_bgcolor=colors['transparent'],
         annotations=annotations,
         shapes = [{'type':'rect','layer':'below','fillcolor':'rgba(246,177,17,0.4)',
-        'x0':150,'x1':300 ,'y0':0.04,'y1':0.1, 'line':{'color':'rgba(246,177,17,0.4)'}}],
+        'x0':150,'x1':300 ,'y0':0.04,'y1':0.12, 'line':{'color':'rgba(246,177,17,0.4)'}}],
         showlegend=False,
         xaxis = dict(
             tickmode='linear',
@@ -3421,7 +3421,7 @@ def bubble_bundle(df):
             linecolor='grey',
             tickmode='linear',
             dtick=0.02,
-            range=[-0.02,0.1],
+            range=[-0.02,0.12],
             tickformat='%',
             showticklabels=True,
             zeroline=True,
@@ -3540,7 +3540,7 @@ def bundle_svccost(df):
 
     df_figure = df.sort_values(by='best')
 
-    colmax=df_figure['bench'].max()*1.2
+    colmax=df_figure['best'].max()*1.2
 
     fig = go.Figure(data=[
     go.Bar(
@@ -3631,7 +3631,7 @@ def bundle_vertical(df, numformat = 'int'):
         numformat =  '%{x:$,.0f}'
         xname = 'reduct_amount'
         yname = 'bundle'
-        tickform = '$'
+        tickform = '$s'
 
     fig = go.Figure(data=[
         go.Bar(
@@ -3649,7 +3649,7 @@ def bundle_vertical(df, numformat = 'int'):
                     ),
             orientation='h',
             hoverinfo='y+x',#'y',
-            hovertemplate=numformat, #'%{x:,.0f}',
+            hovertemplate= numformat + ' <extra>%{y}</extra> ', #'%{x:,.0f}',
         )
     ])
     
@@ -4059,7 +4059,7 @@ def aco_oppo_drill_tbl(df):
 
     fstcol_name = aco_oppo_drill_mapping[(aco_oppo_drill_mapping['oppo']=='pat_manage') & (aco_oppo_drill_mapping['category']=='High Risk Chronic Patient')].values[0]
 
-    format_money = FormatTemplate.money(0)
+    format_money = FormatTemplate.money(1)
     format_pct = FormatTemplate.percentage(0)
     format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
 

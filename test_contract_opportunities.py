@@ -888,7 +888,7 @@ def update_table(oppo_lv1, oppo_lv2):
     df_table = df_aco_oppo_drill[(df_aco_oppo_drill['oppo']==oppo_lv1) & (df_aco_oppo_drill['category']==oppo_lv2)]
     fstcol_name = aco_oppo_drill_mapping[(aco_oppo_drill_mapping['oppo']==oppo_lv1) & (aco_oppo_drill_mapping['category']==oppo_lv2)]['drill_dim'].values[0]
 
-    format_money = FormatTemplate.money(0)
+    format_money = FormatTemplate.money(1)
     format_pct = FormatTemplate.percentage(0)
     format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
 
