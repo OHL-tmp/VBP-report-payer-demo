@@ -41,7 +41,7 @@ def launch_layout():
                     ),
                     html.Div(
                         [
-                            html.P("PAYER   © 2020 Sinolation. ")
+                            html.P("© 2021 The Sinolation Group. ")
                         ],
                         style={"text-align":"center", "font-size":"0.6rem"}
                     ),
@@ -53,8 +53,8 @@ def launch_layout():
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(dbc.Button("Contract Optimizer", color="light", className="mr-1", href = "/vbc-demo/contract-optimizer/", style={"font-family":"NotoSans-Regular", "font-size":"1rem", "padding":"1rem","border-radius":"1rem","border":"1px solid #ececf6","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)"}), style={"border-radius":"1rem","width":"5rem"}),
-                                                dbc.Col(dbc.Button("Contract Manager", color="light", className="mr-1", href = "/vbc-demo/contract-manager/", style={"font-family":"NotoSans-Regular", "font-size":"1rem", "padding":"1rem", "padding":"1rem", "border-radius":"1rem","border":"1px solid #ececf6","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)"}), style={"border-radius":"1rem","width":"5rem"}),
+                                                dbc.Col(dbc.Button("Contract Designer", color="light", className="mr-1", href = "/vbc-demo/contract-optimizer-opportunities/", style={"font-family":"NotoSans-Regular", "font-size":"1rem", "padding":"1rem","border-radius":"1rem","border":"1px solid #ececf6","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)"}), style={"border-radius":"1rem","width":"5rem"}),
+                                                dbc.Col(dbc.Button("Contract Administrator", color="light", className="mr-1", href = "/vbc-demo/contract-manager/", style={"font-family":"NotoSans-Regular", "font-size":"1rem", "padding":"1rem", "padding":"1rem", "border-radius":"1rem","border":"1px solid #ececf6","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)"}), style={"border-radius":"1rem","width":"5rem"}),
                                                 dbc.Col(dbc.Button("Tele Case Manager", color="light", className="mr-1", href = "/vbc-demo/tele-case-manager/", style={"font-family":"NotoSans-Regular", "font-size":"1rem", "padding":"1rem", "border-radius":"1rem","border":"1px solid #ececf6","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)"}), style={"border-radius":"1rem","width":"5rem"}),
                                             ],
                                             style={"background-color":"none", "font-family":"NotoSans-Regular", "font-size":"1rem", "border":"none","padding-top":"1rem","padding-bottom":"1rem","padding-left":"20rem","padding-right":"20rem"}

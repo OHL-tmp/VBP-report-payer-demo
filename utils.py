@@ -172,7 +172,7 @@ def get_header_contract(app, oa, acp, bec, bhp):
                 className="tab first",
                 ),
             dbc.NavItem(dbc.NavLink(
-                        "Accountable Care Programs",
+                        "Accountable Care Programs Contract Design",
                         href="/vbc-demo/contract-optimizer/",
                         className="nav-link",
                         active = acp,
@@ -180,7 +180,7 @@ def get_header_contract(app, oa, acp, bec, bhp):
                 className="tab",
                 ),
             dbc.NavItem(dbc.NavLink(
-                        "Bundles & Episodes of Care",
+                        "Bundles & Episodes of Care Contract Design",
                         href="/vbc-demo/contract-optimizer-bundle/",
                         className="nav-link",
                         active = bec,

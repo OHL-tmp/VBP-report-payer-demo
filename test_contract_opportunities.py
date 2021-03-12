@@ -139,7 +139,8 @@ def tab_aco(app):
                                                     dbc.Row(
                                                         [
                                                             dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                                            dbc.Col(html.H4("Potential Cost Reduction Opportunities(PMPM)*", style={"font-size":"1rem", "margin-left":"10px"})),
+                                                            dbc.Col(html.H4("Potential Cost Reduction Opportunities*", style={"font-size":"1rem", "margin-left":"10px"}), width="auto"),
+                                                            dbc.Col(html.H4("(PMPM)", style={"font-size":"1rem", "margin-left":"10px"}, id="cost-reduction-unit")),
                                                             dbc.Col(dbc.Button("Cost PMPM", className="mb-3", style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"8rem","margin-right":"1rem"}, id="switch-cost-reduction-pmpm"), width="auto"),
                                                             dbc.Col(dbc.Button("Cost %", className="mb-3", style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"8rem"}, id="switch-cost-reduction-pct"), width="auto")
                                                         ],
@@ -148,6 +149,7 @@ def tab_aco(app):
                                                     ),
                                                     html.Div(
                                                         [
+                                                            html.Hr(),
                                                             html.Div(
                                                                 dcc.Graph(figure=aco_vertical(df_aco_byoppo),config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, ),
                                                                 hidden=False,
@@ -182,10 +184,10 @@ def tab_aco(app):
                                     dbc.Col(
                                         html.Div(
                                             [
-                                                dbc.Button("Open Drilldown", className="mb-3", style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"10rem","margin-left":"4rem"}, id="open-aco-drilldown-modal"),
+                                                dbc.Button("View Details", className="mb-3", style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"10rem","margin-left":"4rem"}, id="open-aco-drilldown-modal"),
                                                 dbc.Modal(
                                                     [
-                                                        dbc.ModalHeader("Drilldown Table"),
+                                                        dbc.ModalHeader("Additional Drilldown Details"),
                                                         dbc.ModalBody(
                                                             html.Div([
                                                                 dbc.Row(
@@ -576,7 +578,18 @@ def tab_bundle(app):
                     dbc.Row(
                         [
                             dbc.Col(
-                                dcc.Graph(figure=bubble_bundle(df_bundle_oppo), id='oppo-figure-bundleoppo',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, clickData={'points': [{'customdata': 'Congestive heart failure'}]},selectedData={'points': [{'customdata': 'Congestive heart failure'}]},)
+                                html.Div(
+                                    [
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                                dbc.Col(html.H4("Bundle Opportunity Overview", style={"font-size":"1rem", "margin-left":"10px"})),
+                                            ],
+                                            no_gutters=True,
+                                        ),
+                                        dcc.Graph(figure=bubble_bundle(df_bundle_oppo), id='oppo-figure-bundleoppo',config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,}, clickData={'points': [{'customdata': 'Congestive heart failure'}]},selectedData={'points': [{'customdata': 'Congestive heart failure'}]},)
+                                    ]
+                                )
                             , width=6),
                             dbc.Col(html.Div(), width=1),
                             dbc.Col(
@@ -835,6 +848,7 @@ layout = create_layout(app)
     [
         Output("cost-reduction-pmpm", "hidden"),
         Output("cost-reduction-pct", "hidden"),
+        Output("cost-reduction-unit", "children"),
     ],
     [
         Input("switch-cost-reduction-pmpm", "n_clicks"), 
@@ -846,13 +860,18 @@ layout = create_layout(app)
     ],
 )
 def toggle_figure_cost_reduction(n1, n2, is_hidden1, is_hidden2):
-    if n1 or n2:
-        if is_hidden1:
-            return False, True
-        else:
-            return True, False
+    ctx = dash.callback_context
+
+    if not ctx.triggered:
+        button_id = 'No clicks yet'
     else:
-        return is_hidden1, is_hidden2
+        button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+    
+    if button_id == "switch-cost-reduction-pct":
+        return True, False, "(%)"
+    else:
+        return False, True, "(PMPM)"
+
 
 
 @app.callback(
