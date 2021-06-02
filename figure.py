@@ -3683,7 +3683,7 @@ def aco_vertical(df, numformat = 'int'):
         tickform = '.1%'
     else:
         df_figure = df.sort_values(by='pmpm')
-        numformat =  '%{x:$,.0f}'
+        numformat =  '%{x:$,.1f}'
         xname = 'pmpm'
         yname = 'reduction_oppo'
         tickform = '$'
@@ -3703,7 +3703,7 @@ def aco_vertical(df, numformat = 'int'):
                     opacity=0.7
                     ),
             orientation='h',
-            hoverinfo='y+x',#'y',
+            hoverinfo='skip',#'y+x',#'y',
             #hovertemplate='%{x:,.0f}',
         )
     ])
@@ -3791,13 +3791,15 @@ def aco_oppo_bar(df,filter_oppo):
 
 def aco_oppo_tbl(df,filter_oppo):
 
-    df_table = df[df['oppo']==filter_oppo]
+    df_table = df[df['oppo']==filter_oppo].copy()
 
+    df_table.sort_values(by = 'Cost Reduction if Perform as Benchmark(PMPM)',ascending=False, inplace=True)
+    
     format_money = FormatTemplate.money(1)
-    format_pct = FormatTemplate.percentage(0)
+    format_pct = FormatTemplate.percentage(1)
     format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
 
-    dim_name = {'pat_manage':'Patient Cohort', 'overuse_reduction':'Service', 'readmission_reduction':'Disease', 'service_optimize':'Service Rate', 'pac_optimize':'Disease', }
+    dim_name = {'pat_manage':'Patient Disease', 'overuse_reduction':'Service', 'readmission_reduction':'Disease', 'service_optimize':'Service Rate', 'pac_optimize':'Disease', }
 
     if filter_oppo == 'referral_steerage':
         col = [['','Service'], ['Preferred Provider','% of Total Units'], ['Preferred Provider','Avg Cost/Unit'], 
@@ -4055,15 +4057,18 @@ def bundle_oppo_dtl_bench(df, title):
 
 def aco_oppo_drill_tbl(df):
     
-    df_table = df[(df['oppo']=='pat_manage') & (df['category']=='High Risk Chronic Patient')]
+    df_table = df[(df['oppo']=='pat_manage') & (df['category']=='Diabetes')]
 
-    fstcol_name = aco_oppo_drill_mapping[(aco_oppo_drill_mapping['oppo']=='pat_manage') & (aco_oppo_drill_mapping['category']=='High Risk Chronic Patient')].values[0]
+    fstcol_name = aco_oppo_drill_mapping[(aco_oppo_drill_mapping['oppo']=='pat_manage') & (aco_oppo_drill_mapping['category']=='Diabetes')].values[0]
 
     format_money = FormatTemplate.money(1)
-    format_pct = FormatTemplate.percentage(0)
+    format_pct = FormatTemplate.percentage(1)
     format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
 
-    table_col = [{'name':'Disease', 'id':df_table.columns[k]} if k==0 else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
+    # table_col = [{'name':'Disease', 'id':df_table.columns[k]} if k==0 else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
+    table_col = [{'name':'Disease', 'id':df_table.columns[k]} if k==0 \
+        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_num} if k in [1,2,4] \
+        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
    
     table=dash_table.DataTable(
         data=df_table.to_dict('records'),

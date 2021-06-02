@@ -108,7 +108,7 @@ def tab_aco(app):
                                                     dbc.Row(
                                                         [
                                                             dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                                            dbc.Col(html.H4("Medical Cost Benchmakring(PMPM, risk adjusted)", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                                            dbc.Col(html.H4("Medical Cost Benchmarking(PMPM, risk adjusted)", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                                         ],
                                                         no_gutters=True,
                                                         style={"padding-bottom":"2rem"}
@@ -121,8 +121,8 @@ def tab_aco(app):
                                                     ),
                                                     html.Div(
                                                         [
-                                                            html.H6("· Provider group PMPM is 5.2% higher ($45 higher) than Benchmark", style={"padding-top":"0.5rem"}),
-                                                            html.H6("· Provider group PMPM is 10.8% higher ($88 higher) than Best-in-class", style={"padding-bottom":"0.5rem"})
+                                                            html.H6("· Provider group PMPM is 6.2% higher ($60 higher) than Benchmark", style={"padding-top":"0.5rem"}),
+                                                            html.H6("· Provider group PMPM is 11.4% higher ($105 higher) than Best-in-class", style={"padding-bottom":"0.5rem"})
                                                         ],
                                                         style={"background-color":"#FFE2AA", "border":"none", "border-radius":"0.5rem","padding-left":"1rem"}
                                                     )
@@ -249,7 +249,7 @@ def tab_aco(app):
                                                 dbc.Col(
                                                     html.Div(
                                                         [
-                                                            html.Div(html.H6('Potential Cost Reduction Opportunities by Patient Cohort(PMPM)\u2020', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"1rem"}),
+                                                            html.Div(html.H6('Potential Cost Reduction Opportunities by Patient Disease(PMPM)\u2020', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"1rem"}),
                                                             html.Div(
                                                                 [
                                                                     dcc.Graph(figure=aco_oppo_bar(df_aco_oppo_dtl,'pat_manage'), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},)
@@ -266,7 +266,7 @@ def tab_aco(app):
                                                 dbc.Col(
                                                     html.Div(
                                                         [
-                                                            html.Div(html.H6('Average Cost Comparison (per-patient-per-month)', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"3rem"}),
+                                                            html.Div(html.H6('Patient PMPM', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"3rem"}),
                                                             html.Div(
                                                                 [
                                                                     aco_oppo_tbl(df_aco_oppo_dtl,'pat_manage')
@@ -397,61 +397,61 @@ def tab_aco(app):
                             
                         ],style={"padding":"2rem"}
                     ),
-                    html.Div(
-                        [
-                            dbc.Card(
-                                dbc.CardBody(
-                                    [
-                                        dbc.Row(
-                                            [
-                                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                                dbc.Col(html.H4("Referral Steerage", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                            ],
-                                            no_gutters=True,
-                                            style={"padding-bottom":"2rem"}
-                                        ),
-                                        dbc.Row(
-                                            [
-                                                dbc.Col(
-                                                    html.Div(
-                                                        [
-                                                            html.Div(html.H6('Estimated Cost Reduction Opportunities by Service Type(PMPM)', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"1rem"}),
-                                                            html.Div(
-                                                                [
-                                                                    dcc.Graph(figure=aco_oppo_bar(df_aco_oppo_dtl,'referral_steerage'), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},)
-                                                                ],
-                                                                style={"padding-bottom":"2.5rem"}
-                                                            ),
-                                                            html.H6('* Service mix adjusted')
-                                                        ]
-                                                    ),
-                                                    width=5
-                                                ),
-                                                dbc.Col(html.Div(),width=1),
-                                                dbc.Col(
-                                                    html.Div(
-                                                        [
-                                                            html.Div(html.H6('Utilization Rate and Unit Cost Comparison', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"3rem"}),
-                                                            html.Div(
-                                                                [
-                                                                    aco_oppo_tbl(df_aco_oppo_dtl,'referral_steerage')
-                                                                ],
-                                                                style={"padding-bottom":"2.5rem"}
-                                                            )
-                                                        ]
-                                                    )
-                                                ),
-                                            ],
-                                            style={"padding-left":"2rem", "padding-right":"2rem"}
-                                        )
+                    # html.Div(
+                    #     [
+                    #         dbc.Card(
+                    #             dbc.CardBody(
+                    #                 [
+                    #                     dbc.Row(
+                    #                         [
+                    #                             dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                    #                             dbc.Col(html.H4("Referral Steerage", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                    #                         ],
+                    #                         no_gutters=True,
+                    #                         style={"padding-bottom":"2rem"}
+                    #                     ),
+                    #                     dbc.Row(
+                    #                         [
+                    #                             dbc.Col(
+                    #                                 html.Div(
+                    #                                     [
+                    #                                         html.Div(html.H6('Estimated Cost Reduction Opportunities by Service Type(PMPM)', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"1rem"}),
+                    #                                         html.Div(
+                    #                                             [
+                    #                                                 dcc.Graph(figure=aco_oppo_bar(df_aco_oppo_dtl,'referral_steerage'), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},)
+                    #                                             ],
+                    #                                             style={"padding-bottom":"2.5rem"}
+                    #                                         ),
+                    #                                         html.H6('* Service mix adjusted')
+                    #                                     ]
+                    #                                 ),
+                    #                                 width=5
+                    #                             ),
+                    #                             dbc.Col(html.Div(),width=1),
+                    #                             dbc.Col(
+                    #                                 html.Div(
+                    #                                     [
+                    #                                         html.Div(html.H6('Utilization Rate and Unit Cost Comparison', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"3rem"}),
+                    #                                         html.Div(
+                    #                                             [
+                    #                                                 aco_oppo_tbl(df_aco_oppo_dtl,'referral_steerage')
+                    #                                             ],
+                    #                                             style={"padding-bottom":"2.5rem"}
+                    #                                         )
+                    #                                     ]
+                    #                                 )
+                    #                             ),
+                    #                         ],
+                    #                         style={"padding-left":"2rem", "padding-right":"2rem"}
+                    #                     )
                                         
-                                    ]
-                                ),
-                                style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem"}
-                            ),
+                    #                 ]
+                    #             ),
+                    #             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem"}
+                    #         ),
                             
-                        ],style={"padding":"2rem"}
-                    ),
+                    #     ],style={"padding":"2rem"}
+                    # ),
                     html.Div(
                         [
                             dbc.Card(
@@ -781,7 +781,7 @@ def tab_bundle(app):
 def bundle_full_details(app):
     return html.Div(
             [
-                dbc.Button("View more bundles", 
+                dbc.Button("View more details", 
                     className="mb-3", 
                     style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"10rem","margin-left":"4rem"}, 
                     id="show-bundle-vmd"),
@@ -902,13 +902,13 @@ def update_filter(oppo_lv1):
     Input('oppo-filter-acolv2','value'),]
     )
 def update_table(oppo_lv1, oppo_lv2):
-    tabel_desc = oppo_lv2+' Comparison Details '+ ('(per-patient-per-month)' if oppo_lv1=='pat_manage' else '(units per 1,000 member)' if oppo_lv1=='overuse_reduction' else '')
+    tabel_desc = oppo_lv2+' Comparison Details '+ ('' if oppo_lv1=='pat_manage' else '(units per 1,000 member)' if oppo_lv1=='overuse_reduction' else '')
 
     df_table = df_aco_oppo_drill[(df_aco_oppo_drill['oppo']==oppo_lv1) & (df_aco_oppo_drill['category']==oppo_lv2)]
     fstcol_name = aco_oppo_drill_mapping[(aco_oppo_drill_mapping['oppo']==oppo_lv1) & (aco_oppo_drill_mapping['category']==oppo_lv2)]['drill_dim'].values[0]
 
     format_money = FormatTemplate.money(1)
-    format_pct = FormatTemplate.percentage(0)
+    format_pct = FormatTemplate.percentage(1)
     format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
 
     if oppo_lv1 == 'referral_steerage':
@@ -916,10 +916,10 @@ def update_table(oppo_lv1, oppo_lv2):
         ['Non-Preferred Provider','% of Total Units'], ['Non-Preferred Provider','Avg Cost/Unit'],['','Cost Reduction if Steering All Visits to Preferred Provider(PMPM)']]
         table_col = [{'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} if k in[2,4,5] \
         else {'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_pct}for k in range(6)]
-    elif oppo_lv1 in ['pat_manage']:
-        table_col = [{'name':fstcol_name, 'id':df_table.columns[k]} if k==0 \
-        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
-    elif oppo_lv1 in ['overuse_reduction']:
+    # elif oppo_lv1 in ['pat_manage']:
+    #     table_col = [{'name':fstcol_name, 'id':df_table.columns[k]} if k==0 \
+    #     else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
+    elif oppo_lv1 in ['overuse_reduction','pat_manage']:
         table_col = [{'name':fstcol_name, 'id':df_table.columns[k]} if k==0 \
         else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_num} if k in [1,2,4] \
         else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]

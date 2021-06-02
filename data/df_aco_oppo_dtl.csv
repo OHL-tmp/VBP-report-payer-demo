@@ -1,24 +1,24 @@
 ﻿Patient Cohort,Provider Group,Benchmark*,Cost Reduction if Perform as Benchmark(PMPM),Best-in-Class*,Cost Reduction if Perform as Best-in-Class(PMPM),alias,oppo
-High Risk Chronic Patient,1898.86654,1803.923213,8.015952119,1623.530892,23.24626115,High Risk Chronic Patient Management,pat_manage
-Patients with Mental illness,1749.530904,1662.054359,8.0707294,1495.848923,23.40511526,Mental Health Integration,pat_manage
-High ED Utilizers,1949.468931,1851.995485,6.23830058,1666.795936,18.09107168,High ED Utilizer Management,pat_manage
-IP Short Stay,31.46597551,29.89267673,4.365904102,26.90340906,11.58154338,IP Short Stay,overuse_reduction
-ER,50.90725707,48.36189422,2.449911747,43.5257048,6.458858241,ER,overuse_reduction
-High Cost Imaging,70.05918484,66.5562256,1.626743137,59.90060304,5.079290901,High Cost Imaging,overuse_reduction
-Surgical Procedures,43.74614542,41.55883815,2.943812639,37.40295433,3.171595543,Surgical Procedures,overuse_reduction
-Acute Myocardial Infarction,0.049756001,0.047268201,1.243900013,0.04254138,3.607310039,Acute Myocardial Infarction,readmission_reduction
-Stroke,0.050315749,0.047799961,1.257893717,0.043019965,3.64789178,Stroke,readmission_reduction
-Heart Failure,0.050499964,0.047974966,1.2624991,0.043177469,3.66124739,Heart Failure,readmission_reduction
-Pneumonia,0.04965695,0.047174103,1.241423753,0.042456692,3.600128883,Pneumonia,readmission_reduction
-Coronary Artery Bypass Graft,0.050482602,0.047958472,1.262065044,0.043162625,3.659988628,Coronary Artery Bypass Graft,readmission_reduction
-Diagnostic Testing,0.45,1298.729228,0.55,2256.904208,4.203261252,Steer Diagnostic Testings to Preferred Providers,referral_steerage
-Surgery,0.4,7907.642665,0.6,11861.464,3.321961318,Steer Surgeries to Preferred Providers,referral_steerage
-SNF,0.3,12008.04255,0.7,18012.06382,0.840562978,Steer SNF to Preferred Providers,referral_steerage
-OP Surgery Use Rate,0.316979241,0.348677165,1.901875443,0.383544881,3.993938431,Move Surgeries from IP to OP,service_optimize
-Biosimilar Dispensing Rate,0.328110848,0.360921932,1.640554238,0.397014126,3.445163899,Increase Biosimilar Dispensing Rate,service_optimize
-Urgent Care Center Use Rate,0.328725522,0.361598074,1.972353133,0.397757882,4.141941579,Use Urgent Care Centers to Replace ER,service_optimize
-Hip Replacement,0.146788371,0.141625204,1.020210964,0.137454137,0.475098243,Hip Replacement,pac_optimize
-Spinal Fusion,0.101313679,0.097248575,0.74507233,0.093893294,0.346969958,Spinal Fusion,pac_optimize
-Acute Myocardial Infarction,0.102169311,0.098843862,0.688207504,0.096195531,0.320488789,Acute Myocardial Infarction,pac_optimize
-Stroke,0.120052336,0.115112015,0.89294368,0.111018973,0.415831616,Stroke,pac_optimize
-Coronary Artery Bypass Graft,0.145643969,0.140940844,0.978002421,0.137201095,0.455442304,Coronary Artery Bypass Graft,pac_optimize
+Diabetes,2030.180556,1998.583683,31.59687223,1962.110725,68.06983071,Diabetes,pat_manage
+Chronic Kidney Disease ,1470.802023,1448.3572,22.44482335,1422.20491,48.59711374,Chronic Kidney Disease ,pat_manage
+Depression ,1838.31442,1817.562,20.75241981,1793.52522,44.78919952,Depression ,pat_manage
+Heart Failure ,2597.572557,2578.3499,19.22265717,2556.350117,41.22244019,Heart Failure ,pat_manage
+COPD,2287.417995,2271.283408,16.13458675,2252.667516,34.75047866,COPD,pat_manage
+Stroke,2891.530017,2885.549025,5.980991916,2878.695335,12.83468162,Stroke,pat_manage
+IP Short Stay,74.80483108,68.00439189,15.096975,61.2039527,27.75519481,IP Short Stay,overuse_reduction
+High Cost Imaging,242.4675,220.425,9.371541667,198.3825,22.0425,High Cost Imaging,overuse_reduction
+ER,18.53478,16.8498,2.70298875,15.16482,4.914525,ER,overuse_reduction
+Surgical Procedures,41.34920327,37.59018479,2.695266619,33.83116631,3.759018479,Surgical Procedures,overuse_reduction
+Heart Failure,0.332425984,0.30220544,6.044108808,0.274732219,11.53875318,Heart Failure,readmission_reduction
+Coronary Artery Bypass Graft,0.243655838,0.221505307,4.430106138,0.201368461,8.457475353,Coronary Artery Bypass Graft,readmission_reduction
+Pneumonia,0.218211985,0.198374532,3.967490636,0.180340483,7.574300305,Pneumonia,readmission_reduction
+Acute Myocardial Infarction,0.198358985,0.18032635,3.606526996,0.163933045,6.885187901,Acute Myocardial Infarction,readmission_reduction
+Stroke,0.135046154,0.122769231,2.455384615,0.111608392,4.687552448,Stroke,readmission_reduction
+ASC Surgery Use Rate,0.238894273,0.266981291,12.63915808,0.296645878,25.9882226,Move Surgeries to ASC,service_optimize
+Urgent Care Center Use Rate,0.380138177,0.422375752,4.054807222,0.469306391,8.560148581,Use Urgent Care Centers to Replace ER,service_optimize
+Biosimilar Dispensing Rate,0.2628,0.292,2.336,0.324444444,4.931555556,Increase Biosimilar Dispensing Rate,service_optimize
+Hip Replacement,0.6216,0.56,3.696,0.504504505,7.02572973,Hip Replacement,pac_optimize
+Stroke,0.59274,0.534,3.5244,0.481081081,6.699535135,Stroke,pac_optimize
+Acute Myocardial Infarction,0.567144288,0.5109408,3.37220928,0.460307027,6.410235658,Acute Myocardial Infarction,pac_optimize
+Coronary Artery Bypass Graft,0.47262024,0.425784,2.8101744,0.383589189,5.341863049,Coronary Artery Bypass Graft,pac_optimize
+Spinal Fusion,0.34854,0.314,2.0724,0.282882883,3.939427027,Spinal Fusion,pac_optimize

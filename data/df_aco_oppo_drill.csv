@@ -1,150 +1,138 @@
 ﻿Subcategory,Provider Group,Benchmark*,Cost Reduction if Perform as Benchmark(PMPM),Best-in-Class*,Cost Reduction if Perform as Best-in-Class(PMPM),category,oppo
-CHF,2750.150552,2612.643024,2.750150552,2351.378722,7.975436599,High Risk Chronic Patient,pat_manage
-CAD,1838.006757,1746.106419,1.102804054,1571.495777,3.198131756,High Risk Chronic Patient,pat_manage
-Diabetes,1618.17625,1537.267438,1.61817625,1383.540694,4.692711126,High Risk Chronic Patient,pat_manage
-Hypertension,1414.99326,1344.243597,1.697991912,1209.819238,4.924176546,High Risk Chronic Patient,pat_manage
-COPD,1424.623639,1353.392457,0.569849456,1218.053212,1.652563422,High Risk Chronic Patient,pat_manage
-Hypertension,1366.78269,1298.443555,1.913495766,1168.5992,5.549137721,Patients with Mental illness,pat_manage
-Diabetes,1292.369982,1227.751483,1.550843979,1104.976335,4.497447538,Patients with Mental illness,pat_manage
-Asthma,1108.698704,1053.263768,0.665219222,947.9373916,1.929135744,Patients with Mental illness,pat_manage
-COPD,1812.196076,1721.586272,1.44975686,1549.427645,4.204294895,Patients with Mental illness,pat_manage
-CHF,2694.689352,2559.954884,1.616813611,2303.959396,4.688759472,Patients with Mental illness,pat_manage
-CKD,2338.148372,2221.240954,0.935259349,1999.116858,2.712252112,Patients with Mental illness,pat_manage
-Chest Pain,1861.815304,1768.724539,0.744726122,1591.852085,2.159705753,High ED Utilizers,pat_manage
-Respiratory Infection,1941.497012,1844.422162,0.776598805,1659.979945,2.252136534,High ED Utilizers,pat_manage
-Asthma,1802.769602,1712.631122,0.721107841,1541.36801,2.091212738,High ED Utilizers,pat_manage
-Abdominal Pain,2175.768835,2066.980393,0.870307534,1860.282354,2.523891849,High ED Utilizers,pat_manage
-Headache,1974.922355,1876.176238,0.789968942,1688.558614,2.290909932,High ED Utilizers,pat_manage
-Skin Tissue Infections,1923.920505,1827.72448,0.769568202,1644.952032,2.231747786,High ED Utilizers,pat_manage
-UTI,2052.492335,1949.867718,0.820996934,1754.880947,2.380891109,High ED Utilizers,pat_manage
-Substance Abuse Disorder,2068.73728,1965.300416,0.827494912,1768.770375,2.399735245,High ED Utilizers,pat_manage
-313,45.92813195,43.63172535,0.637252831,39.26855282,1.831384262,IP Short Stay,overuse_reduction
-310,41.33531876,39.26855282,0.573527548,35.34169754,1.498405305,IP Short Stay,overuse_reduction
-392,37.20178688,35.34169754,0.516174793,31.80752778,1.348564774,IP Short Stay,overuse_reduction
-871,33.48160819,31.80752778,0.464557314,28.626775,1.213708297,IP Short Stay,overuse_reduction
-247,30.13344737,28.626775,0.418101582,25.7640975,1.092337467,IP Short Stay,overuse_reduction
-312,27.12010264,25.7640975,0.376291424,23.18768775,0.983103721,IP Short Stay,overuse_reduction
-287,24.40809237,23.18768775,0.338662282,20.86891898,0.884793348,IP Short Stay,overuse_reduction
-39,21.96728313,20.86891898,0.304796053,18.78202708,0.796314014,IP Short Stay,overuse_reduction
-641,19.77055482,18.78202708,0.274316448,16.90382437,0.716682612,IP Short Stay,overuse_reduction
-69,17.79349934,16.90382437,0.246884803,15.21344193,0.645014351,IP Short Stay,overuse_reduction
-Chest Pain,49.05989647,46.60690165,0.337286788,41.94621148,0.889210624,ER,overuse_reduction
-Respiratory Infection,53.8452532,51.15299054,0.370186116,46.03769148,0.975945214,ER,overuse_reduction
-Asthma,48.77317553,46.33451675,0.335315582,41.70106508,0.884013806,ER,overuse_reduction
-Abdominal Pain,46.84021512,44.49820437,0.322026479,40.04838393,0.848978899,ER,overuse_reduction
-Headache,53.40798069,50.73758165,0.367179867,45.66382349,0.96801965,ER,overuse_reduction
-Skin Tissue Infections,47.68769679,45.30331195,0.327852915,40.77298075,0.864339504,ER,overuse_reduction
-UTI,47.08580447,44.73151425,0.323714906,40.25836282,0.853430206,ER,overuse_reduction
-CT,107.6046174,102.2243865,0.49318783,92.00194789,1.950333691,High Cost Imaging,overuse_reduction
-MRI,74.18772614,70.47833983,0.510040617,63.43050585,1.344652536,High Cost Imaging,overuse_reduction
-PET,51.09682387,48.54198268,0.351290664,43.68778441,0.926129933,High Cost Imaging,overuse_reduction
-NM,42.14457483,40.03734609,0.231795162,36.03361148,0.763870419,High Cost Imaging,overuse_reduction
-Colonoscopy,73.95573408,70.25794738,0.406756537,63.23215264,1.34044768,Surgical Procedures,overuse_reduction
-Endoscopy,42.09063914,39.98610719,0.231498515,35.98749647,0.762892834,Surgical Procedures,overuse_reduction
-Hysterectomy,40.137522,38.1306459,1.103781855,34.31758131,0.727492586,Surgical Procedures,overuse_reduction
-Percutaneous Coronary Intervention,20.87446292,19.83073977,1.148095461,17.8476658,0.37834964,Surgical Procedures,overuse_reduction
-744,0.046138679,0.043831745,0.115346697,0.03944857,0.334505422,Acute Myocardial Infarction,readmission_reduction
-165,0.049201375,0.046741306,0.123003438,0.042067176,0.35670997,Acute Myocardial Infarction,readmission_reduction
-669,0.054909956,0.052164458,0.137274891,0.046948013,0.398097183,Acute Myocardial Infarction,readmission_reduction
-881,0.051164151,0.048605943,0.127910377,0.043745349,0.370940093,Acute Myocardial Infarction,readmission_reduction
-160,0.051251313,0.048688748,0.128128283,0.043819873,0.371572022,Acute Myocardial Infarction,readmission_reduction
-507,0.047109562,0.044754084,0.117773905,0.040278676,0.341544325,Acute Myocardial Infarction,readmission_reduction
-759,0.052190849,0.049581306,0.130477122,0.044623176,0.378383653,Acute Myocardial Infarction,readmission_reduction
-832,0.048096457,0.045691634,0.120241143,0.041122471,0.348699315,Acute Myocardial Infarction,readmission_reduction
-796,0.051760684,0.04917265,0.12940171,0.044255385,0.375264958,Acute Myocardial Infarction,readmission_reduction
-555,0.051944153,0.049346946,0.129860383,0.044412251,0.376595112,Acute Myocardial Infarction,readmission_reduction
-490,0.045303351,0.043038183,0.113258376,0.038734365,0.328449291,Stroke,readmission_reduction
-207,0.052959249,0.050311287,0.132398123,0.045280158,0.383954558,Stroke,readmission_reduction
-613,0.053855003,0.051162253,0.134637509,0.046046028,0.390448775,Stroke,readmission_reduction
-801,0.052184384,0.049575165,0.130460961,0.044617649,0.378336788,Stroke,readmission_reduction
-638,0.049408511,0.046938085,0.123521277,0.042244277,0.358211704,Stroke,readmission_reduction
-712,0.049922306,0.047426191,0.124805765,0.042683572,0.361936718,Stroke,readmission_reduction
-255,0.051058962,0.048506014,0.127647405,0.043655413,0.370177475,Stroke,readmission_reduction
-184,0.054971727,0.052223141,0.137429319,0.047000827,0.398545024,Stroke,readmission_reduction
-107,0.049316866,0.046851022,0.123292164,0.04216592,0.357547277,Stroke,readmission_reduction
-583,0.052499085,0.049874131,0.131247713,0.044886718,0.380618369,Stroke,readmission_reduction
-694,0.05434569,0.051628405,0.135864224,0.046465565,0.394006251,Heart Failure,readmission_reduction
-723,0.048380735,0.045961698,0.120951838,0.041365528,0.350760329,Heart Failure,readmission_reduction
-463,0.053152785,0.050495145,0.132881962,0.045445631,0.385357689,Heart Failure,readmission_reduction
-645,0.047149392,0.044791922,0.117873479,0.04031273,0.34183309,Heart Failure,readmission_reduction
-813,0.04756289,0.045184745,0.118907225,0.040666271,0.344830952,Heart Failure,readmission_reduction
-593,0.045574972,0.043296224,0.113937431,0.038966601,0.33041855,Heart Failure,readmission_reduction
-812,0.046066218,0.043762907,0.115165546,0.039386617,0.333980082,Heart Failure,readmission_reduction
-204,0.052838077,0.050196173,0.132095191,0.045176555,0.383076055,Heart Failure,readmission_reduction
-16,0.053606859,0.050926516,0.134017148,0.045833864,0.388649728,Heart Failure,readmission_reduction
-771,0.054001494,0.05130142,0.135003736,0.046171278,0.391510834,Heart Failure,readmission_reduction
-513,0.045136465,0.042879642,0.112841163,0.038591678,0.327239372,Pneumonia,readmission_reduction
-457,0.049263875,0.046800681,0.123159687,0.042120613,0.357163092,Pneumonia,readmission_reduction
-709,0.051354341,0.048786624,0.128385853,0.043907962,0.372318973,Pneumonia,readmission_reduction
-59,0.048756042,0.04631824,0.121890106,0.041686416,0.353481308,Pneumonia,readmission_reduction
-688,0.048834395,0.046392675,0.122085988,0.041753408,0.354049366,Pneumonia,readmission_reduction
-515,0.04563979,0.043357801,0.114099476,0.039022021,0.330888481,Pneumonia,readmission_reduction
-274,0.049627053,0.047145701,0.124067633,0.042431131,0.359796136,Pneumonia,readmission_reduction
-177,0.049981799,0.047482709,0.124954498,0.042734438,0.362368043,Pneumonia,readmission_reduction
-623,0.046507556,0.044182178,0.11626889,0.03976396,0.337179781,Pneumonia,readmission_reduction
-305,0.053909482,0.051214008,0.134773706,0.046092607,0.390843747,Pneumonia,readmission_reduction
-615,0.048605479,0.046175205,0.121513698,0.041557685,0.352389723,Coronary Artery Bypass Graft,readmission_reduction
-63,0.05202015,0.049419143,0.130050375,0.044477228,0.377146089,Coronary Artery Bypass Graft,readmission_reduction
-520,0.0464528,0.04413016,0.116132001,0.039717144,0.336782802,Coronary Artery Bypass Graft,readmission_reduction
-861,0.0511978,0.04863791,0.1279945,0.043774119,0.371184051,Coronary Artery Bypass Graft,readmission_reduction
-182,0.046261238,0.043948176,0.115653095,0.039553359,0.335393976,Coronary Artery Bypass Graft,readmission_reduction
-385,0.051808515,0.049218089,0.129521287,0.04429628,0.375611732,Coronary Artery Bypass Graft,readmission_reduction
-203,0.051492286,0.048917672,0.128730715,0.044025904,0.373319073,Coronary Artery Bypass Graft,readmission_reduction
-493,0.051649068,0.049066615,0.129122671,0.044159953,0.374455745,Coronary Artery Bypass Graft,readmission_reduction
-295,0.050808076,0.048267672,0.127020189,0.043440905,0.368358549,Coronary Artery Bypass Graft,readmission_reduction
-71,0.049395539,0.046925762,0.123488849,0.042233186,0.358117661,Coronary Artery Bypass Graft,readmission_reduction
-Oncology,0.2,271.1957794,0.8,488.152403,0.347130598,Specialist Visit,referral_steerage
-Cardiovascular,0.5,157.1387182,0.5,282.8496928,0.125710975,Specialist Visit,referral_steerage
-Neurology,0.4,158.303158,0.6,284.9456844,0.151971032,Specialist Visit,referral_steerage
-Psychiatry,0.6,213.7947892,0.4,384.8306206,0.136828665,Specialist Visit,referral_steerage
-Dermatology,0.3,162.9603698,0.7,293.3286656,0.182515614,Specialist Visit,referral_steerage
-CT,0.5,1055.764804,0.5,1583.647206,0.527882402,Diagnostic Testing,referral_steerage
-MRI,0.4,1314.903842,0.6,2366.826915,1.262307688,Diagnostic Testing,referral_steerage
-PET,0.6,1576.651249,0.4,2837.972248,1.009056799,Diagnostic Testing,referral_steerage
-NM,0.3,1236.607283,0.7,2225.89311,1.385000157,Diagnostic Testing,referral_steerage
-Bariatric Surgery,0.2,4098.287676,0.8,6147.431514,0.327863014,Surgery,referral_steerage
-Knee Arthroscopy,0.5,6017.206883,0.5,9025.810325,0.300860344,Surgery,referral_steerage
-Joint Replacement,0.4,7025.7319,0.6,10538.59785,0.421543914,Surgery,referral_steerage
-Spinal Fusion,0.6,10023.35434,0.4,15035.03152,0.400934174,Surgery,referral_steerage
-Cardiac Defibrillator,0.3,11031.22683,0.7,16546.84024,0.772185878,Surgery,referral_steerage
-Percutaneous Coronary Intervention,0.5,5028.480126,0.5,7542.720189,0.251424006,Surgery,referral_steerage
-Coronary Artery Bypass Graft,0.3,12077.84046,0.7,18116.76069,0.845448832,Surgery,referral_steerage
-Service,0.3,12009.31815,0.7,18013.97722,0.84065227,SNF,referral_steerage
-Bariatric Surgery,0.283296022,0.311625624,0.283296022,0.342788187,0.594921647,OP Surgery Use Rate,service_optimize
-Knee Arthroscopy,0.265239522,0.291763474,0.265239522,0.320939821,0.557002996,OP Surgery Use Rate,service_optimize
-Cholecystectomy,0.355281507,0.390809658,0.355281507,0.429890624,0.746091165,OP Surgery Use Rate,service_optimize
-Lumpectomy,0.386930119,0.42562313,0.386930119,0.468185443,0.812553249,OP Surgery Use Rate,service_optimize
-Cardiac Defibrillator,0.292443849,0.321688234,0.292443849,0.353857057,0.614132083,OP Surgery Use Rate,service_optimize
-Percutaneous Coronary Intervention,0.275457953,0.303003748,0.275457953,0.333304123,0.578461701,OP Surgery Use Rate,service_optimize
-Pegfilgrastim,0.285618758,0.314180633,0.285618758,0.345598697,0.599799391,Biosimilar Dispensing Rate,service_optimize
-Adalimumab,0.339345137,0.373279651,0.339345137,0.410607616,0.712624789,Biosimilar Dispensing Rate,service_optimize
-Rituximab,0.316583712,0.348242083,0.316583712,0.383066291,0.664825795,Biosimilar Dispensing Rate,service_optimize
-Bevacizumab,0.362390548,0.398629602,0.362390548,0.438492563,0.76102015,Biosimilar Dispensing Rate,service_optimize
-Etanercept,0.222417045,0.244658749,0.222417045,0.269124624,0.467075794,Biosimilar Dispensing Rate,service_optimize
-Hypertension,0.509111417,0.560022559,0.509111417,0.616024815,1.069133976,PCP Use Rate,service_optimize
-Diabetes,0.458200276,0.504020303,0.458200276,0.554422333,0.962220579,PCP Use Rate,service_optimize
-CHF,0.412380248,0.453618273,0.412380248,0.4989801,0.865998521,PCP Use Rate,service_optimize
-Asthma,0.371142223,0.408256446,0.371142223,0.44908209,0.779398669,PCP Use Rate,service_optimize
-COPD,0.334028001,0.367430801,0.334028001,0.404173881,0.701458802,PCP Use Rate,service_optimize
-CHF,0.300625201,0.330687721,0.300625201,0.363756493,0.631312922,PCP Use Rate,service_optimize
-Chest Pain,0.279413081,0.307354389,0.279413081,0.338089827,0.586767469,Urgent Care Center Use Rate,service_optimize
-Respiratory Infection,0.206569603,0.227226563,0.206569603,0.249949219,0.433796166,Urgent Care Center Use Rate,service_optimize
-Asthma,0.297725134,0.327497648,0.297725134,0.360247412,0.625222782,Urgent Care Center Use Rate,service_optimize
-Abdominal Pain,0.244654934,0.269120427,0.244654934,0.29603247,0.513775361,Urgent Care Center Use Rate,service_optimize
-Headache,0.288947268,0.317841995,0.288947268,0.349626194,0.606789262,Urgent Care Center Use Rate,service_optimize
-Skin Tissue Infections,0.327921633,0.360713796,0.327921633,0.396785176,0.688635429,Urgent Care Center Use Rate,service_optimize
-Discharged to SNF,0.153633511,0.13827016,0.626824726,0.124443144,0.291903671,Hip Replacement,pac_optimize
-Discharged to HH,0.129912063,0.136407666,0,0.14322805,0,Hip Replacement,pac_optimize
-Discharged to Rehab,0.061203855,0.05508347,0.24971173,0.049575123,0.116287325,Hip Replacement,pac_optimize
-Discharged to SNF,0.12016525,0.108148725,0.490274221,0.097333853,0.228313976,Spinal Fusion,pac_optimize
-Discharged to HH,0.166007937,0.174308334,0,0.18302375,0,Spinal Fusion,pac_optimize
-Discharged to Rehab,0.073764601,0.066388141,0.300959574,0.059749327,0.140152743,Spinal Fusion,pac_optimize
-Discharged to SNF,0.113438599,0.10209474,0.462829486,0.091885266,0.215533339,Acute Myocardial Infarction,pac_optimize
-Discharged to HH,0.180412052,0.189432654,0,0.198904287,0,Acute Myocardial Infarction,pac_optimize
-Discharged to Rehab,0.062875377,0.056587839,0.256531537,0.050929055,0.119463216,Acute Myocardial Infarction,pac_optimize
-Discharged to SNF,0.17306931,0.155762379,0.706122786,0.140186141,0.32883169,Stroke,pac_optimize
-Discharged to HH,0.176344886,0.18516213,0,0.194420236,0,Stroke,pac_optimize
-Discharged to Rehab,0.057198721,0.051478849,0.233370783,0.046330964,0.108677571,Stroke,pac_optimize
-Discharged to SNF,0.174637218,0.157173496,0.712519849,0.141456146,0.331810714,Coronary Artery Bypass Graft,pac_optimize
-Discharged to HH,0.128278349,0.134692266,0,0.141426879,0,Coronary Artery Bypass Graft,pac_optimize
-Discharged to Rehab,0.051436556,0.0462929,0.209861147,0.04166361,0.097729456,Coronary Artery Bypass Graft,pac_optimize
+"Inpatient Visit (per 1,000 patients)",541.2414972,470.6447801,8.013786333,390.6351675,17.09607751,Diabetes,pat_manage
+Readmission Rate (%),25.162,21.88,1.86278115,18.1604,3.97393312,Diabetes,pat_manage
+"Emergency Room (per 1,000 patients)",1180.787225,1026.7715,6.993238009,852.220345,14.91890775,Diabetes,pat_manage
+"Professional Visits (per 1,000 patients)",9199.326122,7999.414019,5.448320894,6639.513636,11.62308457,Diabetes,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",2982.518881,2593.494679,2.649604936,2152.600584,5.652490531,Diabetes,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",22225.3268,27781.6585,-2.522907972,32504.54044,-4.667379747,Diabetes,pat_manage
+"Inpatient Visit (per 1,000 patients)",1035.404454,900.3516989,13.51208439,747.2919101,28.82578004,Chronic Kidney Disease ,pat_manage
+Readmission Rate (%),26.1625,22.75,1.707110234,18.8825,3.641835167,Chronic Kidney Disease ,pat_manage
+"Emergency Room (per 1,000 patients)",1561.92816,1358.1984,8.15329895,1127.304672,17.39370443,Chronic Kidney Disease ,pat_manage
+"Professional Visits (per 1,000 patients)",10838.32886,9424.633788,5.657631224,7822.446044,12.06961328,Chronic Kidney Disease ,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",6267.339499,5449.860434,4.907347265,4523.38416,10.4690075,Chronic Kidney Disease ,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",23394.20378,29242.75472,-2.340599836,34214.02303,-4.330109696,Chronic Kidney Disease ,pat_manage
+"Inpatient Visit (per 1,000 patients)",810.2285962,704.5466054,7.896162046,584.7736825,16.8451457,Depression ,pat_manage
+Readmission Rate (%),25.4035,22.09,1.237861472,18.3347,2.64077114,Depression ,pat_manage
+"Emergency Room (per 1,000 patients)",1681.76276,1462.4024,6.555913399,1213.793992,13.98594858,Depression ,pat_manage
+"Professional Visits (per 1,000 patients)",9216.45123,8014.305418,3.592793083,6651.873497,7.664625244,Depression ,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",5636.226267,4901.066319,3.295703668,4067.885045,7.030834491,Depression ,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",24439.3135,30549.14187,-1.826013857,35742.49599,-3.378125636,Depression ,pat_manage
+"Inpatient Visit (per 1,000 patients)",1010.879115,879.0253174,7.624335969,729.5910134,16.26525007,Heart Failure ,pat_manage
+Readmission Rate (%),33.2,30.2,0.8673625,27.5,1.64798875,Heart Failure ,pat_manage
+"Emergency Room (per 1,000 patients)",1990.85976,1731.1824,6.006250778,1436.881392,12.81333499,Heart Failure ,pat_manage
+"Professional Visits (per 1,000 patients)",10745.88166,9344.244918,3.241939053,7755.723282,6.916136646,Heart Failure ,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",6524.841122,5673.774888,2.952731743,4709.233157,6.299161052,Heart Failure ,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",25421.25478,31776.56848,-1.469962873,37178.58512,-2.719431316,Heart Failure ,pat_manage
+"Inpatient Visit (per 1,000 patients)",1031.313893,896.7946892,6.558203512,744.339592,13.99083416,COPD,pat_manage
+Readmission Rate (%),27.186,23.64,0.864389213,19.6212,1.84403032,COPD,pat_manage
+"Emergency Room (per 1,000 patients)",1997.156815,1736.6581,5.080028858,1441.426223,10.8373949,COPD,pat_manage
+"Professional Visits (per 1,000 patients)",10902.502,9480.436522,2.77319359,7868.762314,5.916146326,COPD,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",5303.633418,4611.855146,2.023572507,3827.839772,4.316954681,COPD,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",23891.92302,29864.90377,-1.164800932,34941.93741,-2.154881724,COPD,pat_manage
+"Inpatient Visit (per 1,000 patients)",1186.303667,1031.568406,2.437531671,856.2017771,5.200067564,Stroke,pat_manage
+Readmission Rate (%),13.5,12.3,0.0945175,11.2,0.181158542,Stroke,pat_manage
+"Emergency Room (per 1,000 patients)",2289.88437,1991.2038,1.882036052,1652.699154,4.015010244,Stroke,pat_manage
+"Professional Visits (per 1,000 patients)",9962.136808,8662.727659,0.818779361,7190.063957,1.746729305,Stroke,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",8808.389542,7659.469167,1.085930815,6357.359409,2.316652406,Stroke,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",21443.86912,26804.83641,-0.337803483,31361.65859,-0.624936444,Stroke,pat_manage
+Septicemia,121.7563707,110.6876097,3.07158117,99.61884877,6.087818536,IP Short Stay,overuse_reduction
+Heart Failure,111.4611035,101.3282759,2.811859657,91.19544835,5.066413797,IP Short Stay,overuse_reduction
+Simple Pneumonia,72.5409315,65.94630137,1.830009863,59.35167123,3.297315068,IP Short Stay,overuse_reduction
+"Esophagitis, Gastroent & Misc Digest Disorders",72.25186555,65.68351413,1.822717517,59.11516272,3.284175707,IP Short Stay,overuse_reduction
+Copd,64.62257161,58.74779237,1.630251238,52.87301313,2.937389618,IP Short Stay,overuse_reduction
+G.I. Hemorrhage,61.20252648,55.63866044,1.543972827,50.07479439,2.781933022,IP Short Stay,overuse_reduction
+Kidney & Urinary Tract Infections,50.2138623,45.64896573,1.266758799,41.08406916,2.282448287,IP Short Stay,overuse_reduction
+Cardiac Arrhythmia ,44.38941695,40.35401541,1.119823928,36.31861387,2.01770077,IP Short Stay,overuse_reduction
+Abdominal pain,30.0564,27.324,0.626175,24.5916,1.1385,ER,overuse_reduction
+Respiratory infection,23.96163,21.7833,0.499200625,19.60497,0.9076375,ER,overuse_reduction
+Chest pain,22.95975,20.8725,0.478328125,18.78525,0.8696875,ER,overuse_reduction
+Urinary tract infection,14.27679,12.9789,0.297433125,11.68101,0.5407875,ER,overuse_reduction
+Urinary tract infection,14.27679,12.9789,0.297433125,11.68101,0.5407875,ER,overuse_reduction
+Headache,12.77397,11.6127,0.266124375,10.45143,0.4838625,ER,overuse_reduction
+Pneumonia,11.43813,10.3983,0.238294375,9.35847,0.4332625,ER,overuse_reduction
+CT,601.7,547,5.014166667,492.3,13.675,High Cost Imaging,overuse_reduction
+MRI,210.1,191,2.62625,171.9,4.775,High Cost Imaging,overuse_reduction
+NM,97.9,89,0.979,80.1,2.225,High Cost Imaging,overuse_reduction
+PET,60.17,54.7,0.752125,49.23,1.3675,High Cost Imaging,overuse_reduction
+Endoscopy,86.9,79,0.869,71.1,1.975,Surgical Procedures,overuse_reduction
+Hysterectomy,16.78883207,15.26257461,0.839441604,13.73631715,0.381564365,Surgical Procedures,overuse_reduction
+Colonoscopy,57.59970097,52.36336451,0.57599701,47.12702806,1.309084113,Surgical Procedures,overuse_reduction
+Percutaneous Coronary Intervention,4.108280052,3.734800048,0.410828005,3.361320043,0.093370001,Surgical Procedures,overuse_reduction
+Heart failure,0.065081133,0.059164666,1.183293325,0.05378606,2.25901453,Acute Myocardial Infarction,readmission_reduction
+MI or unstable angina,0.034617624,0.031470567,0.629411343,0.028609607,1.201603473,Acute Myocardial Infarction,readmission_reduction
+Renal disorders,0.018001164,0.016364695,0.327293898,0.014876995,0.624833806,Acute Myocardial Infarction,readmission_reduction
+Arrhythmias,0.017308812,0.015735284,0.314705672,0.014304803,0.600801737,Acute Myocardial Infarction,readmission_reduction
+Chronic angina & Coronary artery disease,0.017308812,0.015735284,0.314705672,0.014304803,0.600801737,Acute Myocardial Infarction,readmission_reduction
+Chest pain,0.015924107,0.014476461,0.289529218,0.013160419,0.552737598,Acute Myocardial Infarction,readmission_reduction
+Procedural complication or bleeding,0.014193226,0.012902933,0.258058651,0.011729939,0.492657424,Acute Myocardial Infarction,readmission_reduction
+Stroke,0.009000582,0.008182347,0.163646949,0.007438498,0.312416903,Acute Myocardial Infarction,readmission_reduction
+Gastrointestinal hemorrhage,0.006923525,0.006294113,0.125882269,0.005721921,0.240320695,Acute Myocardial Infarction,readmission_reduction
+Pneumonia or respiratory illness,0.040276923,0.036615385,0.732307692,0.033286713,1.398041958,Stroke,readmission_reduction
+Stroke,0.028430769,0.025846154,0.516923077,0.023496503,0.986853147,Stroke,readmission_reduction
+Acute myocardial infarction,0.016584615,0.015076923,0.301538462,0.013706294,0.575664336,Stroke,readmission_reduction
+Congestive heart failure,0.014215385,0.012923077,0.258461538,0.011748252,0.493426573,Stroke,readmission_reduction
+Other vascular diagnoses,0.011846154,0.010769231,0.215384615,0.00979021,0.411188811,Stroke,readmission_reduction
+Cardiothoracic procedures,0.009476923,0.008615385,0.172307692,0.007832168,0.328951049,Stroke,readmission_reduction
+Transient ischemic attack,0.007107692,0.006461538,0.129230769,0.005874126,0.246713287,Stroke,readmission_reduction
+Extracranial vascular procedures,0.007107692,0.006461538,0.129230769,0.005874126,0.246713287,Stroke,readmission_reduction
+Heart failure,0.167408769,0.15218979,3.043795803,0.138354355,5.810882896,Heart Failure,readmission_reduction
+Renal disorders,0.038264862,0.034786238,0.695724755,0.031623852,1.328201805,Heart Failure,readmission_reduction
+Pneumonia,0.023915538,0.021741399,0.434827972,0.019764908,0.830126128,Heart Failure,readmission_reduction
+Arrhythmias,0.021523985,0.019567259,0.391345175,0.017788417,0.747113515,Heart Failure,readmission_reduction
+Shock,0.019132431,0.017393119,0.347862377,0.015811926,0.664100902,Heart Failure,readmission_reduction
+Cardio-respiratory failure,0.019132431,0.017393119,0.347862377,0.015811926,0.664100902,Heart Failure,readmission_reduction
+COPD,0.014349323,0.013044839,0.260896783,0.011858945,0.498075677,Heart Failure,readmission_reduction
+Chronic angina & Coronary artery disease,0.009566215,0.008696559,0.173931189,0.007905963,0.332050451,Heart Failure,readmission_reduction
+Acute myocardial infarction,0.009566215,0.008696559,0.173931189,0.007905963,0.332050451,Heart Failure,readmission_reduction
+Complication of Care,0.009566215,0.008696559,0.173931189,0.007905963,0.332050451,Heart Failure,readmission_reduction
+Pneumonia,0.080683423,0.073348566,1.466971328,0.066680515,2.800581625,Pneumonia,readmission_reduction
+Heart failure,0.029339427,0.026672206,0.533444119,0.02424746,1.018393318,Pneumonia,readmission_reduction
+COPD,0.025671998,0.02333818,0.466763604,0.021216527,0.891094154,Pneumonia,readmission_reduction
+Shock,0.02200457,0.020004154,0.400083089,0.018185595,0.763794989,Pneumonia,readmission_reduction
+Renal disorders,0.018337142,0.016670129,0.333402574,0.015154662,0.636495824,Pneumonia,readmission_reduction
+Cardio-respiratory failure,0.016503427,0.015003116,0.300062317,0.013639196,0.572846242,Pneumonia,readmission_reduction
+Arrhythmias,0.011002285,0.010002077,0.200041545,0.009092797,0.381897494,Pneumonia,readmission_reduction
+UTI,0.007334857,0.006668051,0.13336103,0.006061865,0.25459833,Pneumonia,readmission_reduction
+Gastrointestinal hemorrhage,0.007334857,0.006668051,0.13336103,0.006061865,0.25459833,Pneumonia,readmission_reduction
+Infections,0.079700508,0.072455007,1.449100138,0.065868188,2.766463901,Coronary Artery Bypass Graft,readmission_reduction
+Heart Failure,0.045543147,0.041402861,0.828057222,0.037638965,1.580836515,Coronary Artery Bypass Graft,readmission_reduction
+Acute myocardial infarction,0.022771574,0.020701431,0.414028611,0.018819482,0.790418257,Coronary Artery Bypass Graft,readmission_reduction
+Arrhythmias,0.02191764,0.019925127,0.398502538,0.018113752,0.760777573,Coronary Artery Bypass Graft,readmission_reduction
+Pulmonary thromboembolism,0.017932614,0.016302377,0.326047531,0.014820342,0.622454378,Coronary Artery Bypass Graft,readmission_reduction
+Respiratory and chest symptoms,0.015940102,0.014491001,0.289820028,0.013173638,0.55329278,Coronary Artery Bypass Graft,readmission_reduction
+Stroke,0.010816497,0.00983318,0.19666359,0.008939254,0.375448672,Coronary Artery Bypass Graft,readmission_reduction
+Pleurisy,0.010816497,0.00983318,0.19666359,0.008939254,0.375448672,Coronary Artery Bypass Graft,readmission_reduction
+Hypertension,0.009677919,0.008798108,0.17596216,0.00799828,0.335927759,Coronary Artery Bypass Graft,readmission_reduction
+Gastrointestinal bleeding,0.00853934,0.007763036,0.155260729,0.007057306,0.296406846,Coronary Artery Bypass Graft,readmission_reduction
+Colonoscopy,0.568421053,0.631578947,4.736842105,0.701754386,10,ASC Surgery Use Rate,service_optimize
+Knee Replacement,0.378947368,0.421052632,3.157894737,0.467836257,6.666666667,ASC Surgery Use Rate,service_optimize
+Laminectomy,0.206024096,0.228915663,1.71686747,0.254350736,3.624497992,ASC Surgery Use Rate,service_optimize
+Lumpectomy,0.125806452,0.139784946,1.048387097,0.155316607,2.213261649,ASC Surgery Use Rate,service_optimize
+Bariatric Surgery,0.066666667,0.083333333,1.25,0.092592593,1.944444444,ASC Surgery Use Rate,service_optimize
+Cholecystectomy,0.0875,0.097222222,0.729166667,0.108024691,1.539351852,ASC Surgery Use Rate,service_optimize
+Bevacizumab,0.36,0.4,0.64,0.444444444,1.351111111,Biosimilar Dispensing Rate,service_optimize
+Trastuzumab,0.351,0.39,0.624,0.433333333,1.317333333,Biosimilar Dispensing Rate,service_optimize
+Pegfilgrastim,0.243,0.27,0.432,0.3,0.912,Biosimilar Dispensing Rate,service_optimize
+Rituximab,0.18,0.2,0.32,0.222222222,0.675555556,Biosimilar Dispensing Rate,service_optimize
+Infliximab,0.18,0.2,0.32,0.222222222,0.675555556,Biosimilar Dispensing Rate,service_optimize
+Respiratory Infection,0.71646373,0.796070811,1.273713298,0.884523123,2.688950295,Urgent Care Center Use Rate,service_optimize
+Asthma,0.457634752,0.508483058,0.813572892,0.564981175,1.717542773,Urgent Care Center Use Rate,service_optimize
+Skin Tissue Infections,0.424217626,0.471352918,0.754164668,0.523725464,1.592125411,Urgent Care Center Use Rate,service_optimize
+Headache,0.290862031,0.323180034,0.517088055,0.359088927,1.091630337,Urgent Care Center Use Rate,service_optimize
+Chest Pain,0.23756528,0.263961422,0.422338275,0.293290469,0.891603025,Urgent Care Center Use Rate,service_optimize
+Abdominal Pain,0.154085644,0.171206271,0.273930034,0.190229191,0.578296739,Urgent Care Center Use Rate,service_optimize
+Discharged to SNF,0.4107,0.37,2.442,0.333333333,4.642,Hip Replacement,pac_optimize
+Discharged to HH,0.2984,0.36,0,0.415495495,0,Hip Replacement,pac_optimize
+Discharged to Rehab,0.2109,0.19,1.254,0.171171171,2.38372973,Hip Replacement,pac_optimize
+Discharged to SNF,0.21201,0.191,1.2606,0.172072072,2.396275676,Spinal Fusion,pac_optimize
+Discharged to HH,0.16046,0.195,0,0.226117117,0,Spinal Fusion,pac_optimize
+Discharged to Rehab,0.13653,0.123,0.8118,0.110810811,1.543151351,Spinal Fusion,pac_optimize
+Discharged to SNF,0.23631012,0.212892,1.4050872,0.191794595,2.670931524,Acute Myocardial Infarction,pac_optimize
+Discharged to HH,0.293796512,0.35,0,0.400633773,0,Acute Myocardial Infarction,pac_optimize
+Discharged to Rehab,0.330834168,0.2980488,1.96712208,0.268512432,3.739304134,Acute Myocardial Infarction,pac_optimize
+Discharged to SNF,0.3108,0.28,1.848,0.252252252,3.512864865,Stroke,pac_optimize
+Discharged to HH,0.06226,0.121,0,0.173918919,0,Stroke,pac_optimize
+Discharged to Rehab,0.28194,0.254,1.6764,0.228828829,3.18667027,Stroke,pac_optimize
+Discharged to SNF,0.283572144,0.2554704,1.68610464,0.230153514,3.205117829,Coronary Artery Bypass Graft,pac_optimize
+Discharged to HH,0.32316376,0.37,0,0.412194811,0,Coronary Artery Bypass Graft,pac_optimize
+Discharged to Rehab,0.189048096,0.1703136,1.12406976,0.153435676,2.136745219,Coronary Artery Bypass Graft,pac_optimize

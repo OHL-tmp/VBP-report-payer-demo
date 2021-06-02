@@ -365,7 +365,7 @@ def simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_
                     sharing=0
 
                 eval('sharing_loss_'+k)[i]=sharing
-            
+
 
     df_planview_aco_totcost=pd.DataFrame(['Total Cost(before G/L share)','Gain Shared with ACO','Loss Shared with ACO','Total Cost(after G/L share)']*3,columns=['Item'])
 
