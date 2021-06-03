@@ -22,6 +22,7 @@ from figure import *
 from simulation_cal import *
 from assets.color import *
 from test_contract_opportunities import *
+from temp_data_intake import *
 
 
 from app import app
@@ -73,7 +74,7 @@ def create_layout(app):
 									),
 									dbc.Col(
 										dbc.Button(
-											"Analysis", 
+											"Opportunity Analysis", 
 											className="mr-1", 
 											style={"color":blue2, "background-color":blue4, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem"},
 											id = "navigation-analysis-aco"
@@ -106,7 +107,7 @@ def create_layout(app):
 									)
 								],
 								justify="around",
-								style={"width":"50rem","margin-left":"18rem","margin-right":"18rem","background-color":"#fff", "border":"none", "border-radius":"10rem","padding":"0.5rem", "box-shadow":".7rem .7rem 2rem "+grey2}
+								style={"width":"56rem","margin-left":"14rem","margin-right":"18rem","background-color":"#fff", "border":"none", "border-radius":"10rem","padding":"0.5rem", "box-shadow":".7rem .7rem 2rem "+grey2}
 							),
 							dbc.Row(
 								[
@@ -172,17 +173,17 @@ def tab_setup_aco(app):
 						style={"padding-top":"2rem","padding-right":"2rem"}
 					),
 
-					# html.Div(
-					# 	[
-					# 		card_data_intake_aco(app),
-					# 	],
-					# 	hidden=True,
-					# 	id="card-data-intake-aco"
-					# ),
+					html.Div(
+						[
+							card_data_intake_aco(app),
+						],
+						hidden=False,
+						id="card-data-intake-aco"
+					),
 
 					html.Div(
 						[
-							tab_aco(app),
+							card_analysis_aco(app),
 						],
 						hidden=False,
 						id="card-analysis-aco"
@@ -227,6 +228,29 @@ def tab_setup_aco(app):
 			)
 
 
+def card_data_intake_aco(app):
+	return dbc.Card(
+				dbc.CardBody(
+					[
+						input_session(app),
+					]
+				),
+				className="mb-3",
+				style={"background-color":yellow_light1, "border":"none", "border-radius":"0.5rem"}
+			)
+
+
+
+def card_analysis_aco(app):
+	return dbc.Card(
+				dbc.CardBody(
+					[
+						tab_aco(app),
+					]
+				),
+				className="mb-3",
+				style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem"}
+			)
 
 
 
@@ -272,29 +296,45 @@ def card_performance_measure_setup(app):
     return dbc.Card(
                 dbc.CardBody(
                     [
-                        card_recommended_carve_outs(app),
+                    	html.Div(card_recommended_carve_outs(app), hidden=True),
                         # card_summary_improvement(app),
                         card_medical_cost_target(app),
                         card_sl_sharing_arrangement(app),
                         card_quality_adjustment(app),
                         html.Div(
                             [
-                                # dbc.Button("RESET",
-                                #     className="mb-3",
-                                #     style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Black", "font-size":"1rem", "width":"8rem","padding":"1rem","margin-right":"1rem"},
-                                #     id = 'button-reset-simulation',
-                                #     href='#top'
-                                # ),
-                                dbc.Button("submit for simulation",
-                                    className="mb-3",
-                                    color="dark",
-                                    outline=True,
-                                    style={"border-radius":"10rem"},
-                                    id = 'button-submit-simulation',
-                                    href='#top'
-                                ),
+                            	dbc.Row(
+                            		[
+                            			dbc.Col(),
+                            			dbc.Col(
+		                            		dbc.Button("reset",
+			                                    className="mb-3",
+			                                    color="dark",
+			                                    outline=True,
+			                                    style={"border-radius":"10rem"},
+			                                    id = 'button-reset-simulation',
+			                                    href='#top'
+			                                ),
+			                                style={"margin-right":"2rem"},
+			                                width=1
+		                            	),
+		                                dbc.Col(
+		                            		dbc.Button("submit for simulation",
+			                                    className="mb-3",
+			                                    color="dark",
+			                                    outline=True,
+			                                    style={"border-radius":"10rem"},
+			                                    id = 'button-submit-simulation',
+			                                    href='#top'
+			                                ),
+			                                width=2
+		                            	),
+		                            	dbc.Col(width=1),
+                            		],
+                            	)
+                                
                             ],
-                            style={"text-align":"center"}
+                            style={"magin":"auto","position":"fixed","bottom":"0","width":"100%","background-color":"#fff","padding-top":"1rem"}
                         )
                     ]
                 ),
@@ -1105,7 +1145,7 @@ def tab_result(app):
                         style={"font-size":"0.8rem"}
                     )
                 ],
-                style={"padding-top":"2rem","padding-bottom":"2rem","padding-left":"1rem","padding-right":"1rem"}
+                style={"padding-top":"2rem","padding-bottom":"2rem","padding-left":"1rem","padding-right":"1rem","background-color":"#fff", "border":"none", "border-radius":"0.5rem"}
 
         )
 
@@ -1650,7 +1690,8 @@ def store_data(usr_tgt_int, usr_tgt_trend, usr_msr, usr_planshare, usr_planshare
     return json.dumps(datasets)
 
 @app.callback(
-    [Output('tab_container', 'active_tab'),
+    [
+    # Output('tab_container', 'active_tab'),
     Output('temp-result', 'children')],
     [Input('button-submit-simulation', 'n_clicks')],
     [State('temp-data', 'children'),State('temp-carveout', 'children')]
@@ -1686,8 +1727,8 @@ def cal_simulation(submit, data, code):
 
         df=simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_type,user_tar_value,default_input,target_user_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,min_user_losspct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided,lossmethod)
 
-        return 'tab-1', df.to_json(orient = 'split')
-    return 'tab-0', ""
+        return df.to_json(orient = 'split')
+    return ""
 
 @app.callback(
     [Output('figure-cost', 'figure'),

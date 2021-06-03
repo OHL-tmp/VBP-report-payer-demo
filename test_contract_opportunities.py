@@ -141,11 +141,19 @@ def tab_aco(app):
                                                             dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                                             dbc.Col(html.H4("Potential Cost Reduction Opportunities*", style={"font-size":"1rem", "margin-left":"10px"}), width="auto"),
                                                             dbc.Col(html.H4("(PMPM)", style={"font-size":"1rem", "margin-left":"10px"}, id="cost-reduction-unit")),
-                                                            dbc.Col(dbc.Button("Cost PMPM", className="mb-3", style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"8rem","margin-right":"1rem"}, id="switch-cost-reduction-pmpm"), width="auto"),
+                                                            # dbc.Col(dbc.Button("Cost PMPM", className="mb-3", style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"6rem","margin-right":"1rem"}, id="switch-cost-reduction-pmpm"), width="auto"),
+                                                            # dbc.Col(dbc.Button("Cost %", className="mb-3", style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"8rem"}, id="switch-cost-reduction-pct"), width="auto")
+                                                        ],
+                                                        no_gutters=True,
+                                                        style={"padding-bottom":"1rem"}
+                                                    ),
+                                                    dbc.Row(
+                                                        [
+                                                            dbc.Col(dbc.Button("Cost PMPM", className="mb-3", style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"6rem","margin-right":"1rem"}, id="switch-cost-reduction-pmpm"), width="auto"),
                                                             dbc.Col(dbc.Button("Cost %", className="mb-3", style={"background-color":"#38160f", "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"0.7rem", "width":"8rem"}, id="switch-cost-reduction-pct"), width="auto")
                                                         ],
                                                         no_gutters=True,
-                                                        style={"padding-bottom":"2rem"}
+                                                        style={"padding-bottom":"0rem"}
                                                     ),
                                                     html.Div(
                                                         [
@@ -260,7 +268,7 @@ def tab_aco(app):
                                                             html.H6('\u2020 Cost reduction opportunities could overlap between categories')
                                                         ]
                                                     ),
-                                                    width=5
+                                                    width=4
                                                 ),
                                                 dbc.Col(html.Div(),width=1),
                                                 dbc.Col(
@@ -315,7 +323,7 @@ def tab_aco(app):
                                                             html.H6('* Patient mix adjusted')
                                                         ]
                                                     ),
-                                                    width=5
+                                                    width=4
                                                 ),
                                                 dbc.Col(html.Div(),width=1),
                                                 dbc.Col(
@@ -370,7 +378,7 @@ def tab_aco(app):
                                                             html.H6('* Patient mix adjusted')
                                                         ]
                                                     ),
-                                                    width=5
+                                                    width=4
                                                 ),
                                                 dbc.Col(html.Div(),width=1),
                                                 dbc.Col(
@@ -480,7 +488,7 @@ def tab_aco(app):
                                                             html.H6('* Service mix adjusted')
                                                         ]
                                                     ),
-                                                    width=5
+                                                    width=4
                                                 ),
                                                 dbc.Col(html.Div(),width=1),
                                                 dbc.Col(
@@ -535,7 +543,7 @@ def tab_aco(app):
                                                             html.H6('* Patient mix adjusted')
                                                         ]
                                                     ),
-                                                    width=5
+                                                    width=4
                                                 ),
                                                 dbc.Col(html.Div(),width=1),
                                                 dbc.Col(
