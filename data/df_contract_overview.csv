@@ -1,0 +1,3 @@
+﻿Payor,LOB,Contract Period,VBC Contract Type,% of Total Revenue,Status,url
+Aetna,Medicare,1/1/2022-12/31/2022,Shared Savings and Downside Risk,5%,Ready for Design,/vbc-demo/contract-optimizer/aco
+Aetna,Medicare,1/1/2022-12/31/2022,Bundle Payment,5%,Ready for Design,/vbc-demo/contract-optimizer/bundle
