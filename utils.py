@@ -9,8 +9,8 @@ def Header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, Home
 def Header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, Homepage_active):
     return html.Div([get_header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, Homepage_active)])
 
-def Header_contract(app, oa, acp, bec, bhp):
-    return html.Div([get_header_contract(app, oa, acp, bec, bhp)])
+def Header_contract(app, cd, co, bhp):
+    return html.Div([get_header_contract(app, cd, co, bhp)])
 
 
 def get_header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, Homepage_active):
@@ -159,34 +159,51 @@ def get_header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, H
         )
     return header
 
-def get_header_contract(app, oa, acp, bec, bhp):
+def get_header_contract(app, cd, co, bhp):
 
     menu = dbc.Nav([
             
+
             dbc.NavItem(dbc.NavLink(
-                        "Opportunity Analysis",
-                        href="/vbc-demo/contract-optimizer-opportunities/",
+                        "Contract Design",
+                        # href="/vbc-demo/contract-optimizer-opportunities/",
                         className="nav-link",
-                        active = oa,
+                        active = cd,
                         ),
                 className="tab first",
                 ),
             dbc.NavItem(dbc.NavLink(
-                        "Accountable Care Programs Contract Design",
-                        href="/vbc-demo/contract-optimizer/",
+                        "Contract Overview",
+                        href="/vbc-demo/contract-overview/",
                         className="nav-link",
-                        active = acp,
+                        active = co,
                         ),
                 className="tab",
                 ),
-            dbc.NavItem(dbc.NavLink(
-                        "Bundles & Episodes of Care Contract Design",
-                        href="/vbc-demo/contract-optimizer-bundle/",
-                        className="nav-link",
-                        active = bec,
-                        ),
-                className="tab",
-                ),
+            # dbc.NavItem(dbc.NavLink(
+            #             "Opportunity Analysis",
+            #             href="/vbc-demo/contract-optimizer-opportunities/",
+            #             className="nav-link",
+            #             active = oa,
+            #             ),
+            #     className="tab first",
+            #     ),
+            # dbc.NavItem(dbc.NavLink(
+            #             "Accountable Care Programs Contract Design",
+            #             href="/vbc-demo/contract-optimizer/",
+            #             className="nav-link",
+            #             active = acp,
+            #             ),
+            #     className="tab",
+            #     ),
+            # dbc.NavItem(dbc.NavLink(
+            #             "Bundles & Episodes of Care Contract Design",
+            #             href="/vbc-demo/contract-optimizer-bundle/",
+            #             className="nav-link",
+            #             active = bec,
+            #             ),
+            #     className="tab",
+            #     ),
             # dbc.NavItem(dbc.NavLink(
             #             "Performance Based Payment",
             #             #href="/vbc-demo/contract-optimizer/",

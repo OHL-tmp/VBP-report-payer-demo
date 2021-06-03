@@ -28,7 +28,7 @@ def modal_simulation_input_bundle():
 			dbc.Modal([
 				dbc.ModalHeader(html.H1("Data Intake", style={"font-family":"NotoSans-Black","font-size":"1.5rem"})),
 				dbc.ModalBody([
-					input_session_bundle(),
+					input_session_bundle(app),
 					]),
 				dbc.ModalFooter(
 					dbc.Button("SAVE", id = 'close-edit-assumption')
@@ -36,7 +36,7 @@ def modal_simulation_input_bundle():
 				], id = 'modal-edit-assumption', size="xl", is_open = False, backdrop = 'static'),
 		])
 
-def input_session_bundle():
+def input_session_bundle(app):
 	return dbc.ListGroup([
 		dbc.Row(
 			[
@@ -458,7 +458,7 @@ def input_session_bundle():
 									persistence = True, 
 									persistence_type = 'session', 
 									disabled=True,
-									id="input-intake-s3-1-bundle",
+									id="input-intake-s5-1-bundle",
 									style={"border-radius":"5rem","padding-left":"1rem","padding-right":"1rem","color":"#000","font-family":"NotoSans-Regular"}
 								)
 							],

@@ -22,14 +22,14 @@ from figure import *
 from simulation_cal import *
 from assets.color import *
 from test_contract_opportunities import *
-from temp_data_intake import *
+from modal_simulation_input_aco import *
 
 
 from app import app
 
-app = dash.Dash(__name__, url_base_pathname='/vbc-demo/')
+# app = dash.Dash(__name__, url_base_pathname='/vbc-demo/')
 
-server = app.server
+# server = app.server
 
 global default_input, custom_input
 
@@ -54,7 +54,7 @@ def create_layout(app):
 #                        n_intervals=0
 #                    ),
 
-                    html.Div([Header_contract(app, False, True, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
+                    html.Div([Header_contract(app, True, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
                     
                     html.A(id="top"),
                     html.Div(
@@ -76,7 +76,7 @@ def create_layout(app):
 										dbc.Button(
 											"Opportunity Analysis", 
 											className="mr-1", 
-											style={"color":blue2, "background-color":blue4, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem"},
+											style={"background-color":blue1, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem", "box-shadow":".5rem .5rem 1.5rem "+blue2},
 											id = "navigation-analysis-aco"
 										),
 										style={"padding":"1rem"}, 
@@ -87,7 +87,7 @@ def create_layout(app):
 										dbc.Button(
 											"Simulation Setup", 
 											className="mr-1", 
-											style={"background-color":blue1, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem", "box-shadow":".5rem .5rem 1.5rem "+blue2},
+											style={"color":blue2, "background-color":blue4, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem"},
 											id = "navigation-simulation-setup-aco"
 										),
 										style={"padding":"1rem"}, 
@@ -177,7 +177,7 @@ def tab_setup_aco(app):
 						[
 							card_data_intake_aco(app),
 						],
-						hidden=False,
+						hidden=True,
 						id="card-data-intake-aco"
 					),
 
@@ -212,14 +212,14 @@ def tab_setup_aco(app):
 							# 	style={"text-align":"center", "padding-bottom":"2rem"}
 							# ),
 						],
-						hidden=False,
+						hidden=True,
 						id="card-simulation-setup-aco",
 						style={}
 					),
 					
 					html.Div(
 						[
-							tab_result(app)
+							tab_result_aco(app)
 						],
 						hidden=True,
 						id="card-result-aco"
@@ -232,7 +232,7 @@ def card_data_intake_aco(app):
 	return dbc.Card(
 				dbc.CardBody(
 					[
-						input_session(app),
+						input_session_aco(app),
 					]
 				),
 				className="mb-3",
@@ -313,7 +313,7 @@ def card_performance_measure_setup(app):
 			                                    outline=True,
 			                                    style={"border-radius":"10rem"},
 			                                    id = 'button-reset-simulation',
-			                                    href='#top'
+			                                    # href='#top'
 			                                ),
 			                                style={"margin-right":"2rem"},
 			                                width=1
@@ -324,7 +324,7 @@ def card_performance_measure_setup(app):
 			                                    color="dark",
 			                                    outline=True,
 			                                    style={"border-radius":"10rem"},
-			                                    id = 'button-submit-simulation',
+			                                    id = 'button-submit-simulation-aco',
 			                                    href='#top'
 			                                ),
 			                                width=2
@@ -1021,18 +1021,18 @@ def card_quality_adjustment(app):
 
 
 
-def tab_result(app):
+def tab_result_aco(app):
     return html.Div(
                 [
                     dbc.Row(
                         [
                             dbc.Col(html.H1("VBC Contract Simulation Result", style={"padding-left":"0rem","font-size":"1.8rem"})),
                             dbc.Col([
-                                dbc.Button("View Scenario Assumptions",
-                                    className="mb-3",
-                                    style={"background-color":"#38160f", "border":"none", "border-radius":"0.25rem", "font-family":"NotoSans-Regular", "font-size":"1rem"},
-                                    id = 'button-open-assump-modal'
-                                ),
+                                # dbc.Button("View Scenario Assumptions",
+                                #     className="mb-3",
+                                #     style={"background-color":"#38160f", "border":"none", "border-radius":"0.25rem", "font-family":"NotoSans-Regular", "font-size":"1rem"},
+                                #     id = 'button-open-assump-modal'
+                                # ),
                                 dbc.Modal([
                                     dbc.ModalHeader(html.H1("Key Simulation Assumptions", style={"font-family":"NotoSans-Black","font-size":"1.5rem"})),
                                     dbc.ModalBody([sim_assump_input_session(),]),
@@ -1322,8 +1322,8 @@ def sim_assump_input_session():
     )
 
 
-# layout = create_layout(app)
-app.layout = create_layout(app)
+layout = create_layout(app)
+# app.layout = create_layout(app)
 
 '''@app.callback(
     Output('load-file', 'children'),
@@ -1350,7 +1350,7 @@ def live_load_file(n):
 	Input('navigation-analysis-aco','n_clicks'),
 	Input('navigation-simulation-setup-aco','n_clicks'),
 	Input('navigation-result-aco','n_clicks'),
-	Input('button-submit-simulation', 'n_clicks')
+	Input('button-submit-simulation-aco', 'n_clicks')
 	]
 	)
 def open_modal(n1,n2,n3,n4,submit):
@@ -1373,10 +1373,131 @@ def open_modal(n1,n2,n3,n4,submit):
 		return style_close, True, style_close, True, style_open, False, style_close, True
 	elif button_id == "navigation-result-aco":
 		return style_close, True, style_close, True, style_close, True, style_open, False
-	elif button_id == "button-simulation-submit-aco":
+	elif button_id == "button-submit-simulation-aco":
+		print(button_id)
 		return style_close, True, style_close, True, style_close, True, style_open, False
 	else:
-		return style_close, True, style_close, True, style_open, False, style_close, True
+		return style_close, True, style_open, False, style_close, True, style_close, True
+
+
+## data intake
+@app.callback(
+	[
+	Output('update-edit-assumption-aco', 'children'),
+	Output('input-intake-s1-1-aco', 'disabled'),
+	Output('input-intake-s1-2-aco', 'disabled'),
+	Output('input-intake-s1-3-aco', 'disabled'),
+	Output('input-intake-s1-4-aco', 'disabled'),
+	Output('input-intake-s1-5-aco', 'disabled'),
+	Output('input-intake-s2-2-aco', 'disabled'),
+	Output('input-intake-s2-3-aco', 'disabled'),
+	Output('input-intake-s5-1-aco', 'disabled'),
+	],
+	[Input('update-edit-assumption-aco', 'n_clicks')],
+	[
+	State('input-intake-s1-1-aco', 'disabled')
+	]
+	)
+def toggle_collapse(u, disabled):
+	text = "update data"
+	if u:
+		if disabled:
+			text = "save"
+		return text, not disabled, not disabled, not disabled, not disabled, not disabled, not disabled, not disabled, not disabled
+	return text, disabled, disabled, disabled, disabled, disabled, disabled, disabled, disabled
+
+
+# aco
+@app.callback(
+    [
+        Output("cost-reduction-pmpm", "hidden"),
+        Output("cost-reduction-pct", "hidden"),
+        Output("cost-reduction-unit", "children"),
+    ],
+    [
+        Input("switch-cost-reduction-pmpm", "n_clicks"), 
+        Input("switch-cost-reduction-pct", "n_clicks")
+    ],
+    [
+        State("cost-reduction-pmpm", "hidden"),
+        State("cost-reduction-pct", "hidden"),
+    ],
+)
+def toggle_figure_cost_reduction(n1, n2, is_hidden1, is_hidden2):
+    ctx = dash.callback_context
+
+    if not ctx.triggered:
+        button_id = 'No clicks yet'
+    else:
+        button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+    
+    if button_id == "switch-cost-reduction-pct":
+        return True, False, "(%)"
+    else:
+        return False, True, "(PMPM)"
+
+
+
+@app.callback(
+    [Output('oppo-filter-acolv2','options'),
+    Output('oppo-filter-acolv2','value'),],
+    [Input('oppo-filter-acolv1','value')]
+    )
+def update_filter(oppo_lv1):
+
+    subcate_list = aco_oppo_drill_mapping[aco_oppo_drill_mapping['oppo']==oppo_lv1]['category'].tolist()
+    option_lv2 = [ {'label': c, 'value': c} for c in subcate_list]
+    value_lv2 = subcate_list[0]
+
+    return option_lv2, value_lv2
+
+@app.callback(
+    [Output('oppo-text-drilltable_desc','children'),
+    Output('oppo-table-acodrill','data'),
+    Output('oppo-table-acodrill','columns'),],
+    [Input('oppo-filter-acolv1','value'),
+    Input('oppo-filter-acolv2','value'),]
+    )
+def update_table(oppo_lv1, oppo_lv2):
+    tabel_desc = oppo_lv2+' Comparison Details '+ ('' if oppo_lv1=='pat_manage' else '(units per 1,000 member)' if oppo_lv1=='overuse_reduction' else '')
+
+    df_table = df_aco_oppo_drill[(df_aco_oppo_drill['oppo']==oppo_lv1) & (df_aco_oppo_drill['category']==oppo_lv2)]
+    fstcol_name = aco_oppo_drill_mapping[(aco_oppo_drill_mapping['oppo']==oppo_lv1) & (aco_oppo_drill_mapping['category']==oppo_lv2)]['drill_dim'].values[0]
+
+    format_money = FormatTemplate.money(1)
+    format_pct = FormatTemplate.percentage(1)
+    format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
+
+    if oppo_lv1 == 'referral_steerage':
+        col = [['',fstcol_name], ['Preferred Provider','% of Total Units'], ['Preferred Provider','Avg Cost/Unit'], 
+        ['Non-Preferred Provider','% of Total Units'], ['Non-Preferred Provider','Avg Cost/Unit'],['','Cost Reduction if Steering All Visits to Preferred Provider(PMPM)']]
+        table_col = [{'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} if k in[2,4,5] \
+        else {'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_pct}for k in range(6)]
+    # elif oppo_lv1 in ['pat_manage']:
+    #     table_col = [{'name':fstcol_name, 'id':df_table.columns[k]} if k==0 \
+    #     else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
+    elif oppo_lv1 in ['overuse_reduction','pat_manage']:
+        table_col = [{'name':fstcol_name, 'id':df_table.columns[k]} if k==0 \
+        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_num} if k in [1,2,4] \
+        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
+    else:
+        table_col = [{'name':fstcol_name, 'id':df_table.columns[k]} if k==0 \
+        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_pct} if k in [1,2,4] \
+        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
+
+    return  tabel_desc, df_table.to_dict('records'), table_col
+
+@app.callback(
+    Output("aco-drilldown-modal", "is_open"),
+    [Input("open-aco-drilldown-modal", "n_clicks"), Input("close-aco-drilldown-modal", "n_clicks")],
+    [State("aco-drilldown-modal", "is_open")],
+)
+def toggle_modal_aco_drilldown(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
 
 
 ### Carve Out ###
@@ -1693,12 +1814,15 @@ def store_data(usr_tgt_int, usr_tgt_trend, usr_msr, usr_planshare, usr_planshare
     [
     # Output('tab_container', 'active_tab'),
     Output('temp-result', 'children')],
-    [Input('button-submit-simulation', 'n_clicks')],
+    [Input('button-submit-simulation-aco', 'n_clicks')],
     [State('temp-data', 'children'),State('temp-carveout', 'children')]
     )
 def cal_simulation(submit, data, code):
     # carve_code = json.loads(code)['code']
-    carve_code = eval(code)['code']
+    try:
+    	carve_code = eval(code)['code']
+    except:
+    	carve_code = "C111100000"
     if submit:
         datasets = json.loads(data)
         selected_rows = datasets['quality adjustment']['selected measures']
@@ -1727,8 +1851,8 @@ def cal_simulation(submit, data, code):
 
         df=simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_type,user_tar_value,default_input,target_user_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,min_user_losspct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided,lossmethod)
 
-        return df.to_json(orient = 'split')
-    return ""
+        return [df.to_json(orient = 'split')]
+    return [""]
 
 @app.callback(
     [Output('figure-cost', 'figure'),

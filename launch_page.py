@@ -11,20 +11,23 @@ import pandas as pd
 import numpy as np
 
 from app import app
-import test_contract_opportunities
+# import test_contract_opportunities
 import test_contract_manager
 import test_contract_manager_drilldown
 import test_contract_manager_bundle
 import test_contract_manager_drilldown_bundle
-import test_contract_optimizer
-import test_contract_optimizer_bundle
-import test_contract_generator
-import test_contract_generator_recom
-import test_contract_generator_bundle
+# import test_contract_optimizer
+# import test_contract_optimizer_bundle
+# import test_contract_generator
+# import test_contract_generator_recom
+# import test_contract_generator_bundle
 import test_contract_manager_bundle
 import test_contract_manager_drilldown_bundle
 import test_contract_report_generator
 import test_contract_report_generator_bundle
+import contract_overview
+import aco_contract
+import bundle_contract
 
 
 
@@ -41,7 +44,7 @@ def launch_layout():
                     ),
                     html.Div(
                         [
-                            html.P("© 2021 The Sinolation Group. ")
+                            html.P("© 2021 One Health Link ")
                         ],
                         style={"text-align":"center", "font-size":"0.6rem"}
                     ),
@@ -53,7 +56,7 @@ def launch_layout():
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(dbc.Button("Contract Designer", color="light", className="mr-1", href = "/vbc-demo/contract-optimizer-opportunities/", style={"font-family":"NotoSans-Regular", "font-size":"1rem", "padding":"1rem","border-radius":"1rem","border":"1px solid #ececf6","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)"}), style={"border-radius":"1rem","width":"5rem"}),
+                                                dbc.Col(dbc.Button("Contract Designer", color="light", className="mr-1", href = "/vbc-demo/contract-overview/", style={"font-family":"NotoSans-Regular", "font-size":"1rem", "padding":"1rem","border-radius":"1rem","border":"1px solid #ececf6","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)"}), style={"border-radius":"1rem","width":"5rem"}),
                                                 dbc.Col(dbc.Button("Contract Administrator", color="light", className="mr-1", href = "/vbc-demo/contract-manager/", style={"font-family":"NotoSans-Regular", "font-size":"1rem", "padding":"1rem", "padding":"1rem", "border-radius":"1rem","border":"1px solid #ececf6","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)"}), style={"border-radius":"1rem","width":"5rem"}),
                                                 # dbc.Col(dbc.Button("Tele Case Manager", color="light", className="mr-1", href = "/vbc-demo/tele-case-manager/", style={"font-family":"NotoSans-Regular", "font-size":"1rem", "padding":"1rem", "border-radius":"1rem","border":"1px solid #ececf6","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)"}), style={"border-radius":"1rem","width":"5rem"}),
                                             ],
@@ -90,18 +93,18 @@ def display_page(pathname):
         return test_contract_manager_bundle.layout
     elif pathname == "/vbc-demo/contract-manager-drilldown-bundle/":
         return test_contract_manager_drilldown_bundle.layout
-    elif pathname == "/vbc-demo/contract-optimizer-opportunities/":
-        return test_contract_opportunities.layout
-    elif pathname == "/vbc-demo/contract-optimizer/":
-        return test_contract_optimizer.layout
-    elif pathname == "/vbc-demo/contract-optimizer-bundle/":
-        return test_contract_optimizer_bundle.layout
-    elif pathname == "/vbc-demo/contract-generator/":
-        return test_contract_generator.layout
-    elif pathname == "/vbc-demo/contract-generator-recommend/":
-        return test_contract_generator_recom.layout
-    elif pathname == "/vbc-demo/contract-generator-bundle/":
-        return test_contract_generator_bundle.layout
+    # elif pathname == "/vbc-demo/contract-optimizer-opportunities/":
+    #     return test_contract_opportunities.layout
+    # elif pathname == "/vbc-demo/contract-optimizer/":
+    #     return test_contract_optimizer.layout
+    # elif pathname == "/vbc-demo/contract-optimizer-bundle/":
+    #     return test_contract_optimizer_bundle.layout
+    # elif pathname == "/vbc-demo/contract-generator/":
+    #     return test_contract_generator.layout
+    # elif pathname == "/vbc-demo/contract-generator-recommend/":
+    #     return test_contract_generator_recom.layout
+    # elif pathname == "/vbc-demo/contract-generator-bundle/":
+    #     return test_contract_generator_bundle.layout
     elif pathname == "/vbc-demo/contract-manager-bundle/":
         return test_contract_manager_bundle.layout
     elif pathname == "/vbc-demo/contract-manager-drilldown-bundle/":
@@ -110,7 +113,12 @@ def display_page(pathname):
         return test_contract_report_generator.layout
     elif pathname == "/vbc-demo/contract-manager-bundle/report-generator/":
         return test_contract_report_generator_bundle.layout
-
+    elif pathname == "/vbc-demo/contract-overview/":
+        return contract_overview.layout
+    elif pathname == "/vbc-demo/contract-optimizer/aco":
+            return aco_contract.layout
+    elif pathname == "/vbc-demo/contract-optimizer/bundle":
+            return bundle_contract.layout
         
     else:
         return launch_layout()
@@ -120,6 +128,6 @@ def display_page(pathname):
 
 if __name__ == "__main__":
 
-    app.run_server(host='0.0.0.0',port=8099)
+    app.run_server(host='0.0.0.0',port=8099, debug=True)
 
                         

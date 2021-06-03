@@ -55,38 +55,38 @@ df_bundle_dme = pd.read_csv('data/df_bundle_dme.csv')
 button_to_rm=['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'hoverClosestCartesian','hoverCompareCartesian','hoverClosestGl2d', 'hoverClosestPie', 'toggleHover','toggleSpikelines']
 
 
-def create_layout(app):
-    global default_input, custom_input
-#    load_data()
-    return html.Div(
-                [ 
+# def create_layout(app):
+#     global default_input, custom_input
+# #    load_data()
+#     return html.Div(
+#                 [ 
 
-                    html.Div([Header_contract(app, True, False, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
+#                     html.Div([Header_contract(app, True, False, False, False)], style={"height":"6rem"}, className = "sticky-top navbar-expand-lg"),
                     
-                    html.A(id="top"),
+#                     html.A(id="top"),
 
-                    html.Div(
-                        [
-                            dbc.Tabs(
-                                [
-                                    dbc.Tab(tab_aco(app), label="ACO Opportunities", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
-                                    dbc.Tab(tab_bundle(app), label="Bundled Payment Opportunities", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
+#                     html.Div(
+#                         [
+#                             dbc.Tabs(
+#                                 [
+#                                     dbc.Tab(tab_aco(app), label="ACO Opportunities", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
+#                                     dbc.Tab(tab_bundle(app), label="Bundled Payment Opportunities", style={"background-color":"#fff"}, tab_style={"font-family":"NotoSans-Condensed"}),
                                     
-                                ], id = 'tab_container'
-                            )
-                        ],
-                        className="mb-3",
-                        style={"padding-left":"3rem", "padding-right":"3rem"},
-                    ),
+#                                 ], id = 'tab_container'
+#                             )
+#                         ],
+#                         className="mb-3",
+#                         style={"padding-left":"3rem", "padding-right":"3rem"},
+#                     ),
 
-                    # hidden div inside the app to store the temp data
-                    html.Div(id = 'temp-data', style = {'display':'none'}),
-                    html.Div(id = 'temp-result', style = {'display':'none'}),
-                    html.Div(id = 'temp-carveout', style = {'display':'none'}),
+#                     # hidden div inside the app to store the temp data
+#                     html.Div(id = 'temp-data', style = {'display':'none'}),
+#                     html.Div(id = 'temp-result', style = {'display':'none'}),
+#                     html.Div(id = 'temp-carveout', style = {'display':'none'}),
                     
-                ],
-                style={"background-color":"#f5f5f5"},
-            )
+#                 ],
+#                 style={"background-color":"#f5f5f5"},
+#             )
 
 def tab_aco(app):
     return html.Div(
@@ -853,167 +853,11 @@ def bundle_full_details(app):
             ]
         )
 
-layout = create_layout(app)
+# layout = create_layout(app)
 
 
 
 
-# aco
-@app.callback(
-    [
-        Output("cost-reduction-pmpm", "hidden"),
-        Output("cost-reduction-pct", "hidden"),
-        Output("cost-reduction-unit", "children"),
-    ],
-    [
-        Input("switch-cost-reduction-pmpm", "n_clicks"), 
-        Input("switch-cost-reduction-pct", "n_clicks")
-    ],
-    [
-        State("cost-reduction-pmpm", "hidden"),
-        State("cost-reduction-pct", "hidden"),
-    ],
-)
-def toggle_figure_cost_reduction(n1, n2, is_hidden1, is_hidden2):
-    ctx = dash.callback_context
-
-    if not ctx.triggered:
-        button_id = 'No clicks yet'
-    else:
-        button_id = ctx.triggered[0]['prop_id'].split('.')[0]
-    
-    if button_id == "switch-cost-reduction-pct":
-        return True, False, "(%)"
-    else:
-        return False, True, "(PMPM)"
-
-
-
-@app.callback(
-    [Output('oppo-filter-acolv2','options'),
-    Output('oppo-filter-acolv2','value'),],
-    [Input('oppo-filter-acolv1','value')]
-    )
-def update_filter(oppo_lv1):
-
-    subcate_list = aco_oppo_drill_mapping[aco_oppo_drill_mapping['oppo']==oppo_lv1]['category'].tolist()
-    option_lv2 = [ {'label': c, 'value': c} for c in subcate_list]
-    value_lv2 = subcate_list[0]
-
-    return option_lv2, value_lv2
-
-@app.callback(
-    [Output('oppo-text-drilltable_desc','children'),
-    Output('oppo-table-acodrill','data'),
-    Output('oppo-table-acodrill','columns'),],
-    [Input('oppo-filter-acolv1','value'),
-    Input('oppo-filter-acolv2','value'),]
-    )
-def update_table(oppo_lv1, oppo_lv2):
-    tabel_desc = oppo_lv2+' Comparison Details '+ ('' if oppo_lv1=='pat_manage' else '(units per 1,000 member)' if oppo_lv1=='overuse_reduction' else '')
-
-    df_table = df_aco_oppo_drill[(df_aco_oppo_drill['oppo']==oppo_lv1) & (df_aco_oppo_drill['category']==oppo_lv2)]
-    fstcol_name = aco_oppo_drill_mapping[(aco_oppo_drill_mapping['oppo']==oppo_lv1) & (aco_oppo_drill_mapping['category']==oppo_lv2)]['drill_dim'].values[0]
-
-    format_money = FormatTemplate.money(1)
-    format_pct = FormatTemplate.percentage(1)
-    format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
-
-    if oppo_lv1 == 'referral_steerage':
-        col = [['',fstcol_name], ['Preferred Provider','% of Total Units'], ['Preferred Provider','Avg Cost/Unit'], 
-        ['Non-Preferred Provider','% of Total Units'], ['Non-Preferred Provider','Avg Cost/Unit'],['','Cost Reduction if Steering All Visits to Preferred Provider(PMPM)']]
-        table_col = [{'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} if k in[2,4,5] \
-        else {'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_pct}for k in range(6)]
-    # elif oppo_lv1 in ['pat_manage']:
-    #     table_col = [{'name':fstcol_name, 'id':df_table.columns[k]} if k==0 \
-    #     else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
-    elif oppo_lv1 in ['overuse_reduction','pat_manage']:
-        table_col = [{'name':fstcol_name, 'id':df_table.columns[k]} if k==0 \
-        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_num} if k in [1,2,4] \
-        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
-    else:
-        table_col = [{'name':fstcol_name, 'id':df_table.columns[k]} if k==0 \
-        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_pct} if k in [1,2,4] \
-        else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
-
-    return  tabel_desc, df_table.to_dict('records'), table_col
-
-@app.callback(
-    Output("aco-drilldown-modal", "is_open"),
-    [Input("open-aco-drilldown-modal", "n_clicks"), Input("close-aco-drilldown-modal", "n_clicks")],
-    [State("aco-drilldown-modal", "is_open")],
-)
-def toggle_modal_aco_drilldown(n1, n2, is_open):
-    if n1 or n2:
-        return not is_open
-    return is_open
-
-# bundle
-
-@app.callback(
-    [Output('oppo-text-bundlename', 'children'),
-    Output('oppo-figure-bundletrend', 'figure'),
-    Output('oppo-figure-bundlebench', 'figure'),
-    Output('oppo-text-bundle-comparebench', 'children'),
-    Output('oppo-text-bundle-comparebest', 'children'),
-    Output('oppo-figure-bundlesvc', 'figure'),
-    Output('oppo-figure-costbyoppo', 'figure'),
-    Output('oppo-table-bydrg', 'children'),
-    Output('oppo-table-byphy', 'children'),
-    Output('oppo-table-byreadm', 'children'),
-    Output('oppo-table-byer', 'children'),
-    Output('oppo-table-pacrate', 'children'),
-    Output('oppo-table-paclos', 'children'),
-    Output('oppo-table-bydme', 'children'),
-    ], 
-    [Input('oppo-figure-bundleoppo', 'clickData')])
-def update_y_timeseries(clickData):
-    bundle = clickData['points'][0]['customdata']
-    df_trend = df_bundle_trend[df_bundle_trend['bundle']==bundle]
-    df_avgcost = df_bundle_oppo[df_bundle_oppo['bundle']==bundle]
-    df_byoppo = df_bundle_costbyoppo[df_bundle_costbyoppo['bundle']==bundle]
-    df_bysvc = df_bundle_costbysvc[df_bundle_costbysvc['bundle']==bundle]
-
-    avgcost_compare_bench = df_avgcost['provider'].values[0] - df_avgcost['benchmark'].values[0]
-    avgcost_compare_benchpct = avgcost_compare_bench/df_avgcost['benchmark'].values[0]
-    avgcost_compare_benchsign = 'higher' if avgcost_compare_bench>=0 else 'lower'
-    avgcost_compare_benchtext = 'Provider group bundle cost is {}% {}(${} {}) than Benchmark'.format(round(abs(avgcost_compare_benchpct*100),1),avgcost_compare_benchsign,abs(int(round(avgcost_compare_bench,0))),avgcost_compare_benchsign)
-
-    avgcost_compare_best = df_avgcost['provider'].values[0] - df_avgcost['best_in_class'].values[0]
-    avgcost_compare_bestpct = avgcost_compare_best/df_avgcost['best_in_class'].values[0]
-    avgcost_compare_bestsign = 'higher' if avgcost_compare_best>=0 else 'lower'
-    avgcost_compare_besttext = 'Provider group bundle cost is {}% {}(${} {}) than Best-in-Class'.format(round(abs(avgcost_compare_bestpct*100),1),avgcost_compare_bestsign,abs(int(round(avgcost_compare_best,0))),avgcost_compare_bestsign)
-
-    df_bydrg = bundle_oppo_dtl_bydim(df_bundle_bydrg[df_bundle_bydrg['bundle']==bundle])
-    df_byphy = bundle_oppo_dtl_bydim(df_bundle_byphy[df_bundle_byphy['bundle']==bundle])
-    df_byreadmitdrg = bundle_oppo_dtl_bench(df_bundle_byreadmitdrg[df_bundle_byreadmitdrg['bundle']==bundle], 'Readmission Rate Comparison')
-    df_byer = bundle_oppo_dtl_bench(df_bundle_byer[df_bundle_byer['bundle']==bundle], 'Readmission Rate Comparison')
-    df_pacrate = bundle_oppo_dtl_bench(df_bundle_pac_rate[df_bundle_pac_rate['bundle']==bundle], 'Discharge Rate Comparison')
-    df_paclos = bundle_oppo_dtl_bench(df_bundle_pac_los[df_bundle_pac_rate['bundle']==bundle], 'LOS Comparison')
-    df_dme = bundle_oppo_dtl_bench(df_bundle_dme[df_bundle_dme['bundle']==bundle], 'Average Cost/Bundle')
-
-    return bundle,bundle_trend(df_trend), bundle_avgcost(df_avgcost), avgcost_compare_benchtext, avgcost_compare_besttext, bundle_svccost(df_bysvc), bundle_vertical(df_byoppo, 'pct'), df_bydrg, df_byphy, df_byreadmitdrg, df_byer, df_pacrate, df_paclos, df_dme
-
-
-@app.callback(
-    Output("vab-modal", "is_open"),
-    [Input("open-vab-modal", "n_clicks"), Input("close-vab-modal", "n_clicks")],
-    [State("vab-modal", "is_open")],
-)
-def toggle_modal_view_all_bundles(n1, n2, is_open):
-    if n1 or n2:
-        return not is_open
-    return is_open
-
-@app.callback(
-    Output("bundle-vmd", "hidden"),
-    [Input("show-bundle-vmd", "n_clicks")],
-    [State("bundle-vmd", "hidden")],
-)
-def toggle_bundle_vmd(n1, hidden):
-    if n1 :
-        return not hidden
-    return hidden
 
 
 if __name__ == "__main__":

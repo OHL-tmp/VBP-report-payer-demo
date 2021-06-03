@@ -16,9 +16,9 @@ from app import app
 from assets.color import *
 from modal_simulation_input_newcontract import *
 
-app = dash.Dash(__name__, url_base_pathname='/vbc-demo/')
+# app = dash.Dash(__name__, url_base_pathname='/vbc-demo/')
 
-server = app.server
+# server = app.server
 
 
 df_contract_overview = pd.read_csv('data/df_contract_overview.csv')
@@ -141,7 +141,7 @@ def contract_overview_list_header():
 						html.H1("Payor", style={"font-size":"0.8rem"}),
 						html.Div([contract_overview_dropdown(df_contract_overview, 'Payor', 'contract-overview-dropdown-payor')], id = 'contract-overview-dropdown-container-payor'),
 					],
-					style={"width":"10rem","padding":"0.5rem"}
+					style={"width":"8rem","padding":"0.5rem"}
 				)
 
 	lob = html.Div(
@@ -149,7 +149,7 @@ def contract_overview_list_header():
 						html.H1("LOB", style={"font-size":"0.8rem"}),
 						html.Div([contract_overview_dropdown(df_contract_overview, 'LOB', 'contract-overview-dropdown-lob')], id = 'contract-overview-dropdown-container-lob'),
 ],
-					style={"width":"10rem","padding":"0.5rem"}
+					style={"width":"8rem","padding":"0.5rem"}
 				)
 
 	period = html.Div(
@@ -157,7 +157,7 @@ def contract_overview_list_header():
 						html.H1("Contract Period", style={"font-size":"0.8rem"}),
 						html.Div(),
 ],
-					style={"width":"20rem","padding":"0.5rem"}
+					style={"width":"16rem","padding":"0.5rem"}
 				)
 
 	contract_type = html.Div(
@@ -165,7 +165,7 @@ def contract_overview_list_header():
 						html.H1("VBC Contract Type", style={"font-size":"0.8rem"}),
 						html.Div([contract_overview_dropdown(df_contract_overview, 'VBC Contract Type', 'contract-overview-dropdown-contract')], id = 'contract-overview-dropdown-container-contract'),
 ],
-					style={"width":"20rem","padding":"0.5rem"}
+					style={"width":"24rem","padding":"0.5rem"}
 				)
 
 	revenue = html.Div(
@@ -173,7 +173,7 @@ def contract_overview_list_header():
 						html.H1("% of Total Revenue", style={"font-size":"0.8rem"}),
 						html.Div(),
 					],
-					style={"width":"12rem","padding":"0.5rem"}
+					style={"width":"6rem","padding":"0.5rem"}
 				)
 
 	status = html.Div(
@@ -181,7 +181,7 @@ def contract_overview_list_header():
 						html.H1("Status", style={"font-size":"0.8rem"}),
 						html.Div([contract_overview_dropdown(df_contract_overview, 'Status', 'contract-overview-dropdown-status')], id = 'contract-overview-dropdown-container-status'),
 					],
-					style={"width":"16rem","padding":"0.5rem"}
+					style={"width":"12rem","padding":"0.5rem"}
 				)
 
 	
@@ -212,32 +212,32 @@ def contract_overview_list_content(df):
 
 		payor = html.Div(
 						html.H4(df.iloc[i,0], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
-						style={"padding":"1rem","width":"10rem"}
+						style={"padding":"1rem","width":"8rem"}
 					)
 
 		lob = html.Div(
 						html.H4(df.iloc[i,1], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
-						style={"padding":"1rem","width":"10rem"}
+						style={"padding":"1rem","width":"8rem"}
 					)
 
 		period = html.Div(
 						html.H4(df.iloc[i,2], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
-						style={"padding":"1rem","width":"20rem"}
+						style={"padding":"1rem","width":"16rem"}
 					)
 
 		contract = html.Div(
 						html.H4(df.iloc[i,3], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
-						style={"padding":"1rem","width":"20rem"}
+						style={"padding":"1rem","width":"24rem"}
 					)
 
 		revenue = html.Div(
 						html.H4(df.iloc[i,4], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
-						style={"padding":"1rem","width":"12rem"}
+						style={"padding":"1rem","width":"6rem"}
 					)
 
 		status = html.Div(
 					dbc.Badge(html.H4(df.iloc[i,5], style={"font-size":"1rem","color":"#fff","padding-left":"0.5rem","padding-right":"0.5rem"}), color="warning", className="mr-1"),
-					style={"padding":"1rem","width":"16rem"}
+					style={"padding":"1rem","width":"12rem"}
 				)
 
 		# drug_coverage = html.Div(
@@ -324,9 +324,9 @@ def contract_overview_list_content(df):
 
 
 
-# layout = create_layout(app)
+layout = create_layout(app)
 
-app.layout = create_layout(app)
+# app.layout = create_layout(app)
 
 
 # @app.callback(

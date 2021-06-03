@@ -28,7 +28,7 @@ def modal_simulation_input_aco():
 			dbc.Modal([
 				dbc.ModalHeader(html.H1("Data Intake", style={"font-family":"NotoSans-Black","font-size":"1.5rem"})),
 				dbc.ModalBody([
-					input_session_aco(),
+					input_session_aco(app),
 					]),
 				dbc.ModalFooter(
 					dbc.Button("SAVE", id = 'close-edit-assumption')
@@ -36,7 +36,7 @@ def modal_simulation_input_aco():
 				], id = 'modal-edit-assumption', size="xl", is_open = False, backdrop = 'static'),
 		])
 
-def input_session_aco():
+def input_session_aco(app):
 	return dbc.ListGroup([
 		dbc.Row(
 			[
@@ -458,7 +458,7 @@ def input_session_aco():
 									persistence = True, 
 									persistence_type = 'session', 
 									disabled=True,
-									id="input-intake-s3-1-aco",
+									id="input-intake-s5-1-aco",
 									style={"border-radius":"5rem","padding-left":"1rem","padding-right":"1rem","color":"#000","font-family":"NotoSans-Regular"}
 								)
 							],

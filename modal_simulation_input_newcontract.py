@@ -27,7 +27,7 @@ def modal_simulation_input_newcontract():
 					[
 						html.Div(
 							[
-								input_session_newcontract()
+								input_session_newcontract(app)
 							]
 						)
 						
@@ -45,12 +45,12 @@ def modal_simulation_input_newcontract():
 		])
 
 
-def input_session_newcontract():
+def input_session_newcontract(app):
 	return dbc.ListGroup([
 		dbc.Row(
 			[
 				dbc.Col(html.H1("Data Input", style={"color":yellow3, "font-size":"1.2rem","padding-top":"0.8rem", "padding-bottom":"1.5rem"})),
-				dbc.Col(dbc.Button("update data", id = 'update-edit-assumption-newcontract',outline=True, color="dark", className="mr-1", style={"border-radius":"5rem","width":"8rem"}), style={"padding-top":"0.8rem", "padding-bottom":"1.5rem", "padding-left":"1.5rem", "padding-right":"1.5rem"}, width=2),
+				# dbc.Col(dbc.Button("update data", id = 'update-edit-assumption-newcontract',outline=True, color="dark", className="mr-1", style={"border-radius":"5rem","width":"8rem"}), style={"padding-top":"0.8rem", "padding-bottom":"1.5rem", "padding-left":"1.5rem", "padding-right":"1.5rem"}, width=2),
 			],justify="end"
 		),
 		
