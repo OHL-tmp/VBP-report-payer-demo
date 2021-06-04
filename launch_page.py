@@ -35,28 +35,17 @@ import bundle_contract
 def launch_layout():
     return html.Div([
 
+                    
                     html.Div(
                         [
-                            
-                            html.Video(src=app.get_asset_url("launch_mesh.mov"), autoPlay=True, loop=True, style={"height":"45rem","border-bottom":"none", "text-align":"center"})
-                        ],
-                        style={"text-align":"center"}
-                    ),
-                    html.Div(
-                        [
-                            html.P("© 2021 One Health Link ")
-                        ],
-                        style={"text-align":"center", "font-size":"0.6rem"}
-                    ),
-                    html.Div(
-                        [
+                            html.Img(src=app.get_asset_url("logo-demo.png"),style={"height":"20rem","margin-top":"5rem"}),
                             html.H1(u"ValueGen Solution",style={"background-color":"transparent","font-size":"5rem"}),
                             html.Div([
                                 html.Div(
                                     [
                                         dbc.Row(
                                             [
-                                                dbc.Col(dbc.Button("Contract Designer", color="light", className="mr-1", href = "/vbc-demo/contract-overview/", style={"font-family":"NotoSans-Regular", "font-size":"1rem", "padding":"1rem","border-radius":"1rem","border":"1px solid #ececf6","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)"}), style={"border-radius":"1rem","width":"5rem"}),
+                                                dbc.Col(dbc.Button("CONTRACT DESIGNER", color="dark", className="mr-1", href = "/vbc-demo/contract-overview/", style={"font-family":"NotoSans-Black", "font-size":"1rem", "padding":"1rem","border-radius":"1rem","border":"none","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)"}), style={"border-radius":"1rem","width":"5rem"}),
                                                 # dbc.Col(dbc.Button("Contract Administrator", color="light", className="mr-1", href = "/vbc-demo/contract-manager/", style={"font-family":"NotoSans-Regular", "font-size":"1rem", "padding":"1rem", "padding":"1rem", "border-radius":"1rem","border":"1px solid #ececf6","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)"}), style={"border-radius":"1rem","width":"5rem"}),
                                                 # dbc.Col(dbc.Button("Tele Case Manager", color="light", className="mr-1", href = "/vbc-demo/tele-case-manager/", style={"font-family":"NotoSans-Regular", "font-size":"1rem", "padding":"1rem", "border-radius":"1rem","border":"1px solid #ececf6","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1)"}), style={"border-radius":"1rem","width":"5rem"}),
                                             ],
@@ -69,11 +58,17 @@ def launch_layout():
                             style={"background-color":"transparent", "border":"none", "width":"1400px", "margin":"auto"}
                             ),
                         ],
-                        style={"margin-top":"-30rem","background-color":"transparent","text-align":"center"}
-                    )
+                        style={"background-color":"transparent","text-align":"center"}
+                    ),
+                    html.Div(
+                        [
+                            html.P("© 2021 Powered by One Health Link ")
+                        ],
+                        style={"magin":"auto","position":"fixed","bottom":"0","width":"100%","text-align":"center", "font-size":"1rem"}
+                    ),
                     
                 ],
-                style={"height":"100vh", "background-image":"linear-gradient(to bottom, rgba(255,0,0,0), rgba(222, 230, 255,1))"})
+                style={"background-color":"#fff","height":"100vh"})#, "background-image":"linear-gradient(to bottom, rgba(105, 132, 214,0), rgba(105, 132, 214,1))"})
 
 
 # Describe the layout/ UI of the app
