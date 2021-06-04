@@ -172,7 +172,7 @@ checklist = dbc.FormGroup(
                 {"label": "High Cost Implantable Devices", "value": 8},
                 {"label": "Out of area Services", "value": 9},
             ],
-            value=[1,2,3,4],
+            value=[1],
             id="carve-outs-checklist-input",
             inline=True,
         ),

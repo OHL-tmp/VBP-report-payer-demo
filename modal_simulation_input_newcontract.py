@@ -18,6 +18,8 @@ from dash.dependencies import Input, Output, State
 from app import app
 from assets.color import *
 
+base_download_url = 'https://provider-valuegen.onehealthlink.com/'
+
 def modal_simulation_input_newcontract():
 	return html.Div([
 		dbc.Button("\u002B Add New Contract", id = 'button-edit-assumption-newcontract',outline=True, color="dark", className="mr-1", style={"border-radius":"5rem"}),
@@ -214,7 +216,7 @@ def input_session_newcontract(app):
 												[
 													html.A('Download Template', 
 														id = 'download-claim-newcontact',
-														href='http://139.224.186.182:8098/downloads/Age Distribution template.xlsx',
+														href=base_download_url + '/downloads/Age Distribution template.xlsx',
 														target = "_blank")
 												], style={"font-size":"0.8rem","padding-left":"0.8rem"}),
 											width=3
