@@ -247,7 +247,7 @@ def tab_aco(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                                dbc.Col(html.H4("High Risk Patient Management", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                                dbc.Col(html.H4("Disease Management", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                             ],
                                             no_gutters=True,
                                             style={"padding-bottom":"2rem"}

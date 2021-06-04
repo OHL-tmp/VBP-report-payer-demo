@@ -3345,7 +3345,7 @@ def bubble_bundle(df):
             #name=domain_set[k],
             #dx=0.1,dy=0.1,
             marker=dict(
-                size=df['volume']*15,
+                size=df['reduct_amount']/120,
                 color=colors['blue'],
                 opacity=0.8,
                 sizemode='area',

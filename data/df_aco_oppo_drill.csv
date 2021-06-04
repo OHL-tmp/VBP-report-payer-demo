@@ -1,48 +1,11 @@
 ﻿Subcategory,Provider Group,Benchmark*,Cost Reduction if Perform as Benchmark(PMPM),Best-in-Class*,Cost Reduction if Perform as Best-in-Class(PMPM),category,oppo
-"Inpatient Visit (per 1,000 patients)",541.2414972,470.6447801,8.013786333,390.6351675,17.09607751,Diabetes,pat_manage
-Readmission Rate (%),25.162,21.88,1.86278115,18.1604,3.97393312,Diabetes,pat_manage
-"Emergency Room (per 1,000 patients)",1180.787225,1026.7715,6.993238009,852.220345,14.91890775,Diabetes,pat_manage
-"Professional Visits (per 1,000 patients)",9199.326122,7999.414019,5.448320894,6639.513636,11.62308457,Diabetes,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",2982.518881,2593.494679,2.649604936,2152.600584,5.652490531,Diabetes,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",22225.3268,27781.6585,-2.522907972,32504.54044,-4.667379747,Diabetes,pat_manage
-"Inpatient Visit (per 1,000 patients)",1035.404454,900.3516989,13.51208439,747.2919101,28.82578004,Chronic Kidney Disease ,pat_manage
-Readmission Rate (%),26.1625,22.75,1.707110234,18.8825,3.641835167,Chronic Kidney Disease ,pat_manage
-"Emergency Room (per 1,000 patients)",1561.92816,1358.1984,8.15329895,1127.304672,17.39370443,Chronic Kidney Disease ,pat_manage
-"Professional Visits (per 1,000 patients)",10838.32886,9424.633788,5.657631224,7822.446044,12.06961328,Chronic Kidney Disease ,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",6267.339499,5449.860434,4.907347265,4523.38416,10.4690075,Chronic Kidney Disease ,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",23394.20378,29242.75472,-2.340599836,34214.02303,-4.330109696,Chronic Kidney Disease ,pat_manage
-"Inpatient Visit (per 1,000 patients)",810.2285962,704.5466054,7.896162046,584.7736825,16.8451457,Depression ,pat_manage
-Readmission Rate (%),25.4035,22.09,1.237861472,18.3347,2.64077114,Depression ,pat_manage
-"Emergency Room (per 1,000 patients)",1681.76276,1462.4024,6.555913399,1213.793992,13.98594858,Depression ,pat_manage
-"Professional Visits (per 1,000 patients)",9216.45123,8014.305418,3.592793083,6651.873497,7.664625244,Depression ,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",5636.226267,4901.066319,3.295703668,4067.885045,7.030834491,Depression ,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",24439.3135,30549.14187,-1.826013857,35742.49599,-3.378125636,Depression ,pat_manage
-"Inpatient Visit (per 1,000 patients)",1010.879115,879.0253174,7.624335969,729.5910134,16.26525007,Heart Failure ,pat_manage
-Readmission Rate (%),33.2,30.2,0.8673625,27.5,1.64798875,Heart Failure ,pat_manage
-"Emergency Room (per 1,000 patients)",1990.85976,1731.1824,6.006250778,1436.881392,12.81333499,Heart Failure ,pat_manage
-"Professional Visits (per 1,000 patients)",10745.88166,9344.244918,3.241939053,7755.723282,6.916136646,Heart Failure ,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",6524.841122,5673.774888,2.952731743,4709.233157,6.299161052,Heart Failure ,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",25421.25478,31776.56848,-1.469962873,37178.58512,-2.719431316,Heart Failure ,pat_manage
-"Inpatient Visit (per 1,000 patients)",1031.313893,896.7946892,6.558203512,744.339592,13.99083416,COPD,pat_manage
-Readmission Rate (%),27.186,23.64,0.864389213,19.6212,1.84403032,COPD,pat_manage
-"Emergency Room (per 1,000 patients)",1997.156815,1736.6581,5.080028858,1441.426223,10.8373949,COPD,pat_manage
-"Professional Visits (per 1,000 patients)",10902.502,9480.436522,2.77319359,7868.762314,5.916146326,COPD,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",5303.633418,4611.855146,2.023572507,3827.839772,4.316954681,COPD,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",23891.92302,29864.90377,-1.164800932,34941.93741,-2.154881724,COPD,pat_manage
-"Inpatient Visit (per 1,000 patients)",1186.303667,1031.568406,2.437531671,856.2017771,5.200067564,Stroke,pat_manage
-Readmission Rate (%),13.5,12.3,0.0945175,11.2,0.181158542,Stroke,pat_manage
-"Emergency Room (per 1,000 patients)",2289.88437,1991.2038,1.882036052,1652.699154,4.015010244,Stroke,pat_manage
-"Professional Visits (per 1,000 patients)",9962.136808,8662.727659,0.818779361,7190.063957,1.746729305,Stroke,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",8808.389542,7659.469167,1.085930815,6357.359409,2.316652406,Stroke,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",21443.86912,26804.83641,-0.337803483,31361.65859,-0.624936444,Stroke,pat_manage
-Septicemia,121.7563707,110.6876097,3.07158117,99.61884877,6.087818536,IP Short Stay,overuse_reduction
-Heart Failure,111.4611035,101.3282759,2.811859657,91.19544835,5.066413797,IP Short Stay,overuse_reduction
-Simple Pneumonia,72.5409315,65.94630137,1.830009863,59.35167123,3.297315068,IP Short Stay,overuse_reduction
-"Esophagitis, Gastroent & Misc Digest Disorders",72.25186555,65.68351413,1.822717517,59.11516272,3.284175707,IP Short Stay,overuse_reduction
-Copd,64.62257161,58.74779237,1.630251238,52.87301313,2.937389618,IP Short Stay,overuse_reduction
-G.I. Hemorrhage,61.20252648,55.63866044,1.543972827,50.07479439,2.781933022,IP Short Stay,overuse_reduction
-Kidney & Urinary Tract Infections,50.2138623,45.64896573,1.266758799,41.08406916,2.282448287,IP Short Stay,overuse_reduction
-Cardiac Arrhythmia ,44.38941695,40.35401541,1.119823928,36.31861387,2.01770077,IP Short Stay,overuse_reduction
+Pneumonia,591.6,580,0.232,522,1.392,Antibiotics,overuse_reduction
+UTI,473.28,464,0.1856,417.6,1.1136,Antibiotics,overuse_reduction
+Sinusitis,378.624,371.2,0.14848,334.08,0.89088,Antibiotics,overuse_reduction
+Implants,56.1,55,0.11,49.5,0.66,DMEPOS,overuse_reduction
+Orthotics,50.49,49.5,0.099,44.55,0.594,DMEPOS,overuse_reduction
+Wheelchairs,45.441,44.55,0.0891,40.095,0.5346,DMEPOS,overuse_reduction
+Power scooters,40.8969,40.095,0.08019,36.0855,0.48114,DMEPOS,overuse_reduction
 Abdominal pain,30.0564,27.324,0.626175,24.5916,1.1385,ER,overuse_reduction
 Respiratory infection,23.96163,21.7833,0.499200625,19.60497,0.9076375,ER,overuse_reduction
 Chest pain,22.95975,20.8725,0.478328125,18.78525,0.8696875,ER,overuse_reduction
@@ -54,10 +17,142 @@ CT,601.7,547,5.014166667,492.3,13.675,High Cost Imaging,overuse_reduction
 MRI,210.1,191,2.62625,171.9,4.775,High Cost Imaging,overuse_reduction
 NM,97.9,89,0.979,80.1,2.225,High Cost Imaging,overuse_reduction
 PET,60.17,54.7,0.752125,49.23,1.3675,High Cost Imaging,overuse_reduction
+Septicemia,121.7563707,110.6876097,3.07158117,99.61884877,6.087818536,IP Short Stay,overuse_reduction
+Heart Failure,111.4611035,101.3282759,2.811859657,91.19544835,5.066413797,IP Short Stay,overuse_reduction
+Simple Pneumonia,72.5409315,65.94630137,1.830009863,59.35167123,3.297315068,IP Short Stay,overuse_reduction
+"Esophagitis, Gastroent & Misc Digest Disorders",72.25186555,65.68351413,1.822717517,59.11516272,3.284175707,IP Short Stay,overuse_reduction
+Copd,64.62257161,58.74779237,1.630251238,52.87301313,2.937389618,IP Short Stay,overuse_reduction
+G.I. Hemorrhage,61.20252648,55.63866044,1.543972827,50.07479439,2.781933022,IP Short Stay,overuse_reduction
+Kidney & Urinary Tract Infections,50.2138623,45.64896573,1.266758799,41.08406916,2.282448287,IP Short Stay,overuse_reduction
+Cardiac Arrhythmia ,44.38941695,40.35401541,1.119823928,36.31861387,2.01770077,IP Short Stay,overuse_reduction
+Bone Scan,122.4,120,0.24,108,1.44,Other Diagnostic Testing,overuse_reduction
+X-Ray,110.16,108,0.216,97.2,1.296,Other Diagnostic Testing,overuse_reduction
+Immunology,110.16,108,0.216,97.2,1.296,Other Diagnostic Testing,overuse_reduction
+Basic Panel,813.045,809,0.20225,728.1,8.4945,Other Diagnostic Testing,overuse_reduction
+Radiologist,314.16,308,0.616,277.2,3.696,Specialist Visit,overuse_reduction
+Chiropractic,110.16,108,0.216,97.2,1.296,Specialist Visit,overuse_reduction
+Physical Therapy,88.128,86.4,0.1728,77.76,1.0368,Specialist Visit,overuse_reduction
 Endoscopy,86.9,79,0.869,71.1,1.975,Surgical Procedures,overuse_reduction
 Hysterectomy,16.78883207,15.26257461,0.839441604,13.73631715,0.381564365,Surgical Procedures,overuse_reduction
 Colonoscopy,57.59970097,52.36336451,0.57599701,47.12702806,1.309084113,Surgical Procedures,overuse_reduction
 Percutaneous Coronary Intervention,4.108280052,3.734800048,0.410828005,3.361320043,0.093370001,Surgical Procedures,overuse_reduction
+Discharged to Rehab,0.330834168,0.2980488,1.96712208,0.268512432,3.739304134,Acute Myocardial Infarction,pac_optimize
+Discharged to SNF,0.23631012,0.212892,1.4050872,0.191794595,2.670931524,Acute Myocardial Infarction,pac_optimize
+Discharged to HH,0.293796512,0.35,0,0.400633773,0,Acute Myocardial Infarction,pac_optimize
+Discharged to SNF,0.283572144,0.2554704,1.68610464,0.230153514,3.205117829,Coronary Artery Bypass Graft,pac_optimize
+Discharged to Rehab,0.189048096,0.1703136,1.12406976,0.153435676,2.136745219,Coronary Artery Bypass Graft,pac_optimize
+Discharged to HH,0.32316376,0.37,0,0.412194811,0,Coronary Artery Bypass Graft,pac_optimize
+Discharged to SNF,0.4107,0.37,2.442,0.333333333,4.642,Hip Replacement,pac_optimize
+Discharged to Rehab,0.2109,0.19,1.254,0.171171171,2.38372973,Hip Replacement,pac_optimize
+Discharged to HH,0.2984,0.36,0,0.415495495,0,Hip Replacement,pac_optimize
+Discharged to SNF,0.21201,0.191,1.2606,0.172072072,2.396275676,Spinal Fusion,pac_optimize
+Discharged to Rehab,0.13653,0.123,0.8118,0.110810811,1.543151351,Spinal Fusion,pac_optimize
+Discharged to HH,0.16046,0.195,0,0.226117117,0,Spinal Fusion,pac_optimize
+Discharged to SNF,0.3108,0.28,1.848,0.252252252,3.512864865,Stroke,pac_optimize
+Discharged to Rehab,0.28194,0.254,1.6764,0.228828829,3.18667027,Stroke,pac_optimize
+Discharged to HH,0.06226,0.121,0,0.173918919,0,Stroke,pac_optimize
+"Inpatient Visit (per 1,000 patients)",778.9276022,708.116002,0.295048334,672.7102019,0.442572501,Alzheimer's Disease/Dementia,pat_manage
+"Emergency Room (per 1,000 patients)",1699.32972,1544.8452,0.2574742,1467.60294,0.3862113,Alzheimer's Disease/Dementia,pat_manage
+"Professional Visits (per 1,000 patients)",13239.20851,12035.6441,0.200594068,11433.8619,0.300891103,Alzheimer's Disease/Dementia,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",4292.291505,3902.083186,0.09755208,3706.979027,0.146328119,Alzheimer's Disease/Dementia,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",45979.26409,41799.33099,0.069665552,39709.36444,0.104498327,Alzheimer's Disease/Dementia,pat_manage
+Readmission Rate (%),24.519,22.29,0.0464375,21.1755,0.06965625,Alzheimer's Disease/Dementia,pat_manage
+"Inpatient Visit (per 1,000 patients)",534.2643063,464.5776577,0.290361036,441.3487748,0.387148048,Arthritis,pat_manage
+"Emergency Room (per 1,000 patients)",1165.565595,1013.5353,0.253383825,962.858535,0.3378451,Arthritis,pat_manage
+"Professional Visits (per 1,000 patients)",9080.736815,7896.292882,0.197407322,7501.478238,0.263209763,Arthritis,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",2944.070973,2560.061715,0.096002314,2432.05863,0.128003086,Arthritis,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",31537.05115,27423.52274,0.068558807,26052.3466,0.091411742,Arthritis,pat_manage
+Readmission Rate (%),21.1945,18.43,0.05759375,17.5085,0.076791667,Arthritis,pat_manage
+"Inpatient Visit (per 1,000 patients)",806.3216145,767.9253471,0.159984447,729.5290797,0.319968895,Asthma,pat_manage
+"Emergency Room (per 1,000 patients)",1759.093245,1675.3269,0.139610575,1591.560555,0.27922115,Asthma,pat_manage
+"Professional Visits (per 1,000 patients)",13704.81667,13052.20635,0.108768386,12399.59603,0.217536772,Asthma,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",4443.246595,4231.663423,0.052895793,4020.080252,0.105791586,Asthma,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",47596.30336,45329.81273,0.037774844,43063.32209,0.075549688,Asthma,pat_manage
+Readmission Rate (%),23.226,22.12,0.023041667,21.014,0.046083333,Asthma,pat_manage
+"Inpatient Visit (per 1,000 patients)",756.2755295,687.5232087,0.286468004,653.1470482,0.429702005,Atrial Fibrillation,pat_manage
+"Emergency Room (per 1,000 patients)",1649.91134,1499.9194,0.249986567,1424.92343,0.37497985,Atrial Fibrillation,pat_manage
+"Professional Visits (per 1,000 patients)",12854.19775,11685.63432,0.194760572,11101.3526,0.292140858,Atrial Fibrillation,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",4167.46694,3788.606309,0.094715158,3599.175994,0.142072737,Atrial Fibrillation,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",44642.13645,40583.7604,0.067639601,38554.57238,0.101459401,Atrial Fibrillation,pat_manage
+Readmission Rate (%),25.41,23.1,0.048125,21.945,0.0721875,Atrial Fibrillation,pat_manage
+"Inpatient Visit (per 1,000 patients)",537.1785942,467.1118211,0.291944888,443.75623,0.389259851,Cancer,pat_manage
+"Emergency Room (per 1,000 patients)",1171.923485,1019.0639,0.254765975,968.110705,0.339687967,Cancer,pat_manage
+"Professional Visits (per 1,000 patients)",9130.270128,7939.365329,0.198484133,7542.397062,0.264645511,Cancer,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",2960.130197,2574.026258,0.096525985,2445.324945,0.128701313,Cancer,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",31709.07845,27573.1117,0.068932779,26194.45611,0.091910372,Cancer,pat_manage
+Readmission Rate (%),23.276,20.24,0.06325,19.228,0.084333333,Cancer,pat_manage
+"Inpatient Visit (per 1,000 patients)",1035.404454,900.3516989,13.51208439,747.2919101,28.82578004,Chronic Kidney Disease ,pat_manage
+"Emergency Room (per 1,000 patients)",1561.92816,1358.1984,8.15329895,1127.304672,17.39370443,Chronic Kidney Disease ,pat_manage
+"Professional Visits (per 1,000 patients)",10838.32886,9424.633788,5.657631224,7822.446044,12.06961328,Chronic Kidney Disease ,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",6267.339499,5449.860434,4.907347265,4523.38416,10.4690075,Chronic Kidney Disease ,pat_manage
+Readmission Rate (%),26.1625,22.75,1.707110234,18.8825,3.641835167,Chronic Kidney Disease ,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",23394.20378,29242.75472,-2.340599836,34214.02303,-4.330109696,Chronic Kidney Disease ,pat_manage
+"Inpatient Visit (per 1,000 patients)",1031.313893,896.7946892,6.558203512,744.339592,13.99083416,COPD,pat_manage
+"Emergency Room (per 1,000 patients)",1997.156815,1736.6581,5.080028858,1441.426223,10.8373949,COPD,pat_manage
+"Professional Visits (per 1,000 patients)",10902.502,9480.436522,2.77319359,7868.762314,5.916146326,COPD,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",5303.633418,4611.855146,2.023572507,3827.839772,4.316954681,COPD,pat_manage
+Readmission Rate (%),27.186,23.64,0.864389213,19.6212,1.84403032,COPD,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",23891.92302,29864.90377,-1.164800932,34941.93741,-2.154881724,COPD,pat_manage
+"Inpatient Visit (per 1,000 patients)",810.2285962,704.5466054,7.896162046,584.7736825,16.8451457,Depression ,pat_manage
+"Emergency Room (per 1,000 patients)",1681.76276,1462.4024,6.555913399,1213.793992,13.98594858,Depression ,pat_manage
+"Professional Visits (per 1,000 patients)",9216.45123,8014.305418,3.592793083,6651.873497,7.664625244,Depression ,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",5636.226267,4901.066319,3.295703668,4067.885045,7.030834491,Depression ,pat_manage
+Readmission Rate (%),25.4035,22.09,1.237861472,18.3347,2.64077114,Depression ,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",24439.3135,30549.14187,-1.826013857,35742.49599,-3.378125636,Depression ,pat_manage
+"Inpatient Visit (per 1,000 patients)",541.2414972,470.6447801,8.013786333,390.6351675,17.09607751,Diabetes,pat_manage
+"Emergency Room (per 1,000 patients)",1180.787225,1026.7715,6.993238009,852.220345,14.91890775,Diabetes,pat_manage
+"Professional Visits (per 1,000 patients)",9199.326122,7999.414019,5.448320894,6639.513636,11.62308457,Diabetes,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",2982.518881,2593.494679,2.649604936,2152.600584,5.652490531,Diabetes,pat_manage
+Readmission Rate (%),25.162,21.88,1.86278115,18.1604,3.97393312,Diabetes,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",22225.3268,27781.6585,-2.522907972,32504.54044,-4.667379747,Diabetes,pat_manage
+"Inpatient Visit (per 1,000 patients)",1194.466902,1137.587526,0.236997401,1080.708149,0.473994802,Drug Abuse/Substance Abuse,pat_manage
+"Emergency Room (per 1,000 patients)",2605.8816,2481.792,0.206816,2357.7024,0.413632,Drug Abuse/Substance Abuse,pat_manage
+"Professional Visits (per 1,000 patients)",20302.01053,19335.24812,0.161127068,18368.48572,0.322254135,Drug Abuse/Substance Abuse,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",6582.12666,6268.692057,0.078358651,5955.257454,0.156717301,Drug Abuse/Substance Abuse,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",70508.10497,67150.57616,0.055958813,63793.04735,0.111917627,Drug Abuse/Substance Abuse,pat_manage
+Readmission Rate (%),29.169,27.78,0.0289375,26.391,0.057875,Drug Abuse/Substance Abuse,pat_manage
+"Inpatient Visit (per 1,000 patients)",1010.879115,879.0253174,7.624335969,729.5910134,16.26525007,Heart Failure ,pat_manage
+"Emergency Room (per 1,000 patients)",1990.85976,1731.1824,6.006250778,1436.881392,12.81333499,Heart Failure ,pat_manage
+"Professional Visits (per 1,000 patients)",10745.88166,9344.244918,3.241939053,7755.723282,6.916136646,Heart Failure ,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",6524.841122,5673.774888,2.952731743,4709.233157,6.299161052,Heart Failure ,pat_manage
+Readmission Rate (%),33.2,30.2,0.8673625,27.5,1.64798875,Heart Failure ,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",25421.25478,31776.56848,-1.469962873,37178.58512,-2.719431316,Heart Failure ,pat_manage
+"Inpatient Visit (per 1,000 patients)",467.2856042,406.335308,0.253959567,386.0185426,0.338612757,Hyperlipidemia,pat_manage
+"Emergency Room (per 1,000 patients)",1019.44303,886.4722,0.22161805,842.14859,0.295490733,Hyperlipidemia,pat_manage
+"Professional Visits (per 1,000 patients)",7942.319071,6906.364409,0.17265911,6561.046189,0.230212147,Hyperlipidemia,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",2574.983893,2239.116428,0.083966866,2127.160607,0.111955821,Hyperlipidemia,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",27583.36993,23985.53907,0.059963848,22786.26212,0.079951797,Hyperlipidemia,pat_manage
+Readmission Rate (%),21.8845,19.03,0.05946875,18.0785,0.079291667,Hyperlipidemia,pat_manage
+"Inpatient Visit (per 1,000 patients)",499.8253579,434.630746,0.271644216,412.8992087,0.362192288,Hypertension,pat_manage
+"Emergency Room (per 1,000 patients)",1090.432645,948.2023,0.237050575,900.792185,0.316067433,Hypertension,pat_manage
+"Professional Visits (per 1,000 patients)",8495.38791,7387.293834,0.184682346,7017.929143,0.246243128,Hypertension,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",2754.294663,2395.038837,0.089813956,2275.286896,0.119751942,Hypertension,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",29504.15682,25655.78854,0.064139471,24372.99912,0.085519295,Hypertension,pat_manage
+Readmission Rate (%),21.7465,18.91,0.05909375,17.9645,0.078791667,Hypertension,pat_manage
+"Inpatient Visit (per 1,000 patients)",593.8404379,565.5623218,0.117825484,537.2842057,0.235650967,Ischemic Heart Disease,pat_manage
+"Inpatient Visit (per 1,000 patients)",593.8404379,565.5623218,0.117825484,537.2842057,0.235650967,Ischemic Heart Disease,pat_manage
+"Emergency Room (per 1,000 patients)",1295.53851,1233.8462,0.102820517,1172.15389,0.205641033,Ischemic Heart Disease,pat_manage
+"Emergency Room (per 1,000 patients)",1295.53851,1233.8462,0.102820517,1172.15389,0.205641033,Ischemic Heart Disease,pat_manage
+"Professional Visits (per 1,000 patients)",10093.3352,9612.700186,0.080105835,9132.065177,0.16021167,Ischemic Heart Disease,pat_manage
+"Professional Visits (per 1,000 patients)",10093.3352,9612.700186,0.080105835,9132.065177,0.16021167,Ischemic Heart Disease,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",3272.366084,3116.539127,0.038956739,2960.712171,0.077913478,Ischemic Heart Disease,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",3272.366084,3116.539127,0.038956739,2960.712171,0.077913478,Ischemic Heart Disease,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",35053.76655,33384.53957,0.02782045,31715.31259,0.055640899,Ischemic Heart Disease,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",35053.76655,33384.53957,0.02782045,31715.31259,0.055640899,Ischemic Heart Disease,pat_manage
+Readmission Rate (%),22.6485,21.57,0.02246875,20.4915,0.0449375,Ischemic Heart Disease,pat_manage
+Readmission Rate (%),22.6485,21.57,0.02246875,20.4915,0.0449375,Ischemic Heart Disease,pat_manage
+"Inpatient Visit (per 1,000 patients)",548.2656552,476.7527437,0.297970465,452.9151065,0.397293953,Osteoporosis,pat_manage
+"Emergency Room (per 1,000 patients)",1196.11132,1040.0968,0.2600242,988.09196,0.346698933,Osteoporosis,pat_manage
+"Professional Visits (per 1,000 patients)",9318.713717,8103.229319,0.202580733,7698.067853,0.270107644,Osteoporosis,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",3021.225603,2627.152698,0.098518226,2495.795063,0.131357635,Osteoporosis,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",32363.53582,28142.20506,0.070355513,26735.09481,0.09380735,Osteoporosis,pat_manage
+Readmission Rate (%),21.206,18.44,0.057625,17.518,0.076833333,Osteoporosis,pat_manage
+"Inpatient Visit (per 1,000 patients)",1186.303667,1031.568406,2.437531671,856.2017771,5.200067564,Stroke,pat_manage
+"Emergency Room (per 1,000 patients)",2289.88437,1991.2038,1.882036052,1652.699154,4.015010244,Stroke,pat_manage
+"Skilled Nursing Facility Days (per 1,000 patients)",8808.389542,7659.469167,1.085930815,6357.359409,2.316652406,Stroke,pat_manage
+"Professional Visits (per 1,000 patients)",9962.136808,8662.727659,0.818779361,7190.063957,1.746729305,Stroke,pat_manage
+Readmission Rate (%),13.5,12.3,0.0945175,11.2,0.181158542,Stroke,pat_manage
+"Adjusted 30-day Scripts (per 1,000 patients)",21443.86912,26804.83641,-0.337803483,31361.65859,-0.624936444,Stroke,pat_manage
 Heart failure,0.065081133,0.059164666,1.183293325,0.05378606,2.25901453,Acute Myocardial Infarction,readmission_reduction
 MI or unstable angina,0.034617624,0.031470567,0.629411343,0.028609607,1.201603473,Acute Myocardial Infarction,readmission_reduction
 Renal disorders,0.018001164,0.016364695,0.327293898,0.014876995,0.624833806,Acute Myocardial Infarction,readmission_reduction
@@ -67,14 +162,16 @@ Chest pain,0.015924107,0.014476461,0.289529218,0.013160419,0.552737598,Acute Myo
 Procedural complication or bleeding,0.014193226,0.012902933,0.258058651,0.011729939,0.492657424,Acute Myocardial Infarction,readmission_reduction
 Stroke,0.009000582,0.008182347,0.163646949,0.007438498,0.312416903,Acute Myocardial Infarction,readmission_reduction
 Gastrointestinal hemorrhage,0.006923525,0.006294113,0.125882269,0.005721921,0.240320695,Acute Myocardial Infarction,readmission_reduction
-Pneumonia or respiratory illness,0.040276923,0.036615385,0.732307692,0.033286713,1.398041958,Stroke,readmission_reduction
-Stroke,0.028430769,0.025846154,0.516923077,0.023496503,0.986853147,Stroke,readmission_reduction
-Acute myocardial infarction,0.016584615,0.015076923,0.301538462,0.013706294,0.575664336,Stroke,readmission_reduction
-Congestive heart failure,0.014215385,0.012923077,0.258461538,0.011748252,0.493426573,Stroke,readmission_reduction
-Other vascular diagnoses,0.011846154,0.010769231,0.215384615,0.00979021,0.411188811,Stroke,readmission_reduction
-Cardiothoracic procedures,0.009476923,0.008615385,0.172307692,0.007832168,0.328951049,Stroke,readmission_reduction
-Transient ischemic attack,0.007107692,0.006461538,0.129230769,0.005874126,0.246713287,Stroke,readmission_reduction
-Extracranial vascular procedures,0.007107692,0.006461538,0.129230769,0.005874126,0.246713287,Stroke,readmission_reduction
+Infections,0.079700508,0.072455007,1.449100138,0.065868188,2.766463901,Coronary Artery Bypass Graft,readmission_reduction
+Heart Failure,0.045543147,0.041402861,0.828057222,0.037638965,1.580836515,Coronary Artery Bypass Graft,readmission_reduction
+Acute myocardial infarction,0.022771574,0.020701431,0.414028611,0.018819482,0.790418257,Coronary Artery Bypass Graft,readmission_reduction
+Arrhythmias,0.02191764,0.019925127,0.398502538,0.018113752,0.760777573,Coronary Artery Bypass Graft,readmission_reduction
+Pulmonary thromboembolism,0.017932614,0.016302377,0.326047531,0.014820342,0.622454378,Coronary Artery Bypass Graft,readmission_reduction
+Respiratory and chest symptoms,0.015940102,0.014491001,0.289820028,0.013173638,0.55329278,Coronary Artery Bypass Graft,readmission_reduction
+Stroke,0.010816497,0.00983318,0.19666359,0.008939254,0.375448672,Coronary Artery Bypass Graft,readmission_reduction
+Pleurisy,0.010816497,0.00983318,0.19666359,0.008939254,0.375448672,Coronary Artery Bypass Graft,readmission_reduction
+Hypertension,0.009677919,0.008798108,0.17596216,0.00799828,0.335927759,Coronary Artery Bypass Graft,readmission_reduction
+Gastrointestinal bleeding,0.00853934,0.007763036,0.155260729,0.007057306,0.296406846,Coronary Artery Bypass Graft,readmission_reduction
 Heart failure,0.167408769,0.15218979,3.043795803,0.138354355,5.810882896,Heart Failure,readmission_reduction
 Renal disorders,0.038264862,0.034786238,0.695724755,0.031623852,1.328201805,Heart Failure,readmission_reduction
 Pneumonia,0.023915538,0.021741399,0.434827972,0.019764908,0.830126128,Heart Failure,readmission_reduction
@@ -94,21 +191,19 @@ Cardio-respiratory failure,0.016503427,0.015003116,0.300062317,0.013639196,0.572
 Arrhythmias,0.011002285,0.010002077,0.200041545,0.009092797,0.381897494,Pneumonia,readmission_reduction
 UTI,0.007334857,0.006668051,0.13336103,0.006061865,0.25459833,Pneumonia,readmission_reduction
 Gastrointestinal hemorrhage,0.007334857,0.006668051,0.13336103,0.006061865,0.25459833,Pneumonia,readmission_reduction
-Infections,0.079700508,0.072455007,1.449100138,0.065868188,2.766463901,Coronary Artery Bypass Graft,readmission_reduction
-Heart Failure,0.045543147,0.041402861,0.828057222,0.037638965,1.580836515,Coronary Artery Bypass Graft,readmission_reduction
-Acute myocardial infarction,0.022771574,0.020701431,0.414028611,0.018819482,0.790418257,Coronary Artery Bypass Graft,readmission_reduction
-Arrhythmias,0.02191764,0.019925127,0.398502538,0.018113752,0.760777573,Coronary Artery Bypass Graft,readmission_reduction
-Pulmonary thromboembolism,0.017932614,0.016302377,0.326047531,0.014820342,0.622454378,Coronary Artery Bypass Graft,readmission_reduction
-Respiratory and chest symptoms,0.015940102,0.014491001,0.289820028,0.013173638,0.55329278,Coronary Artery Bypass Graft,readmission_reduction
-Stroke,0.010816497,0.00983318,0.19666359,0.008939254,0.375448672,Coronary Artery Bypass Graft,readmission_reduction
-Pleurisy,0.010816497,0.00983318,0.19666359,0.008939254,0.375448672,Coronary Artery Bypass Graft,readmission_reduction
-Hypertension,0.009677919,0.008798108,0.17596216,0.00799828,0.335927759,Coronary Artery Bypass Graft,readmission_reduction
-Gastrointestinal bleeding,0.00853934,0.007763036,0.155260729,0.007057306,0.296406846,Coronary Artery Bypass Graft,readmission_reduction
+Pneumonia or respiratory illness,0.040276923,0.036615385,0.732307692,0.033286713,1.398041958,Stroke,readmission_reduction
+Stroke,0.028430769,0.025846154,0.516923077,0.023496503,0.986853147,Stroke,readmission_reduction
+Acute myocardial infarction,0.016584615,0.015076923,0.301538462,0.013706294,0.575664336,Stroke,readmission_reduction
+Congestive heart failure,0.014215385,0.012923077,0.258461538,0.011748252,0.493426573,Stroke,readmission_reduction
+Other vascular diagnoses,0.011846154,0.010769231,0.215384615,0.00979021,0.411188811,Stroke,readmission_reduction
+Cardiothoracic procedures,0.009476923,0.008615385,0.172307692,0.007832168,0.328951049,Stroke,readmission_reduction
+Transient ischemic attack,0.007107692,0.006461538,0.129230769,0.005874126,0.246713287,Stroke,readmission_reduction
+Extracranial vascular procedures,0.007107692,0.006461538,0.129230769,0.005874126,0.246713287,Stroke,readmission_reduction
 Colonoscopy,0.568421053,0.631578947,4.736842105,0.701754386,10,ASC Surgery Use Rate,service_optimize
 Knee Replacement,0.378947368,0.421052632,3.157894737,0.467836257,6.666666667,ASC Surgery Use Rate,service_optimize
 Laminectomy,0.206024096,0.228915663,1.71686747,0.254350736,3.624497992,ASC Surgery Use Rate,service_optimize
-Lumpectomy,0.125806452,0.139784946,1.048387097,0.155316607,2.213261649,ASC Surgery Use Rate,service_optimize
 Bariatric Surgery,0.066666667,0.083333333,1.25,0.092592593,1.944444444,ASC Surgery Use Rate,service_optimize
+Lumpectomy,0.125806452,0.139784946,1.048387097,0.155316607,2.213261649,ASC Surgery Use Rate,service_optimize
 Cholecystectomy,0.0875,0.097222222,0.729166667,0.108024691,1.539351852,ASC Surgery Use Rate,service_optimize
 Bevacizumab,0.36,0.4,0.64,0.444444444,1.351111111,Biosimilar Dispensing Rate,service_optimize
 Trastuzumab,0.351,0.39,0.624,0.433333333,1.317333333,Biosimilar Dispensing Rate,service_optimize
@@ -121,98 +216,3 @@ Skin Tissue Infections,0.424217626,0.471352918,0.754164668,0.523725464,1.5921254
 Headache,0.290862031,0.323180034,0.517088055,0.359088927,1.091630337,Urgent Care Center Use Rate,service_optimize
 Chest Pain,0.23756528,0.263961422,0.422338275,0.293290469,0.891603025,Urgent Care Center Use Rate,service_optimize
 Abdominal Pain,0.154085644,0.171206271,0.273930034,0.190229191,0.578296739,Urgent Care Center Use Rate,service_optimize
-Discharged to SNF,0.4107,0.37,2.442,0.333333333,4.642,Hip Replacement,pac_optimize
-Discharged to HH,0.2984,0.36,0,0.415495495,0,Hip Replacement,pac_optimize
-Discharged to Rehab,0.2109,0.19,1.254,0.171171171,2.38372973,Hip Replacement,pac_optimize
-Discharged to SNF,0.21201,0.191,1.2606,0.172072072,2.396275676,Spinal Fusion,pac_optimize
-Discharged to HH,0.16046,0.195,0,0.226117117,0,Spinal Fusion,pac_optimize
-Discharged to Rehab,0.13653,0.123,0.8118,0.110810811,1.543151351,Spinal Fusion,pac_optimize
-Discharged to SNF,0.23631012,0.212892,1.4050872,0.191794595,2.670931524,Acute Myocardial Infarction,pac_optimize
-Discharged to HH,0.293796512,0.35,0,0.400633773,0,Acute Myocardial Infarction,pac_optimize
-Discharged to Rehab,0.330834168,0.2980488,1.96712208,0.268512432,3.739304134,Acute Myocardial Infarction,pac_optimize
-Discharged to SNF,0.3108,0.28,1.848,0.252252252,3.512864865,Stroke,pac_optimize
-Discharged to HH,0.06226,0.121,0,0.173918919,0,Stroke,pac_optimize
-Discharged to Rehab,0.28194,0.254,1.6764,0.228828829,3.18667027,Stroke,pac_optimize
-Discharged to SNF,0.283572144,0.2554704,1.68610464,0.230153514,3.205117829,Coronary Artery Bypass Graft,pac_optimize
-Discharged to HH,0.32316376,0.37,0,0.412194811,0,Coronary Artery Bypass Graft,pac_optimize
-Discharged to Rehab,0.189048096,0.1703136,1.12406976,0.153435676,2.136745219,Coronary Artery Bypass Graft,pac_optimize
-"Inpatient Visit (per 1,000 patients)",499.8253579,434.630746,0.271644216,412.8992087,0.362192288,Hypertension,pat_manage
-Readmission Rate (%),21.7465,18.91,0.05909375,17.9645,0.078791667,Hypertension,pat_manage
-"Emergency Room (per 1,000 patients)",1090.432645,948.2023,0.237050575,900.792185,0.316067433,Hypertension,pat_manage
-"Professional Visits (per 1,000 patients)",8495.38791,7387.293834,0.184682346,7017.929143,0.246243128,Hypertension,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",2754.294663,2395.038837,0.089813956,2275.286896,0.119751942,Hypertension,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",29504.15682,25655.78854,0.064139471,24372.99912,0.085519295,Hypertension,pat_manage
-"Inpatient Visit (per 1,000 patients)",467.2856042,406.335308,0.253959567,386.0185426,0.338612757,Hyperlipidemia,pat_manage
-Readmission Rate (%),21.8845,19.03,0.05946875,18.0785,0.079291667,Hyperlipidemia,pat_manage
-"Emergency Room (per 1,000 patients)",1019.44303,886.4722,0.22161805,842.14859,0.295490733,Hyperlipidemia,pat_manage
-"Professional Visits (per 1,000 patients)",7942.319071,6906.364409,0.17265911,6561.046189,0.230212147,Hyperlipidemia,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",2574.983893,2239.116428,0.083966866,2127.160607,0.111955821,Hyperlipidemia,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",27583.36993,23985.53907,0.059963848,22786.26212,0.079951797,Hyperlipidemia,pat_manage
-"Inpatient Visit (per 1,000 patients)",534.2643063,464.5776577,0.290361036,441.3487748,0.387148048,Arthritis,pat_manage
-Readmission Rate (%),21.1945,18.43,0.05759375,17.5085,0.076791667,Arthritis,pat_manage
-"Emergency Room (per 1,000 patients)",1165.565595,1013.5353,0.253383825,962.858535,0.3378451,Arthritis,pat_manage
-"Professional Visits (per 1,000 patients)",9080.736815,7896.292882,0.197407322,7501.478238,0.263209763,Arthritis,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",2944.070973,2560.061715,0.096002314,2432.05863,0.128003086,Arthritis,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",31537.05115,27423.52274,0.068558807,26052.3466,0.091411742,Arthritis,pat_manage
-"Inpatient Visit (per 1,000 patients)",593.8404379,565.5623218,0.117825484,537.2842057,0.235650967,Ischemic Heart Disease,pat_manage
-Readmission Rate (%),22.6485,21.57,0.02246875,20.4915,0.0449375,Ischemic Heart Disease,pat_manage
-"Emergency Room (per 1,000 patients)",1295.53851,1233.8462,0.102820517,1172.15389,0.205641033,Ischemic Heart Disease,pat_manage
-"Professional Visits (per 1,000 patients)",10093.3352,9612.700186,0.080105835,9132.065177,0.16021167,Ischemic Heart Disease,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",3272.366084,3116.539127,0.038956739,2960.712171,0.077913478,Ischemic Heart Disease,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",35053.76655,33384.53957,0.02782045,31715.31259,0.055640899,Ischemic Heart Disease,pat_manage
-"Inpatient Visit (per 1,000 patients)",756.2755295,687.5232087,0.286468004,653.1470482,0.429702005,Atrial Fibrillation,pat_manage
-Readmission Rate (%),25.41,23.1,0.048125,21.945,0.0721875,Atrial Fibrillation,pat_manage
-"Emergency Room (per 1,000 patients)",1649.91134,1499.9194,0.249986567,1424.92343,0.37497985,Atrial Fibrillation,pat_manage
-"Professional Visits (per 1,000 patients)",12854.19775,11685.63432,0.194760572,11101.3526,0.292140858,Atrial Fibrillation,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",4167.46694,3788.606309,0.094715158,3599.175994,0.142072737,Atrial Fibrillation,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",44642.13645,40583.7604,0.067639601,38554.57238,0.101459401,Atrial Fibrillation,pat_manage
-"Inpatient Visit (per 1,000 patients)",537.1785942,467.1118211,0.291944888,443.75623,0.389259851,Cancer,pat_manage
-Readmission Rate (%),23.276,20.24,0.06325,19.228,0.084333333,Cancer,pat_manage
-"Emergency Room (per 1,000 patients)",1171.923485,1019.0639,0.254765975,968.110705,0.339687967,Cancer,pat_manage
-"Professional Visits (per 1,000 patients)",9130.270128,7939.365329,0.198484133,7542.397062,0.264645511,Cancer,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",2960.130197,2574.026258,0.096525985,2445.324945,0.128701313,Cancer,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",31709.07845,27573.1117,0.068932779,26194.45611,0.091910372,Cancer,pat_manage
-"Inpatient Visit (per 1,000 patients)",548.2656552,476.7527437,0.297970465,452.9151065,0.397293953,Osteoporosis,pat_manage
-Readmission Rate (%),21.206,18.44,0.057625,17.518,0.076833333,Osteoporosis,pat_manage
-"Emergency Room (per 1,000 patients)",1196.11132,1040.0968,0.2600242,988.09196,0.346698933,Osteoporosis,pat_manage
-"Professional Visits (per 1,000 patients)",9318.713717,8103.229319,0.202580733,7698.067853,0.270107644,Osteoporosis,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",3021.225603,2627.152698,0.098518226,2495.795063,0.131357635,Osteoporosis,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",32363.53582,28142.20506,0.070355513,26735.09481,0.09380735,Osteoporosis,pat_manage
-"Inpatient Visit (per 1,000 patients)",806.3216145,767.9253471,0.159984447,729.5290797,0.319968895,Asthma,pat_manage
-Readmission Rate (%),23.226,22.12,0.023041667,21.014,0.046083333,Asthma,pat_manage
-"Emergency Room (per 1,000 patients)",1759.093245,1675.3269,0.139610575,1591.560555,0.27922115,Asthma,pat_manage
-"Professional Visits (per 1,000 patients)",13704.81667,13052.20635,0.108768386,12399.59603,0.217536772,Asthma,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",4443.246595,4231.663423,0.052895793,4020.080252,0.105791586,Asthma,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",47596.30336,45329.81273,0.037774844,43063.32209,0.075549688,Asthma,pat_manage
-"Inpatient Visit (per 1,000 patients)",1194.466902,1137.587526,0.236997401,1080.708149,0.473994802,Drug Abuse/Substance Abuse,pat_manage
-Readmission Rate (%),29.169,27.78,0.0289375,26.391,0.057875,Drug Abuse/Substance Abuse,pat_manage
-"Emergency Room (per 1,000 patients)",2605.8816,2481.792,0.206816,2357.7024,0.413632,Drug Abuse/Substance Abuse,pat_manage
-"Professional Visits (per 1,000 patients)",20302.01053,19335.24812,0.161127068,18368.48572,0.322254135,Drug Abuse/Substance Abuse,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",6582.12666,6268.692057,0.078358651,5955.257454,0.156717301,Drug Abuse/Substance Abuse,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",70508.10497,67150.57616,0.055958813,63793.04735,0.111917627,Drug Abuse/Substance Abuse,pat_manage
-"Inpatient Visit (per 1,000 patients)",593.8404379,565.5623218,0.117825484,537.2842057,0.235650967,Ischemic Heart Disease,pat_manage
-Readmission Rate (%),22.6485,21.57,0.02246875,20.4915,0.0449375,Ischemic Heart Disease,pat_manage
-"Emergency Room (per 1,000 patients)",1295.53851,1233.8462,0.102820517,1172.15389,0.205641033,Ischemic Heart Disease,pat_manage
-"Professional Visits (per 1,000 patients)",10093.3352,9612.700186,0.080105835,9132.065177,0.16021167,Ischemic Heart Disease,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",3272.366084,3116.539127,0.038956739,2960.712171,0.077913478,Ischemic Heart Disease,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",35053.76655,33384.53957,0.02782045,31715.31259,0.055640899,Ischemic Heart Disease,pat_manage
-"Inpatient Visit (per 1,000 patients)",778.9276022,708.116002,0.295048334,672.7102019,0.442572501,Alzheimer's Disease/Dementia,pat_manage
-Readmission Rate (%),24.519,22.29,0.0464375,21.1755,0.06965625,Alzheimer's Disease/Dementia,pat_manage
-"Emergency Room (per 1,000 patients)",1699.32972,1544.8452,0.2574742,1467.60294,0.3862113,Alzheimer's Disease/Dementia,pat_manage
-"Professional Visits (per 1,000 patients)",13239.20851,12035.6441,0.200594068,11433.8619,0.300891103,Alzheimer's Disease/Dementia,pat_manage
-"Skilled Nursing Facility Days (per 1,000 patients)",4292.291505,3902.083186,0.09755208,3706.979027,0.146328119,Alzheimer's Disease/Dementia,pat_manage
-"Adjusted 30-day Scripts (per 1,000 patients)",45979.26409,41799.33099,0.069665552,39709.36444,0.104498327,Alzheimer's Disease/Dementia,pat_manage
-Implants,56.1,55,0.11,49.5,0.66,DMEPOS,overuse_reduction
-Orthotics,50.49,49.5,0.099,44.55,0.594,DMEPOS,overuse_reduction
-Wheelchairs,45.441,44.55,0.0891,40.095,0.5346,DMEPOS,overuse_reduction
-Power scooters,40.8969,40.095,0.08019,36.0855,0.48114,DMEPOS,overuse_reduction
-Chiropractic,110.16,108,0.216,97.2,1.296,Specialist Visit,overuse_reduction
-Physical Therapy,88.128,86.4,0.1728,77.76,1.0368,Specialist Visit,overuse_reduction
-Radiologist,314.16,308,0.616,277.2,3.696,Specialist Visit,overuse_reduction
-Bone Scan,122.4,120,0.24,108,1.44,Other Diagnostic Testing,overuse_reduction
-X-Ray,110.16,108,0.216,97.2,1.296,Other Diagnostic Testing,overuse_reduction
-Basic Panel,813.045,809,0.20225,728.1,8.4945,Other Diagnostic Testing,overuse_reduction
-Immunology,110.16,108,0.216,97.2,1.296,Other Diagnostic Testing,overuse_reduction
-Pneumonia,591.6,580,0.232,522,1.392,Antibiotics,overuse_reduction
-UTI,473.28,464,0.1856,417.6,1.1136,Antibiotics,overuse_reduction
-Sinusitis,378.624,371.2,0.14848,334.08,0.89088,Antibiotics,overuse_reduction
