@@ -208,7 +208,7 @@ def input_session_bundle(app):
 													[
 														html.A('View Attachment', 
 															id = 'download-claim-bundle',
-															href=base_download_url + 'downloads/Geographic Distribution template.xlsx',
+															href=base_download_url + 'downloads/Member and Claim Data Template.xlsx',
 															target = "_blank")
 													], style={"font-size":"1rem","padding-left":"0.8rem"}
 												),
