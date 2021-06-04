@@ -26,7 +26,7 @@ from figure import *
 from modal_dashboard_domain_selection import *
 
 from app import app
-
+from assets.color import *
 
 #app = dash.Dash(__name__, url_base_pathname='/vbc-payer-demo/contract-bundle-manager/')
 
@@ -64,6 +64,7 @@ def create_layout(app):
                     
                     html.Div(
                         [
+                            card_contract_infomation_bundle(app),
                             dbc.Row(
                                 [
                                     dbc.Col(manager_div_year_to_date_metrics(app), width=3),
@@ -126,6 +127,75 @@ def manager_modal_metricsdetail(app):
 
         ])
 
+def card_contract_infomation_bundle(app):
+    return dbc.Card(
+                dbc.CardBody(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                dbc.Col(
+                                    [
+                                        html.H4(
+                                            [
+                                                "Basic Contract Information",
+                                            ],
+                                            style={"font-size":"1rem", "margin-left":"10px"}
+                                        ),
+                                    ],
+                                    
+                                    width="auto"
+                                ),
+                            ],
+                            no_gutters=True,
+                        ),
+                        html.Div(
+                            [
+                                html.Div(
+                                    [
+                                        html.Div(html.H1("Payor", style={"font-size":"0.8rem"})),
+                                        html.Div(html.P("Humana", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"10rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+                                    ],
+                                    style={"padding":"1rem"}
+                                ),
+                                html.Div(
+                                    [
+                                        html.Div(html.H1("LOB", style={"font-size":"0.8rem"})),
+                                        html.Div(html.P("Medicare", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"8rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+                                    ],
+                                    style={"padding":"1rem"}
+                                ),
+                                
+                                html.Div(
+                                    [
+                                        html.Div(html.H1("Contract Period", style={"font-size":"0.8rem"})),
+                                        html.Div(html.P("1/1/2022-12/31/2022", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"16rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+                                    ],
+                                    style={"padding":"1rem"}
+                                ),
+                                html.Div(
+                                    [
+                                        html.Div(html.H1("VBC Contract Type", style={"font-size":"0.8rem"})),
+                                        html.Div(html.P("Bundle Payment", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"20rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+                                    ],
+                                    style={"padding":"1rem"}
+                                ),
+                                html.Div(
+                                    [
+                                        html.Div(html.H1("% of Total Revenue", style={"font-size":"0.8rem"})),
+                                        html.Div(html.P("2%", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"8rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+                                    ],
+                                    style={"padding":"1rem"}
+                                ),
+                            ],
+                            style={"display":"flex"}
+                        ),
+                    ]
+                ),
+                className="mb-3",
+                style={"background-color":grey3, "border":"none", "border-radius":"0.5rem", "box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)"}
+            )
+
 def manager_card_year_to_date_metrics(title, value, color):
     return dbc.Card(
                 [
@@ -147,15 +217,17 @@ def manager_div_overall_performance(app):
                 [
                     dbc.Row(
                         [
-                            dbc.Col(html.H1("OVERALL PERFORMANCE"), width="auto"),
+                            dbc.Col(html.H1("OVERALL PERFORMANCE"), width=10),
                             dbc.Col(
                                 html.Div(
-                                    html.H5("06/02/2020", style={"font-size":"0.8rem","color":"#fff","background-color":"#1357DD", "text-align":"center","border-radius":"10rem"}),
+                                    html.H5("06/02/2021", style={"font-size":"1rem","color":blue2,"background-color":blue3, "text-align":"center","border-radius":"0.5rem","padding":"0.5rem"}),
+                                    style={"padding":"1rem"}
                                 ),
                                 width=2,
-                                style={"padding-top":"2rem"}
-                            ),
-                        ]
+                                # style={"padding-top":"1rem"}
+                            )
+                        ],
+                        justify="end"
                     ),
                     
                     html.Div(

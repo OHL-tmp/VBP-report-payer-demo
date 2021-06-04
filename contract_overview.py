@@ -62,9 +62,10 @@ def contract_overview_metrics(app):
 						),
 						html.Div(
 							[
-								contract_overview_metrics_block("data incomplete", "0", yellow3, yellow_light1),
-								contract_overview_metrics_block("under Customization", "0", yellow3, yellow_light1),
-								contract_overview_metrics_block("Ready for Design", "2", yellow1, yellow_light1),
+								contract_overview_metrics_block("data incomplete", "0", grey2, grey3),
+								contract_overview_metrics_block("under Customization", "0", grey2, grey3),
+								contract_overview_metrics_block("Ready for Design", "2", yellow1, yellow3),
+								contract_overview_metrics_block("In Execution", "2", green1, green2),
 								
 							], 
 							style={"display":"flex", "padding-left":"6rem"}
@@ -211,32 +212,37 @@ def contract_overview_list_content(df):
 
 
 		payor = html.Div(
-						html.H4(df.iloc[i,0], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
+						html.H5(df.iloc[i,0], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
 						style={"padding":"1rem","width":"8rem"}
 					)
 
 		lob = html.Div(
-						html.H4(df.iloc[i,1], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
+						html.H5(df.iloc[i,1], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
 						style={"padding":"1rem","width":"8rem"}
 					)
 
 		period = html.Div(
-						html.H4(df.iloc[i,2], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
+						html.H5(df.iloc[i,2], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
 						style={"padding":"1rem","width":"16rem"}
 					)
 
 		contract = html.Div(
-						html.H4(df.iloc[i,3], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
+						html.H5(df.iloc[i,3], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
 						style={"padding":"1rem","width":"24rem"}
 					)
 
 		revenue = html.Div(
-						html.H4(df.iloc[i,4], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
+						html.H5(df.iloc[i,4], style={"font-size":"1rem","color":"#919191","padding-top":"0.3rem"}),
 						style={"padding":"1rem","width":"6rem"}
 					)
 
+		status_text = df.iloc[i,5]
+		if status_text == "In Execution":
+			color_set = "success"
+		else:
+			color_set = "warning"
 		status = html.Div(
-					dbc.Badge(html.H4(df.iloc[i,5], style={"font-size":"1rem","color":"#fff","padding-left":"0.5rem","padding-right":"0.5rem"}), color="warning", className="mr-1"),
+					dbc.Badge(html.H5(status_text, style={"font-size":"0.8rem","color":"#fff","padding-left":"0.5rem","padding-right":"0.5rem"}), color=color_set, className="mr-1",style={"height":"1.5rem"}),
 					style={"padding":"1rem","width":"12rem"}
 				)
 

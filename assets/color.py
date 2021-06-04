@@ -14,3 +14,6 @@ yellow4 = "#fff1cf"
 yellow_light1 = "#fff6e0"
 
 cyan = "#00a3b9"
+
+green1 = "#00ab34"
+green2 = "#60a375"

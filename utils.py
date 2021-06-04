@@ -3,25 +3,25 @@ import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 
 
-def Header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, Homepage_active):
-    return html.Div([get_header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, Homepage_active)])
+def Header_mgmt_aco(app, dashboard_active, drilldown_active, overview, Homepage_active):
+    return html.Div([get_header_mgmt_aco(app, dashboard_active, drilldown_active, overview, Homepage_active)])
 
-def Header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, Homepage_active):
-    return html.Div([get_header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, Homepage_active)])
+def Header_mgmt_bp(app, dashboard_active, drilldown_active, overview, Homepage_active):
+    return html.Div([get_header_mgmt_bp(app, dashboard_active, drilldown_active, overview, Homepage_active)])
 
 def Header_contract(app, cd, co, bhp):
     return html.Div([get_header_contract(app, cd, co, bhp)])
 
 
-def get_header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, Homepage_active):
+def get_header_mgmt_aco(app, dashboard_active, drilldown_active, overview, Homepage_active):
     menu_aco = dbc.Nav([
-            dbc.NavItem(dbc.DropdownMenu(
-                            label = 'Accountable Care Programs',
-                            children = dbc.DropdownMenuItem('Bundles & Episodes of Care', href = '/vbc-demo/contract-manager-bundle/'),
-                            color="light",
-                            style={"font-family":"NotoSans-Condensed","font-size":"0.8rem", "border":"1px solid #000"}
+            # dbc.NavItem(dbc.DropdownMenu(
+            #                 label = 'Accountable Care Programs',
+            #                 children = dbc.DropdownMenuItem('Bundles & Episodes of Care', href = '/vbc-demo/contract-manager-bundle/'),
+            #                 color="light",
+            #                 style={"font-family":"NotoSans-Condensed","font-size":"0.8rem", "border":"1px solid #000"}
                             
-                        )),
+            #             )),
             dbc.NavItem(dbc.NavLink(
                         "Dashboard",
                         href="/vbc-demo/contract-manager/",
@@ -39,10 +39,10 @@ def get_header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, 
                 className="tab",
                 ),
             dbc.NavItem(dbc.NavLink(
-                        "Report Generator",
-                        href="/vbc-demo/contract-manager/report-generator/",
+                        "Contract Overview",
+                        href="/vbc-demo/contract-overview/",
                         className="nav-link",
-                        active = report_active,
+                        active = overview,
                         ),
                 className="tab",
                 ),
@@ -85,17 +85,17 @@ def get_header_mgmt_aco(app, dashboard_active, drilldown_active, report_active, 
     return header
 
 
-def get_header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, Homepage_active):
+def get_header_mgmt_bp(app, dashboard_active, drilldown_active, overview, Homepage_active):
 
     menu_bundle = dbc.Nav([
-            dbc.NavItem(dbc.DropdownMenu(
-                            label = 'Bundles & Episodes of Care',
-                            children = dbc.DropdownMenuItem('Accountable Care Programs', href = '/vbc-demo/contract-manager/'
-                        ),
-                        color="light",
-                        style={"font-family":"NotoSans-Condensed","font-size":"0.8rem","border":"1px solid #000"}
+            # dbc.NavItem(dbc.DropdownMenu(
+            #                 label = 'Bundles & Episodes of Care',
+            #                 children = dbc.DropdownMenuItem('Accountable Care Programs', href = '/vbc-demo/contract-manager/'
+            #             ),
+            #             color="light",
+            #             style={"font-family":"NotoSans-Condensed","font-size":"0.8rem","border":"1px solid #000"}
                             
-                        )),
+            #             )),
             dbc.NavItem(dbc.NavLink(
                         "Dashboard",
                         href="/vbc-demo/contract-manager-bundle/",
@@ -113,10 +113,10 @@ def get_header_mgmt_bp(app, dashboard_active, drilldown_active, report_active, H
                 className="tab",
                 ),
             dbc.NavItem(dbc.NavLink(
-                        "Report Generator",
-                        href="/vbc-demo/contract-manager-bundle/report-generator/",
+                        "Contract Overview",
+                        href="/vbc-demo/contract-overview/",
                         className="nav-link",
-                        active = report_active,
+                        active = overview,
                         ),
                 className="tab",
                 ),

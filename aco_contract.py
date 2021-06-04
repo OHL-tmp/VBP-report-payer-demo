@@ -183,6 +183,8 @@ def tab_setup_aco(app):
 
 					html.Div(
 						[
+
+							card_contract_infomation_aco(app),
 							card_analysis_aco(app),
 						],
 						hidden=False,
@@ -193,7 +195,7 @@ def tab_setup_aco(app):
 						[
 							html.Div(
 								[
-									# card_contract_infomation_aco(app),
+									card_contract_infomation_aco(app),
 									card_performance_measure_setup(app),
 								]
 							),
@@ -253,6 +255,74 @@ def card_analysis_aco(app):
 			)
 
 
+def card_contract_infomation_aco(app):
+	return dbc.Card(
+				dbc.CardBody(
+					[
+						dbc.Row(
+							[
+								dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+								dbc.Col(
+									[
+										html.H4(
+											[
+												"Basic Contract Information",
+											],
+											style={"font-size":"1rem", "margin-left":"10px"}
+										),
+									],
+									
+									width="auto"
+								),
+							],
+							no_gutters=True,
+						),
+						html.Div(
+							[
+								html.Div(
+									[
+										html.Div(html.H1("Payor", style={"font-size":"0.8rem"})),
+										html.Div(html.P("Aetna", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"10rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+									],
+									style={"padding":"1rem"}
+								),
+								html.Div(
+									[
+										html.Div(html.H1("LOB", style={"font-size":"0.8rem"})),
+										html.Div(html.P("Medicare", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"8rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+									],
+									style={"padding":"1rem"}
+								),
+								
+								html.Div(
+									[
+										html.Div(html.H1("Contract Period", style={"font-size":"0.8rem"})),
+										html.Div(html.P("1/1/2022-12/31/2022", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"16rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+									],
+									style={"padding":"1rem"}
+								),
+								html.Div(
+									[
+										html.Div(html.H1("VBC Contract Type", style={"font-size":"0.8rem"})),
+										html.Div(html.P("Shared Savings and Downside Risk", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"20rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+									],
+									style={"padding":"1rem"}
+								),
+								html.Div(
+									[
+										html.Div(html.H1("% of Total Revenue", style={"font-size":"0.8rem"})),
+										html.Div(html.P("5%", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"8rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+									],
+									style={"padding":"1rem"}
+								),
+							],
+							style={"display":"flex"}
+						),
+					]
+				),
+				className="mb-3",
+				style={"background-color":grey3, "border":"none", "border-radius":"0.5rem", "box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)"}
+			)
 
 def tab_setup(app):
     return html.Div(
@@ -364,7 +434,6 @@ checklist = dbc.FormGroup(
         ),
     ]
 )
-
 
 def card_recommended_carve_outs(app):
     return dbc.Card(
