@@ -22,7 +22,7 @@ from assets.color import *
 
 # server = app.server
 
-base_download_url = 'https://provider-valuegen.onehealthlink.com/'
+base_download_url = 'https://valuegen-pharma.onehealthlink.com/'
 
 def modal_simulation_input_aco():
 	return html.Div([
