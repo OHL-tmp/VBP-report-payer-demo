@@ -22,6 +22,8 @@ from assets.color import *
 
 # server = app.server
 
+base_download_url = 'https://provider-valuegen.onehealthlink.com/'
+
 def modal_simulation_input_aco():
 	return html.Div([
 		dbc.Button("Data Intake", id = 'button-edit-assumption',outline=True, color="light", className="mr-1", style={"border-radius":"5rem"}),
@@ -206,7 +208,7 @@ def input_session_aco(app):
 													[
 														html.A('View Attachment', 
 															id = 'download-claim-aco',
-															href='http://139.224.186.182:8098/downloads/Geographic Distribution template.xlsx',
+															href=base_download_url + 'downloads/Geographic Distribution template.xlsx',
 															target = "_blank")
 													], style={"font-size":"1rem","padding-left":"0.8rem"}
 												),
@@ -324,7 +326,7 @@ def input_session_aco(app):
 										[
 											html.A('View Attachment', 
 												id = 'download-cmp-aco',
-												href='http://139.224.186.182:8098/downloads/Age Distribution template.xlsx',
+												href=base_download_url + 'downloads/Geographic Distribution template.xlsx',
 												target = "_blank")
 										], style={"font-size":"1rem","padding":"0.5rem"}
 									),
@@ -371,7 +373,7 @@ def input_session_aco(app):
 										[
 											html.A('View Attachment', 
 												id = 'download-excl-aco',
-												href='http://139.224.186.182:8098/downloads/Age Distribution template.xlsx',
+												href=base_download_url + 'downloads/Geographic Distribution template.xlsx',
 												target = "_blank")
 										], style={"font-size":"1rem","padding":"0.5rem"}
 									),
@@ -394,7 +396,7 @@ def input_session_aco(app):
 										[
 											html.A('View Attachment', 
 												id = 'download-term-aco',
-												href='http://139.224.186.182:8098/downloads/Age Distribution template.xlsx',
+												href=base_download_url + 'downloads/Geographic Distribution template.xlsx',
 												target = "_blank")
 										], style={"font-size":"1rem","padding":"0.5rem"}
 									),
@@ -417,7 +419,7 @@ def input_session_aco(app):
 										[
 											html.A('View Attachment', 
 												id = 'download-quality-aco',
-												href='http://139.224.186.182:8098/downloads/Age Distribution template.xlsx',
+												href=base_download_url + 'downloads/Geographic Distribution template.xlsx',
 												target = "_blank")
 										], style={"font-size":"1rem","padding":"0.5rem"}
 									),

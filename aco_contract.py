@@ -428,7 +428,7 @@ checklist = dbc.FormGroup(
                 {"label": "High Cost Implantable Devices", "value": 8},
                 {"label": "Out of area Services", "value": 9},
             ],
-            value=[1,2,3,4],
+            value=[1],
             id="carve-outs-checklist-input",
             inline=True,
         ),
@@ -1891,7 +1891,7 @@ def cal_simulation(submit, data, code):
     try:
     	carve_code = eval(code)['code']
     except:
-    	carve_code = "C111100000"
+    	carve_code = "c100000000"
     if submit:
         datasets = json.loads(data)
         selected_rows = datasets['quality adjustment']['selected measures']
@@ -1919,7 +1919,7 @@ def cal_simulation(submit, data, code):
         print(carve_code, target_user_pmpm)
 
         df=simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_type,user_tar_value,default_input,target_user_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,min_user_losspct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided,lossmethod)
-
+        print(df)
         return [df.to_json(orient = 'split')]
     return [""]
 
@@ -1932,6 +1932,7 @@ def cal_simulation(submit, data, code):
 def update_grapg_cost(metric, data):
     if data:
         dff = pd.read_json(data, orient = 'split')
+        print(dff)
         df = dff[dff['Metrics'] == metric]
         return sim_result_box(df), table_sim_result(df)
     return {},""
