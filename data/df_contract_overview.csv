@@ -1,5 +1,5 @@
 ﻿Payor,LOB,Contract Period,VBC Contract Type,% of Total Revenue,Status,url
-Aetna,Medicare Advantage,1/1/2022-12/31/2022,Shared Savings and Downside Risk,5%,Ready for Design,/vbc-demo/contract-optimizer/aco
-Humana,Medicare Advantage,1/1/2022-12/31/2022,Bundle Payment,2%,Ready for Design,/vbc-demo/contract-optimizer/bundle
-Aetna,Medicare Advantage,1/1/2021-12/31/2021,Shared Savings and Downside Risk,5%,In Execution,/vbc-demo/contract-manager/
-Humana,Medicare Advantage,1/1/2021-12/31/2021,Bundle Payment,2%,In Execution,/vbc-demo/contract-manager-bundle/
+Aetna,MAPD,1/1/2022-12/31/2022,Shared Savings and Downside Risk,5%,Ready for Design,/vbc-demo/contract-optimizer/aco
+Humana,MAPD,1/1/2022-12/31/2022,Bundle Payment,2%,Ready for Design,/vbc-demo/contract-optimizer/bundle
+Aetna,MAPD,1/1/2021-12/31/2021,Shared Savings and Downside Risk,5%,In Execution,/vbc-demo/contract-manager/
+Humana,MAPD,1/1/2021-12/31/2021,Bundle Payment,2%,In Execution,/vbc-demo/contract-manager-bundle/

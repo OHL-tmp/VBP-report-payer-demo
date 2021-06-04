@@ -1461,9 +1461,9 @@ def store_data(usr_tgt_int, usr_tgt_trend, usr_msr, usr_planshare, usr_planshare
     [Output('tab_container', 'active_tab'),
     Output('temp-result', 'children')],
     [Input('button-submit-simulation', 'n_clicks')],
-    [State('temp-data', 'children'),State('temp-carveout', 'children')]
+    [State('temp-data', 'children'),State('temp-carveout', 'children'),State('recom-pmpm', 'children')]
     )
-def cal_simulation(submit, data, code):
+def cal_simulation(submit, data, code, target_recom_pmpm):
     # carve_code = json.loads(code)['code']
     carve_code = eval(code)['code']
     if submit:
@@ -1490,9 +1490,9 @@ def cal_simulation(submit, data, code):
             min_user_losspct = min_user_losspct/100
             cap_user_losspct = cap_user_losspct/100
 
-        print(carve_code, target_user_pmpm)
+        # print(carve_code, target_user_pmpm, target_recom_pmpm)
 
-        df=simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_type,user_tar_value,default_input,target_user_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,min_user_losspct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided,lossmethod)
+        df=simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_type,user_tar_value,default_input,target_user_pmpm,target_recom_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,min_user_losspct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided,lossmethod)
 
         return 'tab-1', df.to_json(orient = 'split')
     return 'tab-0', ""

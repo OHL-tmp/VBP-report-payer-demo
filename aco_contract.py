@@ -58,76 +58,76 @@ def create_layout(app):
                     
                     html.A(id="top"),
                     html.Div(
-						[
-							dbc.Row(
-								[
-									dbc.Col(
-										dbc.Button(
-											"Data Intake", 
-											className="mr-1", 
-											style={"color":blue2, "background-color":blue4, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem"},
-											id = "navigation-data-intake-aco"
-										),
-										style={"padding":"1rem"}, 
-										align="center",
-										width="auto"
-									),
-									dbc.Col(
-										dbc.Button(
-											"Opportunity Analysis", 
-											className="mr-1", 
-											style={"background-color":blue1, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem", "box-shadow":".5rem .5rem 1.5rem "+blue2},
-											id = "navigation-analysis-aco"
-										),
-										style={"padding":"1rem"}, 
-										align="center",
-										width="auto"
-									),
-									dbc.Col(
-										dbc.Button(
-											"Simulation Setup", 
-											className="mr-1", 
-											style={"color":blue2, "background-color":blue4, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem"},
-											id = "navigation-simulation-setup-aco"
-										),
-										style={"padding":"1rem"}, 
-										align="center",
-										width="auto"
-									),
-									dbc.Col(
-										dbc.Button(
-											"Result", 
-											className="mr-1", 
-											style={"color":blue2, "background-color":blue4, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem"},
-											id = "navigation-result-aco"
-										),
-										style={"padding":"1rem"}, 
-										align="center",
-										width="auto"
-									)
-								],
-								justify="around",
-								style={"width":"56rem","margin-left":"14rem","margin-right":"18rem","background-color":"#fff", "border":"none", "border-radius":"10rem","padding":"0.5rem", "box-shadow":".7rem .7rem 2rem "+grey2}
-							),
-							dbc.Row(
-								[
-									dbc.Col(
-										html.Div(
-											[
-												tab_setup_aco(app)
-											],
-											style={"padding-left":"1rem", "padding-right":"1rem"}
-										)
-									),
-								]
-							),
-							# html.Div(default_temp_data(),id = 'temp-data',  style = {'display':'none'}),
-							# html.Div(default_temp_data_medical(),id = 'temp-data-medical',  style = {'display':'none'}),
-							# html.Div(assumption_default_data(),id = 'assumption-default-data',  style = {'display':'none'})
-						],
-						className="mb-3",
-						style={"padding-left":"1rem", "padding-right":"1rem"},
-					),
+                        [
+                            dbc.Row(
+                                [
+                                    dbc.Col(
+                                        dbc.Button(
+                                            "Data Intake", 
+                                            className="mr-1", 
+                                            style={"color":blue2, "background-color":blue4, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem"},
+                                            id = "navigation-data-intake-aco"
+                                        ),
+                                        style={"padding":"1rem"}, 
+                                        align="center",
+                                        width="auto"
+                                    ),
+                                    dbc.Col(
+                                        dbc.Button(
+                                            "Opportunity Analysis", 
+                                            className="mr-1", 
+                                            style={"background-color":blue1, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem", "box-shadow":".5rem .5rem 1.5rem "+blue2},
+                                            id = "navigation-analysis-aco"
+                                        ),
+                                        style={"padding":"1rem"}, 
+                                        align="center",
+                                        width="auto"
+                                    ),
+                                    dbc.Col(
+                                        dbc.Button(
+                                            "Simulation Setup", 
+                                            className="mr-1", 
+                                            style={"color":blue2, "background-color":blue4, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem"},
+                                            id = "navigation-simulation-setup-aco"
+                                        ),
+                                        style={"padding":"1rem"}, 
+                                        align="center",
+                                        width="auto"
+                                    ),
+                                    dbc.Col(
+                                        dbc.Button(
+                                            "Result", 
+                                            className="mr-1", 
+                                            style={"color":blue2, "background-color":blue4, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem"},
+                                            id = "navigation-result-aco"
+                                        ),
+                                        style={"padding":"1rem"}, 
+                                        align="center",
+                                        width="auto"
+                                    )
+                                ],
+                                justify="around",
+                                style={"width":"56rem","margin-left":"14rem","margin-right":"18rem","background-color":"#fff", "border":"none", "border-radius":"10rem","padding":"0.5rem", "box-shadow":".7rem .7rem 2rem "+grey2}
+                            ),
+                            dbc.Row(
+                                [
+                                    dbc.Col(
+                                        html.Div(
+                                            [
+                                                tab_setup_aco(app)
+                                            ],
+                                            style={"padding-left":"1rem", "padding-right":"1rem"}
+                                        )
+                                    ),
+                                ]
+                            ),
+                            # html.Div(default_temp_data(),id = 'temp-data',  style = {'display':'none'}),
+                            # html.Div(default_temp_data_medical(),id = 'temp-data-medical',  style = {'display':'none'}),
+                            # html.Div(assumption_default_data(),id = 'assumption-default-data',  style = {'display':'none'})
+                        ],
+                        className="mb-3",
+                        style={"padding-left":"1rem", "padding-right":"1rem"},
+                    ),
 
                     # html.Div(
                     #     [
@@ -162,167 +162,167 @@ def load_files():
 
 
 def tab_setup_aco(app):
-	return html.Div(
-				[
-					dbc.Row(
-						[
-							dbc.Col(html.H1("Contract Simulation", style={"padding-left":"2rem","margin-bottom":"-1rem","font-size":"5rem","color":blue3})),
-							
-						],
-						justify="between",
-						style={"padding-top":"2rem","padding-right":"2rem"}
-					),
+    return html.Div(
+                [
+                    dbc.Row(
+                        [
+                            dbc.Col(html.H1("Contract Simulation", style={"padding-left":"2rem","margin-bottom":"-1rem","font-size":"5rem","color":blue3})),
+                            
+                        ],
+                        justify="between",
+                        style={"padding-top":"2rem","padding-right":"2rem"}
+                    ),
 
-					html.Div(
-						[
-							card_data_intake_aco(app),
-						],
-						hidden=True,
-						id="card-data-intake-aco"
-					),
+                    html.Div(
+                        [
+                            card_data_intake_aco(app),
+                        ],
+                        hidden=True,
+                        id="card-data-intake-aco"
+                    ),
 
-					html.Div(
-						[
+                    html.Div(
+                        [
 
-							card_contract_infomation_aco(app),
-							card_analysis_aco(app),
-						],
-						hidden=False,
-						id="card-analysis-aco"
-					),
-					
-					html.Div(
-						[
-							html.Div(
-								[
-									card_contract_infomation_aco(app),
-									card_performance_measure_setup(app),
-								]
-							),
-							
+                            card_contract_infomation_aco(app),
+                            card_analysis_aco(app),
+                        ],
+                        hidden=False,
+                        id="card-analysis-aco"
+                    ),
+                    
+                    html.Div(
+                        [
+                            html.Div(
+                                [
+                                    card_contract_infomation_aco(app),
+                                    card_performance_measure_setup(app),
+                                ]
+                            ),
+                            
 
-							# html.Div(
-							# 	[
-							# 		dbc.Button(
-							# 			"Submit for Simulation", 
-							# 			color="primary",
-							# 			id = 'button-simulation-submit-aco', 
-							# 			# href='#top',
-							# 			style={"border-radius":"10rem","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)"}
-							# 		)
-							# 	],
-							# 	style={"text-align":"center", "padding-bottom":"2rem"}
-							# ),
-						],
-						hidden=True,
-						id="card-simulation-setup-aco",
-						style={}
-					),
-					
-					html.Div(
-						[
-							tab_result_aco(app)
-						],
-						hidden=True,
-						id="card-result-aco"
-					),
-				]
-			)
+                            # html.Div(
+                            #   [
+                            #       dbc.Button(
+                            #           "Submit for Simulation", 
+                            #           color="primary",
+                            #           id = 'button-simulation-submit-aco', 
+                            #           # href='#top',
+                            #           style={"border-radius":"10rem","box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)"}
+                            #       )
+                            #   ],
+                            #   style={"text-align":"center", "padding-bottom":"2rem"}
+                            # ),
+                        ],
+                        hidden=True,
+                        id="card-simulation-setup-aco",
+                        style={}
+                    ),
+                    
+                    html.Div(
+                        [
+                            tab_result_aco(app)
+                        ],
+                        hidden=True,
+                        id="card-result-aco"
+                    ),
+                ]
+            )
 
 
 def card_data_intake_aco(app):
-	return dbc.Card(
-				dbc.CardBody(
-					[
-						input_session_aco(app),
-					]
-				),
-				className="mb-3",
-				style={"background-color":yellow_light1, "border":"none", "border-radius":"0.5rem"}
-			)
+    return dbc.Card(
+                dbc.CardBody(
+                    [
+                        input_session_aco(app),
+                    ]
+                ),
+                className="mb-3",
+                style={"background-color":yellow_light1, "border":"none", "border-radius":"0.5rem"}
+            )
 
 
 
 def card_analysis_aco(app):
-	return dbc.Card(
-				dbc.CardBody(
-					[
-						tab_aco(app),
-					]
-				),
-				className="mb-3",
-				style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem"}
-			)
+    return dbc.Card(
+                dbc.CardBody(
+                    [
+                        tab_aco(app),
+                    ]
+                ),
+                className="mb-3",
+                style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem"}
+            )
 
 
 def card_contract_infomation_aco(app):
-	return dbc.Card(
-				dbc.CardBody(
-					[
-						dbc.Row(
-							[
-								dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-								dbc.Col(
-									[
-										html.H4(
-											[
-												"Basic Contract Information",
-											],
-											style={"font-size":"1rem", "margin-left":"10px"}
-										),
-									],
-									
-									width="auto"
-								),
-							],
-							no_gutters=True,
-						),
-						html.Div(
-							[
-								html.Div(
-									[
-										html.Div(html.H1("Payor", style={"font-size":"0.8rem"})),
-										html.Div(html.P("Aetna", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"10rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
-									],
-									style={"padding":"1rem"}
-								),
-								html.Div(
-									[
-										html.Div(html.H1("LOB", style={"font-size":"0.8rem"})),
-										html.Div(html.P("Medicare", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"8rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
-									],
-									style={"padding":"1rem"}
-								),
-								
-								html.Div(
-									[
-										html.Div(html.H1("Contract Period", style={"font-size":"0.8rem"})),
-										html.Div(html.P("1/1/2022-12/31/2022", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"16rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
-									],
-									style={"padding":"1rem"}
-								),
-								html.Div(
-									[
-										html.Div(html.H1("VBC Contract Type", style={"font-size":"0.8rem"})),
-										html.Div(html.P("Shared Savings and Downside Risk", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"20rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
-									],
-									style={"padding":"1rem"}
-								),
-								html.Div(
-									[
-										html.Div(html.H1("% of Total Revenue", style={"font-size":"0.8rem"})),
-										html.Div(html.P("5%", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"8rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
-									],
-									style={"padding":"1rem"}
-								),
-							],
-							style={"display":"flex"}
-						),
-					]
-				),
-				className="mb-3",
-				style={"background-color":grey3, "border":"none", "border-radius":"0.5rem", "box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)"}
-			)
+    return dbc.Card(
+                dbc.CardBody(
+                    [
+                        dbc.Row(
+                            [
+                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                dbc.Col(
+                                    [
+                                        html.H4(
+                                            [
+                                                "Basic Contract Information",
+                                            ],
+                                            style={"font-size":"1rem", "margin-left":"10px"}
+                                        ),
+                                    ],
+                                    
+                                    width="auto"
+                                ),
+                            ],
+                            no_gutters=True,
+                        ),
+                        html.Div(
+                            [
+                                html.Div(
+                                    [
+                                        html.Div(html.H1("Payor", style={"font-size":"0.8rem"})),
+                                        html.Div(html.P("Aetna", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"10rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+                                    ],
+                                    style={"padding":"1rem"}
+                                ),
+                                html.Div(
+                                    [
+                                        html.Div(html.H1("LOB", style={"font-size":"0.8rem"})),
+                                        html.Div(html.P("MAPD", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"8rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+                                    ],
+                                    style={"padding":"1rem"}
+                                ),
+                                
+                                html.Div(
+                                    [
+                                        html.Div(html.H1("Contract Period", style={"font-size":"0.8rem"})),
+                                        html.Div(html.P("1/1/2022-12/31/2022", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"16rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+                                    ],
+                                    style={"padding":"1rem"}
+                                ),
+                                html.Div(
+                                    [
+                                        html.Div(html.H1("VBC Contract Type", style={"font-size":"0.8rem"})),
+                                        html.Div(html.P("Shared Savings and Downside Risk", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"20rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+                                    ],
+                                    style={"padding":"1rem"}
+                                ),
+                                html.Div(
+                                    [
+                                        html.Div(html.H1("% of Total Revenue", style={"font-size":"0.8rem"})),
+                                        html.Div(html.P("5%", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"8rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+                                    ],
+                                    style={"padding":"1rem"}
+                                ),
+                            ],
+                            style={"display":"flex"}
+                        ),
+                    ]
+                ),
+                className="mb-3",
+                style={"background-color":grey3, "border":"none", "border-radius":"0.5rem", "box-shadow":"0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05)"}
+            )
 
 def tab_setup(app):
     return html.Div(
@@ -366,42 +366,42 @@ def card_performance_measure_setup(app):
     return dbc.Card(
                 dbc.CardBody(
                     [
-                    	html.Div(card_recommended_carve_outs(app), hidden=True),
+                        html.Div(card_recommended_carve_outs(app), hidden=True),
                         # card_summary_improvement(app),
                         card_medical_cost_target(app),
                         card_sl_sharing_arrangement(app),
                         card_quality_adjustment(app),
                         html.Div(
                             [
-                            	dbc.Row(
-                            		[
-                            			dbc.Col(),
-                            			dbc.Col(
-		                            		dbc.Button("reset",
-			                                    className="mb-3",
-			                                    color="dark",
-			                                    outline=True,
-			                                    style={"border-radius":"10rem"},
-			                                    id = 'button-reset-simulation',
-			                                    # href='#top'
-			                                ),
-			                                style={"margin-right":"2rem"},
-			                                width=1
-		                            	),
-		                                dbc.Col(
-		                            		dbc.Button("submit for simulation",
-			                                    className="mb-3",
-			                                    color="dark",
-			                                    outline=True,
-			                                    style={"border-radius":"10rem"},
-			                                    id = 'button-submit-simulation-aco',
-			                                    href='#top'
-			                                ),
-			                                width=2
-		                            	),
-		                            	dbc.Col(width=1),
-                            		],
-                            	)
+                                dbc.Row(
+                                    [
+                                        dbc.Col(),
+                                        dbc.Col(
+                                            dbc.Button("reset",
+                                                className="mb-3",
+                                                color="dark",
+                                                outline=True,
+                                                style={"border-radius":"10rem"},
+                                                id = 'button-reset-simulation',
+                                                # href='#top'
+                                            ),
+                                            style={"margin-right":"2rem"},
+                                            width=1
+                                        ),
+                                        dbc.Col(
+                                            dbc.Button("submit for simulation",
+                                                className="mb-3",
+                                                color="dark",
+                                                outline=True,
+                                                style={"border-radius":"10rem"},
+                                                id = 'button-submit-simulation-aco',
+                                                href='#top'
+                                            ),
+                                            width=2
+                                        ),
+                                        dbc.Col(width=1),
+                                    ],
+                                )
                                 
                             ],
                             style={"magin":"auto","position":"fixed","bottom":"0","width":"100%","background-color":"#fff","padding-top":"1rem"}
@@ -618,12 +618,53 @@ def card_medical_cost_target(app):
     return dbc.Card(
                 dbc.CardBody(
                     [
+                        
                         dbc.Row(
                             [
                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
                                 dbc.Col(html.H4("Medical Cost Target", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                             ],
                             no_gutters=True,
+                        ),
+                        dbc.Row(
+                            [
+                                dbc.Col(),
+                                dbc.Col(
+                                            [
+                                                html.H4(
+                                                    [
+                                                        "Assumed Cost Reduction Opportunity ",
+                                                        html.Span(
+                                                            "\u24D8",
+                                                            style={"font-size":"0.8rem"}
+                                                        )
+                                                    ],
+                                                    id="tooltip-vbc-oppo",
+                                                    style={"font-size":"0.8rem"}
+                                                ),
+                                                dbc.Tooltip(
+                                                    "Assumed Cost Reduction Opportunity",
+                                                    target="tooltip-vbc-oppo",
+                                                    style={"text-align":"start"}
+                                                ),
+                                            ],
+                                            width=3
+                                        ),
+                                dbc.Col([
+                                                dbc.InputGroup([
+                                                    dbc.Input(id = 'input-oppo-reduct', type = "number", debounce = True, step = 0.1, value = 1.7,
+                                                        persistence = True, 
+                                                        persistence_type = 'memory',),
+                                                    dbc.InputGroupAddon('%', addon_type = 'append'),
+                                                    ],
+                                                    size="sm")
+                                            ],
+                                            width=1,
+                                            style={"margin-top":"-0.5rem"}),
+
+                            ],
+                            no_gutters=True,
+                            style={"padding-bottom":"1.5rem"}
                         ),
                         dbc.Row(
                             [
@@ -1404,76 +1445,76 @@ def live_load_file(n):
 
 ## navigation
 @app.callback(
-	[
-	Output('navigation-data-intake-aco','style'),
-	Output('card-data-intake-aco','hidden'),
-	Output('navigation-analysis-aco','style'),
-	Output('card-analysis-aco','hidden'),
-	Output('navigation-simulation-setup-aco','style'),
-	Output('card-simulation-setup-aco','hidden'),
-	Output('navigation-result-aco','style'),
-	Output('card-result-aco','hidden'),
-	],
-	[
-	Input('navigation-data-intake-aco','n_clicks'),
-	Input('navigation-analysis-aco','n_clicks'),
-	Input('navigation-simulation-setup-aco','n_clicks'),
-	Input('navigation-result-aco','n_clicks'),
-	Input('button-submit-simulation-aco', 'n_clicks')
-	]
-	)
+    [
+    Output('navigation-data-intake-aco','style'),
+    Output('card-data-intake-aco','hidden'),
+    Output('navigation-analysis-aco','style'),
+    Output('card-analysis-aco','hidden'),
+    Output('navigation-simulation-setup-aco','style'),
+    Output('card-simulation-setup-aco','hidden'),
+    Output('navigation-result-aco','style'),
+    Output('card-result-aco','hidden'),
+    ],
+    [
+    Input('navigation-data-intake-aco','n_clicks'),
+    Input('navigation-analysis-aco','n_clicks'),
+    Input('navigation-simulation-setup-aco','n_clicks'),
+    Input('navigation-result-aco','n_clicks'),
+    Input('button-submit-simulation-aco', 'n_clicks')
+    ]
+    )
 def open_modal(n1,n2,n3,n4,submit):
-	style_open = {"background-color":blue1, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem", "box-shadow":".5rem .5rem 1.5rem "+blue2}
-	style_close = {"color":blue2, "background-color":blue4, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem"}
-	
-	ctx = dash.callback_context
+    style_open = {"background-color":blue1, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem", "box-shadow":".5rem .5rem 1.5rem "+blue2}
+    style_close = {"color":blue2, "background-color":blue4, "border":"none", "border-radius":"10rem", "font-family":"NotoSans-Regular", "font-size":"1rem","padding":"0.5rem","padding-left":"2rem","padding-right":"2rem"}
+    
+    ctx = dash.callback_context
 
-	if not ctx.triggered:
-		button_id = 'No clicks yet'
-	else:
-		button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+    if not ctx.triggered:
+        button_id = 'No clicks yet'
+    else:
+        button_id = ctx.triggered[0]['prop_id'].split('.')[0]
 
 
-	if button_id == "navigation-data-intake-aco":
-		return style_open, False, style_close, True, style_close, True, style_close, True
-	elif button_id == "navigation-analysis-aco":
-		return style_close, True, style_open, False, style_close, True, style_close, True
-	elif button_id == "navigation-simulation-setup-aco":
-		return style_close, True, style_close, True, style_open, False, style_close, True
-	elif button_id == "navigation-result-aco":
-		return style_close, True, style_close, True, style_close, True, style_open, False
-	elif button_id == "button-submit-simulation-aco":
-		print(button_id)
-		return style_close, True, style_close, True, style_close, True, style_open, False
-	else:
-		return style_close, True, style_open, False, style_close, True, style_close, True
+    if button_id == "navigation-data-intake-aco":
+        return style_open, False, style_close, True, style_close, True, style_close, True
+    elif button_id == "navigation-analysis-aco":
+        return style_close, True, style_open, False, style_close, True, style_close, True
+    elif button_id == "navigation-simulation-setup-aco":
+        return style_close, True, style_close, True, style_open, False, style_close, True
+    elif button_id == "navigation-result-aco":
+        return style_close, True, style_close, True, style_close, True, style_open, False
+    elif button_id == "button-submit-simulation-aco":
+        print(button_id)
+        return style_close, True, style_close, True, style_close, True, style_open, False
+    else:
+        return style_close, True, style_open, False, style_close, True, style_close, True
 
 
 ## data intake
 @app.callback(
-	[
-	Output('update-edit-assumption-aco', 'children'),
-	Output('input-intake-s1-1-aco', 'disabled'),
-	Output('input-intake-s1-2-aco', 'disabled'),
-	Output('input-intake-s1-3-aco', 'disabled'),
-	Output('input-intake-s1-4-aco', 'disabled'),
-	Output('input-intake-s1-5-aco', 'disabled'),
-	Output('input-intake-s2-2-aco', 'disabled'),
-	Output('input-intake-s2-3-aco', 'disabled'),
-	Output('input-intake-s5-1-aco', 'disabled'),
-	],
-	[Input('update-edit-assumption-aco', 'n_clicks')],
-	[
-	State('input-intake-s1-1-aco', 'disabled')
-	]
-	)
+    [
+    Output('update-edit-assumption-aco', 'children'),
+    Output('input-intake-s1-1-aco', 'disabled'),
+    Output('input-intake-s1-2-aco', 'disabled'),
+    Output('input-intake-s1-3-aco', 'disabled'),
+    Output('input-intake-s1-4-aco', 'disabled'),
+    Output('input-intake-s1-5-aco', 'disabled'),
+    Output('input-intake-s2-2-aco', 'disabled'),
+    Output('input-intake-s2-3-aco', 'disabled'),
+    Output('input-intake-s5-1-aco', 'disabled'),
+    ],
+    [Input('update-edit-assumption-aco', 'n_clicks')],
+    [
+    State('input-intake-s1-1-aco', 'disabled')
+    ]
+    )
 def toggle_collapse(u, disabled):
-	text = "update data"
-	if u:
-		if disabled:
-			text = "save"
-		return text, not disabled, not disabled, not disabled, not disabled, not disabled, not disabled, not disabled, not disabled
-	return text, disabled, disabled, disabled, disabled, disabled, disabled, disabled, disabled
+    text = "update data"
+    if u:
+        if disabled:
+            text = "save"
+        return text, not disabled, not disabled, not disabled, not disabled, not disabled, not disabled, not disabled, not disabled
+    return text, disabled, disabled, disabled, disabled, disabled, disabled, disabled, disabled
 
 
 # aco
@@ -1577,15 +1618,17 @@ def toggle_modal_aco_drilldown(n1, n2, is_open):
     Output("bsl-trend", "children"),
     Output("bsl-pmpm", "children"),
     Output("recom-trend", "children"),
-    Output("recom-pmpm", "children")
+    Output("recom-pmpm", "children"),
     ],
     [
         Input("carve-outs-checklist-input", "value"),
+        Input("input-oppo-reduct", "value"),
     ]
 )
-def on_change_recommended_carve_outs(checklist_value):
+def on_change_recommended_carve_outs(checklist_value, oppo_reduct):
     checklist_str = 'c'
     maxlength = 9
+
     for ml in range(maxlength):
         if ml+1 in checklist_value:
             checklist_str += '1'
@@ -1611,10 +1654,11 @@ def on_change_recommended_carve_outs(checklist_value):
             dbc.Col(html.H6("${:.0f}".format(data['bsl_benchbest_pmpm'].values[0]))),
         ]
     )
+    trend_value = (data['bsl_aco_trend'].values[0])*100-oppo_reduct
 
-    recom_trend = html.H6("{:.1f}%".format(data['recom_tar_trend'].values[0]*100))
+    recom_trend = html.H6("{:.1f}%".format(trend_value))
 
-    recom_pmpm = html.H6("${:.0f}".format(data['recom_tar_pmpm'].values[0]))
+    recom_pmpm = html.H6("${:.0f}".format(data['bsl_aco_pmpm'].values[0] * (trend_value/100+1)  ))
 
     return [checklist_str, json.dumps(carve_code), bsl_trend, bsl_pmpm, recom_trend, recom_pmpm]
 
@@ -1717,18 +1761,24 @@ def update_usr_target(v, n):
 @app.callback(
     Output('div-usr-like', 'children'),
     [Input('input-usr-tgt-trend', 'value'),
-    Input('button-reset-simulation', 'n_clicks')]
+    Input('button-reset-simulation', 'n_clicks')],
+    [State('input-oppo-reduct','value')]
     )
-def cal_usr_like(usr_tgt, n):
+def cal_usr_like(usr_tgt, n, oppo_reduct):
     ctx = dash.callback_context
     if ctx.triggered[0]['prop_id'].split('.')[0] == 'button-reset-simulation':
         return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"})
     elif usr_tgt:
 #        recom_tgt_int = int(recom_tgt.replace('$','').replace('%','').replace(',',''))
 #        usr_tgt_int = int(usr_tgt.replace('$','').replace('%','').replace(',',''))
-        if usr_tgt >= 3.9:
+        try: 
+            recom_trend_num = 5.6 - oppo_reduct
+        except:
+            recom_trend_num = 3.9
+
+        if usr_tgt >= recom_trend_num:
             return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"})
-        elif usr_tgt < 2.5:
+        elif usr_tgt < recom_trend_num*0.65:
             return html.Div(html.H1("Low",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"red"})
         else:
             return html.Div(html.H1("Mid",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem"}), style={"border-radius":"0.5rem", "background-color":"#F5B111"})
@@ -1884,14 +1934,14 @@ def store_data(usr_tgt_int, usr_tgt_trend, usr_msr, usr_planshare, usr_planshare
     # Output('tab_container', 'active_tab'),
     Output('temp-result', 'children')],
     [Input('button-submit-simulation-aco', 'n_clicks')],
-    [State('temp-data', 'children'),State('temp-carveout', 'children')]
+    [State('temp-data', 'children'),State('temp-carveout', 'children'),State('recom-pmpm', 'children')]
     )
-def cal_simulation(submit, data, code):
+def cal_simulation(submit, data, code, target_recom_pmpm_div):
     # carve_code = json.loads(code)['code']
     try:
-    	carve_code = eval(code)['code']
+        carve_code = eval(code)['code']
     except:
-    	carve_code = "c100000000"
+        carve_code = "c100000000"
     if submit:
         datasets = json.loads(data)
         selected_rows = datasets['quality adjustment']['selected measures']
@@ -1916,9 +1966,13 @@ def cal_simulation(submit, data, code):
             min_user_losspct = min_user_losspct/100
             cap_user_losspct = cap_user_losspct/100
 
-        print(carve_code, target_user_pmpm)
+        print('********')
+        print(carve_code, target_user_pmpm, target_recom_pmpm_div['props']['children'])
+        print('********')
 
-        df=simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_type,user_tar_value,default_input,target_user_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,min_user_losspct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided,lossmethod)
+        target_recom_pmpm = target_recom_pmpm_div['props']['children']
+
+        df=simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_type,user_tar_value,default_input,target_user_pmpm,target_recom_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,min_user_losspct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided,lossmethod)
         print(df)
         return [df.to_json(orient = 'split')]
     return [""]
@@ -1968,10 +2022,23 @@ def update_grapg_cost(metric, data):
     Output('dropdown-firstdollar-loss', 'value'),
     Output('table-measure-setup', 'selected_rows')],
 #    Output('table-measure-setup', 'data'),],
-    [Input('button-reset-simulation', 'n_clicks')]
+    [Input('button-reset-simulation', 'n_clicks'),
+    Input("input-oppo-reduct", "value"),]
     )
-def reset_user_define(n):
-    if n:
+def reset_user_define(n, oppo_reduct):
+    ctx = dash.callback_context
+    
+    if ctx.triggered[0]['prop_id'].split('.')[0] == 'input-oppo-reduct':
+        data = df_carve_out[df_carve_out['code'] == 'c100000000']
+
+        trend_value = (data['bsl_aco_trend'].values[0])*100-oppo_reduct
+
+        user_trend = float("{:.1f}".format(trend_value))
+        #print(oppo_reduct, trend_value, user_trend)
+        
+        return user_trend, custom_input['savings/losses sharing arrangement']['msr'], custom_input['savings/losses sharing arrangement']['savings sharing'], custom_input['savings/losses sharing arrangement']['savings sharing min'], custom_input['savings/losses sharing arrangement']['savings share cap'], custom_input['savings/losses sharing arrangement']['mlr'], custom_input['savings/losses sharing arrangement']['losses sharing'], custom_input['savings/losses sharing arrangement']['losses sharing min'], custom_input['savings/losses sharing arrangement']['losses share cap'], custom_input['savings/losses sharing arrangement']['two side value'], custom_input['savings/losses sharing arrangement']['saving qa'], custom_input['savings/losses sharing arrangement']['losses qa'], custom_input['savings/losses sharing arrangement']['saving sharing method'], custom_input['savings/losses sharing arrangement']['loss sharing method'],  custom_input['quality adjustment']['selected measures']
+
+    elif ctx.triggered[0]['prop_id'].split('.')[0] == 'button-reset-simulation':
         msr = int(default_input['savings/losses sharing arrangement']['recom msr'].replace('"','').replace('%','').replace('$',''))
         saving_share = int(default_input['savings/losses sharing arrangement']['recom savings sharing'].replace('"','').replace('%','').replace('$',''))
         saving_share_min = int(default_input['savings/losses sharing arrangement']['recom savings sharing min'].replace('"','').replace('%','').replace('$',''))
@@ -1980,7 +2047,7 @@ def reset_user_define(n):
         loss_share = int(default_input['savings/losses sharing arrangement']['recom losses sharing'].replace('"','').replace('%','').replace('$',''))
         loss_share_min = int(default_input['savings/losses sharing arrangement']['recom losses sharing min'].replace('"','').replace('%','').replace('$',''))
         loss_share_cap = int(default_input['savings/losses sharing arrangement']['recom losses share cap'].replace('"','').replace('%','').replace('$','')[0:2])
-        return default_input['medical cost target']["user target"], msr, saving_share, saving_share_min, saving_share_cap, mlr,  loss_share,  loss_share_min,  loss_share_cap,   [], ["selected"], ["selected"], "First Dollar Sharing", "First Dollar Sharing",  [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
+        return default_input['medical cost target']["user target"], msr, saving_share, saving_share_min, saving_share_cap, mlr,  loss_share,  loss_share_min,  loss_share_cap,   [], ["selected"], ["selected"], "First Dollar Sharing", "First Dollar Sharing",  [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],3.9
     else:
         return custom_input['medical cost target']["user target trend"], custom_input['savings/losses sharing arrangement']['msr'], custom_input['savings/losses sharing arrangement']['savings sharing'], custom_input['savings/losses sharing arrangement']['savings sharing min'], custom_input['savings/losses sharing arrangement']['savings share cap'], custom_input['savings/losses sharing arrangement']['mlr'], custom_input['savings/losses sharing arrangement']['losses sharing'], custom_input['savings/losses sharing arrangement']['losses sharing min'], custom_input['savings/losses sharing arrangement']['losses share cap'], custom_input['savings/losses sharing arrangement']['two side value'], custom_input['savings/losses sharing arrangement']['saving qa'], custom_input['savings/losses sharing arrangement']['losses qa'], custom_input['savings/losses sharing arrangement']['saving sharing method'], custom_input['savings/losses sharing arrangement']['loss sharing method'],  custom_input['quality adjustment']['selected measures']
 

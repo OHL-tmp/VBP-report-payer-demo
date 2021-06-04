@@ -284,7 +284,7 @@ def card_contract_infomation_bundle(app):
 								html.Div(
 									[
 										html.Div(html.H1("LOB", style={"font-size":"0.8rem"})),
-										html.Div(html.P("Medicare", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"8rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+										html.Div(html.P("MAPD", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"8rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
 									],
 									style={"padding":"1rem"}
 								),

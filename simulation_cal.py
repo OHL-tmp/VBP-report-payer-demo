@@ -219,7 +219,7 @@ import pandas as pd
 # 	return df
 
 
-def simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_type,user_tar_value,df_json,target_user_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,max_user_losspct,min_user_losspct,cap_user_savepct,cap_user_losspct,twosided,losspct_calfrom_save):
+def simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_type,user_tar_value,df_json,target_user_pmpm,target_recom_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,max_user_losspct,min_user_losspct,cap_user_savepct,cap_user_losspct,twosided,losspct_calfrom_save):
     df_range = pd.read_csv("./data/quality_setup.csv")
     # df_carve_out = pd.read_csv('df_carve_out.csv')
     
@@ -227,10 +227,13 @@ def simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_
     domain2=list(range(10,14))
     domain3=list(range(14,20))
     domain4=list(range(20,23))
+
+    target_recom_pmpm = int(target_recom_pmpm.replace('"','').replace('%','').replace('$',''))
+    pred_pmpm = target_recom_pmpm*0.935
     
     df_the_code = df_carve_out[df_carve_out['code']==carve_code].to_dict('records')[0]
-    pmpy_mean=df_the_code['pred_pmpm']*12
-    worse=df_carve_out[df_carve_out['code']==carve_code]['pred_pmpm'].values[0]*12
+    pmpy_mean= pred_pmpm*12
+    worse=pred_pmpm*12
     pmpy_rangepct=[1,1.2,0.8,df_the_code['pred_worse_pct'],df_the_code['pred_better_pct']] # be,worst,best,worse,better
     
     aco_margin=0.05
@@ -241,16 +244,18 @@ def simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_
 
     cost_range=[pmpy_mean*i*member_cnt for i in pmpy_rangepct]
     
-    cost_wo_contract=915*(1+5.4/100)*12
+    cost_wo_contract=1030*(1+5.6/100)*12
     cost_wo_contract_range=[cost_wo_contract*i*member_cnt for i in pmpy_rangepct]
 
     outof_aco_cost=cost_wo_contract*member_cnt*6
 
     #target 
-
-    target_recom_pmpm=int(df_json['medical cost target']['recom target'].replace('$',''))#850
+    
+    #target_recom_pmpm=int(df_json['medical cost target']['recom target'].replace('$',''))#850
     target_recom=target_recom_pmpm*12*member_cnt
     target_user=target_user_pmpm*12*member_cnt
+    
+    # print(target_recom_pmpm, target_user_pmpm)
 
     #sharing arrangement
     msr_recom=int(df_json['savings/losses sharing arrangement']['recom msr'].replace('%',''))/100#0.02

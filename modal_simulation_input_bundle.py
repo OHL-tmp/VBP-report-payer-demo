@@ -85,7 +85,7 @@ def input_session_bundle(app):
 						html.Div(
 							[
 								dbc.Input(
-									value = "Commercial", 
+									value = "MAPD", 
 									bs_size="sm", 
 									persistence = True, 
 									persistence_type = 'session', 

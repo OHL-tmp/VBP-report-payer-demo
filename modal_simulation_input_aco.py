@@ -85,7 +85,7 @@ def input_session_aco(app):
 						html.Div(
 							[
 								dbc.Input(
-									value = "Medicare", 
+									value = "MAPD", 
 									bs_size="sm", 
 									persistence = True, 
 									persistence_type = 'session', 
