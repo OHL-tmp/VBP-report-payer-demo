@@ -5,10 +5,24 @@ pat_manage,Disease Management,Depression ,Service
 pat_manage,Disease Management,Heart Failure ,Service
 pat_manage,Disease Management,COPD,Service
 pat_manage,Disease Management,Stroke,Service
+pat_manage,Disease Management,Hypertension,Service
+pat_manage,Disease Management,Hyperlipidemia,Service
+pat_manage,Disease Management,Arthritis,Service
+pat_manage,Disease Management,Ischemic Heart Disease,Service
+pat_manage,Disease Management,Atrial Fibrillation,Service
+pat_manage,Disease Management,Cancer,Service
+pat_manage,Disease Management,Osteoporosis,Service
+pat_manage,Disease Management,Asthma,Service
+pat_manage,Disease Management,Drug Abuse/Substance Abuse,Service
+pat_manage,Disease Management,Alzheimer's Disease/Dementia,Service
 overuse_reduction,Overuse Reduction,IP Short Stay,DRG
 overuse_reduction,Overuse Reduction,ER,Diagnosis
 overuse_reduction,Overuse Reduction,High Cost Imaging,Procedure
 overuse_reduction,Overuse Reduction,Surgical Procedures,Procedure
+overuse_reduction,Overuse Reduction,DMEPOS,Procedure
+overuse_reduction,Overuse Reduction,Specialist Visit,Procedure
+overuse_reduction,Overuse Reduction,Other Diagnostic Testing,Procedure
+overuse_reduction,Overuse Reduction,Antibiotics,Diagnosis
 readmission_reduction,Readmission Reduction,Acute Myocardial Infarction,Readmitting DRG
 readmission_reduction,Readmission Reduction,Stroke,Readmitting DRG
 readmission_reduction,Readmission Reduction,Heart Failure,Readmitting DRG

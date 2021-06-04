@@ -18,6 +18,7 @@ from dash.dependencies import Input, Output, State
 from app import app
 from assets.color import *
 
+# base_download_url = 'http://localhost:8099'
 base_download_url = 'https://provider-valuegen.onehealthlink.com/'
 
 def modal_simulation_input_newcontract():
@@ -216,7 +217,7 @@ def input_session_newcontract(app):
 												[
 													html.A('Download Template', 
 														id = 'download-claim-newcontact',
-														href=base_download_url + '/downloads/Age Distribution template.xlsx',
+														href=base_download_url +'downloads/Member and Claim Data Template.xlsx',
 														target = "_blank")
 												], style={"font-size":"0.8rem","padding-left":"0.8rem"}),
 											width=3

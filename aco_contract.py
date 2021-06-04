@@ -652,7 +652,7 @@ def card_medical_cost_target(app):
                                         ),
                                 dbc.Col([
                                                 dbc.InputGroup([
-                                                    dbc.Input(id = 'input-oppo-reduct', type = "number", debounce = True, step = 0.1, value = 1.7,
+                                                    dbc.Input(id = 'input-oppo-reduct', type = "number", debounce = True, step = 0.1, value = 3.1,
                                                         persistence = True, 
                                                         persistence_type = 'memory',),
                                                     dbc.InputGroupAddon('%', addon_type = 'append'),
@@ -1183,10 +1183,9 @@ def tab_result_aco(app):
                                         dbc.Col(dcc.Dropdown(
                                             id = 'dropdown-cost',
                                             options = [
-                                            {'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" },
                                             {'label' : "ACO's Total Cost", 'value' : "ACO's Total Cost" },
                                             {'label' : "ACO's PMPM", 'value' : "ACO's PMPM" },
-                                            ],#{'label' : "Plan's Total Revenue", 'value' : "Plan's Total Revenue" }
+                                            ],#{'label' : "Plan's Total Cost", 'value' : "Plan's Total Cost" }
                                             value = "ACO's PMPM",
                                             ))
                                     ],
@@ -1772,7 +1771,7 @@ def cal_usr_like(usr_tgt, n, oppo_reduct):
 #        recom_tgt_int = int(recom_tgt.replace('$','').replace('%','').replace(',',''))
 #        usr_tgt_int = int(usr_tgt.replace('$','').replace('%','').replace(',',''))
         try: 
-            recom_trend_num = 5.6 - oppo_reduct
+            recom_trend_num = 7 - oppo_reduct
         except:
             recom_trend_num = 3.9
 
@@ -1966,14 +1965,14 @@ def cal_simulation(submit, data, code, target_recom_pmpm_div):
             min_user_losspct = min_user_losspct/100
             cap_user_losspct = cap_user_losspct/100
 
-        print('********')
-        print(carve_code, target_user_pmpm, target_recom_pmpm_div['props']['children'])
-        print('********')
+        # print('********')
+        # print(carve_code, target_user_pmpm, target_recom_pmpm_div['props']['children'])
+        # print('********')
 
         target_recom_pmpm = target_recom_pmpm_div['props']['children']
 
         df=simulation_cal(carve_code,df_carve_out,selected_rows,domian_weight,user_tar_type,user_tar_value,default_input,target_user_pmpm,target_recom_pmpm,msr_user,mlr_user,max_user_savepct,min_user_savepct,min_user_losspct,max_user_losspct,cap_user_savepct,cap_user_losspct,twosided,lossmethod)
-        print(df)
+        # print(df)
         return [df.to_json(orient = 'split')]
     return [""]
 

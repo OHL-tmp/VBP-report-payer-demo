@@ -169,7 +169,7 @@ def card_contract_infomation_bundle(app):
                                 html.Div(
                                     [
                                         html.Div(html.H1("Contract Period", style={"font-size":"0.8rem"})),
-                                        html.Div(html.P("1/1/2022-12/31/2022", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"16rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
+                                        html.Div(html.P("1/1/2021-12/31/2021", style={"font-size":"0.8rem"}), style={"background-color":"#fff", "border":"none", "border-radius":"0.5rem", "width":"16rem","height":"2rem", "padding":"0.5rem","text-align":"start"})
                                     ],
                                     style={"padding":"1rem"}
                                 ),

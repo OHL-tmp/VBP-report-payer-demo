@@ -48,8 +48,8 @@ def contract_overview_metrics(app):
 						html.Div(
 							[
 								contract_overview_metrics_block("Total Number of Payors", "2", blue2, blue3),
-								contract_overview_metrics_block("Total Number of Contracts", "2", blue2, blue3),
-								contract_overview_metrics_block("% of Total Revenue", "10%", blue2, blue3),
+								contract_overview_metrics_block("Total Number of Contracts", "4", blue2, blue3),
+								contract_overview_metrics_block("VBC Revenue as % of Total Revenue", "14%", blue2, blue3),
 								
 							], 
 							style={"display":"flex", "padding-left":"6rem"}
