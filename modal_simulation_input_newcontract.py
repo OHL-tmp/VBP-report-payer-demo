@@ -164,7 +164,7 @@ def input_session_newcontract(app):
 			[
 				dbc.Col(
 					[
-						html.H3("5. % of Total Revenue", style={"font-size":"1rem"}),
+						html.H3("5. VBC Revenue as a % of Total Revenue", style={"font-size":"1rem"}),
 						html.Div(
 							[
 								dbc.Input(

@@ -232,7 +232,7 @@ def get_header_contract(app, cd, co, bhp):
                     dbc.Row(
                         [
                             dbc.Col(html.Img(src=app.get_asset_url("logo-demo.png"), style={"height":"4rem", "padding-top":"1px"})),
-                            dbc.Col(dbc.NavbarBrand("Contract Optimizer", className="ml-2", style={"font-family":"NotoSans-Black","font-size":"1.5rem","color":"#bfd4ff"})),
+                            dbc.Col(dbc.NavbarBrand("Contract Designer", className="ml-2", style={"font-family":"NotoSans-Black","font-size":"1.5rem","color":"#bfd4ff"})),
                             ],
 
                         align="center",
