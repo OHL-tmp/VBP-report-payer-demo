@@ -740,7 +740,7 @@ def tab_result(app):
 								dbc.Row(
 									[
 										dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-										dbc.Col(html.H4("Plan's Financial Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=3),
+										dbc.Col(html.H4("Plan's Cost/Provider's Revenue Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=3),
 										
 									],
 									no_gutters=True,

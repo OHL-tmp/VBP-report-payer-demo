@@ -1178,7 +1178,7 @@ def tab_result_aco(app):
                                 dbc.Row(
                                     [
                                         dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                        dbc.Col(html.H4("Plan's Financial Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                        dbc.Col(html.H4("Plan's Cost Projection", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                         dbc.Col(html.Div(html.H2("Metric", style={"padding":"0.5rem","color":"#fff", "background-color":"#1357DD", "font-size":"1rem", "border-radius":"0.5rem"}), style={"padding-right":"1rem"}), width="auto"),
                                         dbc.Col(dcc.Dropdown(
                                             id = 'dropdown-cost',
