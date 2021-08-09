@@ -41,7 +41,6 @@ Abdominal pain,30.0564,27.324,0.626175,24.5916,1.1385,ER,overuse_reduction
 Respiratory infection,23.96163,21.7833,0.499200625,19.60497,0.9076375,ER,overuse_reduction
 Chest pain,22.95975,20.8725,0.478328125,18.78525,0.8696875,ER,overuse_reduction
 Urinary tract infection,14.27679,12.9789,0.297433125,11.68101,0.5407875,ER,overuse_reduction
-Urinary tract infection,14.27679,12.9789,0.297433125,11.68101,0.5407875,ER,overuse_reduction
 Headache,12.77397,11.6127,0.266124375,10.45143,0.4838625,ER,overuse_reduction
 Pneumonia,11.43813,10.3983,0.238294375,9.35847,0.4332625,ER,overuse_reduction
 CT,601.7,547,5.014166667,492.3,13.675,High Cost Imaging,overuse_reduction
