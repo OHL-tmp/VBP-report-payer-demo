@@ -4,37 +4,31 @@ Readmission Rate (%),25.162,21.88,1.86278115,18.1604,3.97393312,Diabetes,pat_man
 "Emergency Room (per 1,000 episodes)",1180.787225,1026.7715,6.993238009,852.220345,14.91890775,Diabetes,pat_manage
 "Professional Visits (per 1,000 episodes)",9199.326122,7999.414019,5.448320894,6639.513636,11.62308457,Diabetes,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",2982.518881,2593.494679,2.649604936,2152.600584,5.652490531,Diabetes,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",22225.3268,27781.6585,-2.522907972,32504.54044,-4.667379747,Diabetes,pat_manage
 "Inpatient Visit (per 1,000 episodes)",1035.404454,900.3516989,13.51208439,747.2919101,28.82578004,Chronic Kidney Disease ,pat_manage
 Readmission Rate (%),26.1625,22.75,1.707110234,18.8825,3.641835167,Chronic Kidney Disease ,pat_manage
 "Emergency Room (per 1,000 episodes)",1561.92816,1358.1984,8.15329895,1127.304672,17.39370443,Chronic Kidney Disease ,pat_manage
 "Professional Visits (per 1,000 episodes)",10838.32886,9424.633788,5.657631224,7822.446044,12.06961328,Chronic Kidney Disease ,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",6267.339499,5449.860434,4.907347265,4523.38416,10.4690075,Chronic Kidney Disease ,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",23394.20378,29242.75472,-2.340599836,34214.02303,-4.330109696,Chronic Kidney Disease ,pat_manage
 "Inpatient Visit (per 1,000 episodes)",810.2285962,704.5466054,7.896162046,584.7736825,16.8451457,Depression ,pat_manage
 Readmission Rate (%),25.4035,22.09,1.237861472,18.3347,2.64077114,Depression ,pat_manage
 "Emergency Room (per 1,000 episodes)",1681.76276,1462.4024,6.555913399,1213.793992,13.98594858,Depression ,pat_manage
 "Professional Visits (per 1,000 episodes)",9216.45123,8014.305418,3.592793083,6651.873497,7.664625244,Depression ,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",5636.226267,4901.066319,3.295703668,4067.885045,7.030834491,Depression ,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",24439.3135,30549.14187,-1.826013857,35742.49599,-3.378125636,Depression ,pat_manage
 "Inpatient Visit (per 1,000 episodes)",1010.879115,879.0253174,7.624335969,729.5910134,16.26525007,Heart Failure ,pat_manage
 Readmission Rate (%),33.2,30.2,0.8673625,27.5,1.64798875,Heart Failure ,pat_manage
 "Emergency Room (per 1,000 episodes)",1990.85976,1731.1824,6.006250778,1436.881392,12.81333499,Heart Failure ,pat_manage
 "Professional Visits (per 1,000 episodes)",10745.88166,9344.244918,3.241939053,7755.723282,6.916136646,Heart Failure ,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",6524.841122,5673.774888,2.952731743,4709.233157,6.299161052,Heart Failure ,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",25421.25478,31776.56848,-1.469962873,37178.58512,-2.719431316,Heart Failure ,pat_manage
 "Inpatient Visit (per 1,000 episodes)",1031.313893,896.7946892,6.558203512,744.339592,13.99083416,COPD,pat_manage
 Readmission Rate (%),27.186,23.64,0.864389213,19.6212,1.84403032,COPD,pat_manage
 "Emergency Room (per 1,000 episodes)",1997.156815,1736.6581,5.080028858,1441.426223,10.8373949,COPD,pat_manage
 "Professional Visits (per 1,000 episodes)",10902.502,9480.436522,2.77319359,7868.762314,5.916146326,COPD,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",5303.633418,4611.855146,2.023572507,3827.839772,4.316954681,COPD,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",23891.92302,29864.90377,-1.164800932,34941.93741,-2.154881724,COPD,pat_manage
 "Inpatient Visit (per 1,000 episodes)",1186.303667,1031.568406,2.437531671,856.2017771,5.200067564,Stroke,pat_manage
 Readmission Rate (%),13.5,12.3,0.0945175,11.2,0.181158542,Stroke,pat_manage
 "Emergency Room (per 1,000 episodes)",2289.88437,1991.2038,1.882036052,1652.699154,4.015010244,Stroke,pat_manage
 "Professional Visits (per 1,000 episodes)",9962.136808,8662.727659,0.818779361,7190.063957,1.746729305,Stroke,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",8808.389542,7659.469167,1.085930815,6357.359409,2.316652406,Stroke,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",21443.86912,26804.83641,-0.337803483,31361.65859,-0.624936444,Stroke,pat_manage
 Septicemia,121.7563707,110.6876097,3.07158117,99.61884877,6.087818536,IP Stay,overuse_reduction
 Heart Failure,111.4611035,101.3282759,2.811859657,91.19544835,5.066413797,IP Stay,overuse_reduction
 Simple Pneumonia,72.5409315,65.94630137,1.830009863,59.35167123,3.297315068,IP Stay,overuse_reduction
@@ -196,67 +190,56 @@ Readmission Rate (%),21.7465,18.91,0.05909375,17.9645,0.078791667,Hypertension,p
 "Emergency Room (per 1,000 episodes)",1090.432645,948.2023,0.237050575,900.792185,0.316067433,Hypertension,pat_manage
 "Professional Visits (per 1,000 episodes)",8495.38791,7387.293834,0.184682346,7017.929143,0.246243128,Hypertension,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",2754.294663,2395.038837,0.089813956,2275.286896,0.119751942,Hypertension,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",29504.15682,25655.78854,0.064139471,24372.99912,0.085519295,Hypertension,pat_manage
 "Inpatient Visit (per 1,000 episodes)",467.2856042,406.335308,0.253959567,386.0185426,0.338612757,Hyperlipidemia,pat_manage
 Readmission Rate (%),21.8845,19.03,0.05946875,18.0785,0.079291667,Hyperlipidemia,pat_manage
 "Emergency Room (per 1,000 episodes)",1019.44303,886.4722,0.22161805,842.14859,0.295490733,Hyperlipidemia,pat_manage
 "Professional Visits (per 1,000 episodes)",7942.319071,6906.364409,0.17265911,6561.046189,0.230212147,Hyperlipidemia,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",2574.983893,2239.116428,0.083966866,2127.160607,0.111955821,Hyperlipidemia,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",27583.36993,23985.53907,0.059963848,22786.26212,0.079951797,Hyperlipidemia,pat_manage
 "Inpatient Visit (per 1,000 episodes)",534.2643063,464.5776577,0.290361036,441.3487748,0.387148048,Arthritis,pat_manage
 Readmission Rate (%),21.1945,18.43,0.05759375,17.5085,0.076791667,Arthritis,pat_manage
 "Emergency Room (per 1,000 episodes)",1165.565595,1013.5353,0.253383825,962.858535,0.3378451,Arthritis,pat_manage
 "Professional Visits (per 1,000 episodes)",9080.736815,7896.292882,0.197407322,7501.478238,0.263209763,Arthritis,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",2944.070973,2560.061715,0.096002314,2432.05863,0.128003086,Arthritis,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",31537.05115,27423.52274,0.068558807,26052.3466,0.091411742,Arthritis,pat_manage
 "Inpatient Visit (per 1,000 episodes)",593.8404379,565.5623218,0.117825484,537.2842057,0.235650967,Ischemic Heart Disease,pat_manage
 Readmission Rate (%),22.6485,21.57,0.02246875,20.4915,0.0449375,Ischemic Heart Disease,pat_manage
 "Emergency Room (per 1,000 episodes)",1295.53851,1233.8462,0.102820517,1172.15389,0.205641033,Ischemic Heart Disease,pat_manage
 "Professional Visits (per 1,000 episodes)",10093.3352,9612.700186,0.080105835,9132.065177,0.16021167,Ischemic Heart Disease,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",3272.366084,3116.539127,0.038956739,2960.712171,0.077913478,Ischemic Heart Disease,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",35053.76655,33384.53957,0.02782045,31715.31259,0.055640899,Ischemic Heart Disease,pat_manage
 "Inpatient Visit (per 1,000 episodes)",756.2755295,687.5232087,0.286468004,653.1470482,0.429702005,Atrial Fibrillation,pat_manage
 Readmission Rate (%),25.41,23.1,0.048125,21.945,0.0721875,Atrial Fibrillation,pat_manage
 "Emergency Room (per 1,000 episodes)",1649.91134,1499.9194,0.249986567,1424.92343,0.37497985,Atrial Fibrillation,pat_manage
 "Professional Visits (per 1,000 episodes)",12854.19775,11685.63432,0.194760572,11101.3526,0.292140858,Atrial Fibrillation,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",4167.46694,3788.606309,0.094715158,3599.175994,0.142072737,Atrial Fibrillation,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",44642.13645,40583.7604,0.067639601,38554.57238,0.101459401,Atrial Fibrillation,pat_manage
 "Inpatient Visit (per 1,000 episodes)",537.1785942,467.1118211,0.291944888,443.75623,0.389259851,Cancer,pat_manage
 Readmission Rate (%),23.276,20.24,0.06325,19.228,0.084333333,Cancer,pat_manage
 "Emergency Room (per 1,000 episodes)",1171.923485,1019.0639,0.254765975,968.110705,0.339687967,Cancer,pat_manage
 "Professional Visits (per 1,000 episodes)",9130.270128,7939.365329,0.198484133,7542.397062,0.264645511,Cancer,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",2960.130197,2574.026258,0.096525985,2445.324945,0.128701313,Cancer,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",31709.07845,27573.1117,0.068932779,26194.45611,0.091910372,Cancer,pat_manage
 "Inpatient Visit (per 1,000 episodes)",548.2656552,476.7527437,0.297970465,452.9151065,0.397293953,Osteoporosis,pat_manage
 Readmission Rate (%),21.206,18.44,0.057625,17.518,0.076833333,Osteoporosis,pat_manage
 "Emergency Room (per 1,000 episodes)",1196.11132,1040.0968,0.2600242,988.09196,0.346698933,Osteoporosis,pat_manage
 "Professional Visits (per 1,000 episodes)",9318.713717,8103.229319,0.202580733,7698.067853,0.270107644,Osteoporosis,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",3021.225603,2627.152698,0.098518226,2495.795063,0.131357635,Osteoporosis,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",32363.53582,28142.20506,0.070355513,26735.09481,0.09380735,Osteoporosis,pat_manage
 "Inpatient Visit (per 1,000 episodes)",806.3216145,767.9253471,0.159984447,729.5290797,0.319968895,Asthma,pat_manage
 Readmission Rate (%),23.226,22.12,0.023041667,21.014,0.046083333,Asthma,pat_manage
 "Emergency Room (per 1,000 episodes)",1759.093245,1675.3269,0.139610575,1591.560555,0.27922115,Asthma,pat_manage
 "Professional Visits (per 1,000 episodes)",13704.81667,13052.20635,0.108768386,12399.59603,0.217536772,Asthma,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",4443.246595,4231.663423,0.052895793,4020.080252,0.105791586,Asthma,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",47596.30336,45329.81273,0.037774844,43063.32209,0.075549688,Asthma,pat_manage
 "Inpatient Visit (per 1,000 episodes)",1194.466902,1137.587526,0.236997401,1080.708149,0.473994802,Drug Abuse/Substance Abuse,pat_manage
 Readmission Rate (%),29.169,27.78,0.0289375,26.391,0.057875,Drug Abuse/Substance Abuse,pat_manage
 "Emergency Room (per 1,000 episodes)",2605.8816,2481.792,0.206816,2357.7024,0.413632,Drug Abuse/Substance Abuse,pat_manage
 "Professional Visits (per 1,000 episodes)",20302.01053,19335.24812,0.161127068,18368.48572,0.322254135,Drug Abuse/Substance Abuse,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",6582.12666,6268.692057,0.078358651,5955.257454,0.156717301,Drug Abuse/Substance Abuse,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",70508.10497,67150.57616,0.055958813,63793.04735,0.111917627,Drug Abuse/Substance Abuse,pat_manage
 "Inpatient Visit (per 1,000 episodes)",593.8404379,565.5623218,0.117825484,537.2842057,0.235650967,Ischemic Heart Disease,pat_manage
 Readmission Rate (%),22.6485,21.57,0.02246875,20.4915,0.0449375,Ischemic Heart Disease,pat_manage
 "Emergency Room (per 1,000 episodes)",1295.53851,1233.8462,0.102820517,1172.15389,0.205641033,Ischemic Heart Disease,pat_manage
 "Professional Visits (per 1,000 episodes)",10093.3352,9612.700186,0.080105835,9132.065177,0.16021167,Ischemic Heart Disease,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",3272.366084,3116.539127,0.038956739,2960.712171,0.077913478,Ischemic Heart Disease,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",35053.76655,33384.53957,0.02782045,31715.31259,0.055640899,Ischemic Heart Disease,pat_manage
 "Inpatient Visit (per 1,000 episodes)",778.9276022,708.116002,0.295048334,672.7102019,0.442572501,Alzheimer's Disease/Dementia,pat_manage
 Readmission Rate (%),24.519,22.29,0.0464375,21.1755,0.06965625,Alzheimer's Disease/Dementia,pat_manage
 "Emergency Room (per 1,000 episodes)",1699.32972,1544.8452,0.2574742,1467.60294,0.3862113,Alzheimer's Disease/Dementia,pat_manage
 "Professional Visits (per 1,000 episodes)",13239.20851,12035.6441,0.200594068,11433.8619,0.300891103,Alzheimer's Disease/Dementia,pat_manage
 "Skilled Nursing Facility Days (per 1,000 episodes)",4292.291505,3902.083186,0.09755208,3706.979027,0.146328119,Alzheimer's Disease/Dementia,pat_manage
-"Adjusted 30-day Scripts (per 1,000 episodes)",45979.26409,41799.33099,0.069665552,39709.36444,0.104498327,Alzheimer's Disease/Dementia,pat_manage
 Implants,56.1,55,0.11,49.5,0.66,DMEPOS,overuse_reduction
 Orthotics,50.49,49.5,0.099,44.55,0.594,DMEPOS,overuse_reduction
 Wheelchairs,45.441,44.55,0.0891,40.095,0.5346,DMEPOS,overuse_reduction
