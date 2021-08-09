@@ -926,10 +926,10 @@ def update_y_timeseries(clickData):
     df_bydrg = bundle_oppo_dtl_bydim(df_bundle_bydrg[df_bundle_bydrg['bundle']==bundle])
     df_byphy = bundle_oppo_dtl_bydim(df_bundle_byphy[df_bundle_byphy['bundle']==bundle])
     df_byreadmitdrg = bundle_oppo_dtl_bench(df_bundle_byreadmitdrg[df_bundle_byreadmitdrg['bundle']==bundle], 'Readmission Rate Comparison')
-    df_byer = bundle_oppo_dtl_bench(df_bundle_byer[df_bundle_byer['bundle']==bundle], 'Readmission Rate Comparison')
+    df_byer = bundle_oppo_dtl_bench(df_bundle_byer[df_bundle_byer['bundle']==bundle], 'Post Discharge ER Rate Comparison')
     df_pacrate = bundle_oppo_dtl_bench(df_bundle_pac_rate[df_bundle_pac_rate['bundle']==bundle], 'Discharge Rate Comparison')
     df_paclos = bundle_oppo_dtl_bench(df_bundle_pac_los[df_bundle_pac_rate['bundle']==bundle], 'LOS Comparison')
-    df_dme = bundle_oppo_dtl_bench(df_bundle_dme[df_bundle_dme['bundle']==bundle], 'Average Cost/Bundle')
+    df_dme = bundle_oppo_dtl_bench(df_bundle_dme[df_bundle_dme['bundle']==bundle], 'Average DME Cost/Bundle')
 
     return bundle,bundle_trend(df_trend), bundle_avgcost(df_avgcost), avgcost_compare_benchtext, avgcost_compare_besttext, bundle_svccost(df_bysvc), bundle_vertical(df_byoppo, 'pct'), df_bydrg, df_byphy, df_byreadmitdrg, df_byer, df_pacrate, df_paclos, df_dme
 
