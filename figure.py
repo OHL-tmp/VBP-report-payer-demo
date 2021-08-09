@@ -3813,6 +3813,13 @@ def aco_oppo_tbl(df,filter_oppo):
         table_col = [{'name':dim_name[filter_oppo], 'id':df_table.columns[k]} if k==0 \
         else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_num} if k in [1,2,4] \
         else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
+    elif filter_oppo in ['referral_optimize']:
+        table_col = [{'name':'Specialty', 'id':df_table.columns[0]},
+        {'name':'Attributed Cost PMPM (Actual)', 'id':df_table.columns[1], 'type':'numeric', 'format':format_money},
+        {'name':'Attributed Cost PMPM (25% steerage)*', 'id':df_table.columns[2], 'type':'numeric', 'format':format_money},
+        {'name':'Cost Reduction PMPM (25% steerage)*', 'id':df_table.columns[3], 'type':'numeric', 'format':format_money},
+        {'name':'Attributed Cost PMPM (50% steerage)*', 'id':df_table.columns[4], 'type':'numeric', 'format':format_money},
+        {'name':'Cost Reduction PMPM (50% steerage)*', 'id':df_table.columns[5], 'type':'numeric', 'format':format_money}]
     else:
         table_col = [{'name':dim_name[filter_oppo], 'id':df_table.columns[k]} if k==0 \
         else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_pct} if k in [1,2,4] \
@@ -4002,6 +4009,9 @@ def bundle_oppo_dtl_bench(df, title):
     else {'name':col[k-1], 'id':df.columns[k], 'type':'numeric', 'format':format_pct} if k in [4,6] \
     else {'name':col[k-1], 'id':df.columns[k], 'type':'numeric', 'format':format_others} for k in range(1,7)]
 
+    color_above='#FF4136'
+    color_below='#3D9970'
+
     table=dash_table.DataTable(
         data=df.to_dict('records'),
         #id=tableid,
@@ -4012,8 +4022,8 @@ def bundle_oppo_dtl_bench(df, title):
             'height': 'auto'
         },
         style_data_conditional=(
-        data_bars_diverging(df, 'Diff from Benchmark',df['Diff from Benchmark'].max()/0.9) +
-        data_bars_diverging(df, 'Diff from BIC',df['Diff from BIC'].max()/0.9) +
+        data_bars_diverging(df, 'Diff from Benchmark',df['Diff from Benchmark'].max()/0.9,color_above,color_below) +
+        data_bars_diverging(df, 'Diff from BIC',df['Diff from BIC'].max()/0.9,color_above,color_below) +
         [{'if': {'column_id':'Diff from Benchmark'},
              
              'width': '20rem',

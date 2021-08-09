@@ -15,14 +15,9 @@ pat_manage,Disease Management,Osteoporosis,Service
 pat_manage,Disease Management,Asthma,Service
 pat_manage,Disease Management,Drug Abuse/Substance Abuse,Service
 pat_manage,Disease Management,Alzheimer's Disease/Dementia,Service
-overuse_reduction,Overuse Reduction,IP Short Stay,DRG
+overuse_reduction,Overuse Reduction,IP Stay,DRG
 overuse_reduction,Overuse Reduction,ER,Diagnosis
 overuse_reduction,Overuse Reduction,High Cost Imaging,Procedure
-overuse_reduction,Overuse Reduction,Surgical Procedures,Procedure
-overuse_reduction,Overuse Reduction,DMEPOS,Procedure
-overuse_reduction,Overuse Reduction,Specialist Visit,Procedure
-overuse_reduction,Overuse Reduction,Other Diagnostic Testing,Procedure
-overuse_reduction,Overuse Reduction,Antibiotics,Diagnosis
 readmission_reduction,Readmission Reduction,Acute Myocardial Infarction,Readmitting DRG
 readmission_reduction,Readmission Reduction,Stroke,Readmitting DRG
 readmission_reduction,Readmission Reduction,Heart Failure,Readmitting DRG
@@ -31,8 +26,9 @@ readmission_reduction,Readmission Reduction,Coronary Artery Bypass Graft,Readmit
 service_optimize,Service Optimization,ASC Surgery Use Rate,Procedure
 service_optimize,Service Optimization,Biosimilar Dispensing Rate,Drug
 service_optimize,Service Optimization,Urgent Care Center Use Rate,Diagnosis
-pac_optimize,Post Acute Care Optimization,Hip Replacement,Discharge Disposition
-pac_optimize,Post Acute Care Optimization,Spinal Fusion,Discharge Disposition
-pac_optimize,Post Acute Care Optimization,Acute Myocardial Infarction,Discharge Disposition
-pac_optimize,Post Acute Care Optimization,Stroke,Discharge Disposition
-pac_optimize,Post Acute Care Optimization,Coronary Artery Bypass Graft,Discharge Disposition
+service_optimize,Service Optimization,% of Primary Care Services Performed by PCP,Patient Cohort
+referral_optimize,Referral Optimization,Cardiology,Physician
+referral_optimize,Referral Optimization,Orthopedics,Physician
+referral_optimize,Referral Optimization,General Surgery,Physician
+referral_optimize,Referral Optimization,Neurology,Physician
+referral_optimize,Referral Optimization,Endocrinology,Physician

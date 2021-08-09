@@ -1,11 +1,11 @@
-﻿Patient Cohort,Provider Group,Benchmark*,Cost Reduction if Perform as Benchmark(PMPM),Best-in-Class*,Cost Reduction if Perform as Best-in-Class(PMPM),alias,oppo
-Diabetes,2030.180556,1998.583683,31.59687223,1962.110725,68.06983071,Diabetes,pat_manage
-Chronic Kidney Disease ,1470.802023,1448.3572,22.44482335,1422.20491,48.59711374,Chronic Kidney Disease ,pat_manage
-Depression ,1838.31442,1817.562,20.75241981,1793.52522,44.78919952,Depression ,pat_manage
-Heart Failure ,2597.572557,2578.3499,19.22265717,2556.350117,41.22244019,Heart Failure ,pat_manage
-COPD,2287.417995,2271.283408,16.13458675,2252.667516,34.75047866,COPD,pat_manage
-Stroke,2891.530017,2885.549025,5.980991916,2878.695335,12.83468162,Stroke,pat_manage
-IP Short Stay,74.80483108,68.00439189,15.096975,61.2039527,27.75519481,IP Short Stay,overuse_reduction
+﻿Patient Cohort,Provider Group,Benchmark,Cost Reduction if Perform as Benchmark(PMPM),Best-in-Class,Cost Reduction if Perform as Best-in-Class(PMPM),alias,oppo
+Diabetes,12181.08333,11991.5021,31.59687223,11772.66435,68.06983071,Diabetes,pat_manage
+Chronic Kidney Disease ,8824.81214,8690.1432,22.44482335,8533.229458,48.59711374,Chronic Kidney Disease ,pat_manage
+Depression ,11029.88652,10905.372,20.75241981,10761.15132,44.78919952,Depression ,pat_manage
+Heart Failure ,15585.43534,15470.0994,19.22265717,15338.1007,41.22244019,Heart Failure ,pat_manage
+COPD,13724.50797,13627.70045,16.13458675,13516.0051,34.75047866,COPD,pat_manage
+Stroke,17349.1801,17313.29415,5.980991916,17272.17201,12.83468162,Stroke,pat_manage
+IP Stay,74.80483108,68.00439189,15.096975,61.2039527,27.75519481,IP Stay,overuse_reduction
 High Cost Imaging,242.4675,220.425,9.371541667,198.3825,22.0425,High Cost Imaging,overuse_reduction
 ER,18.53478,16.8498,2.70298875,15.16482,4.914525,ER,overuse_reduction
 Surgical Procedures,41.34920327,37.59018479,2.695266619,33.83116631,3.759018479,Surgical Procedures,overuse_reduction
@@ -17,8 +17,14 @@ Stroke,0.135046154,0.122769231,2.455384615,0.111608392,4.687552448,Stroke,readmi
 ASC Surgery Use Rate,0.238894273,0.266981291,12.63915808,0.296645878,25.9882226,Move Surgeries to ASC,service_optimize
 Urgent Care Center Use Rate,0.380138177,0.422375752,4.054807222,0.469306391,8.560148581,Use Urgent Care Centers to Replace ER,service_optimize
 Biosimilar Dispensing Rate,0.2628,0.292,2.336,0.324444444,4.931555556,Increase Biosimilar Dispensing Rate,service_optimize
+% of Primary Care Services Performed by PCP,0.234738323,0.260820358,1.304101792,0.289800398,2.753103783,Move Primary Care Services from Specialist to PCP,service_optimize
 Hip Replacement,0.6216,0.56,3.696,0.504504505,7.02572973,Hip Replacement,pac_optimize
 Stroke,0.59274,0.534,3.5244,0.481081081,6.699535135,Stroke,pac_optimize
 Acute Myocardial Infarction,0.567144288,0.5109408,3.37220928,0.460307027,6.410235658,Acute Myocardial Infarction,pac_optimize
 Coronary Artery Bypass Graft,0.47262024,0.425784,2.8101744,0.383589189,5.341863049,Coronary Artery Bypass Graft,pac_optimize
 Spinal Fusion,0.34854,0.314,2.0724,0.282882883,3.939427027,Spinal Fusion,pac_optimize
+Cardiology,109.9542284,101.7076613,8.246567129,93.46109413,16.49313426,Cardiology,referral_optimize
+Orthopedics,91.53197095,83.52292349,8.009047458,83.52292349,8.009047458,Orthopedics,referral_optimize
+General Surgery,103,95.275,7.725,96.5625,6.4375,General Surgery,referral_optimize
+Neurology,56.19367837,51.97915249,4.214525877,52.68157347,3.512104898,Neurology,referral_optimize
+Endocrinology,42.34801947,39.17191801,3.17610146,39.70126825,2.646751217,Endocrinology,referral_optimize

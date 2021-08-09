@@ -1576,12 +1576,21 @@ def update_table(oppo_lv1, oppo_lv2):
     format_money = FormatTemplate.money(1)
     format_pct = FormatTemplate.percentage(1)
     format_num = Format( precision=0,group=',', scheme=Scheme.fixed,)
+    format_num_2decimal = Format( precision=2,group=',', scheme=Scheme.fixed,)
 
-    if oppo_lv1 == 'referral_steerage':
-        col = [['',fstcol_name], ['Preferred Provider','% of Total Units'], ['Preferred Provider','Avg Cost/Unit'], 
-        ['Non-Preferred Provider','% of Total Units'], ['Non-Preferred Provider','Avg Cost/Unit'],['','Cost Reduction if Steering All Visits to Preferred Provider(PMPM)']]
-        table_col = [{'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} if k in[2,4,5] \
-        else {'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_pct}for k in range(6)]
+
+    if oppo_lv1 == 'referral_optimize':
+        # col = [['',fstcol_name], ['Preferred Provider','% of Total Units'], ['Preferred Provider','Avg Cost/Unit'], 
+        # ['Non-Preferred Provider','% of Total Units'], ['Non-Preferred Provider','Avg Cost/Unit'],['','Cost Reduction if Steering All Visits to Preferred Provider(PMPM)']]
+        # table_col = [{'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} if k in[2,4,5] \
+        # else {'name':col[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_pct}for k in range(6)]
+        table_col = [{'name':'Provider', 'id':df_table.columns[0]},
+        {'name':'Total Episodes Attributed (Annual)', 'id':df_table.columns[1], 'type':'numeric', 'format':format_num},
+        {'name':'Total Cost Attributed (Annual)', 'id':df_table.columns[2], 'type':'numeric', 'format':format_money},
+        {'name':'Quality Score', 'id':df_table.columns[3], 'type':'numeric', 'format':format_num},
+        {'name':'Efficiency Score', 'id':df_table.columns[4], 'type':'numeric', 'format':format_num_2decimal},
+        {'name':'Cost Reduction Opportunity if Performs at Average Level', 'id':df_table.columns[5], 'type':'numeric', 'format':format_money}]
+
     # elif oppo_lv1 in ['pat_manage']:
     #     table_col = [{'name':fstcol_name, 'id':df_table.columns[k]} if k==0 \
     #     else {'name':df_table.columns[k], 'id':df_table.columns[k], 'type':'numeric', 'format':format_money} for k in range(6)]
@@ -1785,16 +1794,16 @@ def cal_usr_like(usr_tgt, n, oppo_reduct):
         return html.Div(html.H1("High",style={"text-align":"center", "padding-top":"2.5rem", "padding-bottom":"2.5rem", "font-size":"1.5rem","color":"#fff"}), style={"border-radius":"0.5rem", "background-color":"green"})
 
 
-@app.callback(
-    Output('modal-assump', 'is_open'),
-    [Input('button-open-assump-modal', 'n_clicks'),
-    Input('button-close-assump-modal', 'n_clicks'),],
-    [State('modal-assump', 'is_open')]
-    )
-def toggle_modal(n1, n2, is_open):
-    if n1 or n2:
-        return not is_open
-    return is_open
+# @app.callback(
+#     Output('modal-assump', 'is_open'),
+#     [Input('button-open-assump-modal', 'n_clicks'),
+#     Input('button-close-assump-modal', 'n_clicks'),],
+#     [State('modal-assump', 'is_open')]
+#     )
+# def toggle_modal(n1, n2, is_open):
+#     if n1 or n2:
+#         return not is_open
+#     return is_open
 
 @app.callback(
     [Output('div-recom-overall', 'children'),

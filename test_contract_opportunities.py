@@ -247,7 +247,7 @@ def tab_aco(app):
                                         dbc.Row(
                                             [
                                                 dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                                dbc.Col(html.H4("Disease Management", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                                dbc.Col(html.H4("Chronic Condition Management", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
                                             ],
                                             no_gutters=True,
                                             style={"padding-bottom":"2rem"}
@@ -257,15 +257,15 @@ def tab_aco(app):
                                                 dbc.Col(
                                                     html.Div(
                                                         [
-                                                            html.Div(html.H6('Potential Cost Reduction Opportunities by Patient Disease(PMPM)\u2020', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"1rem"}),
+                                                            html.Div(html.H6('Potential Cost Reduction Opportunities by Chronic Condition (PMPM)', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"1rem"}),
                                                             html.Div(
                                                                 [
                                                                     dcc.Graph(figure=aco_oppo_bar(df_aco_oppo_dtl,'pat_manage'), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},)
                                                                 ],
                                                                 style={"padding-bottom":"2.5rem"}
                                                             ),
-                                                            html.H6('* Patient mix adjusted'),
-                                                            html.H6('\u2020 Cost reduction opportunities could overlap between categories')
+                                                            
+                                                            # html.H6('\u2020 Cost reduction opportunities could overlap between categories')
                                                         ]
                                                     ),
                                                     width=4
@@ -274,13 +274,70 @@ def tab_aco(app):
                                                 dbc.Col(
                                                     html.Div(
                                                         [
-                                                            html.Div(html.H6('Patient PMPM', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"3rem"}),
+                                                            html.Div(html.H6('Chronic Condition Cost per Episode', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"3rem"}),
                                                             html.Div(
                                                                 [
                                                                     aco_oppo_tbl(df_aco_oppo_dtl,'pat_manage')
                                                                 ],
+                                                                style={"padding-bottom":"1.5rem"}
+                                                            ),
+                                                            html.H6('* Benchmark and Best-in-Class are severity adjusted')
+                                                        ]
+                                                    )
+                                                ),
+                                            ],
+                                            style={"padding-left":"2rem", "padding-right":"2rem"}
+                                        )
+                                        
+                                    ]
+                                ),
+                                style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem"}
+                            ),
+                            
+                        ],style={"padding":"2rem"}
+                    ),
+                    html.Div(
+                        [
+                            dbc.Card(
+                                dbc.CardBody(
+                                    [
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                                                dbc.Col(html.H4("Referral Optimization", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                                            ],
+                                            no_gutters=True,
+                                            style={"padding-bottom":"2rem"}
+                                        ),
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(
+                                                    html.Div(
+                                                        [
+                                                            html.Div(html.H6('Top 5 Provider Specialties with the Biggest Cost Reduction Opportunities through Referral Optimization (PMPM)', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"1rem"}),
+                                                            html.Div(
+                                                                [
+                                                                    dcc.Graph(figure=aco_oppo_bar(df_aco_oppo_dtl,'referral_optimize'), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},)
+                                                                ],
                                                                 style={"padding-bottom":"2.5rem"}
-                                                            )
+                                                            ),
+                                                            
+                                                        ]
+                                                    ),
+                                                    width=5
+                                                ),
+                                                dbc.Col(html.Div(),width=1),
+                                                dbc.Col(
+                                                    html.Div(
+                                                        [
+                                                            html.Div(html.H6('Cost Reduction Opportunities by Steering to More Efficient Specialist', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"3rem"}),
+                                                            html.Div(
+                                                                [
+                                                                    aco_oppo_tbl(df_aco_oppo_dtl,'referral_optimize')
+                                                                ],
+                                                                style={"padding-bottom":"1.5rem"}
+                                                            ),
+                                                            html.H6('* % of visits steering from low to average performing specialists')
                                                         ]
                                                     )
                                                 ),
@@ -320,7 +377,7 @@ def tab_aco(app):
                                                                 ],
                                                                 style={"padding-bottom":"2.5rem"}
                                                             ),
-                                                            html.H6('* Patient mix adjusted')
+                                                            # html.H6('* Patient mix adjusted')
                                                         ]
                                                     ),
                                                     width=4
@@ -375,7 +432,7 @@ def tab_aco(app):
                                                                 ],
                                                                 style={"padding-bottom":"2.5rem"}
                                                             ),
-                                                            html.H6('* Patient mix adjusted')
+                                                            
                                                         ]
                                                     ),
                                                     width=4
@@ -389,8 +446,9 @@ def tab_aco(app):
                                                                 [
                                                                     aco_oppo_tbl(df_aco_oppo_dtl,'readmission_reduction')
                                                                 ],
-                                                                style={"padding-bottom":"2.5rem"}
-                                                            )
+                                                                style={"padding-bottom":"1.5rem"}
+                                                            ),
+                                                            html.H6('* Benchmark and Best-in-Class are severity adjusted')
                                                         ]
                                                     )
                                                 ),
@@ -405,61 +463,6 @@ def tab_aco(app):
                             
                         ],style={"padding":"2rem"}
                     ),
-                    # html.Div(
-                    #     [
-                    #         dbc.Card(
-                    #             dbc.CardBody(
-                    #                 [
-                    #                     dbc.Row(
-                    #                         [
-                    #                             dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                    #                             dbc.Col(html.H4("Referral Steerage", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                    #                         ],
-                    #                         no_gutters=True,
-                    #                         style={"padding-bottom":"2rem"}
-                    #                     ),
-                    #                     dbc.Row(
-                    #                         [
-                    #                             dbc.Col(
-                    #                                 html.Div(
-                    #                                     [
-                    #                                         html.Div(html.H6('Estimated Cost Reduction Opportunities by Service Type(PMPM)', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"1rem"}),
-                    #                                         html.Div(
-                    #                                             [
-                    #                                                 dcc.Graph(figure=aco_oppo_bar(df_aco_oppo_dtl,'referral_steerage'), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},)
-                    #                                             ],
-                    #                                             style={"padding-bottom":"2.5rem"}
-                    #                                         ),
-                    #                                         html.H6('* Service mix adjusted')
-                    #                                     ]
-                    #                                 ),
-                    #                                 width=5
-                    #                             ),
-                    #                             dbc.Col(html.Div(),width=1),
-                    #                             dbc.Col(
-                    #                                 html.Div(
-                    #                                     [
-                    #                                         html.Div(html.H6('Utilization Rate and Unit Cost Comparison', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"3rem"}),
-                    #                                         html.Div(
-                    #                                             [
-                    #                                                 aco_oppo_tbl(df_aco_oppo_dtl,'referral_steerage')
-                    #                                             ],
-                    #                                             style={"padding-bottom":"2.5rem"}
-                    #                                         )
-                    #                                     ]
-                    #                                 )
-                    #                             ),
-                    #                         ],
-                    #                         style={"padding-left":"2rem", "padding-right":"2rem"}
-                    #                     )
-                                        
-                    #                 ]
-                    #             ),
-                    #             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem"}
-                    #         ),
-                            
-                    #     ],style={"padding":"2rem"}
-                    # ),
                     html.Div(
                         [
                             dbc.Card(
@@ -485,7 +488,7 @@ def tab_aco(app):
                                                                 ],
                                                                 style={"padding-bottom":"2.5rem"}
                                                             ),
-                                                            html.H6('* Service mix adjusted')
+                                                            
                                                         ]
                                                     ),
                                                     width=4
@@ -499,63 +502,9 @@ def tab_aco(app):
                                                                 [
                                                                     aco_oppo_tbl(df_aco_oppo_dtl,'service_optimize')
                                                                 ],
-                                                                style={"padding-bottom":"2.5rem"}
-                                                            )
-                                                        ]
-                                                    )
-                                                ),
-                                            ],
-                                            style={"padding-left":"2rem", "padding-right":"2rem"}
-                                        )
-                                        
-                                    ]
-                                ),
-                                style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem"}
-                            ),
-                            
-                        ],style={"padding":"2rem"}
-                    ),
-                    html.Div(
-                        [
-                            dbc.Card(
-                                dbc.CardBody(
-                                    [
-                                        dbc.Row(
-                                            [
-                                                dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
-                                                dbc.Col(html.H4("Post Acute Care Optimization", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
-                                            ],
-                                            no_gutters=True,
-                                            style={"padding-bottom":"2rem"}
-                                        ),
-                                        dbc.Row(
-                                            [
-                                                dbc.Col(
-                                                    html.Div(
-                                                        [
-                                                            html.Div(html.H6('Top 5 Diseases with the Biggest Estimated Cost Reduction Opportunities through Post Acute Care Optimization(PMPM)', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"1rem"}),
-                                                            html.Div(
-                                                                [
-                                                                    dcc.Graph(figure=aco_oppo_bar(df_aco_oppo_dtl,'pac_optimize'), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},)
-                                                                ],
-                                                                style={"padding-bottom":"2.5rem"}
+                                                                style={"padding-bottom":"1.5rem"}
                                                             ),
-                                                            html.H6('* Patient mix adjusted')
-                                                        ]
-                                                    ),
-                                                    width=4
-                                                ),
-                                                dbc.Col(html.Div(),width=1),
-                                                dbc.Col(
-                                                    html.Div(
-                                                        [
-                                                            html.Div(html.H6('% of Admissions Discharged to Institutional PAC Facilities (SNF and Inpatient Rehab)', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"3rem"}),
-                                                            html.Div(
-                                                                [
-                                                                    aco_oppo_tbl(df_aco_oppo_dtl,'pac_optimize')
-                                                                ],
-                                                                style={"padding-bottom":"2.5rem"}
-                                                            )
+                                                            html.H6('* Benchmark and Best-in-Class are severity adjusted')
                                                         ]
                                                     )
                                                 ),
@@ -570,6 +519,61 @@ def tab_aco(app):
                             
                         ],style={"padding":"2rem"}
                     ),
+                    # html.Div(
+                    #     [
+                    #         dbc.Card(
+                    #             dbc.CardBody(
+                    #                 [
+                    #                     dbc.Row(
+                    #                         [
+                    #                             dbc.Col(html.Img(src=app.get_asset_url("bullet-round-blue.png"), width="10px"), width="auto", align="start", style={"margin-top":"-4px"}),
+                    #                             dbc.Col(html.H4("Post Acute Care Optimization", style={"font-size":"1rem", "margin-left":"10px"}), width=8),
+                    #                         ],
+                    #                         no_gutters=True,
+                    #                         style={"padding-bottom":"2rem"}
+                    #                     ),
+                    #                     dbc.Row(
+                    #                         [
+                    #                             dbc.Col(
+                    #                                 html.Div(
+                    #                                     [
+                    #                                         html.Div(html.H6('Top 5 Diseases with the Biggest Estimated Cost Reduction Opportunities through Post Acute Care Optimization(PMPM)', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"1rem"}),
+                    #                                         html.Div(
+                    #                                             [
+                    #                                                 dcc.Graph(figure=aco_oppo_bar(df_aco_oppo_dtl,'pac_optimize'), config={'modeBarButtonsToRemove': button_to_rm,'displaylogo': False,},)
+                    #                                             ],
+                    #                                             style={"padding-bottom":"2.5rem"}
+                    #                                         ),
+                    #                                         html.H6('* Patient mix adjusted')
+                    #                                     ]
+                    #                                 ),
+                    #                                 width=4
+                    #                             ),
+                    #                             dbc.Col(html.Div(),width=1),
+                    #                             dbc.Col(
+                    #                                 html.Div(
+                    #                                     [
+                    #                                         html.Div(html.H6('% of Admissions Discharged to Institutional PAC Facilities (SNF and Inpatient Rehab)', style={"font-weight":"bold"}), style={"text-align":"center", "padding-bottom":"3rem"}),
+                    #                                         html.Div(
+                    #                                             [
+                    #                                                 aco_oppo_tbl(df_aco_oppo_dtl,'pac_optimize')
+                    #                                             ],
+                    #                                             style={"padding-bottom":"2.5rem"}
+                    #                                         )
+                    #                                     ]
+                    #                                 )
+                    #                             ),
+                    #                         ],
+                    #                         style={"padding-left":"2rem", "padding-right":"2rem"}
+                    #                     )
+                                        
+                    #                 ]
+                    #             ),
+                    #             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem"}
+                    #         ),
+                            
+                    #     ],style={"padding":"2rem"}
+                    # ),
 
                 ]
             )
@@ -818,7 +822,7 @@ def bundle_full_details(app):
                         ),
                         html.Div(
                             [
-                                bundle_oppo_dtl_bench(df_bundle_byer[df_bundle_byer['bundle']=='Congestive heart failure'], 'Readmission Rate Comparison'), 
+                                bundle_oppo_dtl_bench(df_bundle_byer[df_bundle_byer['bundle']=='Congestive heart failure'], 'Post Discharge ER Rate Comparison'), 
                             ],
                             id='oppo-table-byer',
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem","padding":"2rem"}
@@ -839,7 +843,7 @@ def bundle_full_details(app):
                         ),
                         html.Div(
                             [
-                                bundle_oppo_dtl_bench(df_bundle_dme[df_bundle_dme['bundle']=='Congestive heart failure'], 'Average Cost/Bundle'), 
+                                bundle_oppo_dtl_bench(df_bundle_dme[df_bundle_dme['bundle']=='Congestive heart failure'], 'Average DME Cost/Bundle'), 
                             ],
                             id='oppo-table-bydme',
                             style={"background-color":"#f7f7f7", "border":"none", "border-radius":"0.5rem","padding":"2rem"}
